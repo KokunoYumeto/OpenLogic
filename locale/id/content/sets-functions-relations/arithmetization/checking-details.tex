@@ -1,0 +1,214 @@
+% Bagian: sets-functions-relations
+% Bab: arithmetization
+% Subbagian: pemeriksaan-rincian
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+	
+\olfileid[id]{sfr}{arith}{check}
+\olsection{Ring dan Lapangan Terurut}
+
+Sepanjang bab ini, kita mengklaim bahwa definisi-definisi tertentu berperilaku
+``sebagaimana semestinya''. Dalam lampiran teknis ini, kita akan menjabarkan
+apa yang kita maksud, serta (menguraikan cara) menunjukkan bahwa
+definisi-definisi itu memang berperilaku ``dengan tepat''.
+
+Dalam \olref[int]{sec}, kita mendefinisikan penjumlahan dan perkalian pada
+$\Int$. Kita ingin menunjukkan bahwa, sebagaimana didefinisikan, keduanya
+memberi $\Int$ struktur yang ``kita inginkan''. Secara khusus, struktur yang
+dimaksud adalah ring komutatif.
+
+\begin{defn}
+	Suatu \emph{ring komutatif} adalah himpunan $S$, yang dilengkapi elemen-elemen khusus $0$ dan $1$ serta operasi $+$ dan $\times$, yang memenuhi kedelapan rumus berikut:
+	\begin{align*}
+		\emph{Asosiativitas}&&a + (b+ c) & = (a + b) + c \\
+		&& (a \times b) \times c & = a \times (b\times c)\\
+		\emph{Komutativitas}&&a + b &= b+ a  \\
+		&&  a \times b&= b\times a\\ 
+		\emph{Elemen identitas}&&a + 0 &= a \\
+		&& a \times 1 &= a\\
+		\emph{Invers aditif}&&(\exists b\in S)0&=a + b\\
+		\emph{Distributivitas}&&a \times (b+ c ) &= (a \times b) + (a \times c)
+	\end{align*}
+	Secara implisit, semua rumus ini terikat oleh kuantor universal yang dibatasi pada $S$. Perhatikan pula bahwa elemen $0$ dan~$1$ di sini tidak harus merupakan bilangan asli yang bernama sama.
+\end{defn}
+
+Jadi, untuk memeriksa bahwa bilangan bulat membentuk suatu ring komutatif,
+kita hanya perlu memeriksa bahwa kedelapan kondisi tersebut terpenuhi. Tidak
+ada kondisi yang {sulit} dibuktikan, tetapi pemeriksaannya agak panjang.
+Sebagai contoh, berikut cara membuktikan \emph{Asosiativitas} untuk
+penjumlahan:
+
+\begin{proof} 
+Tetapkan $i, j, k \in \Int$. Jadi terdapat $a_1, b_1, a_2, b_2, a_3, b_3 \in
+\Nat$ sedemikian sehingga $i = \equivrep{a_1, b_1}{}$ dan $j =
+\equivrep{a_2,b_2}{}$ dan $k = \equivrep{a_3, b_3}{}$. (Agar mudah dibaca,
+kita menulis ``$\equivrep{x, y}{}$'' alih-alih
+``$\equivrep{x, y}{\Intequiv}$''; kita akan melakukannya sepanjang
+bagian ini.) Sekarang:
+\begin{align*}
+	i + (j + k) &= \equivrep{a_1, b_1}{}+(\equivrep{a_2, b_2}{} + \equivrep{a_3, b_3}{}) \\
+	&= \equivrep{a_1,  b_1}{} + \equivrep{a_2+a_3, b_2+b_3}{}\\
+	&= \equivrep{a_1 + (a_2 + a_3), b_1 + (b_2 + b_3)}{}\\
+	&= \equivrep{(a_1 + a_2) + a_3, (b_1 + b_2) + b_3}{}\\
+	&= \equivrep{a_1 + a_2, b_1 + b_2}{} + \equivrep{a_3, b_3}{}\\
+	&= (\equivrep{a_1, b_1}{} + \equivrep{a_2, b_2}{}) + \equivrep{a_3, b_3}{}\\
+	&= (i+j) + k
+\end{align*}
+dengan bebas memanfaatkan perilaku penjumlahan pada $\Nat$.
+\end{proof}
+
+Begitu pula, berikut cara membuktikan \emph{Invers aditif}:
+
+\begin{proof}
+Tetapkan $i \in \Int$, sehingga $i = \equivrep{a,b}{}$ untuk suatu $a,b \in
+\Nat$. Misalkan $j = \equivrep{b,a}{} \in \Int$. Dengan memanfaatkan
+perilaku bilangan asli, $(a+b) + 0 = 0 + (a+b)$, sehingga
+$\tuple{a+b, b+a} \sim_\Int \tuple{0,0}$ menurut definisi, dan dengan demikian
+$\equivrep{a+b, b+a}{} = \equivrep{0, 0}{} = 0_\Int$. Maka sekarang $i + j =
+\equivrep{a,b}{}+\equivrep{b,a}{}=\equivrep{a+b, b+a}{}= \equivrep{0,
+0}{} = 0_\Int$.
+\end{proof}
+
+Berikut pula pembuktian \emph{Distributivitas}:
+
+\begin{proof}
+Seperti di atas, tetapkan $i = \equivrep{a_1, b_1}{}$ dan $j =
+\equivrep{a_2,b_2}{}$ dan $k = \equivrep{a_3, b_3}{}$. Sekarang:
+\begin{align*}
+	i \times (j + k) 
+	&= \equivrep{a_1, b_1}{} \times (\equivrep{a_2,b_2}{} + \equivrep{a_3, b_3}{})\\
+	&= \equivrep{a_1, b_1}{} \times \equivrep{a_2 + a_3,b_2+b_3}{}\\
+	&= \equivrep{a_1  (a_2 + a_3) + b_1  (b_2+b_3), a_1  (b_2 + b_3) + b_1 (a_2 + a_3)}{}\\
+	&= \equivrep{a_1 a_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+%		&= \equivrep{a_1 a_2 + b_1b_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+	&= \equivrep{a_1a_2 + b_1b_2, a_1b_2 + a_2b_1}{} + \equivrep{a_1a_3 + b_1b_3, a_1b_3 + a_3b_1}{}\\
+	&= (\equivrep{a_1, b_1}{} \times \equivrep{a_2,b_2}{}) + (\equivrep{a_1, b_1}{} \times  \equivrep{a_3, b_3}{})\\
+	&= (i \times j) + (i \times k)
+\end{align*}
+\end{proof}
+
+Sebagai latihan, silakan buktikan kelima kondisi lainnya. Setelah
+melakukannya, kita telah menunjukkan bahwa $\Int$ merupakan ring komutatif,
+yakni bahwa penjumlahan dan perkalian (sebagaimana didefinisikan) berperilaku
+sebagaimana semestinya.
+
+\begin{prob}
+Buktikan bahwa $\Int$ adalah ring komutatif.
+\end{prob}
+
+Namun, tugas kita belum selesai. Selain mendefinisikan penjumlahan dan
+perkalian pada $\Int$, kita mendefinisikan suatu relasi urutan, $\leq$, dan
+kita harus memeriksa bahwa relasi ini berperilaku sebagaimana semestinya.
+Secara lebih rinci, kita harus menunjukkan bahwa $\Int$ merupakan ring
+\emph{terurut}.\footnote{Ingat dari
+	\olref[sfr][rel][ord]{def:linearorder} bahwa suatu urutan total
+	adalah relasi yang refleksif, transitif, antisimetris, dan terhubung.
+	Dalam konteks relasi urutan, keterhubungan kadang-kadang disebut
+	\emph{trikotomi}, karena untuk setiap $a$ dan $b$ berlaku $a \leq b \lor a
+	= b \lor a \geq b$.}
+
+\begin{defn}
+Suatu \emph{ring terurut} adalah ring komutatif yang juga dilengkapi
+dengan suatu relasi urutan total, $\leq$, sedemikian sehingga:
+\begin{align*}
+	a \leq b &\lif a + c \leq b + c\\
+	(a \leq b \land 0 \leq c) &\lif a \times c \leq b \times c
+\end{align*}
+\end{defn}
+
+\begin{prob}
+Buktikan bahwa $\Int$ adalah ring terurut.
+\end{prob}
+
+Seperti sebelumnya, menunjukkan bahwa~$\Int$, sebagaimana dibangun, merupakan
+ring terurut adalah pekerjaan rutin tetapi panjang. Hal itu kita serahkan
+kepada Anda.
+
+Dengan demikian, bilangan bulat telah selesai ditangani. Namun, sekarang kita
+perlu menunjukkan hal-hal yang sangat mirip mengenai bilangan rasional. Secara
+khusus, sekarang kita perlu menunjukkan bahwa bilangan rasional membentuk
+suatu \emph{lapangan} terurut berdasarkan definisi kita bagi $+$, $\times$,
+dan $\leq$:
+\begin{defn}\ollabel{orderedfield}
+Suatu \emph{lapangan terurut} adalah ring terurut yang juga memenuhi:
+\begin{align*}
+	\emph{Invers perkalian}& & (\forall a \in S \setminus \{0\})(\exists b \in S) a\times b& = 1
+\end{align*}
+\end{defn}
+
+Setelah Anda menunjukkan bahwa $\Int$ merupakan ring terurut, menunjukkan
+bahwa $\Rat$ merupakan lapangan terurut adalah pekerjaan yang mudah tetapi
+panjang.
+
+\begin{prob}
+Buktikan bahwa $\Rat$ adalah lapangan terurut.
+\end{prob}
+
+Setelah menangani bilangan bulat dan bilangan rasional, tinggal bilangan real
+yang perlu ditangani. Secara khusus, kita perlu menunjukkan bahwa $\Real$
+merupakan lapangan terurut yang \emph{lengkap}, yakni lapangan terurut yang
+memiliki Sifat Kelengkapan. \olref[cuts]{realcompleteness} telah membuktikan
+bahwa $\Real$ memiliki Sifat Kelengkapan. Namun, kita masih perlu menjalani
+proses (yang melelahkan) untuk memeriksa bahwa $\Real$ merupakan lapangan
+terurut.
+
+Sebelum bergegas mengerjakan latihan panjang \emph{itu}, kita perlu memeriksa
+beberapa hal yang lebih ``langsung''. Sebagai contoh, kita memerlukan jaminan
+bahwa $\alpha + \beta$, sebagaimana didefinisikan, memang suatu
+\emph{potongan}, untuk sembarang potongan $\alpha$ dan $\beta$. Berikut
+pembuktian fakta tersebut:
+
+\begin{proof}	
+Karena $\alpha$ dan $\beta$ keduanya potongan, $\alpha + \beta = \Setabs{p
++ q}{p \in \alpha \land q \in \beta}$ merupakan himpunan bagian sejati
+takkosong dari $\Rat$. Sekarang andaikan $x < p + q$ untuk suatu $p \in
+\alpha$ dan $q \in \beta$. Maka $x - p < q$, sehingga $x - p \in \beta$,
+dan $x = p + (x - p) \in \alpha + \beta$. Jadi $\alpha + \beta$ adalah
+segmen awal dari $\Rat$. Terakhir, untuk setiap $p + q \in \alpha + \beta$,
+karena $\alpha$ dan $\beta$ keduanya potongan, terdapat $p_1 \in \alpha$
+dan $q_1 \in \beta$ sedemikian sehingga $p < p_1$ dan $q < q_1$; jadi $p +
+q < p_1 + q_1 \in \alpha + \beta$; maka $\alpha + \beta$ tidak mempunyai
+maksimum.
+\end{proof}
+
+Upaya serupa akan memungkinkan Anda memeriksa bahwa $\alpha - \beta$ dan
+$\alpha \times \beta$ dan $\alpha \div \beta$ merupakan potongan (dalam kasus
+terakhir, dengan mengabaikan kasus ketika $\beta$ merupakan potongan nol).
+Namun, sekali lagi, hal itu kita serahkan kepada Anda.
+
+\begin{prob}
+Buktikan bahwa $\Real$ adalah lapangan terurut.
+\end{prob}
+
+Namun, ada satu rincian kecil yang perlu dirapikan. Dalam
+\olref[cuts]{sec}, kita mengusulkan agar kita dapat menetapkan $\sqrt{2} =
+\Setabs{p \in \Rat}{p < 0 \text{ atau }p^2 < 2}$. Akan tetapi, kita memang
+perlu menunjukkan bahwa himpunan ini merupakan suatu \emph{potongan}. Berikut
+pembuktian fakta tersebut:
+
+\begin{proof}
+Jelas bahwa himpunan ini merupakan segmen awal sejati takkosong dari bilangan
+rasional; jadi cukup ditunjukkan bahwa himpunan ini tidak mempunyai maksimum.
+Secara khusus, cukup ditunjukkan bahwa jika $p$ adalah bilangan rasional
+positif dengan $p^2 < 2$ dan $q = \frac{2p+2}{p+2}$, maka $p < q$ dan $q^2 <
+2$. Untuk melihat bahwa $p < q$, cukup perhatikan:
+\begin{align*}
+	p^2 &< 2\\
+	p^2 + 2p &< 2 + 2p\\
+	p(p + 2) &< 2 + 2p\\
+	p &< \tfrac{2+2p}{p+2} = q
+\end{align*}
+Untuk melihat bahwa $q^2 < 2$, cukup perhatikan:
+\begin{align*}
+	p^2 &< 2\\
+	2p^2 + 4p + 2 &< p^2 + 4p+ 4\\
+	4p^2 + 8p + 4 &< 2(p^2 + 4p + 4)\\
+	(2p+2)^2 & <2(p+2)^2\\
+	\tfrac{(2p+2)^2}{(p+2)^2} &< 2\\
+	q^2 &< 2
+\end{align*}
+\end{proof}
+\end{document}

@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **40 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0040`; unit berikutnya ialah `OLP-0041`,
-`content/sets-functions-relations/arithmetization/arithmetization.tex`.
+Status saat ini: **48 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0048`; unit berikutnya ialah `OLP-0049`,
+`content/sets-functions-relations/infinite/infinite.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -47,11 +47,11 @@ Dari akar repositori, dengan MiKTeX dan Latexmk yang sudah terpasang:
 
 ```powershell
 $env:MIKTEX_ENABLE_INSTALLER='0'
-latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/size-of-sets-id.tex
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/arithmetization-id.tex
 ```
 
-Hasil terakhir ialah PDF 61 halaman dengan SHA-256
-`43644ca531e5e058bb0bf2ee2fec89c304e5387546055087e358fd303c888d71`.
+Hasil terakhir ialah PDF 79 halaman dengan SHA-256
+`e938bf09813d45a82516d7646b120358c113337d9c7bdaa8a1a607a36323a1d7`.
 Perintah QA dan bukti render yang tepat dicatat dalam `BUILD.md`.
 
 ## Syarat penerimaan tiap batch

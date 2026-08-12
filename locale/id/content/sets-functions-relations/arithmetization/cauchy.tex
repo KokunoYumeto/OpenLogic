@@ -1,0 +1,230 @@
+% Bagian: sets-functions-relations
+% Bab: arithmetization
+% Subbagian: cauchy
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{arith}{cauchy}
+
+\olsection{Lampiran: Bilangan Real sebagai Barisan Cauchy}
+
+Dalam \olref[cuts]{sec}, kita membangun bilangan real sebagai potongan
+Dedekind. Dalam bagian ini, kita menjelaskan suatu konstruksi alternatif.
+Konstruksi ini bertumpu pada definisi Cauchy tentang (apa yang kini kita sebut)
+barisan Cauchy; tetapi penggunaan definisi ini untuk \emph{membangun} bilangan
+real berasal dari para penulis lain pada abad ke-19, khususnya Weierstrass,
+Heine, M\'{e}ray, dan Cantor. (Untuk sejarah yang menarik, lihat
+\citeauthor{OConnorRobertson:RN} \citeyear{OConnorRobertson:RN}.)
+
+Sebelum memasuki abad ke-19, ada baiknya kita mempertimbangkan Simon Stevin
+(1548--1620). Singkatnya, Stevin menyadari bahwa kita dapat memikirkan setiap
+bilangan real melalui ekspansi desimalnya. Maka, bahkan bilangan irasional
+seperti $\sqrt{2}$ mempunyai ekspansi desimal yang baik, yang dimulai dengan:
+\[
+	1.41421356237\ldots
+\]
+Sangat mudah memodelkan ekspansi desimal dalam teori himpunan: cukup pandang
+ekspansi itu sebagai fungsi $d \colon \Nat \to \Nat$, dengan $d(n)$ yang
+menyatakan digit pada tempat desimal ke-$n$ yang kita perhatikan. Kemudian kita memerlukan sedikit
+penyesuaian untuk menangani bagian bilangan real sebelum tanda desimal (di
+sini, hanya $1$). Kita juga memerlukan penyesuaian lebih lanjut (suatu relasi
+ekuivalensi) untuk menjamin bahwa, misalnya, $0.999\ldots = 1$. Namun, tidak
+sulit memberikan konstruksi bilangan real yang sepenuhnya ketat secara
+matematis, dengan cara Stevin, di dalam teori himpunan.
+
+Stevin bukan fokus kita. (Untuk pembahasan lebih lanjut mengenai Stevin, lihat
+\citealt{KatzKatz2012}.) Namun, berikut suatu gagasan yang berkaitan erat.
+Alih-alih memperlakukan ekspansi desimal $\sqrt{2}$ secara langsung, kita
+dapat mempertimbangkan suatu \emph{barisan} hampiran rasional yang semakin
+akurat terhadap $\sqrt{2}$, dengan memperhatikan ekspansi yang semakin teliti:
+\[
+1, 1.4, 1.414, 1.4142, 1.41421,\ldots
+\]
+Gagasan bahwa bilangan real dapat dipandang melalui ``hampiran yang semakin
+baik'' memberi kita landasan bagi rangkaian wawasan lainnya (serupa dengan
+pengamatan yang kita gunakan ketika membangun $\Rat$ dari $\Int$, atau $\Int$
+dari $\Nat$). Wawasan dasarnya adalah:
+\begin{enumerate}
+	\item Setiap bilangan real dapat ditulis sebagai ekspansi desimal
+	(yang mungkin tak berhingga).
+	\item Informasi yang dikodekan oleh ekspansi desimal (yang mungkin tak
+	berhingga) dapat pula dikodekan oleh suatu barisan bilangan rasional.
+	\item Suatu barisan bilangan rasional dapat dipandang sebagai fungsi
+	dari $\Nat$ ke $\Rat$; cukup tetapkan $f(n)$ sebagai bilangan rasional
+	ke-$n$ dalam barisan tersebut.
+\end{enumerate}
+Tentu saja, tidak \emph{setiap} fungsi dari $\Nat$ ke $\Rat$ akan memberi kita
+suatu bilangan real. Sebagai contoh, perhatikan fungsi berikut:
+\[
+	f(n) =\begin{cases}
+			1 & \text{jika }n\text{ ganjil}\\
+			0 &\text{jika }n\text{ genap}
+		\end{cases}
+\]
+Pada dasarnya, kekhawatirannya ialah bahwa barisan $0,1,0,1,0,1,0,\ldots$
+tampaknya tidak ``mendekati'' bilangan real mana pun. Jadi, untuk memastikan
+bahwa kita mempertimbangkan barisan yang memang mendekati suatu bilangan real,
+kita perlu membatasi perhatian pada barisan yang mempunyai suatu
+\emph{limit}.
+
+Kita telah menjumpai gagasan limit dalam \olref[his][set][limits]{sec}. Namun,
+kita tidak dapat menggunakan definisi yang \emph{persis} sama seperti yang
+kita gunakan di sana. Ekspresi ``$(\forall \epsilon>0)$'' di sana secara
+tersirat melibatkan kuantifikasi atas bilangan real; dan kita sedang
+mempertimbangkan limit fungsi pada bilangan real; jadi, menggunakan definisi
+tersebut berarti memanfaatkan bilangan real; padahal bilangan real itulah yang
+sedang kita upayakan untuk \emph{bangun}. Untungnya, kita dapat bekerja dengan
+gagasan limit yang berkaitan erat.
+\begin{defn}\ollabel{def:CauchySequence}
+  Suatu fungsi $f: \Nat \to \Rat$ merupakan \emph{barisan Cauchy} jika dan hanya jika untuk
+  setiap $\epsilon \in \Rat$ positif berlaku $(\exists \ell \in
+  \Nat)(\forall m, n > \ell)|f(m) - f(n)| < \epsilon$.
+\end{defn}
+
+Gagasan umum mengenai limit tetap sama seperti sebelumnya: jika Anda
+menginginkan tingkat ketelitian tertentu (yang diukur oleh~$\epsilon$), ada
+suatu ``wilayah'' tempat mencarinya (setiap masukan yang lebih besar
+daripada~$\ell$). Mudah dilihat bahwa barisan kita $1$, $1.4$, $1.414$,
+$1.4142$, $1.41421$\ldots mempunyai suatu limit: jika Anda ingin menghampiri
+$\sqrt{2}$ dengan galat kurang dari $\nicefrac{1}{10^{n}}$, cukup perhatikan
+sembarang suku setelah suku ke-$n$.
+
+Gagasan yang jelas, dengan demikian, ialah mengatakan bahwa suatu bilangan
+real \emph{adalah} sembarang barisan Cauchy. Namun, seperti dalam konstruksi
+$\Int$ dan $\Rat$, gagasan ini terlalu naif: untuk setiap bilangan real
+tertentu, ada beberapa barisan Cauchy berbeda yang menunjukkan bilangan real
+tersebut. Cara sederhana untuk melihat hal ini adalah sebagai berikut. Jika
+diberikan suatu barisan Cauchy~$f$, definisikan $g$ sebagai fungsi yang sama
+persis dengan~$f$, kecuali bahwa $g(0)\neq f(0)$. Karena kedua barisan itu
+setelah suku pertama, selisih keduanya mendekati nol menurut kriteria yang
+berkaitan dengan \olref{def:CauchySequence}; karena itu, keduanya seharusnya
+dipandang ``mendefinisikan'' bilangan real yang sama. Jadi, sebenarnya kita
+harus memandang barisan-barisan Cauchy tersebut sebagai bilangan real yang
+sama.
+
+Oleh karena itu, sekali lagi kita perlu mendefinisikan suatu relasi ekuivalensi
+pada barisan-barisan Cauchy, dan mengidentifikasi bilangan real dengan
+kelas-kelas ekuivalensi. Pertama-tama, kita memerlukan gagasan tentang suatu fungsi yang
+mendekati $0$ pada limitnya. Untuk setiap fungsi $h : \Nat \to \Rat$,
+katakan bahwa \emph{$h$ mendekati $0$} jika dan hanya jika untuk setiap
+$\epsilon \in \Rat$ positif berlaku $(\exists \ell \in \Nat)(\forall n >
+\ell)|h(n)| < \epsilon$.\footnote{Bandingkan ini dengan definisi
+$\lim_{x \mathord{\rightarrow}\infty}f(x) = 0$ dalam
+\olref[his][set][limits]{sec}.} Selanjutnya, jika $f$ dan $g$ adalah fungsi
+$\Nat \to \Rat$, tetapkan $(f-g)(n) = f(n) - g(n)$. Sekarang definisikan:
+\[
+	f \Realequiv g \text{ jika dan hanya jika $(f-g)$ mendekati $0$}.
+\]
+Kita perlu memeriksa bahwa $\Realequiv$ merupakan relasi ekuivalensi; dan
+memang demikian. Kemudian, jika kita mau, kita dapat mendefinisikan bilangan
+real sebagai kelas-kelas ekuivalensi, di bawah $\Realequiv$, dari semua
+barisan Cauchy dari $\Nat \to \Rat$.
+
+\begin{prob}
+Misalkan $f(n) = 0$ untuk setiap $n$. Misalkan $g(n) = \frac{1}{(n+1)^2}$.
+Tunjukkan bahwa keduanya merupakan barisan Cauchy, dan bahwa limit kedua
+fungsi tersebut memang $0$, sehingga juga $f \sim_\Real g$.
+\end{prob}
+
+Setelah melakukan ini, seperti biasa kita menulis
+$\equivrep{f}{\Realequiv}$ untuk kelas ekuivalensi yang memuat $f$ sebagai
+!!a{element}. Namun, agar tetap mudah dibaca, selanjutnya kita akan
+menghilangkan subskrip dan hanya menulis $\equivrep{f}{}$. Kita juga
+menetapkan bahwa, untuk setiap $q \in \Rat$, berlaku $q_{\Real} =
+\equivrep{c_{q}}{}$, dengan $c_{q}$ sebagai fungsi konstan $c_q(n) = q$ untuk
+semua $n \in \Nat$. Kemudian kita mendefinisikan relasi dan operasi dasar pada
+bilangan real, misalnya:
+\begin{align*}
+	\equivrep{f}{} + \equivrep{g}{} &= 	\equivrep{(f + g)}{} \\
+	\equivrep{f}{} \times 	\equivrep{g}{} &= \equivrep{(f \times g)}{} 
+\end{align*}
+dengan $(f + g)(n) = f(n) + g(n)$ dan $(f \times g)(n) = f(n) \times
+g(n)$. Tentu saja, kita juga perlu memeriksa bahwa masing-masing $(f + g)$,
+$(f-g)$, dan $(f\times g)$ merupakan barisan Cauchy jika $f$ dan $g$ demikian;
+memang benar, dan hal ini kita serahkan kepada Anda.
+
+Terakhir, kita mendefinisikan suatu gagasan urutan. Katakan bahwa
+$\equivrep{f}{}$ \emph{positif} jika dan hanya jika
+$\equivrep{f}{}\neq 0_\Real$ dan $(\exists \ell \in \Nat)(\forall n >
+\ell)0 < f(n)$ keduanya berlaku. Kemudian katakan bahwa $\equivrep{f}{} <
+\equivrep{g}{}$ jika dan hanya jika $\equivrep{(g - f)}{}$ positif. Kita harus
+memeriksa bahwa definisi ini terdefinisi dengan baik (yakni, tidak bergantung
+pada pemilihan fungsi ``wakil'' dari kelas ekuivalensi).
+%\begin{align*}
+%	\equivrep{f}{} \leq \equivrep{g}{} \text{ jika dan hanya jika }&\equivrep{f}{} = \equivrep{g}{} \text{ atau }\\
+%	&(\exists \ell \in \Nat)(\forall n \in \Nat)(\ell < n \lif f(n) \leq g(n))
+%\end{align*}
+Setelah melakukan ini, cukup mudah menunjukkan bahwa semuanya menghasilkan
+sifat-sifat aljabar yang tepat; yakni:
+\begin{thm}\ollabel{thm:cauchyorderedfield}
+Barisan-barisan Cauchy membentuk suatu lapangan terurut.
+\end{thm}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan bahwa barisan-barisan Cauchy membentuk suatu lapangan terurut.
+\end{prob}
+
+Membuktikan bahwa bilangan real yang dibangun demikian memiliki Sifat
+Kelengkapan lebih sulit, sehingga kita akan memberikan pembuktiannya.
+
+\begin{thm}
+Setiap himpunan takkosong barisan Cauchy yang mempunyai suatu batas atas
+mempunyai suatu batas atas terkecil.
+\end{thm}
+
+\begin{proof}[Sketsa pembuktian] Misalkan $S$ adalah sembarang himpunan
+takkosong barisan Cauchy yang mempunyai suatu batas atas. Maka terdapat suatu
+$p \in \Rat$ sedemikian sehingga $p_{\Real}$ merupakan batas atas bagi $S$.
+Ambil $r \in S$; maka terdapat suatu $q \in \Rat$ sedemikian sehingga
+$q_{\Real} < \equivrep{r}{}$. Jadi, jika batas atas terkecil bagi $S$ ada, batas itu berada
+di antara $q_\Real$ dan $p_\Real$ (inklusif).
+
+Kita akan semakin mendekati b.a.t. tersebut secara bersamaan dari bawah dan
+atas. Secara khusus, kita mendefinisikan dua fungsi, $f, g \colon \Nat \to
+\Rat$, dengan tujuan agar $f$ semakin mendekati b.a.t.\ dari atas, dan $g$
+semakin mendekatinya dari bawah. Kita mulai dengan mendefinisikan:
+\begin{align*}
+	f(0) &= p \\
+	g(0) &= q
+\end{align*}
+Kemudian, dengan $a_n = \frac{f(n) + g(n)}{2}$, tetapkan:\footnote{Ini
+merupakan definisi rekursif. Namun, kita \emph{belum} memberikan alasan apa
+pun untuk menganggap bahwa definisi rekursif diperbolehkan.}
+\begin{align*}
+	f(n+1) &=
+	\begin{cases}
+		a_n &\text{jika }(\forall h \in S)\equivrep{h}{} \leq (a_n)_\Real\\
+		f(n)&\text{jika tidak}
+	\end{cases}\\
+	g(n+1) &=
+	\begin{cases}
+		a_n &\text{jika }(\exists h \in S)\equivrep{h}{} \geq (a_n)_\Real\\
+	 	g(n) &\text{jika tidak}
+	\end{cases}
+\end{align*}
+Baik $f$ maupun $g$ merupakan barisan Cauchy. (Hal ini dapat diperiksa dengan
+cukup mudah, tetapi kita serahkan sebagai latihan.) Perhatikan bahwa fungsi
+$(f-g)$ mendekati $0$, karena selisih antara $f$ dan $g$ menjadi paling banyak setengah pada
+setiap langkah. Oleh karena itu, $\equivrep{f}{} = \equivrep{g}{}$.
+
+Pertama-tama kita menunjukkan bahwa $\equivrep{f}{}$ merupakan suatu batas atas bagi $S$, yakni\ $(\forall h \in S)\equivrep{h}{} \leq \equivrep{f}{}$.
+(Selama pembuktian, kita akan menggunakan \olref{thm:cauchyorderedfield}.) Ambil $h \in S$ dan
+andaikan, untuk memperoleh kontradiksi, bahwa $\equivrep{f}{} < \equivrep{h}{}$, sehingga
+$0_\Real < \equivrep{(h-f)}{}$. Karena $f$ adalah barisan Cauchy yang menurun
+secara monoton, terdapat suatu $n \in \Nat$ sedemikian sehingga
+$\equivrep{(c_{f(n)} - f)}{} < \equivrep{(h-f)}{}$. Jadi:
+\[
+	(f(n))_\Real = \equivrep{c_{f(n)}}{} < \equivrep{f}{} + \equivrep{(h-f)}{} = \equivrep{h}{},
+\]
+yang bertentangan dengan fakta bahwa, menurut konstruksi, $\equivrep{h}{} \leq (f(n))_\Real$.
+
+Selanjutnya kita menunjukkan bahwa $\equivrep{f}{} = \equivrep{g}{}$ adalah batas atas \emph{terkecil} bagi $S$. Jadi, misalkan $j$ adalah sembarang barisan Cauchy dan andaikan $\equivrep{j}{} < \equivrep{g}{}$. Dengan bernalar seperti di atas (menggunakan fakta bahwa $g$ \emph{meningkat}), terdapat $n \in \Nat$ sedemikian sehingga $\equivrep{j}{} < (g(n))_\Real$. Namun, menurut konstruksi terdapat $h \in S$ sedemikian sehingga $(g(n))_\Real \leq \equivrep{h}{}$, sehingga $\equivrep{j}{} < \equivrep{h}{}$ dan oleh karena itu $\equivrep{j}{}$ bukan batas atas bagi $S$.
+\end{proof}
+
+\end{document}

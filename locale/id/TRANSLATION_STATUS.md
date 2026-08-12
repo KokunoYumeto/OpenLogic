@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 40/722 and the exact remainder is 682 files.
+Current target-file coverage is 48/722 and the exact remainder is 674 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -105,6 +105,25 @@ Cantor's theorem, transposed diagonal indices and a duplicated bit flip, and a
 duplicate global label between the standard and alternative reduction units.
 The exact dispositions and per-file hashes are in
 `..\_control\OPENLOGIC_SIZE_OF_SETS_INDEPENDENT_REVIEW_20260813.md`.
+
+### Contiguous closure through Arithmetization
+
+`OLP-0041`--`OLP-0048` translates all eight files imported by the complete
+Arithmetization chapter: the root, integers, rationals, real-number
+construction, cuts, reflections, detailed algebra checks, and the Cauchy
+appendix. The batch contains 4,883 English-source TeXcount words and 4,469
+Indonesian words. Across the contiguous forty-eight-file boundary, the exact
+totals are 23,735 English-source words and 21,604 Indonesian words.
+
+Two independent paragraph-level semantic replays found no omitted or
+untranslated reader-facing prose and no translation-origin polarity,
+quantifier, or scope drift. Exact path-scoped source repairs include the sign
+orientation in rational subtraction, the nonempty-set premise in the supremum
+proof, real-zero notation, explicit principal-root and minimal-pair wording,
+and six Cauchy-appendix type or exposition defects. The remaining upstream
+mathematical/type risks are retained as adverse evidence rather than hidden.
+Exact findings, source/target hashes, and dispositions are in
+`..\_control\OPENLOGIC_ARITHMETIZATION_INDEPENDENT_REVIEW_20260813.md`.
 
 ## Word counts for the 2026-08-12 initial checkpoint
 
@@ -204,6 +223,25 @@ and correction-heavy pages were additionally inspected at original render
 resolution. No clipping, overlap, blank page, broken glyph, lost formula,
 damaged table, or margin loss was found.
 
+The Arithmetization replay passed 120 checks across eight files and binds
+`OLP-0041`--`OLP-0048` to the frozen source hashes. It compares exact ordered
+commands, environments, localization tokens, labels, references, assets,
+imports, URLs, citations, document classes, file/chapter IDs, and mathematical
+skeletons. Eleven path-specific source normalizations and twelve positive and
+rejected-form assertions make the admitted repairs explicit; unrelated drift
+remains a hard failure.
+
+The combined driver through Arithmetization builds cleanly to 79 pages and
+539,582 bytes, SHA-256
+`e938bf09813d45a82516d7646b120358c113337d9c7bdaa8a1a607a36323a1d7`.
+The final log contains no fatal error, undefined reference/citation,
+multiply-defined label, or missing glyph. Extracted text is 188,162 bytes with
+zero unresolved marker or English environment/reference label. Pages 60--79
+were rendered at 144 dpi and all twenty inspected; formula-, diagram-, and
+proof-dense pages were additionally inspected at readable original resolution.
+No clipping, overlap, blank page, broken glyph, lost formula, or margin loss was
+found.
+
 ## Preserved risks and nonclaims
 
 - `cleveref` has no installed Indonesian language module. The locale driver
@@ -218,6 +256,13 @@ damaged table, or margin loss was found.
   log contains twelve in total; the overall maximum remains 5.589 pt. Every
   affected page was included in the exact-resolution render review, with no
   visible loss.
+- The 79-page Arithmetization build contains fifteen small overfull boxes,
+  maximum 5.66658 pt, one underfull bibliography line, and one underfull vbox.
+  Render inspection found no visible loss.
+- The two forward references from Arithmetization into the later History part
+  use Indonesian label metadata in the bounded driver. They do not import
+  untranslated English prose and will be replaced by the real translated
+  History labels in the complete reader build.
 - The running set-membership token remains `anggota`; `elemen` is an admitted
   synonym and must be replayed in later model-theory/domain contexts.
 - OLP-0001 has no mathematical formula or `\olfileid`; its QA is therefore
@@ -228,7 +273,7 @@ damaged table, or margin loss was found.
 
 ## Continuation cursor
 
-Next global ordered cursor: `OLP-0041`,
-`content/sets-functions-relations/arithmetization/arithmetization.tex`.
-The remaining closure is 682 source files after the 40 target files currently
+Next global ordered cursor: `OLP-0049`,
+`content/sets-functions-relations/infinite/infinite.tex`.
+The remaining closure is 674 source files after the 48 target files currently
 present and admitted.

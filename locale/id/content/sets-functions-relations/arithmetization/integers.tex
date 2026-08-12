@@ -1,0 +1,89 @@
+% Bagian: sets-functions-relations
+% Bab: arithmetization
+% Subbagian: Dari N ke Z
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[id]{sfr}{arith}{int}
+\olsection{Dari $\Nat$ ke $\Int$}
+
+Berikut dua pengamatan dasar:
+	\begin{enumerate}
+		\item Setiap bilangan bulat dapat ditulis dalam bentuk $n - m$, dengan $n, m \in\Nat$.
+		\item Informasi yang dikodekan dalam suatu ekspresi $n - m$ dapat pula dikodekan oleh pasangan terurut $\tuple{n, m}$.
+	\end{enumerate}
+Kita sudah mengetahui bahwa pasangan-pasangan terurut bilangan asli merupakan !!{element}s dari $\Nat^2$. Kita juga mengandaikan bahwa kita memahami $\Nat$. Maka, berdasarkan dua pengamatan tadi, berikut sebuah usulan naif: \emph{mari kita perlakukan bilangan bulat sebagai pasangan terurut bilangan asli}.
+
+Sebenarnya, usulan ini terlalu naif. Kita tentu menginginkan $0- 2 = 4 - 6$. Akan tetapi, jelas bahwa $\tuple{0, 2 }\neq \tuple{4, 6}$. Jadi, kita tidak dapat begitu saja mengatakan bahwa $\Nat^2$ adalah himpunan bilangan bulat.
+
+Dengan menggeneralisasi masalah tadi, yang kita inginkan adalah:
+	$$a - b = c - d \text{ jika dan hanya jika }a + d = c + b$$
+(Sudah semestinya jelas bahwa begitulah bilangan bulat \emph{dimaksudkan} berperilaku: cukup tambahkan $b$ dan $d$ pada kedua ruas.) Cara mudah untuk menjamin perilaku ini ialah dengan mendefinisikan suatu relasi ekuivalensi antara pasangan-pasangan terurut, $\Intequiv$, sebagai berikut:
+$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ jika dan hanya jika }a + d = c + b$$
+Sekarang kita harus menunjukkan bahwa relasi ini merupakan relasi ekuivalensi.
+\begin{prop} $\Intequiv$ merupakan relasi ekuivalensi.
+\end{prop}
+	\begin{proof}
+	Kita harus menunjukkan bahwa $\Intequiv$ bersifat refleksif, simetris, dan transitif.
+
+	\emph{Refleksivitas:} Jelas bahwa $\tuple{a, b} \Intequiv \tuple{a, b}$, karena $a + b = b + a$.
+
+	\emph{Simetri:} Andaikan $\tuple{a, b} \Intequiv \tuple{c, d}$, sehingga $a + d = c + b$. Maka $c + b = a + d$, sehingga $\tuple{c, d} \Intequiv \tuple{a, b}$.
+
+	\emph{Transitivitas:} Andaikan $\tuple{a, b} \Intequiv \tuple{c, d}\Intequiv \tuple{m, n}$. Maka $a + d = c + b$ dan $c + n = m + d$. Jadi $a + d + c + n = c + b + m + d$, dan dengan demikian $a + n = m + b$. Oleh karena itu, $\tuple{a, b } \Intequiv \tuple{m, n}$.
+\end{proof}
+
+Sekarang kita dapat menggunakan relasi ekuivalensi ini untuk membentuk kelas-kelas ekuivalensi:
+
+\begin{defn}
+		Bilangan bulat adalah kelas-kelas ekuivalensi, di bawah $\Intequiv$, dari pasangan-pasangan terurut bilangan asli; yakni, $\Int = \equivclass{\Nat^2}{\Intequiv}$.
+\end{defn}
+
+Orang mungkin mempunyai berbagai reaksi \emph{filosofis} terhadap definisi stipulatif ini. Namun, sebelum mempertimbangkan reaksi-reaksi tersebut, ada baiknya kita melanjutkan beberapa rincian teknis.
+
+Setelah menyatakan apa itu bilangan bulat, kita perlu mendefinisikan fungsi dan relasi dasar padanya. Mari kita tulis $\equivrep{m, n}{\Intequiv}$ untuk kelas ekuivalensi di bawah $\Intequiv$ yang memuat $\tuple{m, n}$ sebagai !!a{element}.\footnote{Catatan: dengan menggunakan notasi yang diperkenalkan dalam \olref[sfr][rel][eqv]{def:equivalenceclass}, kita akan menulis $\equivrep{\tuple{m,n}}{\Intequiv}$ untuk hal yang sama. Namun, bentuk itu sedikit lebih sulit dibaca.} Yakni:
+	$$\equivrep{m, n}{\Intequiv} = \Setabs{\tuple{a, b} \in \Nat^2}{\tuple{a, b}\Intequiv \tuple{m, n}}$$
+Sekarang kita memberikan beberapa definisi:
+	\begin{align*}
+		\equivrep{a, b}{\Intequiv} + \equivrep{c, d}{\Intequiv} &= \equivrep{a + c, b + d}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \times \equivrep{c, d}{\Intequiv} &= \equivrep{a c + b  d, a  d + b c}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \leq \equivrep{c, d}{\Intequiv} &\text{ jika dan hanya jika }a + d \leq b + c
+	\end{align*}
+(Sebagaimana lazimnya, saya menggunakan `$ab$' untuk menyatakan `$(a \times b)$', semata-mata agar aksioma-aksioma tersebut lebih mudah dibaca.) Sekarang kita perlu memastikan bahwa definisi-definisi ini berperilaku sebagaimana \emph{semestinya}. Menjabarkan apa artinya dan memeriksanya satu per satu cukup melelahkan; rinciannya kita tempatkan dalam \olref[check]{sec}. Namun, intinya: semuanya berhasil!
+
+Masih ada satu hal terakhir. Kita telah membangun bilangan bulat dengan
+menggunakan bilangan asli. Akan tetapi, ini berarti bahwa bilangan asli
+\emph{bukan bilangan bulat itu sendiri}. Kita akan kembali membahas arti
+filosofisnya dalam \olref[ref]{sec}. Namun, dari sudut pandang teknis murni,
+kita memerlukan suatu cara agar dapat memperlakukan bilangan asli
+\emph{sebagai} bilangan bulat. Gagasannya cukup mudah: untuk setiap $n \in
+\Nat$, kita menetapkan bahwa $n_\Int = \equivrep{n, 0}{\Intequiv}$. Kita
+perlu memastikan bahwa definisi ini berperilaku baik, yaitu bahwa untuk
+sembarang $m, n \in \Nat$
+\begin{align*}
+	(m + n)_\Int &= m_\Int + n_\Int\\
+	(m \times n)_\Int &= m_\Int \times n_\Int\\
+	m \leq n &\liff m_\Int \leq n_\Int
+\end{align*}
+Namun, semua ini cukup langsung. Sebagai contoh, untuk menunjukkan bahwa
+kondisi kedua berlaku, kita cukup memanfaatkan perilaku bilangan asli dan
+bernalar sebagai berikut:
+%\begin{proof}
+%	Dengan memanfaatkan perilaku bilangan asli, jelas bahwa:
+	\begin{align*}
+%		(m + n)_\Int  = \equivrep{m + n, 0}{\Intequiv} = \equivrep{m + n, 0 + 0}{\Intequiv} = \equivrep{m, 0}{\Intequiv} + \equivrep{n, 0}{\Intequiv} = m_\Int + n_\Int\\
+		(m \times n)_\Int  &= \equivrep{m \times n, 0}{\Intequiv} \\
+		&= \equivrep{m \times n + 0 \times 0, m \times 0 + 0 \times n}{\Intequiv} \\
+		&= \equivrep{m, 0}{\Intequiv} \times \equivrep{n, 0}{\Intequiv} \\
+		&= m_\Int \times n_\Int
+	\end{align*}
+%\end{proof}
+Sebagai latihan, silakan pastikan bahwa kedua kondisi lainnya berlaku.
+\begin{prob}
+	Tunjukkan bahwa $(m + n)_\Int = m_\Int + n_\Int$ dan $m \leq n \liff m_\Int \leq n_\Int$, untuk sembarang $m, n \in \Nat$.
+\end{prob}
+\end{document}
+

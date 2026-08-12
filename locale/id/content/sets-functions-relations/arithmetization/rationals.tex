@@ -1,0 +1,78 @@
+% Bagian: sets-functions-relations
+% Bab: arithmetization
+% Subbagian: bilangan rasional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{arith}{rat}
+\olsection{Dari $\Int$ ke $\Rat$}
+
+Kita baru saja melihat cara membangun bilangan bulat dari bilangan asli,
+dengan menggunakan teori himpunan naif. Sekarang kita akan melihat cara
+membangun bilangan rasional dari bilangan bulat dengan cara yang sangat
+mirip. Pengamatan awal kita adalah:
+\begin{enumerate}
+	\item Setiap bilangan rasional dapat ditulis dalam bentuk $\nicefrac{i}{j}$,
+	dengan $i$ dan $j$ keduanya bilangan bulat, tetapi $j$ taknol.
+	\item Informasi yang dikodekan dalam suatu ekspresi $\nicefrac{i}{j}$
+	dapat pula dikodekan dalam pasangan terurut $\tuple{ i, j}$.
+\end{enumerate}
+Pendekatan yang jelas ialah memandang bilangan rasional \emph{sebagai}
+pasangan terurut yang diambil dari $\Int \times (\Int \setminus \{0_\Int\})$.
+Namun, seperti sebelumnya, pendekatan itu agak terlalu naif, karena kita
+menginginkan $\nicefrac{3}{2} = \nicefrac{6}{4}$, sedangkan $\tuple{ 3,
+2}\neq \tuple{ 6, 4}$. Secara lebih umum, kita menginginkan:
+\[
+	\nicefrac{a}{b} = \nicefrac{c}{d} \text{ jika dan hanya jika } a \times d = b \times c
+\]
+Untuk memperolehnya, kita mendefinisikan suatu {relasi ekuivalensi} pada
+$\Int \times (\Int \setminus \{0_\Int\})$ sebagai berikut:
+\[
+	\tuple{ a, b }\Ratequiv \tuple{ c, d} \text{ jika dan hanya jika }a \times d = b \times c
+\]
+Kita harus memeriksa bahwa relasi ini merupakan relasi ekuivalensi. Hal ini
+sangat mirip dengan kasus $\Intequiv$, dan kita serahkan sebagai latihan.
+\begin{prob}
+Tunjukkan bahwa $\Ratequiv$ merupakan relasi ekuivalensi.
+\end{prob}
+Namun, relasi ini memungkinkan kita mengatakan:
+\begin{defn}
+Bilangan rasional adalah kelas-kelas ekuivalensi, di bawah $\Ratequiv$, dari
+pasangan-pasangan bilangan bulat (dengan elemen kedua yang taknol). Yakni,
+$\Rat =
+\equivclass{(\Int \times (\Int\setminus \{0_\Int\}))}{\Ratequiv}$.
+\end{defn}
+
+Seperti halnya bilangan bulat, kita juga ingin mendefinisikan beberapa
+operasi dasar. Jika $\equivrep{i,j}{\Ratequiv}$ adalah kelas ekuivalensi di
+bawah $\Ratequiv$ yang memuat $\tuple{i, j}$ sebagai !!a{element}, kita
+menetapkan:
+\begin{align*}
+	\equivrep{a, b}{\Ratequiv} + \equivrep{c, d}{\Ratequiv} &= \equivrep{ad + bc,  bd}{\Ratequiv}\\
+	\equivrep{a, b}{\Ratequiv} \times \equivrep{c, d}{\Ratequiv} &= \equivrep{a  c, b d}{\Ratequiv}.
+\intertext{Untuk mendefinisikan $r \leq s$ pada bilangan rasional ini, kita menggunakan fakta bahwa
+$r \le s$ jika dan hanya jika $s - r$ tidak negatif, yaitu $s - r$ dapat ditulis sebagai
+$\nicefrac{i}{j}$ dengan $i$ taknegatif dan $j$~positif:}
+	\equivrep{a, b}{\Ratequiv} \leq \equivrep{c, d}{\Ratequiv} &\text{ jika dan hanya jika }
+	\equivrep{c, d}{\Ratequiv} - \equivrep{a, b}{\Ratequiv} =
+	\equivrep{i_\Int, j_\Int}{\Ratequiv}
+\end{align*}
+untuk suatu $i \in \Nat$ dan $0 \neq j \in \Nat$.
+
+Selanjutnya, kita perlu memeriksa bahwa definisi-definisi tersebut
+berperilaku sebagaimana \emph{semestinya}; hal ini kita tempatkan dalam
+\olref[check]{sec}. Namun, semuanya memang berperilaku demikian!{} Terakhir, kita
+menginginkan suatu cara untuk memperlakukan bilangan bulat \emph{sebagai}
+bilangan rasional; maka, untuk setiap $i \in \Int$, kita menetapkan bahwa
+$i_\Rat = \equivrep{i, 1_\Int}{\Ratequiv}$. Sekali lagi, kita memeriksa
+dalam \olref[check]{sec} bahwa semua ini berperilaku dengan tepat.
+
+\begin{prob}
+Tunjukkan bahwa $(i + j)_\Rat = i_\Rat+ j_\Rat$ dan $(i \times j)_\Rat =
+i_\Rat \times j_\Rat$ dan $i \leq j \liff i_\Rat \leq j_\Rat$, untuk
+sembarang $i, j \in \Int$.
+\end{prob}
+
+\end{document}

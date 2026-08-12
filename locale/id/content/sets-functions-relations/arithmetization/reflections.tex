@@ -1,0 +1,111 @@
+% Bagian: sets-functions-relations
+% Bab: arithmetization
+% Subbagian: refleksi
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{arith}{ref}
+\olsection{Beberapa Refleksi Filosofis}
+
+Demikianlah rincian teknisnya. Namun, apa yang telah dicapai oleh semua itu?
+
+Hampir tidak terbantahkan bahwa semua itu memberi kita matematika murni yang
+{indah}. Selain itu, terdapat beberapa pencapaian konseptual yang
+mendalam. Menyadari bahwa Sifat Kelengkapan mengungkapkan perbedaan penting
+antara bilangan real dan bilangan rasional merupakan wawasan yang mendalam.
+Selain itu, konstruksi eksplisit bilangan real sebagai potongan Dedekind
+memberi landasan yang kokoh bagi pokok bahasan analisis. Kita mengetahui bahwa
+gagasan \emph{lapangan terurut lengkap} bersifat koheren, karena
+potongan-potongan tersebut membentuk tepat lapangan semacam itu.
+
+Meskipun demikian, kita perlu mengemukakan beberapa keberatan terhadap
+pencapaian-pencapaian tersebut.
+
+Pertama, tidak jelas bahwa memikirkan bilangan real dalam kerangka potongan
+\emph{lebih} ketat secara matematis daripada memikirkan bilangan real dalam kerangka ekspansi
+desimalnya yang sudah dikenal (yang mungkin tak berhingga). ``Konstruksi''
+bilangan real yang disebut terakhir ini agak menyerupai konstruksi bilangan
+real melalui barisan Cauchy; tetapi sebenarnya konstruksi itu pada intinya
+telah dikenal para matematikawan sejak awal abad ke-17 (lihat
+\olref[cauchy]{sec}). Peningkatan ketelitian matematis yang sebenarnya berasal dari
+kesadaran bahwa bilangan real memiliki Sifat Kelengkapan; kemampuan membangun
+bilangan real sebagai himpunan tertentu mungkin, dengan sendirinya, tidak
+begitu menarik.
+
+Lebih tidak jelas lagi bahwa aritmetisasi bilangan bulat, atau bilangan
+rasional, yang jauh lebih mudah, meningkatkan ketelitian matematis dalam ranah-ranah
+tersebut. Di sini ada baiknya kita membuat suatu pengamatan sederhana. Setelah
+\emph{membangun} bilangan bulat sebagai kelas-kelas ekuivalensi dari pasangan
+terurut bilangan asli, lalu membangun bilangan rasional sebagai kelas-kelas
+ekuivalensi dari pasangan terurut bilangan bulat, dan kemudian membangun
+bilangan real sebagai himpunan bilangan rasional, kita segera
+\emph{melupakan} konstruksi-konstruksi tersebut. Secara khusus: tidak seorang
+pun akan pernah ingin \emph{menggunakan} konstruksi-konstruksi tersebut dalam
+suatu pembuktian matematis (kecuali, tentu saja, pembuktian bahwa
+konstruksi-konstruksi itu berperilaku sebagaimana yang dimaksudkan). Jauh lebih
+mudah berbicara langsung tentang suatu bilangan real daripada berbicara
+tentang suatu himpunan dari himpunan dari himpunan dari himpunan dari himpunan
+dari himpunan dari himpunan bilangan asli.
+%(Sebab bilangan real dibangun sebagai himpunan bilangan rasional; sedangkan bilangan rasional dibangun sebagai kelas-kelas ekuivalensi dari pasangan terurut bilangan bulat, yakni himpunan dari himpunan dari himpunan bilangan bulat; dan seterusnya.)
+%2/3 = [2,3]
+%	yakni {<2,3>, ... }
+% 	{ {{2},{2,3}}, ... }
+%
+%bilangan real adalah
+%	himpunan bilangan rasional
+%
+%bilangan rasional adalah
+%	himpunan dari himpunan dari himpunan bilangan bulat
+%
+%bilangan bulat adalah
+%	himpunan dari himpunan dari himpunan bilangan asli
+	
+Yang paling meragukan dari semuanya ialah bahwa definisi-definisi ini memberi
+tahu kita apa \emph{hakikat} bilangan bulat, bilangan rasional, atau bilangan
+real \emph{secara metafisis}. Artinya, patut diragukan bahwa bilangan real
+(misalnya) \emph{adalah} himpunan tertentu (dari himpunan dari
+himpunan\ldots). Penghalang utama bagi pandangan semacam itu ialah bahwa
+konstruksinya dapat dilakukan dengan banyak cara berbeda. Dalam kasus
+bilangan real, ada beberapa konstruksi berbeda yang benar-benar menarik (lihat
+\olref[cauchy]{sec}). Namun, berikut cara yang sungguh sepele untuk memperoleh
+beberapa konstruksi berbeda: seperti dalam \olref[sfr][rel][ref]{sec}, kita
+dapat mendefinisikan pasangan terurut secara agak berbeda; seandainya kita
+menggunakan gagasan alternatif tentang pasangan terurut ini, konstruksi kita
+akan berhasil sama baiknya dengan sebelumnya, tetapi kita akan berakhir
+dengan objek-objek berbeda. Dengan demikian, terdapat banyak konstruksi
+berbasis teori himpunan yang saling bersaing bagi bilangan bulat, bilangan rasional,
+dan bilangan real. Maka, akan semena-mena (dan memalukan) jika kita mengklaim
+bahwa bilangan bulat (misalnya) adalah \emph{himpunan-himpunan ini}, dan bukan
+\emph{himpunan-himpunan itu}. (Seperti dalam \olref[sfr][rel][ref]{sec}, ini
+merupakan suatu contoh argumen yang dimasyhurkan oleh
+\citealt{Benacerraf1965}.)
+
+Ada satu hal lebih lanjut yang patut dikemukakan: ada sesuatu yang cukup
+\emph{ganjil} pada konstruksi kita. Kita mulai dengan bilangan asli. Kemudian
+kita membangun bilangan bulat, dan membangun ``$0$ dari bilangan bulat'',
+yakni $ \equivrep{0,0}{\Intequiv}$. Akan tetapi, $0 \neq
+\equivrep{0,0}{\Intequiv}$. Bahkan, berdasarkan konstruksi kita,
+\emph{tidak ada} bilangan asli yang merupakan bilangan bulat. Namun, hal ini
+tampak sangat berlawanan dengan intuisi. Bahkan, dalam
+\olref[sfr][set][imp]{sec}, tanpa banyak argumentasi kita mengklaim bahwa
+$\Nat \subseteq \Rat$. Jika konstruksi tersebut memberi tahu kita secara
+persis \emph{hakikat} bilangan, klaim ini jelas keliru.
+
+Jika kita melihatnya secara menyeluruh, apa kesimpulan kita? Dengan bekerja dalam
+teori himpunan naif, dan memanfaatkan bilangan asli, kita dapat
+\emph{memperlakukan} bilangan bulat, bilangan rasional, dan bilangan real
+sebagai himpunan-himpunan tertentu. Dalam arti itu, kita dapat
+\emph{menanamkan} teori-teori tentang entitas tersebut di dalam suatu teori
+himpunan. Namun, makna filosofis penanaman ini sama sekali tidak sederhana.
+
+Tentu saja, semua ini bukan kata akhir!{} Intinya hanya ini. Untuk menunjukkan
+bahwa aritmetisasi bilangan real \emph{memang} memiliki arti filosofis yang
+mendalam, diperlukan suatu argumen \emph{filosofis} tambahan.
+
+%Selain itu: sepanjang bab ini, kita telah memperlakukan
+%bilangan asli seolah-olah sekadar \emph{diberikan} kepada kita. Namun, apa
+%yang dapat kita lakukan dengannya? Itulah pokok bahasan bab berikutnya.
+
+\end{document}

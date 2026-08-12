@@ -248,3 +248,74 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 batch, and 18,852 English-source words versus 17,135 Indonesian words across
 all forty admitted files. The exact next cursor is `OLP-0041`,
 `content/sets-functions-relations/arithmetization/arithmetization.tex`.
+
+## Arithmetization checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The contiguous boundary extends through `OLP-0048`. Frozen English authority
+remains `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`, and every source hash equals
+its exact closure-manifest row.
+
+```powershell
+& 'locale\id\qa_arithmetization_batch_replay.ps1'
+```
+
+Result: exit code 0.
+
+```text
+ARITHMETIZATION_BATCH_REPLAY_OK files=8 checks=120 source_corrections=11 target_corrections=12 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0041..OLP-0048
+```
+
+Two independent read-only semantic reviews covered every paragraph. They found
+no omitted or untranslated reader-facing prose and no translation-origin
+polarity, quantifier, or scope drift. The exact repairs, retained source
+defects, and per-file hashes are recorded in
+`..\_control\OPENLOGIC_ARITHMETIZATION_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean combined build
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/arithmetization-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `arithmetization-id.tex` | `locale/id/arithmetization-id.pdf` | 79 | 539,582 | `e938bf09813d45a82516d7646b120358c113337d9c7bdaa8a1a607a36323a1d7` |
+
+The final log has zero fatal errors, undefined references/citations,
+multiply-defined labels, or missing glyphs. Fifteen small overfull boxes remain,
+with a maximum of 5.66658 pt; one underfull bibliography line and one underfull
+vbox are retained. Every affected page was included in visual review and no
+visible content loss was found.
+
+The bounded driver declares Indonesian metadata for two forward references to
+the later History part. It does not import untranslated History prose. The
+metadata will yield to the real localized labels when that part joins the
+complete Indonesian reader.
+
+### Extraction and visual review
+
+`pdftotext -layout` exited 0 and produced 188,162 bytes. Searches found zero
+`??`, `Undefined`, English theorem/environment/reference labels, or residual
+reader-facing English prose. Positive anchors include `Aritmetisasi`, `Garis
+Bilangan Real`, `Potongan`, `Barisan Cauchy`, and the two forward-reference
+surfaces `Bagian H.1` and `Bagian H.2`.
+
+Pages 60--79 were rendered at 144 dpi and all twenty pages were inspected in
+complete contact sheets. Formula-, diagram-, and proof-dense pages 65 and
+69--77 were additionally inspected at readable original resolution. Headings,
+prose, formulas, proof-end marks, the diagram, exercises, references, and
+bibliography are legible; there is no clipping, overlap, blank changed page,
+broken glyph, lost formula, or margin loss.
+
+### Counts and next cursor
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+4,883 English-source words and 4,469 Indonesian words for the eight-file batch,
+and 23,735 English-source words versus 21,604 Indonesian words across all
+forty-eight admitted files. The exact next cursor is `OLP-0049`,
+`content/sets-functions-relations/infinite/infinite.tex`.

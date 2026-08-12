@@ -1,0 +1,50 @@
+% Penggerak mandiri untuk bab Aritmetisasi dalam pelokalan Bahasa Indonesia.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+% Referensi ke dua bagian Historis yang muncul kemudian dalam pembaca lengkap
+% dideklarasikan sebagai metadata saja. Sumber Inggrisnya tidak dimasukkan ke
+% edisi id-ID ini, sehingga tidak ada fallback prosa Inggris.
+\makeatletter
+\hypertarget{ol-id-forward-history}{}
+\protected@write\@auxout{}{\string\newlabel{his:set:limits:sec}{{H.1}{0}{Definisi Limit yang Ketat}{ol-id-forward-history}{}}}
+\protected@write\@auxout{}{\string\newlabel{his:set:limits:sec@cref}{{[section][1][]H.1}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{his:set:mythology:sec}{{H.2}{0}{Lebih Banyak Mitos daripada Sejarah?}{ol-id-forward-history}{}}}
+\protected@write\@auxout{}{\string\newlabel{his:set:mythology:sec@cref}{{[section][2][]H.2}{[1][0][]0}{}{}{}}}
+\makeatother
+% Bab-bab sebelumnya disertakan agar semua rujukan silang dalam bab
+% Aritmetisasi terurai dari sumber id-ID tanpa fallback bahasa Inggris.
+\olimport*[sets-functions-relations/sets]{sets}
+\olimport*[sets-functions-relations/relations]{relations-complete}
+\olimport*[sets-functions-relations/functions]{functions}
+\olimport*[sets-functions-relations/size-of-sets]{size-of-sets-complete}
+\olimport*[sets-functions-relations/arithmetization]{arithmetization}
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}

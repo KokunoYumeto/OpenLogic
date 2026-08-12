@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0026` (26/722 files). It is incomplete and must not be represented as the
+`OLP-0048` (48/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -36,10 +36,14 @@ Exact source corrections currently include:
   source's transitive-closure notation;
 - a modular-equivalence variable scope, a square-root zero case, and a
   left-inverse empty-domain counterexample are repaired.
+- Size-of-sets pairing, diagonalization, reduction, variable, and duplicate-
+  label defects are repaired at exact paths.
+- Arithmetization repairs rational-subtraction orientation, the nonempty-set
+  premise in a supremum proof, real-zero notation, and exact Cauchy-appendix
+  type/exposition defects.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.
 
 This adaptation is independent. Open Logic Project has not endorsed, certified,
 or sponsored it, and no such endorsement is implied.
-

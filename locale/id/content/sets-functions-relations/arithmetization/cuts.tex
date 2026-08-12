@@ -1,0 +1,121 @@
+% Bagian: sets-functions-relations
+% Bab: arithmetization
+% Subbagian: potongan
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{arith}{cuts}
+\olsection{Dari $\Rat$ ke $\Real$}
+
+Pada dasarnya, Sifat Kelengkapan menunjukkan bahwa setiap titik $\alpha$ pada
+garis bilangan real membagi garis itu secara sempurna menjadi dua bagian:
+bagian yang batas atas terkecilnya adalah $\alpha$, dan bagian yang batas bawah
+terbesarnya adalah $\alpha$. Untuk \emph{membangun} bilangan real dari
+bilangan rasional, Dedekind mengusulkan agar kita cukup memandang bilangan
+real sebagai \emph{potongan} yang membagi bilangan rasional. Dengan kata lain,
+kita mengidentifikasi $\sqrt{2}$ dengan \emph{potongan} yang memisahkan
+bilangan rasional $< \sqrt{2}$ dari bilangan rasional $> \sqrt{2}$.
+
+Mari kita rapikan gagasan ini. Jika kita memotong bilangan rasional menjadi
+dua bagian, kita dapat mengidentifikasi secara unik partisi yang kita buat
+hanya dengan memperhatikan bagian \emph{bawahnya}. Maka, secara saksama, kita
+memberikan definisi berikut:
+
+\begin{defn}[Potongan]
+Suatu \emph{potongan} $\alpha$ adalah setiap segmen awal sejati takkosong dari
+bilangan rasional yang tidak mempunyai elemen terbesar.
+Dengan kata lain, $\alpha$ merupakan suatu potongan jika dan hanya jika:
+\begin{enumerate}
+	\item \emph{takkosong, sejati}: $\emptyset \neq \alpha \subsetneq \Rat$
+	\item \emph{awal}: untuk semua $p,q \in \Rat$: jika $p < q \in \alpha$ maka $p \in \alpha$
+	\item \emph{tanpa maksimum}: untuk setiap $p \in \alpha$ terdapat $q \in \alpha$ sedemikian sehingga $p < q$
+\end{enumerate}
+Kemudian $\Real$ adalah himpunan semua potongan.
+\end{defn}
+
+Sekarang kita dapat mengatakan bahwa $\sqrt{2} = \Setabs{p \in \Rat}{p^2 < 2\text{
+atau }p < 0}$. Tentu saja, kita perlu memeriksa bahwa objek ini \emph{memang}
+suatu potongan, tetapi hal itu kita tempatkan dalam \olref[check]{sec}.
+
+Seperti sebelumnya, setelah mendefinisikan beberapa entitas, selanjutnya kita
+perlu mendefinisikan fungsi dan relasi dasar padanya. Kita mulai dengan yang
+mudah:
+\begin{align*}
+	\alpha \leq \beta \text{ jika dan hanya jika }\alpha \subseteq \beta
+\end{align*}
+Definisi urutan ini memungkinkan kita \emph{menyatakan} hasil utama, yaitu
+bahwa himpunan semua potongan memiliki Sifat Kelengkapan. Jika dijabarkan
+sepenuhnya, pernyataannya berbentuk sebagai berikut. Jika $S$ adalah himpunan
+takkosong yang terdiri atas potongan-potongan dan mempunyai suatu batas atas, maka $S$ mempunyai
+suatu batas atas terkecil. Secara lebih rinci: terdapat suatu potongan,
+$\lambda$, yang merupakan batas atas bagi $S$, yakni\ $(\forall \alpha \in S)\alpha \subseteq
+\lambda$, dan $\lambda$ adalah potongan terkecil semacam itu, yakni\ $(\forall \beta \in \Real)((\forall \alpha \in S)\alpha \subseteq \beta \lif \lambda \subseteq \beta)$. Berikut
+pembuktian hasil tersebut:
+
+\begin{thm}\ollabel{realcompleteness}
+Himpunan semua potongan memiliki Sifat Kelengkapan.
+\end{thm}
+
+\begin{proof}
+Misalkan $S$ adalah sembarang himpunan takkosong yang terdiri atas potongan-potongan dan mempunyai
+suatu batas atas. Misalkan $\lambda = \bigcup S$.
+%\Setabs{p \in \Rat}{(\exists \alpha \in S)p \in \alpha}$$
+Pertama-tama kita menyatakan bahwa $\lambda$ adalah suatu potongan:
+\begin{enumerate}
+\item Karena $S$ takkosong, sekurang-kurangnya satu potongan
+termasuk dalam $S$, sehingga $\emptyset \neq \lambda$. Karena $S$ adalah
+himpunan yang terdiri atas potongan-potongan, $\lambda \subseteq \Rat$. Karena $S$ mempunyai suatu
+batas atas, terdapat suatu $p \in \Rat$ yang tidak termasuk dalam satu pun
+potongan $\alpha \in S$. Jadi $p\notin \lambda$, sehingga $\lambda \subsetneq
+\Rat$.
+\item Andaikan $p < q \in \lambda$. Maka terdapat suatu $\alpha \in S$
+sedemikian sehingga $q \in \alpha$. Karena $\alpha$ adalah suatu potongan,
+$p \in \alpha$. Jadi $p \in \lambda$.
+\item Andaikan $p \in \lambda$. Maka terdapat suatu $\alpha \in S$
+sedemikian sehingga $p \in \alpha$. Karena $\alpha$ adalah suatu potongan,
+terdapat suatu $q \in \alpha$ sedemikian sehingga $p < q$. Jadi $q \in
+\lambda$.
+\end{enumerate}
+Hal ini membuktikan pernyataan tersebut. Selain itu, jelas bahwa $(\forall \alpha \in S)\alpha
+\subseteq \bigcup S = \lambda$, yakni\ $\lambda$ merupakan suatu batas atas bagi $S$. Sekarang andaikan $\beta \in \mathbb{R}$ juga merupakan suatu batas atas, yakni\ $(\forall \alpha \in S)\alpha \subseteq \beta$. Untuk setiap $p \in \Rat$, jika $p \in \lambda$, maka terdapat $\alpha \in S$ sedemikian sehingga $p \in \alpha$, sehingga $p \in \beta$. Secara umum, $\lambda \subseteq \beta$. Jadi $\lambda$ merupakan batas atas \emph{terkecil} bagi $S$.
+\end{proof}
+
+Jadi, kita mempunyai sekumpulan entitas yang memenuhi Sifat Kelengkapan.
+Salah satu cara untuk mengungkapkannya ialah: tidak ada ``celah'' pada
+potongan-potongan kita. (Dengan demikian, membuat ``potongan'' lanjutan dari
+bilangan real, bukan dari bilangan rasional, tidak akan menghasilkan objek
+baru yang menarik.)
+
+Selanjutnya, kita harus mendefinisikan beberapa operasi pada bilangan real.
+Kita mulai dengan menanamkan bilangan rasional ke dalam bilangan real dengan
+menetapkan bahwa $p_\Real = \Setabs{q \in \Rat}{q < p}$ untuk setiap $p \in
+\Rat$. Kemudian kita mendefinisikan:
+\begin{align*}
+	\alpha + \beta &= \Setabs{p + q}{p \in \alpha \land q \in \beta}\\
+%	\alpha - \beta &\defis \Setabs{p - q}{p \in \alpha \land q \in \Rat \setminus \beta}\\
+	\alpha \times \beta &=
+	\Setabs{p \times q}{0 \leq p \in \alpha \land 0 \leq q \in \beta} \cup 0_\Real & \text{jika }\alpha, \beta \geq 0_\Real
+%	\alpha \div \beta &\defis
+%	\Setabs{\nicefrac{p}{q}}{p \in \alpha \land q \in \Rat \setminus \beta}  & \text{jika }\alpha \geq 0_\Real, \beta > 0_\Real
+\end{align*}
+Untuk menangani kasus-kasus perkalian lainnya, pertama-tama tetapkan: %bahwa $0_\Real \times \alpha = 0_\Real = \alpha \times 0_\Real$, dan tambahkan:
+\begin{align*}
+	-\alpha &= \Setabs{p - q}{p < 0 \land q \notin \alpha}
+\end{align*}
+dan kemudian tetapkan:
+\begin{align*}
+	\alpha \times \beta &\defis
+	\begin{cases}
+		\mathord{-}\alpha \times \mathord{-}\beta &\text{jika }\alpha < 0_\Real\text{ dan }\beta < 0_\Real\\
+		\mathord{-}(\mathord{-}\alpha \times \beta) &\text{jika }\alpha < 0_\Real \text{ dan }\beta > 0_\Real\\
+		\mathord{-}(\alpha \times \mathord{-}\beta) &\text{jika }\alpha > 0_\Real \text{ dan }\beta < 0_\Real
+	\end{cases}
+\end{align*}
+Selanjutnya, kita perlu memeriksa bahwa setiap definisi tersebut selalu
+menghasilkan suatu potongan. Terakhir, kita perlu menjalani pembuktian yang
+mudah (tetapi panjang lebar) bahwa potongan-potongan yang didefinisikan
+demikian berperilaku tepat sebagaimana semestinya. Namun, semua ini kita
+tempatkan dalam \olref[check]{sec}.
+\end{document}

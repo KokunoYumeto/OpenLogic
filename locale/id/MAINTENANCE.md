@@ -39,11 +39,11 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0040`.
-- Next row: `OLP-0041`.
+- Admitted ordered boundary: `OLP-0048`.
+- Next row: `OLP-0049`.
 - Next source:
-  `content/sets-functions-relations/arithmetization/arithmetization.tex`.
-- Current coverage: 40/722; exact remainder: 682.
+  `content/sets-functions-relations/infinite/infinite.tex`.
+- Current coverage: 48/722; exact remainder: 674.
 
 After the final row, run a clean complete Indonesian reader build, full
 extraction/search replay, page-level visual QA, full hash inventory, and a
