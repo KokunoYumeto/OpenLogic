@@ -1,0 +1,46 @@
+% Pilihan istilah Bahasa Indonesia untuk unit pembaca Open Logic.
+% Berkas ini dimuat sesudah konfigurasi utama, sehingga hanya token yang
+% berbeda dari bahasa sumber yang perlu didefinisikan ulang.
+
+% Sumber UI menggunakan "elemen" dan "anggota" sebagai sinonim, sedangkan
+% modul UT secara konsisten memakai "anggota himpunan" dalam definisi.
+\settexttoken{element}{anggota}{anggota}[Anggota][Anggota]
+
+% Bahasa Indonesia tidak memakai artikel tak tentu a/an. Pertahankan bentuk
+% token !!a{element} di sumber, tetapi kosongkan keluaran artikelnya.
+\definetoken{a}{element}{}
+\definetoken{A}{element}{}
+
+% Istilah fungsi mengikuti buku teks Konsep Dasar Matematika UIN KHAS:
+% fungsi injektif, surjektif, dan bijektif; bentuk nomina Indonesianya
+% adalah injeksi, surjeksi, dan bijeksi. Bentuk tunggal dan jamak sama.
+\settexttoken{injective}*{injektif}{injektif}
+\settexttoken{injection}*{injeksi}{injeksi}
+\settexttoken{surjective}{surjektif}{surjektif}
+\settexttoken{surjection}{surjeksi}{surjeksi}
+\settexttoken{bijective}{bijektif}{bijektif}
+\settexttoken{bijection}{bijeksi}{bijeksi}
+
+% Artikel tak tentu bahasa Inggris pada token fungsi tidak mempunyai
+% padanan yang perlu dicetak dalam bahasa Indonesia.
+\definetoken{a}{injective}{}
+\definetoken{A}{injective}{}
+\definetoken{a}{injection}{}
+\definetoken{A}{injection}{}
+\definetoken{a}{surjective}{}
+\definetoken{A}{surjective}{}
+\definetoken{a}{surjection}{}
+\definetoken{A}{surjection}{}
+\definetoken{a}{bijective}{}
+\definetoken{A}{bijective}{}
+\definetoken{a}{bijection}{}
+\definetoken{A}{bijection}{}
+
+% Token logika yang pertama kali muncul pada bab Pohon dan akan dipakai
+% kembali dalam sintaks serta teori bukti.
+\settexttoken{formula}*{formula}{formula}
+\settexttoken{derivation}*{derivasi}{derivasi}
+\definetoken{a}{formula}{}
+\definetoken{A}{formula}{}
+\definetoken{a}{derivation}{}
+\definetoken{A}{derivation}{}

@@ -1,0 +1,128 @@
+% Bagian: sets-functions-relations
+% Bab: relations
+% Subbagian: relations-as-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{rel}{set}
+\olsection{Relasi sebagai Himpunan}
+
+\begin{explain}
+Dalam \olref[sfr][set][imp]{sec}, kita menyebut beberapa himpunan penting:
+$\Nat$, $\Int$, $\Rat$, $\Real$. Anda tentu mengingat beberapa relasi menarik
+antara !!{element}s dari sebagian himpunan tersebut. Sebagai contoh, masing-
+masing himpunan itu mempunyai \emph{relasi urutan} yang sepenuhnya baku. Ada
+pula relasi \emph{identik dengan}, yang berlaku antara setiap objek dan
+dirinya sendiri, tetapi tidak dengan objek lain. Kita akan menjumpai jauh
+lebih banyak relasi menarik, dan bahkan lebih banyak lagi relasi yang mungkin.
+Namun, sebelum meninjaunya, kita akan mulai dengan menunjukkan bahwa relasi
+dapat dipandang sebagai suatu jenis himpunan yang khusus.
+
+Untuk itu, ingatlah dua hal dari \olref[sfr][set][pai]{sec}. Pertama, ingat
+gagasan \emph{pasangan terurut}: jika diberikan $a$ dan $b$, kita dapat
+membentuk~$\tuple{a, b}$. Yang penting, urutan elemen memang \emph{berpengaruh}
+di sini. Jadi, jika $a \neq b$, maka $\tuple{a, b} \neq \tuple{b, a}$.
+(Bandingkan dengan pasangan tak terurut, yakni himpunan beranggota $2$, yang
+memenuhi $\{a, b\}=\{b, a\}$.) Kedua, ingat gagasan \emph{hasil kali
+Kartesius}: jika $A$ dan $B$ adalah himpunan, kita dapat membentuk~$A \times
+B$, yaitu himpunan semua pasangan $\tuple{x, y}$ dengan $x \in A$ dan $y \in
+B$. Secara khusus, $A^{2}= A \times A$ adalah himpunan semua pasangan terurut
+dari~$A$.
+
+Sekarang kita akan meninjau suatu relasi tertentu pada sebuah himpunan, yaitu
+relasi~$<$ pada himpunan bilangan asli~$\Nat$. Perhatikan himpunan semua
+pasangan bilangan $\tuple{n, m}$ dengan $n<m$, yakni
+\[
+  R=\Setabs{\tuple{n, m}}{n, m \in \Nat \text{ dan } n<m}.
+\]
+Terdapat hubungan erat antara $n$ yang lebih kecil daripada $m$ dan pasangan
+$\tuple{n, m}$ yang menjadi anggota $R$, yaitu
+\[
+      n<m\text{ jika dan hanya jika }\tuple{n, m} \in R.
+\]
+Sesungguhnya, tanpa kehilangan informasi apa pun, kita dapat memandang
+himpunan $R$ \emph{sebagai} relasi~$<$ pada $\Nat$.
+
+Dengan cara yang sama, kita dapat membentuk himpunan bagian dari $\Nat^{2}$
+untuk setiap relasi antara bilangan. Sebaliknya, jika diberikan suatu himpunan
+pasangan bilangan $S \subseteq \Nat^{2}$, terdapat relasi yang bersesuaian
+antara bilangan, yaitu relasi yang berlaku antara $n$ dan $m$ jika dan hanya jika
+$\tuple{n, m} \in S$. Hal ini membenarkan definisi berikut.
+\end{explain}
+
+\begin{defn}[Relasi biner]
+Suatu \emph{relasi biner} pada himpunan $A$ adalah himpunan bagian
+dari~$A^{2}$. Jika $R \subseteq A^{2}$ merupakan relasi biner pada~$A$ dan
+$x, y \in A$, kita kadang-kadang menulis $Rxy$ (atau $xRy$) sebagai ganti
+$\tuple{x, y} \in R$.
+\end{defn}
+
+\begin{ex}
+  \ollabel{relations}
+Himpunan $\Nat^{2}$ yang terdiri atas pasangan bilangan asli dapat dicantumkan
+dalam matriks dua dimensi seperti berikut.
+\[
+  \begin{array}{ccccc}
+  \mathbf{\tuple{ 0,0 }} & \tuple{ 0,1 } &
+    \tuple{ 0,2 } & \tuple{ 0,3 } & \ldots\\
+  \tuple{ 1,0 } & \mathbf{\tuple{ 1,1 }} &
+    \tuple{ 1,2 } & \tuple{ 1,3 } & \ldots\\
+  \tuple{ 2,0 } & \tuple{ 2,1 } &
+    \mathbf{\tuple{ 2,2 }} & \tuple{ 2,3 } & \ldots\\
+  \tuple{ 3,0 } & \tuple{ 3,1 } & \tuple{ 3,2 } &
+    \mathbf{\tuple{ 3,3 }} & \ldots\\
+  \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+  \end{array}
+\]
+Di sini kita mencetak diagonal dengan huruf tebal karena himpunan bagian dari
+$\Nat^2$ yang terdiri atas pasangan pada diagonal, yakni
+\[
+  \{\tuple{0,0 }, \tuple{ 1,1 }, \tuple{ 2,2 }, \dots\},
+  \]
+merupakan \emph{relasi identitas pada}~$\Nat$. (Karena relasi identitas sering
+digunakan, mari kita definisikan $\Id{A}=\Setabs{\tuple{ x,x }}{x \in A}$
+untuk setiap himpunan $A$.) Himpunan bagian yang terdiri atas
+semua pasangan di atas diagonal, yakni
+\[
+  L = \{\tuple{ 0,1 },\tuple{ 0,2 },\ldots,\tuple{ 1,2 },
+  \tuple{ 1,3 }, \dots, \tuple{ 2,3 }, \tuple{ 2,4 },\ldots\},
+\]
+merupakan relasi \emph{lebih kecil daripada}, yakni $Lnm$ jika dan hanya jika
+$n<m$. Himpunan bagian yang terdiri atas pasangan di bawah diagonal, yakni
+\[
+  G=\{ \tuple{ 1,0 },\tuple{ 2,0 },\tuple{
+    2,1 }, \tuple{ 3,0 },\tuple{ 3,1 },\tuple{ 3,2 }, \dots\},
+\]
+merupakan relasi \emph{lebih besar daripada}, yakni $Gnm$ jika dan hanya jika
+$n>m$. Gabungan $L$ dengan $\Id{\Nat}$, yang dapat kita sebut
+$K=L\cup \Id{\Nat}$, merupakan
+relasi \emph{lebih kecil daripada atau sama dengan}: $Knm$ jika dan hanya jika
+$n \le m$. Demikian pula, $H=G \cup \Id{\Nat}$ merupakan relasi \emph{lebih besar
+daripada atau sama dengan}. Relasi $L$, $G$, $K$, dan $H$ merupakan jenis
+relasi khusus yang disebut \emph{urutan}. Relasi $L$ dan $G$ memiliki sifat
+bahwa tidak ada bilangan yang berelasi $L$ atau $G$ dengan dirinya sendiri
+(yakni, untuk setiap $n$, $Lnn$ maupun $Gnn$ tidak berlaku). Relasi dengan
+sifat ini disebut \emph{irefleksif}; jika relasi tersebut juga merupakan
+urutan, relasi itu disebut \emph{urutan ketat}.
+\end{ex}
+
+\begin{explain}
+Meskipun urutan dan identitas merupakan relasi yang penting dan alami, perlu
+ditekankan bahwa menurut definisi kita, \emph{setiap} himpunan bagian dari
+$A^{2}$ merupakan relasi pada~$A$, betapapun tidak alami atau dibuat-buatnya
+relasi tersebut. Secara khusus, $\emptyset$ merupakan relasi pada setiap
+himpunan (\emph{relasi kosong}, yang tidak berlaku pada pasangan elemen mana
+pun), sedangkan $A^{2}$ sendiri juga merupakan relasi pada~$A$ (relasi yang
+berlaku pada setiap pasangan), yang disebut \emph{relasi universal}. Bahkan
+sesuatu seperti $E=\Setabs{\tuple{n, m}}{n>5 \text{ atau } m \times n \ge 34}$
+pun tergolong relasi.
+\end{explain}
+
+\begin{prob}
+  Tuliskan semua !!{element}s relasi $\subseteq$ pada himpunan
+  $\Pow{\{a, b, c\}}$.
+\end{prob}
+
+\end{document}

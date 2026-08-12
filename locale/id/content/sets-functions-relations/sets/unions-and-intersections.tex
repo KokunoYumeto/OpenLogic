@@ -1,0 +1,190 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: unions-and-intersections
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{uni}
+\olsection{Gabungan dan Irisan}
+
+\begin{explain}
+Dalam \olref[sfr][set][bas]{sec}, kita memperkenalkan definisi
+himpunan melalui abstraksi, yaitu definisi berbentuk
+$\Setabs{x}{\phi(x)}$. Di sini kita menggunakan suatu sifat~$\phi$,
+dan sifat tersebut dapat menyebut himpunan yang sudah kita definisikan.
+Sebagai contoh, jika $A$ dan~$B$ adalah himpunan, maka himpunan
+$\Setabs{x}{x \in A \lor x \in B}$ terdiri atas semua objek yang
+merupakan !!{element}s dari $A$ atau~$B$. Dengan kata lain, himpunan
+itu menggabungkan !!{element}s dari $A$ dan~$B$. Kita dapat
+memvisualisasikannya seperti dalam \olref{fig:union}; daerah yang
+diarsir menunjukkan !!{element}s kedua himpunan $A$ dan~$B$ secara
+bersama-sama.
+
+\begin{figure}
+  \olasset{assets/diagrams/union.tikz}
+  \caption{Gabungan $A \cup B$ dari dua himpunan adalah himpunan
+   !!{element}s dari $A$ bersama dengan anggota dari~$B$.}
+  \ollabel{fig:union}
+\end{figure}
+
+Operasi pada himpunan ini---yakni menggabungkan keduanya---sangat
+berguna dan umum, sehingga kita memberinya nama dan lambang formal.
+\end{explain}
+
+\begin{defn}[Gabungan]
+\emph{Gabungan} dua himpunan $A$ dan $B$, yang ditulis $A \cup B$,
+adalah himpunan semua objek yang merupakan !!{element}s dari $A$,
+dari $B$, atau dari keduanya.
+\[
+A \cup B = \Setabs{x}{x \in A \lor x \in B}
+\]
+\end{defn}
+
+\begin{ex}
+Karena banyaknya pencantuman !!{element}s tidak berpengaruh, gabungan
+dua himpunan yang mempunyai !!a{element} bersama hanya memuat
+!!{element} tersebut satu kali. Sebagai contoh,
+$\{ a, b, c\} \cup \{ a, 0, 1\} = \{a, b, c, 0, 1\}$.
+
+Gabungan sebuah himpunan dengan salah satu himpunan bagiannya sama
+dengan himpunan yang lebih besar: $\{a, b, c \} \cup \{a \} =
+\{a, b, c\}$.
+
+Gabungan sebuah himpunan dengan himpunan kosong identik dengan
+himpunan itu: $\{a, b, c \} \cup \emptyset = \{a, b, c \}$.
+\end{ex}
+
+\begin{prob}
+Buktikan bahwa jika $A \subseteq B$, maka $A \cup B = B$.
+\end{prob}
+
+\begin{explain}
+Kita juga dapat meninjau operasi yang ``dual'' terhadap gabungan.
+Operasi ini membentuk himpunan semua !!{element}s yang merupakan
+!!{element}s dari~$A$ sekaligus !!{element}s dari~$B$. Operasi ini
+disebut \emph{irisan} dan dapat digambarkan seperti dalam
+\olref{fig:intersection}.
+\begin{figure}
+  \olasset{assets/diagrams/intersection.tikz}
+  \caption{Irisan $A \cap B$ dari dua himpunan adalah himpunan
+    !!{element}s yang dimiliki keduanya secara bersama.}
+  \ollabel{fig:intersection}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Irisan]
+\emph{Irisan} dua himpunan $A$ dan $B$, yang ditulis $A \cap B$,
+adalah himpunan semua objek yang merupakan !!{element}s dari $A$ dan
+juga dari~$B$.
+\[
+A \cap B = \Setabs{x}{x \in A \land x \in B}
+\]
+Dua himpunan disebut \emph{saling asing} jika irisannya kosong. Ini
+berarti keduanya tidak mempunyai !!{element}s bersama.
+\end{defn}
+
+\begin{ex}
+Jika dua himpunan tidak mempunyai !!{element}s bersama, irisannya
+kosong: $\{ a, b, c\} \cap \{ 0, 1\} = \emptyset$.
+
+Jika dua himpunan mempunyai !!{element}s bersama, irisannya adalah
+himpunan semua anggota tersebut: $\{a, b, c \} \cap \{a, b, d \} =
+\{a, b\}$.
+
+Irisan sebuah himpunan dengan salah satu himpunan bagiannya sama
+dengan himpunan yang lebih kecil: $\{a, b, c\} \cap \{a, b\} =
+\{a, b\}$.
+
+Irisan setiap himpunan dengan himpunan kosong adalah kosong:
+$\{a, b, c \} \cap \emptyset = \emptyset$.
+\end{ex}
+
+\begin{prob}
+Buktikan secara ketat bahwa jika $A \subseteq B$, maka $A \cap B = A$.
+\end{prob}
+
+\begin{explain}
+Kita juga dapat membentuk gabungan atau irisan lebih dari dua himpunan.
+Cara yang anggun untuk menanganinya secara umum adalah sebagai berikut:
+misalkan semua himpunan yang ingin kita gabungkan (atau irisankan)
+dihimpun ke dalam satu himpunan. Kita kemudian dapat mendefinisikan
+gabungan semua himpunan semula sebagai himpunan semua objek yang
+termasuk dalam paling sedikit satu !!{element} dari himpunan tersebut,
+dan mendefinisikan irisannya sebagai himpunan semua objek yang termasuk
+dalam setiap !!{element} dari himpunan tersebut.
+\end{explain}
+
+\begin{defn}
+Jika $A$ adalah himpunan dari himpunan-himpunan, maka $\bigcup A$
+adalah himpunan !!{element}s dari !!{element}s dari~$A$:
+\begin{align*}
+\bigcup A & = \Setabs{x}{x \text{ termasuk dalam !!a{element} dari } A},
+\text{ yaitu,}\\
+& = \Setabs{x}{\text{terdapat } B \in A
+  \text{ sedemikian sehingga } x \in B}
+\end{align*}
+\end{defn}
+
+\begin{defn}
+Jika $A$ adalah himpunan dari himpunan-himpunan, maka $\bigcap A$
+adalah himpunan objek yang dimiliki bersama oleh semua anggota
+dari~$A$:
+\begin{align*}
+\bigcap A & = \Setabs{x}{x \text{ termasuk dalam setiap !!{element} dari } A},
+\text{ yaitu,}\\
+ & = \Setabs{x}{\text{untuk setiap } B \in A, x \in B}
+\end{align*}
+\end{defn}
+
+\begin{ex}
+Misalkan $A = \{ \{ a, b \}, \{ a, d, e \}, \{ a, d \} \}$.
+Maka $\bigcup A = \{ a, b, d, e \}$ dan $\bigcap A = \{ a \}$.
+\end{ex}
+\begin{prob}
+	Tunjukkan bahwa jika $A$ adalah himpunan dan $A \in B$, maka
+	$A \subseteq \bigcup B$.
+\end{prob}
+
+Kita juga dapat melakukan hal yang sama untuk barisan himpunan $A_1$,
+$A_2$, \dots
+\begin{align*}
+\bigcup_i A_i & = \Setabs{x}{x \text{ termasuk dalam salah satu } A_i}\\
+\bigcap_i A_i & = \Setabs{x}{x \text{ termasuk dalam setiap } A_i}.
+\end{align*}
+
+Jika kita mempunyai suatu \emph{himpunan indeks} bagi himpunan-himpunan
+itu, yaitu himpunan $I$ sedemikian sehingga kita meninjau $A_i$ untuk
+setiap $i \in I$, kita juga dapat menggunakan singkatan berikut:
+\begin{align*}
+	\bigcup_{i \in I} A_i & = \bigcup \Setabs{A_i }{i \in I}\\
+	\bigcap_{i \in I} A_i & = \bigcap\Setabs{A_i}{i \in I}
+\end{align*}
+
+Terakhir, kita mungkin ingin meninjau himpunan semua !!{element}s
+dalam~$A$ yang tidak terdapat dalam~$B$. Hal ini dapat digambarkan
+seperti dalam \olref{difference}.
+
+\begin{figure}
+  \olasset{assets/diagrams/difference.tikz}
+  \caption{Selisih $A \setminus B$ dari dua himpunan adalah himpunan
+    !!{element}s dari~$A$ yang bukan merupakan !!{element}s dari~$B$.}
+  \ollabel{difference}
+\end{figure}
+
+\begin{defn}[Selisih]
+\emph{Selisih himpunan}~$A \setminus B$ adalah himpunan semua
+!!{element}s dari $A$ yang bukan merupakan !!{element}s dari~$B$,
+yaitu
+\[
+A\setminus B = \Setabs{x}{x\in A \text{ dan } x \notin B}.
+\]
+\end{defn}
+
+\begin{prob}
+	Buktikan bahwa jika $A \subsetneq B$, maka
+	$B \setminus A \neq \emptyset$.
+\end{prob}
+
+\end{document}

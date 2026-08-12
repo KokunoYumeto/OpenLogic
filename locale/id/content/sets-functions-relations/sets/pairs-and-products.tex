@@ -1,0 +1,143 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: pairs-and-products
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{pai}
+\olsection{Pasangan, Tupel, dan Hasil Kali Kartesius}
+
+\begin{explain}
+Dari ekstensionalitas diperoleh bahwa anggota sebuah himpunan
+tidak mempunyai urutan. Karena itu, jika kita ingin merepresentasikan
+urutan, kita menggunakan \emph{pasangan terurut} $\tuple{x, y}$.
+Dalam pasangan tak terurut $\{x, y\}$, urutan tidak berpengaruh:
+$\{x, y\} = \{y, x\}$. Dalam pasangan terurut, urutan berpengaruh:
+jika $x \neq y$, maka $\tuple{x, y} \neq \tuple{y, x}$.
+
+Bagaimana kita seharusnya memahami pasangan terurut dalam teori
+himpunan? Yang sangat penting, kita ingin mempertahankan gagasan bahwa
+dua pasangan terurut identik jika dan hanya jika keduanya mempunyai
+anggota pertama yang sama dan anggota kedua yang sama, yaitu:
+\[
+  \tuple{a, b}= \tuple{c, d}\text{ jika dan hanya jika }a = c
+  \text{ dan }b=d.
+\]
+Kita dapat mendefinisikan pasangan terurut dalam teori himpunan dengan
+definisi Wiener--Kuratowski.
+\end{explain}
+
+\begin{defn}[Pasangan terurut]\ollabel{wienerkuratowski}
+	$\tuple{a, b} = \{\{a\}, \{a, b\}\}$.
+\end{defn}
+
+\begin{prob}
+	Dengan menggunakan \olref[sfr][set][pai]{wienerkuratowski}, buktikan
+	bahwa $\tuple{a, b}= \tuple{c, d}$ jika dan hanya jika $a = c$ dan
+	$b=d$.
+\end{prob}
+
+\begin{explain}
+Setelah menetapkan definisi pasangan terurut, kita dapat menggunakannya
+untuk mendefinisikan himpunan lain. Sebagai contoh, kadang-kadang kita
+juga memerlukan barisan terurut yang terdiri atas lebih dari dua objek,
+misalnya \emph{tripel} $\tuple{x, y, z}$, \emph{kuadruplet}
+$\tuple{x, y, z, u}$, dan seterusnya. Kita dapat memandang tripel
+sebagai pasangan terurut khusus yang anggota pertamanya sendiri
+merupakan pasangan terurut: $\tuple{x, y, z}$ adalah
+$\tuple{\tuple{x, y},z}$. Hal yang sama berlaku bagi kuadruplet:
+$\tuple{x,y,z,u}$ adalah $\tuple{\tuple{\tuple{x,y},z},u}$, dan
+seterusnya. Secara umum, kita berbicara tentang \emph{tupel-$n$
+terurut} $\tuple{x_1, \dots, x_n}$.
+
+Himpunan tertentu yang terdiri atas pasangan terurut atau tupel-$n$
+terurut lainnya akan berguna.
+\end{explain}
+
+\begin{defn}[Hasil kali Kartesius]
+Untuk himpunan $A$ dan $B$, \emph{hasil kali Kartesius} $A \times B$
+didefinisikan oleh
+\[
+  A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ dan } y \in B}.
+\]
+\end{defn}
+
+\begin{ex}
+Jika $A = \{0, 1\}$ dan $B = \{1, a, b\}$, maka hasil kali keduanya
+adalah
+\[
+A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
+    \tuple{1, 1}, \tuple{1, a}, \tuple{1, b} \}.
+\]
+\end{ex}
+
+\begin{ex}
+Jika $A$ adalah himpunan, hasil kali $A$ dengan dirinya sendiri,
+$A \times A$, juga ditulis~$A^2$. Ini adalah himpunan \emph{semua}
+pasangan $\tuple{x, y}$ dengan $x, y \in A$. Himpunan semua tripel
+$\tuple{x, y, z}$ adalah $A^3$, dan seterusnya. Kita dapat memberikan
+definisi rekursif:
+\begin{align*}
+  A^1 & = A\\
+  A^{k+1} & = A^k \times A
+\end{align*}
+\end{ex}
+
+\begin{prob}
+Tuliskan semua !!{element}s dari $\{1, 2, 3\}^3$.
+\end{prob}
+
+\begin{prop}\ollabel{cardnmprod}
+Jika $A$ mempunyai $n$ !!{element}s dan $B$ mempunyai $m$
+!!{element}s, maka $A \times B$ mempunyai $n\cdot m$ anggota.
+\end{prop}
+
+\begin{proof}
+Untuk setiap !!{element}~$x$ dalam~$A$, terdapat $m$ !!{element}s
+berbentuk $\tuple{x, y} \in A \times B$. Misalkan
+$B_x = \Setabs{\tuple{x, y}}{y \in B}$. Karena jika $x_1 \neq x_2$,
+maka $\tuple{x_1, y} \neq \tuple{x_2, y}$, diperoleh
+$B_{x_1} \cap B_{x_2} = \emptyset$. Akan tetapi, jika
+$A = \{x_1, \dots, x_n\}$, maka
+$A \times B = B_{x_1} \cup \dots \cup B_{x_n}$, sehingga himpunan
+ini mempunyai $n\cdot m$ !!{element}s.
+
+Untuk memvisualisasikannya, susun !!{element}s dari~$A \times B$
+dalam sebuah kisi:
+\[
+\begin{array}{rcccc}
+  B_{x_1} = & \{\tuple{x_1, y_1} & \tuple{x_1, y_2} & \dots & \tuple{x_1, y_m}\}\\
+  B_{x_2} = & \{\tuple{x_2, y_1} & \tuple{x_2, y_2} & \dots & \tuple{x_2, y_m}\}\\
+  \vdots & & \vdots\\
+  B_{x_n} = & \{\tuple{x_n, y_1} & \tuple{x_n, y_2} & \dots & \tuple{x_n, y_m}\}
+\end{array}
+\]
+Karena semua $x_i$ berbeda dan semua $y_j$ berbeda, tidak ada dua
+pasangan dalam kisi ini yang sama, dan jumlah pasangan itu adalah
+$n\cdot m$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan, dengan induksi pada~$k$, bahwa untuk setiap $k \ge 1$, jika
+$A$ mempunyai $n$ !!{element}s, maka $A^k$ mempunyai $n^k$
+!!{element}s.
+\end{prob}
+
+\begin{ex}
+Jika $A$ adalah himpunan, sebuah \emph{kata} atas~$A$ adalah sebarang
+barisan !!{element}s dari~$A$. Sebuah barisan dapat dipandang sebagai
+tupel-$n$ dari !!{element}s dalam~$A$. Sebagai contoh, jika
+$A = \{a, b, c\}$, maka barisan ``$bac$'' dapat dipandang sebagai
+tripel~$\tuple{b, a, c}$. Kata, yaitu barisan simbol, sangat penting
+dalam ilmu komputer. Berdasarkan konvensi, kita menghitung
+!!{element}s dari~$A$ sebagai barisan dengan panjang~$1$, dan
+$\emptyset$ sebagai barisan dengan panjang~$0$. Himpunan \emph{semua}
+kata atas~$A$ kemudian adalah
+\[
+A^* = \{\emptyset\} \cup A \cup A^2 \cup A^3 \cup \dots
+\]
+\end{ex}
+
+\end{document}

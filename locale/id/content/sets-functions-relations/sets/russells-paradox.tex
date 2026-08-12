@@ -1,0 +1,102 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: russells-paradox
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{rus}
+\olsection{Paradoks Russell}
+
+Ekstensionalitas membenarkan notasi $\Setabs{x}{\phi(x)}$ untuk
+\emph{himpunan} semua $x$ sedemikian sehingga~$\phi(x)$. Akan tetapi,
+ekstensionalitas \emph{sesungguhnya} hanya membenarkan pemikiran berikut.
+\emph{Jika} ada himpunan yang anggotanya tepat semua objek yang
+memenuhi $\phi$, \emph{maka} hanya ada satu himpunan semacam itu.
+Dengan kata lain, setelah suatu~$\phi$ ditetapkan, himpunan
+$\Setabs{x}{\phi(x)}$ bersifat unik \emph{jika himpunan itu ada}.
+
+Namun, syarat ini penting!{} Tidak setiap sifat memungkinkan
+\emph{komprehensi}, yaitu pembentukan himpunan dari semua objek yang
+memiliki sifat tersebut. Dengan kata lain, beberapa sifat
+\emph{tidak} mendefinisikan himpunan. Jika semuanya mendefinisikan
+himpunan, kita akan menghadapi kontradiksi langsung. Contoh paling
+terkenal adalah Paradoks Russell.
+
+Himpunan dapat menjadi !!{element}s dari himpunan lain---sebagai
+contoh, himpunan kuasa dari himpunan~$A$ tersusun atas himpunan-himpunan.
+Karena itu, masuk akal untuk menanyakan atau menyelidiki apakah sebuah
+himpunan merupakan !!a{element} dari himpunan lain. Dapatkah sebuah
+himpunan menjadi anggota dirinya sendiri? Tidak ada sesuatu dalam
+gagasan tentang himpunan yang tampaknya menutup kemungkinan ini.
+Sebagai contoh, jika \emph{semua} himpunan membentuk suatu kumpulan
+objek, mungkin kita berpikir bahwa semuanya dapat dihimpun menjadi
+satu himpunan---himpunan semua himpunan. Karena himpunan itu sendiri
+adalah sebuah himpunan, ia akan menjadi !!a{element} dari himpunan
+semua himpunan.
+
+Paradoks Russell muncul ketika kita meninjau sifat tidak memuat dirinya
+sendiri sebagai !!a{element}, yakni sifat \emph{tidak beranggotakan
+diri sendiri}. Bagaimana jika kita mengandaikan bahwa terdapat
+himpunan semua himpunan yang tidak memuat dirinya sendiri sebagai
+!!a{element}? Apakah
+\[
+R = \Setabs{x}{x \notin x}
+\]
+ada? Ternyata kita dapat membuktikan bahwa himpunan itu tidak ada.
+
+\begin{thm}[Paradoks Russell]\ollabel{thm:russells-paradox}
+	Tidak ada himpunan $R = \Setabs{x}{x \notin x}$.
+\end{thm}
+
+\begin{proof}
+Jika $R = \Setabs{x}{x \notin x}$ ada, maka
+$R \in R$ jika dan hanya jika $R \notin R$, dan ini merupakan
+kontradiksi.
+\end{proof}
+
+\begin{tagblock}{novice}
+\begin{explain}
+Mari kita telaah bukti ini dengan lebih perlahan. Jika $R$ ada, masuk
+akal untuk menanyakan apakah $R \in R$. Andaikan memang $R \in R$.
+Himpunan $R$ didefinisikan sebagai himpunan semua himpunan yang tidak
+merupakan !!{element}s dari dirinya sendiri. Jadi, jika $R \in R$,
+maka $R$ sendiri tidak memiliki sifat yang mendefinisikan~$R$. Namun,
+hanya himpunan yang memiliki sifat tersebut yang berada di dalam~$R$.
+Karena itu, $R$ tidak mungkin merupakan !!a{element} dari~$R$, yaitu
+$R \notin R$. Akan tetapi, $R$ tidak mungkin sekaligus merupakan dan
+bukan merupakan !!a{element} dari~$R$, sehingga kita memperoleh
+kontradiksi.
+
+Karena asumsi bahwa $R \in R$ menghasilkan kontradiksi, kita mendapat
+$R \notin R$. Namun, hal ini juga menghasilkan kontradiksi!{} Jika
+$R \notin R$, maka $R$ sendiri memiliki sifat yang mendefinisikan
+$R$, sehingga $R$ akan menjadi !!a{element} dari $R$, sama seperti
+semua himpunan lain yang tidak beranggotakan dirinya sendiri. Sekali
+lagi, himpunan itu tidak mungkin sekaligus bukan merupakan dan merupakan
+!!a{element} dari~$R$.
+\end{explain}
+\end{tagblock}
+
+\begin{digress}
+Bagaimana kita menyusun teori himpunan yang tidak terjerumus ke dalam
+Paradoks Russell, yaitu teori yang tidak membuat klaim
+\emph{inkonsisten} bahwa $R = \Setabs{x}{x \notin x}$ ada? Kita perlu
+menetapkan aksioma-aksioma yang memberikan syarat sangat tepat untuk
+menyatakan kapan himpunan ada (dan kapan himpunan tidak ada).
+	
+Teori himpunan yang digambarkan secara garis besar dalam bab ini tidak
+melakukan hal tersebut. Teori ini benar-benar \emph{naif}. Teori ini
+hanya menyatakan bahwa himpunan mematuhi ekstensionalitas dan bahwa,
+jika kita mempunyai beberapa himpunan, kita dapat membentuk gabungan,
+irisan, dan sebagainya. Teori himpunan dapat dikembangkan secara lebih
+ketat daripada ini. \oliflabeldef{cumul:::part}{Pembahasan ketat itu
+akan disediakan dalam Bagian \olref[cumul][][]{part}. Untuk saat ini,
+kita akan melanjutkan secara naif dan dengan hati-hati berusaha
+menghindari kontradiksi.}{}
+\end{digress}
+
+
+\end{document}

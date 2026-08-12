@@ -1,0 +1,83 @@
+% Bagian: sets-functions-relations
+% Bab: relations
+% Subbagian: equivalence-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{rel}{eqv}
+
+\olsection{Relasi Ekuivalensi}
+
+Relasi identitas pada suatu himpunan bersifat refleksif, simetris, dan
+transitif. Relasi~$R$ yang memiliki ketiga sifat tersebut sangat umum.
+
+\begin{defn}[Relasi ekuivalensi]
+Suatu relasi $R \subseteq A^2$ yang bersifat refleksif, simetris, dan transitif
+disebut \emph{relasi ekuivalensi}. !!^{element}s $x$ dan $y$ dari~$A$ disebut
+\emph{ekuivalen terhadap~$R$} jika~$Rxy$.
+\end{defn}
+
+Relasi ekuivalensi melahirkan gagasan \emph{kelas ekuivalensi}. Suatu relasi
+ekuivalensi ``memecah'' domain menjadi blok-blok partisi yang berbeda. Di dalam
+setiap blok, semua objek saling berelasi; tidak ada objek dari blok yang
+berbeda yang saling berelasi. Kadang-kadang akan membantu jika kita dapat
+membicarakan blok-blok ini \emph{secara langsung}. Untuk itu, kita perkenalkan
+definisi berikut.
+
+\begin{defn}\ollabel{def:equivalenceclass}
+Misalkan $R \subseteq A^2$ merupakan relasi ekuivalensi. Untuk setiap $x \in
+A$, \emph{kelas ekuivalensi} dari $x$ dalam~$A$ adalah himpunan
+$\equivrep{x}{R} = \Setabs{y \in A}{Rxy}$. \emph{Hasil bagi} $A$ terhadap~$R$
+adalah $\equivclass{A}{R} = \Setabs{\equivrep{x}{R}}{x \in A}$, yakni himpunan
+semua kelas ekuivalensi tersebut.
+\end{defn}
+
+Hasil berikut membenarkan definisi kelas ekuivalensi dengan membuktikan bahwa
+kelas-kelas ekuivalensi memang merupakan blok-blok partisi dari~$A$.
+
+\begin{prop}
+Jika $R \subseteq A^2$ merupakan relasi ekuivalensi, maka $Rxy$ jika dan hanya
+jika $\equivrep{x}{R} = \equivrep{y}{R}$.
+\end{prop}
+
+\begin{proof}
+Untuk arah kiri ke kanan, andaikan $Rxy$, dan misalkan $z \in
+\equivrep{x}{R}$. Menurut definisi, $Rxz$. Karena $R$ merupakan relasi
+ekuivalensi, $Ryz$. (Secara terperinci: karena $Rxy$ dan~$R$ simetris, kita
+memperoleh $Ryx$; karena $Rxz$ dan~$R$ transitif, kita memperoleh~$Ryz$.) Jadi,
+$z \in \equivrep{y}{R}$. Dengan menggeneralisasi,
+$\equivrep{x}{R} \subseteq \equivrep{y}{R}$. Akan tetapi, dengan penalaran yang
+persis sama, $\equivrep{y}{R} \subseteq \equivrep{x}{R}$. Jadi,
+$\equivrep{x}{R} = \equivrep{y}{R}$ berdasarkan ekstensionalitas.
+
+Untuk arah kanan ke kiri, andaikan $\equivrep{x}{R} = \equivrep{y}{R}$. Karena
+$R$ refleksif, $Ryy$, sehingga $y \in \equivrep{y}{R}$. Jadi, berlaku pula
+$y \in \equivrep{x}{R}$ berdasarkan asumsi bahwa
+$\equivrep{x}{R} = \equivrep{y}{R}$.
+Jadi, $Rxy$.
+\end{proof}
+
+\begin{ex}
+Contoh yang baik untuk relasi ekuivalensi berasal dari aritmetika modular.
+Untuk sembarang bilangan asli $a$, $b$, dan bilangan bulat positif
+$n \in \PosInt$, tetapkan bahwa $a \equiv_n b$
+jika dan hanya jika pembagian $a$ dengan~$n$ menghasilkan sisa yang sama
+dengan pembagian $b$ dengan~$n$. (Dalam bentuk yang lebih simbolis:
+$a \equiv_n b$ jika dan hanya jika, untuk suatu $k \in \Int$, $a - b = kn$.)
+Sekarang, $\equiv_n$ merupakan relasi ekuivalensi untuk setiap~$n$. Tepat ada
+$n$ kelas ekuivalensi berbeda yang dihasilkan oleh~$\equiv_n$; dengan kata
+lain, $\equivclass{\Nat}{\equiv_n}$ mempunyai $n$ !!{element}s. Kelas-kelas
+itu adalah: himpunan bilangan yang habis dibagi $n$, yakni
+$\equivrep{0}{\equiv_n}$; himpunan bilangan yang jika dibagi $n$ bersisa~$1$,
+yakni $\equivrep{1}{\equiv_n}$; \ldots; dan himpunan bilangan yang jika dibagi
+$n$ bersisa~$n-1$, yakni~$\equivrep{n-1}{\equiv_n}$.
+\end{ex}
+
+\begin{prob}
+Tunjukkan bahwa $\equiv_n$ merupakan relasi ekuivalensi untuk setiap $n \in
+\PosInt$, dan bahwa $\equivclass{\Nat}{\equiv_n}$ mempunyai tepat $n$ anggota.
+\end{prob}
+
+\end{document}

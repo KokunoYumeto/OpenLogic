@@ -1,0 +1,74 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{par}
+
+\olsection{Fungsi Parsial}
+
+\begin{explain}
+Kadang-kadang berguna untuk melonggarkan definisi fungsi sehingga keluaran
+fungsi tidak harus terdefinisi untuk semua masukan yang mungkin. Pemetaan
+semacam itu disebut \emph{fungsi parsial}.
+\end{explain}
+
+\begin{defn}
+Suatu \emph{fungsi parsial} $f \colon A \pto B$ adalah pemetaan yang
+memasangkan setiap !!{element} dari~$A$ dengan paling banyak satu !!{element}
+dari~$B$. Jika $f$ memasangkan suatu elemen dari~$B$ dengan $x \in A$, kita
+mengatakan bahwa $f(x)$ \emph{terdefinisi}; jika tidak, \emph{tidak
+terdefinisi}. Jika $f(x)$ terdefinisi, kita tulis $f(x) \fdefined$; jika tidak,
+kita tulis $f(x) \fundefined$. \emph{Domain} dari fungsi parsial~$f$ adalah
+himpunan bagian dari~$A$ tempat fungsi itu terdefinisi, yaitu $\dom{f} =
+\Setabs{x \in A}{f(x) \fdefined}$.
+\end{defn}
+
+\begin{ex}
+Setiap fungsi $f\colon A \to B$ juga merupakan fungsi parsial. Fungsi parsial
+yang terdefinisi di seluruh~$A$---yaitu yang sejauh ini kita sebut fungsi
+begitu saja---disebut juga fungsi \emph{total}.
+\end{ex}
+
+\begin{ex}
+Fungsi parsial $f \colon \Real \pto \Real$ yang diberikan oleh $f(x) = 1/x$
+tidak terdefinisi untuk $x = 0$, dan terdefinisi di semua tempat lainnya.
+\end{ex}
+
+\begin{prob}
+Jika diberikan $f\colon A \pto B$, definisikan fungsi parsial $g\colon B \pto
+A$ sebagai berikut: untuk setiap $y \in B$, jika terdapat tepat satu $x \in A$
+sehingga $f(x) = y$, maka $g(y) = x$; jika tidak, $g(y) \fundefined$.
+Tunjukkan bahwa jika $f$ injektif, maka $g(f(x)) = x$ untuk semua $x \in
+\dom{f}$, dan $f(g(y)) = y$ untuk semua $y \in \ran{f}$.
+\end{prob}
+
+\begin{defn}[Graf suatu fungsi parsial]
+Misalkan $f\colon A \pto B$ suatu fungsi parsial. \emph{Graf} dari~$f$ adalah
+relasi $R_f \subseteq A \times B$ yang didefinisikan oleh
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{prop}
+Andaikan $R \subseteq A \times B$ mempunyai sifat bahwa jika $Rxy$ dan
+$Rxy'$, maka $y = y'$. Maka $R$ adalah graf fungsi parsial $f\colon A \pto B$
+yang didefinisikan sebagai berikut: jika terdapat $y$ sehingga $Rxy$, maka
+$f(x) = y$; jika tidak, $f(x) \fundefined$. Jika $R$ juga \emph{serial}, yaitu
+untuk setiap $x \in A$ terdapat $y \in B$ sehingga $Rxy$, maka $f$ bersifat
+total.
+\end{prop}
+
+\begin{proof}
+Andaikan terdapat $y$ sehingga $Rxy$. Jika terdapat pula $y' \neq y$ sehingga
+$Rxy'$, syarat pada $R$ akan dilanggar. Jadi, jika terdapat $y$ sehingga
+$Rxy$, maka $y$ tersebut unik, sehingga $f$ terdefinisi dengan baik. Jelas
+bahwa $R_f = R$ dan $f$ bersifat total jika~$R$ serial.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,119 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: kinds
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{kin}
+\olsection{Jenis-Jenis Fungsi}
+
+\begin{explain}
+Akan berguna jika kita memperkenalkan semacam klasifikasi bagi beberapa jenis
+fungsi yang paling sering kita jumpai.
+
+Sebagai permulaan, kita dapat meninjau fungsi yang mempunyai sifat bahwa
+setiap anggota kodomain merupakan nilai fungsi tersebut. Fungsi semacam itu
+disebut !!{surjective}, dan dapat digambarkan seperti dalam
+\olref{fig:surjective}.
+
+\begin{figure}
+  \olasset{assets/diagrams/surjective.tikz}
+  \caption{Fungsi !!^a{surjective} mempunyai setiap !!{element} kodomain
+    sebagai suatu nilai.}
+  \ollabel{fig:surjective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Fungsi !!^{surjective}]
+Suatu fungsi $f \colon A \rightarrow B$ bersifat \emph{!!{surjective}} jika
+dan hanya jika $B$ juga merupakan daerah hasil dari~$f$, yaitu untuk setiap
+$y \in B$ terdapat sekurang-kurangnya satu $x \in A$ sehingga~$f(x) = y$,
+atau dalam simbol:
+\[
+  (\forall y \in B)(\exists x \in A)f(x) = y.
+\]
+Fungsi semacam itu kita sebut !!a{surjection} dari $A$ ke $B$.
+\end{defn}
+
+\begin{explain}
+Jika Anda hendak menunjukkan bahwa $f$ merupakan !!a{surjection}, Anda harus
+menunjukkan bahwa setiap objek dalam kodomain $f$ adalah nilai $f(x)$ untuk
+suatu masukan $x$.
+
+Perhatikan bahwa setiap fungsi \emph{menginduksi} !!a{surjection}. Jika
+diberikan suatu fungsi $f \colon A \to B$, definisikan $f' \colon A \to
+\ran{f}$ dengan $f'(x) = f(x)$. Karena $\ran{f}$ \emph{didefinisikan} sebagai
+$\Setabs{f(x) \in B}{x \in A}$, fungsi $f'$ ini pasti merupakan
+!!a{surjection}.
+\end{explain}
+
+\begin{explain}
+Setiap fungsi memetakan tiap masukan yang mungkin ke satu-satunya keluaran.
+Namun, ada pula fungsi yang tidak pernah memetakan masukan yang berbeda ke
+keluaran yang sama. Fungsi semacam itu disebut !!{injective}, dan dapat
+digambarkan seperti dalam \olref{fig:injective}.
+\begin{figure}
+  \olasset{assets/diagrams/injective.tikz}
+  \caption{Fungsi !!^a{injective} tidak pernah memetakan dua argumen yang
+    berbeda ke nilai yang sama.}
+  \ollabel{fig:injective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Fungsi !!^{injective}]
+Suatu fungsi $f \colon A \rightarrow B$ bersifat \emph{!!{injective}} jika
+dan hanya jika untuk setiap $y \in B$ terdapat paling banyak satu $x \in A$
+sehingga~$f(x) = y$. Fungsi semacam itu kita sebut !!a{injection} dari $A$
+ke~$B$.
+\end{defn}
+
+\begin{explain}
+Jika Anda hendak menunjukkan bahwa $f$ merupakan !!a{injection}, Anda harus
+menunjukkan bahwa untuk sebarang !!{element}s $x$ dan $y$ dari domain $f$,
+jika $f(x)=f(y)$, maka $x=y$.
+\end{explain}
+
+\begin{ex}
+Fungsi konstan $f\colon \Nat \to \Nat$ yang diberikan oleh $f(x) = 1$ tidak
+bersifat !!{injective} maupun !!{surjective}.
+
+Fungsi identitas $f\colon \Nat \to \Nat$ yang diberikan oleh $f(x) = x$
+bersifat !!{injective} sekaligus !!{surjective}.
+
+Fungsi penerus $f \colon \Nat \to \Nat$ yang diberikan oleh $f(x) = x+1$
+bersifat !!{injective}, tetapi tidak !!{surjective}.
+
+Fungsi $f \colon \Nat \to \Nat$ yang didefinisikan oleh:
+\[
+  f(x) =
+  \begin{cases}
+    \frac{x}{2} & \text{jika $x$ genap} \\
+    \frac{x+1}{2} & \text{jika $x$ ganjil.}
+  \end{cases}
+\]
+bersifat !!{surjective}, tetapi tidak !!{injective}.
+\end{ex}
+
+\begin{explain}
+Cukup sering kita hendak meninjau fungsi yang sekaligus !!{injective} dan
+!!{surjective}. Fungsi semacam itu kita sebut !!{bijective}. Bentuknya seperti
+fungsi yang digambarkan dalam \olref{fig:bijective}. !!^{bijection}s
+kadang-kadang juga disebut \emph{korespondensi satu-satu}, karena memasangkan secara
+unik elemen-elemen kodomain dengan elemen-elemen domain.
+\begin{figure}
+  \olasset{assets/diagrams/bijective.tikz}
+  \caption{Fungsi !!^a{bijective} memasangkan secara unik elemen-elemen
+    kodomain dengan elemen-elemen domain.}
+  \ollabel{fig:bijective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[!!^{bijection}]
+Suatu fungsi $f \colon A \to B$ bersifat \emph{!!{bijective}} jika dan hanya
+jika fungsi itu !!{surjective} sekaligus !!{injective}. Fungsi semacam itu kita
+sebut !!a{bijection} dari $A$ ke~$B$ (atau antara $A$ dan~$B$).
+\end{defn}
+
+\end{document}

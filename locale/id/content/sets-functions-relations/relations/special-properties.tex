@@ -1,0 +1,83 @@
+% Bagian: sets-functions-relations
+% Bab: relations
+% Subbagian: special-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{rel}{prp}
+\olsection{Sifat Khusus Relasi}
+
+\begin{intro}
+Beberapa jenis relasi ternyata begitu umum sehingga diberi nama khusus.
+Sebagai contoh, $\le$ dan~$\subseteq$ sama-sama menghubungkan domainnya
+masing-masing (misalnya, $\Nat$ untuk~$\le$ dan $\Pow{A}$
+untuk~$\subseteq$) dengan cara yang serupa. Untuk menentukan dengan tepat
+keserupaan dan perbedaan relasi-relasi tersebut, kita mengelompokkannya
+menurut beberapa sifat khusus yang dapat dimiliki relasi. Ternyata, beberapa
+sifat khusus ini (atau kombinasinya) sangat penting, terutama urutan dan
+relasi ekuivalensi.
+\end{intro}
+
+\begin{defn}[Refleksivitas]
+Suatu relasi $R \subseteq A^2$ bersifat \emph{refleksif} jika dan hanya jika,
+untuk setiap $x \in A$, berlaku $Rxx$.
+\end{defn}
+
+\begin{defn}[Transitivitas]
+Suatu relasi $R \subseteq A^2$ bersifat \emph{transitif} jika dan hanya jika,
+setiap kali $Rxy$ dan $Ryz$ berlaku, $Rxz$ juga berlaku.
+\end{defn}
+
+\begin{defn}[Simetri]
+Suatu relasi~$R \subseteq A^2$ bersifat \emph{simetris} jika dan hanya jika,
+setiap kali $Rxy$ berlaku, $Ryx$ juga berlaku.
+\end{defn}
+
+\begin{defn}[Antisimetri]
+Suatu relasi~$R \subseteq A^2$ bersifat \emph{anti\-si\-metris} jika dan hanya
+jika, setiap kali $Rxy$ dan $Ryx$ keduanya berlaku, maka $x=y$ (atau, dengan
+kata lain: jika $x\neq y$, maka $\lnot Rxy$ atau $\lnot Ryx$).
+\end{defn}
+
+\begin{explain}
+Dalam relasi simetris, $Rxy$ dan $Ryx$ selalu berlaku bersama-sama atau
+keduanya tidak berlaku. Dalam relasi antisimetris, $Rxy$ dan $Ryx$ hanya dapat
+berlaku bersama-sama jika $x = y$. Perhatikan bahwa ini tidak
+\emph{mengharuskan} $Rxy$ dan $Ryx$ berlaku ketika $x = y$; hal itu semata-mata
+tidak dikesampingkan. Jadi, suatu relasi antisimetris dapat bersifat
+refleksif, tetapi tidak setiap relasi antisimetris bersifat refleksif.
+Perhatikan pula bahwa bersifat antisimetris berbeda dari sekadar tidak
+bersifat simetris. Bahkan, suatu relasi dapat sekaligus bersifat simetris dan
+antisimetris (misalnya, relasi identitas).
+\end{explain}
+
+\begin{defn}[Keterhubungan]
+Suatu relasi $R \subseteq A^2$ bersifat \emph{terhubung} jika untuk semua
+$x,y\in A$, apabila $x \neq y$, maka $Rxy$ atau~$Ryx$.
+\end{defn}
+
+\begin{prob}
+Berikan contoh relasi yang (a) refleksif dan simetris, tetapi tidak transitif;
+(b) refleksif dan antisimetris; (c) antisimetris dan transitif, tetapi tidak
+refleksif; serta (d) refleksif, simetris, dan transitif. Jangan gunakan relasi
+pada bilangan atau himpunan.
+\end{prob}
+
+\begin{defn}[Irefleksivitas]
+Suatu relasi $R \subseteq A^2$ disebut \emph{irefleksif} jika, untuk semua
+$x \in A$, $Rxx$ tidak berlaku.
+\end{defn}
+
+\begin{defn}[Asimetri]
+Suatu relasi $R \subseteq A^2$ disebut \emph{asimetris} jika tidak ada pasangan
+$x,y\in A$ yang memenuhi $Rxy$ dan~$Ryx$ sekaligus.
+\end{defn}
+
+Perhatikan bahwa jika $A \neq \emptyset$, maka tidak ada relasi irefleksif
+pada~$A$ yang bersifat refleksif, dan setiap relasi asimetris pada~$A$ juga
+bersifat antisimetris. Namun, ada $R \subseteq A^2$ yang tidak refleksif dan
+juga tidak irefleksif, serta ada relasi antisimetris yang tidak asimetris.
+
+\end{document}

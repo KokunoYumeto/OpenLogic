@@ -1,0 +1,76 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: important-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{imp}
+\olsection{Beberapa Himpunan Penting}
+
+\begin{ex}
+Kita terutama akan membahas himpunan dengan objek matematika sebagai
+!!{element}s. Empat himpunan semacam itu cukup penting sehingga
+mempunyai nama khusus:
+\begin{multline*}
+    \Nat = \{0, 1, 2, 3, \ldots\} \\
+    \shoveright{\text{himpunan bilangan asli (dengan 0)}}\\
+    \shoveleft{\Int = \{\ldots, -2, -1, 0, 1, 2, \ldots\}} \\
+    \shoveright{\text{himpunan bilangan bulat}}\\
+    \shoveleft{\Rat = \Setabs{\nicefrac{m}{n}}{m, n \in \Int\text{ dan }n \neq 0}}\\
+    \shoveright{\text{himpunan bilangan rasional}}\\
+    \shoveleft{\Real = (-\infty, \infty)}\\
+    \text{himpunan bilangan real (kontinuum)}
+\end{multline*}
+Dalam teks ini, konvensi bilangan asli mencakup nol, sebagaimana
+dinyatakan oleh definisi di atas.
+Semua ini merupakan himpunan \emph{tak hingga}, yakni masing-masing
+mempunyai !!{element}s yang banyaknya tak hingga.
+
+Ketika bergerak melalui himpunan-himpunan ini, kita menambahkan
+\emph{lebih banyak} bilangan ke dalam persediaan kita. Jelas bahwa
+$\Nat \subseteq \Int \subseteq \Rat \subseteq \Real$: setiap bilangan
+asli merupakan bilangan bulat; setiap bilangan bulat merupakan bilangan
+rasional; dan setiap bilangan rasional merupakan bilangan real. Jelas
+pula bahwa $\Nat \subsetneq \Int \subsetneq \Rat$, sebab $-1$ adalah
+bilangan bulat tetapi bukan bilangan asli, sedangkan $\nicefrac{1}{2}$
+adalah bilangan rasional tetapi bukan bilangan bulat. Tidak begitu
+jelas bahwa $\Rat \subsetneq \Real$, yaitu bahwa ada bilangan real yang
+bukan bilangan rasional\oliflabeldef{sfr:arith:real:realline}{, tetapi
+kita akan kembali membahasnya dalam
+\olref[arith][real]{realline}}{}.
+
+Kadang-kadang kita juga akan menggunakan himpunan bilangan bulat
+positif $\PosInt = \{1, 2, 3, \dots\}$ dan himpunan yang hanya memuat
+dua anggota pertama himpunan bilangan asli menurut konvensi di atas,
+yaitu $\Bin = \{0, 1\}$.
+\end{ex}
+
+\begin{tagblock}{compsci}
+\begin{ex}[Untai]
+Contoh menarik lainnya adalah himpunan $A^{*}$ dari \emph{untai
+berhingga} atas alfabet $A$: setiap barisan berhingga anggota dari
+$A$ merupakan untai atas $A$. Kita menyertakan \emph{untai kosong
+$\Lambda$} di antara untai-untai atas~$A$, untuk setiap alfabet~$A$.
+Sebagai contoh,
+\begin{multline*}
+\Bin^*
+=\{\Lambda,0,1,00,01,10,11,\\
+000,001,010,011,100,101,110,111,0000,\ldots\}.
+\end{multline*}
+Jika $x=x_{1}\ldots x_{n}\in A^{*}$ adalah untai yang terdiri atas $n$
+``huruf'' dari $A$, kita mengatakan bahwa \emph{panjang} untai itu
+adalah~$n$ dan menulis $\len{x}=n$.
+\end{ex}
+\end{tagblock}
+
+\begin{ex}[Barisan tak hingga]
+Untuk setiap himpunan $A$, kita juga dapat meninjau himpunan~$A^\omega$
+dari barisan tak hingga !!{element}s dari~$A$. Barisan tak hingga
+$a_1a_2a_3a_4\dots$ terdiri atas daftar objek satu arah yang tak
+berhingga, dan setiap objek dalam daftar itu merupakan !!a{element}
+dari~$A$.
+\end{ex}
+
+\end{document}

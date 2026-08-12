@@ -1,0 +1,67 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{cmp}
+\olsection{Komposisi Fungsi}
+
+\begin{explain}
+\oliflabeldef{sfr:fun:inv:sec}{Dalam \olref[inv]{sec}, kita melihat bahwa
+invers~$f^{-1}$ dari !!a{bijection}~$f$ juga merupakan fungsi. Operasi lain
+pada fungsi adalah komposisi: k}{K}ita dapat mendefinisikan fungsi baru dengan
+mengomposisikan dua fungsi, $f$ dan~$g$, yaitu dengan terlebih dahulu
+menerapkan $f$, kemudian~$g$. Tentu saja, hal ini hanya mungkin jika daerah
+hasil dan domainnya bersesuaian, yaitu daerah hasil~$f$ harus merupakan
+himpunan bagian dari domain~$g$. \oliflabeldef{sfr:rel:ops:sec}{Operasi pada
+fungsi ini merupakan padanan operasi hasil kali relatif pada relasi dari
+\olref[rel][ops]{sec}.}{}
+
+Sebuah diagram dapat membantu menjelaskan gagasan komposisi. Dalam
+\olref{fig:composition}, kita menggambarkan dua fungsi $f \colon A \to B$ dan
+$g \colon B \to C$ beserta komposisinya~$(\comp{f}{g})$. Fungsi
+$(\comp{f}{g}) \colon A \to C$ memasangkan setiap !!{element} dari~$A$ dengan
+!!a{element} dari~$C$. Kita menentukan !!{element} mana dari~$C$ yang
+dipasangkan dengan !!a{element} dari $A$ sebagai berikut: jika diberikan
+masukan $x \in A$, mula-mula terapkan fungsi $f$ pada~$x$, yang menghasilkan
+suatu $f(x) = y \in B$, kemudian terapkan fungsi $g$ pada~$y$, yang
+menghasilkan suatu $g(f(x)) = g(y) = z \in C$.
+\begin{figure}
+  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \caption{Komposisi $g \circ f$ dari dua fungsi $f$ dan~$g$.}
+  \ollabel{fig:composition}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Komposisi]
+Misalkan $f\colon A \to B$ dan $g\colon B \to C$ fungsi. \emph{Komposisi}
+dari $f$ dengan~$g$ adalah $\comp{f}{g} \colon A \to C$, dengan
+$(\comp{f}{g})(x) = g(f(x))$.
+\end{defn}
+
+\begin{ex}
+Tinjau fungsi $f(x) = x + 1$ dan $g(x) = 2x$. Karena
+$(\comp{f}{g})(x) = g(f(x))$, untuk setiap masukan~$x$ Anda harus terlebih
+dahulu mengambil penerusnya, kemudian mengalikan hasilnya dengan dua. Jadi,
+komposisi keduanya diberikan oleh $(\comp{f}{g})(x) = 2(x+1)$.
+\end{ex}
+
+\begin{prob}
+Tunjukkan bahwa jika $f \colon A \to B$ dan $g \colon B \to C$ keduanya
+!!{injective}, maka $\comp{f}{g}\colon A \to C$ bersifat !!{injective}.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa jika $f \colon A \to B$ dan $g \colon B \to C$ keduanya
+!!{surjective}, maka $\comp{f}{g}\colon A \to C$ bersifat !!{surjective}.
+\end{prob}
+
+\begin{prob}
+Andaikan $f \colon A \to B$ dan $g \colon B \to C$. Tunjukkan bahwa graf
+dari $\comp{f}{g}$ adalah $R_f \mid R_g$.
+\end{prob}
+
+\end{document}

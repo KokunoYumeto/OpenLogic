@@ -1,0 +1,170 @@
+% Bagian: sets-functions-relations
+% Bab: relations
+% Subbagian: orders
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{rel}{ord}
+\olsection{Urutan}
+
+\begin{explain}
+Banyak perbandingan kita melibatkan penyifatan objek tertentu sebagai
+``lebih kecil daripada'', ``sama dengan'', atau ``lebih besar daripada'' objek
+lain dalam segi tertentu. Perbandingan ini melibatkan relasi \emph{urutan}.
+Namun, terdapat berbagai jenis relasi urutan. Sebagai contoh, sebagian relasi
+mengharuskan setiap dua objek dapat dibandingkan, sedangkan relasi lain tidak.
+Sebagian mencakup identitas (seperti~$\le$), dan sebagian mengecualikannya
+(seperti~$<$). Taksonomi berikut akan membantu kita.
+\end{explain}
+
+\begin{defn}[Praurutan]
+Suatu relasi yang sekaligus refleksif dan transitif disebut
+\emph{praurutan.}
+\end{defn}
+
+\begin{defn}[Urutan parsial]
+Suatu praurutan yang juga antisimetris disebut \emph{urutan parsial}.
+\end{defn}
+
+\begin{defn}[Urutan linear]\ollabel{def:linearorder}
+Suatu urutan parsial yang juga terhubung disebut \emph{urutan total} atau
+\emph{urutan linear.}
+\end{defn}
+
+\begin{ex}
+Setiap urutan linear juga merupakan urutan parsial, dan setiap urutan parsial
+juga merupakan praurutan, tetapi implikasi sebaliknya tidak berlaku. Relasi
+universal pada~$A$ merupakan praurutan karena relasi itu refleksif dan
+transitif. Namun, jika $A$ mempunyai lebih dari satu !!{element}, relasi
+universal tidak antisimetris sehingga bukan urutan parsial.
+\end{ex}
+
+\begin{ex}
+Tinjaulah relasi \emph{tidak lebih panjang daripada} $\preccurlyeq$
+pada~$\Bin^*$: $x \preccurlyeq y$ jika dan hanya jika $\len{x} \le \len{y}$.
+Relasi ini merupakan praurutan (refleksif dan transitif), bahkan terhubung,
+tetapi bukan urutan parsial karena tidak antisimetris. Sebagai contoh,
+$01 \preccurlyeq 10$ dan $10 \preccurlyeq 01$, tetapi $01 \neq 10$.
+\end{ex}
+
+\begin{ex}
+Salah satu urutan parsial yang penting adalah relasi $\subseteq$ pada suatu
+himpunan yang beranggotakan himpunan-himpunan. Relasi ini pada umumnya bukan
+urutan linear. Jika $a \neq b$ dan kita meninjau
+$\Pow{\{a, b\}} = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}$, tampak bahwa
+$\{a\} \nsubseteq \{b\}$, $\{a\} \neq \{b\}$, dan
+$\{b\} \nsubseteq \{a\}$.
+\end{ex}
+
+\begin{ex}
+Relasi \emph{keterbagian tanpa sisa} memberi kita suatu urutan parsial yang
+bukan urutan linear. Untuk bilangan bulat $n$ dan~$m$, kita menulis $n \mid m$
+untuk menyatakan bahwa $n$ membagi habis $m$, yaitu jika dan hanya jika ada
+suatu bilangan bulat~$k$ sehingga $m = kn$. Pada~$\Nat$, relasi ini merupakan
+urutan parsial, tetapi bukan urutan linear; misalnya, $2 \nmid 3$ dan juga
+$3 \nmid 2$. Jika dipandang sebagai relasi pada $\Int$, keterbagian hanya
+merupakan praurutan karena tidak antisimetris: $1 \mid -1$ dan $-1 \mid 1$,
+tetapi $1 \neq -1$.
+\end{ex}
+
+\begin{ex}
+\emph{Relasi perluasan} pada suatu himpunan barisan~$A^*$ adalah sebagai
+berikut: $s \sqsubseteq s'$ jika dan hanya jika $s = \emptyseq$ (barisan
+kosong), $s = s'$, atau $s = \tuple{s_1, \dots, s_n}$ dan
+$s' = \tuple{s_1, \dots, s_n, s_{n+1}, \dots, s_m}$. Jika
+$s \sqsubseteq s'$, kita juga mengatakan bahwa $s$ merupakan \emph{segmen
+awal} dari~$s'$. Relasi perluasan pada $A^*$ merupakan urutan parsial, tetapi
+bukan urutan linear. Sebagai contoh, jika $a \neq b$, maka
+$ab \not\sqsubseteq ba$ dan $ba \not\sqsubseteq ab$.
+\end{ex}
+
+\begin{defn}[Urutan ketat]
+Suatu \emph{urutan ketat} adalah relasi yang irefleksif, asimetris, dan
+transitif.
+\end{defn}
+
+\begin{defn}[Urutan linear ketat]\ollabel{def:strictlinearorder}
+Suatu urutan ketat yang juga terhubung disebut \emph{urutan total ketat} atau
+\emph{urutan linear ketat.}
+\end{defn}
+
+\begin{ex}
+$\le$ merupakan urutan linear yang bersesuaian dengan urutan linear
+ketat~$<$. $\subseteq$ merupakan urutan parsial yang bersesuaian dengan
+urutan ketat~$\subsetneq$.
+\end{ex}
+
+Setiap urutan ketat $R$ pada~$A$ dapat diubah menjadi urutan parsial dengan
+menambahkan diagonal $\Id{A}$, yakni dengan menambahkan semua pasangan
+$\tuple{x, x}$. (Ini disebut \emph{penutupan refleksif} dari~$R$.) Sebaliknya,
+dengan memulai dari suatu urutan parsial, kita dapat memperoleh urutan ketat
+dengan menghapus~$\Id{A}$. Dua hasil berikut memperjelas pernyataan ini.
+
+\begin{prop}\ollabel{prop:stricttopartial}
+Jika $R$ merupakan urutan ketat pada~$A$, maka $S = R \cup \Id{A}$ merupakan
+urutan parsial. Selain itu, jika $R$ merupakan urutan linear ketat, maka $S$
+merupakan urutan linear.
+\end{prop}
+
+\begin{proof}
+Andaikan $R$ merupakan urutan ketat, yakni $R \subseteq A^2$ serta $R$
+irefleksif, asimetris, dan transitif. Misalkan $S = R \cup \Id{A}$. Kita
+harus menunjukkan bahwa $S$ refleksif, antisimetris, dan transitif.
+
+$S$ jelas refleksif karena $\tuple{x, x} \in \Id{A} \subseteq S$ untuk
+semua $x \in A$.
+
+Untuk menunjukkan bahwa $S$ antisimetris, andaikan demi reductio bahwa
+$Sxy$ dan $Syx$, tetapi $x \neq y$. Karena
+$\tuple{x,y} \in R \cup \Id{A}$, sedangkan
+$\tuple{x, y} \notin \Id{A}$, harus berlaku $\tuple{x, y} \in R$, yakni
+$Rxy$. Dengan cara yang sama, berlaku~$Ryx$. Namun, hal ini bertentangan
+dengan asumsi bahwa $R$ asimetris.
+
+Untuk transitivitas, andaikan $Sxy$ dan $Syz$. Jika
+$\tuple{x, y} \in R$ dan $\tuple{y,z} \in R$, maka
+$\tuple{x, z} \in R$ karena $R$ transitif. Jika tidak, maka
+$\tuple{x, y} \in \Id{A}$, yakni $x = y$, atau
+$\tuple{y, z} \in \Id{A}$, yakni $y = z$. Dalam kasus pertama, menurut asumsi
+berlaku $Syz$ dan $x = y$, sehingga $Sxz$. Kasus kedua serupa. Dalam kedua
+kasus, $Sxz$; jadi, $S$ juga transitif.
+
+Untuk klausa ``selain itu'', andaikan bahwa $R$ juga terhubung. Jadi, untuk
+semua $x \neq y$, berlaku $Rxy$ atau~$Ryx$, yakni
+$\tuple{x, y} \in R$ atau $\tuple{y, x} \in R$. Karena $R \subseteq S$,
+pernyataan ini tetap berlaku untuk $S$; jadi, $S$ juga terhubung.
+\end{proof}
+
+\begin{prop}\ollabel{prop:partialtostrict}
+Jika $R$ merupakan urutan parsial pada~$A$, maka
+$R^- = R \setminus \Id{A}$ merupakan urutan ketat. Selain itu, jika $R$
+merupakan urutan linear, maka $R^-$ merupakan urutan linear ketat.
+\end{prop}
+
+\begin{proof}
+Hal ini diserahkan sebagai latihan.
+\end{proof}
+
+\begin{prob}
+Berikan bukti untuk \olref[sfr][rel][ord]{prop:partialtostrict}.
+\end{prob}
+
+Hasil sederhana berikut menetapkan bahwa urutan linear ketat memenuhi sifat
+yang mirip dengan ekstensionalitas.
+
+\begin{prop}\ollabel{prop:extensionality-strictlinearorders}
+Jika $<$ merupakan urutan linear ketat pada $A$, maka:
+\[
+  (\forall a, b \in A)((\forall x \in A)(x < a \liff x < b) \lif a = b).
+\]
+\end{prop}
+
+\begin{proof}
+Andaikan $(\forall x \in A)(x < a \liff x < b)$. Jika $a < b$, maka $a < a$,
+bertentangan dengan fakta bahwa $<$ irefleksif; jadi, $a \nless b$. Dengan
+cara yang persis sama, $b \nless a$. Jadi, $a = b$, karena $<$ terhubung.
+\end{proof}
+
+\end{document}

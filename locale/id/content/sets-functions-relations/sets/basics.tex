@@ -1,0 +1,108 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{bas}
+\olsection{Ekstensionalitas}
+
+Sebuah \emph{himpunan} adalah kumpulan objek yang dipandang sebagai
+satu objek. Objek-objek yang membentuk himpunan disebut \emph{elemen}
+atau \emph{anggota} himpunan tersebut. Jika $x$ merupakan !!a{element}
+himpunan~$A$, kita tulis $x \in A$; jika bukan, kita tulis $x \notin
+A$. Himpunan yang tidak mempunyai !!{element}s disebut \emph{himpunan
+kosong} dan dilambangkan dengan~``$\emptyset$''.
+
+\begin{explain}
+Tidak menjadi soal bagaimana kita \emph{menentukan} himpunan itu,
+bagaimana kita \emph{mengurutkan} !!{element}s, atau bahkan berapa
+\emph{kali} kita menghitung !!{element}s itu. Yang penting hanyalah
+objek mana yang menjadi !!{element}s himpunan itu. Hal ini kita rumuskan
+dalam prinsip berikut.
+\end{explain}
+
+\begin{defn}[Ekstensionalitas]
+  Jika $A$ dan $B$ adalah himpunan, maka $A = B$ jika dan hanya jika
+  setiap !!{element} dari~$A$ juga merupakan !!a{element} dari~$B$,
+  dan sebaliknya.
+\end{defn}
+
+Ekstensionalitas membenarkan penggunaan suatu notasi. Secara umum,
+jika kita mempunyai objek $a_{1}$, \dots, $a_{n}$, maka
+$\{a_{1}, \dots, a_{n}\}$ adalah \emph{satu-satunya} himpunan dengan
+$a_1, \ldots, a_n$ sebagai !!{element}s. Kita menekankan kata
+``\emph{satu-satunya}'', sebab ekstensionalitas menyatakan bahwa hanya
+ada \emph{satu} himpunan semacam itu. Ekstensionalitas juga membenarkan
+kesamaan berikut:
+  \[
+    \{a, a, b\} = \{a, b\} = \{b,a\}.
+  \]
+Jadi, ketika membahas himpunan, kita tidak memedulikan urutan
+!!{element}s ataupun berapa kali anggota itu dicantumkan.
+
+\begin{tagblock}{novice}
+\begin{ex}
+Setiap kali kita mempunyai sekumpulan objek, kita dapat menghimpunnya
+menjadi sebuah himpunan. Sebagai contoh, himpunan saudara kandung
+Richard memuat satu orang dan dapat kita tulis sebagai
+$S=\{\textrm{Ruth}\}$. Himpunan bilangan bulat positif yang kurang dari
+$4$ adalah $\{1, 2, 3\}$, tetapi dapat pula ditulis $\{3, 2, 1\}$ atau
+bahkan $\{1, 2, 1, 2, 3\}$. Berdasarkan ekstensionalitas, semua ini
+adalah himpunan yang sama. Setiap !!{element} dari $\{1, 2, 3\}$ juga
+merupakan !!a{element} dari $\{3, 2, 1\}$ (dan dari $\{1, 2, 1, 2,
+3\}$), dan sebaliknya.
+\end{ex}
+\end{tagblock}
+
+Sering kali kita menentukan sebuah himpunan melalui suatu sifat yang
+dimiliki bersama oleh !!{element}s. Kita akan menggunakan
+notasi ringkas $\Setabs{x}{\phi(x)}$, dengan $\phi(x)$ menyatakan sifat
+yang harus dimiliki~$x$ agar dihitung sebagai salah satu !!{element}s
+himpunan itu.
+
+\begin{tagblock}{novice}
+\begin{ex}
+Dalam contoh kita, $S$ dapat pula ditentukan sebagai
+\[
+S = \Setabs{x}{x \text{ adalah saudara kandung Richard}}.
+\]
+\end{ex}
+\end{tagblock}
+
+\begin{tagblock}{math}
+\begin{ex}
+Suatu bilangan disebut \emph{sempurna} jika dan hanya jika bilangan itu
+sama dengan jumlah pembagi sejatinya (yaitu bilangan-bilangan yang
+membaginya sampai habis, tetapi tidak sama dengan bilangan tersebut).
+Sebagai contoh, $6$ sempurna karena pembagi sejatinya adalah $1$, $2$,
+dan~$3$, serta $6 = 1 + 2 + 3$. Bahkan, $6$ adalah satu-satunya
+bilangan bulat positif kurang dari $10$ yang sempurna. Karena itu,
+dengan menggunakan ekstensionalitas, kita dapat mengatakan:
+\[
+	\{6\} = \Setabs{x}{x\text{ sempurna dan }0 \leq x \leq 10}
+\]
+Notasi di sebelah kanan dibaca ``himpunan semua $x$ sedemikian sehingga
+$x$ sempurna dan $0 \leq x \leq 10$''. Identitas ini menegaskan bahwa,
+ketika membahas himpunan, kita tidak memedulikan cara himpunan tersebut
+ditentukan. Secara lebih umum, ekstensionalitas menjamin bahwa selalu
+hanya ada satu himpunan semua $x$ sedemikian sehingga $\phi(x)$.
+Jadi, ekstensionalitas membenarkan penyebutan
+$\Setabs{x}{\phi(x)}$ sebagai \emph{himpunan} semua $x$ sedemikian
+sehingga~$\phi(x)$.
+\end{ex}
+\end{tagblock}
+
+Ekstensionalitas memberi kita cara untuk menunjukkan bahwa dua
+himpunan identik: untuk menunjukkan $A = B$, tunjukkan bahwa jika
+$x \in A$, maka $x \in B$, dan jika $y \in B$, maka $y \in A$.
+
+\begin{prob}
+Buktikan bahwa terdapat paling banyak satu himpunan kosong, yakni
+tunjukkan bahwa jika $A$ dan $B$ adalah himpunan tanpa !!{element}s,
+maka $A = B$.
+\end{prob}
+
+\end{document}

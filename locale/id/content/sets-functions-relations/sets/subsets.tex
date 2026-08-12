@@ -1,0 +1,108 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: subsets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{sub}
+\olsection{Himpunan Bagian dan Himpunan Kuasa}
+
+\begin{explain}
+Kita akan sering membandingkan himpunan. Salah satu perbandingan yang
+wajar adalah sebagai berikut: \emph{semua yang ada di dalam satu
+himpunan juga ada di dalam himpunan yang lain}. Situasi ini cukup
+penting sehingga kita memperkenalkan notasi baru.
+\end{explain}
+
+\begin{defn}[Himpunan bagian]
+Jika setiap !!{element} himpunan $A$ juga merupakan !!a{element}
+dari~$B$, kita mengatakan bahwa $A$ adalah \emph{himpunan bagian}
+dari~$B$ dan menulis $A \subseteq B$. Jika $A$ bukan himpunan bagian
+dari~$B$, kita menulis $A \not\subseteq B$. Jika $A \subseteq B$
+tetapi $A \neq B$, kita menulis $A \subsetneq B$ dan mengatakan bahwa
+$A$ adalah \emph{himpunan bagian sejati} dari $B$.
+\end{defn}
+
+\begin{ex}
+Setiap himpunan merupakan himpunan bagian dari dirinya sendiri, dan
+$\emptyset$ merupakan himpunan bagian dari setiap himpunan. Himpunan
+bilangan asli genap merupakan himpunan bagian dari himpunan bilangan
+asli. Selain itu, $\{ a, b \} \subseteq \{ a, b, c \}$. Akan tetapi,
+$\{ a, b, e \}$ bukan himpunan bagian dari $\{ a, b, c \}$.
+\end{ex}
+
+\begin{ex}
+Bilangan $2$ merupakan !!{element} dari himpunan bilangan bulat,
+sedangkan himpunan bilangan genap merupakan himpunan bagian dari
+himpunan bilangan bulat. Meskipun demikian, sebuah himpunan dapat
+\emph{sekaligus} merupakan !!a{element} dan himpunan bagian dari
+himpunan lain. Sebagai contoh, $\{0\} \in \{0, \{0\}\}$ dan juga
+$\{0\} \subseteq \{0, \{0\}\}$.
+\end{ex}
+
+Ekstensionalitas memberikan kriteria identitas bagi himpunan: $A = B$
+jika dan hanya jika setiap !!{element} dari~$A$ juga merupakan
+!!a{element} dari~$B$, dan sebaliknya. Definisi ``himpunan bagian''
+mendefinisikan $A \subseteq B$ tepat sebagai separuh pertama kriteria
+ini: setiap !!{element} dari~$A$ juga merupakan !!a{element} dari~$B$.
+Tentu saja definisi itu juga berlaku jika kita menukar $A$ dan $B$:
+$B \subseteq A$ jika dan hanya jika setiap !!{element} dari~$B$ juga
+merupakan !!a{element} dari~$A$. Pernyataan terakhir ini tepat
+merupakan bagian ``sebaliknya'' dari ekstensionalitas. Dengan kata
+lain, ekstensionalitas menyatakan bahwa dua himpunan sama jika dan
+hanya jika keduanya merupakan himpunan bagian satu sama lain.
+
+\begin{prop}
+$A = B$ jika dan hanya jika $A \subseteq B$ dan $B \subseteq A$.
+\end{prop}
+
+Sekarang juga merupakan saat yang tepat untuk memperkenalkan beberapa
+notasi lain yang berguna. Dalam mendefinisikan kapan $A$ merupakan
+himpunan bagian dari~$B$, kita mengatakan bahwa ``setiap !!{element}
+dari~$A$ adalah \dots,'' lalu mengisi ``$\dots$'' dengan
+``!!a{element} dari $B$''. \emph{Bentuk} ungkapan ini begitu umum sehingga
+berguna untuk memperkenalkan notasi formal baginya.
+
+\begin{defn}\ollabel{forallxina}
+$(\forall x \in A)\phi$ menyingkat $\forall x(x \in A \lif
+\phi)$. Demikian pula, $(\exists x \in A)\phi$ menyingkat
+$\exists x(x \in A \land \phi)$.
+\end{defn}
+
+Dengan notasi ini, kita dapat mengatakan bahwa $A \subseteq B$ jika
+dan hanya jika $(\forall x \in A)x \in B$.
+
+Sekarang kita beralih kepada suatu jenis himpunan tertentu: himpunan
+semua himpunan bagian dari suatu himpunan yang diberikan.
+
+\begin{defn}[Himpunan kuasa]
+Himpunan yang terdiri atas semua himpunan bagian dari himpunan~$A$
+disebut \emph{himpunan kuasa dari}~$A$ dan ditulis $\Pow{A}$.
+  \[
+    \Pow{A} = \Setabs{B}{B \subseteq A}
+  \]
+\end{defn}
+
+\begin{ex}
+Apa saja himpunan bagian yang mungkin dari $\{ a, b, c \}$? Semuanya
+adalah $\emptyset$, $\{a \}$, $\{b\}$, $\{c\}$, $\{a, b\}$,
+$\{a, c\}$, $\{b, c\}$, dan $\{a, b, c\}$. Himpunan yang terdiri
+atas semua himpunan bagian ini adalah $\Pow{\{a,b,c\}}$:
+\[
+\Pow{\{ a, b, c \}} = \{\emptyset, \{a \}, \{b\}, \{c\}, \{a, b\},
+\{b, c\}, \{a, c\}, \{a, b, c\}\}
+\]
+\end{ex}
+
+\begin{prob}
+Tuliskan semua himpunan bagian dari $\{a, b, c, d\}$.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa jika $A$ mempunyai $n$ !!{element}s, maka $\Pow{A}$
+mempunyai $2^n$ !!{element}s.
+\end{prob}
+
+\end{document}

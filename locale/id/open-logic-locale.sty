@@ -1,0 +1,148 @@
+% Berkas pelokalan Bahasa Indonesia untuk Open Logic Project
+
+% Nama lingkungan dan teks baku. Argumen pertama adalah nama bahasa
+% Babel; kunci internal LaTeX dipertahankan agar rujukan lintas bahasa
+% tetap stabil.
+
+\setlocalecaption{indonesian}{photocredits}{Kredit Foto}
+\setlocalecaption{indonesian}{history}{Catatan Historis}
+\setlocalecaption{indonesian}{reading}{Bacaan Lanjutan}
+\setlocalecaption{indonesian}{appendix}{Lampiran}
+\setlocalecaption{indonesian}{appendices}{Lampiran}
+
+\setlocalecaption{indonesian}{theorem}{Teorema}
+\setlocalecaption{indonesian}{example}{Contoh}
+\setlocalecaption{indonesian}{definition}{Definisi}
+\setlocalecaption{indonesian}{lemma}{Lema}
+\setlocalecaption{indonesian}{proposition}{Proposisi}
+\setlocalecaption{indonesian}{corollary}{Akibat}
+\setlocalecaption{indonesian}{problem}{Soal}
+\setlocalecaption{indonesian}{problems}{Soal}
+\setlocalecaption{indonesian}{remark}{Catatan}
+\setlocalecaption{indonesian}{axiom}{Aksioma}
+\setlocalecaption{indonesian}{note}{Catatan}
+\setlocalecaption{indonesian}{case}{Kasus}
+\setlocalecaption{indonesian}{convention}{Konvensi}
+
+\setlocalecaption{indonesian}{OLP}{Proyek Logika Terbuka}
+\setlocalecaption{indonesian}{OLT}{Teks Logika Terbuka}
+\setlocalecaption{indonesian}{OLTlink}{https://github.com/OpenLogicProject/OpenLogic}
+\setlocalecaption{indonesian}{license}{Lisensi Internasional Creative Commons
+  Atribusi 4.0}
+\setlocalecaption{indonesian}{instigator}{Penggagas}
+\setlocalecaption{indonesian}{editorialboard}{Dewan Editorial}
+\setlocalecaption{indonesian}{contributors}{Kontributor}
+
+% Nama yang ditambahkan cleveref secara otomatis pada rujukan.
+
+\addto\extrasindonesian{%
+\Crefname{page}{hlm.}{hlm.}%
+\Crefname{part}{Bagian}{Bagian}%
+\Crefname{chapter}{Bab}{Bab}%
+\Crefname{section}{Bagian}{Bagian}%
+\Crefname{thm}{Teorema}{Teorema}%
+\Crefname{ex}{Contoh}{Contoh}%
+\Crefname{defn}{Definisi}{Definisi}%
+\Crefname{lem}{Lema}{Lema}%
+\Crefname{prop}{Proposisi}{Proposisi}%
+\Crefname{prob}{Soal}{Soal}%
+\Crefname{rem}{Catatan}{Catatan}%
+\Crefname{cor}{Akibat}{Akibat}%
+\Crefname{axiom}{Aksioma}{Aksioma}%
+\Crefname{note}{Catatan}{Catatan}%
+\Crefname{case}{Kasus}{Kasus}%
+\Crefname{conv}{Konvensi}{Konvensi}%
+\Crefname{figure}{Gambar}{Gambar}%
+\Crefname{table}{Tabel}{Tabel}%
+}
+
+% cleveref tidak menyediakan modul bahasa Indonesian. Tetapkan nama
+% rujukan secara langsung selain memasangnya pada hook Babel di atas.
+% Bentuk huruf kecil dan huruf besar sengaja sama karena opsi Open Logic
+% `capitalize` selalu mengawali nama rujukan dengan huruf besar.
+\crefname{page}{hlm.}{hlm.}
+\crefname{part}{Bagian}{Bagian}
+\crefname{chapter}{Bab}{Bab}
+\crefname{section}{Bagian}{Bagian}
+\crefname{thm}{Teorema}{Teorema}
+\crefname{ex}{Contoh}{Contoh}
+\crefname{defn}{Definisi}{Definisi}
+\crefname{lem}{Lema}{Lema}
+\crefname{prop}{Proposisi}{Proposisi}
+\crefname{prob}{Soal}{Soal}
+\crefname{rem}{Catatan}{Catatan}
+\crefname{cor}{Akibat}{Akibat}
+\crefname{axiom}{Aksioma}{Aksioma}
+\crefname{note}{Catatan}{Catatan}
+\crefname{case}{Kasus}{Kasus}
+\crefname{conv}{Konvensi}{Konvensi}
+\crefname{figure}{Gambar}{Gambar}
+\crefname{table}{Tabel}{Tabel}
+\Crefname{page}{hlm.}{hlm.}
+\Crefname{part}{Bagian}{Bagian}
+\Crefname{chapter}{Bab}{Bab}
+\Crefname{section}{Bagian}{Bagian}
+\Crefname{thm}{Teorema}{Teorema}
+\Crefname{ex}{Contoh}{Contoh}
+\Crefname{defn}{Definisi}{Definisi}
+\Crefname{lem}{Lema}{Lema}
+\Crefname{prop}{Proposisi}{Proposisi}
+\Crefname{prob}{Soal}{Soal}
+\Crefname{rem}{Catatan}{Catatan}
+\Crefname{cor}{Akibat}{Akibat}
+\Crefname{axiom}{Aksioma}{Aksioma}
+\Crefname{note}{Catatan}{Catatan}
+\Crefname{case}{Kasus}{Kasus}
+\Crefname{conv}{Konvensi}{Konvensi}
+\Crefname{figure}{Gambar}{Gambar}
+\Crefname{table}{Tabel}{Tabel}
+
+% Teks lisensi dan atribusi. Perintah ini sudah didefinisikan oleh
+% berkas lokal Inggris, sehingga pelokalan harus memperbaruinya.
+
+\renewcommand*{\ollicensetext}[3]
+  {\textit{#1}
+  oleh
+  #2
+  dilisensikan berdasarkan
+  #3.}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{\jobname}}
+  \ifgitinfo\ 
+  oleh #1 /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\renewcommand*{\oluselicensetext}
+  {Karya ini didasarkan pada
+  \textit{\href{\OLTlinkname}{\OLTname}}
+  oleh
+  \href{http://openlogicproject.org/}{\OLPname},
+  yang digunakan berdasarkan
+  \href{http://creativecommons.org/licenses/by/4.0/}{\licensename}.}
+\renewcommand*{\olshortuselicensetext}[2]
+  {\textit{#1}
+  oleh #2, berdasarkan
+  \href{http://openlogicproject.org/}{OLP} /
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+
+% Teks baku untuk sampul dan halaman awal open-logic-book.
+
+\renewcommand*{\olremixedby}
+  {Diolah ulang oleh \OLPauthor}
+\renewcommand*{\olacknowledgements}
+  {Open Logic Project menyampaikan terima kasih atas dukungan besar dari
+  \href{https://taylorinstitute.ucalgary.ca/}{Taylor Institute
+  of Teaching and Learning} di University of Calgary dan Alberta Open
+  Educational Resources (ABOER) Initiative, yang terlaksana melalui
+  investasi pemerintah Alberta.}
+\renewcommand*{\olillustrations}
+  {Ilustrasi sampul oleh \href{http://mattleadbeater.com}{Matthew
+  Leadbeater}, digunakan berdasarkan
+  \href{https://creativecommons.org/licenses/by-nc/4.0/}{Lisensi
+  Internasional Creative Commons Atribusi--NonKomersial 4.0}.}
+\renewcommand*{\olcolophon}
+  {Ditata huruf dalam Baskervald X dan Nimbus Sans dengan \LaTeX.}
+\renewcommand*{\olbookrevision}
+  {Versi \emph{\OLPbooktitle} ini adalah revisi \gitAbbrevHash{}
+  (\gitAuthorDate), dengan isi yang dihasilkan dari revisi
+  \emph{Open Logic Text} \OLPrevision. Unduh gratis di:\\[.5ex]
+  \url{\OLPsourcelink}}

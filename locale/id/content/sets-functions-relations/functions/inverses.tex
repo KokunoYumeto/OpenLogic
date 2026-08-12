@@ -1,0 +1,184 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: inverses
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{inv}
+\olsection{Invers Fungsi}
+
+\begin{explain}
+Kita memandang fungsi sebagai pemetaan. Karena itu, pertanyaan yang wajar
+tentang fungsi ialah apakah pemetaannya dapat ``dibalik.'' Sebagai contoh,
+fungsi penerus $f(x) = x + 1$ dapat dibalik, dalam arti bahwa fungsi $g(y) = y
+- 1$ ``meniadakan'' apa yang dilakukan oleh $f$.
+
+Namun, kita harus berhati-hati. Walaupun definisi~$g$ menentukan suatu fungsi
+$\Int \to \Int$, definisi itu tidak menentukan sebuah \emph{fungsi} $\Nat \to
+\Nat$, karena $g(0) \notin \Nat$. Jadi, bahkan dalam kasus sederhana, tidak
+sepenuhnya jelas apakah suatu fungsi dapat dibalik; jawabannya dapat bergantung
+pada domain dan kodomainnya.
+
+Hal ini dirumuskan lebih tepat melalui gagasan invers suatu fungsi.
+\end{explain}
+
+\begin{defn}
+Suatu fungsi $g \colon B \to A$ adalah \emph{invers} dari fungsi $f \colon A
+\to B$ jika $f(g(y)) = y$ dan $g(f(x)) = x$ untuk semua $x \in A$ dan $y \in
+B$.
+\end{defn}
+
+Jika $f$ mempunyai invers~$g$, kita sering menulis $f^{-1}$ sebagai ganti~$g$.
+
+\begin{explain}
+Sekarang kita akan menentukan kapan suatu fungsi mempunyai invers. Calon yang
+baik untuk invers dari $f\colon A \to B$ adalah $g\colon B \to A$ yang
+``didefinisikan oleh''
+\[
+g(y) = \text{``satu-satunya'' $x$ sedemikian sehingga $f(x) = y$.}
+\]
+Namun, tanda petik pada ``didefinisikan oleh'' (dan ``satu-satunya'')
+menunjukkan bahwa ini belum tentu merupakan definisi. Setidaknya, cara ini
+tidak selalu berhasil secara umum. Agar definisi tersebut menentukan sebuah
+fungsi, harus ada satu dan hanya satu~$x$ sehingga $f(x) = y$---keluaran~$g$
+harus ditentukan secara unik. Selain itu, keluaran tersebut harus ditentukan
+untuk setiap $y \in B$. Jika terdapat $x_1$ dan $x_2 \in A$ dengan $x_1 \neq
+x_2$, tetapi $f(x_1) = f(x_2)$, maka $g(y)$ tidak ditentukan secara unik untuk
+$y = f(x_1) = f(x_2)$. Jika sama sekali tidak terdapat~$x$ sehingga $f(x) =
+y$, maka $g(y)$ sama sekali tidak ditentukan. Dengan kata lain, agar $g$
+terdefinisi, $f$ harus sekaligus !!{injective} dan !!{surjective}.
+
+Mari kita telaah secara perlahan. Kita bagi pertanyaannya menjadi dua. Jika
+diberikan fungsi~$f\colon A \to B$, kapan terdapat fungsi $g\colon B \to A$
+sehingga $g(f(x)) = x$? Fungsi $g$ semacam itu ``meniadakan'' apa yang
+dilakukan oleh $f$, dan disebut \emph{invers kiri} dari~$f$. Kedua, kapan
+terdapat fungsi $h\colon B \to A$ sehingga $f(h(y)) = y$? Fungsi $h$ semacam
+itu disebut \emph{invers kanan} dari~$f$---$f$ ``meniadakan'' apa yang
+dilakukan oleh~$h$.
+\end{explain}
+
+\begin{prop}
+Jika $f\colon A \to B$ bersifat !!{injective} dan domainnya tidak kosong, maka
+terdapat \emph{invers kiri}~$g\colon B \to A$ dari~$f$ sehingga
+$g(f(x)) = x$ untuk semua $x \in A$.
+\end{prop}
+
+\begin{proof}
+Andaikan $f\colon A \to B$ bersifat !!{injective} dan domainnya tidak kosong.
+Tinjau suatu $y \in B$.
+Jika $y \in \ran{f}$, terdapat $x \in A$ sehingga $f(x) = y$. Karena $f$
+bersifat !!{injective}, hanya ada satu~$x \in A$ semacam itu. Jadi, kita dapat
+mendefinisikan $g(y) = x$, yaitu $g(y)$ adalah ``satu-satunya'' $x \in A$
+sedemikian sehingga $f(x) = y$. Jika $y \notin \ran{f}$, karena domainnya
+tidak kosong, kita dapat memetakannya ke sembarang~$a \in A$. Jadi, kita dapat
+memilih $a \in A$ dan
+mendefinisikan $g\colon B \to A$ dengan:
+\[
+g(y) = \begin{cases}
+    x & \text{jika $f(x) = y$}\\
+    a & \text{jika $y \notin \ran{f}$.}
+\end{cases}
+\]
+Fungsi ini terdefinisi untuk semua $y \in B$, karena untuk setiap $y \in
+\ran{f}$ terdapat tepat satu $x \in A$ sedemikian sehingga $f(x) = y$.
+Berdasarkan definisi, jika $y = f(x)$, maka $g(y) = x$, yaitu $g(f(x)) = x$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa jika $f\colon A \to B$ mempunyai invers kiri~$g$, maka
+$f$~bersifat !!{injective}.
+\end{prob}
+
+\begin{prop}
+    Jika $f\colon A \to B$ bersifat !!{surjective}, ada
+    \emph{invers kanan}~$h\colon B \to A$ dari~$f$ yang memenuhi $f(h(y)) = y$
+    untuk semua~$y \in B$.
+\end{prop}
+
+\begin{proof}
+Andaikan $f\colon A \to B$ bersifat !!{surjective}. Tinjau suatu $y \in B$.
+Karena $f$~bersifat !!{surjective}, terdapat $x_y \in A$ dengan $f(x_y) = y$.
+Lalu kita dapat mendefinisikan $h(y) = x_y$, yaitu untuk setiap $y \in B$ kita
+memilih suatu $x \in A$ sehingga $f(x) = y$; karena $f$~bersifat
+!!{surjective}, selalu ada sekurang-kurangnya satu yang dapat
+dipilih.\footnote{Karena $f$ bersifat !!{surjective}, untuk setiap~$y \in B$
+himpunan $\Setabs{x}{f(x) = y}$ tidak kosong. Definisi~$h$ mengharuskan kita
+memilih satu $x$ dari setiap himpunan tersebut. Bahwa pilihan ini selalu dapat
+dilakukan sebenarnya tidaklah jelas---kemungkinan untuk membuat semua pilihan
+ini begitu saja diasumsikan sebagai suatu aksioma. Dengan kata lain,
+proposisi ini mengasumsikan apa yang disebut Aksioma Pilihan, suatu persoalan
+yang akan kita \oliflabeldef{sth:choice::chap}{tinjau kembali dalam
+\olref[sth][choice][]{chap}}{abaikan untuk sementara}. Namun, dalam banyak kasus
+khusus, misalnya ketika $A = \Nat$ atau berhingga, atau ketika $f$
+bersifat !!{bijective}, Aksioma Pilihan tidak diperlukan. (Dalam kasus khusus
+ketika $f$ bersifat !!{bijective}, untuk setiap $y \in B$ himpunan
+$\Setabs{x}{f(x) = y}$ mempunyai tepat satu !!{element}, sehingga tidak ada
+pilihan yang perlu dibuat.)}
+Berdasarkan definisi, jika $x = h(y)$, maka $f(x) = y$, yaitu untuk setiap $y
+\in B$, $f(h(y)) = y$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa jika $f\colon A \to B$ mempunyai invers kanan~$h$, maka
+$f$~bersifat !!{surjective}.
+\end{prob}
+
+\begin{explain}
+  Dengan menggabungkan gagasan dalam pembuktian sebelumnya, sekarang kita
+  memperoleh bahwa setiap !!{bijection} mempunyai invers, yaitu terdapat satu
+  fungsi yang sekaligus merupakan invers kiri dan invers kanan dari~$f$.
+\end{explain}
+
+\begin{prop}\ollabel{prop:bijection-inverse}
+Jika $f\colon A \to B$ bersifat !!{bijective}, ada
+fungsi~$f^{-1}\colon B \to A$. Untuk semua $x \in A$, fungsi ini memenuhi
+$f^{-1}(f(x)) = x$; dan untuk semua $y \in B$, $f(f^{-1}(y)) = y$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[sfr][fun][inv]{prop:bijection-inverse}. Anda harus
+mendefinisikan~$f^{-1}$, menunjukkan bahwa ia merupakan suatu fungsi, dan
+menunjukkan bahwa ia adalah invers dari~$f$, yaitu $f^{-1}(f(x)) = x$ dan
+$f(f^{-1}(y)) = y$ untuk semua $x \in A$ dan $y \in B$.
+\end{prob}
+
+\begin{explain}
+Ada cara yang sedikit lebih umum untuk memperoleh invers. Dalam
+\olref[kin]{sec}, kita melihat bahwa setiap fungsi $f$ menginduksi
+!!a{surjection} $f' \colon A \to \ran{f}$ dengan menetapkan $f'(x) = f(x)$
+untuk semua $x \in A$. Jelas bahwa jika $f$~bersifat !!{injective}, maka
+$f'$~bersifat !!{bijective}, sehingga mempunyai invers yang unik menurut
+\olref{prop:bijection-inverse}. Dengan sedikit penyalahgunaan notasi, kita
+kadang-kadang menyebut invers dari $f'$ semata-mata sebagai ``invers dari~$f$.''
+\end{explain}
+
+\begin{prop}\ollabel{prop:left-right}%
+  Tunjukkan bahwa jika $f\colon A \to B$ mempunyai invers kiri~$g$ dan invers
+  kanan~$h$, maka $h = g$.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[sfr][fun][inv]{prop:left-right}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:inverse-unique}
+Setiap fungsi~$f$ mempunyai paling banyak satu invers.
+\end{prop}
+
+\begin{proof}
+  Andaikan $g$ dan $h$ keduanya merupakan invers dari~$f$. Maka, secara
+  khusus, $g$~merupakan invers kiri dari~$f$ dan $h$~merupakan invers kanan.
+  Menurut \olref{prop:left-right}, $g = h$.
+\end{proof}
+
+\end{document}

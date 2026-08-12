@@ -1,0 +1,138 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{bas}
+\olsection{Dasar-Dasar}
+
+\begin{explain}
+Suatu \emph{fungsi} adalah pemetaan yang memetakan setiap !!{element} dari
+suatu himpunan tertentu ke sebuah !!{element} tertentu dalam suatu himpunan
+(lain) yang ditentukan. Sebagai contoh, operasi penambahan~$1$ menentukan
+sebuah fungsi: setiap bilangan~$n$ dipetakan ke satu-satunya bilangan~$n+1$.
+
+Secara lebih umum, fungsi dapat menerima pasangan, tripel, dan sebagainya
+sebagai masukan serta menghasilkan suatu keluaran. Banyak fungsi sudah kita
+kenal dari aritmetika dasar. Sebagai contoh, penjumlahan dan perkalian adalah
+fungsi. Keduanya menerima dua bilangan dan menghasilkan bilangan ketiga.
+
+Dalam pengertian matematis yang abstrak ini, fungsi adalah sebuah \emph{kotak
+hitam}: yang penting hanyalah keluaran mana yang dipasangkan dengan masukan
+mana, bukan cara menghitung keluaran tersebut.
+\end{explain}
+
+\begin{defn}[Fungsi]
+Suatu \emph{fungsi} $f \colon A \to B$ adalah pemetaan setiap !!{element}
+dari~$A$ ke sebuah !!{element} dari~$B$.
+
+Kita menyebut $A$ sebagai \emph{domain} dari~$f$ dan $B$ sebagai
+\emph{kodomain} dari~$f$. !!{element}s dari~$A$ disebut masukan atau
+\emph{argumen} dari~$f$, dan !!{element} dari~$B$ yang dipasangkan dengan
+argumen~$x$ oleh~$f$ disebut \emph{nilai dari~$f$} untuk argumen~$x$, yang
+ditulis~$f(x)$.
+
+\emph{Daerah hasil} $\ran{f}$ dari~$f$ adalah himpunan bagian kodomain yang
+terdiri atas nilai-nilai~$f$ untuk suatu argumen; $\ran{f} =
+\Setabs{f(x)}{x \in A}$.
+\end{defn}
+
+Diagram dalam \olref{fig:function} dapat membantu kita memahami fungsi. Elips
+di sebelah kiri menyatakan \emph{domain} fungsi; elips di sebelah kanan
+menyatakan \emph{kodomain} fungsi; dan sebuah panah menunjuk dari suatu
+\emph{argumen} dalam domain ke \emph{nilai} yang bersesuaian dalam kodomain.
+
+\begin{figure}
+  \olasset{assets/diagrams/function.tikz}
+  \caption{Suatu fungsi memetakan setiap !!{element} dari satu himpunan ke
+    !!a{element} dari himpunan lain. Sebuah panah menunjuk dari suatu argumen
+    dalam domain ke nilai yang bersesuaian dalam kodomain.}
+  \ollabel{fig:function}
+\end{figure}
+
+\begin{ex}
+Perkalian memetakan pasangan bilangan asli sebagai masukan ke bilangan asli
+sebagai keluaran. Jadi, pemetaan itu berjalan dari $\Nat \times \Nat$ (domain)
+ke $\Nat$ (kodomain). Ternyata daerah hasilnya juga
+$\Nat$, karena setiap $n \in \Nat$ sama dengan $n \times 1$.
+\end{ex}
+
+\begin{ex}
+Perkalian merupakan fungsi: setiap masukan, yakni pasangan bilangan asli,
+dipasangkan dengan satu keluaran: $\times \colon \Nat^2 \to
+\Nat$. Sebaliknya, pemetaan suatu bilangan asli~$n$ ke bilangan real~$x$ yang
+memenuhi $x^2 = n$ bukanlah fungsi, karena setiap bilangan bulat positif~$n$
+mempunyai dua akar kuadrat: $\sqrt{n}$ dan~$-\sqrt{n}$. Kita dapat menjadikannya
+fungsi dengan hanya menghasilkan akar kuadrat utama, yaitu akar kuadrat nonnegatif:
+$\sqrt{\phantom{X}} \colon \Nat \to \Real$.
+\end{ex}
+
+\begin{ex}
+Relasi yang memasangkan setiap mahasiswa dalam suatu kelas dengan nilai akhir
+merupakan fungsi; satu mahasiswa tidak dapat memperoleh dua nilai akhir yang
+berbeda di kelas yang sama. Relasi yang memasangkan setiap mahasiswa dengan
+orang tuanya bukanlah fungsi: seorang mahasiswa dapat
+mempunyai nol, dua, atau lebih orang tua.
+\end{ex}
+
+\begin{explain}
+Kita dapat mendefinisikan fungsi dengan menentukan secara saksama nilai fungsi
+untuk setiap argumen yang mungkin. Beberapa caranya ialah dengan memberikan
+rumus, menjelaskan metode untuk menghitung nilainya, atau mencantumkan nilai
+untuk setiap argumen. Bagaimanapun suatu fungsi didefinisikan, kita harus
+memastikan bahwa untuk setiap argumen ditentukan satu dan hanya satu nilai.
+\end{explain}
+
+
+\begin{ex}
+Misalkan $f \colon \Nat \to \Nat$ didefinisikan oleh $f(x) = x+1$. Definisi
+ini menentukan $f$ sebagai fungsi yang menerima bilangan asli dan menghasilkan
+bilangan asli. Definisi ini menyatakan bahwa, jika diberi bilangan asli~$x$,
+$f$ menghasilkan penerusnya~$x+1$.
+Dalam hal ini, kodomain $\Nat$ bukan daerah hasil dari~$f$, karena bilangan
+asli~$0$ bukan penerus bilangan asli mana pun. Daerah hasil dari~$f$ adalah
+himpunan semua bilangan bulat positif, $\Int^{+}$.
+\end{ex}
+
+\begin{ex}\ollabel{examplefunext}
+Misalkan $g \colon \Nat \to \Nat$ didefinisikan oleh $g(x) = x+2-1$.
+Definisi ini menyatakan bahwa $g$ adalah fungsi yang menerima bilangan asli dan
+menghasilkan bilangan asli. Jika diberi bilangan asli~$n$, $g$ menghasilkan
+pendahulu dari penerus dari penerus bilangan masukan (yang dalam rumus
+dilambangkan dengan~$x$), yaitu~$x+1$.
+\end{ex}
+
+\begin{explain}
+Baru saja kita meninjau dua fungsi, $f$ dan $g$, dengan \emph{definisi} yang
+berbeda. Namun, keduanya adalah \emph{fungsi yang sama}. Lagi pula, untuk
+setiap bilangan asli~$n$, kita mempunyai $f(n) = n+1 = n+2-1 = g(n)$. Dengan
+kata lain, definisi kita untuk $f$ dan~$g$ menentukan pemetaan yang sama melalui
+persamaan yang berbeda. Jadi, secara tersirat kita mengandalkan prinsip
+ekstensionalitas untuk fungsi,
+\[
+  \text{jika }\forall x\, f(x) = g(x)\text{, maka }f = g
+\]
+dengan syarat $f$ dan~$g$ mempunyai domain dan kodomain yang sama.
+\end{explain}
+
+\begin{ex}
+Kita juga dapat mendefinisikan fungsi secara kasus. Sebagai contoh, kita dapat
+mendefinisikan $h \colon \Nat \to \Nat$ dengan
+\[
+h(x) =
+\begin{cases}
+  \frac{x}{2} & \text{jika $x$ genap} \\
+  \frac{x+1}{2} & \text{jika $x$ ganjil.}
+\end{cases}
+\]
+Karena setiap bilangan asli itu genap atau ganjil, keluaran fungsi ini selalu
+merupakan bilangan asli. Ingatlah bahwa jika Anda mendefinisikan fungsi secara
+kasus, setiap masukan yang mungkin harus termasuk dalam tepat satu kasus.
+Dalam keadaan tertentu, hal ini memerlukan pembuktian bahwa kasus-kasus
+tersebut mencakup semua kemungkinan dan saling lepas.
+\end{ex}
+
+\end{document}

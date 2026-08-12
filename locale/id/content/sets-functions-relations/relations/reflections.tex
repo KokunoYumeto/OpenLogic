@@ -1,0 +1,77 @@
+% Bagian: sets-functions-relations
+% Bab: relations
+% Subbagian: reflections
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{rel}{ref}
+\olsection{Refleksi Filosofis}
+
+Dalam \olref[set]{sec}, kita mendefinisikan relasi sebagai himpunan-himpunan
+tertentu. Kita perlu berhenti sejenak dan mengajukan sebuah pertanyaan
+filosofis singkat: apa yang sebenarnya \emph{dilakukan} oleh definisi semacam
+itu? Sangat meragukan bahwa kita ingin mengatakan bahwa kita telah
+\emph{menemukan} fakta identitas metafisis tertentu; misalnya, bahwa relasi
+urutan pada $\Nat$ \emph{ternyata} merupakan himpunan $R=
+\Setabs{\tuple{n,m}}{n, m \in \Nat\text{ dan } n < m}$ yang kita definisikan
+dalam \olref[set]{sec}. Berikut tiga alasannya.
+
+Pertama: dalam \olref[set][pai]{wienerkuratowski}, kita mendefinisikan
+$\tuple{a, b} = \{\{a\}, \{a, b\}\}$. Sebagai gantinya, tinjaulah definisi
+$\lVert a, b\rVert = \{\{b\}, \{a, b\}\} = \tuple{b,a}$. Jika $a \neq b$,
+maka $\tuple{a, b} \neq \lVert a,b\rVert$. Namun, kita sama saja dapat
+memakai $\lVert a,b\rVert$, bukan $\tuple{a,b}$, sebagai definisi pasangan
+terurut. Kedua definisi itu akan bekerja sama baiknya. Jadi, sekarang kita
+memiliki dua kandidat yang sama baiknya untuk ``menjadi'' relasi urutan pada
+bilangan asli, yaitu:
+\begin{align*}
+		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ dan }n < m}\\
+		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ dan }n < m}.
+\end{align*}
+Karena $R \neq S$, berdasarkan ekstensionalitas jelaslah bahwa keduanya tidak
+mungkin \emph{sama-sama} identik dengan relasi urutan pada~$\Nat$. Namun,
+menyatakan bahwa secara faktual $R$, bukan $S$ (atau sebaliknya),
+\emph{merupakan} relasi urutan akan sepenuhnya sewenang-wenang dan karena itu
+agak memalukan. (Ini adalah contoh yang sangat sederhana dari argumen
+menentang reduksionisme teori himpunan yang dipopulerkan Benacerraf dalam
+\citeyear{Benacerraf1965}. Kita akan meninjaunya kembali beberapa kali.)
+
+Kedua: jika kita beranggapan bahwa \emph{setiap} relasi harus diidentifikasi
+dengan suatu himpunan, maka relasi keanggotaan himpunan itu sendiri, $\in$,
+harus merupakan suatu himpunan tertentu. Himpunan itu haruslah
+$\Setabs{\tuple{x,y}}{x \in y}$. Akan tetapi, apakah himpunan ini ada? Mengingat
+Paradoks Russell, keberadaan himpunan semacam itu bukanlah klaim sepele.
+Faktanya, \oliflabeldef{cumul:::part}{teori himpunan yang kita kembangkan dalam
+\olref[cumul][][]{part} akan \emph{menyangkal} keberadaan himpunan ini.
+\footnote{Melompat ke depan, berikut alasannya. Untuk reductio, andaikan $I =
+\Setabs{\tuple{x,y}}{x \in y}$ ada. Maka $\bigcup \bigcup I$ adalah himpunan
+semesta, bertentangan dengan
+\olref[sfr][z][sep]{thm:NoUniversalSet}.}}{teori himpunan dapat dikembangkan
+secara ketat sebagai teori aksiomatik, dan teori tersebut memang akan
+menyangkal keberadaan himpunan ini.}
+Jadi, sekalipun beberapa relasi dapat diperlakukan sebagai himpunan, relasi
+keanggotaan himpunan harus menjadi kasus khusus.
+
+Ketiga: ketika kita ``mengidentifikasi'' relasi dengan himpunan, kita
+memperbolehkan diri menulis $Rxy$ sebagai ganti
+$\tuple{x,y} \in R$. Hal ini tidak bermasalah asalkan relasi keanggotaan,
+``$\in$'', diperlakukan \emph{sebagai} predikat. Namun, jika kita beranggapan
+bahwa ``$\in$'' menyatakan suatu jenis himpunan tertentu, maka ungkapan
+``$\tuple{x,y} \in R$'' hanya terdiri atas tiga term tunggal yang menyatakan
+himpunan: ``$\tuple{x,y}$'', ``$\in$'', dan ``$R$''. Daftar nama semacam itu
+tidak lebih mampu menyatakan sebuah proposisi daripada rangkaian tanpa makna:
+``cangkir tempat pena meja''. Sekali lagi, sekalipun beberapa relasi dapat
+diperlakukan sebagai himpunan, relasi keanggotaan himpunan harus menjadi kasus
+khusus. (Ini menggabungkan versi sederhana paradoks konsep \emph{kuda} Frege
+dengan keberatan terkenal Wittgenstein terhadap Russell.)
+
+Lantas, apa kesimpulannya bagi kita? Sebenarnya tidak ada yang \emph{salah}
+dengan pernyataan bahwa relasi pada bilangan adalah himpunan. Kita hanya harus
+memahami semangat yang melandasi pernyataan tersebut. Kita tidak sedang
+menyatakan suatu fakta identitas metafisis. Kita semata-mata mencatat bahwa,
+dalam konteks tertentu, kita dapat (dan akan) \emph{memperlakukan} relasi
+(tertentu) sebagai himpunan tertentu.
+
+\end{document}

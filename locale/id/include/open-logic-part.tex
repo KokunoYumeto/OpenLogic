@@ -1,0 +1,29 @@
+\documentclass[openany]{memoir}
+
+% Babel supports Indonesian, but cleveref does not expose an
+% `indonesian` package option. Load both Babel languages here and keep
+% `\ollanguage` at `english` only while open-logic.sty initializes
+% cleveref; the visible document language is restored immediately below.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\usepackage{subfiles}
+
+% Berkas ini berada di locale/id/include; akar Open Logic empat tingkat
+% direktori di atasnya.
+\newcommand*{\olpath}{../../../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-debug.sty}
+
+\pagestyle{openlogic}
+  
+\begin{document}
+
+Berkas ini tidak dimaksudkan untuk dikompilasi tersendiri. Berkas ini
+hanyalah templat untuk mengompilasi bagian secara terpisah.
+
+\end{document}
+

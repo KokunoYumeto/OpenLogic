@@ -1,0 +1,74 @@
+% Bagian: sets-functions-relations
+% Bab: relations
+% Subbagian: operations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{rel}{ops}
+\olsection{Operasi pada Relasi}
+
+Sering kali berguna untuk mengubah atau menggabungkan relasi. Dalam
+\olref[sfr][rel][ord]{prop:stricttopartial}, kita meninjau \emph{gabungan}
+relasi, yang tidak lain adalah gabungan dua relasi yang dipandang sebagai
+himpunan pasangan. Dengan cara serupa, dalam
+\olref[sfr][rel][ord]{prop:partialtostrict}, kita meninjau selisih relatif
+relasi. Berikut beberapa operasi lain yang dapat kita lakukan pada relasi.
+
+\begin{defn}\ollabel{relationoperations}
+Misalkan $R$ dan $S$ merupakan relasi, dan $A$ sembarang himpunan.
+
+\emph{Invers} dari $R$ adalah $R^{-1} = \Setabs{\tuple{y, x}}{\tuple{x,
+    y} \in R}$.
+
+\emph{Hasil kali relatif} dari $R$ dan $S$ adalah $(R \mid S) =
+\{\tuple{x, z} : \exists y(Rxy \land Syz)\}$.
+
+\emph{Pembatasan} $R$ pada $A$ adalah $\funrestrictionto{R}{A}= R
+\cap A^2$.
+
+\emph{Penerapan} $R$ pada $A$ adalah $\funimage{R}{A} = \{y :
+(\exists x \in A)Rxy\}$.
+\end{defn}
+
+\begin{ex}
+Misalkan $S \subseteq \Int^2$ merupakan relasi penerus pada~$\Int$, yakni
+$S = \Setabs{\tuple{x, y} \in \Int^2}{x + 1 = y}$, sehingga $Sxy$ jika dan
+hanya jika $x + 1 = y$.
+
+$S^{-1}$ merupakan relasi pendahulu pada $\Int$, yakni
+$\Setabs{\tuple{x,y}\in\Int^2}{x -1 =y}$.
+
+$S\mid S$ adalah
+$ \Setabs{\tuple{x,y}\in\Int^2}{x + 2 =y}$.
+
+$\funrestrictionto{S}{\Nat}$ merupakan relasi penerus pada~$\Nat$.
+
+$\funimage{S}{\{1,2,3\}}$ adalah $\{2, 3, 4\}$.
+\end{ex}
+
+\begin{defn}[Penutupan transitif]Misalkan $R \subseteq A^2$ merupakan relasi
+biner.
+
+\emph{Penutupan transitif} dari~$R$ adalah $R^+ = \bigcup_{0 < n \in
+\Nat} R^n$, dengan $R^1 = R$ dan $R^{n+1} = R^n \mid R$ didefinisikan secara
+rekursif.
+
+\emph{Penutupan refleksif-transitif} dari $R$ adalah
+$R^* = R^+ \cup \Id{A}$.
+\end{defn}
+
+\begin{ex}
+Ambil relasi penerus $S \subseteq \Int^2$. $S^2xy$ jika dan hanya jika
+$x + 2 = y$, $S^3xy$ jika dan hanya jika $x + 3 = y$, dan seterusnya. Jadi,
+$S^+xy$ jika dan hanya jika $x + n = y$ untuk suatu $n \geq 1$. Dengan kata
+lain, $S^+xy$ jika dan hanya jika $x < y$, dan $S^*xy$ jika dan hanya jika
+$x \le y$.
+\end{ex}
+
+\begin{prob}
+Tunjukkan bahwa penutupan transitif dari $R$ memang transitif.
+\end{prob}
+
+\end{document}

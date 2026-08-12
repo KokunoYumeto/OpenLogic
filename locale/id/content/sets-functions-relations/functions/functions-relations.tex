@@ -1,0 +1,100 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: functions-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{rel}
+
+\olsection{Fungsi sebagai Relasi}
+
+\begin{explain}
+Suatu fungsi yang memetakan !!{element}s dari~$A$ ke !!{element}s dari~$B$
+jelas menentukan relasi antara $A$ dan~$B$, yaitu relasi yang berlaku antara
+$x$ dan $y$ jika dan hanya jika $f(x) = y$. Bahkan, jika misalnya kita ingin
+mereduksi unsur-unsur dasar matematika, kita dapat \emph{mengidentifikasi}
+fungsi~$f$ dengan relasi ini, yaitu dengan suatu himpunan pasangan. Hal ini
+kemudian menimbulkan pertanyaan: relasi mana yang menentukan fungsi dengan
+cara tersebut?
+\end{explain}
+
+\begin{defn}[Graf suatu fungsi] Misalkan $f\colon A \to B$ suatu fungsi.
+\emph{Graf} dari~$f$ adalah relasi $R_f \subseteq A \times B$ yang
+didefinisikan oleh
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}.
+\]
+\end{defn}
+
+\begin{explain}
+Graf suatu fungsi ditentukan secara unik oleh ekstensionalitas. Selain itu,
+ekstensionalitas (pada himpunan) langsung membenarkan prinsip implisit
+ekstensionalitas untuk fungsi: jika $f$ dan~$g$ mempunyai domain dan kodomain
+yang sama, maka keduanya identik apabila nilainya sama untuk semua argumen.
+
+Demikian pula, jika suatu relasi bersifat ``fungsional'', relasi itu merupakan
+graf suatu fungsi.
+\end{explain}
+
+\begin{prop}\ollabel{prop:graph-function}
+Misalkan $R \subseteq A \times B$ sedemikian sehingga:
+\begin{enumerate}
+\item Jika $Rxy$ dan $Rxz$, maka $y = z$; dan
+\item untuk setiap $x \in A$ terdapat suatu $y \in B$ sehingga $\tuple{x,
+y} \in R$.
+\end{enumerate}
+Maka $R$ adalah graf fungsi $f\colon A \to B$ yang didefinisikan oleh
+$f(x) = y$ jika dan hanya jika $Rxy$.
+\end{prop}
+
+\begin{proof}
+Andaikan terdapat $y$ sehingga $Rxy$. Jika terdapat pula $z \neq y$ sehingga
+$Rxz$, syarat pada~$R$ akan dilanggar. Jadi, jika terdapat $y$ sehingga
+$Rxy$, maka $y$ tersebut unik, sehingga $f$ terdefinisi dengan baik. Jelas
+bahwa $R_f = R$.
+\end{proof}
+
+\begin{explain}
+Setiap fungsi $f\colon A \to B$ mempunyai graf, yaitu relasi pada $A \times B$
+yang didefinisikan oleh $f(x) = y$. Sebaliknya, setiap relasi~$R \subseteq A
+\times B$ dengan sifat-sifat yang diberikan dalam
+\olref{prop:graph-function} merupakan graf suatu fungsi~$f \colon A \to B$.
+Karena hubungan erat antara fungsi dan grafnya ini, kita dapat memandang suatu
+fungsi semata-mata sebagai grafnya. Dengan kata lain, fungsi dapat
+diidentifikasi dengan relasi tertentu, yaitu dengan himpunan tupel tertentu.
+\oliflabeldef{sfr:rel:ref:sec}{Namun, perhatikan bahwa semangat
+``identifikasi'' ini sama seperti dalam \olref[sfr][rel][ref]{sec}: ini bukan
+klaim tentang metafisika fungsi, melainkan pengamatan bahwa kita mudah
+\emph{memperlakukan} fungsi sebagai himpunan tertentu. Salah satu alasan
+perlakuan ini begitu memudahkan ialah bahwa k}{K}ita sekarang dapat meninjau
+operasi pada fungsi yang serupa dengan operasi yang kita lakukan pada relasi
+(lihat \olref[sfr][rel][ops]{sec}). Secara khusus:
+\end{explain}
+
+\begin{defn}\ollabel{defn:funimage}
+Misalkan $f \colon A \to B$ suatu fungsi dengan $C\subseteq A$.
+
+\emph{Pembatasan} dari~$f$ pada~$C$ adalah fungsi
+$\funrestrictionto{f}{C}\colon C \to B$ yang didefinisikan oleh
+$(\funrestrictionto{f}{C})(x) = f(x)$ untuk semua $x \in C$. Dengan kata lain,
+$\funrestrictionto{f}{C} = \Setabs{\tuple{x, y} \in R_f}{x \in C}$.
+
+\emph{Penerapan} dari~$f$ pada~$C$ adalah $\funimage{f}{C} =
+\Setabs{f(x)}{x \in C}$. Kita juga menyebutnya \emph{peta} dari~$C$ di bawah
+fungsi~$f$.
+\end{defn}
+
+\begin{explain}
+Dari definisi-definisi ini diperoleh $\ran{f} =
+\funimage{f}{\dom{f}}$, untuk setiap fungsi~$f$.
+\oliflabeldef{sfr:rel:ops:sec}{Gagasan-gagasan ini tepat seperti yang kita
+harapkan berdasarkan definisi dalam \olref[sfr][rel][ops]{sec} dan
+identifikasi fungsi dengan relasi. Namun, dua operasi lain---invers dan hasil
+kali relatif---memerlukan sedikit penjelasan tambahan. Penjelasan itu akan
+kita berikan dalam \olref[inv]{sec} dan \olref[cmp]{sec}.}{}
+\end{explain}
+
+\end{document}
