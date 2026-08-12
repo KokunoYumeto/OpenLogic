@@ -177,3 +177,74 @@ TeXcount 3.1.1 (`texcount -sum -1 -utf8`, each file once, no recursive imports)
 reports 10,423 English-source words and 9,469 Indonesian words across the 26
 current target files. The exact continuation cursor is `OLP-0027`,
 `content/sets-functions-relations/size-of-sets/size-of-sets-complete.tex`.
+
+## Size of Sets checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The contiguous boundary extends through `OLP-0040`. Frozen English authority
+remains `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`, which is an ancestor of the
+locale checkpoint branch. Every source hash equals its row in the 722-file
+closure manifest.
+
+```powershell
+& 'locale\id\qa_size_of_sets_batch_replay.ps1'
+```
+
+Result: exit code 0.
+
+```text
+SIZE_OF_SETS_BATCH_REPLAY_OK files=14 checks=210 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0027..OLP-0040
+```
+
+The script compares uncommented ordered commands, environments, localization
+tokens, labels, references, assets, imports, URLs, citations, document classes,
+stable file/chapter IDs, brace balance, and mathematical skeletons. Exact
+path-scoped normalizations cover only the admitted English-source corrections;
+unrelated divergence fails. Two independent read-only semantic replays found no
+translation-introduced material error. Exact findings, source/target hashes,
+and dispositions are in
+`..\_control\OPENLOGIC_SIZE_OF_SETS_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean combined build
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/size-of-sets-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `size-of-sets-id.tex` | `locale/id/size-of-sets-id.pdf` | 61 | 436,633 | `43644ca531e5e058bb0bf2ee2fec89c304e5387546055087e358fd303c888d71` |
+
+The final log has zero fatal errors, undefined references/citations, multiply
+defined labels, missing glyphs, or underfull boxes. There are twelve small
+overfull boxes: five in the admitted Sets chapter and seven in Size of Sets;
+the overall maximum is 5.589 pt. Render inspection found all visually harmless.
+
+### Extraction and visual review
+
+`pdftotext -layout` exited 0 and produced 143,990 bytes. Searches returned zero
+`??`, `Undefined`, English environment/reference labels, `Seksi`, rejected
+earlier term forms, and broken compound words. Positive anchors include `Ukuran
+Himpunan`, `Enumerasi dan Himpunan Terhitung`, `Himpunan Takterhitung`,
+`Teorema Cantor`, `metode diagonalisasi`, and `fungsi pemasangan`. The three
+generic English sentinel hits after Bab 4 occur only in preserved bibliography
+titles.
+
+Pages 35--61 were rendered at 144 dpi. All 27 pages were inspected in complete
+contact sheets. Pages 36, 38, 40, 41, 43--46, 51, and 54--57 were also inspected
+at original render resolution because they contain chapter transitions,
+formulae, arrays, diagonal constructions, or admitted source corrections. No
+clipping, overlap, blank page, broken glyph, lost formula, damaged table, or
+margin loss was found.
+
+### Counts and next cursor
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+8,429 English-source words and 7,666 Indonesian words for the fourteen-file
+batch, and 18,852 English-source words versus 17,135 Indonesian words across
+all forty admitted files. The exact next cursor is `OLP-0041`,
+`content/sets-functions-relations/arithmetization/arithmetization.tex`.

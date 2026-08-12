@@ -1,0 +1,116 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: pairing
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{pai}
+\olsection{Fungsi Pemasangan dan Kode}
+
+\begin{explain}
+Metode zig-zag Cantor membuat keterhitungan $\Nat^n$ tampak jelas secara
+visual. Namun, mari kita pusatkan perhatian pada larik yang menggambarkan
+$\Nat^2$. Dengan mengikuti garis zig-zag pada larik dan menghitung posisinya,
+kita dapat memeriksa bahwa $\tuple{1,2}$ dipasangkan dengan bilangan~$7$.
+Meskipun demikian, akan lebih baik jika kita dapat menghitungnya secara lebih
+langsung. Dengan kata lain, akan berguna jika kita mempunyai \emph{invers}
+dari enumerasi zig-zag tersebut, $g\colon \Nat^2 \to \Nat$, sedemikian sehingga
+\[
+g(\tuple{0,0}) = 0, \;
+g(\tuple{0,1}) = 1, \;
+g(\tuple{1,0}) = 2, \; \dots,
+g(\tuple{1,2}) = 7, \; \dots
+\]
+Fungsi ini akan memungkinkan kita menghitung tepat di posisi mana
+$\tuple{n, m}$ muncul dalam enumerasi kita.
+
+Sebenarnya, kita dapat mendefinisikan $g$ secara langsung dengan membuat dua
+pengamatan. Pertama: jika baris ke-$n$ dan kolom ke-$m$ memuat nilai~$v$,
+maka baris ke-$(n+1)$ dan kolom ke-$(m-1)$ memuat nilai $v + 1$. Kedua: baris
+pertama enumerasi kita terdiri atas bilangan segitiga, dimulai dengan $0$,
+$1$, $3$, $6$, dan seterusnya. Bilangan segitiga ke-$k$ adalah jumlah bilangan
+bulat positif hingga dan termasuk $k$, yang dapat dihitung sebagai
+$k(k+1)/2$. Dengan
+menggabungkan kedua pengamatan tersebut, perhatikan fungsi berikut:
+\[
+  g(n,m) = \frac{(n+m+1)(n+m)}{2} + n
+\]
+Kita sering menulis $g(n, m)$ saja alih-alih $g(\tuple{n, m})$ karena lebih
+mudah dibaca. Rumus ini meminta kita terlebih dahulu menentukan bilangan
+segitiga urutan $(n+m)^\text{ke}$, lalu menambahkan $n$. Rumus tersebut mengisi larik tepat
+seperti yang kita inginkan. Jadi, secara khusus, pasangan $\tuple{1, 2}$
+dipetakan ke $\frac{4 \times 3}{2} + 1 = 7$.
+
+Fungsi $g$ ini adalah \emph{invers} dari enumerasi suatu himpunan pasangan.
+Fungsi semacam itu disebut \emph{fungsi pemasangan}.
+\end{explain}
+
+\begin{defn}[Fungsi pemasangan]
+  Suatu fungsi $f\colon A \times B \to \Nat$ adalah \emph{fungsi pemasangan}
+  aritmetis jika $f$ injektif. Kita juga mengatakan bahwa $f$
+  \emph{mengodekan} $A \times B$, dan bahwa $f(x,y)$ adalah \emph{kode} bagi
+  $\tuple{x,y}$.
+\end{defn}
+
+\begin{explain}
+Kita dapat menggunakan fungsi pemasangan untuk mengodekan, misalnya, pasangan
+bilangan asli; dengan kata lain, kita dapat merepresentasikan setiap
+\emph{pasangan} anggota-anggota dengan sebuah bilangan \emph{tunggal}. Dengan
+menggunakan invers fungsi pemasangan, kita dapat \emph{mendekodekan} bilangan
+tersebut, yakni menentukan pasangan yang direpresentasikannya.
+\end{explain}
+
+\begin{prob}
+Berikan suatu enumerasi untuk himpunan semua bilangan rasional taknegatif.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa $\Rat$ adalah !!{enumerable}. Ingat bahwa setiap bilangan
+rasional dapat ditulis sebagai pecahan $z/m$ dengan $z \in \Int$, $m \in \Nat^+$.
+\end{prob}
+
+\begin{prob}
+Definisikan suatu enumerasi untuk $\Bin^*$.
+\end{prob}
+
+\begin{prob}
+Ingat dari mata kuliah pengantar logika bahwa setiap tabel kebenaran yang
+mungkin menyatakan suatu fungsi kebenaran. Dengan kata lain, fungsi-fungsi
+kebenaran adalah semua fungsi dari $\Bin^k \to \Bin$ untuk suatu~$k$.
+Buktikan bahwa himpunan semua fungsi kebenaran adalah terhitung.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa himpunan semua himpunan bagian hingga dari suatu himpunan
+tak hingga yang !!{enumerable} adalah !!{enumerable}.
+\end{prob}
+
+\begin{prob}
+Suatu himpunan bagian dari $\Nat$ disebut \emph{kofinit} jika dan hanya jika
+himpunan itu merupakan komplemen dalam $\Nat$ dari suatu himpunan hingga;
+yakni, $A \subseteq \Nat$ kofinit jika dan hanya jika $\Nat\setminus A$
+hingga. Misalkan $I$ adalah himpunan yang !!{element}snya tepat semua himpunan
+bagian hingga dan kofinit dari $\Nat$. Tunjukkan bahwa $I$ adalah
+!!{enumerable}.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa gabungan !!{enumerable} dari himpunan-himpunan yang !!{enumerable}
+adalah !!{enumerable}. Artinya, jika $A_1$, $A_2$, \dots{} adalah himpunan dan
+setiap $A_i$ adalah !!{enumerable}, maka gabungan $\bigcup_{i=1}^\infty A_i$
+dari semuanya juga !!{enumerable}. [Catatan: ini sulit!]
+\end{prob}
+
+\begin{prob}
+Misalkan $f \colon A \times B \to \Nat$ adalah sebarang fungsi pemasangan.
+Tunjukkan bahwa invers parsial dari $f$ pada daerah hasilnya menentukan suatu
+enumerasi untuk $A \times B$.
+\end{prob}
+
+\begin{prob}
+Tentukan suatu fungsi yang mengodekan $\Nat^3$.
+\end{prob}
+
+\end{document}

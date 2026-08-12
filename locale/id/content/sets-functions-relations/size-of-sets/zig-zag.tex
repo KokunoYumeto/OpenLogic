@@ -1,0 +1,131 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: zig-zag
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{zigzag}
+
+\olsection{Metode Zig-Zag Cantor}
+
+\begin{explain}
+Kita telah meninjau beberapa enumerasi yang ``mudah''. Sekarang kita akan
+meninjau sesuatu yang sedikit lebih sulit. Perhatikan himpunan pasangan
+bilangan asli\oliflabeldef{sfr:set:pai:sec}{, yang telah kita definisikan dalam
+\olref[set][pai]{sec} sebagai berikut:}{yang didefinisikan oleh:}
+\[
+\Nat \times \Nat = \Setabs{\tuple{n,m}}{n,m \in \Nat}
+\]
+Kita dapat menyusun pasangan-pasangan terurut ini dalam sebuah \emph{larik},
+sebagai berikut:
+\[
+\begin{array}{ c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
+\hline
+\mathbf 0 & \tuple{0,0} & \tuple{0,1} & \tuple{0,2} & \tuple{0,3} & \dots \\
+\hline
+\mathbf 1 & \tuple{1,0} & \tuple{1,1} & \tuple{1,2} & \tuple{1,3} & \dots \\
+\hline
+\mathbf 2 & \tuple{2,0} & \tuple{2,1} & \tuple{2,2} & \tuple{2,3} & \dots \\
+\hline
+\mathbf 3 & \tuple{3,0} & \tuple{3,1} & \tuple{3,2} & \tuple{3,3} & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+Jelas bahwa setiap pasangan terurut dalam $\Nat \times \Nat$ akan muncul
+tepat satu kali dalam larik tersebut. Secara khusus, $\tuple{n,m}$ akan muncul
+pada baris ke-$n$ dan kolom ke-$m$. Namun, bagaimana kita menyusun
+anggota-anggota suatu larik semacam itu menjadi daftar ``satu dimensi''? Pola
+dalam larik berikut menunjukkan salah satu caranya (meskipun tentu saja ada
+banyak pilihan lain):
+\[
+\begin{array}{ c | c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 &\dots \\
+\hline
+\mathbf 0 & 0  & 1& 3 & 6& 10 &\ldots \\
+\hline
+\mathbf 1 &2 & 4& 7 & 11 & \dots &\ldots \\
+\hline
+\mathbf 2 & 5 & 8 & 12 & \ldots & \dots&\ldots \\
+\hline
+\mathbf 3 & 9 & 13 & \ldots & \ldots & \dots & \ldots \\
+\hline
+\mathbf 4 & 14 & \ldots & \ldots & \ldots & \dots & \ldots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots&\ldots & \ddots\\
+\end{array}
+\]\noindent
+Pola ini disebut \emph{metode zig-zag Cantor}. Pola tersebut mengenumerasi
+$\Nat \times \Nat$ sebagai berikut:
+\[
+\tuple{0,0}, \tuple{0,1}, \tuple{1,0}, \tuple{0,2}, \tuple{1,1},
+\tuple{2,0}, \tuple{0,3}, \tuple{1,2}, \tuple{2,1}, \tuple{3,0}, \dots
+\]
+Dengan demikian, diperoleh hasil berikut:
+\end{explain}
+
+\begin{prop}\ollabel{natsquaredenumerable}
+$\Nat \times \Nat$ adalah !!{enumerable}.
+\end{prop}
+
+\begin{proof}
+Misalkan $f \colon \Nat \to \Nat\times\Nat$ memetakan setiap $k \in \Nat$
+ke tupel $\tuple{n,m} \in \Nat \times \Nat$ sedemikian sehingga $k$ adalah
+nilai pada baris ke-$n$ dan kolom ke-$m$ dalam larik zig-zag Cantor.
+\end{proof}
+
+\begin{explain}
+Teknik ini juga dapat diperumum dengan cukup baik. Sebagai contoh, kita dapat
+menggunakannya untuk mengenumerasi himpunan tripel terurut bilangan asli,
+yakni:
+\[
+\Nat \times \Nat \times \Nat = \Setabs{\tuple{n,m,k}}{n,m,k \in \Nat}
+\]
+Kita memandang $\Nat \times \Nat \times \Nat$ sebagai hasil kali Kartesius
+dari $\Nat \times \Nat$ dengan $\Nat$, yaitu,
+\[
+\Nat^3 = (\Nat \times \Nat) \times \Nat =
+\Setabs{\tuple{\tuple{n,m},k}}{n, m, k
+  \in \Nat }
+\]
+dan karena itu kita dapat mengenumerasi $\Nat^3$ dengan sebuah larik: satu
+sumbunya diberi label menurut enumerasi $\Nat$, sedangkan sumbu lainnya
+menurut enumerasi $\Nat^2$:
+\[
+\begin{array}{ c | c | c | c | c | c}
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \dots \\
+\hline
+\mathbf{\tuple{0,0}} & \tuple{0,0,0} & \tuple{0,0,1} & \tuple{0,0,2} & \tuple{0,0,3} & \dots \\
+\hline
+\mathbf{\tuple{0,1}} & \tuple{0,1,0} & \tuple{0,1,1} & \tuple{0,1,2} & \tuple{0,1,3} & \dots \\
+\hline
+\mathbf{\tuple{1,0}} & \tuple{1,0,0} & \tuple{1,0,1} & \tuple{1,0,2} & \tuple{1,0,3} & \dots \\
+\hline
+\mathbf{\tuple{0,2}} & \tuple{0,2,0} & \tuple{0,2,1} & \tuple{0,2,2} & \tuple{0,2,3} & \dots\\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{array}
+\]
+Jadi, dengan menggunakan metode seperti metode zig-zag Cantor, kita juga
+dapat memperoleh enumerasi~$\Nat^3$. Proses ini dapat diteruskan sehingga
+kita memperoleh enumerasi $\Nat^n$ untuk setiap bilangan asli $n$. Dengan
+demikian, kita mempunyai:
+\end{explain}
+
+\begin{prop}
+$\Nat^n$ adalah !!{enumerable}, untuk setiap $n \in \Nat$.
+\end{prop}
+
+\begin{prob}\label{sfr:siz:zigzag:prob:posint-n}
+Tunjukkan bahwa $(\PosInt)^n$ adalah !!{enumerable}, untuk setiap $n \in \Nat$.
+\end{prob}
+
+\begin{prob}\label{sfr:siz:zigzag:prob:posint-star}
+  Tunjukkan bahwa $(\PosInt)^*$ adalah !!{enumerable}. Anda boleh menggunakan
+  \cref{sfr:siz:zigzag:prob:posint-n}.
+\end{prob}
+
+\end{document}

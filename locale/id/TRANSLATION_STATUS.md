@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 26/722 and the exact remainder is 696 files.
+Current target-file coverage is 40/722 and the exact remainder is 682 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -86,6 +86,25 @@ The Relations and Functions content contains 6,994 English-source TeXcount
 words and 6,320 Indonesian TeXcount words. Across all 26 current closure files,
 the exact totals are 10,423 English-source words and 9,469 Indonesian words.
 Counts are per file without recursive imports.
+
+### Contiguous closure through Size of Sets
+
+`OLP-0027`--`OLP-0040` translates the complete fourteen-file Size of Sets
+chapter, including both source-provided elementary and alternative treatments.
+The batch contains 8,429 English-source TeXcount words and 7,666 Indonesian
+words. Across the contiguous forty-file boundary, the exact totals are 18,852
+English-source words and 17,135 Indonesian words.
+
+Two independent read-only semantic replays found no translation-introduced
+mathematical omission. Nine source-defect classes were repaired and preserved
+with path-scoped replay exceptions: triangular-number range, partial inverse of
+an injective pairing function, two pairing-list defects, a wrong alternative-
+section reference, undefined sequence subscripts in two reductions, a wrong
+function name in the equinumerosity proof, a wrong quantified carrier in
+Cantor's theorem, transposed diagonal indices and a duplicated bit flip, and a
+duplicate global label between the standard and alternative reduction units.
+The exact dispositions and per-file hashes are in
+`..\_control\OPENLOGIC_SIZE_OF_SETS_INDEPENDENT_REVIEW_20260813.md`.
 
 ## Word counts for the 2026-08-12 initial checkpoint
 
@@ -166,6 +185,25 @@ were inspected, with exact-page review of every correction and relevant
 diagram. The OLP-0001 PDF is one page and was inspected at original rendered
 resolution.
 
+The Size of Sets replay passed 210 checks across fourteen files. It binds the
+exact manifest hashes and ordered closure IDs `OLP-0027`--`OLP-0040`, then
+compares uncommented commands, environments, localization tokens, labels,
+references, assets, imports, URLs, citations, document classes, file/chapter
+IDs, brace balance, and mathematical skeletons. Its path-scoped source
+normalizations are enumerated in the independent review receipt; unrelated
+divergence remains a hard failure.
+
+The combined driver through Size of Sets builds cleanly to 61 pages and 436,633
+bytes, SHA-256
+`43644ca531e5e058bb0bf2ee2fec89c304e5387546055087e358fd303c888d71`.
+The log contains no fatal error, undefined reference/citation, multiply defined
+label, missing glyph, or underfull box. Extracted text is 143,990 bytes with no
+unresolved marker or English environment/reference label. Pages 35--61 were
+rendered at 144 dpi and all 27 inspected; thirteen formula-, table-, diagonal-,
+and correction-heavy pages were additionally inspected at original render
+resolution. No clipping, overlap, blank page, broken glyph, lost formula,
+damaged table, or margin loss was found.
+
 ## Preserved risks and nonclaims
 
 - `cleveref` has no installed Indonesian language module. The locale driver
@@ -176,6 +214,10 @@ resolution.
   render inspection found no clipping, overlap, formula loss, or margin loss.
 - Relations and Functions have no overfull or underfull box warning in the
   final combined build.
+- Size of Sets adds seven small overfull-box warnings, so the 61-page combined
+  log contains twelve in total; the overall maximum remains 5.589 pt. Every
+  affected page was included in the exact-resolution render review, with no
+  visible loss.
 - The running set-membership token remains `anggota`; `elemen` is an admitted
   synonym and must be replayed in later model-theory/domain contexts.
 - OLP-0001 has no mathematical formula or `\olfileid`; its QA is therefore
@@ -186,7 +228,7 @@ resolution.
 
 ## Continuation cursor
 
-Next global ordered cursor: `OLP-0027`,
-`content/sets-functions-relations/size-of-sets/size-of-sets-complete.tex`.
-The remaining closure is 696 source files after the 26 target files currently
-present.
+Next global ordered cursor: `OLP-0041`,
+`content/sets-functions-relations/arithmetization/arithmetization.tex`.
+The remaining closure is 682 source files after the 40 target files currently
+present and admitted.

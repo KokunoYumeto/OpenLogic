@@ -1,0 +1,138 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: reduction-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{red-alt}
+
+\olsection{Reduksi}
+
+\begin{editorial}
+  Bagian ini membuktikan ketakterhitungan dengan reduksi, selaras dengan
+  hasil-hasil dalam \olref[nen-alt]{sec}. Versi alternatif yang sedikit lebih
+  terperinci dan selaras dengan hasil-hasil dalam \olref[nen]{sec} diberikan
+  dalam \olref[red]{sec}.
+\end{editorial}
+
+Kita telah membuktikan bahwa $\Bin^\omega$ !!{nonenumerable} dengan argumen
+diagonalisasi. Kita menggunakan argumen diagonalisasi serupa untuk menunjukkan
+bahwa $\Pow{\Nat}$ !!{nonenumerable}. Namun, berikut cara lain untuk
+membuktikan bahwa $\Pow{\Nat}$ !!{nonenumerable}: tunjukkan bahwa \emph{jika
+$\Pow{\Nat}$ !!{enumerable}, maka $\Bin^\omega$ juga !!{enumerable}}. Karena
+kita tahu bahwa $\Bin^\omega$ !!{nonenumerable}, akan mengikuti bahwa
+$\Pow{\Nat}$ juga demikian.
+
+Ini disebut \emph{mereduksi} satu masalah ke masalah lain. Dalam kasus ini,
+kita mereduksi masalah mengenumerasi $\Bin^\omega$ ke masalah mengenumerasi
+$\Pow{\Nat}$. Penyelesaian bagi masalah yang kedua---suatu enumerasi
+$\Pow{\Nat}$---akan menghasilkan penyelesaian bagi masalah yang
+pertama---suatu enumerasi $\Bin^\omega$.
+
+Untuk mereduksi masalah mengenumerasi suatu himpunan~$B$ ke masalah
+mengenumerasi suatu himpunan~$A$, kita memberikan cara untuk mengubah suatu
+enumerasi~$A$ menjadi enumerasi~$B$. Cara termudah ialah mendefinisikan
+!!a{surjection} $f\colon A \to B$. Jika $x_1$, $x_2$, \dots{} mengenumerasi
+~$A$, maka $f(x_1)$, $f(x_2)$, \dots{} akan mengenumerasi~$B$. Dalam kasus
+kita, kita mencari !!a{surjection} $f\colon \Pow{\Nat} \to \Bin^\omega$.
+
+\begin{prob}
+Tunjukkan bahwa jika terdapat fungsi !!{injective} $g\colon B \to A$ dan
+$B$~adalah !!{nonenumerable}, maka $A$ juga demikian. Lakukan ini
+dengan menunjukkan cara menggunakan~$g$ untuk mengubah suatu enumerasi~$A$
+menjadi enumerasi~$B$.
+\end{prob}
+
+\begin{proof}[Bukti reduksi untuk {\olref[nen-alt]{thm:nonenum-pownat}}]
+Untuk melakukan reduksi, andaikan $\Pow{\Nat}$ adalah !!{enumerable}, sehingga
+terdapat suatu enumerasi darinya, yaitu $N_{1}$, $N_{2}$, $N_{3}$, \dots
+
+Definisikan fungsi $f \colon \Pow{\Nat} \to \Bin^\omega$ dengan menetapkan
+$f(N)$ sebagai untai $s$ sedemikian sehingga $s(n) = 1$ jika dan hanya jika
+$n \in N$, dan $s(n) = 0$ jika tidak.
+
+Ini jelas mendefinisikan suatu fungsi, karena jika $N \subseteq \Nat$, maka
+setiap $n \in \Nat$ merupakan !!a{element} dari $N$ atau bukan. Sebagai
+contoh, himpunan bilangan asli genap $2\Nat = \Setabs{2n}{n \in \Nat} =
+\{0,2, 4, 6, \dots\}$ dipetakan ke untai $1010101\dots$; $\emptyset$ dipetakan
+ke $0000\dots$; dan $\Nat$ dipetakan ke $1111\dots$.
+
+Fungsi itu juga !!{surjective}: setiap untai $0$ dan $1$ bersesuaian dengan
+suatu himpunan bilangan asli, yakni himpunan yang beranggotakan bilangan asli
+yang bersesuaian dengan posisi tempat untai tersebut memuat~$1$. Secara lebih
+saksama, jika $s \in \Bin^\omega$, definisikan $N \subseteq \Nat$ sebagai:
+\[
+N = \Setabs{n \in \Nat}{s(n) = 1}
+\]
+Maka $f(N) = s$, sebagaimana dapat diperiksa dari definisi~$f$.
+
+Sekarang perhatikan daftar
+\[
+f(N_1), f(N_2), f(N_3), \dots
+\]
+Karena $f$ !!{surjective}, setiap anggota $\Bin^\omega$ harus muncul sebagai
+nilai~$f$ untuk suatu argumen, sehingga harus muncul dalam daftar. Jadi,
+daftar ini harus mengenumerasi seluruh~$\Bin^\omega$.
+
+Dengan demikian, jika $\Pow{\Nat}$ !!{enumerable}, maka $\Bin^\omega$ juga
+!!{enumerable}. Namun, $\Bin^\omega$ adalah !!{nonenumerable}
+(\olref[nen-alt]{thm:nonenum-bin-omega}). Jadi, $\Pow{\Nat}$ adalah
+!!{nonenumerable}.
+\end{proof}
+
+%\begin{explain}
+%Kita mudah keliru mengenai arah suatu reduksi.
+%Sebagai contoh, fungsi !!a{surjective} $g \colon \Bin^\omega \to X$
+%\emph{tidak} membuktikan bahwa $X$ !!{nonenumerable}. (Perhatikan $g
+%\colon \Bin^\omega \to \Bin$ yang didefinisikan oleh $g(s) = s(1)$, yaitu
+%fungsi yang memetakan untai $0$ dan $1$ ke !!{element} pertamanya. Fungsi itu
+%surjektif karena beberapa untai dimulai dengan $0$ dan beberapa lainnya
+%dengan $1$. Namun, $\Bin$ hingga.) Perhatikan pula bahwa fungsi $f$ harus
+%surjektif; jika tidak, argumennya tidak berlaku:
+%$f(x_1)$, $f(x_2)$, \dots{} tidak dijamin memuat semua !!{element}s dari~$Y$.
+%Sebagai contoh, $h\colon \Nat \to
+%\Bin^\omega$ yang didefinisikan oleh
+%\[
+%h(n) = \underbrace{000\dots0}_{\text{$n$ buah $0$}}
+%\]
+%adalah suatu fungsi, tetapi $\Nat$ adalah !!{enumerable}.
+%\end{explain}
+
+\begin{prob}\label{sfr:siz:red-alt:prob:nat-nat}
+  Tunjukkan dengan argumen reduksi bahwa himpunan~$X$ dari semua fungsi
+  $f\colon \Nat \to \Nat$ adalah !!{nonenumerable} (Petunjuk: berikan fungsi
+  surjektif dari $X$ ke~$\Bin^\omega$.)
+\end{prob}
+
+\begin{prob}
+Tunjukkan dengan argumen reduksi bahwa himpunan dari semua \emph{himpunan}
+pasangan bilangan asli, yakni $\Pow{\Nat \times \Nat}$, adalah
+!!{nonenumerable}.
+\end{prob}
+
+\begin{prob}
+Tunjukkan dengan argumen reduksi bahwa $\Nat^\omega$, himpunan barisan tak
+hingga bilangan asli, adalah !!{nonenumerable}.
+\end{prob}
+
+%\begin{prob}
+%Misalkan $P$ adalah himpunan fungsi dari $\Nat$ ke himpunan $\{0\}$, dan misalkan $Q$ adalah himpunan fungsi \emph{parsial}
+%dari himpunan bilangan bulat positif ke himpunan $\{0\}$. Tunjukkan
+%bahwa $P$~adalah !!{enumerable} dan $Q$~tidak. (Petunjuk: reduksi masalah
+%mengenumerasi $\Bin^\omega$ ke masalah mengenumerasi~$Q$.)
+%\end{prob}
+
+\begin{prob}
+Misalkan $S$ adalah himpunan semua !!{surjection}s dari $\Nat$ ke himpunan
+$\{0,1\}$, yakni $S$ terdiri atas semua !!{surjection}s~$f \colon \Nat \to
+\Bin$. Tunjukkan bahwa $S$ adalah !!{nonenumerable}.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa himpunan~$\Real$ dari semua bilangan real adalah
+!!{nonenumerable}.
+\end{prob}
+
+\end{document}

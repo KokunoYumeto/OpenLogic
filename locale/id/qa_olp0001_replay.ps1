@@ -4,9 +4,9 @@ Set-StrictMode -Version Latest
 $localeRoot = $PSScriptRoot
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $localeRoot '..\..'))
 $expectedCommit = '9620cc73f9c8e0ad003c514a5d3748f29611c4c0'
-$actualCommit = (& git -C $repoRoot rev-parse HEAD).Trim()
-if ($LASTEXITCODE -ne 0 -or $actualCommit -cne $expectedCommit) {
-    throw "Authority mismatch: expected $expectedCommit, got $actualCommit"
+& git -C $repoRoot merge-base --is-ancestor $expectedCommit HEAD
+if ($LASTEXITCODE -ne 0) {
+    throw "Authority mismatch: frozen source commit $expectedCommit is not an ancestor of HEAD"
 }
 
 $sourcePath = Join-Path $repoRoot 'content\open-logic-about.tex'

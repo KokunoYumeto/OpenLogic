@@ -1,0 +1,163 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: non-enumerability-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{nen-alt}
+
+\olsection{Himpunan \printtoken{S}{nonenumerable}}
+
+\begin{editorial}
+  Bagian ini membuktikan ketakterhitungan $\Bin^\omega$ dan $\Pow{\Nat}$
+  dengan menggunakan definisi dalam \olref[enm-alt]{sec}, yakni dengan
+  mensyaratkan bijeksi dengan~$\Nat$, bukan surjeksi dari $\PosInt$.
+\end{editorial}
+
+\begin{explain}
+Himpunan $\Nat$ dari bilangan asli bersifat tak hingga. Himpunan itu juga
+secara trivial !!{enumerable}. Namun, fakta yang luar biasa ialah bahwa
+terdapat himpunan \emph{!!{nonenumerable}}, yakni himpunan yang tidak
+!!{enumerable} (lihat \olref[sfr][siz][enm-alt]{defn:enumerable}).
+
+Hal ini mungkin mengejutkan. Bagaimanapun, mengatakan bahwa $A$ adalah
+!!{nonenumerable} berarti mengatakan bahwa \emph{tidak ada} !!{bijection} $f
+\colon \Nat \to A$; yakni, tidak ada fungsi yang memetakan !!{element}s
+$\Nat$ yang tak terhingga banyaknya ke~$A$ dan mencakup seluruh~$A$. Jadi,
+jika $A$ !!{nonenumerable}, terdapat ``lebih banyak'' !!{element}s dari~$A$
+daripada bilangan asli.
+
+Untuk membuktikan bahwa suatu himpunan !!{nonenumerable}, Anda harus
+menunjukkan bahwa tidak mungkin ada !!{bijection} yang sesuai. Cara terbaik
+untuk melakukannya ialah menunjukkan bahwa setiap upaya mengenumerasi
+!!{element}s~$A$ pasti melewatkan setidaknya satu !!{element}; ini menunjukkan
+bahwa tidak ada fungsi $f\colon \Nat \to A$ yang !!{surjective}. Strategi umum
+untuk membuktikan hal ini ialah menggunakan \emph{metode diagonalisasi} Cantor.
+Jika diberikan daftar !!{element}s dari $A$, misalnya $x_1$, $x_2$, \dots,
+kita membangun satu !!{element} lain dari~$A$ yang, karena cara pembangunannya,
+tidak mungkin berada dalam daftar tersebut.
+
+Namun, semua ini paling baik dipahami melalui contoh. Jadi, contoh pertama
+kita adalah himpunan~$\Bin^\omega$ dari semua untai tak hingga yang terdiri
+atas $0$ dan $1$. (`$\Bin$' berarti biner, dan kita cukup memandangnya sebagai
+himpunan dengan dua anggota $\{0,1\}$.)
+\oliflabeldef{sfr:card-arithmetic:card-opps:sec}{\footnote{Secara lebih tepat,
+kita harus menetapkan bahwa $\Bin^\omega$ adalah himpunan semua barisan-$\omega$
+dari $0$ dan $1$, yakni himpunan $\funfromto{\omega}{\{0,1\}}$. Namun,
+maknanya baru akan menjadi jelas dalam
+\olref[sfr][card-arithmetic][card-opps]{sec}.}{} Rumusan yang sedikit longgar
+ini seharusnya tidak menimbulkan kebingungan untuk saat ini.}
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-bin-omega}
+$\Bin^\omega$~adalah !!{nonenumerable}.
+\end{thm}
+
+\begin{proof}
+Untuk memperoleh kontradiksi, andaikan terdapat enumerasi seluruh
+$\Bin^\omega$. Jadi, kita mempunyai daftar $s_{0}$, $s_{1}$, $s_{2}$,
+\dots{} dengan setiap $s_n$
+berupa untai tak hingga dari $0$ dan~$1$. Misalkan $s_n(m)$ adalah digit dalam
+daftar ini dengan indeks untai $n$ dan indeks digit $m$. Dengan demikian, kita dapat memandang
+daftar kita sebagai suatu larik, dengan $s_n(m)$ ditempatkan pada baris ke-$n$
+dan kolom ke-$m$:
+\[
+\begin{array}{c|c|c|c|c|c}
+& 0 & 1 & 2 & 3 & \dots \\\hline
+0 & \mathbf{s_{0}(0)} & s_{0}(1) & s_{0}(2) & s_0(3) & \dots \\\hline
+1 & s_{1}(0)& \mathbf{s_{1}(1)} & s_1(2) & s_1(3) & \dots \\\hline
+2 & s_{2}(0)& s_{2}(1) & \mathbf{s_2(2)} & s_2(3) & \dots \\\hline
+3 & s_{3}(0)& s_{3}(1) & s_3(2) & \mathbf{s_3(3)} & \dots \\\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+\end{array}
+\]
+Sekarang kita akan membangun suatu untai tak hingga $d$ dari $0$ dan $1$ yang
+tidak berada dalam daftar ini. Kita melakukannya dengan menentukan setiap
+entri untai tersebut, yakni kita menentukan $d(n)$ untuk semua $n \in \Nat$.
+Secara intuitif, kita membaca diagonal larik di atas dari atas ke bawah
+(karena itulah disebut ``metode diagonalisasi''), lalu mengubah setiap $1$ menjadi
+$0$ dan setiap $0$ menjadi~$1$. Secara lebih abstrak, kita mendefinisikan
+$d(n)$ sebagai $0$ atau $1$ menurut apakah !!{element} ke-$n$ pada diagonal,
+$s_n(n)$, bernilai $1$ atau $0$, yaitu:
+\[
+d(n) =
+\begin{cases}
+1 & \text{jika $s_{n}(n) = 0$}\\
+0 & \text{jika $s_{n}(n) = 1$}
+\end{cases}
+\]
+Jelas bahwa $d \in \Bin^\omega$, karena ia adalah untai tak hingga dari $0$
+dan $1$. Namun, kita membangun $d$ sedemikian sehingga $d(n) \neq s_n(n)$
+untuk setiap $n \in \Nat$. Artinya, $d$ berbeda dari $s_n$ pada entri ke-$n$.
+Jadi, $d \neq s_n$ untuk setiap $n\in \Nat$. Karena itu, $d$ tidak mungkin
+berada dalam daftar $s_0$, $s_1$, $s_2$, \dots
+
+Kita telah menunjukkan bahwa sebarang enumerasi dari suatu himpunan bagian
+$\Bin^\omega$ akan melewatkan suatu !!{element} dari $\Bin^\omega$. Jadi,
+tidak terdapat enumerasi dari himpunan $\Bin^\omega$; yakni, $\Bin^\omega$
+adalah !!{nonenumerable}.
+\end{proof}
+
+\begin{explain}
+Metode pembuktian ini disebut ``diagonalisasi'' karena menggunakan diagonal
+larik untuk mendefinisikan~$d$. Namun, diagonalisasi tidak harus melibatkan
+sebuah larik. Kita dapat menunjukkan bahwa suatu himpunan !!{nonenumerable}
+dengan menggunakan gagasan serupa sekalipun tidak ada larik dan tidak ada
+diagonal yang sesungguhnya. Hasil berikut menggambarkan caranya.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-pownat}
+$\Pow{\Nat}$ tidak !!{enumerable}.
+\end{thm}
+
+\begin{proof}
+Kita melanjutkan dengan cara yang sama, yaitu dengan menunjukkan bahwa setiap
+daftar himpunan bagian dari~$\Nat$ melewatkan suatu himpunan bagian dari
+$\Nat$. Jadi, andaikan kita mempunyai suatu daftar $N_0, N_1, N_2, \ldots$
+dari himpunan bagian $\Nat$. Kita mendefinisikan suatu himpunan $D$ sebagai
+berikut: $n \in D$ jika dan hanya jika $n \notin N_{n}$:
+\[
+D = \Setabs{n \in \Nat}{n \notin N_n}
+\]
+Jelas bahwa $D\subseteq \Nat$. Namun, $D$ tidak mungkin berada dalam daftar.
+Menurut pembangunannya, $n \in D$ jika dan hanya jika $n\notin N_n$, sehingga
+$D \neq N_n$ untuk setiap $n \in \Nat$.
+\end{proof}
+
+\begin{explain}
+Bukti sebelumnya tidak menyebut diagonal. Meskipun demikian, Anda dapat
+memandangnya sebagai bukti yang melibatkan diagonal dengan membayangkannya
+sebagai berikut: Bayangkan himpunan $N_0$, $N_1$, \dots, ditulis dalam suatu
+larik, dengan $N_n$ ditulis pada baris ke-$n$ dengan menuliskan $m$ pada kolom
+ke-$m$ jika dan hanya jika $m \in N_n$. Sebagai contoh, misalkan empat
+himpunan pertama dalam daftar itu ialah $\{0,1,2,\dots\}$, $\{1, 3, 5,
+\dots\}$, $\{0,1,4\}$, dan $\{2,3,4,\dots\}$; larik kita akan dimulai sebagai
+berikut:
+\[
+\begin{array}{r@{}rrrrrrr}
+  N_0 = \{ & \mathbf{0}, & 1, & 2, & & & & \dots\}\\
+  N_1 = \{ &  & \mathbf{1}, &  & 3, &  & 5, & \dots\}\\
+  N_2 = \{ & 0, & 1, &  &  & 4\phantom{,} &  & \}\\
+  N_3 = \{ &  &  & 2, & \mathbf{3}, & 4, & & \dots\}\\
+  &\vdots & & & & & & \ddots\phantom{\}}
+  \end{array}
+\]
+Kemudian $D$ adalah himpunan yang diperoleh dengan menelusuri diagonal dari
+atas ke bawah, dengan memasukkan $n \in D$ jika dan hanya jika $n$ \emph{tidak}
+berada pada diagonal. Jadi, dalam kasus di atas, kita akan mengabaikan $0$ dan
+$1$, memasukkan~$2$, mengabaikan~$3$, dan seterusnya.
+\end{explain}
+
+\begin{prob}
+Tunjukkan dengan argumen diagonalisasi eksplisit bahwa himpunan semua fungsi
+$f \colon \Nat \to \Nat$ adalah !!{nonenumerable}. Artinya, tunjukkan bahwa
+jika $f_1$, $f_2$, \dots, adalah suatu daftar fungsi dan setiap $f_i\colon
+\Nat \to \Nat$, maka terdapat suatu $g \colon \Nat \to \Nat$ yang tidak
+berada dalam daftar ini.
+\end{prob}
+
+\end{document}

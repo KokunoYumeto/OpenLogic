@@ -1,0 +1,107 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: equinumerous-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{equ}
+
+\olsection{Kesamaan Kardinalitas}
+
+Kita mempunyai gagasan intuitif mengenai ``ukuran'' himpunan, yang bekerja
+dengan baik untuk himpunan hingga. Namun, bagaimana dengan himpunan tak
+hingga? Jika kita ingin merumuskan cara formal untuk membandingkan ukuran dua
+himpunan dengan \emph{sebarang} ukuran, sebaiknya kita mulai dengan
+mendefinisikan kapan dua himpunan berukuran sama. Berikut penjelasan Frege:
+\begin{quote}
+  Jika seorang pramusaji ingin memastikan bahwa ia telah meletakkan pisau
+  tepat sebanyak piring di atas meja, ia tidak perlu menghitung salah satunya,
+  asalkan ia meletakkan sebuah pisau di sebelah kanan setiap piring sehingga
+  setiap pisau di atas meja berada di sebelah kanan suatu piring. Dengan
+  demikian, piring dan pisau saling dikorelasikan secara tunggal, dan memang
+  melalui hubungan spasial yang sama itu. \citep[\S70]{Frege1884}
+\end{quote}
+Gagasan dalam kutipan ini dapat dinyatakan melalui suatu definisi formal:
+
+\begin{defn}\ollabel{comparisondef}
+  $A$ \emph{berkardinalitas sama} dengan $B$, ditulis $\cardeq{A}{B}$, jika dan
+  hanya jika terdapat !!a{bijection} $f \colon A \to B$.
+\end{defn}
+
+\begin{prop}\ollabel{equinumerosityisequi}
+Kesamaan kardinalitas adalah relasi ekuivalensi.
+\end{prop}
+
+\begin{proof}
+Kita harus menunjukkan bahwa kesamaan kardinalitas bersifat refleksif,
+simetris, dan transitif. Misalkan $A, B$, dan $C$ adalah himpunan.
+
+\emph{Refleksivitas.} Pemetaan identitas $\Id{A} \colon A \to A$, dengan
+$\Id{A} (x) = x$ untuk semua $x \in A$, adalah !!a{bijection}. Jadi,
+$\cardeq{A}{A}$.
+
+\emph{Simetri.} Andaikan $\cardeq{A}{B}$, yakni terdapat !!a{bijection}
+$f\colon A \to B$. Karena $f$ !!{bijective}, inversnya $f^{-1}$ ada dan juga
+!!{bijective}. Jadi, $f^{-1}\colon B \to A$ adalah !!a{bijection}, sehingga
+$\cardeq{B}{A}$.
+
+\emph{Transitivitas.} Andaikan $\cardeq{A}{B}$ dan $\cardeq{B}{C}$, yakni
+terdapat !!{bijection}s $f\colon A \to B$ dan $g\colon B \to C$. Komposisi
+$\comp{f}{g}\colon A \to C$ adalah !!{bijective}, sehingga $\cardeq{A}{C}$.
+\end{proof}
+
+\begin{prop}
+Jika $\cardeq{A}{B}$, maka $A$ adalah !!{enumerable} jika dan hanya jika $B$
+demikian.
+\end{prop}
+
+\begin{editorial}
+Bukti berikut menggunakan \olref[enm]{defn:enumerable} jika
+\olref[enm]{sec} disertakan, dan \olref[enm-alt]{defn:enumerable} jika tidak.
+\end{editorial}
+
+\begin{proof}
+Andaikan $\cardeq{A}{B}$, sehingga terdapat suatu !!{bijection} $f \colon A
+\to B$, dan andaikan $A$ adalah !!{enumerable}.
+\oliflabeldef{sfr:siz:enm:defn:enumerable}{
+  Maka $A = \emptyset$ atau terdapat fungsi !!a{surjective} $g\colon \PosInt
+  \to A$. Jika $A = \emptyset$, maka $B = \emptyset$ juga (jika tidak, akan
+  terdapat !!a{element}~$y \in B$, tetapi tidak ada $x \in A$ dengan $f(x) =
+  y$). Sebaliknya, jika $g\colon \PosInt \to A$ !!{surjective}, maka
+  $\comp{g}{f} \colon \PosInt \to B$ !!{surjective}. Untuk melihatnya, ambil
+  $y \in B$. Karena $f$ !!{surjective}, terdapat $x \in A$ sedemikian sehingga
+  $f(x) = y$. Karena $g$ !!{surjective}, terdapat $n \in \PosInt$ sedemikian
+  sehingga $g(n) = x$. Jadi,
+\[
+(\comp{g}{f})(n) = f(g(n)) = f(x) = y
+\]
+dan dengan demikian $\comp{g}{f}$ !!{surjective}. Jadi, $\comp{g}{f}$ adalah
+enumerasi dari~$B$, sehingga $B$~adalah !!{enumerable}.}
+{
+  Maka $A = \emptyset$ atau terdapat !!a{bijection}~$g$ yang daerah hasilnya
+  $A$ dan domainnya berupa $\Nat$ atau segmen awal bilangan asli. Jika $A =
+  \emptyset$, maka $B = \emptyset$ juga (jika tidak, akan terdapat suatu~$y
+  \in B$, tetapi tidak ada $x \in A$ sedemikian sehingga $f(x) = y$). Jadi,
+  andaikan kita mempunyai !!{bijection}~$g$ tersebut. Maka $\comp{g}{f}$
+  adalah !!a{bijection} dengan daerah hasil~$B$ dan domain yang sama dengan
+  domain~$g$ (yakni $\Nat$ atau suatu segmen awalnya), sehingga $B$ adalah
+  !!{enumerable}.}
+
+Jika $B$ adalah !!{enumerable}, kita memperoleh bahwa $A$ juga
+!!{enumerable} dengan mengulangi argumen menggunakan !!{bijection}
+$f^{-1}\colon B \to A$ alih-alih~$f$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa jika $\cardeq{A}{C}$ dan $\cardeq{B}{D}$, serta $A \cap B = C
+\cap D = \emptyset$, maka $\cardeq{A \cup B}{C \cup D}$.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa jika $A$ tak hingga dan !!{enumerable}, maka
+$\cardeq{A}{\Nat}$.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,50 @@
+% Bagian: sets-functions-relations
+% Bab: sets
+% Subbagian: schroder-bernstein
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{sb}
+
+\olsection{Pengertian Ukuran dan Schr\"oder-Bernstein}
+
+\begin{explain}
+Berikut suatu gagasan intuitif: jika $A$ tidak lebih besar daripada $B$ dan
+$B$ tidak lebih besar daripada $A$, maka $A$ dan $B$ berkardinalitas sama.
+Sejujurnya, jika gagasan ini \emph{keliru}, kita hampir tidak dapat membenarkan
+anggapan bahwa pengertian kesamaan kardinalitas yang kita definisikan ada
+hubungannya dengan perbandingan ``ukuran'' antarkumpulan!{} Untungnya, gagasan
+intuitif tersebut benar. Hal ini dibenarkan oleh Teorema Schr\"oder-Bernstein.
+\end{explain}
+
+\begin{thm}[Schr\"oder-Bernstein]
+	\ollabel{thm:schroder-bernstein}
+	Jika $\cardle{A}{B}$ dan $\cardle{B}{A}$,
+	maka $\cardeq{A}{B}$.
+\end{thm}
+
+\begin{explain}
+Dengan kata lain, jika terdapat !!a{injection} dari $A$ ke~$B$ dan
+!!a{injection} dari $B$ ke~$A$, maka terdapat !!a{bijection} dari $A$ ke~$B$.
+
+Namun, hasil ini sebenarnya cukup \emph{sulit} dibuktikan. Memang, meskipun
+Cantor menyatakan hasil tersebut, orang lainlah yang membuktikannya.
+\footnote{Untuk pembahasan sejarah lebih lanjut, lihat misalnya
+\citet[pp.~165--6]{Potter2004}.}
+\oliflabeldef{sfr:cardinals:card-sb:sec}{Kita baru akan berada dalam posisi
+untuk \emph{membuktikan} Schr\"oder-Bernstein dalam
+\olref[sfr][cardinals][card-sb]{sec}.}{}%
+Untuk saat ini, Anda dapat (dan harus) menerimanya berdasarkan kepercayaan.
+
+Untungnya, Schr\"oder-Bernstein \emph{benar}, dan teorema itu membenarkan cara
+kita memandang relasi yang telah kita definisikan, yakni $\cardeq{A}{B}$ dan
+$\cardle{A}{B}$, sebagai relasi yang berkaitan dengan ``ukuran''. Selain itu,
+Schr\"oder-Bernstein sangat \emph{berguna}. Memikirkan suatu !!a{bijection}
+antara dua himpunan berkardinalitas sama dapat terasa sulit. Teorema
+Schr\"oder-Bernstein memungkinkan kita memecah perbandingan itu menjadi dua
+arah, sehingga kita hanya perlu memikirkan !!a{injection} dari himpunan
+pertama ke himpunan kedua, dan sebaliknya.
+\end{explain}
+\end{document}

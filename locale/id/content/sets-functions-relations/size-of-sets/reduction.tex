@@ -1,0 +1,138 @@
+% Bagian: sets-functions-relations
+% Bab: sets
+% Subbagian: reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{red}
+
+\olsection{Reduksi}
+
+\begin{editorial}
+  Bagian ini membuktikan ketakterhitungan dengan reduksi, selaras dengan
+  hasil-hasil dalam \olref[nen]{sec}. Versi alternatif yang sedikit lebih
+  ringkas dan selaras dengan hasil-hasil dalam \olref[nen-alt]{sec} diberikan
+  dalam \olref[red-alt]{sec}.
+\end{editorial}
+
+Kita telah menunjukkan bahwa $\Pow{\PosInt}$ !!{nonenumerable} dengan argumen
+diagonalisasi. Kita juga telah mempunyai bukti bahwa $\Bin^\omega$, himpunan
+semua barisan tak hingga dari $0$ dan $1$, adalah !!{nonenumerable}. Berikut
+cara lain untuk membuktikan bahwa $\Pow{\PosInt}$ !!{nonenumerable}:
+Tunjukkan bahwa \emph{jika $\Pow{\PosInt}$ !!{enumerable}, maka $\Bin^\omega$
+juga !!{enumerable}}. Karena kita tahu bahwa $\Bin^\omega$ tidak
+!!{enumerable}, $\Pow{\PosInt}$ juga tidak mungkin demikian. Ini disebut
+\emph{mereduksi} satu masalah ke masalah lain---dalam kasus ini, kita
+mereduksi masalah mengenumerasi $\Bin^\omega$ ke masalah mengenumerasi
+$\Pow{\PosInt}$. Penyelesaian bagi masalah yang kedua---suatu enumerasi
+$\Pow{\PosInt}$---akan menghasilkan penyelesaian bagi masalah yang
+pertama---suatu enumerasi $\Bin^\omega$.
+
+Bagaimana kita mereduksi masalah mengenumerasi suatu himpunan~$B$ ke masalah
+mengenumerasi suatu himpunan~$A$? Kita memberikan cara untuk mengubah suatu
+enumerasi~$A$ menjadi enumerasi~$B$. Cara termudah untuk melakukannya ialah
+mendefinisikan fungsi !!a{surjective} $f\colon A \to B$. Jika $x_1$, $x_2$,
+\dots{} mengenumerasi~$A$, maka $f(x_1)$, $f(x_2)$, \dots{} akan mengenumerasi
+~$B$. Dalam kasus kita, kita mencari fungsi surjektif $f\colon
+\Pow{\PosInt} \to \Bin^\omega$.
+
+\begin{prob}
+Tunjukkan bahwa jika terdapat fungsi !!{injective} $g\colon B \to A$ dan
+$B$~adalah !!{nonenumerable}, maka $A$ juga demikian. Lakukan ini
+dengan menunjukkan cara menggunakan~$g$ untuk mengubah suatu enumerasi~$A$
+menjadi enumerasi~$B$.
+\end{prob}
+
+\begin{proof}[Bukti reduksi untuk {\olref[nen]{thm:nonenum-pownat}}]
+Andaikan $\Pow{\PosInt}$ adalah !!{enumerable}, sehingga terdapat suatu
+enumerasi darinya, yaitu $Z_{1}$, $Z_{2}$, $Z_{3}$, \dots
+
+Definisikan fungsi $f \colon \Pow{\PosInt} \to \Bin^\omega$ dengan menetapkan
+$f(Z)$ sebagai barisan $s$ sedemikian sehingga $s(n) = 1$ jika dan hanya jika
+$n \in Z$, dan $s(n) = 0$ jika tidak. Ini jelas mendefinisikan
+suatu fungsi, karena jika $Z \subseteq \PosInt$, maka setiap $n \in \PosInt$
+merupakan !!a{element} dari $Z$ atau bukan. Sebagai contoh, himpunan bilangan
+genap positif $2\PosInt = \{2, 4, 6, \dots\}$ dipetakan ke barisan
+$010101\dots$, himpunan kosong dipetakan ke $0000\dots$, dan himpunan
+$\PosInt$ sendiri dipetakan ke $1111\dots$.
+
+Fungsi itu juga !!{surjective}: Setiap barisan $0$ dan $1$ bersesuaian dengan
+suatu himpunan bilangan bulat positif, yakni himpunan yang beranggotakan
+bilangan-bilangan bulat yang bersesuaian dengan posisi tempat barisan tersebut
+bernilai~$1$. Secara lebih saksama, andaikan $s \in \Bin^\omega$. Definisikan
+$Z \subseteq \PosInt$ sebagai:
+\[
+Z = \Setabs{n \in \PosInt}{s(n) = 1}
+\]
+Maka $f(Z) = s$, sebagaimana dapat diperiksa dari definisi~$f$.
+
+Sekarang perhatikan daftar
+\[
+f(Z_1), f(Z_2), f(Z_3), \dots
+\]
+Karena $f$ !!{surjective}, setiap anggota $\Bin^\omega$ harus muncul sebagai
+nilai~$f$ untuk suatu argumen, sehingga harus muncul dalam daftar. Jadi,
+daftar ini harus mengenumerasi seluruh~$\Bin^\omega$.
+
+Dengan demikian, jika $\Pow{\PosInt}$ !!{enumerable}, maka $\Bin^\omega$ juga
+!!{enumerable}. Namun, $\Bin^\omega$ adalah !!{nonenumerable}
+(\olref[nen]{thm:nonenum-bin-omega}). Jadi, $\Pow{\PosInt}$ adalah
+!!{nonenumerable}.
+\end{proof}
+
+\begin{explain}
+Kita mudah keliru mengenai arah reduksi. Sebagai contoh, fungsi
+!!a{surjective} $g \colon \Bin^\omega \to B$ \emph{tidak} membuktikan bahwa
+$B$ !!{nonenumerable}. (Perhatikan $g \colon \Bin^\omega \to \Bin$ yang
+didefinisikan oleh $g(s) = s(1)$, yakni fungsi yang memetakan suatu barisan
+$0$ dan $1$ ke !!{element} pertamanya. Fungsi itu !!{surjective}, karena
+beberapa barisan dimulai dengan $0$ dan beberapa lainnya dengan $1$. Namun,
+$\Bin$ hingga.) Perhatikan pula bahwa fungsi~$f$ harus !!{surjective}; jika
+tidak, argumennya tidak berlaku: $f(x_1)$, $f(x_2)$, \dots{} tidak dijamin
+memuat semua !!{element}s~$B$. Sebagai contoh,
+\[
+h(n) = \underbrace{000\dots0}_{\text{$n$ buah $0$}}
+\]
+mendefinisikan fungsi $h\colon \PosInt \to \Bin^\omega$, tetapi $\PosInt$
+adalah !!{enumerable}.
+\end{explain}
+
+\begin{prob}
+Tunjukkan dengan argumen reduksi bahwa himpunan dari semua \emph{himpunan
+pasangan} bilangan bulat positif adalah !!{nonenumerable}.
+\end{prob}
+
+\begin{prob}\label{sfr:siz:red:prob:nat-nat}
+  Tunjukkan dengan argumen reduksi bahwa himpunan~$X$ dari semua fungsi
+  $f\colon \Nat \to \Nat$ adalah !!{nonenumerable} (Petunjuk: berikan fungsi
+  surjektif dari $X$ ke~$\Bin^\omega$.)
+\end{prob}
+
+\begin{prob}
+Tunjukkan dengan argumen reduksi bahwa $\Nat^\omega$, himpunan barisan tak
+hingga bilangan asli, adalah !!{nonenumerable}.
+\end{prob}
+
+\begin{prob}
+Misalkan $P$ adalah himpunan fungsi dari himpunan bilangan bulat positif ke
+himpunan $\{0\}$, dan misalkan $Q$ adalah himpunan fungsi \emph{parsial} dari
+himpunan bilangan bulat positif ke himpunan $\{0\}$. Tunjukkan bahwa $P$~adalah
+!!{enumerable} dan $Q$~tidak. (Petunjuk: reduksi masalah mengenumerasi
+$\Bin^\omega$ ke masalah mengenumerasi~$Q$.)
+\end{prob}
+
+\begin{prob}
+Misalkan $S$ adalah himpunan semua fungsi !!{surjective} dari himpunan bilangan
+bulat positif ke himpunan \{0,1\}, yakni $S$ terdiri atas semua fungsi
+!!{surjective}~$f\colon \PosInt \to \Bin$. Tunjukkan bahwa $S$ adalah
+!!{nonenumerable}.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa himpunan~$\Real$ dari semua bilangan real adalah
+!!{nonenumerable}.
+\end{prob}
+
+\end{document}

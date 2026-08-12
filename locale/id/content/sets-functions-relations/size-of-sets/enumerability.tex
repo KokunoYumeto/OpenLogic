@@ -1,0 +1,284 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: enumerations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{enm}
+
+\olsection{Enumerasi dan Himpunan \usetoken{S}{enumerable}}
+
+\begin{editorial}
+  Bagian ini membahas enumerasi himpunan dengan mendefinisikannya sebagai
+  surjeksi dari $\PosInt$. Uraiannya disampaikan secara perlahan bagi pembaca
+  dengan sedikit latar belakang matematika. Versi alternatif yang lebih
+  ringkas diberikan dalam \olref[enm-alt]{sec}; versi itu mendefinisikan
+  enumerasi secara berbeda, yakni sebagai bijeksi dengan $\Nat$ (atau suatu
+  segmen awal).
+\end{editorial}
+
+\begin{explain}
+Kita telah memberi contoh himpunan dengan mencantumkan !!{element}snya.
+Sekarang mari kita bahas secara lebih umum bagaimana dan kapan kita dapat
+mencantumkan !!{element}s suatu himpunan, sekalipun himpunan itu tak hingga.
+\end{explain}
+
+\begin{defn}[Enumerasi, secara informal]
+Secara informal, suatu \emph{enumerasi} himpunan~$A$ adalah daftar (yang
+mungkin tak hingga) dari !!{element}s~$A$ sedemikian sehingga setiap
+!!{element} dari $A$ muncul pada suatu posisi hingga dalam daftar. Jika $A$
+mempunyai suatu enumerasi, maka $A$ disebut \emph{!!{enumerable}}.
+\end{defn}
+
+\begin{explain}
+Beberapa hal mengenai enumerasi:
+\begin{enumerate}
+\item Kita hanya menganggap sebagai enumerasi daftar yang mempunyai awal dan
+  yang setiap !!{element} selain anggota pertama mempunyai tepat satu
+  !!{element} tepat sebelumnya. Dengan kata lain, hanya ada sejumlah hingga
+  anggota di antara !!{element} pertama dalam daftar dan sebarang
+  !!{element} lainnya. Secara khusus, ini berarti bahwa setiap !!{element}
+  dalam suatu enumerasi mempunyai posisi hingga: !!{element} pertama
+  berposisi~$1$, anggota kedua berposisi~$2$, dan seterusnya.
+\item Kita dapat mempunyai enumerasi yang berbeda untuk himpunan~$A$ yang sama
+  karena urutan kemunculan !!{element}snya berbeda: $4$, $1$, $25$, $16$,
+  dan~$9$ mengenumerasi (himpunan) lima bilangan kuadrat pertama sama baiknya
+  dengan $1$, $4$, $9$, $16$, dan~$25$.
+\item Enumerasi yang memuat pengulangan tetap merupakan enumerasi: $1$, $1$,
+  $2$, $2$, $3$, $3$,~\dots{} mengenumerasi himpunan yang sama seperti $1$,
+  $2$, $3$,~\dots{}.
+\item Urutan dan pengulangan \emph{memang} penting ketika kita menentukan suatu
+  enumerasi: kita dapat mengenumerasi bilangan bulat positif mulai dengan
+  $1$, $2$, $3$, $1$, \dots{}, tetapi polanya lebih mudah dilihat jika
+  dienumerasi dengan cara baku sebagai $1$, $2$, $3$, $4$,~\dots
+\item Enumerasi harus mempunyai awal: \dots, $3$, $2$, $1$ bukanlah enumerasi
+  bilangan bulat positif karena daftar itu tidak mempunyai !!{element}
+  pertama. Untuk melihat bagaimana hal ini mengikuti definisi informal,
+  tanyakan kepada diri Anda, ``pada posisi berapa dalam daftar bilangan 76
+  muncul?''
+\item Daftar berikut bukan enumerasi bilangan bulat positif: $1$, $3$, $5$,
+  \dots, $2$, $4$, $6$, \dots\@ Masalahnya ialah bilangan genap menempati
+  posisi $\infty + 1$, $\infty + 2$, $\infty + 3$, alih-alih posisi hingga.
+\item Himpunan kosong terhitung: himpunan itu dienumerasi oleh daftar kosong!{}
+\end{enumerate}
+\end{explain}
+
+\begin{prop}
+Jika $A$ mempunyai suatu enumerasi, maka himpunan itu mempunyai enumerasi tanpa
+  pengulangan.
+\end{prop}
+
+\begin{proof}
+  Andaikan $A$ mempunyai enumerasi $x_1$, $x_2$, \dots{} yang setiap $x_i$-nya
+  merupakan !!{element} dari~$A$. Kita dapat menghilangkan pengulangan dari
+  enumerasi dengan membuang !!{element}s yang berulang. Sebagai contoh, kita
+  dapat mengubah enumerasi itu menjadi enumerasi baru: kita mencantumkan $x_i$
+  jika ia adalah !!a{element} dari~$A$ yang tidak terdapat di antara $x_1$,
+  \dots, $x_{i-1}$, atau membuang $x_i$ dari daftar jika ia telah muncul di
+  antara $x_1$, \dots,~$x_{i-1}$.
+\end{proof}
+
+Argumen terakhir menunjukkan bahwa untuk memahami dengan baik enumerasi dan
+himpunan yang !!{enumerable}, serta membuktikan berbagai hal tentangnya, kita
+memerlukan definisi yang lebih saksama. Definisi berikut memberikannya.
+
+\begin{defn}[Enumerasi, secara formal]
+Suatu \emph{enumerasi} dari himpunan $A \neq \emptyset$ adalah sebarang
+fungsi !!{surjective} $f \colon \PosInt \to A$.
+\end{defn}
+
+\begin{explain}
+Mari kita yakinkan diri bahwa definisi formal dan definisi informal yang
+menggunakan daftar yang mungkin tak hingga itu ekuivalen. Pertama, setiap
+fungsi !!{surjective} dari $\PosInt$ ke suatu himpunan~$A$ mengenumerasi~$A$.
+Fungsi semacam itu menentukan enumerasi sebagaimana didefinisikan secara
+informal di atas: daftar $f(1)$, $f(2)$, $f(3)$, \dots. Karena $f$
+!!{surjective}, setiap !!{element} dari~$A$ pasti merupakan nilai~$f(n)$ untuk
+suatu~$n \in \PosInt$. Karena itu, setiap !!{element} dari $A$ muncul pada
+suatu posisi hingga dalam daftar. Karena fungsi tersebut mungkin tidak
+!!{injective}, daftar itu mungkin mengandung pengulangan, tetapi hal itu dapat
+diterima (sebagaimana telah disebutkan di atas).
+
+Sebaliknya, jika diberikan suatu daftar yang mengenumerasi semua !!{element}s
+dari~$A$, kita dapat mendefinisikan fungsi !!a{surjective} $f\colon \PosInt
+\to A$ dengan menetapkan $f(n)$ sebagai !!{element} ke-$n$ dalam daftar, atau
+!!{element} terakhir dalam daftar jika tidak ada !!{element} ke-$n$. Satu-
+satunya kasus yang tidak menghasilkan fungsi !!a{surjective} ialah ketika $A$
+kosong, sehingga daftarnya pun kosong. Jadi, setiap daftar tak kosong
+menentukan fungsi !!a{surjective} $f\colon \PosInt \to A$.
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Suatu himpunan~$A$ adalah !!{enumerable} jika dan hanya jika himpunan itu kosong atau
+  mempunyai suatu enumerasi.
+\end{defn}
+
+\begin{ex}
+Fungsi yang mengenumerasi bilangan bulat positif ($\PosInt$) cukup berupa
+fungsi identitas yang diberikan oleh $f(n) = n$. Fungsi yang mengenumerasi
+bilangan asli $\Nat$ adalah fungsi $g(n) = n - 1$.
+\end{ex}
+
+\begin{ex}
+Fungsi $f\colon \PosInt \to \PosInt$ dan $g \colon \PosInt \to \PosInt$ yang
+diberikan oleh
+\begin{align*}
+f(n) & = 2n \text{ dan}\\
+g(n) & = 2n - 1
+\end{align*}
+masing-masing mengenumerasi bilangan bulat positif genap dan bilangan bulat
+positif ganjil. Namun, tidak satu pun merupakan enumerasi dari $\PosInt$,
+karena tidak satu pun !!{surjective}.
+\end{ex}
+
+\begin{prob}
+Definisikan suatu enumerasi dari bilangan kuadrat positif $1$, $4$, $9$,
+$16$, \dots
+\end{prob}
+
+\begin{ex}
+Fungsi $f(n) = (-1)^{n} \lceil \frac{(n-1)}{2}\rceil$ (dengan $\lceil x
+\rceil$ menyatakan fungsi \emph{pembulatan ke atas}, yang membulatkan $x$ ke
+bilangan bulat terdekat di atasnya) mengenumerasi himpunan bilangan
+bulat~$\Int$. Perhatikan bagaimana $f$ menghasilkan nilai-nilai $\Int$ dengan
+``melompat'' bolak-balik antara bilangan bulat positif dan negatif:
+\[
+\begin{array}{c c c c c c c c}
+f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & f(7) & \dots \\ \\
+- \lceil \tfrac{0}{2} \rceil & \lceil \tfrac{1}{2}\rceil & - \lceil \tfrac{2}{2} \rceil & \lceil \tfrac{3}{2} \rceil & - \lceil \tfrac{4}{2} \rceil  & \lceil \tfrac{5}{2}
+\rceil & - \lceil \tfrac{6}{2} \rceil & \dots \\ \\
+0 & 1 & -1 & 2 & -2 & 3 & \dots
+\end{array}
+\]
+Kita juga dapat memandang $f$ sebagai fungsi yang didefinisikan menurut kasus
+sebagai berikut:
+\[
+f(n) = \begin{cases}
+  0 & \text{jika $n = 1$}\\
+  n/2 & \text{jika $n$ genap}\\
+  -(n-1)/2 & \text{jika $n$ ganjil dan $>1$}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+  Tunjukkan bahwa jika $A$ dan $B$ adalah !!{enumerable}, maka $A \cup B$ juga
+  demikian. Untuk melakukannya, andaikan ada fungsi !!{surjective} $f\colon
+  \PosInt \to A$ dan $g\colon \PosInt \to B$, lalu definisikan fungsi
+  !!a{surjective}~$h\colon \PosInt \to A \cup B$ dan buktikan bahwa fungsi itu
+  !!{surjective}. Tinjau pula kasus ketika $A$ atau~$B = \emptyset$.
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa jika $B \subseteq A$ dan $A$ adalah !!{enumerable}, maka $B$
+  juga demikian. Untuk melakukannya, andaikan ada fungsi !!a{surjective}
+  $f\colon \PosInt \to A$. Definisikan fungsi !!a{surjective}~$g\colon
+  \PosInt \to B$ dan buktikan bahwa fungsi itu !!{surjective}. Apa yang
+  terjadi jika $B = \emptyset$?
+\end{prob}
+
+\begin{prob}
+  Tunjukkan dengan induksi pada $n$ bahwa jika $A_1$, $A_2$, \dots, $A_n$
+  semuanya !!{enumerable}, maka $A_1 \cup \dots \cup A_n$ juga demikian. Anda
+  boleh menggunakan fakta bahwa jika dua himpunan $A$ dan~$B$ adalah
+  !!{enumerable}, maka $A \cup B$ juga demikian.
+\end{prob}
+
+Meskipun ketika mencantumkan !!{element}s suatu himpunan mungkin lebih alami
+untuk mulai menghitung dari !!{element} ke-$1$, matematikawan suka menggunakan
+bilangan asli~$\Nat$ untuk menghitung. Mereka berbicara tentang !!{element}s
+ke-$0$, ke-$1$, ke-$2$, dan seterusnya dalam suatu daftar. Sejalan dengan itu,
+kita dapat mendefinisikan enumerasi sebagai fungsi !!a{surjective} dari $\Nat$
+ke~$A$. Tentu saja, kedua definisi itu ekuivalen.
+
+\begin{prop}\ollabel{prop:enum-shift}
+  Terdapat !!a{surjection} $f\colon \PosInt \to A$ jika dan hanya jika
+  terdapat !!a{surjection} $g\colon \Nat \to A$.
+\end{prop}
+
+\begin{proof}
+  Jika diberikan !!a{surjection} $f\colon \PosInt \to A$, kita dapat
+  mendefinisikan $g(n) = f(n+1)$ untuk semua $n \in \Nat$. Mudah dilihat bahwa
+  $g\colon \Nat \to A$ adalah !!{surjective}. Sebaliknya, jika diberikan
+  !!a{surjection} $g\colon \Nat \to A$, definisikan $f(n) = g(n-1)$.
+\end{proof}
+
+Ini memberi kita hasil berikut:
+
+\begin{cor}\ollabel{cor:enum-nat}
+Suatu himpunan $A$ adalah !!{enumerable} jika dan hanya jika himpunan itu kosong atau
+terdapat fungsi !!a{surjective} $f\colon \Nat \to A$.
+\end{cor}
+
+Di atas kita telah membahas bahwa daftar !!{element}s suatu himpunan~$A$
+dapat diubah menjadi daftar tanpa pengulangan. Hal ini juga benar untuk
+enumerasi, tetapi sedikit lebih sulit dirumuskan dan dibuktikan secara ketat.
+Setiap fungsi $f\colon \PosInt \to A$ harus terdefinisi untuk semua $n \in
+\PosInt$. Jika hanya ada sejumlah hingga !!{element}s dalam~$A$, jelas kita
+tidak mungkin mempunyai fungsi yang terdefinisi pada !!{element}s $\PosInt$
+yang tak terhingga banyaknya, mengambil semua !!{element}s $A$ sebagai nilai,
+tetapi tidak pernah mengambil nilai yang sama dua kali. Dalam kasus itu,
+yakni ketika daftar tanpa pengulangan tersebut hingga, kita harus memilih
+domain lain untuk~$f$, yang hanya mempunyai sejumlah hingga !!{element}s.
+Tidak adanya pengulangan berarti bahwa $f$ harus !!{injective}. Karena fungsi itu
+juga !!{surjective}, kita mencari !!a{bijection} antara suatu himpunan hingga
+$\{1, \dots, n\}$ atau $\PosInt$ dengan~$A$.
+
+\begin{prop}\ollabel{prop:enum-bij}
+Jika $f\colon \PosInt \to A$ adalah !!{surjective} (yakni, suatu enumerasi
+dari~$A$), terdapat !!a{bijection} $g\colon Z \to A$ dengan $Z$ berupa
+$\PosInt$ atau $\{1, \dots, n\}$ untuk suatu~$n \in \PosInt$.
+\end{prop}
+
+\begin{proof}
+  Kita mendefinisikan fungsi $g$ secara rekursif: Tetapkan $g(1) = f(1)$. Jika
+  $g(i)$ telah didefinisikan, tetapkan $g(i+1)$ sebagai nilai pertama di antara
+  $f(1)$, $f(2)$, \dots{} yang belum terdapat di antara $g(1)$, \dots, $g(i)$,
+  jika nilai semacam itu ada. Jika $A$ hanya mempunyai $n$ !!{element}s, maka
+  $g(1)$, \dots, $g(n)$ semuanya terdefinisi, sehingga kita telah
+  mendefinisikan fungsi $g\colon \{1, \dots, n\} \to A$. Jika $A$ mempunyai
+  tak hingga banyak !!{element}s, maka untuk setiap $i$ harus ada !!a{element}
+  dari~$A$ dalam enumerasi $f(1)$, $f(2)$, \dots, yang belum terdapat di antara
+  $g(1)$, \dots, $g(i)$. Dalam kasus ini kita telah mendefinisikan fungsi
+  $g\colon \PosInt \to A$.
+
+  Fungsi $g$ adalah !!{surjective}, karena setiap anggota dari~$A$ terdapat di
+  antara $f(1)$, $f(2)$, \dots{} (karena $f$ !!{surjective}), dan pada akhirnya
+  akan menjadi nilai~$g(i)$ untuk suatu~$i$. Fungsi itu juga !!{injective},
+  karena jika terdapat $j < i$ sedemikian sehingga $g(j) = g(i)$, maka $g(i)$
+  telah terdapat di antara $g(1)$, \dots, $g(i-1)$, bertentangan dengan cara
+  kita mendefinisikan~$g$.
+\end{proof}
+
+\begin{cor}\ollabel{cor:enum-nat-bij}
+Suatu himpunan $A$ adalah !!{enumerable} jika dan hanya jika himpunan itu kosong atau
+terdapat !!a{bijection} $f\colon N \to A$, dengan $N = \Nat$ atau $N = \{0,
+\dots, n\}$ untuk suatu $n \in \Nat$.
+\end{cor}
+
+\begin{proof}
+$A$ adalah !!{enumerable} jika dan hanya jika $A$ kosong atau terdapat
+!!a{surjective} $f\colon \PosInt \to A$. Menurut \olref{prop:enum-bij}, hal
+yang terakhir berlaku jika dan hanya jika terdapat fungsi !!a{bijective}
+~$f\colon Z \to A$ dengan $Z = \PosInt$ atau $Z = \{1, \dots, n\}$ untuk suatu
+$n \in \PosInt$. Dengan argumen yang sama seperti dalam bukti
+\olref{prop:enum-shift}, hal itu pada gilirannya berlaku jika dan hanya jika
+terdapat !!a{bijection} $g\colon N \to A$, dengan $N = \Nat$ atau $N = \{0,
+\dots, n-1\}$.
+\end{proof}
+
+\begin{prob}
+  Menurut \olref[sfr][siz][enm]{defn:enumerable}, suatu himpunan $A$ adalah
+  terhitung jika dan hanya jika $A = \emptyset$ atau terdapat !!a{surjective}
+  $f\colon \PosInt \to A$. Kita juga dapat mendefinisikan ``himpunan
+  !!{enumerable}'' secara saksama sebagai berikut: suatu himpunan terhitung
+  jika dan hanya jika terdapat fungsi !!a{injective} $g\colon A \to \PosInt$.
+  Tunjukkan bahwa kedua definisi tersebut ekuivalen, yakni tunjukkan bahwa
+  terdapat fungsi !!a{injective} $g\colon A \to \PosInt$ jika dan hanya jika
+  $A = \emptyset$ atau terdapat !!a{surjective} $f\colon \PosInt \to A$.
+\end{prob}
+
+\end{document}

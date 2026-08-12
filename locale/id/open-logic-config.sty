@@ -44,3 +44,17 @@
 \definetoken{A}{formula}{}
 \definetoken{a}{derivation}{}
 \definetoken{A}{derivation}{}
+
+% Kanon pembanding UIN KHAS membedakan "himpunan terhitung" dari
+% "himpunan takterhitung" dan mencatat "terbilang" untuk himpunan tak
+% hingga yang dapat dipasangkan satu-satu dengan bilangan asli. Bentuk ini
+% mengikat token countability tanpa mengubah definisi matematis sumber.
+\settexttoken{enumerable}*{terhitung}{terhitung}
+\settexttoken{nonenumerable}{takterhitung}{takterhitung}
+\settexttoken{denumerable}{terbilang}{terbilang}
+\definetoken{a}{enumerable}{}
+\definetoken{A}{enumerable}{}
+\definetoken{a}{nonenumerable}{}
+\definetoken{A}{nonenumerable}{}
+\definetoken{a}{denumerable}{}
+\definetoken{A}{denumerable}{}

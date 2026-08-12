@@ -1,0 +1,218 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: non-enumerability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{nen}
+
+\olsection{Himpunan \printtoken{S}{nonenumerable}}
+
+\begin{editorial}
+  Bagian ini membuktikan ketakterhitungan $\Bin^\omega$ dan $\Pow{\PosInt}$
+  dengan menggunakan definisi dalam \olref[enm]{sec}. Bagian ini dirancang
+  agar sedikit lebih elementer dan lebih terperinci daripada versi dalam
+  \olref[nen-alt]{sec}.
+\end{editorial}
+
+Beberapa himpunan, seperti himpunan $\PosInt$ dari bilangan bulat positif,
+bersifat tak hingga. Sejauh ini kita telah melihat contoh himpunan tak hingga
+yang semuanya !!{enumerable}. Namun, ada pula himpunan tak hingga yang tidak
+mempunyai sifat ini. Himpunan semacam itu disebut \emph{!!{nonenumerable}}.
+
+Pertama-tama, keberadaan himpunan !!{nonenumerable} mungkin sudah terasa
+mengejutkan. Untuk setiap himpunan !!{enumerable}~$A$, terdapat fungsi
+!!a{surjective} $f \colon \PosInt \to A$. Jika suatu himpunan
+!!{nonenumerable}, fungsi semacam itu tidak ada. Artinya, tidak ada fungsi yang
+memetakan !!{element}s $\PosInt$ yang tak terhingga banyaknya ke~$A$ dan dapat
+mencakup seluruh~$A$. Jadi, terdapat ``lebih banyak'' !!{element}s dari~$A$
+daripada bilangan bulat positif yang tak terhingga banyaknya.
+
+Bagaimana cara membuktikan bahwa suatu himpunan !!{nonenumerable}? Anda harus
+menunjukkan bahwa tidak mungkin ada fungsi surjektif semacam itu. Secara
+ekuivalen, Anda harus menunjukkan bahwa anggota-anggota~$A$ tidak dapat
+dienumerasi dalam daftar tak hingga satu arah. Cara terbaik untuk melakukannya
+ialah menunjukkan bahwa setiap daftar !!{element}s dari~$A$ pasti melewatkan
+setidaknya satu anggota; atau bahwa tidak ada fungsi $f\colon \PosInt \to A$
+yang dapat !!{surjective}. Kita dapat melakukannya dengan \emph{metode
+diagonalisasi} Cantor. Jika diberikan suatu daftar !!{element}s dari~$A$, misalnya
+$x_1$, $x_2$, \dots, kita membangun satu anggota lain dari~$A$ yang, karena
+cara pembangunannya, tidak mungkin berada dalam daftar itu.
+
+Contoh pertama kita adalah himpunan~$\Bin^\omega$ dari semua barisan tak
+hingga tanpa celah yang terdiri atas $0$ dan $1$.
+
+\begin{thm}
+\ollabel{thm:nonenum-bin-omega}
+$\Bin^\omega$~adalah !!{nonenumerable}.
+\end{thm}
+
+\begin{proof}
+Andaikan, untuk memperoleh kontradiksi, bahwa $\Bin^\omega$ adalah
+!!{enumerable}; yakni andaikan terdapat daftar $s_{1}$, $s_{2}$, $s_{3}$,
+$s_{4}$, \dots{} dari semua !!{element}s~$\Bin^\omega$. Setiap $s_i$ itu
+sendiri merupakan barisan tak hingga dari $0$ dan~$1$. Mari kita sebut anggota
+ke-$j$ dari barisan ke-$i$ dalam daftar ini sebagai $s_i(j)$. Jadi, barisan
+ke-$i$, yakni~$s_i$, adalah
+\[
+s_i(1), s_i(2), s_i(3), \dots
+\]
+
+Kita dapat menyusun daftar ini, beserta anggota-anggota setiap barisan $s_i$
+di dalamnya, menjadi suatu larik:
+\[
+\begin{array}{c|c|c|c|c|c}
+& 1 & 2 & 3 & 4 & \dots \\\hline
+1 & \mathbf{s_{1}(1)} & s_{1}(2) & s_{1}(3) & s_1(4) & \dots \\\hline
+2 & s_{2}(1)& \mathbf{s_{2}(2)} & s_2(3) & s_2(4) & \dots \\\hline
+3 & s_{3}(1)& s_{3}(2) & \mathbf{s_3(3)} & s_3(4) & \dots \\\hline
+4 & s_{4}(1)& s_{4}(2) & s_4(3) & \mathbf{s_4(4)} & \dots \\\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+\end{array}
+\]
+Label di sisi kiri menyatakan nomor barisan dalam daftar $s_1$, $s_2$,
+\dots; bilangan di bagian atas melabeli !!{element}s setiap barisan. Sebagai
+contoh, $s_{1}(1)$ adalah nama bagi bilangan apa pun---$0$ atau~$1$---yang
+menjadi !!{element} pertama dalam barisan $s_{1}$, dan demikian seterusnya.
+
+Sekarang kita membangun barisan tak hingga $\overline{s}$ dari $0$ dan $1$
+yang tidak mungkin berada dalam daftar ini. Definisi $\overline{s}$ akan
+bergantung pada daftar $s_1$, $s_2$, \dots. Setiap daftar tak hingga dari
+barisan tak hingga $0$ dan $1$ menghasilkan suatu barisan
+tak hingga~$\overline{s}$ yang dijamin tidak muncul dalam daftar itu.
+
+Untuk mendefinisikan $\overline{s}$, kita tentukan semua !!{element}snya,
+yakni kita tentukan $\overline{s}(n)$ untuk semua $n \in \PosInt$. Kita
+melakukannya dengan membaca diagonal larik di atas dari atas ke bawah (karena
+itulah disebut ``metode diagonalisasi''), lalu mengubah setiap $1$ menjadi $0$ dan
+setiap $0$ menjadi~$1$. Secara lebih abstrak, kita mendefinisikan
+$\overline{s}(n)$ sebagai $0$ atau $1$ menurut apakah !!{element} ke-$n$ pada
+diagonal, $s_n(n)$, bernilai $1$ atau $0$.
+\[
+\overline{s}(n) =
+\begin{cases}
+1 & \text{jika $s_{n}(n) = 0$}\\
+0 & \text{jika $s_{n}(n) = 1$}.
+\end{cases}
+\]
+Jika Anda lebih menyukai rumus daripada definisi menurut kasus, Anda juga
+dapat mendefinisikan $\overline{s}(n) = 1 - s_n(n)$.
+
+Jelas bahwa $\overline{s}$ adalah barisan tak hingga dari $0$ dan $1$, karena
+barisan itu hanyalah kebalikan dari barisan $0$ dan $1$ yang muncul pada
+diagonal larik kita. Jadi, $\overline{s}$ adalah !!a{element} dari
+~$\Bin^\omega$. Namun, barisan itu tidak mungkin berada dalam daftar $s_1$,
+$s_2$, \dots{} Mengapa?
+
+Barisan itu tidak mungkin merupakan barisan pertama dalam daftar, $s_1$,
+karena berbeda dari $s_1$ pada !!{element} pertama. Apa pun nilai $s_1(1)$,
+kita mendefinisikan $\overline{s}(1)$ sebagai kebalikannya. Barisan itu tidak
+mungkin merupakan barisan kedua dalam daftar, karena $\overline{s}$ berbeda
+dari $s_2$ pada anggota kedua: jika $s_2(2)$ bernilai $0$, maka
+$\overline{s}(2)$ bernilai $1$, dan sebaliknya. Demikian seterusnya.
+
+Secara lebih saksama: jika $\overline{s}$ berada dalam daftar, akan ada suatu
+$k$ sedemikian sehingga $\overline{s} = s_{k}$. Dua barisan identik jika dan
+hanya jika keduanya sama pada setiap posisi, yakni untuk setiap~$n$,
+$\overline{s}(n) = s_{k}(n)$. Jadi, secara khusus, dengan mengambil $n = k$,
+harus berlaku $\overline{s}(k) = s_{k}(k)$. Nilai $s_k(k)$ adalah $0$ atau~$1$.
+Jika nilainya $0$, maka $\overline{s}(k)$ harus bernilai~$1$---demikianlah
+kita mendefinisikan $\overline{s}$. Namun, jika $s_k(k) = 1$, maka sekali lagi
+karena cara kita mendefinisikan $\overline{s}$, berlaku $\overline{s}(k) = 0$.
+Dalam kedua kasus, $\overline{s}(k) \neq s_{k}(k)$.
+
+Kita mulai dengan mengandaikan bahwa terdapat daftar !!{element}s dari
+$\Bin^\omega$, yaitu $s_1$, $s_2$, \dots{} Dari daftar itu kita membangun
+barisan~$\overline{s}$ yang telah kita buktikan tidak mungkin berada dalam
+daftar tersebut. Namun, barisan itu pasti merupakan barisan $0$ dan $1$ jika
+semua $s_i$ merupakan barisan $0$ dan $1$, yakni $\overline{s} \in
+\Bin^\omega$. Secara khusus, hal ini menunjukkan bahwa tidak mungkin ada
+daftar dari \emph{semua} !!{element}s~$\Bin^\omega$, karena dari setiap daftar
+semacam itu kita juga dapat membangun barisan~$\overline{s}$ yang dijamin
+tidak berada di dalamnya. Jadi, pengandaian bahwa terdapat daftar dari semua
+barisan dalam~$\Bin^\omega$ menimbulkan kontradiksi.
+\end{proof}
+
+\begin{explain}
+Metode pembuktian ini disebut ``diagonalisasi'' karena menggunakan diagonal
+larik untuk mendefinisikan~$\overline{s}$. Diagonalisasi tidak harus melibatkan
+sebuah larik: kita dapat menunjukkan bahwa suatu himpunan tidak
+!!{enumerable} dengan menggunakan gagasan serupa sekalipun tidak ada larik
+dan tidak ada diagonal yang sesungguhnya.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-pownat}
+$\Pow{\PosInt}$ tidak !!{enumerable}.
+\end{thm}
+
+\begin{proof}
+Kita melanjutkan dengan cara yang sama, yaitu dengan menunjukkan bahwa untuk
+setiap daftar himpunan bagian dari~$\PosInt$, terdapat suatu himpunan bagian
+dari $\PosInt$ yang tidak mungkin berada dalam daftar itu. Andaikan berikut
+ini adalah suatu daftar himpunan bagian dari~$\PosInt$:
+\[
+Z_{1}, Z_{2}, Z_{3}, \dots
+\]
+Sekarang kita mendefinisikan suatu himpunan $\overline{Z}$ sedemikian sehingga
+untuk setiap $n \in \PosInt$, $n \in \overline{Z}$ jika dan hanya jika $n
+\notin Z_{n}$:
+\[
+\overline{Z} = \Setabs{n \in \PosInt}{n \notin Z_n}
+\]
+$\overline{Z}$ jelas merupakan himpunan bilangan bulat positif, karena menurut
+pengandaian setiap~$Z_n$ demikian, sehingga $\overline{Z} \in
+\Pow{\PosInt}$. Namun, $\overline{Z}$ tidak mungkin berada dalam daftar. Untuk
+menunjukkannya, kita akan membuktikan bahwa untuk setiap $k \in \PosInt$,
+$\overline{Z} \neq Z_k$.
+
+Jadi, ambil sebarang $k \in \PosInt$. Kita mendefinisikan $\overline{Z}$
+sedemikian sehingga untuk setiap $n \in \PosInt$, $n \in \overline{Z}$ jika
+dan hanya jika $n \notin Z_n$. Secara khusus, dengan mengambil $n=k$, berlaku
+$k \in \overline{Z}$ jika dan hanya jika $k \notin Z_k$. Namun, ini
+menunjukkan bahwa $\overline{Z} \neq Z_k$, karena $k$ merupakan !!a{element}
+dari salah satunya tetapi bukan yang lain; dengan demikian $\overline{Z}$ dan
+$Z_k$ mempunyai !!{element}s yang berbeda. Karena $k$ dipilih sebarang,
+$\overline{Z}$ tidak berada dalam daftar $Z_1$, $Z_2$, \dots
+\end{proof}
+
+\begin{explain}
+Bukti sebelumnya tidak menyebut diagonal, tetapi Anda dapat memandangnya
+sebagai bukti yang melibatkan diagonal dengan membayangkannya sebagai berikut:
+Bayangkan himpunan $Z_1$, $Z_2$, \dots, ditulis dalam suatu larik, dengan
+setiap !!{element}~$j \in Z_i$ dicantumkan pada kolom ke-$j$. Misalkan empat
+himpunan pertama dalam daftar itu ialah $\{1,2,3,\dots\}$, $\{2, 4, 6,
+\dots\}$, $\{1,2,5\}$, dan $\{3,4,5,\dots\}$. Larik tersebut akan dimulai
+sebagai berikut:
+\[
+\begin{array}{r@{}rrrrrrr}
+  Z_1 = \{ & \mathbf{1}, & 2, & 3, & 4, & 5, & 6, & \dots\}\\
+  Z_2 = \{ &  & \mathbf{2}, &  & 4, &  & 6, & \dots\}\\
+  Z_3 = \{ & 1, & 2, &  &  & 5\phantom{,} &  & \}\\
+  Z_4 = \{ &  &  & 3, & \mathbf{4}, & 5, & 6, & \dots\}\\
+  \vdots & & & & & \ddots
+\end{array}
+\]
+Kemudian $\overline{Z}$ adalah himpunan yang diperoleh dengan menelusuri
+diagonal dari atas ke bawah, mengabaikan bilangan yang muncul pada diagonal,
+dan memasukkan $j$ ketika terdapat celah pada baris/kolom ke-$j$ dalam larik.
+Dalam kasus di atas, kita akan mengabaikan $1$ dan $2$, memasukkan~$3$,
+mengabaikan~$4$, dan seterusnya.
+\end{explain}
+
+\begin{prob}
+Tunjukkan dengan argumen diagonalisasi bahwa $\Pow{\Nat}$ adalah
+!!{nonenumerable}.
+\end{prob}
+
+\begin{prob}\label{sfr:siz:nen:prob:f-posint}
+Tunjukkan dengan argumen diagonalisasi eksplisit bahwa himpunan fungsi $f \colon
+\PosInt \to \PosInt$ adalah !!{nonenumerable}. Artinya, tunjukkan bahwa jika
+$f_1$, $f_2$, \dots, adalah suatu daftar fungsi dan setiap $f_i\colon \PosInt
+\to \PosInt$, maka terdapat suatu $\overline{f}\colon \PosInt \to \PosInt$
+yang tidak berada dalam daftar ini.
+\end{prob}
+
+\end{document}

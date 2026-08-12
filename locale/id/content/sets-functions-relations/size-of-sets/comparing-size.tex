@@ -1,0 +1,155 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: comparing-sizes
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{car}
+
+\olsection{Himpunan dengan Ukuran Berbeda dan Teorema Cantor}
+
+\begin{explain}
+Kita telah memberikan pernyataan saksama bagi gagasan bahwa dua himpunan
+berukuran sama. Kita juga dapat memberikan pernyataan saksama bagi gagasan
+bahwa satu himpunan lebih kecil daripada himpunan lain. Definisi kita tentang
+``lebih kecil daripada (atau berkardinalitas sama)'' tidak memerlukan
+!!a{bijection} antara kedua himpunan, melainkan !!a{injection} dari himpunan
+pertama ke himpunan kedua. Jika fungsi semacam itu ada, ukuran himpunan pertama
+kurang dari atau sama dengan ukuran himpunan kedua. Secara intuitif,
+!!a{injection} dari satu himpunan ke himpunan lain menjamin bahwa daerah hasil
+fungsi mempunyai sekurang-kurangnya sebanyak !!{element}s domainnya, karena
+tidak ada dua !!{element}s domain yang dipetakan ke !!{element} daerah hasil
+yang sama.
+\end{explain}
+
+\begin{defn}
+$A$ \emph{tidak lebih besar daripada}~$B$, ditulis $\cardle{A}{B}$, jika dan
+hanya jika terdapat !!a{injection} $f \colon A \to B$.
+\end{defn}
+
+Jelas bahwa relasi ini refleksif dan transitif, tetapi tidak simetris (hal ini
+ditinggalkan sebagai latihan). Kita juga dapat memperkenalkan suatu pengertian
+yang menyatakan bahwa satu himpunan (secara ketat) lebih kecil daripada
+himpunan lain.
+
+\begin{defn}
+$A$ \emph{lebih kecil daripada}~$B$, ditulis $\cardless{A}{B}$, jika dan hanya
+jika terdapat !!a{injection}~$f\colon A \to B$, tetapi tidak terdapat
+!!{bijection}~$g\colon A \to B$; yakni $\cardle{A}{B}$ dan
+$\cardneq{A}{B}$.
+\end{defn}
+
+Jelas bahwa relasi ini irefleksif dan transitif. (Hal ini ditinggalkan sebagai
+latihan.) Dengan menggunakan notasi ini, kita dapat mengatakan bahwa suatu
+himpunan $A$ adalah !!{enumerable} jika dan hanya jika $\cardle{A}{\Nat}$,
+serta bahwa $A$ adalah !!{nonenumerable} jika dan hanya jika
+$\cardless{\Nat}{A}$. Ini memungkinkan kita menyatakan kembali
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{%
+\olref[sfr][siz][nen-alt]{thm:nonenum-pownat}
+sebagai pengamatan bahwa
+$\cardless{\Nat}{\Pow{\Nat}}$}{%
+\olref[sfr][siz][nen]{thm:nonenum-pownat}
+sebagai pengamatan bahwa $\cardless{\PosInt}{\Pow{\PosInt}}$}. Bahkan,
+\citet{Cantor1892} membuktikan bahwa butir terakhir ini berlaku \emph{secara
+sepenuhnya umum}:
+
+\begin{thm}[Cantor]\ollabel{thm:cantor}
+$\cardless{A}{\Pow{A}}$, untuk setiap himpunan $A$.
+\end{thm}
+
+\begin{proof}
+Pemetaan $f(x) = \{x\}$ adalah !!a{injection} $f \colon A \to \Pow{A}$,
+karena jika $x \neq y$, maka $\{x\} \neq \{y\}$ juga menurut ekstensionalitas,
+sehingga $f(x) \neq f(y)$. Jadi, kita memperoleh $\cardle{A}{\Pow{A}}$.
+
+\begin{editorial}
+Kita menyajikan bukti yang lebih perlahan jika \olref[nen]{sec} tersedia;
+jika tidak, kita menyajikan bukti lebih cepat yang selaras dengan
+\olref[nen-alt]{sec}.
+\end{editorial}
+
+\oliflabeldef{sfr:siz:nen:sec}{%
+  Sekarang kita akan menunjukkan bahwa tidak mungkin ada fungsi
+  !!a{surjective}~$g\colon A \to \Pow{A}$, apalagi fungsi !!a{bijective}, dan
+  dengan demikian $\cardneq{A}{\Pow{A}}$. Andaikan $g\colon A \to \Pow{A}$.
+  Karena $g$ total, setiap $x \in A$ dipetakan ke himpunan bagian $g(x)
+  \subseteq A$. Kita dapat menunjukkan bahwa $g$ tidak mungkin surjektif.
+  Untuk melakukannya, kita mendefinisikan himpunan bagian~$\overline{A}
+  \subseteq A$ yang, menurut definisinya, tidak mungkin berada dalam daerah
+  hasil~$g$. Misalkan
+  \[
+  \overline{A} = \Setabs{x \in A}{x \notin g(x)}.
+  \]
+  Karena $g(x)$ terdefinisi untuk semua $x \in A$, $\overline{A}$ jelas
+  merupakan himpunan bagian~$A$ yang terdefinisi dengan baik. Namun,
+  himpunan itu tidak mungkin berada dalam daerah hasil~$g$. Ambil sebarang
+  $x \in A$; kita akan menunjukkan bahwa $\overline{A} \neq g(x)$. Jika $x
+  \in g(x)$, maka ia tidak memenuhi $x \notin g(x)$, sehingga menurut
+  definisi~$\overline{A}$, berlaku $x \notin \overline{A}$. Jika $x \in
+  \overline{A}$, ia harus memenuhi sifat pendefinisi
+  ~$\overline{A}$, yakni $x \in A$ dan $x \notin g(x)$. Karena $x$ dipilih
+  sebarang, hal ini menunjukkan bahwa untuk setiap $x \in A$, $x \in g(x)$
+  jika dan hanya jika $x \notin \overline{A}$, sehingga $g(x) \neq
+  \overline{A}$. Dengan kata lain, $\overline{A}$ tidak mungkin berada dalam
+  daerah hasil~$g$, bertentangan dengan pengandaian bahwa~$g$ surjektif.}{
+  Tinggal ditunjukkan bahwa $\cardneq{A}{\Pow{A}}$. Untuk memperoleh
+  kontradiksi, andaikan $\cardeq{A}{\Pow{A}}$, yakni terdapat suatu
+  !!{bijection} $g \colon A \to \Pow{A}$. Sekarang perhatikan:
+  \[
+    D = \Setabs{x \in A}{x \notin g(x)}
+  \]
+  Perhatikan bahwa $D \subseteq A$, sehingga $D \in \Pow{A}$. Karena $g$
+  adalah !!a{bijection}, terdapat suatu $y \in A$ sedemikian sehingga $g(y) =
+  D$. Namun, sekarang kita memperoleh:
+  \[
+    y \in g(y) \text{ jika dan hanya jika } y \in D \text{ jika dan hanya jika } y \notin g(y).
+  \]
+  Ini merupakan kontradiksi; jadi $\cardneq{A}{\Pow{A}}$.}{}
+\end{proof}
+
+\begin{explain}
+\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{Akan bermanfaat jika kita
+  membandingkan bukti \olref{thm:cantor} dengan bukti
+  \olref[nen]{thm:nonenum-pownat}. Di sana kita menunjukkan bahwa dari setiap
+  daftar $Z_1$, $Z_2$, \dots, dari himpunan bagian~$\PosInt$, dapat dibangun
+  suatu himpunan bilangan~$\overline{Z}$ yang dijamin tidak berada dalam
+  daftar. Jaminan itu diperoleh karena, untuk setiap $n \in \PosInt$, berlaku
+  $n \in Z_n$ jika dan hanya jika $n \notin \overline{Z}$. Dengan demikian,
+  selalu terdapat suatu bilangan yang merupakan !!a{element} dari salah satu
+  di antara $Z_n$ dan $\overline{Z}$, tetapi bukan yang lain. Kita mengikuti
+  gagasan yang sama di sini, hanya saja indeks~$n$ kini merupakan !!{element}s
+  dari~$A$, bukan dari~$\PosInt$. Himpunan $\overline{A}$ didefinisikan agar
+  berbeda dari~$g(x)$ untuk setiap $x \in A$, karena $x \in g(x)$ jika dan
+  hanya jika $x \notin \overline{A}$. Sekali lagi, selalu ada !!a{element}
+  dari~$A$ yang merupakan !!a{element} dari salah satu di antara $g(x)$ dan
+  $\overline{A}$, tetapi bukan yang lain. Sebagaimana $\overline{Z}$ tidak
+  mungkin berada dalam daftar $Z_1$, $Z_2$, \dots, $\overline{A}$ juga tidak
+  mungkin berada dalam daerah hasil~$g$.}{}
+
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{Akan bermanfaat jika kita
+  membandingkan bukti \olref{thm:cantor} dengan bukti
+  \olref[nen-alt]{thm:nonenum-pownat}. Di sana kita menunjukkan bahwa dari
+  setiap daftar $N_0$, $N_1$, $N_2$, \dots, dari himpunan bagian~$\Nat$, kita
+  dapat membangun suatu himpunan bilangan~$D$ yang dijamin tidak berada dalam
+  daftar. Jaminan itu diperoleh karena $n \in N_n$ jika dan hanya jika $n
+  \notin D$, untuk setiap $n \in \Nat$. Kita mengikuti gagasan yang sama di
+  sini, hanya saja indeks~$n$ kini merupakan !!{element}s dari~$A$, bukan dari
+  ~$\Nat$. Himpunan $D$ didefinisikan agar berbeda dari~$g(x)$ untuk setiap
+  $x \in A$, karena $x \in g(x)$ jika dan hanya jika $x \notin D$.}{}
+
+Bukti tersebut juga patut dibandingkan dengan bukti Paradoks Russell,
+\olref[sfr][set][rus]{thm:russells-paradox}. Memang, Teorema Cantor menjadi
+inspirasi bagi paradoks Russell sendiri.
+\end{explain}
+
+\begin{prob}
+  Tunjukkan bahwa tidak mungkin ada !!a{injection} $g\colon \Pow{A} \to A$,
+  untuk setiap himpunan~$A$. Petunjuk: Andaikan $g\colon \Pow{A} \to A$
+  !!{injective}. Perhatikan $D = \Setabs{g(B)}{B \subseteq A \text{ dan }
+  g(B) \notin B}$. Misalkan $x = g(D)$. Gunakan fakta bahwa $g$ !!{injective}
+  untuk memperoleh kontradiksi.
+\end{prob}
+
+\end{document}

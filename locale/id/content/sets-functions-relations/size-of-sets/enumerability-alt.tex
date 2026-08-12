@@ -1,0 +1,137 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: enumerations-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{enm-alt}
+
+\olsection{Enumerasi dan Himpunan \usetoken{S}{enumerable}}
+
+\begin{editorial}
+  Bagian ini mendefinisikan enumerasi sebagai bijeksi dengan (segmen awal)
+  $\Nat$, sebagaimana lazim dilakukan dalam teori himpunan. Karena itu,
+  definisinya sedikit bertentangan dengan definisi dalam \olref[enm]{sec}, dan
+  bagian ini mengulang semua contoh di sana. Bagian ini juga sedikit lebih
+  ringkas daripada bagian tersebut.
+\end{editorial}
+
+Kita dapat menentukan suatu himpunan hingga dengan mengenumerasi
+!!{element}snya. Inilah yang kita lakukan ketika mendefinisikan himpunan
+sebagai berikut:
+\[
+  A = \{a_1, a_2, \ldots, a_n\}.
+\]
+Dengan mengandaikan bahwa !!{element}s $a_1$, \dots, $a_n$ semuanya berbeda,
+hal ini memberi kita !!a{bijection} antara $A$ dan $n$ bilangan asli pertama,
+yakni $0$, \dots, $n-1$. Sebaliknya, karena setiap himpunan hingga hanya
+mempunyai sejumlah hingga !!{element}s, setiap himpunan hingga dapat
+ditempatkan dalam korespondensi semacam itu. Dengan kata lain, jika $A$
+hingga, terdapat !!a{bijection} antara $A$ dan $\{0, \dots, n-1\}$, dengan $n$
+sebagai banyaknya !!{element}s dari~$A$.
+
+Jika kita mengizinkan jenis tertentu dari himpunan tak hingga, kita juga akan
+mengizinkan beberapa himpunan tak hingga untuk dienumerasi. Kita dapat
+menyatakannya secara saksama dengan mengatakan bahwa suatu himpunan tak hingga
+dienumerasi oleh !!a{bijection} antara himpunan itu dan seluruh~$\Nat$.
+
+\begin{defn}[Enumerasi, secara teori-himpunan]
+Suatu \emph{enumerasi} himpunan $A$ adalah !!a{bijection} yang daerah hasilnya
+$A$ dan domainnya berupa suatu himpunan awal bilangan asli $\{0, 1, \ldots,
+n\}$ {atau} seluruh himpunan bilangan asli~$\Nat$.
+\end{defn}
+
+\begin{explain}
+Penggunaan kata \emph{enumerasi} ini mempunyai landasan intuitif. Mengatakan
+bahwa kita telah mengenumerasi suatu himpunan $A$ berarti mengatakan bahwa
+terdapat !!a{bijection} $f$ yang memungkinkan kita menghitung anggota-anggota
+himpunan $A$. Anggota ke-$0$ adalah $f(0)$, yang ke-1 adalah $f(1)$, \ldots,
+yang ke-$n$ adalah $f(n)$\ldots.\footnote{Ya, kita menghitung mulai dari $0$.
+Tentu saja kita juga dapat memulai dari~$1$. Ini tidak akan menimbulkan
+perbedaan besar. Kita hanya perlu mengganti~$\Nat$ dengan~$\PosInt$.} Alasan
+bagi hal ini dapat dibuat lebih jelas lagi dengan menambahkan definisi
+berikut:
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Suatu himpunan~$A$ adalah !!{enumerable} jika dan hanya jika $A =
+  \emptyset$ atau terdapat suatu enumerasi dari~$A$. Kita mengatakan bahwa
+  $A$ !!{nonenumerable} jika dan hanya jika $A$ tidak !!{enumerable}.
+\end{defn}
+
+\begin{explain}
+Jadi, suatu himpunan !!{enumerable} jika dan hanya jika himpunan itu kosong
+atau Anda dapat menggunakan suatu enumerasi untuk menghitung semua
+!!{element}snya.
+\end{explain}
+
+\begin{ex}
+Fungsi yang mengenumerasi bilangan asli cukup berupa fungsi identitas
+$\Id{\Nat} \colon \Nat \to \Nat$ yang diberikan oleh $\Id{\Nat}(n) = n$.
+Fungsi yang mengenumerasi bilangan asli \emph{positif}, $\Nat^+ = \Nat
+\setminus \{0\}$, adalah fungsi $g(n) = n + 1$, yakni fungsi penerus.
+\end{ex}
+
+\begin{prob}
+Tunjukkan bahwa suatu himpunan $A$ adalah !!{enumerable} jika dan hanya jika
+$A = \emptyset$ atau terdapat !!a{surjection} $f\colon \Nat \to A$. Tunjukkan
+bahwa $A$ adalah !!{enumerable} jika dan hanya jika terdapat !!a{injection}
+$g\colon A \to \Nat$.
+\end{prob}
+
+\begin{ex}
+Fungsi $f\colon \Nat \to \Nat$ dan $g \colon \Nat \to \Nat$ yang diberikan
+oleh
+\begin{align*}
+  f(n) & = 2n \text{ dan}\\
+  g(n) & = 2n+1
+\end{align*}
+masing-masing mengenumerasi bilangan asli genap dan bilangan asli ganjil.
+Namun, tidak satu pun !!{surjective}, sehingga tidak satu pun merupakan
+enumerasi dari $\Nat$.
+\end{ex}
+
+\begin{prob}
+Definisikan suatu enumerasi dari bilangan kuadrat $1$, $4$, $9$, $16$, \dots
+\end{prob}
+
+\begin{ex}
+Misalkan $\lceil x \rceil$ adalah fungsi \emph{pembulatan ke atas}, yang
+membulatkan $x$ ke bilangan bulat terdekat di atasnya. Maka fungsi $f \colon
+\Nat \to \Int$ yang diberikan oleh:
+\[
+  f(n) = (-1)^{n} \left\lceil\tfrac{n}{2}\right\rceil
+\]
+mengenumerasi himpunan bilangan bulat~$\Int$ sebagai berikut:
+\[
+\begin{array}{c c c c c c c c}
+f(0) & f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & \dots \\ \\
+\big\lceil \tfrac{0}{2} \big\rceil & -\big\lceil \tfrac{1}{2}\big\rceil &  \big\lceil \tfrac{2}{2} \big\rceil & -\big\lceil \tfrac{3}{2} \big\rceil & \big\lceil \tfrac{4}{2} \big\rceil  & -\big\lceil \tfrac{5}{2}\big\rceil & \big\lceil \tfrac{6}{2} \big\rceil & \dots \\ \\
+0 & -1 & 1 & -2 & 2 & -3 & 3& \dots
+\end{array}
+\]
+Perhatikan bagaimana $f$ menghasilkan nilai-nilai $\Int$ dengan ``melompat''
+bolak-balik antara bilangan bulat positif dan negatif. Kita juga dapat
+memandang $f$ sebagai fungsi yang didefinisikan menurut kasus sebagai berikut:
+\[
+f(n) = \begin{cases}
+  \frac{n}{2} & \text{jika $n$ genap}\\
+  -\frac{n+1}{2} & \text{jika $n$ ganjil}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+Tunjukkan bahwa jika $A$ dan $B$ adalah !!{enumerable}, maka $A \cup B$ juga
+demikian.
+\end{prob}
+
+\begin{prob}
+Tunjukkan dengan induksi pada $n$ bahwa jika $A_1$, $A_2$, \dots, $A_n$
+semuanya !!{enumerable}, maka $A_1 \cup \dots \cup A_n$ juga demikian.
+\end{prob}
+
+\end{document}

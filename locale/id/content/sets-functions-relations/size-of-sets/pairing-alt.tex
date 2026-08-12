@@ -1,0 +1,113 @@
+% Bagian: sets-functions-relations
+% Bab: size-of-sets
+% Subbagian: pairing-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{siz}{pai-alt}
+
+\olsection{Fungsi Pemasangan Alternatif}
+
+\begin{explain}
+Ada enumerasi lain dari $\Nat^2$ yang inversnya lebih mudah ditentukan. Berikut
+salah satunya. Alih-alih memvisualisasikan enumerasi dalam sebuah larik,
+mulailah dengan daftar bilangan bulat positif yang dipasangkan dengan
+ruang-ruang yang (pada awalnya) kosong. Bayangkan kita mengisi ruang tersebut
+secara berturut-turut dengan pasangan $\tuple{n,m}$ sebagai berikut. Dimulai
+dengan pasangan yang mempunyai~$0$ pada posisi pertama (yakni pasangan
+$\tuple{0,m}$), masukkan pasangan pertama (yakni, $\tuple{0,0}$) ke ruang
+kosong pertama, lalu lewati satu ruang kosong, masukkan pasangan kedua (yakni,
+$\tuple{0,1}$) ke ruang kosong berikutnya, lewati satu ruang lagi, dan
+seterusnya. Awal enumerasi kita yang belum lengkap kini tampak sebagai berikut:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} &  & \tuple{0,1} &  & \tuple{0,2} &  & \tuple{0,3} & & \tuple{0,4} &  & \dots \\
+\end{array}
+\]
+Ulangi langkah ini dengan pasangan $\tuple{1,m}$ pada ruang-ruang yang masih
+kosong, dengan kembali melewati setiap satu ruang kosong:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} &  & \tuple{0,2} & \tuple{1,1} &
+\tuple{0,3} & & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+Masukkan pasangan $\tuple{2,m}$, $\tuple{3,m}$, dan seterusnya dengan cara
+yang sama. Jadi, enumerasi lengkap kita dimulai sebagai berikut:
+\[\small
+\begin{array}{@{}cc c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} & \tuple{2,0}  & \tuple{0,2} &
+\tuple{1,1} & \tuple{0,3} & \tuple{3,0}  & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+Jika sel-sel dalam larik di atas kita beri nomor menurut enumerasi ini, kita
+tidak akan menemukan garis zig-zag yang rapi, tetapi susunan berikut:
+\[
+\begin{array}{ c | c | c | c | c | c | c | c }
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \dots \\
+\hline
+\mathbf 0 & 1 & 3 & 5 & 7 & 9 & 11 & \dots \\
+\hline
+\mathbf 1 & 2 & 6 & 10 & 14 & 18 & \dots & \dots \\
+\hline
+\mathbf 2 & 4 & 12 & 20 & 28 & \dots & \dots & \dots \\
+\hline
+\mathbf 3 & 8 & 24 & 40 & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 4 & 16 & 48 & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 5 & 32 & \dots & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+Kita dapat melihat bahwa pasangan pada baris~$0$ menempati posisi bernomor
+ganjil dalam enumerasi kita, yakni pasangan $\tuple{0,m}$ menempati posisi
+$2m+1$; pasangan pada baris kedua, $\tuple{1,m}$, menempati posisi yang
+nomornya dua kali suatu bilangan ganjil, tepatnya $2 \cdot (2m+1)$; pasangan
+pada baris ketiga, $\tuple{2,m}$, menempati posisi yang nomornya empat kali
+suatu bilangan ganjil, $4 \cdot (2m+1)$; dan seterusnya. Faktor dari $(2m+1)$
+untuk setiap baris, $1$, $2$, $4$, $8$, \dots, tepat merupakan
+pangkat-pangkat~$2$: $1= 2^0$, $2 = 2^1$, $4 = 2^2$, $8 = 2^3$, \dots\@
+Sebenarnya, eksponen yang bersangkutan selalu merupakan anggota pertama dari
+pasangan tersebut. Jadi, untuk pasangan $\tuple{n,m}$ faktornya adalah $2^n$.
+Ini memberi kita rumus umum: $2^n \cdot (2m+1)$. Namun, rumus ini memetakan
+pasangan ke bilangan bulat \emph{positif}; misalnya, $\tuple{0,0}$ mempunyai
+posisi~$1$. Jika kita ingin memulai dari posisi~$0$, kita harus mengurangi
+hasilnya dengan~$1$. Dengan demikian, diperoleh:
+\end{explain}
+
+\begin{ex}
+Fungsi $h\colon \Nat^2 \to \Nat$ yang diberikan oleh
+\[
+h(n,m) = 2^n (2m+1) - 1
+\]
+adalah fungsi pemasangan untuk himpunan pasangan bilangan asli~$\Nat^2$.
+\end{ex}
+
+\begin{explain}
+Dengan demikian, dalam enumerasi kedua kita untuk $\Nat^2$, pasangan
+$\tuple{0,0}$ mempunyai kode $h(0,0) = 2^0(2\cdot 0+1) - 1 = 0$;
+$\tuple{1,2}$ mempunyai kode $2^{1} \cdot (2 \cdot 2 + 1) - 1 = 2
+\cdot 5 - 1 = 9$; dan $\tuple{2,6}$ mempunyai kode $2^{2} \cdot (2
+\cdot 6 + 1) - 1 = 51$.
+\end{explain}
+
+Kadang-kadang cukup bagi kita untuk mengodekan pasangan bilangan
+asli~$\Nat^2$ tanpa mensyaratkan bahwa pengodeannya surjektif. Pengodean
+semacam itu mempunyai invers yang hanya berupa fungsi parsial.
+
+\begin{ex}
+Fungsi $j\colon \Nat^2 \to \Nat^+$ yang diberikan oleh
+\[
+j(n,m) = 2^n3^m
+\]
+adalah fungsi !!a{injective} dari $\Nat^2 \to \Nat$.
+\end{ex}
+
+\end{document}
