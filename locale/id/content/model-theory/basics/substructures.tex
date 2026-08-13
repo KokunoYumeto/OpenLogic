@@ -1,0 +1,53 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: substructures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{sub}
+\olsection{Sub\printtoken{p}{structure}}
+
+Himpunan yang menjadi !!{domain} dari !!a{structure}~$\Struct{M}$ mungkin
+merupakan himpunan bagian dari domain suatu struktur lain~$\Struct{M'}$.
+Namun, kita jelas
+hanya patut menganggap $\Struct{M}$ sebagai suatu ``bagian'' dari
+$\Struct{M'}$ apabila bukan saja $\Domain{M} \subseteq \Domain{M'}$,
+melainkan juga $\Struct{M}$ dan $\Struct{M'}$ ``bersepakat'' dalam cara
+keduanya menafsirkan simbol-simbol bahasa, setidaknya pada bagian bersama
+$\Domain{M}$.
+
+\begin{defn}
+\ollabel{defn:substructure}
+Diberikan !!{structure}s $\Struct M$ dan $\Struct M'$ bagi bahasa yang
+sama~$\Lang L$, kita mengatakan bahwa $\Struct M$ merupakan
+\emph{sub!!{structure}} dari $\Struct M'$, dan $\Struct M'$ merupakan
+\emph{perluasan} dari $\Struct M$, ditulis $\Struct M \substruct
+\Struct M'$, jika dan hanya jika
+\begin{enumerate}
+\item $\Domain{M} \subseteq \Domain{M'}$;
+\item Bagi setiap simbol konstanta $c \in \Lang L$, $\Assign{c}{M} =
+    \Assign{c}{M'}$;
+\item Bagi setiap !!{function} beraritas-$n$~$f \in \Lang L$,
+  $\Assign{f}{M}(a_1, \dots, a_n) = \Assign{f}{M'}(a_1, \dots, a_n)$
+  untuk semua $a_1$, \dots, $a_n \in \Domain{M}$.
+\item Bagi setiap !!{predicate} beraritas-$n$~$R \in \Lang L$,
+  $\langle a_1, \dots, a_n\rangle \in \Assign{R}{M}$ jika dan hanya
+  jika $\langle a_1, \dots, a_n\rangle \in \Assign{R}{M'}$ untuk
+  semua $a_1$, \dots, $a_n \in \Domain{M}$.
+\end{enumerate}
+\end{defn}
+
+\begin{rem}
+\ollabel{rem:substructure}
+Jika bahasa tersebut tidak memuat simbol konstanta maupun !!{function}s,
+maka setiap himpunan bagian tak kosong $N \subseteq \Domain{M}$ menentukan
+suatu sub!!{structure}~$\Struct{N}$ dari $\Struct M$ dengan
+!!{domain}~$\Domain{N} = N$, dengan menetapkan $\Assign{R}{N} =
+\Assign{R}{M} \cap N^n$.
+\end{rem}
+
+% Buktikan sesuatu tentang hal ini? Contoh-contoh?
+
+\end{document}

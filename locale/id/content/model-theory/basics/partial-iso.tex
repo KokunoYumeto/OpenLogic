@@ -1,0 +1,230 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{pis}
+\section{Isomorfisme Parsial}
+
+\begin{defn}
+  Diberikan dua !!{structure}s $\Struct{M}$ dan $\Struct{N}$, suatu
+  \emph{isomorfisme parsial} dari $\Struct{M}$ ke $\Struct{N}$ ialah suatu
+  fungsi parsial hingga $p$ yang mengambil argumen dalam $\Domain M$ dan
+  menghasilkan nilai dalam $\Domain N$, serta memenuhi syarat-syarat
+  isomorfisme dari \olref[iso]{defn:isomorphism} pada domainnya:
+  \begin{enumerate}
+  \item $p$ bersifat !!{injective};
+  \item bagi setiap !!{constant}~$c$: jika $p(\Assign{c}{M})$
+    terdefinisi, maka $p(\Assign{c}{M}) = \Assign{c}{N}$;
+  \item bagi setiap !!{predicate} beraritas-$n$~$P$: jika $a_1$, \dots,
+    $a_n$ berada dalam domain~$p$, maka $\langle a_1, \dots, a_n\rangle
+    \in \Assign P M$ jika dan hanya jika $\langle p(a_1), \dots,
+    p(a_n) \rangle \in \Assign P N$;
+  \item bagi setiap !!{function} beraritas-$n$~$f$: jika $a_1$, \dots,
+    $a_n$ berada dalam domain~$p$, maka $p(\Assign f M (a_1, \dots,a_n))
+    = \Assign f N (p(a_1), \dots, p(a_n))$.
+  \end{enumerate}
+  Bahwa $p$ hingga berarti bahwa $\dom{p}$ hingga.
+\end{defn}
+
+Perhatikan bahwa fungsi kosong~$\emptyset$ selalu merupakan isomorfisme
+parsial antara sembarang dua !!{structure}s.
+
+\begin{defn}\ollabel{defn:partialisom}
+  Dua !!{structure}s $\Struct{M}$ dan $\Struct{N}$ disebut
+  \emph{isomorfik secara parsial}, ditulis $\Struct{M} \iso[p]
+  \Struct{N}$, jika dan hanya jika terdapat suatu himpunan tak kosong $I$
+  dari isomorfisme parsial antara $\Struct{M}$ dan $\Struct{N}$ yang
+  memenuhi \emph{sifat bolak-balik}:
+  \begin{enumerate}
+  \item (\emph{Maju}) Bagi setiap $p \in I$ dan $a \in \Domain M$,
+    terdapat $q \in I$ sedemikian sehingga $p \subseteq q$ dan $a$ berada
+    dalam domain~$q$;
+  \item (\emph{Mundur}) Bagi setiap $p \in I$ dan $b \in \Domain N$,
+    terdapat $q \in I$ sedemikian sehingga $p \subseteq q$ dan $b$ berada
+    dalam daerah hasil~$q$.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:p-isom1}
+  Jika $\Struct{M} \iso[p] \Struct{N}$ dan $\Struct{M}$ serta
+  $\Struct{N}$ !!{enumerable}, maka $\Struct{M} \iso \Struct{N}$.
+\end{thm}
+
+\begin{proof}
+  Karena $\Struct{M}$ dan $\Struct{N}$ !!{enumerable}, misalkan
+  $\Domain{M} = \{a_0, a_1, \ldots \}$ dan $\Domain{N} =
+  \{b_0, b_1, \ldots \}$. Dimulai dengan sembarang $p_0 \in I$, kita
+  mendefinisikan suatu barisan naik isomorfisme parsial $p_0 \subseteq p_1
+  \subseteq p_2 \subseteq \cdots$ sebagai berikut:
+  \begin{enumerate}
+  \item jika $n+1$ ganjil, sebut $n = 2r$, gunakan sifat Maju untuk
+    menemukan $p_{n+1} \in I$ sedemikian sehingga $p_n \subseteq p_{n+1}$
+    dan $a_r$ berada dalam domain~$p_{n+1}$;
+  \item jika $n+1$ genap, sebut $n+1 =2r+2$, gunakan sifat Mundur untuk
+    menemukan $p_{n+1} \in I$ sedemikian sehingga $p_n \subseteq p_{n+1}$
+    dan $b_r$ berada dalam daerah hasil~$p_{n+1}$.
+  \end{enumerate}
+Jika sekarang kita menetapkan
+\[
+p = \bigcup_{n\ge 0} p_n,
+\]
+maka $p$ merupakan suatu isomorfisme antara $\Struct{M}$ dan $\Struct{N}$.
+\end{proof}
+
+\begin{prob}
+  Tunjukkan secara terperinci bahwa $p$ sebagaimana didefinisikan dalam
+  \olref[mod][bas][pis]{thm:p-isom1} memang merupakan suatu isomorfisme.
+\end{prob}
+
+\begin{thm}\ollabel{thm:p-isom2}
+  Andaikan $\Struct{M}$ dan $\Struct{N}$ merupakan !!{structure}s bagi
+  !!{language} relasional murni (suatu !!a{language} yang hanya memuat
+  !!{predicate}s dan tidak memuat !!{function}s maupun simbol konstanta).
+  Jika $\Struct{M} \iso[p] \Struct{N}$, maka juga
+  $\Struct{M} \elemequiv \Struct{N}$.
+\end{thm}
+
+\begin{proof}
+  Dengan induksi pada !!{formula}s, kita menunjukkan bahwa jika semua variabel
+  bebas formula yang ditinjau termasuk di antara variabel-variabel yang
+  ditampilkan, serta $a_1$,
+  \dots, $a_n$ dan $b_1$, \dots, $b_n$ sedemikian sehingga terdapat suatu
+  isomorfisme parsial $p$ yang memetakan setiap $a_i$ ke $b_i$, serta
+  $s_1(x_i) =a_i$ dan $s_2(x_i) =b_i$ (bagi $i =1$, \dots,~$n$), maka
+  $\Sat{M}{!A}[s_1]$ jika dan hanya jika $\Sat{N}{!A}[s_2]$. Kasus
+  $n=0$ menghasilkan $\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}
+Jika terdapat !!{function}s, hasil sebelumnya tetap benar, tetapi kita perlu
+meninjau isomorfisme yang diinduksi oleh~$p$ antara sub!!{structure} dari
+$\Struct{M}$ yang dibangkitkan oleh $a_1$, \dots, $a_n$ dan
+sub!!{structure} dari $\Struct{N}$ yang dibangkitkan oleh $b_1$, \dots,
+$b_n$.
+\end{rem}
+
+Hasil sebelumnya dapat ``diuraikan'' menjadi beberapa tahap dengan menetapkan
+hubungan antara banyaknya kuantor tersarang dalam !!a{formula} dan berapa kali
+isomorfisme parsial yang relevan dapat diperluas.
+
+\begin{defn}
+  Bagi sembarang !!{formula}~$!A$, \emph{peringkat kuantor} dari $!A$,
+  dilambangkan $\QuantRank{!A} \in \Nat$, didefinisikan secara rekursif
+  sebagai banyaknya kuantor tersarang yang paling besar dalam $!A$. Dua
+  !!{structure}s $\Struct{M}$ dan $\Struct{N}$ disebut
+  \emph{$n$-ekuivalen}, ditulis $\Struct{M} \elemequiv[n] \Struct{N}$,
+  jika keduanya bersepakat pada semua kalimat yang peringkat kuantornya kurang
+  dari atau sama dengan~$n$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:qr-finite}
+  Misalkan $\Lang{L}$ suatu !!{language} relasional hingga, yakni suatu
+  !!{language} yang memuat berhingga banyak !!{predicate}s dan
+  !!{constant}s, serta tidak memuat !!{function}s. Bagi setiap
+  $n \in \Nat$, hingga ekuivalensi logis hanya terdapat berhingga banyak
+  !!{sentence}s orde pertama dalam !!{language} $\Lang{L}$ yang mempunyai
+  peringkat kuantor tidak lebih besar daripada~$n$.
+\end{prop}
+
+\begin{proof}
+  Dengan induksi pada~$n$.
+\end{proof}
+
+\begin{defn}
+  Diberikan !!a{structure}~$\Struct{M}$, misalkan $\Domain M^{<\omega}$
+  merupakan himpunan semua barisan hingga atas $\Domain{M}$. Kita menggunakan
+  $\mathbf{a}, \mathbf{b}, \mathbf{c}, \ldots$ sebagai peubah bagi
+  barisan-barisan hingga dari anggota. Jika $\mathbf{a} \in
+  \Domain{M}^{<\omega}$ dan $a \in \Domain{M}$, maka $\mathbf{a}a$
+  menyatakan \emph{konkatenasi} $\mathbf{a}$ dengan $a$.
+\end{defn}
+
+\begin{defn}
+  Diberikan !!{structure}s $\Struct{M}$ dan $\Struct{N}$, kita mendefinisikan
+  relasi $I_n \subseteq \Domain M^{<\omega} \times \Domain N^{<\omega}$
+  antara barisan-barisan yang sama panjang, secara rekursif pada $n$ sebagai
+  berikut. Misalkan kedua barisan tersebut mempunyai panjang~$k$.
+   \begin{enumerate}
+   \item $I_0(\mathbf{a},\mathbf{b})$ jika dan hanya jika $\mathbf{a}$ dan
+     $\mathbf{b}$ memenuhi !!{formula}s atomik yang sama masing-masing dalam
+     $\Struct{M}$ dan $\Struct{N}$; yakni, jika $s_1(x_i) = a_i$ dan
+     $s_2(x_i) = b_i$ bagi setiap indeks yang relevan, serta $!A$ atomik dengan semua
+     !!{variable}snya di antara $x_1$, \dots,~$x_k$, maka
+     $\Sat{M}{!A}[s_1]$ jika dan hanya jika~$\Sat{N}{!A}[s_2]$.
+   \item $I_{n+1} (\mathbf{a},\mathbf{b})$ jika dan hanya jika bagi setiap
+     $a\in \Domain M$ terdapat $b\in \Domain N$ sedemikian sehingga $I_n
+     (\mathbf{a}a,\mathbf{b}b)$, dan sebaliknya.
+   \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  Tulis $\Struct{M} \approx_n \Struct{N}$ jika
+  $I_n(\emptyseq,\emptyseq)$ berlaku bagi $\Struct{M}$ dan $\Struct{N}$
+  (dengan $\emptyseq$ sebagai barisan kosong).
+\end{defn}
+
+\begin{thm}\ollabel{thm:b-n-f}
+  Misalkan $\Lang{L}$ suatu !!{language} relasional murni. Maka
+  $I_n(\mathbf{a},\mathbf{b})$ menyiratkan bahwa bagi setiap $!A$ yang semua
+  variabel bebasnya tercantum dalam barisan yang bersesuaian dan sedemikian
+  sehingga $\QuantRank{!A} \le n$, berlaku $\Sat{M}{!A}[\mathbf{a}]$ jika
+  dan hanya jika $\Sat{N}{!A}[\mathbf{b}]$ (di sini, sekali lagi,
+  $\mathbf{a}$ memenuhi $!A$ jika sembarang $s$ sedemikian sehingga
+  $s(x_i) = a_i$ memenuhi $!A$). Selain itu, jika $\Lang{L}$ hingga,
+  kebalikannya juga berlaku.
+\end{thm}
+
+\begin{proof}
+  Bukti bahwa $I_n(\mathbf{a},\mathbf{b})$ menyiratkan bahwa $\mathbf{a}$
+  dan $\mathbf{b}$ memenuhi !!{formula}s yang sama dengan peringkat kuantor
+  tidak lebih besar daripada~$n$ diperoleh dengan induksi yang mudah pada
+  $!A$. Bagi arah kebalikannya, kita menggunakan induksi pada~$n$ dengan
+  menerapkan \olref{prop:qr-finite}, yang memastikan bahwa bagi setiap~$n$
+  hanya terdapat berhingga banyak kelas ekuivalensi !!{formula}s dengan
+  peringkat kuantor tersebut.
+
+  Bagi $n=0$, hipotesis bahwa $\mathbf{a}$ dan $\mathbf{b}$ memenuhi
+  !!{formula}s bebas kuantor yang sama memberikan bahwa keduanya memenuhi
+  formula-formula atomik yang sama, sehingga $I_0(\mathbf{a},\mathbf{b})$.
+
+  Bagi kasus $n+1$, andaikan $\mathbf{a}$ dan $\mathbf{b}$ memenuhi
+  !!{formula}s yang sama dengan peringkat kuantor tidak lebih besar daripada
+  $n+1$. Untuk menunjukkan $I_{n+1}(\mathbf{a},\mathbf{b})$, cukup ditunjukkan
+  bahwa bagi setiap $a \in \Domain M$ terdapat $b \in \Domain N$ sedemikian
+  sehingga $I_n(\mathbf{a}a,\mathbf{b}b)$. Menurut hipotesis induksi, sekali
+  lagi cukup ditunjukkan bahwa bagi setiap $a \in \Domain M$ terdapat
+  $b \in \Domain N$ sedemikian sehingga $\mathbf{a}a$ dan $\mathbf{b}b$
+  memenuhi !!{formula}s yang sama dengan peringkat kuantor tidak lebih besar
+  daripada~$n$.
+
+  Diberikan $a \in \Domain M$, misalkan $!T^a_n$ merupakan himpunan
+  !!{formula}s $!B(x,\mathbf{y})$ berperingkat tidak lebih besar daripada
+  $n$ yang dipenuhi oleh $\mathbf{a}a$ dalam $\Struct{M}$. Hingga ekuivalensi
+  logis, himpunan ini hanya mempunyai berhingga banyak anggota; jadi, dengan
+  memilih wakil-wakil dan mengambil konjungsinya, kita dapat memperlakukan
+  $!T^a_n$ sebagai satu !!{formula} orde pertama. Karena itu,
+  $\mathbf{a}$ memenuhi $\lexists[x][!T^a_n(x,\mathbf{y})]$, yang mempunyai
+  peringkat kuantor tidak lebih besar daripada $n+1$. Menurut hipotesis,
+  $\mathbf{b}$ memenuhi !!{formula} yang sama dalam $\Struct{N}$, sehingga
+  terdapat $b \in \Domain N$ sedemikian sehingga $\mathbf{b}b$ memenuhi
+  $!T^a_n$. Khususnya, $\mathbf{b}b$ memenuhi !!{formula}s yang sama dengan
+  peringkat kuantor tidak lebih besar daripada~$n$ seperti $\mathbf{a}a$.
+  Dengan cara serupa, kita menunjukkan bahwa bagi setiap $b \in \Domain N$
+  terdapat $a\in \Domain M$ sedemikian sehingga $\mathbf{a}a$ dan
+  $\mathbf{b}b$ memenuhi !!{formula}s yang sama dengan peringkat kuantor
+  tidak lebih besar daripada~$n$; ini menyelesaikan bukti.
+\end{proof}
+
+\begin{cor}\ollabel{cor:b-n-f}
+  Jika $\Struct{M}$ dan $\Struct{N}$ merupakan !!{structure}s relasional
+  murni dalam suatu !!{language} hingga, maka $\Struct{M} \approx_n
+  \Struct{N}$ jika dan hanya jika $\Struct{M} \elemequiv[n] \Struct{N}$.
+  Khususnya, $\Struct{M} \elemequiv \Struct{N}$ jika dan hanya jika bagi
+  setiap $n$, $\Struct{M} \approx_n \Struct{N}$.
+\end{cor}
+
+\end{document}

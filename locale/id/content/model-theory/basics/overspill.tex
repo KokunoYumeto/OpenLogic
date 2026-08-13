@@ -1,0 +1,45 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: overspill
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{ove}
+\olsection{Peluapan}
+
+\begin{thm}
+\ollabel{overspill} Jika suatu himpunan kalimat $\Gamma$ mempunyai model
+hingga dengan ukuran sebesar apa pun, maka himpunan itu mempunyai model tak
+hingga.
+\end{thm}
+
+\begin{proof}
+Ekspansikan bahasa dari $\Gamma$ dengan menambahkan terhitung banyak simbol
+konstanta baru $c_0$, $c_1$, \dots, lalu tinjau himpunan $\Gamma \cup
+\{c_i \neq c_j : i \neq j\}$. Mengatakan bahwa $\Gamma$ mempunyai model
+hingga dengan ukuran sebesar apa pun berarti bahwa bagi setiap $m >0$
+terdapat $n\ge m$ sedemikian sehingga $\Gamma$ mempunyai model berkardinalitas
+$n$. Hal ini menyiratkan bahwa $\Gamma \cup \{c_i \neq c_j : i \neq j\}$
+dapat dipenuhi secara berhingga. Menurut kekompakan, $\Gamma \cup \{c_i
+\neq c_j : i \neq j\}$ mempunyai suatu model $\Struct M$ yang domainnya
+harus tak hingga, karena model itu memenuhi semua pertidaksamaan $c_i \neq
+c_j$.
+\end{proof}
+
+\begin{prop}
+\ollabel{inf-not-fo}
+Tidak ada kalimat $!A$ dari bahasa orde pertama mana pun yang benar dalam
+!!a{structure}~$\Struct M$ jika dan hanya jika domain $\Domain{M}$ dari
+!!{structure} tersebut tak hingga.
+\end{prop}
+
+\begin{proof}
+Jika kalimat~$!A$ semacam itu ada, negasinya $\lnot !A$ akan benar tepat
+dalam semua !!{structure}s hingga. Karena itu, negasi tersebut akan mempunyai
+model hingga dengan ukuran sebesar apa pun, tetapi tidak mempunyai model tak
+hingga, bertentangan dengan \olref{overspill}.
+\end{proof}
+
+\end{document}

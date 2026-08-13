@@ -1,0 +1,138 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: isomorphism
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{iso}
+\olsection{Struktur-Struktur Isomorfik}
+
+Dalam logika orde pertama, !!{structure}s dapat serupa dalam dua cara. Salah
+satu cara keduanya dapat serupa ialah bahwa keduanya membuat !!{sentence}s yang sama
+menjadi benar. Kita menyebut !!{structure}s semacam itu \emph{ekuivalen
+secara elementer}. Namun, struktur-struktur dapat sangat berbeda dan tetap
+membuat !!{sentence}s yang sama menjadi benar---misalnya, yang satu dapat
+!!{enumerable}, sedangkan yang lain tidak. Hal ini terjadi karena terdapat
+banyak sifat !!a{structure} yang tidak dapat diungkapkan dalam bahasa orde
+pertama, entah karena bahasanya tidak cukup kaya, atau karena keterbatasan
+mendasar logika orde pertama seperti teorema L\"owenheim--Skolem. Jadi, cara
+lain yang lebih ketat bagi !!{structure}s untuk dikatakan serupa ialah apabila
+keduanya pada dasarnya sama, dalam arti keduanya hanya berbeda dalam
+objek-objek yang menyusunnya, tetapi tidak dalam sifat-sifat strukturalnya.
+Gagasan \emph{isomorfisme} membuat pengertian ini saksama.
+
+\begin{defn}
+\ollabel{defn:elem-equiv}
+Diberikan dua !!{structure}s $\Struct{M}$ dan $\Struct M'$ bagi
+!!{language} yang sama~$\Lang{L}$, kita mengatakan bahwa $\Struct{M}$
+\emph{ekuivalen secara elementer dengan} $\Struct M'$, ditulis
+$\Struct{M} \equiv \Struct M'$, jika dan hanya jika, bagi setiap
+!!{sentence}~$!A$ dari~$\Lang{L}$, $\Sat{M}{!A}$ jika dan hanya jika
+$\Sat{M'}{!A}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:isomorphism} Diberikan dua !!{structure}s $\Struct{M}$ dan
+$\Struct M'$ bagi !!{language} yang sama~$\Lang L$, kita mengatakan bahwa
+$\Struct{M}$ \emph{isomorfik dengan}~$\Struct M'$, ditulis $\Struct{M}
+\simeq \Struct M'$, jika dan hanya jika terdapat suatu fungsi $h \colon
+\Domain{M} \to \Domain{M'}$ sedemikian sehingga:
+\begin{enumerate}
+\item $h$ bersifat !!{injective}: jika $h(x) = h(y)$, maka $x = y$;
+\item $h$ bersifat !!{surjective}: bagi setiap $y \in \Domain{M'}$
+  terdapat $x \in \Domain{M}$ sedemikian sehingga $h(x) = y$;
+\item \ollabel{defn:iso-const}bagi setiap !!{constant} $c$:
+  $h(\Assign{c}{M}) = \Assign{c}{M'}$;
+\item \ollabel{defn:iso-pred}bagi setiap !!{predicate} beraritas-$n$~$P$
+  dan setiap pilihan argumen dari domain struktur pertama:
+  \[
+  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{jika dan hanya jika}\quad
+  \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
+  \]
+\item \ollabel{defn:iso-func}bagi setiap !!{function} beraritas-$n$~$f$
+  dan setiap pilihan argumen dari domain struktur pertama:
+  \[
+  h(\Assign{f}{M}(a_1, \dots, a_n)) =
+  \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:isom}
+Jika $\Struct{M} \iso \Struct M'$, maka $\Struct{M} \elemequiv
+\Struct{M'}$.
+\end{thm}
+
+\begin{proof}
+Misalkan $h$ suatu isomorfisme dari $\Struct{M}$ pada $\Struct M'$. Bagi
+sembarang penugasan~$s$, $h \circ s$ merupakan komposisi $h$ dan $s$, yakni
+penugasan dalam $\Struct{M'}$ sedemikian sehingga $(h \circ s)(x) = h(s(x))$.
+Dengan induksi pada $t$ dan $!A$, kita dapat membuktikan dua klaim yang lebih
+kuat:
+\begin{enumerate}
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
+  \item[b.] $\Sat{M}{!A}[s]$ jika dan hanya jika
+    $\Sat{M'}{!A}[h \circ s]$.
+\end{enumerate}
+Klaim pertama dibuktikan dengan induksi pada kompleksitas~$t$.
+\begin{enumerate}
+\item Jika $t \ident c$, maka $\Value{c}{M}[s] = \Assign{c}{M}$ dan
+  $\Value{c}{M'}[h \circ s] = \Assign{c}{M'}$. Jadi,
+  $h(\Value{t}{M}[s]) = h(\Assign{c}{M}) = \Assign{c}{M'}$ (menurut
+  \olref{defn:iso-const} dari \olref{defn:isomorphism}) $=
+  \Value{t}{M'}[h \circ s]$.
+\item Jika $t \ident x$, maka $\Value{x}{M}[s] = s(x)$ dan
+  $\Value{x}{M'}[h \circ s] = h(s(x))$. Jadi,
+  $h(\Value{x}{M}[s]) = h(s(x)) = \Value{x}{M'}[h \circ s]$.
+\item Jika $t \ident f(t_1, \dots, t_n)$, maka
+  \begin{align*}
+    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots,
+      \Value{t_n}{M}[s]) \quad\text{dan}\\
+    \Value{t}{M'}[h \circ s] & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ
+      s], \dots, \Value{t_n}{M'}[h \circ s]).
+  \end{align*}
+  Hipotesis induksinya ialah bahwa bagi setiap $i$,
+  $h(\Value{t_i}{M}[s]) = \Value{t_i}{M'}[h\circ s]$. Maka,
+  \begin{align}
+    h(\Value{t}{M}[s])
+    & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots,
+      \Value{t_n}{M}[s])) \notag\\
+    & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
+      h(\Value{t_n}{M}[s])) \ollabel{iso-1}\\
+    & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ s], \dots,
+      \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
+    & = \Value{t}{M'}[h\circ s] \notag
+  \end{align}
+  Di sini, \olref{iso-1} mengikuti dari \olref{defn:iso-func} dalam
+  \olref{defn:isomorphism}, sedangkan \olref{iso-2} mengikuti dari hipotesis
+  induksi.
+\end{enumerate}
+Bagian~(b) diserahkan sebagai latihan.
+
+Jika $!A$ suatu kalimat, penugasan~$s$ dan $h \circ s$ tidak relevan, dan
+kita memperoleh $\Sat{M}{!A}$ jika dan hanya jika $\Sat{M'}{!A}$.
+\end{proof}
+
+\begin{prob}
+Kerjakan secara terperinci bukti bagian~(b) dari
+\olref[mod][bas][iso]{thm:isom}. Pastikan Anda mencatat di mana masing-masing
+dari kelima sifat dalam \olref[mod][bas][iso]{defn:isomorphism} yang
+mencirikan isomorfisme digunakan.
+\end{prob}
+
+\begin{defn}
+Suatu \emph{automorfisme} dari sebuah struktur $\Struct{M}$ ialah suatu
+isomorfisme dari $\Struct{M}$ pada dirinya sendiri.
+\end{defn}
+
+\begin{prob}
+Tunjukkan bahwa bagi sembarang struktur $\Struct{M}$, jika $X$ merupakan
+himpunan bagian terdefinisi dari $\Struct{M}$ dan $h$ suatu automorfisme dari
+$\Struct{M}$, maka $X = \Setabs{h(x)}{x \in X}$ (yakni, $X$ tetap di bawah
+$h$).
+\end{prob}
+
+\end{document}

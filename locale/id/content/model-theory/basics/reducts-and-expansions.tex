@@ -1,0 +1,70 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: reducts-and-expansions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{red}
+\section{Reduk dan Ekspansi}
+
+Sering kali berguna atau perlu untuk membandingkan bahasa-bahasa yang
+memiliki sejumlah simbol yang sama, beserta !!{structure}s bagi
+bahasa-bahasa tersebut. Kasus yang paling umum ialah ketika semua simbol
+dalam !!a{language}~$\Lang{L}$ juga merupakan bagian dari
+!!a{language}~$\Lang{L'}$, yakni $\Lang{L} \subseteq \Lang{L'}$.
+Suatu $\Lang{L}$-!!{structure}~$\Struct{M}$ selalu dapat diekspansi
+menjadi suatu $\Lang{L'}$-!!{structure} dengan menambahkan interpretasi
+bagi simbol-simbol tambahan sambil membiarkan interpretasi simbol-simbol
+yang sama tetap tidak berubah. Sebaliknya, dari suatu
+$\Lang{L'}$-struktur~$\Struct{M'}$ kita dapat memperoleh suatu
+$\Lang{L}$-struktur cukup dengan ``melupakan'' interpretasi simbol-simbol
+yang tidak terdapat dalam~$\Lang{L}$.
+
+\begin{defn}
+\ollabel{defn:reduct}
+Andaikan $\Lang L \subseteq \Lang L'$, $\Struct M$ suatu
+$\Lang L$-!!{structure}, dan $\Struct M'$ suatu
+$\Lang L'$-!!{structure}. $\Struct M$ merupakan \emph{reduk} dari
+$\Struct M'$ ke $\Lang L$, dan $\Struct M'$ merupakan \emph{ekspansi}
+dari $\Struct M$ ke $\Lang L'$ jika dan hanya jika
+\begin{enumerate}
+\item $\Domain{M} = \Domain{M'}$;
+\item Bagi setiap !!{constant}~$c \in \Lang L$, $\Assign{c}{M} =
+  \Assign{c}{M'}$.
+\item Bagi setiap !!{function}~$f \in \Lang L$, $\Assign{f}{M} =
+  \Assign{f}{M'}$.
+\item Bagi setiap !!{predicate}~$P \in \Lang L$, $\Assign{P}{M} =
+  \Assign{P}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:reduct}
+Jika suatu $\Lang{L}$-!!{structure}~$\Struct{M}$ merupakan reduk dari
+suatu $\Lang{L'}$-!!{structure}~$\Struct{M'}$, maka bagi semua
+$\Lang{L}$-!!{sentence}s~$!A$,
+\[
+\Sat{M}{!A} \text{ jika dan hanya jika } \Sat{M'}{!A}.
+\]
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[mod][bas][red]{prop:reduct}.
+\end{prob}
+
+\begin{defn}
+Andaikan kita mempunyai suatu $\Lang{L}$-struktur $\Struct{M}$, dan
+$\Lang{L'} = \Lang{L} \cup \{P\}$ merupakan ekspansi dari $\Lang{L}$
+yang diperoleh dengan menambahkan satu !!{predicate} beraritas-$n$~$P$.
+Jika $R \subseteq \Domain{M}^n$ merupakan suatu relasi $n$-tempat,
+kita menulis $\Expan{M}{R}$ bagi ekspansi~$\Struct{M'}$ dari~$\Struct{M}$
+dengan $\Assign{P}{M'} = R$.
+\end{defn}
+
+\end{document}

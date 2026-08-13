@@ -1,0 +1,93 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: partial-iso
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{dlo}
+\section{Urutan Linear Rapat}
+
+\begin{defn}
+  Suatu \emph{urutan linear rapat tanpa titik ujung} ialah
+  !!a{structure} $\Struct{M}$ bagi !!{language} yang memuat satu
+  !!{predicate}~$<$ beraritas~2 dan memenuhi kalimat-kalimat berikut:
+  \begin{enumerate}
+  \item $\lforall[x][\lnot x < x]$;
+  \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x
+    <z ))]]]$;
+  \item $\lforall[x][\lforall[y][(x< y \lor \eq[x][y] \lor y < x)]]$;
+  \item $\lforall[x][\lexists[y][x < y]]$;
+  \item $\lforall[x][\lexists[y][y < x]]$;
+  \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land
+        z < y))]]]$.
+ \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:cantorQ}
+  Sembarang dua urutan linear rapat tanpa titik ujung yang !!{enumerable}
+  saling isomorfik.
+\end{thm}
+
+\begin{proof}
+  Misalkan $\Struct{M_1}$ dan $\Struct{M_2}$ merupakan urutan linear rapat
+  tanpa titik ujung yang !!{enumerable}, dengan ${<_1} = \Assign{<}{M_1}$
+  dan ${<_2} = \Assign{<}{M_2}$, serta misalkan $\PIso{I}$ merupakan
+  himpunan semua isomorfisme parsial di antara keduanya. $\PIso{I}$ tidak
+  kosong karena sekurang-kurangnya $\emptyset \in \PIso{I}$. Kita tunjukkan
+  bahwa $\PIso{I}$ memenuhi sifat bolak-balik. Dengan demikian,
+  $\Struct{M_1} \iso[p] \Struct{M_2}$, dan teorema ini mengikuti dari
+  \olref[pis]{thm:p-isom1}.
+
+  Untuk menunjukkan bahwa $\PIso{I}$ memenuhi sifat Maju, misalkan
+  $p \in \PIso{I}$. Apabila fungsi parsial ini tidak kosong, tulis
+  $p(a_i) = b_i$ bagi $i = 1$, \dots,~$n$. Tanpa mengurangi keumuman,
+  andaikan $a_1 <_1 a_2 <_1 \cdots <_1 a_n$.
+  Diberikan $a \in \Domain{M_1}$, kita memperoleh perluasan yang diinginkan
+  sebagai berikut. Jika unsur yang diberikan sudah berada dalam domain
+  fungsi parsial itu, fungsi tersebut sendiri merupakan perluasan yang
+  diinginkan. Jika fungsi parsial itu kosong, pasangan tunggal apa pun dengan
+  unsur yang diberikan sebagai komponen pertama dan suatu anggota struktur
+  kedua sebagai komponen kedua memberikan perluasan yang diinginkan. Dalam
+  semua kasus lainnya, unsur yang diberikan tidak berada dalam domain fungsi
+  parsial itu dan kita menemukan $b \in \Domain{M_2}$ sebagai berikut:
+  \begin{enumerate}
+  \item jika $a <_1 a_1$, ambil $b \in \Domain{M_2}$ sedemikian sehingga
+    $b <_2 b_1$;
+  \item jika $a_n <_1 a$, ambil $b \in \Domain{M_2}$ sedemikian sehingga
+    $b_n <_2 b$;
+  \item jika $a_i <_1 a <_1 a_{i+1}$ bagi suatu $i$, ambil
+    $b \in \Domain{M_2}$ sedemikian sehingga $b_i <_2 b <_2 b_{i+1}$.
+  \end{enumerate}
+  Selalu mungkin menemukan $b$ dengan sifat yang diinginkan karena
+  $\Struct{M_2}$ merupakan urutan linear rapat tanpa titik ujung. Dalam
+  kasus-kasus terakhir ini, tetapkan $q = p \cup \{ \langle a, b \rangle
+  \}$; maka $q \in \PIso{I}$ merupakan perluasan $p$ yang diinginkan. Ini
+  menetapkan sifat Maju. Sifat Mundur dibuktikan dengan cara serupa. Jadi,
+  $\Struct{M_1} \iso[p] \Struct{M_2}$; menurut
+  \olref[pis]{thm:p-isom1}, $\Struct{M_1} \iso \Struct{M_2}$.
+\end{proof}
+
+\begin{prob}
+  Lengkapi bukti \olref[mod][bas][dlo]{thm:cantorQ} dengan memverifikasi
+  bahwa $\PIso{I}$ memenuhi sifat Mundur.
+\end{prob}
+
+\begin{rem}
+  Misalkan $\Struct{S}$ sembarang urutan linear rapat tanpa titik ujung yang
+  !!{enumerable}. Maka (menurut \olref{thm:cantorQ}) $\Struct{S} \iso
+  \Struct{Q}$, dengan $\Struct{Q} = (\Rat, <)$ sebagai urutan linear rapat
+  !!{enumerable} yang domainnya merupakan himpunan bilangan rasional~$\Rat$.
+  Sekarang tinjau kembali !!{structure}~$\Struct{R} = (\Real, <)$ dari
+  \olref[thm]{remark:R}. Kita telah melihat bahwa terdapat
+  !!a{structure}~$\Struct{S}$ yang !!{enumerable} sedemikian sehingga
+  $\Struct{R} \elemequiv \Struct{S}$. Namun, $\Struct{S}$ merupakan
+  urutan linear rapat tanpa titik ujung yang !!{enumerable}, sehingga struktur itu
+  isomorfik (dan karenanya ekuivalen secara elementer) dengan
+  !!{structure}~$\Struct{Q}$. Menurut transitivitas ekuivalensi elementer,
+  $\Struct{R} \elemequiv \Struct{Q}$. (Kita juga dapat menunjukkan ini
+  secara langsung dengan menetapkan $\Struct{R} \iso[p] \Struct{Q}$ melalui
+  argumen bolak-balik yang sama.)
+\end{rem}
+\end{document}

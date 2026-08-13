@@ -1151,3 +1151,70 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 5,695 English-source and 4,979 Indonesian words for this batch, and 84,280
 versus 77,450 across all 181 admitted files. The exact next cursor is
 `OLP-0182`, `content/model-theory/model-theory.tex`; 541 closure rows remain.
+
+## Model Theory Basics checkpoint — 2026-08-13
+
+### Source binding, deterministic replay, and independent review
+
+The gap-free boundary extends through `OLP-0190`. Every source hash equals its
+row in the frozen 722-file manifest at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. Run from the repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_model_theory_basics_batch_replay.ps1
+```
+
+The replay script is 28,514 bytes, SHA-256
+`fecba05d1554527da7ffc3693cce18af5afc40bd18b805e3d5633a8c27fcda9e`.
+It exits 0 with `files=9` and `checks=311`. The independent review receipt is
+8,318 bytes, SHA-256
+`1c08bf4bb9ff8c06439e3689893a0a2c8ec3c534ffb26217f07eae838ad24b39`.
+It binds every final target hash, records eight correction/repair classes,
+preserves the exact upstream candidates and two unresolved source risks,
+retracts three false positives, and reports no unresolved Indonesian finding.
+
+### Clean cumulative build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-model-theory-basics-id.tex
+```
+
+The build exits 0. The driver is 2,073 bytes, SHA-256
+`0f002abcef5c3ca3569e0ea681b36525264e9899d5090926ebb720c8918a9a3c`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-model-theory-basics-id.tex` | `locale/id/first-order-logic-model-theory-basics-id.pdf` | 88 | 569,200 | `3e3214708cac2672e691ddbb45b22282861023026bf9f8f4d28ffd7f3efea93b` |
+
+The final log has SHA-256
+`0872434ad0e69aefa1e1a075f2a5723d2e586c10440885efca473f5f147f5a24`.
+It contains zero fatal error, undefined control/reference/citation, missing
+file, or missing glyph. Forty-one overfull hboxes remain, maximum 24.44377 pt,
+and one underfull box remains; exact-page inspection found no visible defect.
+All 17 fonts are embedded and 16 have ToUnicode maps. The inherited Type 3
+mathematical font F111 lacks ToUnicode, while searchable extraction remains
+intact.
+
+### Extraction, render review, and counts
+
+Full extracted text is 194,765 bytes, SHA-256
+`23e45d4b99e792e57994596caefa334264caf5f96e8ba1639b258771e6bf149a`.
+The pages 78--88 extraction is 21,574 bytes and 3,802
+whitespace-delimited tokens, SHA-256
+`f52161892bd462b73398975ace18b56d7f0b36c0e58909eea308124e2c691bec`.
+
+The complete PDF was rendered at 144 dpi. Raster hashes prove pages 1--77
+pixel-identical to the prior admitted PDF. Pages 78--88 were individually
+inspected at original render resolution; pages 82 and 87 were re-inspected
+after the final wording edits. No clipping, overlap, cropped formula, broken
+reference, black box, unreadable glyph, margin loss, or page-number defect was
+found.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+2,650 English-source and 2,686 Indonesian words for this batch, and 86,930
+versus 80,136 across all 190 admitted files. The exact next cursor is
+`OLP-0191`, `content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`;
+532 closure rows remain.

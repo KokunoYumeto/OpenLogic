@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0181` (181/722 files). It is incomplete and must not be represented as the
+`OLP-0190` (190/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -96,6 +96,15 @@ Exact source corrections currently include:
   irrational-power witness whose irrationality is not established locally.
   Three earlier concerns about iterated-binder ellipsis, the comprehension
   restriction, and the S5 frame presentation were explicitly retracted.
+- Model Theory Basics requires nonempty substructure domains; restores
+  predicate/function argument scope, the primed-structure interpretation, and
+  a missing parenthesis in the isomorphism proof; corrects back-and-forth
+  parity, free-variable and sequence-length scope, and finite-type wording; and
+  closes the omitted empty-map and already-in-domain DLO proof cases. It also
+  corrects one duplicated Indonesian phrase, three false `bertempat` arity
+  surfaces, three raw `-structure` fallbacks, and three token/adjective-order
+  surfaces. The parameterized-definability and partial-function-definedness
+  risks remain preserved; three false positives are explicitly retracted.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

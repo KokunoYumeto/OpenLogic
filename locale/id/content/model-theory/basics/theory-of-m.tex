@@ -1,0 +1,68 @@
+% Bagian: first-order-logic
+% Bab: model-theory
+% Subbagian: theory-of-m
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{thm}
+
+\section{Teori suatu \printtoken{S}{structure}}
+
+Setiap !!{structure}~$\Struct{M}$ membuat sebagian !!{sentence}s benar dan
+sebagian lainnya salah. Himpunan semua !!{sentence}s yang dibuatnya benar
+disebut \emph{teori} struktur tersebut. Himpunan itu memang merupakan suatu
+teori, karena apa pun yang diakibatkannya harus benar dalam semua modelnya,
+termasuk~$\Struct{M}$.
+
+\begin{defn}
+  Diberikan !!a{structure}~$\Struct M$, \emph{teori} dari $\Struct{M}$
+  ialah himpunan $\Theory{M}$ dari !!{sentence}s yang benar dalam
+  $\Struct{M}$, yakni $\Theory{M} = \Setabs{!A}{\Sat{M}{!A}}$.
+\end{defn}
+
+Kita juga menggunakan istilah ``teori'' secara informal untuk mengacu pada
+himpunan-himpunan !!{sentence}s yang mempunyai interpretasi yang dimaksudkan,
+entah tertutup secara deduktif ataupun tidak.
+
+\begin{prop}
+Bagi sembarang $\Struct{M}$, $\Theory{M}$ lengkap.
+\end{prop}
+
+\begin{proof}
+Bagi sembarang !!{sentence}~$!A$, berlaku $\Sat{M}{!A}$ atau
+$\Sat{M}{\lnot !A}$, sehingga $!A \in \Theory{M}$ atau
+$\lnot !A \in \Theory{M}$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:equiv}
+  Jika $\Struct{N} \models !A$ bagi setiap $!A \in \Theory{M}$, maka
+  $\Struct{M} \elemequiv \Struct{N}$.
+\end{prop}
+
+\begin{proof}
+Karena $\Sat{N}{!A}$ bagi semua $!A \in \Theory{M}$, berlaku
+$\Theory{M} \subseteq \Theory{N}$. Jika $\Sat{N}{!A}$, maka
+$\Sat/{N}{\lnot !A}$. Karena menurut hipotesis struktur tersebut memenuhi
+setiap kalimat dari teori yang pertama, hal ini menyiratkan
+$\lnot !A \notin \Theory{M}$. Karena
+$\Theory{M}$ lengkap, berlaku $!A \in \Theory{M}$. Jadi,
+$\Theory{N} \subseteq \Theory{M}$, dan dengan demikian
+$\Struct{M} \elemequiv \Struct{N}$.
+\end{proof}
+
+\begin{rem}\ollabel{remark:R}
+  Tinjau $\Struct{R} = \langle\Real, <\rangle$, yakni !!{structure} yang
+  domainnya merupakan himpunan bilangan real~$\Real$, dalam !!{language}
+  yang hanya memuat satu !!{predicate} beraritas~2 yang ditafsirkan sebagai
+  relasi~$<$ pada bilangan real. Jelas bahwa $\Struct{R}$
+  !!{nonenumerable}; namun, karena $\Theory{R}$ jelas konsisten, menurut
+  teorema L\"owenheim--Skolem teori tersebut mempunyai model yang
+  !!{enumerable}, sebut saja $\Struct{S}$, dan menurut \olref{prop:equiv},
+  $\Struct{R} \equiv \Struct{S}$. Selain itu, karena $\Struct{R}$ dan
+  $\Struct{S}$ tidak isomorfik, hal ini menunjukkan bahwa kebalikan dari
+  \olref[iso]{thm:isom} pada umumnya tidak berlaku.
+\end{rem}
+
+\end{document}

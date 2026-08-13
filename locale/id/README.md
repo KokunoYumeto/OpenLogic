@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **181 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0181`; unit berikutnya ialah `OLP-0182`,
-`content/model-theory/model-theory.tex`.
+Status saat ini: **190 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0190`; unit berikutnya ialah `OLP-0191`,
+`content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -223,6 +223,23 @@ yang berubah, 61--78, telah diperiksa pada render 144 dpi beresolusi asli.
 Tidak ditemukan pemotongan, tumpang tindih, kerusakan glif atau formula,
 kehilangan margin, atau rujukan tak terselesaikan. Kursor global berikutnya
 adalah `OLP-0182`.
+
+Checkpoint terbaru menambahkan sembilan unit Dasar-Dasar Teori Model
+(`OLP-0182`--`OLP-0190`). Replay deterministik lulus 311 pemeriksaan dan
+tinjauan semantik independen tidak menyisakan temuan sasaran Bahasa Indonesia.
+Penggerak kumulatif berikut membangun bab 15--20:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-model-theory-basics-id.tex
+```
+
+PDF 88 halaman itu berukuran 569.200 byte dengan SHA-256
+`3e3214708cac2672e691ddbb45b22282861023026bf9f8f4d28ffd7f3efea93b`.
+Halaman 1--77 identik piksel dengan checkpoint sebelumnya; seluruh halaman
+78--88 telah diperiksa pada render 144 dpi beresolusi asli, termasuk inspeksi
+ulang halaman 82 dan 87 setelah koreksi redaksi terakhir. Tidak ditemukan
+pemotongan, tumpang tindih, kerusakan glif atau formula, kehilangan margin,
+atau rujukan tak terselesaikan. Kursor global berikutnya adalah `OLP-0191`.
 
 ## Syarat penerimaan tiap batch
 

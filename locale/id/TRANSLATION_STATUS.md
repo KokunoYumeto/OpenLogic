@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 181/722 and the exact remainder is 541 files.
+Current target-file coverage is 190/722 and the exact remainder is 532 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -670,4 +670,54 @@ is present; its absence is not an admission blocker.
 Next global ordered cursor: `OLP-0182`,
 `content/model-theory/model-theory.tex`.
 The remaining closure is 541 source files after the 181 target files currently
+present and admitted.
+
+### Contiguous Model Theory Basics batch
+
+The Model Theory part driver and complete Basics chapter add
+`OLP-0182`--`OLP-0190`. All nine source hashes match the 722-file manifest and
+frozen commit `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. Deterministic replay passes
+311 checks over the nine final target files. The replay script is 28,514 bytes,
+SHA-256
+`fecba05d1554527da7ffc3693cce18af5afc40bd18b805e3d5633a8c27fcda9e`.
+
+Independent review reads every paragraph, statement, proof, formula, token,
+tag, label, reference, and import; it finds no unresolved Indonesian target
+defect. The exact receipt is
+`..\..\..\_control\OPENLOGIC_MODEL_THEORY_BASICS_INDEPENDENT_REVIEW_20260813.md`
+(8,318 bytes, SHA-256
+`1c08bf4bb9ff8c06439e3689893a0a2c8ec3c534ffb26217f07eae838ad24b39`).
+It records eight correction/repair classes, exact upstream candidates and two
+preserved source risks, plus three explicit false-positive retractions.
+
+The cumulative driver is 2,073 bytes, SHA-256
+`0f002abcef5c3ca3569e0ea681b36525264e9899d5090926ebb720c8918a9a3c`.
+Its build exits 0 and produces an 88-page, 569,200-byte PDF, SHA-256
+`3e3214708cac2672e691ddbb45b22282861023026bf9f8f4d28ffd7f3efea93b`.
+The final log has SHA-256
+`0872434ad0e69aefa1e1a075f2a5723d2e586c10440885efca473f5f147f5a24`
+and contains zero fatal error, undefined control/reference/citation, or missing
+file/glyph. Forty-one overfull hboxes remain, maximum 24.44377 pt; one
+underfull box remains. Exact-page inspection found no visible loss. All 17
+fonts are embedded; 16 have ToUnicode maps, while inherited Type 3 font F111
+does not and searchable extraction remains intact.
+
+The full extraction is 194,765 bytes, SHA-256
+`23e45d4b99e792e57994596caefa334264caf5f96e8ba1639b258771e6bf149a`.
+Pages 78--88 extract to 21,574 bytes / 3,802 whitespace-delimited tokens,
+SHA-256
+`f52161892bd462b73398975ace18b56d7f0b36c0e58909eea308124e2c691bec`.
+Raster hashes prove pages 1--77 pixel-identical to the prior admitted PDF.
+Every page 78--88 was inspected at 144 dpi and original resolution with no
+clipping, overlap, margin loss, broken reference/formula, unreadable glyph, or
+page-number defect. Pages 82 and 87 were re-inspected after the final wording
+edits.
+
+TeXcount reports 2,650 English-source and 2,686 Indonesian words for this
+batch, and 86,930 versus 80,136 cumulatively. No native/human review metadata
+is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0191`,
+`content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`.
+The remaining closure is 532 source files after the 190 target files currently
 present and admitted.

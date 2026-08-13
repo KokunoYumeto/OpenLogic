@@ -39,11 +39,11 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0181`.
-- Next row: `OLP-0182`.
+- Admitted ordered boundary: `OLP-0190`.
+- Next row: `OLP-0191`.
 - Next source:
-  `content/model-theory/model-theory.tex`.
-- Current coverage: 181/722; exact remainder: 541.
+  `content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`.
+- Current coverage: 190/722; exact remainder: 532.
 
 ## DOI and discoverability maintenance
 
