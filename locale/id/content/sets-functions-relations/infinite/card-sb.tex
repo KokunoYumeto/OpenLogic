@@ -1,0 +1,114 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{infinite}{card-sb}
+
+\olsection{Lampiran: Membuktikan Schr\"oder--Bernstein}
+
+Sebelum meninggalkan teori himpunan naif, masih ada satu bukti naif terakhir
+(tetapi canggih!) yang perlu kita bahas. Ini adalah bukti teorema
+Schr\"oder--Bernstein (\olref[sfr][siz][sb]{thm:schroder-bernstein}): jika
+$\cardle{A}{B}$ dan $\cardle{B}{A}$, maka $\cardeq{A}{B}$; yakni, jika
+diberikan !!{injection}s $f \colon A \to B$ dan $g \colon B \to A$, maka
+terdapat !!a{bijection} $h \colon A \to B$.
+
+Dalam bab ini, kita mengikuti gagasan Dedekind mengenai \emph{penutupan}.
+Pada kenyataannya, Dedekind memberikan suatu bukti yang elok bagi teorema
+Schr\"oder--Bernstein dengan menggunakan gagasan tersebut, dan bukti itu
+akan kita sajikan di sini. Bukti ini mengikuti secara dekat
+\citet[pp.~157--8]{Potter2004}, jika Anda menghendaki pembahasan yang sedikit
+berbeda tetapi pada dasarnya serupa. Sedikit pencarian di internet juga akan
+meyakinkan Anda bahwa teorema ini---agak menyerupai irasionalitas
+$\sqrt{2}$---mempunyai \emph{banyak} bukti menarik yang berbeda-beda.
+
+Dengan menggunakan notasi yang serupa dengan
+\olref[sfr][infinite][dedekind]{Closure}, misalkan
+\[
+\Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X
+\text{ dan $X$ bersifat $f$-tertutup}}
+\]
+untuk setiap himpunan $B$ dan fungsi~$f$. Dengan definisi ini,
+$\Closureofunder{f}{B}$ adalah himpunan $f$-tertutup terkecil yang
+memuat~$B$, dalam arti berikut:
+
+\begin{lem}\ollabel{Closureprops}
+	Untuk sembarang fungsi $f$ dan sembarang $B$:
+	\begin{enumerate}
+		\item\ollabel{Closurehaselem} $B \subseteq \Closureofunder{f}{B}$; dan
+		\item\ollabel{Closureclosed} $\Closureofunder{f}{B}$ bersifat $f$-tertutup; dan
+		\item\ollabel{Closuresmallest} jika $X$ bersifat $f$-tertutup dan $B
+		\subseteq X$, maka $\Closureofunder{f}{B} \subseteq X$.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Persis seperti dalam
+\olref[sfr][infinite][dedekind]{closureproperties}.
+\end{proof}
+
+Kita memerlukan satu fakta terakhir untuk sampai pada teorema
+Schr\"oder--Bernstein:
+
+\begin{prop}\ollabel{sbhelper}
+Jika $A \subseteq B \subseteq C$ dan $A \approx C$, maka $\cardeq{B}{C}$.
+\end{prop}
+
+\begin{proof}
+Jika diberikan !!a{bijection} $f \colon C \to A$, misalkan $F =
+\Closureofunder{f}{C \setminus B}$ dan definisikan suatu fungsi $g$ dengan
+domain $C$ sebagai berikut:
+\[
+	g(x) =
+	\begin{cases}
+			f(x) &\text{jika $x \in F$}\\
+			x & \text{jika tidak}
+	\end{cases}
+\]
+Kita akan menunjukkan bahwa $g$ merupakan !!a{bijection} dari $C \to B$;
+dari sini akan diperoleh bahwa $\comp{f^{-1}}{g} \colon A \to B$ merupakan
+!!a{bijection}, sehingga bukti selesai.
+
+Pertama, kita menyatakan bahwa jika $x \in F$, sedangkan $y\notin F$, maka
+$g(x) \neq g(y)$. Untuk mendapatkan kontradiksi, andaikan sebaliknya,
+sehingga $y = g(y) = g(x) = f(x)$. Karena $x \in F$ dan $F$ bersifat
+$f$-tertutup berdasarkan \olref{Closureprops}, kita mempunyai
+$y = f(x) \in F$, suatu kontradiksi.
+
+Sekarang andaikan $g(x) = g(y)$. Jadi, berdasarkan uraian di atas, $x \in F$
+jika dan hanya jika $y \in F$. Jika $x, y \in F$, maka
+$f(x) = g (x) = g(y) = f(y)$, sehingga $x = y$ karena $f$ merupakan
+!!a{bijection}. Jika $x, y \notin F$, maka $x = g(x) = g(y) = y$. Jadi,
+$g$ merupakan !!a{injection}.
+
+Tinggal ditunjukkan bahwa $\ran{g} = B$. Pertama,
+$\ran{g} \subseteq B$: jika $x \in F$, maka $g(x)=f(x) \in A \subseteq B$;
+jika $x \notin F$, maka $x \in B$ karena $C\setminus B \subseteq F$, dan
+karena itu $g(x)=x \in B$. Untuk inklusi sebaliknya, tetapkan
+$x \in B \subseteq C$. Jika $x \notin F$, maka $g(x) = x$. Jika $x \in F$,
+maka $x = f(y)$ untuk suatu $y \in F$, sebab jika tidak demikian,
+$F \setminus \{x\}$ akan bersifat $f$-tertutup dan memuat
+$C\setminus B$, yang mustahil berdasarkan \olref{Closureprops}; sekarang
+$g(y) = f(y) = x$.
+\end{proof}
+
+Akhirnya, berikut bukti hasil utamanya. Ingatlah bahwa jika diberikan suatu
+fungsi $h$ dan himpunan $D$, kita mendefinisikan
+$\funimage{h}{D} = \Setabs{h(x)}{x \in D}$.
+
+\begin{proof}[Bukti Teorema Schr\"oder--Bernstein] Misalkan
+$f \colon A \to B$ dan $g \colon B \to A$ merupakan !!{injection}s. Karena
+$\funimage{f}{A} \subseteq B$, kita mempunyai
+$\funimage{g}{\funimage{f}{A}} \subseteq g[B] \subseteq A$. Selain itu,
+$\comp{f}{g} \colon A \to \funimage{g}{\funimage{f}{A}}$ merupakan
+!!{injection} karena $g$ dan $f$ keduanya demikian; bahkan,
+$\comp{f}{g}$ merupakan !!a{bijection}, semata-mata berdasarkan cara kita
+mendefinisikan kodomainnya. Jadi,
+$\cardeq{\funimage{g}{\funimage{f}{A}}}{A}$, dan karenanya, berdasarkan
+\olref{sbhelper}, terdapat !!a{bijection} $h \colon A \to
+\funimage{g}{B}$. Selain itu, $g^{-1}$ merupakan !!a{bijection}
+$\funimage{g}{B} \to B$. Jadi, $\comp{h}{g^{-1}} \colon A \to B$ merupakan
+!!a{bijection}.
+\end{proof}
+
+\end{document}

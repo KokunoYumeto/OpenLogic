@@ -1,0 +1,52 @@
+% Penggerak mandiri untuk bab Himpunan Tak Hingga dalam pelokalan Indonesia.
+
+\documentclass[openany]{memoir}
+
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+% Dua rujukan maju menuju bagian Teori Himpunan yang belum masuk checkpoint
+% ini diberi metadata Indonesia saja; tidak ada fallback prosa Inggris.
+\makeatletter
+\hypertarget{ol-id-forward-set-theory}{}
+\protected@write\@auxout{}{\string\newlabel{sth:::part}{{VI}{0}{Teori Himpunan}{ol-id-forward-set-theory}{}}}
+\protected@write\@auxout{}{\string\newlabel{sth:::part@cref}{{[part][6][]VI}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{sth:ord-arithmetic::chap}{{VI.4}{0}{Aritmetika Ordinal}{ol-id-forward-set-theory}{}}}
+\protected@write\@auxout{}{\string\newlabel{sth:ord-arithmetic::chap@cref}{{[chapter][4][6]VI.4}{[1][0][]0}{}{}{}}}
+\hypertarget{ol-id-forward-history}{}
+\protected@write\@auxout{}{\string\newlabel{his:set:limits:sec}{{H.1}{0}{Definisi Limit yang Ketat}{ol-id-forward-history}{}}}
+\protected@write\@auxout{}{\string\newlabel{his:set:limits:sec@cref}{{[section][1][]H.1}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{his:set:mythology:sec}{{H.2}{0}{Lebih Banyak Mitos daripada Sejarah?}{ol-id-forward-history}{}}}
+\protected@write\@auxout{}{\string\newlabel{his:set:mythology:sec@cref}{{[section][2][]H.2}{[1][0][]0}{}{}{}}}
+\makeatother
+
+\olimport*[sets-functions-relations/sets]{sets}
+\olimport*[sets-functions-relations/relations]{relations-complete}
+\olimport*[sets-functions-relations/functions]{functions}
+\olimport*[sets-functions-relations/size-of-sets]{size-of-sets-complete}
+\olimport*[sets-functions-relations/arithmetization]{arithmetization}
+\olimport*[sets-functions-relations/infinite]{infinite}
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}

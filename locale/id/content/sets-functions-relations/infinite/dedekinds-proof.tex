@@ -1,0 +1,117 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekinds-proof
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{infinite}{dedekindsproof}
+
+\olsection[``Bukti'' Dedekind]{``Bukti'' Dedekind tentang
+Keberadaan Himpunan Tak Hingga}
+
+Dalam bab ini, kita telah menyajikan pembahasan bilangan asli dalam teori
+himpunan, dengan menggunakan aljabar Dedekind. Dalam
+\olref[arith][ref]{sec}, kita merenungkan makna filosofis aritmetisasi
+analisis (di antara hal-hal lain). Sekarang kita perlu merenungkan makna dari
+apa yang telah kita capai di sini.
+
+Sepanjang \olref[sfr][arith][]{chap}, kita menganggap bilangan asli sebagai
+sesuatu yang telah tersedia dan menggunakannya untuk membangun bilangan
+bulat, rasional, dan real secara eksplisit. Dalam bab ini, kita belum
+memberikan konstruksi eksplisit bilangan asli. Kita hanya menunjukkan bahwa,
+\emph{jika diberikan sembarang himpunan yang tak hingga Dedekind}, kita dapat
+mendefinisikan suatu himpunan yang akan berperilaku persis sebagaimana kita
+kehendaki~$\Nat$ berperilaku.
+
+Jelaslah bahwa kita tidak dapat mengaku telah menjawab suatu pertanyaan
+metafisis, seperti \emph{objek manakah yang merupakan bilangan asli}. Namun,
+hal itu justru baik. Lagi pula, dalam \olref[sfr][arith][ref]{sec}, kita
+menekankan bahwa kita akan keliru jika menganggap definisi $\Real$ sebagai
+himpunan potongan Dedekind sebagai suatu \emph{penemuan}, alih-alih suatu
+penetapan yang memudahkan. Pengamatan yang menentukan ialah bahwa potongan
+Dedekind mencontohkan sifat-sifat matematis utama bilangan real. Demikian
+pula di sini: pengamatan yang menentukan ialah bahwa \emph{setiap} aljabar
+Dedekind mencontohkan sifat-sifat matematis utama bilangan asli. (Bahkan,
+Dedekind menegaskan pokok ini dengan membuktikan bahwa semua aljabar Dedekind
+\emph{isomorfik} (\citeyear[Theorems
+132--3]{Dedekind1888}). Maka tidak
+mengherankan bahwa banyak ``strukturalis'' kontemporer menyebut Dedekind
+sebagai seorang perintis.)
+
+Selain itu, kita telah menunjukkan cara menanamkan teori bilangan asli ke
+dalam suatu teori himpunan sederhana yang naif. Teori itu sendiri masih
+cukup informal, tetapi (tampaknya) tidak mengandaikan bilangan asli sebagai
+sesuatu yang telah tersedia. Jadi, mungkin kita sedang menuju realisasi
+proyek ambisius Dedekind sendiri, yang ia jelaskan sebagai berikut:
+\begin{quote}
+	Dalam ilmu pengetahuan, tidak ada sesuatu yang dapat dibuktikan yang patut
+	dipercayai tanpa bukti. Meskipun tuntutan ini tampak masuk akal, saya tidak
+	dapat menganggapnya telah dipenuhi bahkan dalam metode-metode paling
+	mutakhir untuk meletakkan landasan ilmu yang paling sederhana; yakni,
+	bagian logika yang berurusan dengan teori bilangan. Dengan menyebut
+	aritmetika (aljabar, analisis) sekadar bagian dari logika, maksud saya ialah
+	bahwa saya menganggap konsep bilangan sepenuhnya tidak bergantung pada
+	gagasan atau intuisi ruang dan waktu---bahwa saya justru menganggapnya
+	sebagai produk langsung hukum-hukum pemikiran murni.
+	\citep[preface]{Dedekind1888}
+\end{quote}
+Gagasan berani Dedekind adalah sebagai berikut. Kita baru saja menunjukkan
+cara membangun bilangan asli hanya dengan menggunakan teori himpunan (naif).
+Dalam \olref[sfr][arith][]{chap}, kita melihat cara membangun bilangan real
+jika bilangan asli dan sedikit teori himpunan telah diberikan. Jadi, mungkin
+``aritmetika (aljabar, analisis)'' ternyata ``sekadar bagian dari logika''
+(dalam pengertian luas Dedekind atas kata ``logika'').
+
+Itulah gagasannya. Namun, tunggu sejenak. Konstruksi aljabar Dedekind kita
+(pengganti bilangan asli yang kita gunakan) bergantung pada syarat bahwa
+suatu himpunan yang tak hingga Dedekind ada. (Lihat kembali
+\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra}.) Jika
+keberadaan suatu himpunan yang tak hingga Dedekind tidak dapat ditetapkan
+melalui ``logika'' atau ``hukum-hukum pemikiran murni'', proyek tersebut
+terhenti.
+
+Jadi, \emph{dapatkah} keberadaan suatu himpunan yang tak hingga Dedekind
+ditetapkan oleh ``hukum-hukum pemikiran murni''? Berikut upaya Dedekind:
+\begin{quote}
+  Ranah pemikiran saya sendiri, yakni totalitas $S$ dari segala hal yang
+  dapat menjadi objek pemikiran saya, bersifat tak hingga. Sebab, jika $s$
+  menandai suatu elemen dari~$S$, maka pemikiran $s'$ bahwa~$s$ dapat menjadi
+  objek pemikiran saya itu sendiri merupakan suatu elemen dari~$S$. Jika kita
+  memandangnya sebagai suatu citra $\phi(s)$ dari elemen~$s$, maka
+  \dots~$S$ bersifat [tak hingga Dedekind], sebagaimana hendak dibuktikan.
+	\citep[\S66]{Dedekind1888}
+\end{quote}
+Ini merupakan hal yang sangat mencengangkan untuk ditemukan di tengah-tengah
+sebuah buku yang sebagian besarnya terdiri atas bukti-bukti matematis yang
+sangat ketat. Dua catatan patut dikemukakan.
+
+Pertama: ``bukti'' ini hampir tidak mempunyai sifat yang sekarang akan kita
+kenali sebagai sifat ``matematis''. Bukti ini berbicara tentang objek
+psikologis (pemikiran), dan bahkan sekadar objek yang \emph{mungkin} ada.
+
+Kedua: sekurang-kurangnya sebagaimana kita telah menyajikan aljabar Dedekind,
+``bukti'' ini mempunyai kekurangan teknis yang langsung terlihat. Jika
+argumen Dedekind berhasil, argumen itu hanya menetapkan bahwa terdapat hal
+yang banyaknya tak hingga (secara khusus, pemikiran yang banyaknya tak
+hingga). Namun, Dedekind juga perlu memberi kita alasan untuk memandang~$S$
+sebagai satu \emph{himpunan}, dengan !!{element}s yang banyaknya tak hingga,
+alih-alih memandang~$S$ sebagai \emph{sejumlah hal} (dalam bentuk jamak).
+
+Fakta bahwa Dedekind tidak melihat kesenjangan di sini mungkin menunjukkan
+bahwa penggunaan kata ``totalitas'' olehnya tidak secara tepat sejalan
+dengan penggunaan kata ``himpunan'' oleh \emph{kita}.\footnote{Memang, kita
+mempunyai alasan-alasan lain untuk berpikir demikian; lihat
+\citet[p.~23]{Potter2004}.} Namun, hal ini tidak terlalu mengejutkan. Proyek
+yang kita kerjakan dalam dua bab terakhir---suatu ``konstruksi'' bilangan
+asli, lalu dari bilangan itu suatu ``konstruksi'' bilangan bulat, real, dan
+rasional---seluruhnya dilaksanakan secara naif. Kita begitu saja menggunakan
+himpunan ini atau himpunan itu ketika membutuhkannya, tanpa menetapkan banyak
+prinsip umum mengenai himpunan mana tepatnya yang ada, dan kapan. Namun, kita
+tahu bahwa kita memerlukan \emph{beberapa} prinsip umum; jika tidak, kita
+akan terjerumus ke dalam Paradoks Russell.
+
+Kini tibalah waktunya bagi kita untuk meninggalkan kenaifan tersebut.
+
+\end{document}

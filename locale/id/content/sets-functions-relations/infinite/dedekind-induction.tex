@@ -1,0 +1,85 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind-induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{infinite}{induction}
+\olsection[Induksi Aritmetis]{Aljabar Dedekind dan Induksi Aritmetis}
+
+Hal yang sangat penting ialah bahwa suatu aljabar Dedekind---bahkan,
+\emph{setiap} aljabar Dedekind---dapat berfungsi sebagai pengganti bilangan
+asli. Hal ini diperoleh berkat konsekuensi sederhana berikut:
+
+\begin{thm}[Induksi aritmetis]\ollabel{thm:dedinfiniteinduction}
+Misalkan $N, s, o$ membentuk suatu aljabar Dedekind. Maka, untuk sembarang
+himpunan $X$:
+	\begin{center}
+		jika $o \in X$ dan $(\forall {n} \in N \cap X){s}({n}) \in X$, {maka} $N \subseteq X$.
+	\end{center}
+\end{thm}
+
+\begin{proof}
+Berdasarkan definisi aljabar Dedekind, $N = \closureofunder{s}{o}$.
+Sekarang, jika ${o} \in X$ dan $(\forall {n} \in N)(n \in X \lif
+{s}({n}) \in X)$, maka $N = \closureofunder{s}{o} \subseteq X$.
+\end{proof}
+
+Karena induksi merupakan ciri bilangan asli, pokoknya adalah sebagai berikut.
+Dari sembarang himpunan yang tak hingga Dedekind, kita dapat membentuk suatu
+aljabar Dedekind dan menggunakan aljabar tersebut sebagai pengganti bilangan
+asli.
+
+Memang, \olref{thm:dedinfiniteinduction} merumuskan induksi dalam istilah
+\emph{teori himpunan}. Namun, prinsip itu mudah kita nyatakan dalam istilah
+yang mungkin lebih akrab:
+
+\begin{cor}\ollabel{natinductionschema}
+Misalkan $N, s, o$ membentuk suatu aljabar Dedekind. Maka, untuk sembarang
+rumus $\phi(x)$, yang boleh mempunyai parameter:
+\begin{center}
+	jika $\phi(o)$ dan $(\forall {n} \in N)(\phi(n)\lif
+	\phi({s}({n})))$, {maka} $(\forall n \in N)\phi(n)$.
+\end{center}
+\end{cor}
+
+\begin{proof}
+Misalkan $X = \Setabs{n \in N}{\phi(n)}$, lalu gunakan
+\olref{thm:dedinfiniteinduction}.
+\end{proof}
+
+Dalam hasil ini, kita berbicara tentang suatu rumus yang ``mempunyai
+parameter''. Secara kasar, maksudnya ialah bahwa untuk sembarang objek
+$c_1, \ldots, c_k$, kita dapat bekerja dengan
+$\phi(x, c_1, \ldots, c_k)$. Secara lebih saksama, kita dapat menyatakan
+hasil tersebut tanpa menyebut ``parameter'' sebagai berikut. Untuk sembarang
+rumus $\phi(x, v_1, \ldots, v_k)$, yang semua variabel bebasnya ditampilkan,
+kita mempunyai:
+	\begin{align*}
+			\forall v_1 \ldots \forall v_k((&\phi(o, v_1,\ldots, v_k) \land {}\\
+			&	(\forall x \in N)(\phi(x,v_1, \ldots, v_k) \lif \phi(s(x), v_1,\ldots, v_k))) \lif {}\\
+			&\hspace{3em} (\forall x \in N)\phi(x, v_1,\ldots, v_k))
+	\end{align*}
+Jelaslah bahwa pembicaraan mengenai ``mempunyai parameter'' dapat membuat
+uraian jauh lebih mudah dibaca. (Dalam \olref[sth][][]{part}, kita akan cukup
+sering menggunakan perangkat ini.)
+
+Kembali ke aljabar Dedekind: dari sembarang aljabar Dedekind, kita juga dapat
+mendefinisikan fungsi-fungsi aritmetis yang biasa, yakni penjumlahan,
+perkalian, dan perpangkatan. Namun, hal ini tidak sepele dan melibatkan
+teknik \emph{definisi rekursif}. Teknik tersebut akan kita perkenalkan dan
+benarkan jauh kemudian, dan dalam konteks yang jauh lebih umum. (Pembaca
+yang berminat mungkin ingin meninjau kembali hal ini setelah
+\olref[sth][ord-arithmetic][]{chap}, atau mungkin membaca pembahasan
+alternatif, misalnya \citealt[pp.~95--8]{Potter2004}.) Namun, jika
+$N, s, o$ membentuk suatu aljabar Dedekind, pada akhirnya kita akan dapat
+menetapkan hal-hal berikut:
+\begin{align*}
+	{a} + {o} &= {a} & & & {a} \times {o} &= {o} & & & {a}^{o} &= s(o)\\
+{a} + {s}({b}) &= {s}({a}+{b}) &&& {a} \times {s}({b}) &= ({a}\times {b}) + {a}  & & & {a}^{{s}({b})} &= {a}^{b} \times {a}
+\end{align*}
+dan menunjukkan bahwa semuanya berperilaku sebagaimana yang diharapkan.
+
+\end{document}

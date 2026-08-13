@@ -319,3 +319,73 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 and 23,735 English-source words versus 21,604 Indonesian words across all
 forty-eight admitted files. The exact next cursor is `OLP-0049`,
 `content/sets-functions-relations/infinite/infinite.tex`.
+
+## Infinite Sets checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The contiguous boundary extends through `OLP-0054`. Frozen English authority
+remains `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`, and every source hash
+equals its exact closure-manifest row.
+
+```powershell
+& 'locale\id\qa_infinite_batch_replay.ps1'
+```
+
+Result: exit code 0.
+
+```text
+INFINITE_BATCH_REPLAY_OK files=6 checks=115 source_corrections=2 reader_text_exceptions=1 target_corrections=2 adverse_assertions=3 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0049..OLP-0054
+```
+
+Independent read-only semantic replay covered every paragraph. It found one
+residual `{iff}` token, corrected to `jika dan hanya jika`, and no other
+omission or translation-origin polarity, quantifier, scope, or mathematical
+error. The exact per-file hashes, two `card-sb.tex` source repairs, preserved
+Closure-lemma source defects, and review disposition are in
+`..\_control\OPENLOGIC_INFINITE_SETS_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean combined build
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/infinite-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `infinite-id.tex` | `locale/id/infinite-id.pdf` | 87 | 583,365 | `825d4ae9d41ee7f3243ce922652a2e4b539c124b968192cc43a48f0ca4202618` |
+
+The final log has zero fatal errors, undefined references/citations,
+multiply-defined labels, or missing glyphs. Eighteen overfull boxes remain,
+maximum 6.08615 pt, plus one underfull bibliography line and one inherited
+underfull vbox. A semantic-neutral shortening removed the initial 17.92607 pt
+line before this final build. Render inspection found no visible loss.
+
+The bounded driver declares Indonesian metadata for two forward references to
+the later Set Theory part and retains the two later History references. It does
+not import untranslated prose; those stubs yield to real localized labels when
+the corresponding parts enter the complete reader.
+
+### Extraction and visual review
+
+`pdftotext -layout` exited 0 and produced 208,533 bytes. Searches found zero
+`??`, `Undefined`, or English theorem/environment/reference labels. Positive
+anchors include `Himpunan Tak Hingga`, `Hotel Hilbert`, `Aljabar Dedekind`,
+`Induksi aritmetis`, and `Membuktikan Schröder--Bernstein`.
+
+Final pages 78--87 were rendered at 144 dpi and all ten inspected at readable
+resolution. Page 79 was additionally rendered and inspected at 300 dpi. The
+chapter transition, Hotel Hilbert diagram, formulas, proof-end marks,
+cross-references, and bibliography are legible; there is no clipping, overlap,
+blank changed page, broken glyph, lost formula, or margin loss.
+
+### Counts and next cursor
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+2,413 English-source words and 2,312 Indonesian words for the six-file batch,
+and 26,148 English-source words versus 23,916 Indonesian words across all
+fifty-four admitted files. The exact next cursor is `OLP-0055`,
+`content/propositional-logic/propositional-logic.tex`.

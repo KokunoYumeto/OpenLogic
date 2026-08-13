@@ -1,0 +1,133 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{infinite}{dedekind}
+\olsection{Aljabar Dedekind}
+
+Kita tidak hanya menghendaki bilangan asli itu tak hingga; kita menghendaki
+agar bilangan-bilangan tersebut mempunyai sifat-sifat (aljabar) tertentu:
+bilangan-bilangan itu harus berperilaku baik terhadap penjumlahan, perkalian,
+dan seterusnya.
+
+Gagasan Dedekind ialah menjadikan gagasan \emph{fungsi penerus} sebagai
+dasar, lalu mencirikan bilangan sebagai objek yang mempunyai sifat-sifat
+berikut:
+\begin{enumerate}
+	\item Terdapat suatu bilangan, $0$, yang bukan penerus bilangan mana pun
+	\\yakni, $0 \notin \ran{s}$
+	\\yakni, $\forall x\ s(x) \neq 0$
+	\item Bilangan-bilangan yang berbeda mempunyai penerus yang berbeda
+	\\yakni, $s$ adalah !!a{injection}
+	\\yakni, $\forall x \forall y (s(x) = s(y) \lif x = y)$
+	\item\ollabel{repeatedapplication} Setiap bilangan diperoleh dari
+	$0$ melalui penerapan berulang fungsi penerus.
+\end{enumerate}
+Dua syarat pertama mudah ditangani dengan logika orde pertama (lihat di
+atas). Namun, kita tidak dapat menangani \olref{repeatedapplication} hanya
+dengan logika orde pertama. Terobosan Dedekind ialah merumuskan ulang syarat
+\olref{repeatedapplication}, dalam istilah teori himpunan, sebagai berikut:
+\begin{enumerate}
+	\item[3$'$.] Bilangan asli adalah himpunan terkecil yang
+	\emph{tertutup terhadap fungsi penerus}: yakni, jika kita menerapkan
+	$s$ pada sembarang !!{element} dari himpunan tersebut, kita memperoleh
+	!!{element} lain dari himpunan itu.
+\end{enumerate}
+Namun, kita perlu menguraikan hal ini secara perlahan.
+
+\begin{defn}\ollabel{Closure}
+	Untuk sembarang fungsi $f$, himpunan $X$ bersifat $f$-\emph{tertutup}
+	{jika dan hanya jika} $(\forall x \in X)f(x) \in X$. Sekarang, untuk setiap $o$,
+	definisikan
+	$$\closureofunder{f}{o} = \bigcap\Setabs{X}{o \in X\text{ dan }X
+\text{ bersifat $f$-tertutup}}$$
+\end{defn}
+
+Jadi, $\closureofunder{f}{o}$ adalah irisan semua himpunan $f$-tertutup
+yang mempunyai $o$ sebagai !!a{element}. Secara intuitif,
+$\closureofunder{f}{o}$ merupakan himpunan $f$-tertutup \emph{terkecil}
+yang mempunyai $o$ sebagai !!a{element}. Hasil berikutnya membuat gagasan
+intuitif itu menjadi saksama:
+\begin{lem}\ollabel{closureproperties}
+	Untuk sembarang fungsi $f$ dan sembarang $o \in A$:
+	\begin{enumerate}
+		\item\ollabel{closurehaselem} $o \in \closureofunder{f}{o}$; dan
+		\item\ollabel{closureclosed} $\closureofunder{f}{o}$ bersifat $f$-tertutup; dan
+		\item\ollabel{closuresmallest} jika $X$ bersifat $f$-tertutup dan $o \in
+		X$, maka $\closureofunder{f}{o} \subseteq X$.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Ada sekurang-kurangnya satu himpunan $f$-tertutup
+yang mempunyai $o$ sebagai !!a{element}, yakni $\ran{f}\cup \{o\}$. Jadi,
+$\closureofunder{f}{o}$, yaitu irisan dari \emph{semua} himpunan semacam itu,
+ada. Sekarang kita harus memeriksa
+\olref{closurehaselem}--\olref{closuresmallest}.
+
+Mengenai \olref{closurehaselem}: $o \in \closureofunder{f}{o}$ karena
+himpunan tersebut merupakan irisan himpunan-himpunan yang semuanya mempunyai
+$o$ sebagai !!a{element}.
+
+Mengenai \olref{closureclosed}: andaikan $x \in \closureofunder{f}{o}$.
+Jadi, jika $o \in X$ dan $X$ bersifat $f$-tertutup, maka $x \in X$; dan
+karena $X$ bersifat $f$-tertutup, sekarang $f(x) \in X$. Maka
+$f(x) \in \closureofunder{f}{o}$.
+
+Mengenai \olref{closuresmallest}: secara umum, jika $X
+\in C$, maka $\bigcap C \subseteq X$.
+\end{proof}
+
+Dengan ini, kita dapat mengatakan:
+
+\begin{defn}
+Suatu \emph{aljabar Dedekind} adalah suatu himpunan $A$, bersama dengan
+fungsi $f \colon A \to A$ dan suatu $o \in A$, sedemikian sehingga:
+	\begin{enumerate}
+		\item \ollabel{ded:proper} $o \notin \ran{f}$
+		\item \ollabel{ded:injection} $f$ adalah !!a{injection}
+		\item \ollabel{ded:closure} $A = \closureofunder{f}{o}$
+	\end{enumerate}
+\end{defn}
+
+Karena $A = \closureofunder{f}{o}$, hasil kita sebelumnya memberi tahu bahwa
+$A$ adalah himpunan $f$-tertutup terkecil yang mempunyai $o$ sebagai
+!!a{element}. Jelaslah bahwa suatu aljabar Dedekind bersifat tak hingga
+Dedekind; lihat saja klausa \olref{ded:proper} dan
+\olref{ded:injection} dalam definisi tersebut. Namun, fakta yang lebih
+menarik ialah bahwa setiap himpunan yang tak hingga Dedekind dapat dijadikan
+suatu aljabar Dedekind.
+
+\begin{thm}\ollabel{thm:DedekindInfiniteAlgebra}
+Jika terdapat suatu himpunan yang tak hingga Dedekind, maka terdapat suatu
+aljabar Dedekind.
+\end{thm}
+
+\begin{proof}
+Misalkan $D$ bersifat tak hingga Dedekind. Jadi, terdapat suatu injeksi
+$g \colon D \to D$ dan suatu elemen $o \in D \setminus \ran{g}$.
+Sekarang, misalkan $A = \closureofunder{g}{o}$; berdasarkan
+\olref{closureproperties}, $A$ ada dan $o \in A$. Misalkan
+$f = \funrestrictionto{g}{A}$. Kita akan menunjukkan bahwa $A, f, o$
+membentuk suatu aljabar Dedekind.
+
+Mengenai \olref{ded:proper}: $o \notin \ran{g}$ dan $\ran{f}
+\subseteq \ran{g}$, sehingga $o\notin \ran{f}$.
+
+Mengenai \olref{ded:injection}: $g$ adalah suatu injeksi pada $D$; maka
+$f \subseteq g$ harus merupakan suatu injeksi.
+
+Mengenai \olref{ded:closure}: berdasarkan \olref{closureproperties},
+$A$ bersifat $g$-tertutup; terlebih lagi, $A$ bersifat $f$-tertutup. Maka
+$\closureofunder{f}{o} \subseteq A$ berdasarkan \olref{closureproperties}.
+Karena $\closureofunder{f}{o}$ juga bersifat $f$-tertutup dan
+$f = \funrestrictionto{g}{A}$, diperoleh bahwa $\closureofunder{f}{o}$
+bersifat $g$-tertutup. Jadi, $A \subseteq \closureofunder{f}{o}$ berdasarkan
+\olref{closureproperties}.
+\end{proof}
+
+\end{document}

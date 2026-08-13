@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 48/722 and the exact remainder is 674 files.
+Current target-file coverage is 54/722 and the exact remainder is 668 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -242,6 +242,37 @@ proof-dense pages were additionally inspected at readable original resolution.
 No clipping, overlap, blank page, broken glyph, lost formula, or margin loss was
 found.
 
+### Contiguous Infinite Sets batch
+
+Ordered units `OLP-0049`--`OLP-0054` add the complete Infinite Sets chapter:
+
+1. `infinite.tex`
+2. `hilberts-hotel.tex`
+3. `dedekind-algebra.tex`
+4. `dedekind-induction.tex`
+5. `dedekinds-proof.tex`
+6. `card-sb.tex`
+
+The Infinite replay passed 115 checks across all six files. It binds exact
+manifest source and target hashes and compares ordered commands, environments,
+localization tokens, labels, references, citations, imports, URLs, file IDs,
+brace balance, and mathematical skeletons. Two exact source repairs and their
+corrected target forms are asserted positively; three assertions preserve the
+unbound-carrier/endofunction adverse source defect rather than concealing it.
+
+Independent paragraph-level semantic replay found one residual `{iff}` token,
+which was corrected to `jika dan hanya jika`, and no other omitted prose or
+translation-origin polarity, quantifier, scope, or mathematical error. The
+combined driver through Infinite Sets builds cleanly to 87 pages and 583,365
+bytes, SHA-256
+`825d4ae9d41ee7f3243ce922652a2e4b539c124b968192cc43a48f0ca4202618`.
+The log contains zero fatal error, unresolved reference/citation,
+multiply-defined label, or missing glyph. Extracted text is 208,533 bytes with
+zero unresolved marker or English environment/reference heading. Final pages
+78--87 were rendered at 144 dpi and all ten inspected; page 79 was additionally
+inspected at 300 dpi. No clipping, overlap, blank changed page, broken glyph,
+lost formula, or margin loss was found.
+
 ## Preserved risks and nonclaims
 
 - `cleveref` has no installed Indonesian language module. The locale driver
@@ -263,6 +294,15 @@ found.
   use Indonesian label metadata in the bounded driver. They do not import
   untranslated English prose and will be replaced by the real translated
   History labels in the complete reader build.
+- The 87-page Infinite build contains eighteen overfull boxes, maximum 6.08615
+  pt, one underfull bibliography line, and one inherited underfull vbox. The
+  initial 17.92607 pt line was removed by a semantic-neutral register
+  refinement before the final build; all remaining warnings are visually
+  harmless in the inspected render.
+- The bounded Infinite driver adds Indonesian metadata for two later Set Theory
+  references while retaining the two History metadata labels. It imports no
+  untranslated English prose; real translated labels will replace these
+  bounded-build stubs.
 - The running set-membership token remains `anggota`; `elemen` is an admitted
   synonym and must be replayed in later model-theory/domain contexts.
 - OLP-0001 has no mathematical formula or `\olfileid`; its QA is therefore
@@ -273,7 +313,7 @@ found.
 
 ## Continuation cursor
 
-Next global ordered cursor: `OLP-0049`,
-`content/sets-functions-relations/infinite/infinite.tex`.
-The remaining closure is 674 source files after the 48 target files currently
+Next global ordered cursor: `OLP-0055`,
+`content/propositional-logic/propositional-logic.tex`.
+The remaining closure is 668 source files after the 54 target files currently
 present and admitted.
