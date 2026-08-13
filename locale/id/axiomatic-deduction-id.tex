@@ -1,0 +1,59 @@
+% Penggerak mandiri untuk bab Deduksi Aksiomatik dalam pelokalan Bahasa
+% Indonesia. Penggerak ini membatasi build pada OLP-0112--OLP-0125.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Pisahkan judul soal berturut-turut setelah daftar atau derivasi yang panjang.
+\BeforeBeginEnvironment{probdeferred}{\par\medskip}
+\BeforeBeginEnvironment{probdeferredtag}{\par\medskip}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+% OLP-0124 merujuk hasil sintaks dan semantik orde pertama yang belum
+% termasuk dalam build bab terbatas ini. Entri ini mempertahankan identitas
+% dan penomoran pembaca beku tanpa mengimpor prosa Inggris.
+\makeatletter
+\hypertarget{ol-id-forward-fol-syntax}{}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sat:defn:satisfaction}{{16.{11}}{0}{Keterpenuhan}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sat:defn:satisfaction@cref}{{[defn][11][16]16.{11}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sentence-sat-true}{{16.{18}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sentence-sat-true@cref}{{[prop][18][16]16.{18}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sat-quant}{{16.{19}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sat-quant@cref}{{[prop][19][16]16.{19}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:extensionality}{{16.{20}}{0}{Ekstensionalitas}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:extensionality@cref}{{[prop][20][16]16.{20}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:cor:extensionality-sent}{{16.{21}}{0}{Ekstensionalitas untuk Kalimat}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:cor:extensionality-sent@cref}{{[cor][21][16]16.{21}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:ext-formulas}{{16.{23}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:ext-formulas@cref}{{[prop][23][16]16.{23}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sem:thm:sem-deduction}{{16.{30}}{0}{Teorema Deduksi Semantik}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sem:thm:sem-deduction@cref}{{[thm][30][16]16.{30}}{[1][0][]0}{}{}{}}}
+\makeatother
+
+\olimport*[first-order-logic/axiomatic-deduction]{axiomatic-deduction}
+
+\end{document}

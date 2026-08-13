@@ -1,0 +1,62 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: deduction-theorem-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{axd}{ddq}
+
+\olsection{Teorema Deduksi dengan Kuantor}
+
+\begin{thm}[Teorema Deduksi]
+\ollabel{thm:deduction-thm-q} Jika $\Gamma \cup \{!A\} \Proves !B$,
+maka $\Gamma \Proves !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+Sekali lagi, kita melakukan induksi pada panjang !!{derivation} dari
+$!B$ berdasarkan $\Gamma \cup \{!A\}$.
+
+Pembuktian basis induksi identik dengan pembuktian basis induksi dalam
+pembuktian~\olref[ded]{thm:deduction-thm}.
+
+Untuk langkah induksi, andaikan sekali lagi bahwa !!{derivation} dari
+$!B$ berdasarkan $\Gamma \cup \{!A\}$ berakhir dengan suatu langkah~$!B$
+yang dijustifikasi oleh aturan inferensi. Jika aturan inferensinya adalah
+modus ponens, kita melanjutkan seperti dalam pembuktian
+\olref[ded]{thm:deduction-thm}. Jika aturan inferensinya adalah \QR, kita
+mengetahui bahwa $!B \ident !C \lif \lforall[x][!D(x)]$ dan bahwa
+!!a{formula} berbentuk $!C \lif !D(a)$ muncul lebih awal dalam
+!!{derivation} tersebut, dengan $a$ tidak muncul dalam~$!C$, $!A$,
+$!D(x)$, ataupun $\Gamma$. Dengan demikian, kita mempunyai
+\begin{align*}
+  \Gamma \cup \{!A\} & \Proves !C \lif !D(a),\\
+  \intertext{dan hipotesis induksi berlaku; yakni, kita mempunyai}
+    \Gamma & \Proves !A \lif (!C \lif !D(a)).\\
+  \intertext{Dengan menggunakan}
+  & \Proves (!A \lif (!C \lif !D(a))) \lif ((!A \land !C) \lif !D(a))\\
+  \intertext{dan modus ponens, kita memperoleh}
+  \Gamma & \Proves (!A \land !C) \lif !D(a).\\
+  \intertext{Karena syarat variabel eigen tetap terpenuhi, kita dapat
+    menambahkan satu langkah yang dijustifikasi oleh \QR{} pada
+    !!{derivation} ini dan memperoleh}
+    \Gamma & \Proves (!A \land !C) \lif \lforall[x][!D(x)].\\
+    \intertext{Kita juga mempunyai}
+    & \Proves ((!A \land !C) \lif \lforall[x][!D(x)]) \lif
+      (!A \lif (!C \lif \lforall[x][!D(x)])),\\
+    \intertext{sehingga, menurut modus ponens,}
+    \Gamma & \Proves !A \lif (!C \lif \lforall[x][!D(x)]),
+\end{align*}
+yakni, $\Gamma \Proves !A \lif !B$.
+
+Kasus ketika $!B$ dijustifikasi oleh aturan \QR, tetapi berbentuk
+$\lexists[x][!D(x)] \lif !C$, kita tinggalkan sebagai latihan.
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[fol][axd][ddq]{thm:deduction-thm-q}.
+\end{prob}
+
+\end{document}

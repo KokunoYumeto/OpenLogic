@@ -1,0 +1,34 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: axioms-rules-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{axd}{qua}
+
+\olsection{Aksioma dan Aturan untuk Kuantor}
+
+\begin{defn}[Aksioma untuk kuantor]
+\emph{Aksioma} yang mengatur kuantor adalah semua instansiasi dari
+bentuk-bentuk berikut:
+\begin{align}
+\ollabel{ax:q1} & \lforall[x][!B] \lif !B(t), \\
+\ollabel{ax:q2} & !B(t) \lif \lexists[x][!B].
+\end{align}
+untuk sebarang suku tertutup~$t$.
+\end{defn}
+
+\begin{defn}[Aturan untuk kuantor]
+\item Jika $!B \lif !A(a)$ sudah muncul dalam !!{derivation} dan $a$
+  tidak muncul dalam~$\Gamma$, $!B$, ataupun~$!A(x)$, maka $!B \lif
+  \lforall[x][!A(x)]$ merupakan langkah inferensi yang benar.
+\item Jika $!A(a) \lif !B$ sudah muncul dalam !!{derivation} dan $a$
+  tidak muncul dalam~$\Gamma$, $!B$, ataupun~$!A(x)$, maka
+  $\lexists[x][!A(x)] \lif !B$ merupakan langkah inferensi yang benar.
+\end{defn}
+
+Kita menyingkat masing-masing aturan ini dengan ``\QR.''
+
+\end{document}

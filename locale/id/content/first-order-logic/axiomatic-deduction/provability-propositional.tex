@@ -1,0 +1,86 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: provability-propositional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{ppr}}
+      {\olfileid[id]{pl}{axd}{ppr}}
+
+\olsection{\usetoken{S}{derivability} dan Penghubung Proposisional}
+
+\begin{explain}
+  Kita membuktikan bahwa relasi !!{derivability}~$\Proves$ dari deduksi
+  aksiomatik cukup kuat untuk membuktikan beberapa fakta dasar yang
+  melibatkan penghubung proposisional, seperti $!A \land !B \Proves !A$
+  dan $!A, !A \lif !B \Proves !B$ (modus ponens). Fakta-fakta ini
+  diperlukan dalam pembuktian teorema kelengkapan.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Baik $!A \land !B \Proves
+    !A$ maupun $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Diperoleh dari \olref[prp]{ax:land1} dan
+    \olref[prp]{ax:land2} melalui modus ponens.
+  \item Diperoleh dari \olref[prp]{ax:land3} melalui dua penerapan
+    modus ponens.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ tak konsisten.
+  \item Baik $!A \Proves !A \lor !B$ maupun $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Dari \olref[prp]{ax:lnot2}, kita memperoleh
+    $\Proves \lnot !A \lif (!A \lif \lfalse)$ dan
+    $\Proves \lnot !B \lif (!B \lif \lfalse)$. Jadi, menurut teorema
+    deduksi, kita mempunyai $\{\lnot !A\} \Proves !A \lif \lfalse$
+    dan $\{\lnot !B\} \Proves !B \lif \lfalse$. Dari
+    \olref[prp]{ax:lor3}, kita memperoleh
+    $\{\lnot !A, \lnot !B\} \Proves (!A \lor !B) \lif \lfalse$.
+    Menurut teorema deduksi,
+    $\{!A \lor !B, \lnot !A, \lnot !B\} \Proves \lfalse$.
+  \item Diperoleh dari \olref[prp]{ax:lor1} dan
+    \olref[prp]{ax:lor2} melalui modus ponens.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left} $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Baik $\lnot !A \Proves !A \lif !B$ maupun
+    $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Kita dapat !!{derive}:
+    \begin{derivation}
+      1. & $!A$ & \Hyp\\
+      2. & $!A \lif !B$ & \Hyp\\
+      3. & $!B$ & 1, 2, \MP
+    \end{derivation}
+
+  \item Masing-masing diperoleh dari \olref[prp]{ax:lnot2} dan
+    \olref[prp]{ax:lif1} menurut teorema deduksi.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

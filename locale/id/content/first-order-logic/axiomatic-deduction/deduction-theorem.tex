@@ -1,0 +1,140 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: deduction-theorem
+
+% Verifikasi sifat-sifat keterderivasian yang diperlukan untuk himpunan
+% konsisten maksimal dalam bab kelengkapan.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{ded}}
+      {\olfileid[id]{pl}{axd}{ded}}
+
+\olsection{Teorema Deduksi}
+
+Seperti telah kita lihat, memberikan !!{derivation}s dalam sistem
+aksiomatik itu merepotkan, dan !!{derivation}s semacam itu mungkin sulit
+ditemukan. Daripada benar-benar menuliskan daftar panjang !!{formula}s,
+umumnya lebih mudah berargumen bahwa !!{derivation}s tersebut ada dengan
+memanfaatkan beberapa hasil sederhana. Kita telah membuktikan tiga hasil
+semacam itu: \olref[ptn]{prop:reflexivity} menyatakan bahwa kita selalu
+dapat menegaskan $\Gamma \Proves !A$ apabila diketahui bahwa $!A \in
+\Gamma$. \olref[ptn]{prop:monotonicity} menyatakan bahwa jika $\Gamma
+\Proves !A$, maka $\Gamma \cup \{!B\} \Proves !A$ juga. Selanjutnya,
+\olref[ptn]{prop:transitivity} menyiratkan bahwa jika $\Gamma \Proves !A$
+dan $!A \Proves !B$, maka $\Gamma \Proves !B$. Berikut satu hasil
+sederhana lainnya, yaitu versi ``meta'' dari modus ponens:
+
+\begin{prop}
+  \ollabel{prop:mp} Jika $\Gamma \Proves !A$ dan $\Gamma \Proves !A \lif
+  !B$, maka $\Gamma \Proves !B$.
+\end{prop}
+
+\begin{proof}
+  Kita mempunyai $\{!A, !A \lif !B\} \Proves !B$:
+  \begin{derivation}
+    1. & $!A$ & Hip.\\
+    2. & $!A \lif !B$ & Hip.\\
+    3. & $!B$ & 1, 2, MP
+  \end{derivation}
+  Menurut \olref[ptn]{prop:transitivity}, $\Gamma \Proves !B$.
+\end{proof}
+
+Hasil terpenting yang akan kita gunakan dalam konteks ini adalah teorema
+deduksi:
+
+\begin{thm}[Teorema Deduksi]
+\ollabel{thm:deduction-thm} $\Gamma \cup \{!A\} \Proves !B$ jika dan
+hanya jika $\Gamma \Proves !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+Arah ``jika'' langsung diperoleh. Jika $\Gamma \Proves !A \lif !B$,
+maka menurut \olref[ptn]{prop:monotonicity}, $\Gamma \cup \{!A\}
+\Proves !A \lif !B$ juga. Selain itu, menurut
+\olref[ptn]{prop:reflexivity}, $\Gamma \cup \{!A\} \Proves !A$. Jadi,
+menurut \olref{prop:mp}, $\Gamma \cup \{!A\} \Proves !B$.
+
+Untuk arah ``hanya jika'', kita melakukan induksi pada panjang
+!!{derivation} dari $!B$ berdasarkan $\Gamma \cup \{!A\}$.
+
+Sebagai basis induksi, kita membuktikan klaim tersebut untuk setiap
+!!{derivation} yang panjangnya~$1$. !!^a{derivation} dari~$!B$
+berdasarkan $\Gamma \cup \{!A\}$ yang panjangnya~$1$ hanya terdiri atas
+$!B$; dan jika derivasi itu benar, maka $!B$ merupakan anggota
+$\Gamma \cup \{!A\}$ atau sebuah aksioma. Jika $!B \in \Gamma$ atau
+merupakan aksioma, maka $\Gamma \Proves !B$. Kita juga mempunyai
+$\Gamma \Proves !B \lif (!A \lif !B)$ menurut
+\olref[prp]{ax:lif1}, dan \olref{prop:mp} memberikan
+$\Gamma \Proves !A \lif !B$. Jika $!B \in \{!A\}$, maka
+$\Gamma \Proves !A \lif !B$ karena !!{formula} terakhir~$!A \lif !B$
+sama dengan $!A \lif !A$, dan kita telah !!{derive} formula itu dalam
+\olref[pro]{ex:identity}.
+
+Untuk langkah induksi, andaikan !!a{derivation} dari~$!B$ berdasarkan
+$\Gamma \cup \{!A\}$ berakhir dengan suatu langkah~$!B$ yang
+dijustifikasi oleh modus ponens. Jika langkah itu tidak dijustifikasi
+oleh modus ponens\iftag{FOL}{ ataupun aturan~\QR}{}, maka
+$!B \in \Gamma$, $!B \ident !A$, atau $!B$ merupakan aksioma, dan
+penalaran yang sama seperti pada basis induksi berlaku.
+\iftag{FOL}{Kasus aturan~\QR{} ditangani dalam bagian berikutnya.}{}
+Dengan demikian, sejumlah
+langkah sebelumnya dalam
+!!{derivation} tersebut adalah $!C \lif !B$ dan $!C$, untuk suatu
+!!{formula}~$!C$;
+yakni, $\Gamma \cup \{!A\} \Proves !C \lif !B$ dan
+$\Gamma \cup \{!A\} \Proves !C$. !!^{derivation}s masing-masing lebih
+pendek, sehingga hipotesis induksi berlaku untuk keduanya. Jadi, kita
+mempunyai kedua hal berikut:
+\begin{align*}
+  & \Gamma \Proves !A \lif (!C \lif !B); \\
+  & \Gamma \Proves !A \lif !C.
+\end{align*}
+Namun, menurut \olref[prp]{ax:lif2}, kita juga mempunyai
+\[
+\Gamma \Proves (!A \lif (!C \lif !B)) \lif
+((!A\lif !C)  \lif (!A \lif !B)),
+\]
+dan dua penerapan \olref{prop:mp} memberikan
+$\Gamma \Proves !A \lif !B$, sebagaimana diperlukan.
+\end{proof}
+
+Perhatikan bagaimana \olref[prp]{ax:lif1} dan \olref[prp]{ax:lif2}
+dipilih tepat agar Teorema Deduksi berlaku.
+
+Berikut beberapa fakta berguna tentang !!{derivability} yang kita
+tinggalkan sebagai latihan.
+
+\begin{prop}
+  \ollabel{prop:derivfacts}
+\begin{enumerate}
+\item $\Proves (!A \lif !B) \lif ((!B \lif !C)
+  \lif (!A \lif !C))$; \ollabel{derivfacts:a}
+\item Jika $\Gamma \cup \{ \lnot !A\}
+  \Proves \lnot !B$, maka $\Gamma \cup \{ !B\} \Proves
+  !A$ (Kontraposisi); \ollabel{derivfacts:b}
+\item $\{ !A, \lnot!A\} \Proves
+    !B$ (Ex Falso Quodlibet, Eksplosi); \ollabel{derivfacts:c}
+\item $\{ \lnot\lnot!A\} \Proves
+  !A$ (Eliminasi Negasi Ganda);\ollabel{derivfacts:d}
+\item Jika $\Gamma \Proves \lnot\lnot!A$, maka $\Gamma \Proves
+  !A$;\ollabel{derivfacts:e}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+  Buktikan \olref[fol][axd][ded]{prop:derivfacts}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  Buktikan \olref[pl][axd][ded]{prop:derivfacts}.
+\end{prob}
+\tagendprob
+
+\end{document}

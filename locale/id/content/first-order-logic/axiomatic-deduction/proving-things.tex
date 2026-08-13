@@ -1,0 +1,138 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{pro}}
+      {\olfileid[id]{pl}{axd}{pro}}
+
+\olsection{Contoh \usetoken{P}{derivation}}
+
+
+\begin{ex}
+Misalkan kita ingin membuktikan $(\lnot !D \lor !E) \lif (!D \lif
+!E)$. Jelas bahwa ini bukan instansiasi dari aksioma mana pun, sehingga
+kita harus menggunakan aturan \MP{} untuk !!{derive}nya. Aturan yang
+kita perlukan di sini adalah~MP, yang, jika diberikan $!A$ dan $!A \lif !B$,
+memungkinkan kita membenarkan~$!B$. Salah satu strategi ialah menggunakan
+\olref[prp]{ax:lor3} dengan $!A$ sebagai $\lnot !D$, $!B$ sebagai $!E$,
+dan $!C$ sebagai $!D \lif !E$, yakni instansiasi
+\[
+(\lnot !D \lif (!D \lif !E)) \lif ((!E \lif (!D \lif !E)) \lif ((\lnot
+!D \lor !E) \lif (!D \lif !E))).
+\]
+Mengapa? Dua penerapan MP menghasilkan bagian terakhir, dan bagian itulah
+yang kita inginkan. Kita juga mudah melihat bahwa $\lnot !D \lif
+(!D \lif !E)$ merupakan instansiasi dari \olref[prp]{ax:lnot2}, dan
+$!E \lif (!D \lif !E)$ merupakan instansiasi dari
+\olref[prp]{ax:lif1}. Jadi, !!{derivation} kita adalah:
+\begin{derivation}
+  1. &  $\lnot !D \lif (!D \lif !E)$ & \olref[prp]{ax:lnot2} \\
+  2. & $(\lnot !D \lif (!D \lif !E)) \lif {}$\\
+  &\qquad $((!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E)))$ & \olref[prp]{ax:lor3}\\
+  3. & $(!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E))$ & 1, 2, \MP\\
+  4. & $!E \lif (!D \lif !E)$ & \olref[prp]{ax:lif1}\\
+  5. & $(\lnot !D \lor !E) \lif (!D \lif !E)$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:identity}
+Mari kita coba mencari !!a{derivation} atas $!D \lif !D$. Formula ini
+bukan instansiasi suatu aksioma, sehingga kita harus menggunakan \MP{}
+untuk !!{derive}nya. \olref[prp]{ax:lif1} adalah aksioma berbentuk
+$!A \lif !B$ yang dapat kita kenai~\MP. Agar berguna, tentu saja $!B$
+yang dibenarkan sebagai langkah benar oleh \MP{} dalam kasus ini haruslah
+$!D \lif !D$, sebab itulah yang ingin kita !!{derive}. Ini berarti
+$!A$ juga harus berupa $!D$; dengan kata lain, kita dapat memeriksa
+instansiasi \olref[prp]{ax:lif1} berikut:
+\[
+!D \lif (!D \lif !D)
+\]
+Untuk menerapkan \MP, kita juga harus membenarkan premis kedua yang
+bersesuaian, yakni~$!A$. Namun, dalam kasus kita premis itu adalah~$!D$,
+dan kita tidak akan dapat !!{derive}~$!D$ dengan sendirinya. Jadi, kita
+memerlukan strategi lain.
+
+Aksioma lain yang hanya melibatkan~$\lif$ adalah
+\olref[prp]{ax:lif2}, yakni
+\[
+(!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C))
+\]
+Kita dapat mencapai implikasi bersarang terakhir dengan menerapkan
+\MP{} dua kali. Sekali lagi, ini berarti kita menginginkan instansiasi
+\olref[prp]{ax:lif2} dengan $!A \lif !C$ berupa $!D \lif !D$, yaitu
+!!{formula} yang kita tuju. Dengan demikian, $!A$ dan $!C$ tentu
+keduanya adalah~$!D$. Bagaimana sebaiknya kita memilih~$!B$ agar baik
+$!A \lif (!B \lif !C)$ maupun $!A \lif !B$, yakni dalam kasus kita
+$!D \lif (!B \lif !D)$ dan $!D \lif !B$, juga !!{derivable}? Formula
+pertama sudah merupakan instansiasi dari \olref[prp]{ax:lif1}, apa pun
+pilihan kita untuk~$!B$. Sementara itu, $!D \lif !B$ akan menjadi
+instansiasi lain dari \olref[prp]{ax:lif1} jika $!B$ berupa
+$(!D \lif !D)$. Jadi, !!{derivation} kita adalah:
+\begin{derivation}
+  1. & $!D \lif ((!D \lif !D) \lif !D)$ & \olref[prp]{ax:lif1}\\
+  2. & $(!D \lif ((!D \lif !D) \lif !D)) \lif {}$\\
+  & \qquad $((!D \lif (!D \lif !D)) \lif (!D \lif !D))$ & \olref[prp]{ax:lif2}\\
+  3. & $(!D \lif (!D \lif !D)) \lif (!D \lif !D)$ & 1, 2, \MP\\
+  4. & $!D \lif (!D \lif !D)$ & \olref[prp]{ax:lif1}\\
+  5. & $!D \lif !D$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:chain}
+Kadang-kadang kita ingin menunjukkan bahwa terdapat !!a{derivation}
+atas suatu !!{formula} dari sejumlah !!{formula} lain~$\Gamma$. Sebagai
+contoh, mari kita tunjukkan bahwa kita dapat !!{derive} $!A \lif !C$
+dari $\Gamma = \{!A \lif !B, !B \lif !C\}$.
+\begin{derivation}
+  1. & $!A \lif !B$ & \Hyp\\
+  2. & $!B \lif !C$ & \Hyp\\
+  3. & $(!B \lif !C) \lif (!A \lif (!B \lif !C))$ & \olref[prp]{ax:lif1} \\
+  4. & $!A \lif (!B \lif !C)$ & 2, 3, \MP\\
+  5. & $(!A \lif (!B \lif !C)) \lif {}$\\
+  & \qquad $((!A \lif !B) \lif (!A \lif !C))$ & \olref[prp]{ax:lif2}\\
+  6. & $((!A \lif !B) \lif (!A \lif !C))$ & 4, 5, \MP\\
+  7. & $!A \lif !C$ & 1, 6, \MP
+\end{derivation}
+Baris-baris yang berlabel ``\Hyp'' (untuk ``hipotesis'') menunjukkan
+bahwa !!{formula} pada baris tersebut merupakan !!a{element}
+dari~$\Gamma$.
+\end{ex}
+
+\begin{prop}
+  \ollabel{prop:chain} Jika $\Gamma \Proves !A \lif !B$ dan $\Gamma
+  \Proves !B \lif !C$, maka $\Gamma \Proves !A \lif !C$.
+\end{prop}
+
+\begin{proof}
+  Misalkan $\Gamma \Proves !A \lif !B$ dan $\Gamma \Proves !B \lif
+  !C$. Maka terdapat !!a{derivation} atas $!A \lif !B$ dari~$\Gamma$,
+  serta !!a{derivation} atas~$!B \lif !C$ dari~$\Gamma$. Gabungkan
+  keduanya menjadi satu !!{derivation} dengan mengonkatenasikannya.
+  Sekarang tambahkan baris 3--7 dari !!{derivation} dalam contoh
+  sebelumnya. Hasilnya merupakan !!a{derivation} atas $!A \lif !C$---
+  yaitu baris terakhir !!{derivation} baru tersebut---dari~$\Gamma$.
+  Perhatikan bahwa pembenaran baris 4 dan~7 tetap berlaku jika acuan
+  kepada nomor baris~1 diganti dengan acuan kepada baris terakhir
+  !!{derivation} atas~$!A \lif !B$, dan acuan kepada nomor baris~2
+  diganti dengan acuan kepada baris terakhir !!{derivation}
+  atas~$!B \lif !C$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa pernyataan-pernyataan berikut berlaku dengan menyajikan
+!!{derivation}s dari aksioma-aksioma:
+\begin{enumerate}
+\item $(!A \land !B) \lif (!B \land !A)$
+\item $((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
+\item $\lnot(!A \lor !B) \lif \lnot !A$
+\end{enumerate}
+\end{prob}
+
+
+
+\end{document}

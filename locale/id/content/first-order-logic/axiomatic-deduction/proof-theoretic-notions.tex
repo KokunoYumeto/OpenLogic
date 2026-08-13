@@ -1,0 +1,143 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{ptn}}
+      {\olfileid[id]{pl}{axd}{ptn}}
+
+\olsection{Gagasan Teori-Bukti}
+
+\begin{explain}
+Sebagaimana kita telah mendefinisikan sejumlah gagasan semantik penting
+(\iftag{FOL}{validitas}{tautologi}, perikutan, keterpenuhan), kini kita
+mendefinisikan \emph{gagasan teori-bukti} yang bersesuaian.
+Gagasan-gagasan ini tidak didefinisikan dengan mengacu pada terpenuhinya
+!!{sentence}s di dalam \iftag{FOL}{!!{structure}s}{valuasi},
+melainkan dengan mengacu pada !!{derivability} atau
+!!{nonderivability} formula-formula tertentu. Penemuan bahwa
+gagasan-gagasan tersebut berimpit merupakan penemuan penting.
+Keberimpitan itu adalah isi \emph{teorema kesahihan} dan
+\emph{teorema kelengkapan}.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+!!^a{formula}~$!A$
+\emph{!!{derivable}} dari $\Gamma$, ditulis $\Gamma \Proves !A$, jika
+terdapat !!a{derivation} dari~$\Gamma$ yang berakhir dengan~$!A$.
+\end{defn}
+
+\begin{defn}[Teorema]
+!!^a{formula}~$!A$ merupakan suatu \emph{teorema} jika terdapat
+!!a{derivation} atas $!A$ dari himpunan kosong. Kita menulis
+$\Proves !A$ jika $!A$ merupakan teorema dan $\Proves/ !A$ jika bukan.
+\end{defn}
+
+\begin{defn}[Konsistensi]
+Suatu himpunan !!{formula}s~$\Gamma$ \emph{konsisten} jika dan hanya
+jika $\Gamma\Proves/ \lfalse$; jika tidak, himpunan itu
+\emph{tak konsisten}.
+\end{defn}
+
+\begin{prop}[Refleksivitas]
+\ollabel{prop:reflexivity}
+Jika $!A \in \Gamma$, maka $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+  Secara langsung, !!{formula}~$!A$ sendiri merupakan !!a{derivation} atas~$!A$
+  dari~$\Gamma$.
+\end{proof}
+
+\begin{prop}[Monotonisitas]
+\ollabel{prop:monotonicity}
+Jika $\Gamma \subseteq \Delta$ dan $\Gamma \Proves !A$, maka $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Setiap !!{derivation} atas $!A$ dari $\Gamma$ juga merupakan
+!!a{derivation} atas $!A$ dari~$\Delta$.
+\end{proof}
+
+\begin{prop}[Transitivitas]
+\ollabel{prop:transitivity}
+Jika $\Gamma \Proves !A$ dan $\{!A\} \cup \Delta \Proves
+!B$, maka $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+  Misalkan $\{!A\} \cup \Delta \Proves !B$. Maka terdapat
+  !!a{derivation} $!B_1$, \dots, $!B_l = !B$ dari~$\{!A\} \cup
+  \Delta$. Beberapa langkah dalam !!{derivation} tersebut akan benar
+  karena suatu aturan yang mengacu pada baris sebelumnya~$!B_i = !A$.
+  Menurut hipotesis, terdapat !!a{derivation} atas~$!A$ dari~$\Gamma$,
+  yakni !!a{derivation}~$!A_1$, \dots, $!A_k = !A$ dengan setiap
+  $!A_i$ merupakan suatu aksioma, !!a{element} dari~$\Gamma$, atau
+  benar menurut suatu aturan inferensi. Sekarang perhatikan urutan
+  \[
+  !A_1, \dots, !A_k = !A, !B_1, \dots, !B_l = !B.
+  \]
+  Urutan ini merupakan !!{derivation} yang benar atas~$!B$ dari
+  $\Gamma \cup \Delta$, sebab setiap $!B_i = !A$ sekarang dibenarkan
+  oleh pembenaran yang sama dengan yang membenarkan~$!A_k = !A$.
+\end{proof}
+
+Perhatikan bahwa, khususnya, ini berarti bahwa jika $\Gamma \Proves !A$
+dan $!A \Proves !B$, maka $\Gamma \Proves !B$. Diperoleh pula bahwa
+jika $!A_1, \dots, !A_n \Proves !B$ dan $\Gamma \Proves !A_i$ untuk
+setiap~$i$, maka $\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ tak konsisten jika dan hanya jika $\Gamma \Proves !A$ untuk
+setiap~$!A$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][axd][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Buktikan \olref[pl][axd][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Kekompakan]
+\ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Jika $\Gamma \Proves !A$, maka terdapat himpunan bagian berhingga
+    $\Gamma_0 \subseteq \Gamma$ sedemikian sehingga
+    $\Gamma_0 \Proves !A$.
+  \item Jika setiap himpunan bagian berhingga dari~$\Gamma$ konsisten,
+    maka $\Gamma$ konsisten.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Jika $\Gamma \Proves !A$, maka terdapat urutan berhingga
+      !!{formula}s $!A_1$, \dots,~$!A_n$ sedemikian sehingga
+      $!A \ident !A_n$ dan setiap $!A_i$ merupakan suatu aksioma logis,
+      !!a{element} dari~$\Gamma$, atau mengikuti !!{formula}s sebelumnya
+      melalui suatu aturan inferensi. Ambil $\Gamma_0$ sebagai himpunan semua
+      $!A_i$ yang berada dalam~$\Gamma$. Maka !!{derivation} tersebut
+      juga merupakan !!a{derivation} dari~$\Gamma_0$, sehingga
+      $\Gamma_0 \Proves !A$.
+    \item Ini adalah kontraposisi dari~(1) untuk kasus khusus
+      $!A \ident \lfalse$.
+\end{enumerate}
+\end{proof}
+
+\end{document}

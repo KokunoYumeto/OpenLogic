@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 111/722 and the exact remainder is 611 files.
+Current target-file coverage is 125/722 and the exact remainder is 597 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -391,4 +391,23 @@ recorded in
 Next global ordered cursor: `OLP-0112`,
 `content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
 The remaining closure is 611 source files after the 111 target files currently
+present and admitted.
+
+### Contiguous Axiomatic Deduction batch
+
+The complete Axiomatic Deduction chapter adds `OLP-0112`--`OLP-0125`.
+Independent read-only semantic replay passes all fourteen final live targets
+after exact source-correction dispositions. No unresolved translation-origin
+omission, reader-facing English, polarity, quantifier, scope, formula, proof,
+or material-register defect remains. The bounded driver builds to 15 pages;
+all pages were rendered at 144 dpi and inspected at original resolution.
+
+TeXcount reports 3,442 English-source and 3,216 Indonesian words for this
+batch, and 51,961 versus 47,641 cumulatively. Exact hashes and dispositions
+are recorded in
+`..\_control\OPENLOGIC_AXIOMATIC_DEDUCTION_INDEPENDENT_REVIEW_20260813.md`.
+
+Next global ordered cursor: `OLP-0126`,
+`content/first-order-logic/completeness/completeness.tex`.
+The remaining closure is 597 source files after the 125 target files currently
 present and admitted.

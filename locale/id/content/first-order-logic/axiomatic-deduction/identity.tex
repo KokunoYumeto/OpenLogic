@@ -1,0 +1,58 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{axd}{ide}
+
+\olsection{\usetoken{P}{derivation} dengan \usetoken{S}{identity}}
+
+Untuk mengakomodasi $\eq$ dalam !!{derivation}s, kita cukup menambahkan
+skema aksioma baru. Definisi !!{derivation} dan $\Proves$ tetap sama;
+kita hanya mengizinkan aksioma-aksioma baru itu juga.
+
+\begin{defn}[Aksioma untuk !!{identity}]
+\begin{align}
+\ollabel{ax:id1} & \eq[t][t], \\
+\ollabel{ax:id2} & \eq[t_1][t_2] \lif (!B(t_1) \lif
+  !B(t_2)),
+\end{align}
+untuk sebarang suku tertutup $t$, $t_1$, dan $t_2$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sound}
+  Aksioma \olref{ax:id1} dan \olref{ax:id2} bersifat valid.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][axd][ide]{prop:sound}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:iden1}
+ $\Gamma \Proves \eq[t][t]$ untuk sebarang suku tertutup $t$ dan
+ himpunan~$\Gamma$.
+\end{prop}
+
+\begin{prop}\ollabel{prop:iden2}
+  Untuk suku-suku tertutup $t_1$ dan $t_2$, jika
+  $\Gamma \Proves !A(t_1)$ dan $\Gamma \Proves
+  \eq[t_1][t_2]$, maka $\Gamma \Proves !A(t_2)$.
+\end{prop}
+
+\begin{proof}
+!!^{formula}
+\[
+(\eq[t_1][t_2] \lif (!A(t_1) \lif !A(t_2)))
+\]
+merupakan instans~\olref{ax:id2}. Kesimpulannya diperoleh melalui dua
+penerapan~\MP.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,102 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{prv}}
+      {\olfileid[id]{pl}{axd}{prv}}
+
+\olsection{\usetoken{S}{derivability} dan Konsistensi}
+
+Sekarang kita akan membuktikan sejumlah sifat relasi !!{derivability}.
+Sifat-sifat tersebut menarik secara mandiri, tetapi masing-masing akan
+berperan dalam pembuktian teorema kelengkapan.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Jika $\Gamma \Proves !A$ dan $\Gamma \cup \{!A\}$ tak konsisten,
+  maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+  Jika $\Gamma \cup \{!A\}$ tak konsisten, maka
+  $\Gamma \cup \{!A\} \Proves \lfalse$. Menurut
+  \olref[ptn]{prop:reflexivity}, $\Gamma \Proves !B$ untuk setiap
+  $!B \in \Gamma$. Karena menurut hipotesis kita juga mempunyai
+  $\Gamma \Proves !A$, maka $\Gamma \Proves !B$ untuk setiap
+  $!B \in \Gamma \cup \{!A\}$. Menurut
+  \olref[ptn]{prop:transitivity}, $\Gamma \Proves \lfalse$; yakni,
+  $\Gamma$ tak konsisten.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ jika dan hanya jika $\Gamma \cup \{\lnot !A\}$
+tak konsisten.
+\end{prop}
+
+\begin{proof}
+Pertama, andaikan $\Gamma \Proves !A$. Maka menurut
+\olref[ptn]{prop:monotonicity},
+$\Gamma \cup \{\lnot !A\} \Proves !A$. Menurut
+\olref[ptn]{prop:reflexivity},
+$\Gamma \cup \{\lnot !A\} \Proves \lnot !A$. Kita juga mempunyai
+$\Proves \lnot !A \lif (!A \lif \lfalse)$ menurut
+\olref[prp]{ax:lnot2}. Jadi, melalui dua penerapan
+\olref[ded]{prop:mp}, kita memperoleh
+$\Gamma \cup \{\lnot !A\} \Proves \lfalse$.
+
+Sekarang andaikan $\Gamma \cup \{\lnot !A\}$ tak konsisten; yakni,
+$\Gamma \cup \{\lnot !A\} \Proves \lfalse$. Menurut teorema deduksi,
+$\Gamma \Proves \lnot !A \lif \lfalse$. Menurut
+\olref[prp]{ax:lfalse2},
+$\Gamma \Proves (\lnot !A \lif \lfalse) \lif \lnot\lnot !A$,
+sehingga \olref[ded]{prop:mp} memberikan
+$\Gamma \Proves \lnot\lnot !A$. Karena
+$\Gamma \Proves \lnot\lnot !A \lif !A$
+(\olref[prp]{ax:dne}), penerapan \olref[ded]{prop:mp} sekali lagi
+memberikan $\Gamma \Proves !A$.
+\end{proof}
+
+\begin{prob}
+Buktikan bahwa $\Gamma \Proves \lnot !A$ jika dan hanya jika
+$\Gamma \cup \{!A\}$ tak konsisten.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Jika $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$, maka $\Gamma$
+  tak konsisten.
+\end{prop}
+
+\begin{proof}
+  Menurut \olref[prp]{ax:lnot2},
+  $\Gamma \Proves \lnot !A \lif (!A \lif \lfalse)$.
+  Dua penerapan \olref[ded]{prop:mp} memberikan
+  $\Gamma \Proves \lfalse$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Jika $\Gamma \cup \{!A\}$ dan $\Gamma \cup \{\lnot !A\}$ keduanya
+  tak konsisten, maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  Buktikan \olref[fol][axd][prv]{prop:provability-exhaustive}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  Buktikan \olref[pl][axd][prv]{prop:provability-exhaustive}.
+\end{prob}
+\tagendprob
+
+\end{document}

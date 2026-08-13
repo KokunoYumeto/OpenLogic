@@ -638,3 +638,79 @@ tableau, damaged hyperlink, or margin loss was found.
 TeXcount reports 6,062 English-source and 5,616 Indonesian words for the batch,
 and 48,519 versus 44,425 cumulatively. The next cursor is `OLP-0112`,
 `content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
+
+## Axiomatic Deduction checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The gap-free boundary extends through `OLP-0125`. Every source hash equals its
+row in the frozen 722-file closure manifest and its Git blob at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. The durable replay command is:
+
+```powershell
+& 'locale\id\qa_axiomatic_deduction_batch_replay.ps1'
+```
+
+Its final result is:
+
+```text
+AXIOMATIC_DEDUCTION_BATCH_REPLAY_OK files=14 checks=384 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0112..OLP-0125
+```
+
+The replay binds 1,540 commands, 250 environment markers, 142 localization
+tokens, 54 labels, 88 references, 13 imports, 482 mathematical skeletons, six
+mathematical environments, five formal structures, 21 localized file IDs, and
+two localized chapter IDs; citations and assets are zero. It positively binds
+27 source-correction classes across 29 exact source occurrences and rejects all
+27 superseded target forms. Source-set SHA-256 is
+`8e7416b0860fe43fd7116585561c82291d904c0c64e4f65f5997825bb5fd2825`;
+target-set SHA-256 is
+`188ab8a93cbb307cb5ddc959c98da6e943789dba38cac07138dfadff591c19ba`.
+Independent paragraph, formula, rule, and cross-unit semantic replay passes all
+fourteen final files with no unresolved finding. Exact dispositions are in
+`..\_control\OPENLOGIC_AXIOMATIC_DEDUCTION_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean bounded build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -gg -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' axiomatic-deduction-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `axiomatic-deduction-id.tex` | `locale/id/axiomatic-deduction-id.pdf` | 15 | 202,123 | `28bd76ef6a1cf25b4f49d684b537379b65ddd1760e2edb6e161bb3d6d83d795a` |
+
+The final log has zero fatal error, undefined control sequence/reference/
+citation, multiply defined label, underfull box, or missing glyph. Four small
+overfull boxes remain, maximum 5.85645 pt; exact-resolution inspection found no
+visible loss. `pdfinfo` confirms 15 letter-size pages, no encryption, forms, or
+JavaScript. The PDF is searchable but not tagged. Every font is embedded and
+has a ToUnicode map.
+
+The locale now renders the invariant `\Hyp` calls as Indonesian `Hip` and
+cleveref equation references as `Pers.` rather than the English `Hyp` and
+`Eq.`. These two reader-facing corrections leave content commands, labels,
+equation numbers, and hyperlink targets invariant.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 31,730 bytes, SHA-256
+`61dbf96c94602bcfae2f78a18cf6658320dc7179094d5a069cac208fed19eb6d`,
+and 4,900 whitespace-delimited words. Searches found zero `??`, `Undefined`,
+English environment/reference heading, named English proof-system fallback,
+raw `Eq.`, or unresolved `Hyp` label.
+
+All 15 pages were rendered at 144 dpi after the final locale changes and
+inspected at original render resolution. No clipping, overlap, blank content
+page, broken glyph, lost formula, malformed derivation, damaged hyperlink, or
+margin loss was found.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+3,442 English-source and 3,216 Indonesian words for this batch, and 51,961
+versus 47,641 across all 125 admitted files. The exact next cursor is
+`OLP-0126`, `content/first-order-logic/completeness/completeness.tex`.

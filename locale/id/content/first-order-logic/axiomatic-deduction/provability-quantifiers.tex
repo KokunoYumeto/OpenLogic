@@ -1,0 +1,52 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: provability-quantifiers
+
+% Verifikasi sifat-sifat keterderivasian yang diperlukan untuk himpunan
+% konsisten maksimal dalam bab kelengkapan.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{axd}{qpr}
+
+\olsection{\usetoken{S}{derivability} dan Kuantor}
+
+\begin{explain}
+  Teorema kelengkapan juga memerlukan agar deduksi aksiomatik menghasilkan
+  fakta-fakta tentang~$\Proves$ yang dibuktikan dalam bagian ini.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} Jika $c$ adalah !!a{constant} yang
+tidak muncul dalam $\Gamma$ ataupun $!A(x)$ dan $\Gamma \Proves !A(c)$,
+maka $\Gamma \Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Menurut teorema deduksi, $\Gamma \Proves \ltrue \lif !A(c)$. Karena
+$c$ tidak muncul dalam $\Gamma$, $\top$, ataupun~$!A(x)$, kita memperoleh
+$\Gamma \Proves \ltrue \lif \lforall[x][!A(x)]$. Karena aksioma
+kebenaran tersedia, modus ponens selanjutnya memberikan
+$\Gamma \Proves \lforall[x][!A(x)]$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+Untuk setiap suku tertutup~$t$:
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Menurut \olref[qua]{ax:q2} dan teorema deduksi.}{}
+\tagitem{prvAll}{Menurut \olref[qua]{ax:q1} dan teorema deduksi.}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

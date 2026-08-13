@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **111 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0111`; unit berikutnya ialah `OLP-0112`,
-`content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
+Status saat ini: **125 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0125`; unit berikutnya ialah `OLP-0126`,
+`content/first-order-logic/completeness/completeness.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -108,6 +108,19 @@ PDF itu memiliki SHA-256
 seluruh 28 halamannya telah dirender pada 144 dpi dan diperiksa pada resolusi
 render asli. Replay semantik independen lulus untuk keempat belas berkas tanpa
 masalah yang belum terselesaikan.
+
+Checkpoint terbaru menambahkan seluruh empat belas unit Derivasi Aksiomatik
+(`OLP-0112`--`OLP-0125`). Penggerak bounded berikut menghasilkan PDF 15
+halaman tanpa rujukan tak terdefinisi atau fallback bahasa Inggris:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error axiomatic-deduction-id.tex
+```
+
+PDF itu memiliki SHA-256
+`28bd76ef6a1cf25b4f49d684b537379b65ddd1760e2edb6e161bb3d6d83d795a`;
+seluruh 15 halamannya telah dirender pada 144 dpi dan diperiksa pada resolusi
+asli. Kursor berurutan berikutnya adalah `OLP-0126`.
 
 ## Syarat penerimaan tiap batch
 

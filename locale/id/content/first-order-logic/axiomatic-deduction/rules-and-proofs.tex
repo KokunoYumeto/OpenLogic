@@ -1,0 +1,103 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{rul}}
+      {\olfileid[id]{pl}{axd}{rul}}
+
+\olsection{Aturan dan \usetoken{P}{derivation}}
+
+\begin{explain}
+  Dalam logika, !!{derivation}s aksiomatik barangkali merupakan sistem
+  !!{derivation} yang paling sederhana.
+  !!^a{derivation} hanyalah suatu urutan !!{formula}s. Agar terhitung
+  sebagai !!a{derivation}, setiap !!{formula} dalam urutan itu harus
+  merupakan instansiasi suatu aksioma, atau harus mengikuti satu atau
+  lebih !!{formula} yang mendahuluinya dalam urutan melalui suatu aturan
+  inferensi. !!^a{derivation} !!{derive} !!{formula} terakhirnya.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+Jika $\Gamma$ adalah himpunan !!{formula}s dari $\Lang L$, maka sebuah
+\emph{!!{derivation}} dari~$\Gamma$ adalah urutan berhingga $!A_1$,
+\dots,~$!A_n$ dari !!{formula}s sedemikian sehingga, untuk setiap
+$i \le n$, salah satu hal berikut berlaku:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; atau
+\item $!A_i$ adalah suatu aksioma; atau
+\item $!A_i$ mengikuti dari suatu $!A_j$ (dan $!A_k$) dengan $j < i$
+  (dan $k < i$) melalui suatu aturan inferensi.
+\end{enumerate}
+\end{defn}
+
+Apa yang terhitung sebagai !!{derivation} yang benar bergantung pada
+aturan inferensi mana yang kita izinkan (dan tentu saja pada apa yang
+kita anggap sebagai aksioma). Suatu aturan inferensi adalah pernyataan
+jika-maka yang memberi tahu kita bahwa, dalam kondisi tertentu, sebuah
+langkah~$!A_i$ dalam !!a{derivation} merupakan langkah inferensi yang
+benar.
+
+\begin{defn}[Aturan inferensi]
+Suatu \emph{aturan inferensi} memberikan syarat cukup bagi apa yang
+terhitung sebagai langkah inferensi yang benar dalam !!a{derivation}
+dari~$\Gamma$.
+\end{defn}
+
+Sebagai contoh, karena setiap urutan satu unsur $!A$ dengan
+$!A \in \Gamma$ secara langsung terhitung sebagai !!a{derivation},
+pernyataan berikut dapat menjadi aturan inferensi yang sangat sederhana:
+\begin{quote}
+  Jika $!A \in \Gamma$, maka $!A$ selalu merupakan langkah inferensi
+  yang benar dalam setiap !!{derivation} dari~$\Gamma$.
+\end{quote}
+Demikian pula, jika $!A$ merupakan salah satu aksioma, maka $!A$ sendiri
+adalah !!a{derivation}, sehingga pernyataan berikut juga merupakan aturan
+inferensi:
+\begin{quote}
+  Jika $!A$ merupakan suatu aksioma, maka $!A$ merupakan langkah
+  inferensi yang benar.
+\end{quote}
+Keadaannya menjadi lebih menarik jika aturan inferensi mengacu pada
+!!{formula}s yang muncul sebelum langkah yang sedang diperiksa. Aturan
+berikut disebut \emph{modus ponens:}
+\begin{quote}
+  Jika $!B \lif !A$ dan $!B$ muncul lebih dahulu dalam !!{derivation},
+  maka~$!A$ merupakan langkah inferensi yang benar.
+\end{quote}
+Jika ini merupakan satu-satunya aturan inferensi, maka definisi
+!!{derivation} kita di atas berarti sebagai berikut: $!A_1$,
+\dots,~$!A_n$ adalah !!a{derivation} jika dan hanya jika, untuk setiap
+$i \le n$, salah satu hal berikut berlaku:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; atau
+\item $!A_i$ adalah suatu aksioma; atau
+\item untuk suatu $j < i$, $!A_j$ adalah $!B \lif !A_i$, dan untuk
+  suatu $k < i$, $!A_k$ adalah~$!B$.
+\end{enumerate}
+Klausa terakhir mengatakan bahwa $!A_i$ mengikuti dari~$!A_j$
+($!B \lif !A_i$) dan $!A_k$ ($!B$) melalui modus ponens. Jika kita dapat
+bergerak dari $1$ hingga~$n$, dan setiap kali menemukan
+!!a{formula}~$!A_i$ yang berada dalam~$\Gamma$, merupakan suatu aksioma,
+atau dinyatakan sebagai langkah inferensi yang benar oleh suatu aturan
+inferensi, maka seluruh urutan tersebut terhitung sebagai
+!!{derivation} yang benar.
+
+\begin{defn}[!!^{derivability}]
+Suatu !!{formula}~$!A$ \emph{!!{derivable}} dari $\Gamma$, ditulis
+$\Gamma \Proves !A$, jika terdapat !!a{derivation} dari $\Gamma$ yang
+berakhir dengan~$!A$.
+\end{defn}
+
+\begin{defn}[Teorema]
+!!^a{formula}~$!A$ merupakan suatu \emph{teorema} jika terdapat
+!!a{derivation} atas~$!A$ dari himpunan kosong. Kita menulis
+$\Proves !A$ jika $!A$ merupakan teorema dan $\Proves/ !A$ jika bukan.
+\end{defn}
+
+
+\end{document}

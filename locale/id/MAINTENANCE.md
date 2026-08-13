@@ -39,11 +39,11 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0111`.
-- Next row: `OLP-0112`.
+- Admitted ordered boundary: `OLP-0125`.
+- Next row: `OLP-0126`.
 - Next source:
-  `content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
-- Current coverage: 111/722; exact remainder: 611.
+  `content/first-order-logic/completeness/completeness.tex`.
+- Current coverage: 125/722; exact remainder: 597.
 
 After the final row, run a clean complete Indonesian reader build, full
 extraction/search replay, page-level visual QA, full hash inventory, and a

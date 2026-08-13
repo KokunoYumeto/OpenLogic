@@ -1,0 +1,152 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{sou}}
+      {\olfileid[id]{pl}{axd}{sou}}
+
+\olsection{Kesahihan}
+
+\begin{explain}
+Sebuah sistem !!{derivation}, seperti deduksi aksiomatik, disebut
+\emph{sahih} jika sistem tersebut tidak dapat !!{derive} kesimpulan yang
+sebenarnya tidak mengikuti premis-premisnya. Dengan demikian, kesahihan
+merupakan sejenis sifat keselamatan yang dijamin bagi sistem
+!!{derivation}. Bergantung pada sifat teori-bukti yang sedang dibahas,
+kita ingin mengetahui, misalnya, bahwa
+\begin{enumerate}
+\item setiap~$!A$ yang !!{derivable} bersifat valid;
+\item jika $!A$ !!{derivable} dari beberapa formula lain~$\Gamma$,
+  formula itu juga merupakan konsekuensi dari formula-formula tersebut;
+\item jika suatu himpunan !!{formula}s~$\Gamma$ tak konsisten, himpunan
+  itu tak dapat dipenuhi.
+\end{enumerate}
+Ini adalah sifat-sifat penting dari suatu sistem !!{derivation}. Jika
+salah satunya tidak berlaku, sistem !!{derivation} tersebut cacat---sistem
+itu akan !!{derive} terlalu banyak. Oleh karena itu, membuktikan kesahihan
+suatu sistem !!{derivation} sangatlah penting.
+\end{explain}
+
+\begin{prop}
+  Jika $!A$ merupakan aksioma, maka
+  \iftag{FOL}
+    {$\Sat{M}{!A}[s]$ untuk setiap !!{structure}~$\Struct{M}$ dan
+      penetapan~$s$.}
+    {$\pSat{v}{!A}$ untuk setiap !!{valuation}~$\pAssign{v}$.}
+\end{prop}
+
+\begin{proof}
+\iftag{FOL}{Kita harus memverifikasi bahwa semua aksioma valid. Sebagai
+  contoh, perhatikan kasus \olref[qua]{ax:q1}: andaikan $t$ bebas untuk
+  $x$ dalam $!A$, dan andaikan
+  $\Sat{M}{\lforall[x][!A]}[s]$. Menurut definisi keterpenuhan, untuk
+  setiap $\varAssign{s'}{s}{x}$, berlaku pula $\Sat{M}{!A}[s']$;
+  khususnya, ini berlaku ketika $s'(x) = \Value{t}{M}[s]$. Menurut
+  \olref[syn][ext]{prop:ext-formulas},
+  $\Sat{M}{\Subst{!A}{t}{x}}[s]$. Hal ini menunjukkan bahwa
+  $\Sat{M}{(\lforall[x][!A] \lif \Subst{!A}{t}{x})}[s]$.}{Buatlah tabel
+  kebenaran bagi setiap aksioma untuk memverifikasi bahwa semuanya
+  merupakan tautologi.}
+\end{proof}
+
+\begin{thm}[Kesahihan]
+\ollabel{thm:soundness}
+Jika $\Gamma \Proves !A$, maka $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+Kita melakukan induksi pada jumlah langkah dalam !!{derivation} dari
+$!A$ berdasarkan $\Gamma$ yang dijustifikasi oleh aturan inferensi. Jika
+tidak ada langkah yang dijustifikasi oleh inferensi, maka semua
+!!{formula}s dalam !!{derivation} tersebut merupakan instans aksioma atau
+anggota~$\Gamma$. Menurut proposisi sebelumnya, semua aksioma
+\iftag{FOL}{valid}{merupakan tautologi}; jadi, jika $!A$ merupakan
+aksioma, maka $\Gamma \Entails !A$. Jika $!A \in \Gamma$, maka secara
+trivial $\Gamma \Entails !A$.
+
+Jika langkah terakhir !!{derivation} dari~$!A$ dijustifikasi oleh modus
+ponens, maka !!{derivation} tersebut memuat !!{formula}s $!B$ dan
+$!B \lif !A$, dan hipotesis induksi berlaku pada bagian !!{derivation}
+yang berakhir dengan masing-masing !!{formula} tersebut (karena
+bagian-bagian itu memuat setidaknya satu langkah yang dijustifikasi oleh
+inferensi lebih sedikit). Jadi, menurut hipotesis induksi,
+$\Gamma \Entails !B$ dan $\Gamma \Entails !B \lif !A$. Selanjutnya,
+$\Gamma \Entails !A$ menurut
+\iftag{FOL}
+      {\olref[syn][sem]{thm:sem-deduction}}
+      {\olref[pl][syn][sem]{thm:sem-deduction}}.
+
+\iftag{FOL}{Sekarang andaikan langkah terakhir dijustifikasi oleh
+\QR. Langkah itu berbentuk $!C \lif \lforall[x][!B(x)]$, dan terdapat
+langkah sebelumnya $!C \lif !B(c)$ dengan $c$ tidak muncul dalam
+$\Gamma$, $!C$, ataupun $\lforall[x][!B(x)]$. Menurut hipotesis induksi,
+$\Gamma \Entails !C \lif !B(c)$. Menurut
+\olref[syn][sem]{thm:sem-deduction},
+$\Gamma \cup \{!C\} \Entails !B(c)$.
+
+Perhatikan suatu struktur~$\Struct{M}$ sedemikian sehingga
+$\Sat{M}{\Gamma \cup \{!C\}}$. Kita harus menunjukkan bahwa
+$\Sat{M}{\lforall[x][!B(x)]}$. Karena $\lforall[x][!B(x)]$ merupakan
+!!a{sentence}, ini berarti bahwa untuk setiap penetapan variabel~$s$,
+kita harus menunjukkan $\Sat{M}{!B(x)}[s]$
+(\olref[syn][ass]{prop:sat-quant}). Karena $\Gamma \cup \{!C\}$
+seluruhnya terdiri atas kalimat, menurut
+\olref[syn][sat]{defn:satisfaction}, $\Sat{M}{!D}[s]$ untuk setiap
+$!D \in \Gamma \cup \{!C\}$. Misalkan $\Struct{M'}$ sama dengan
+$\Struct{M}$, kecuali bahwa $\Assign{c}{M'} = s(x)$. Karena $c$ tidak muncul
+dalam~$\Gamma$ ataupun~$!C$, menurut
+\olref[syn][ext]{cor:extensionality-sent},
+$\Sat{M'}{\Gamma \cup \{!C\}}$. Karena
+$\Gamma \cup \{!C\} \Entails !B(c)$, maka $\Sat{M'}{!B(c)}$. Karena
+$!B(c)$ merupakan !!a{sentence}, menurut
+\olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M'}{!B(c)}[s]$.
+Menurut \olref[syn][ext]{prop:ext-formulas},
+$\Sat{M'}{!B(x)}[s]$ jika dan hanya jika $\Sat{M'}{!B(c)}[s]$
+(ingat bahwa $!B(c)$ hanyalah $\Subst{!B(x)}{c}{x}$). Jadi,
+$\Sat{M'}{!B(x)}[s]$. Karena $c$ tidak muncul dalam~$!B(x)$, menurut
+\olref[syn][ext]{prop:extensionality}, $\Sat{M}{!B(x)}[s]$. Namun,
+$s$ merupakan penetapan variabel sebarang, sehingga
+$\Sat{M}{\lforall[x][!B(x)]}$. Jadi,
+$\Gamma \cup \{!C\} \Entails \lforall[x][!B(x)]$. Menurut
+\olref[syn][sem]{thm:sem-deduction},
+$\Gamma \Entails !C \lif \lforall[x][!B(x)]$.
+
+Kasus ketika $!A$ dijustifikasi oleh \QR, tetapi berbentuk
+$\lexists[x][!B(x)] \lif !C$, kita tinggalkan sebagai latihan.}{}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  Lengkapi pembuktian \olref[fol][axd][sou]{thm:soundness}.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Jika $\Proves !A$, maka $!A$ \iftag{FOL}{valid}{merupakan tautologi}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Jika $\Gamma$ dapat dipenuhi, maka himpunan tersebut konsisten.
+\end{cor}
+
+\begin{proof}
+Kita membuktikan kontraposisinya. Andaikan $\Gamma$ tidak konsisten.
+Maka $\Gamma \Proves \lfalse$; yakni, terdapat !!a{derivation} dari
+$\lfalse$ berdasarkan~$\Gamma$. Menurut \olref{thm:soundness}, setiap
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+yang memenuhi $\Gamma$ harus memenuhi~$\lfalse$. Karena
+\iftag{FOL}{$\Sat/{M}{\lfalse}$ untuk setiap
+  !!{structure}~$\Struct{M}$}{$\pSat/{v}{\lfalse}$ untuk setiap
+  !!{valuation}~$\pAssign{v}$}, tidak ada
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} yang dapat memenuhi $\Gamma$;
+yakni, $\Gamma$ tidak dapat dipenuhi.
+\end{proof}
+
+\end{document}

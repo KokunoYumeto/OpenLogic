@@ -1,0 +1,36 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{axd}{prq}
+
+\olsection{\usetoken{P}{derivation} dengan Kuantor}
+
+\begin{ex}
+Mari kita berikan !!a{derivation} atas $(\lforall[x][!A(x)] \land
+\lforall[y][!B(y)]) \lif \lforall[x][(!A(x) \land !B(x))]$.
+
+Pertama, perhatikan bahwa
+\begin{align*}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][!A(x)]\\
+  \intertext{merupakan instansiasi dari \olref[prp]{ax:land1}, sedangkan}
+  \lforall[x][!A(x)] & \lif !A(a) \\
+  \intertext{merupakan instansiasi dari \olref[qua]{ax:q1}. Jadi, menurut \olref[pro]{prop:chain}, kita tahu bahwa}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !A(a) \\
+  \intertext{!!{derivable}. Demikian pula, karena}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[y][!B(y)] \qquad\text{dan}\\
+    \lforall[y][!B(y)] & \lif !B(a)\\
+    \intertext{masing-masing merupakan instansiasi dari \olref[prp]{ax:land2} dan \olref[qua]{ax:q1},}
+    (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !B(a)\\
+    \intertext{dapat diturunkan menurut \olref[pro]{prop:chain}. Dengan menggunakan instansiasi yang sesuai dari \olref[prp]{ax:land3} dan dua penerapan~\MP, kita melihat bahwa}
+    (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif (!A(a) \land !B(a))\\
+    \intertext{dapat diturunkan. Sekarang kita dapat menerapkan \QR{} untuk memperoleh}
+(\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][(!A(x) \land !B(x))].
+\end{align*}
+\end{ex}
+
+\end{document}

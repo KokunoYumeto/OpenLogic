@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0111` (111/722 files). It is incomplete and must not be represented as the
+`OLP-0125` (125/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -60,6 +60,11 @@ Exact source corrections currently include:
   consistency, quantifier-soundness, and identity-rule expressions; and
   corrects exact line references, indices, polarity signs, and metavariable
   drift where the frozen source conflicts with its own rules or proof context.
+- Axiomatic Deduction repairs formula markers and axiom references; restores
+  closed-term and QR eigenconstant conditions; separates propositional from
+  first-order carriers; and corrects deduction-theorem, compactness, soundness,
+  and identity claims where the frozen source conflicts with its own rule
+  statements or proof obligations.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.
