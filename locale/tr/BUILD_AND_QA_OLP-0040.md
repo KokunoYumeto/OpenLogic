@@ -19,7 +19,7 @@ Authority commit: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
 - Structural QA: cumulative replay passes with only declared source-emendation
   deltas.
 - Independent settled-byte review: blocker 0, major 0, minor 0.
-- Planned publication tag: `tr-olp-0040-20260813`.
+- Publication tag: `tr-olp-0040-20260813`.
 
 This checkpoint supersedes `tr-olp-0026-20260813`. It is not the complete
 722-module Turkish edition.
