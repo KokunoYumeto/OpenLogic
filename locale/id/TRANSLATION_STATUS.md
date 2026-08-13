@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 54/722 and the exact remainder is 668 files.
+Current target-file coverage is 62/722 and the exact remainder is 660 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -273,6 +273,31 @@ zero unresolved marker or English environment/reference heading. Final pages
 inspected at 300 dpi. No clipping, overlap, blank changed page, broken glyph,
 lost formula, or margin loss was found.
 
+### Propositional Logic syntax and semantics
+
+Ordered units `OLP-0055`--`OLP-0062` add the Propositional Logic part metadata
+and its complete Syntax and Semantics chapter. The batch contains 2,853
+English-source and 2,715 Indonesian TeXcount words; cumulative counts through
+OLP-0062 are 29,001 and 26,631.
+
+Final deterministic replay passed eight files, 112 comparison groups, and 424
+mathematical skeletons. Two independent paragraph-level reviews found and
+corrected the direction of semantic consequence, then found no remaining
+translation-origin omission, polarity, quantifier, scope, mathematical, or
+material register defect. Exact path-scoped source repairs remove a standalone
+`\iftag` period, an unmatched parenthesis in the implication definition, and
+an incorrect `\equiv` where the proof requires syntactic identity `\ident`.
+The source's formation-sequence length/index mismatch and its accidental
+rebinding of the fixed formula in Local Determination are also repaired in the
+Indonesian statements.
+
+All reader-facing OLP-0055--0062 material was built without English fallback in
+two bounded drivers: the two-page part surface and the eleven-page chapter.
+Both builds exited 0. All thirteen pages were rendered at 144 dpi and inspected;
+extracted text contains no unresolved marker, English reference/environment
+heading, or localization-token fallback. Exact hashes and dispositions are in
+`..\_control\OPENLOGIC_PROPOSITIONAL_SYNTAX_SEMANTICS_INDEPENDENT_REVIEW_20260813.md`.
+
 ## Preserved risks and nonclaims
 
 - `cleveref` has no installed Indonesian language module. The locale driver
@@ -313,7 +338,7 @@ lost formula, or margin loss was found.
 
 ## Continuation cursor
 
-Next global ordered cursor: `OLP-0055`,
-`content/propositional-logic/propositional-logic.tex`.
-The remaining closure is 668 source files after the 54 target files currently
+Next global ordered cursor: `OLP-0063`,
+`content/first-order-logic/proof-systems/proof-systems.tex`.
+The remaining closure is 660 source files after the 62 target files currently
 present and admitted.

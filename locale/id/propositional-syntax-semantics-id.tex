@@ -1,0 +1,35 @@
+% Penggerak mandiri untuk bab Sintaks dan Semantik Proposisional dalam
+% pelokalan Bahasa Indonesia.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+% OLP-0055 diperiksa oleh penggerak bounded terpisah karena penggerak bagian
+% juga mengimpor unit OLP-0063 dan seterusnya yang belum diterjemahkan.
+\olimport*[propositional-logic/syntax-and-semantics]{syntax-and-semantics}
+
+\end{document}

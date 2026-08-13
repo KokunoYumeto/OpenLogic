@@ -1,0 +1,150 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pl}{syn}{fseq}
+
+\olsection{Barisan Pembentukan}
+
+Mendefinisikan !!{formula}s melalui suatu definisi induktif, beserta teknik
+pelengkap berupa pembuktian sifat-sifat !!{formula}s melalui induksi,
+merupakan pendekatan yang anggun dan efisien. Namun, pendekatan dari bawah
+ke atas dan langkah demi langkah terhadap pembangunan !!{formula}s juga
+dapat berguna. Di sini kita melakukannya dengan menggunakan gagasan
+\emph{barisan pembentukan}.
+
+\begin{defn}[Barisan pembentukan untuk formula]
+\ollabel{defn:fseq-frm}
+Suatu barisan berhingga $\tuple{!A_0,\dotsc,!A_n}$ dari untai simbol dalam
+bahasa~$\Lang L_0$ merupakan \emph{barisan pembentukan} untuk $!A$ jika
+$!A \ident !A_n$ dan, untuk setiap $i \leq n$, $!A_i$ merupakan formula
+atomik atau terdapat $j,k < i$ sedemikian sehingga salah satu dari hal
+berikut berlaku:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    (\Obj p_1 \land \Obj p_0),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}
+\]
+merupakan barisan pembentukan untuk
+$\lnot (\Obj p_1 \land \Obj p_0)$, demikian pula
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    \Obj p_0,
+    (\Obj p_1 \land \Obj p_0),
+    (\Obj p_0 \lif \Obj p_1),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}.
+\]
+%
+Sebagaimana tampak dari contoh kedua, barisan pembentukan dapat memuat
+`sampah': formula yang mubazir atau tidak turut membangun hasil akhirnya.
+\end{ex}
+
+\begin{prop}
+\ollabel{prop:formed}
+Setiap !!{formula}~$!A$ dalam~$\Frm[L_0]$ memiliki barisan pembentukan.
+\end{prop}
+
+\begin{proof}
+Andaikan $!A$ atomik. Maka barisan~$\tuple{!A}$ merupakan barisan
+pembentukan untuk~$!A$.
+%
+Sekarang andaikan $!B$ dan~$!C$ masing-masing memiliki barisan pembentukan
+$\tuple{!B_0,\dotsc,!B_n}$ dan $\tuple{!C_0,\dotsc,!C_m}$.
+%
+\begin{enumerate}
+  \tagitem{prvNot}{Jika $!A \ident \lnot !B$,
+      maka $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvAnd}{Jika $!A \ident (!B \land !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvOr}{Jika $!A \ident (!B \lor !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvIf}{Jika $!A \ident (!B \lif !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvIff}{Jika $!A \ident (!B \liff !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+\end{enumerate}
+Menurut prinsip induksi pada !!{formula}s, setiap !!{formula} memiliki barisan
+pembentukan.
+\end{proof}
+
+Kita juga dapat membuktikan arah sebaliknya. Hal ini penting karena
+menunjukkan bahwa kedua cara kita mendefinisikan formula adalah ekuivalen:
+keduanya memberikan hasil yang sama. Hal ini juga berarti bahwa kita dapat
+membuktikan teorema tentang formula dengan menggunakan induksi biasa pada
+panjang barisan pembentukan.
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+Andaikan $\tuple{!A_0,\dotsc,!A_n}$ merupakan barisan pembentukan
+untuk~$!A_n$, dan $k \leq n$. Maka $\tuple{!A_0,\dotsc,!A_k}$ merupakan
+barisan pembentukan untuk~$!A_k$.
+\end{lem}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L_0]$ merupakan himpunan semua untai simbol dalam bahasa~$\Lang L_0$
+yang memiliki barisan pembentukan.
+\end{thm}
+
+\begin{proof}
+Misalkan $F$ ialah himpunan semua untai simbol dalam bahasa~$\Lang L_0$ yang
+memiliki barisan pembentukan. Kita telah melihat dalam
+\olref[pl][syn][fseq]{prop:formed} bahwa $\Frm[L_0] \subseteq F$, sehingga
+sekarang kita membuktikan arah sebaliknya.
+
+Andaikan $!A$ memiliki barisan pembentukan $\tuple{!A_0,\dotsc,!A_n}$. Kita
+membuktikan bahwa $!A \in \Frm[L_0]$ melalui induksi kuat pada~$n$, yaitu
+indeks terakhir barisan tersebut. Hipotesis induksi kita menyatakan bahwa
+setiap untai simbol dengan barisan pembentukan berindeks terakhir $m < n$
+berada dalam~$\Frm[L_0]$. Menurut definisi barisan pembentukan, $!A_n$
+merupakan formula atomik atau harus terdapat $j,k < n$ sedemikian sehingga
+salah satu dari hal berikut berlaku:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_n \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_n \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_n \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_n \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_n \ident (!A_j \liff !A_k)$.}{}%
+\end{enumerate}
+Sekarang kita bernalar menurut kasus. Jika $!A_n$ atomik, maka
+$!A_n \in \Frm[L_0]$. Sebaliknya, andaikan $!A \ident
+(!A_j \land !A_k)$. Menurut \olref[pl][syn][fseq]{lem:fseq-init},
+$\tuple{!A_0,\dotsc,!A_j}$ dan $\tuple{!A_0,\dotsc,!A_k}$ masing-masing
+merupakan barisan pembentukan untuk $!A_j$ dan~$!A_k$. Karena keduanya
+merupakan subbarisan awal sejati dari barisan pembentukan untuk~$!A$, indeks
+terakhir keduanya lebih kecil daripada~$n$. Oleh karena itu, menurut
+hipotesis induksi, $!A_j$ dan~$!A_k$ berada dalam~$\Frm[L_0]$, sehingga
+menurut definisi !!a{formula}, $(!A_j \land !A_k)$ juga berada di dalamnya.
+Kasus-kasus lain mengikuti penalaran yang sejajar.
+\end{proof}
+
+\end{document}

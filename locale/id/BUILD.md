@@ -389,3 +389,57 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 and 26,148 English-source words versus 23,916 Indonesian words across all
 fifty-four admitted files. The exact next cursor is `OLP-0055`,
 `content/propositional-logic/propositional-logic.tex`.
+
+## Propositional Logic syntax and semantics checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The contiguous boundary extends through `OLP-0062`. Every source hash equals
+its row in the frozen 722-file closure manifest. The durable replay command is:
+
+```powershell
+& 'locale\id\qa_propositional_syntax_batch_replay.ps1'
+```
+
+Its final result is:
+
+```text
+PROP_SYNTAX_REPLAY_OK files=8 checks=112 math_skeletons=424 reader_order_exceptions=1 source_corrections=3 correction_assertions=3 closure=OLP-0055..OLP-0062 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0
+```
+
+Two independent paragraph-level semantic replays found no remaining omission,
+reader-facing English, polarity, quantifier, scope, mathematical, or material
+register defect. The exact three path-scoped structural repairs and two
+semantic source repairs are recorded in
+`..\_control\OPENLOGIC_PROPOSITIONAL_SYNTAX_SEMANTICS_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean bounded builds
+
+OLP-0055 imports later untranslated proof-system units. It is therefore built
+in a bounded part driver that suppresses only downstream imports; the complete
+OLP-0056--0062 chapter is built separately. This renders every translated
+reader surface without importing English fallback.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `propositional-part-id.tex` | `locale/id/propositional-part-id.pdf` | 2 | 38,380 | `9747a415962fa62c0b263965f966cd457fb42b8b8147666bdcf41520237aa2a8` |
+| `propositional-syntax-semantics-id.tex` | `locale/id/propositional-syntax-semantics-id.pdf` | 11 | 195,778 | `8e04657dc409e29d59badaa0b9d411e2a633799384777ac58d44654e20294d0c` |
+
+Both `latexmk` runs exited 0 under MiKTeX with automatic installation disabled.
+The logs contain no fatal error, undefined reference/citation,
+multiply-defined label, missing glyph, or underfull box. The chapter has three
+small overfull boxes, maximum 5.47389 pt; all are visually harmless.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 779 and 22,282 bytes. Searches found zero `??`,
+`Undefined`, English environment/reference headings, localization-token
+fallbacks, and the rejected standalone punctuation artifact. Both part pages
+and all eleven chapter pages were rendered at 144 dpi and inspected. No
+clipping, overlap, blank content page, broken glyph, lost formula, damaged
+table, or margin loss was found.
+
+TeXcount 3.1.1 reports 2,853 English-source and 2,715 Indonesian words for this
+eight-file batch, and 29,001 versus 26,631 across all sixty-two admitted files.
+The exact next cursor is `OLP-0063`,
+`content/first-order-logic/proof-systems/proof-systems.tex`.

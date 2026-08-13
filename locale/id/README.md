@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **54 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0054`; unit berikutnya ialah `OLP-0055`,
-`content/propositional-logic/propositional-logic.tex`.
+Status saat ini: **62 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0062`; unit berikutnya ialah `OLP-0063`,
+`content/first-order-logic/proof-systems/proof-systems.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -47,11 +47,13 @@ Dari akar repositori, dengan MiKTeX dan Latexmk yang sudah terpasang:
 
 ```powershell
 $env:MIKTEX_ENABLE_INSTALLER='0'
-latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/infinite-id.tex
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/propositional-part-id.tex
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/propositional-syntax-semantics-id.tex
 ```
 
-Hasil terakhir ialah PDF 87 halaman dengan SHA-256
-`825d4ae9d41ee7f3243ce922652a2e4b539c124b968192cc43a48f0ca4202618`.
+Checkpoint terbaru menghasilkan dua PDF bounded dengan total 13 halaman dan
+SHA-256 `9747a415962fa62c0b263965f966cd457fb42b8b8147666bdcf41520237aa2a8`
+serta `8e04657dc409e29d59badaa0b9d411e2a633799384777ac58d44654e20294d0c`.
 Perintah QA dan bukti render yang tepat dicatat dalam `BUILD.md`.
 
 ## Syarat penerimaan tiap batch

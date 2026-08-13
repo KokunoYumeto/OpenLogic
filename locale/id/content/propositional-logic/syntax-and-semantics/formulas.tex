@@ -1,0 +1,184 @@
+% Bagian: propositional-logic
+% Bab: syntax-and-semantics
+% Subbagian: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pl}{syn}{fml}
+
+\olsection{\usetoken{P}{formula} Proposisi}
+
+!!^{formula}s dalam logika proposisi dibangun dari
+\emph{!!{propositional
+    variable}s}\iftag{prvFalse}{\iftag{prvTrue}{,}{ dan}
+  konstanta proposisional~$\lfalse$}{}\iftag{prvTrue}{\iftag{prvFalse}{
+    dan}{} konstanta proposisional~$\ltrue$}{} dengan
+menggunakan \emph{penghubung logis}.
+
+\begin{enumerate}
+\item Himpunan !!a{denumerable}~$\PVar$ dari !!{propositional variable}s
+  $\Obj p_0$, $\Obj p_1$, \dots
+\tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+\tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+\item Penghubung logis:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\item Tanda baca: (, ), dan koma.
+\end{enumerate}
+
+Kita menyatakan bahasa logika proposisi ini dengan $\Lang L_0$.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Selain penghubung primitif yang diperkenalkan di atas, kita juga menggunakan
+simbol-simbol \emph{terdefinisi} berikut:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}{}.}{}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+Suatu simbol terdefinisi secara resmi bukan bagian dari bahasa, tetapi
+diperkenalkan sebagai singkatan informal: simbol itu memungkinkan kita
+menyingkat formula yang akan menjadi cukup panjang jika kita hanya memakai
+simbol primitif. Hal ini jelas merupakan suatu keuntungan. Namun, keuntungan
+yang lebih besar ialah bahwa bukti menjadi lebih singkat. Jika suatu simbol
+bersifat primitif, simbol itu harus ditangani secara tersendiri dalam bukti.
+Oleh karena itu, semakin banyak simbol primitif, semakin panjang bukti kita.
+\end{explain}
+\end{tagblock}
+
+% Simbol alternatif
+
+\begin{intro}
+Anda mungkin lebih mengenal istilah dan simbol yang berbeda dari yang kita
+gunakan di atas. Teks-teks logika (dan para pengajar) lazim menggunakan
+$\sim$, $\neg$, dan~!\ untuk ``negasi'', serta $\wedge$, $\cdot$, dan $\&$
+untuk ``konjungsi''. Simbol yang lazim digunakan untuk ``implikasi'' ialah
+$\rightarrow$, $\Rightarrow$, dan $\supset$.
+\iftag{prvIff,defIff}{Simbol untuk ``biimplikasi'', ``implikasi dua arah'',
+  atau ``ekuivalensi (material)'' ialah $\leftrightarrow$,
+  $\Leftrightarrow$, dan $\equiv$.}{}
+\iftag{prvFalse,defFalse}{Simbol $\lfalse$ disebut dengan berbagai nama,
+  antara lain ``kepalsuan'', ``falsum'', ``absurditas'', atau
+  ``bawah''.}{}
+\iftag{prvTrue,defTrue}{Simbol $\ltrue$ disebut dengan berbagai nama,
+  antara lain ``kebenaran'', ``verum'', atau ``atas''.}{}
+\end{intro}
+
+\begin{defn}[Formula]
+\ollabel{defn:formulas}
+Himpunan~$\Frm[L_0]$ dari \emph{!!{formula}s} logika proposisi didefinisikan
+secara induktif sebagai berikut:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ merupakan !!{formula} atomik.}{}
+
+\tagitem{prvTrue}{$\ltrue$ merupakan !!{formula} atomik.}{}
+
+\item Setiap !!{propositional variable}~$\Obj p_i$ merupakan
+  !!{formula} atomik.
+
+\tagitem{prvNot}{Jika $!A$ merupakan !!a{formula}, maka $\lnot !A$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvAnd}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \land !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvOr}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lor !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvIf}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lif !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvIff}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \liff !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{limitClause}{Tidak ada ungkapan lain yang merupakan
+  !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Definisi !!{formula}s merupakan sebuah \emph{definisi induktif}. Pada
+dasarnya, kita membangun himpunan !!{formula}s dalam tak hingga banyaknya
+tahap. Pada tahap awal, kita menetapkan semua formula atomik sebagai formula;
+hal ini bersesuaian dengan beberapa kasus pertama dalam definisi, yaitu kasus
+untuk
+\iftag{prvTrue}{$\ltrue$, }{}%
+\iftag{prvFalse}{$\lfalse$, }{}%
+$\Obj p_i$. Dengan demikian, ``!!{formula} atomik'' berarti setiap
+!!{formula} yang berbentuk demikian.
+
+Kasus-kasus lain dalam definisi memberikan aturan untuk membangun
+!!{formula}s baru dari !!{formula}s yang sudah dibangun. Pada tahap kedua,
+kita dapat menggunakan aturan tersebut untuk membangun !!{formula}s dari
+!!{formula}s atomik. Pada tahap ketiga, kita membangun formula baru dari
+formula atomik dan formula yang diperoleh pada tahap kedua, dan demikian
+seterusnya. Suatu ungkapan merupakan suatu !!{formula} jika pada akhirnya dibangun
+pada salah satu tahap tersebut, dan tidak ada ungkapan lain yang merupakan
+formula.
+\end{explain}
+
+Ketika menulis formula $(!B \ast !C)$ yang dibangun dari $!B$, $!C$ dengan
+menggunakan penghubung dua-tempat~$\ast$, kita akan sering menghilangkan
+pasangan tanda kurung terluar dan cukup menuliskan~$!B \ast !C$.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{defn}
+Formula yang dibangun dengan menggunakan operator terdefinisi harus dipahami
+sebagai berikut:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
+
+\tagitem{defTrue}{$\ltrue$ menyingkat
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$ untuk suatu
+    !!{formula} atomik tetap~$!A$}.}{}
+
+\tagitem{defFalse}{$\lfalse$ menyingkat
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$ untuk suatu
+    !!{formula} atomik tetap~$!A$}.}{}
+
+\tagitem{defNot}{$\lnot !A$ menyingkat $!A \lif \lfalse$.}{}
+
+\tagitem{defOr}{$!A \lor !B$ menyingkat
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$}.}{}
+
+\tagitem{defAnd}{$!A \land !B$ menyingkat
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$}.}{}
+
+\tagitem{defIf}{$!A \lif !B$ menyingkat
+  \iftag{prvOr}{$\lnot !A \lor !B$}{$\lnot (!A \land \lnot !B)$}.}{}
+
+\tagitem{defIff}{$!A \liff !B$ menyingkat $(!A \lif !B) \land (!B
+  \lif !A)$.}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+\begin{defn}[Identitas Sintaktis]
+Simbol $\ident$ menyatakan identitas sintaktis antara untai simbol, yakni
+$!A \ident !B$ jika dan hanya jika $!A$ dan $!B$ merupakan untai simbol
+dengan panjang yang sama dan memuat simbol yang sama pada setiap posisi.
+\end{defn}
+
+Simbol $\ident$ dapat diapit oleh untai yang diperoleh melalui konkatenasi;
+misalnya, $!A \ident (!B \lor !C)$ berarti: untai simbol~$!A$ sama dengan
+untai yang diperoleh dengan menggabungkan sebuah tanda kurung buka, untai
+$!B$, simbol $\lor$, untai~$!C$, dan sebuah tanda kurung tutup, dalam urutan
+tersebut. Jika demikian, kita mengetahui bahwa simbol pertama dari $!A$
+adalah tanda kurung buka, $!A$ memuat $!B$ sebagai subuntai (dimulai pada
+simbol kedua), subuntai itu diikuti oleh $\lor$, dan seterusnya.
+
+\end{document}

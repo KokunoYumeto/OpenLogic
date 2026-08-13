@@ -1,0 +1,81 @@
+% Bagian: propositional-logic
+% Bab: syntax-and-semantics
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pl}{syn}{int}
+
+\olsection{Pendahuluan}
+
+Logika proposisi membahas !!{formula}s yang dibangun dari
+!!{propositional variable}s dengan menggunakan penghubung proposisional
+$\lnot$, $\land$, $\lor$, $\lif$, dan $\liff$. Secara intuitif,
+!!a{propositional variable}~$p$ mewakili sebuah kalimat atau proposisi
+yang bernilai benar atau salah. Setiap kali ``nilai kebenaran''
+!!{propositional variable} dalam !!a{formula} ditentukan, nilai kebenaran
+setiap !!{formula}s yang dibentuk darinya dengan menggunakan penghubung
+proposisional juga ditentukan. Kita mengatakan bahwa logika proposisi
+bersifat \emph{fungsional-kebenaran}, karena semantiknya diberikan oleh
+fungsi-fungsi atas nilai kebenaran. Secara khusus, dalam logika proposisi
+kita tidak mempertimbangkan penentuan lebih lanjut mengenai kebenaran dan
+kesalahan; misalnya, apakah sesuatu niscaya benar alih-alih sekadar benar
+secara kontingen, apakah sesuatu diketahui benar, atau apakah sesuatu benar
+sekarang alih-alih benar pada masa lalu atau masa mendatang. Kita hanya
+mempertimbangkan dua nilai kebenaran, yaitu benar ($\True$) dan salah
+($\False$), sehingga kita mengecualikan kemungkinan bahwa suatu pernyataan
+tidak benar maupun tidak salah, atau hanya setengah benar. Kita juga hanya
+memusatkan perhatian pada penghubung yang membuat nilai kebenaran
+!!a{formula} yang dibangun dengannya sepenuhnya ditentukan oleh nilai
+kebenaran bagian-bagiannya (dan bukan, misalnya, oleh maknanya). Secara
+khusus, masih diperdebatkan apakah nilai kebenaran kalimat bersyarat dalam
+bahasa Inggris bersifat fungsional-kebenaran dalam pengertian ini. Implikasi
+material~$\lif$ memang demikian; logika-logika lain membahas kalimat
+bersyarat yang tidak bersifat fungsional-kebenaran.
+
+Untuk mengembangkan teori dan metateori logika proposisi berbasis fungsi
+kebenaran, kita harus lebih dahulu mendefinisikan sintaks serta
+semantik ungkapannya. Kita akan menguraikan salah satu cara
+membangun !!{formula}s dari !!{propositional variable}s dengan menggunakan
+penghubung-penghubung tersebut. Definisi alternatif juga dimungkinkan.
+Sistem lain akan memilih simbol yang berbeda, memilih himpunan penghubung
+primitif yang berbeda, dan menggunakan tanda kurung secara berbeda (atau
+bahkan tidak menggunakannya sama sekali, seperti dalam apa yang disebut
+notasi Polandia). Meskipun demikian, semua pendekatan memiliki kesamaan:
+aturan pembentukan mendefinisikan himpunan !!{formula}s secara
+\emph{induktif}. Jika dilakukan dengan tepat, setiap ungkapan pada dasarnya
+hanya dapat dihasilkan melalui satu cara menurut aturan pembentukan.
+Definisi induktif yang menghasilkan ungkapan yang \emph{terbaca secara
+unik} memungkinkan kita memberikan makna kepada ungkapan tersebut dengan
+metode yang sama---definisi induktif.
+
+Pemberian makna kepada ungkapan merupakan ranah semantik. Konsep utama dalam
+semantik logika proposisi ialah pemuasan dalam !!a{valuation}.
+!!^a{valuation}~$\pAssign{v}$ memberikan nilai kebenaran $\True$, $\False$
+kepada !!{propositional variable}s. Setiap !!{valuation} menentukan nilai
+kebenaran $\pValue{v}(!A)$ bagi setiap !!{formula}~$!A$.
+!!^a{formula} dipenuhi dalam !!a{valuation}~$\pAssign{v}$ jika dan hanya jika
+$\pValue{v}(!A) = \True$---kita menuliskannya sebagai $\pSat{v}{!A}$.
+Relasi ini juga dapat didefinisikan melalui induksi pada struktur~$!A$,
+dengan menggunakan fungsi kebenaran bagi penghubung logis untuk
+mendefinisikan, misalnya, pemuasan $!A \land !B$ berdasarkan dipenuhi atau
+tidaknya $!A$ dan~$!B$.
+
+Berdasarkan relasi pemuasan $\pSat{v}{!A}$ untuk kalimat, selanjutnya kita
+dapat mendefinisikan gagasan semantis dasar berupa tautologi, perikutan, dan
+keterpenuhan. !!^a{formula} merupakan tautologi, $\Entails !A$, jika setiap
+!!{valuation} memenuhinya, yakni jika $\pValue{v}(!A) = \True$ untuk setiap
+$\pAssign{v}$. Formula itu merupakan konsekuensi semantis dari suatu himpunan
+!!{formula}s, $\Gamma \Entails !A$, jika setiap !!{valuation} yang memenuhi
+semua !!{formula}s dalam~$\Gamma$ juga memenuhi~$!A$. Suatu himpunan
+!!{formula}s dapat dipenuhi jika terdapat !!{valuation} yang memenuhi semua
+!!{formula}s di dalamnya secara bersamaan. Karena !!{formula}s didefinisikan
+secara induktif dan pemuasan selanjutnya didefinisikan melalui induksi pada
+struktur !!{formula}s, kita dapat menggunakan induksi untuk membuktikan
+sifat-sifat semantik kita serta menghubungkan gagasan-gagasan semantis yang
+telah didefinisikan.
+
+
+\end{document}

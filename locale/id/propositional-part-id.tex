@@ -1,0 +1,34 @@
+% Penggerak mandiri untuk judul dan editorial Bagian Logika Proposisi.
+
+\documentclass[openany]{memoir}
+
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Penggerak OLP-0055 mengimpor unit OLP-0056 dan OLP-0063 ke atas. Untuk
+% pemeriksaan bounded ini hanya impor turunannya yang ditiadakan; judul,
+% editorial, tag, dan hook bagian tetap dijalankan dari berkas target asli.
+\RenewDocumentCommand \olimport { s o m o } {}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+\subfile{\olpath/locale/\ollangid/content/propositional-logic/propositional-logic}
+
+\end{document}

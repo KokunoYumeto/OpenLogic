@@ -1,0 +1,98 @@
+% Bagian: propositional-logic
+% Bab: syntax-and-semantics
+% Subbagian: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pl}{syn}{sem}
+
+\olsection{Gagasan Semantis}
+
+Kita mendefinisikan gagasan-gagasan semantis berikut:
+
+\begin{defn} 
+\begin{enumerate}
+\item !!^a{formula}~$!A$ \emph{dapat dipenuhi} jika terdapat suatu
+  $\pAssign{v}$ sedemikian sehingga $\pSat{v}{!A}$; formula itu
+  \emph{tidak dapat dipenuhi} jika tidak terdapat $\pAssign{v}$ sedemikian
+  sehingga $\pSat{v}{!A}$;
+\item !!^a{formula}~$!A$ merupakan \emph{tautologi} jika $\pSat{v}{!A}$
+  untuk semua !!{valuation}s~$\pAssign{v}$;
+\item !!^a{formula}~$!A$ bersifat \emph{kontingen} jika formula itu dapat
+  dipenuhi tetapi bukan tautologi;
+\item Jika $\Gamma$ merupakan himpunan !!{formula}s, maka
+  $\Gamma \Entails !A$ (``$\Gamma$ mengakibatkan $!A$ secara semantis'')
+  jika dan hanya jika $\pSat{v}{!A}$ bagi setiap
+  !!{valuation}~$\pAssign{v}$ yang baginya $\pSat{v}{\Gamma}$.
+\item Jika $\Gamma$ merupakan himpunan !!{formula}s, maka $\Gamma$
+  \emph{dapat dipenuhi} jika terdapat !!a{valuation}~$\pAssign{v}$ yang
+  baginya $\pSat{v}{\Gamma}$, dan $\Gamma$ \emph{tidak dapat dipenuhi}
+  jika tidak demikian.
+\end{enumerate} 
+\end{defn}
+
+\begin{prob} 
+ Untuk masing-masing dari empat !!{formula}s berikut, tentukan apakah formula
+ itu (a)~dapat dipenuhi, (b)~merupakan tautologi, dan (c)~bersifat kontingen.
+\begin{enumerate}
+  \item \( ( \Obj p_0 \lif ( \lnot \Obj p_1 \lif \lnot \Obj p_0 ) ) \).
+  \item \( ( ( \Obj p_0 \land \lnot \Obj p_1 ) \lif ( \lnot \Obj p_0 \land \Obj p_2 )) \liff ( ( \Obj p_2 \lif \Obj p_0 ) \lif ( \Obj p_0 \lif \Obj p_1 )) \).
+  \item \( ( \Obj p_0 \liff \Obj p_1 ) \lif ( \Obj p_2 \liff \lnot \Obj p_1 ) \).
+  \item \( (( \Obj p_0 \liff ( \lnot \Obj p_1 \land \Obj p_2 )) \lor ( \Obj p_2 \lif ( \Obj p_0 \liff \Obj p_1 ))) \).
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:semanticalfacts} 
+\begin{enumerate} 
+\item $!A$ merupakan tautologi jika dan hanya jika
+  $\emptyset \Entails !A$; 
+\item Jika $\Gamma \Entails !A$ dan $\Gamma \Entails !A \lif !B$, maka
+  $\Gamma \Entails !B$;
+\item Jika $\Gamma$ dapat dipenuhi, maka setiap himpunan bagian berhingga
+  dari $\Gamma$ juga dapat dipenuhi; 
+\item \ollabel{def:monotonicity} Monotonisitas: jika $\Gamma \subseteq \Delta$
+  dan $\Gamma \Entails !A$, maka $\Delta \Entails !A$ juga;
+\item \ollabel{def:Cut} Transitivitas: jika $\Gamma \Entails !A$ dan
+  $\Delta \cup \{ !A\} \Entails !B$, maka $\Gamma \cup \Delta \Entails
+  !B$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[pl][syn][sem]{prop:semanticalfacts}
+\end{prob}
+
+\begin{prop}\ollabel{prop:entails-unsat}
+  $\Gamma \Entails !A$ jika dan hanya jika $\Gamma \cup \{\lnot !A\}$
+  tidak dapat dipenuhi.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[pl][syn][sem]{prop:entails-unsat}
+\end{prob}
+
+\begin{thm}[Teorema Deduksi Semantis]
+  \ollabel{thm:sem-deduction} $\Gamma \Entails !A \lif !B$ jika dan hanya
+  jika $\Gamma \cup \{!A\} \Entails !B$.
+\end{thm}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[pl][syn][sem]{thm:sem-deduction}
+\end{prob}
+
+\end{document}
