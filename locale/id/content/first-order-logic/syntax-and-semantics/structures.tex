@@ -1,0 +1,109 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: Structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{str}
+
+\olsection{\printtoken{P}{structure} untuk Bahasa Orde Pertama}
+
+\begin{explain}
+Bahasa orde pertama pada dirinya sendiri \emph{tidak ditafsirkan:}
+!!{constant}s, !!{function}s, dan !!{predicate}s tidak dilekati makna tertentu.
+Makna diberikan dengan menentukan \article{structure}
+\emph{!!{structure}}. Struktur itu menentukan \emph{domain}, yakni
+objek-objek yang ditunjuk oleh !!{constant}s, yang dikenai operasi oleh
+!!{function}s, dan yang direntangi oleh kuantor. Selain itu, struktur tersebut
+menentukan !!{constant}s mana yang menunjuk objek mana, bagaimana
+!!a{function} memetakan objek ke objek, dan pada objek mana !!{predicate}s
+berlaku. !!^{structure}s merupakan dasar bagi gagasan-gagasan
+\emph{semantis} dalam logika, misalnya gagasan konsekuensi, validitas, dan
+keterpenuhan. Dalam literatur, struktur disebut dengan berbagai istilah,
+yakni ``struktur,'' ``interpretasi,'' atau ``model.''
+\end{explain}
+
+\begin{defn}[!!^{structure}s]
+\Article{structure} \emph{!!{structure}}~$\Struct M$, bagi suatu bahasa
+$\Lang{L}$ dari logika orde pertama, terdiri atas unsur-unsur berikut:
+\begin{enumerate}
+\item \emph{Domain:} suatu himpunan tak kosong, $\Domain M$
+\item \emph{Interpretasi !!{constant}s:} bagi setiap !!{constant}~$c$ dari
+  $\Lang{L}$, !!a{element} $\Assign{c}{M} \in \Domain M$
+\item \emph{Interpretasi !!{predicate}s:} bagi setiap !!{predicate}
+  $n$-tempat~$R$ dari $\Lang{L}$ (selain $\eq$), suatu relasi $n$-tempat
+  $\Assign{R}{M} \subseteq \Domain{M}^n$
+\item \emph{Interpretasi !!{function}s:} bagi setiap !!{function}
+  $n$-tempat~$f$ dari $\Lang{L}$, suatu fungsi $n$-tempat $\Assign{f}{M}
+  \colon \Domain{M}^n \to \Domain{M}$
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+!!^a{structure}~$\Struct M$ bagi bahasa aritmetika terdiri atas suatu
+  himpunan, suatu anggota dari $\Domain M$, $\Assign{\Obj 0}{M}$, sebagai
+  interpretasi !!{constant}~$\Obj 0$, suatu fungsi satu-tempat
+  $\Assign{\Obj \prime}{M} \colon \Domain{M} \to \Domain M$, dua fungsi
+  dua-tempat $\Assign{\Obj +}{M}$ dan $\Assign{\Obj \times}{M}$, yang
+  keduanya $\Domain M^2 \to \Domain M$, dan suatu relasi dua-tempat
+  $\Assign{\Obj <}{M} \subseteq \Domain{M}^2$.
+
+Contoh yang jelas dari struktur semacam itu ialah sebagai berikut:
+\begin{enumerate}
+\item $\Domain N = \Nat$
+\item $\Assign{\Obj 0}{N} = 0$
+\item $\Assign{\Obj \prime}{N}(n) = n + 1$ bagi semua $n \in \Nat$
+\item $\Assign{\Obj +}{N}(n, m) = n + m$ bagi semua $n, m \in \Nat$
+\item $\Assign{\Obj \times}{N}(n, m) = n\cdot m$ bagi semua $n, m \in \Nat$
+\item $\Assign{\Obj <}{N} = \Setabs{\tuple{n, m}}{n \in \Nat, m \in
+  \Nat, n < m}$
+\end{enumerate}
+Struktur~$\Struct N$ bagi $\Lang L_A$ yang didefinisikan demikian disebut
+\emph{model standar aritmetika}, karena struktur itu menafsirkan konstanta
+nonlogis dari~$\Lang L_A$ tepat sebagaimana yang Anda harapkan.
+
+Namun, ada banyak !!{structure}s lain yang mungkin bagi~$\Lang L_A$.
+Misalnya, sebagai domain kita dapat mengambil himpunan~$\Int$ dari
+bilangan-bilangan bulat alih-alih~$\Nat$, dan mendefinisikan interpretasi
+$\Obj 0$, $\Obj \prime$, $\Obj +$, $\Obj \times$, $\Obj <$ sesuai dengan
+itu. Namun, kita juga dapat mendefinisikan struktur bagi~$\Lang L_A$ yang
+sama sekali tidak berkaitan dengan bilangan.
+\end{ex}
+
+\begin{ex}
+Suatu struktur~$\Struct M$ bagi bahasa~$\Lang L_Z$ dari teori himpunan hanya
+memerlukan suatu himpunan dan satu relasi dua-tempat. Jadi, secara teknis,
+misalnya, himpunan orang beserta relasi ``$x$ lebih tua daripada $y$'' dapat
+digunakan sebagai !!a{structure} bagi $\Lang L_Z$, demikian pula $\Nat$
+beserta $n \ge m$ untuk $n, m \in \Nat$.
+
+Suatu !!{structure} yang sangat menarik bagi $\Lang L_Z$, yang
+!!{element}s domainnya benar-benar merupakan himpunan dan yang interpretasi
+$\Obj \in$-nya benar-benar merupakan relasi ``$x$ merupakan !!a{element}
+dari~$y$'', ialah !!{structure}~$\Struct{{HF}}$ dari
+\emph{himpunan-himpunan hingga herediter}:
+\begin{enumerate}
+\item $\Domain{{{HF}}} = \emptyset \cup \Pow{\emptyset} \cup
+  \Pow{\Pow{\emptyset}} \cup \Pow{\Pow{\Pow{\emptyset}}} \cup \dots$;
+\item $\Assign{\Obj \in}{{{HF}}} = \Setabs{\tuple{x, y}}{x, y \in
+  \Domain{{{HF}}}, x \in y}$.
+\end{enumerate}
+\end{ex}
+
+\begin{digress}
+Ketetapan yang kita buat mengenai apa yang terhitung sebagai !!a{structure}
+berdampak pada logika kita. Misalnya, pilihan untuk melarang domain kosong
+menjamin, berdasarkan uraian lazim tentang keterpenuhan (atau kebenaran) bagi
+kalimat berkuantor, bahwa $\lexists[x][(!A(x) \lor \lnot !A(x))]$
+valid---yakni, suatu kebenaran logis. Dan ketetapan bahwa semua !!{constant}s
+harus merujuk pada suatu objek dalam domain menjamin bahwa generalisasi
+eksistensial merupakan pola inferensi yang sahih: $!A(a)$, maka
+$\lexists[x][!A(x)]$. Jika kita mengizinkan nama merujuk ke luar domain,
+atau tidak merujuk, maka kita akan menuju suatu \emph{logika bebas}, yang di
+dalamnya generalisasi eksistensial memerlukan suatu premis tambahan:
+$!A(a)$ dan $\lexists[x][\eq[x][a]]$, maka $\lexists[x][!A(x)]$.
+\end{digress}
+
+\end{document}

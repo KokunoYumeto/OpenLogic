@@ -1,0 +1,432 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{sat}
+
+\olsection{Keterpenuhan \article{formula} \printtoken{S}{formula}
+  dalam \article{structure} \printtoken{S}{structure}}
+
+\begin{explain}
+Gagasan-gagasan dasar yang menghubungkan ungkapan seperti suku dan
+!!{formula}s, di satu pihak, dengan !!{structure}s, di pihak lain, ialah
+\emph{!!{value}} suatu suku dan \emph{keterpenuhan} !!a{formula}. Secara
+informal, !!{value} suatu suku merupakan !!{element} dari
+!!a{structure}---jika suku itu hanya berupa konstanta, !!{value}-nya ialah
+objek yang ditetapkan kepada konstanta tersebut oleh !!{structure}, dan jika
+suku itu dibangun dengan menggunakan !!{function}s, !!{value}-nya dihitung
+dari !!{value}s konstanta dan fungsi-fungsi yang ditetapkan kepada
+simbol fungsi dalam suku tersebut. !!^a{formula} \emph{terpenuhi} dalam
+!!a{structure} jika interpretasi yang diberikan kepada predikat membuat
+!!{formula} tersebut benar dalam domain !!{structure}. Gagasan keterpenuhan
+ini ditentukan secara induktif: spesifikasi !!{structure} secara langsung
+menyatakan kapan !!{formula}s atomik terpenuhi, dan kita mendefinisikan kapan
+suatu !!{formula} kompleks terpenuhi berdasarkan penghubung utama atau
+kuantornya dan berdasarkan apakah !!{subformula}s langsungnya terpenuhi atau
+tidak.
+
+Kasus kuantor di sini agak rumit, sebab !!{subformula} langsung dari suatu
+!!{formula} berkuantor dapat mempunyai !!{variable} bebas, sedangkan
+!!{structure}s tidak menentukan !!{value}s dari !!{variable}s. Untuk
+mengatasi kesulitan ini, kita juga memperkenalkan \emph{penugasan variabel}
+dan mendefinisikan keterpenuhan bukan hanya sehubungan dengan
+!!a{structure}, melainkan sehubungan dengan !!a{structure} beserta
+penugasan !!a{variable}.
+\end{explain}
+
+\begin{defn}[Penugasan Variabel]
+Suatu \emph{penugasan variabel}~$s$ bagi !!a{structure}~$\Struct{M}$ ialah
+fungsi yang memetakan setiap !!{variable} ke !!a{element} dari~$\Domain M$,
+yakni, $s\colon \Var \to \Domain M$.
+\end{defn}
+
+\begin{explain}
+!!^a{structure} menetapkan !!a{value} kepada setiap !!{constant}, dan
+penugasan variabel menetapkan nilai kepada setiap variabel. Namun, kita juga
+ingin menggunakan suku yang dibangun dari unsur-unsur tersebut untuk menamai
+!!{element}s dari !!{domain}. Untuk itu, kita mendefinisikan !!{value} suku
+secara induktif. Bagi !!{constant}s dan variabel, nilainya tepat seperti yang
+ditentukan oleh !!{structure} atau penugasan variabel; bagi suku yang lebih
+kompleks, nilainya dihitung secara rekursif dengan menggunakan fungsi-fungsi
+yang ditetapkan oleh !!{structure} kepada !!{function}s.
+\end{explain}
+
+\begin{defn}[!!^{value} Suku]
+Jika $t$ merupakan suku dari bahasa~$\Lang L$, $\Struct M$ merupakan
+!!{structure} bagi~$\Lang L$, dan $s$ merupakan penugasan
+!!a{variable} bagi~$\Struct M$, maka \emph{!!{value}}~$\Value{t}{M}[s]$
+didefinisikan sebagai berikut:
+\begin{enumerate}
+\item \indcase{t}{c}{$\Value{\indfrm}{M}[s] = \Assign{\indcomplex}{M}$.}
+\item \indcase{t}{x}{$\Value{\indfrm}{M}[s] = s(\indcomplex)$.}
+\item \indcase{t}{\Atom{f}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = \Assign{f}{M}(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Varian-$x$]
+Jika $s$ merupakan penugasan !!a{variable} bagi !!a{structure}~$\Struct M$,
+maka setiap penugasan !!{variable}~$s'$ bagi~$\Struct M$ yang hanya mungkin
+berbeda dari~$s$ dalam nilai yang ditetapkannya kepada~$x$ disebut
+\emph{varian-$x$} dari~$s$. Jika $s'$ merupakan varian-$x$ dari~$s$, kita
+menulis $\varAssign{s'}{s}{x}$.
+\end{defn}
+
+\begin{explain}
+Perhatikan bahwa varian-$x$ dari suatu penugasan~$s$ tidak
+\emph{harus} menetapkan sesuatu yang berbeda kepada~$x$. Bahkan, setiap
+penugasan terhitung sebagai varian-$x$ dari dirinya sendiri.
+\end{explain}
+
+\begin{defn}
+  Jika $s$ merupakan penugasan !!a{variable} bagi !!a{structure}~$\Struct M$
+  dan $m \in \Domain{M}$, maka penugasan~$\Subst{s}{m}{x}$ ialah penugasan
+  variabel yang didefinisikan oleh
+  \[\Subst{s}{m}{x}(y) = \begin{cases}
+    m & \text{jika } y \ident x\\
+    s(y) & \text{jika tidak}.
+  \end{cases}\]
+\end{defn}
+
+Dengan kata lain, $\Subst{s}{m}{x}$ merupakan varian-$x$ tertentu dari~$s$
+yang menetapkan !!{element} domain~$m$ kepada~$x$, dan kepada
+!!{variable}s selain~$x$ menetapkan hal yang sama seperti yang
+ditetapkan~$s$.
+
+\begin{defn}[Keterpenuhan]
+\ollabel{defn:satisfaction}
+Keterpenuhan !!a{formula}~$!A$ dalam !!a{structure}~$\Struct M$
+relatif terhadap penugasan !!a{variable}~$s$, yang secara simbolis ditulis
+$\Sat{M}{!A}[s]$, didefinisikan secara rekursif sebagai berikut. (Kita
+menulis $\Sat/{M}{!A}[s]$ untuk berarti ``tidak $\Sat{M}{!A}[s]$.'')
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\Sat/{M}{\indfrm}[s]$.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Sat{M}{\indfrm}[s]$.}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  jika dan hanya jika $\langle \Value{t_1}{M}[s], \dots,
+  \Value{t_n}{M}[s] \rangle \in \Assign{R}{M}$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+  $\Value{t_1}{M}[s] = \Value{t_2}{M}[s]$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+    $\Sat/{M}{!B}[s]$.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+    $\Sat{M}{!B}[s]$ dan $\Sat{M}{!C}[s]$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+    $\Sat{M}{!B}[s]$ atau $\Sat{M}{!C}[s]$ (atau keduanya).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+    $\Sat/{M}{!B}[s]$ atau $\Sat{M}{!C}[s]$ (atau keduanya).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+    baik $\Sat{M}{!B}[s]$ maupun $\Sat{M}{!C}[s]$ keduanya berlaku, atau
+    baik $\Sat{M}{!B}[s]$ maupun $\Sat{M}{!C}[s]$ keduanya tidak berlaku.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+    bagi setiap !!{element}~$m \in \Domain M$,
+    $\Sat{M}{!B}[\Subst{s}{m}{x}]$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+  bagi setidaknya satu !!{element}~$m \in \Domain M$,
+  $\Sat{M}{!B}[\Subst{s}{m}{x}]$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Penugasan variabel penting dalam
+\iftag{notprvEx,notprvAll}{klausa terakhir}{dua klausa terakhir}.\iftag{prvAll}{
+Kita tidak dapat mendefinisikan keterpenuhan $\lforall[x][!B(x)]$ dengan
+``bagi semua $m \in \Domain{M}$, $\Sat{M}{!B(m)}$.''}{}\iftag{prvEx}{ Kita
+tidak dapat mendefinisikan keterpenuhan $\lexists[x][!B(x)]$ dengan ``bagi
+setidaknya satu $m \in \Domain{M}$, $\Sat{M}{!B(m)}$.''}{} Alasannya ialah
+bahwa jika $m \in \Domain M$, anggota itu bukan simbol bahasa, sehingga
+$!B(m)$~bukan !!a{formula} (yakni, $\Subst{!B}{m}{x}$ tidak terdefinisi).
+Kita juga tidak dapat mengandaikan bahwa tersedia !!{constant}s atau suku
+yang menamai setiap !!{element} dari~$\Struct{M}$, sebab tidak ada apa pun
+dalam definisi !!{structure}s yang mengharuskannya. Dalam bahasa standar,
+himpunan !!{constant}s bersifat !!{denumerable}, sehingga jika
+$\Domain{M}$ tidak !!{enumerable}, bahkan tidak tersedia cukup
+!!{constant}s untuk menamai setiap objek.
+
+Kita menyelesaikan masalah ini dengan memperkenalkan penugasan
+!!{variable}, yang memungkinkan kita menghubungkan variabel secara langsung
+dengan !!{element}s domain. Kemudian, alih-alih mengatakan bahwa, misalnya,
+\iftag{prvEx}{$\lexists[x][!B(x)]$}{$\lforall[x][!B(x)]$} terpenuhi
+dalam~$\Struct M$ jika dan hanya jika \iftag{prvEx}{bagi setidaknya satu
+$m \in \Domain{M}$, $\Sat{M}{!B(m)}$}{bagi semua $m \in \Domain{M}$,
+$\Sat{M}{!B(m)}$}, kita mengatakan bahwa formula itu terpenuhi
+dalam~$\Struct M$ \emph{relatif terhadap}~$s$ jika dan hanya jika $!B(x)$
+terpenuhi relatif terhadap~$\Subst{s}{m}{x}$
+\iftag{prvEx}{bagi setidaknya satu}{bagi setiap} $m \in \Domain M$.
+\end{explain}
+
+\begin{ex}
+Misalkan $\Lang{L} = \{a, b, f, R\}$, dengan $a$ dan $b$ merupakan
+!!{constant}s, $f$~merupakan !!{function} dua-tempat, dan $R$~merupakan
+!!{predicate} dua-tempat. Perhatikan !!{structure}~$\Struct{M}$ yang
+didefinisikan oleh:
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3, 4\}$
+\item $\Assign{a}{M} = 1$
+\item $\Assign{b}{M} = 2$
+\item $\Assign{f}{M}(x, y) = x+y$ jika $x+y \le 3$ dan $= 3$ jika tidak.
+\item $\Assign{R}{M} = \{\tuple{1, 1}, \tuple{1, 2}, \tuple{2, 3}, \tuple{2, 4}\}$
+\end{enumerate}
+Fungsi $s(x) = 1$ yang menetapkan $1 \in \Domain{M}$ kepada setiap
+!!{variable} merupakan penugasan variabel bagi~$\Struct{M}$.
+
+Maka
+\begin{align*}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(\Value{a}{M}[s], \Value{b}{M}[s]).
+\intertext{Karena $a$ dan $b$ merupakan !!{constant}s, $\Value{a}{M}[s]
+  = \Assign{a}{M} = 1$ dan $\Value{b}{M}[s] = \Assign{b}{M} = 2$. Jadi}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(1, 2) = 1+2 = 3.
+\intertext{Untuk menghitung nilai $f(f(a,b),a)$, kita harus memperhatikan}
+\Value{f(f(a,b),a)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{a}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\intertext{karena $3+1 > 3$. Karena $s(x) = 1$ dan $\Value{x}{M}[s] =
+  s(x)$, kita juga mempunyai}
+\Value{f(f(a,b),x)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{x}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\end{align*}
+
+Suatu !!{formula} atomik~$R(t_1, t_2)$ terpenuhi jika tupel nilai
+argumen-argumennya, yakni, $\tuple{\Value{t_1}{M}[s],
+  \Value{t_2}{M}[s]}$, merupakan !!a{element} dari~$\Assign{R}{M}$. Jadi,
+misalnya, kita mempunyai $\Sat{M}{R(b,f(a,b))}[s]$ karena
+$\tuple{\Value{b}{M}, \Value{f(a,b)}{M}} = \tuple{2, 3} \in
+  \Assign{R}{M}$, tetapi $\Sat/{M}{R(x, f(a,b))}[s]$ karena
+  $\tuple{1, 3} \notin \Assign{R}{M}$.
+
+Untuk menentukan apakah suatu formula nonatomik~$!A$ terpenuhi, Anda
+menerapkan klausa dalam definisi induktif yang berlaku bagi penghubung
+utama. Misalnya, penghubung utama dalam $R(a, a) \lif (R(b, x) \lor R(x,
+b))$ ialah~$\lif$, dan
+\begin{align*}
+  & \Sat{M}{R(a, a) \lif (R(b, x) \lor R(x, b))}[s]
+    \text{ jika dan hanya jika }\\
+  & \qquad
+  \Sat/{M}{R(a,a)}[s] \text{ atau } \Sat{M}{R(b, x) \lor R(x, b)}[s]
+  \intertext{Karena $\Sat{M}{R(a,a)}[s]$ (sebab $\tuple{1,1} \in
+    \Assign{R}{M}$), kita belum dapat menentukan jawabannya dan pertama-tama
+    harus mencari tahu apakah $\Sat{M}{R(b, x) \lor R(x, b)}[s]$:}
+  & \Sat{M}{R(b, x) \lor R(x, b)}[s] \text{ jika dan hanya jika }\\
+  & \qquad \Sat{M}{R(b,x)}[s] \text{ atau } \Sat{M}{R(x, b)}[s]
+  \intertext{Dan memang demikian, sebab $\Sat{M}{R(x, b)}[s]$
+    (karena $\tuple{1,2} \in \Assign{R}{M}$).}
+\end{align*}
+
+Ingat bahwa varian-$x$ dari~$s$ merupakan penugasan variabel yang
+berbeda dari $s$ paling banyak dalam apa yang ditetapkannya kepada~$x$.
+Bagi setiap !!{element} dari~$\Domain{M}$, terdapat varian-$x$ dari~$s$:
+\begin{align*}
+  s_1 & = \Subst{s}{1}{x}, &
+  s_2 & = \Subst{s}{2}{x},\\
+  s_3 & = \Subst{s}{3}{x}, &
+  s_4 & = \Subst{s}{4}{x}.
+\end{align*}
+Jadi, misalnya, $s_2(x) = 2$ dan $s_2(y) = s(y) = 1$ bagi semua
+variabel~$y$ selain~$x$. Inilah semua varian-$x$ dari~$s$ bagi
+struktur~$\Struct{M}$, sebab $\Domain{M} = \{1, 2, 3, 4\}$. Secara khusus,
+perhatikan bahwa $s_1 = s$ ($s$~selalu merupakan varian-$x$ dari dirinya
+sendiri).
+
+\iftag{prvEx}{Untuk menentukan apakah suatu !!{formula} berkuantor
+  eksistensial~$\lexists[x][!A(x)]$ terpenuhi, kita harus menentukan apakah
+  $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ bagi setidaknya satu $m \in \Domain M$.
+  Jadi,
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s],
+  \]
+  sebab $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+  ($\Subst{s}{3}{x}$ juga memenuhi keperluan). Namun,
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s]
+  \]
+  sebab, apa pun $m \in \Domain{M}$ yang kita pilih,
+  $\Sat/{M}{R(b,x) \land R(x,b)}[\Subst{s}{m}{x}]$.}{}
+
+\iftag{prvAll}{Untuk menentukan apakah suatu !!{formula} berkuantor
+  universal~$\lforall[x][!A(x)]$ terpenuhi, kita harus menentukan apakah
+  $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ bagi semua $m \in \Domain M$. Jadi,
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+  sebab $\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$ bagi semua
+  $m \in \Domain M$. Untuk $m = 1$, kita mempunyai
+  $\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$, sehingga konsekuennya benar; untuk
+  $m = 2$, $3$, dan~$4$, kita mempunyai
+  $\Sat/{M}{R(x,a)}[\Subst{s}{m}{x}]$, sehingga antesedennya salah. Namun,
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s]
+  \]
+  sebab $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$ (karena
+  $\Sat{M}{R(a, x)}[\Subst{s}{2}{x}]$ dan $\Sat/{M}{R(x,
+  a)}[\Subst{s}{2}{x}]$).}{}
+
+\iftag{defEx}{Untuk menentukan apakah suatu !!{formula} berkuantor
+  eksistensial~$\lexists[x][!A(x)]$ terpenuhi, kita harus menentukan apakah
+  $\Sat{M}{\lnot \lforall[x][\lnot !A(x)]}[s]$. Misalnya, kita mempunyai
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s].
+  \]
+  Pertama, $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+  ($\Subst{s}{3}{x}$ juga memenuhi keperluan). Jadi,
+  $\Sat/{M}{\lnot(R(b,x) \lor R(x,b))}[\Subst{s}{1}{x}]$, dengan demikian
+  $\Sat/{M}{\lforall[x][\lnot(R(b,x) \lor R(x,b))]}[s]$, dan
+  oleh karena itu $\Sat{M}{\lnot\lforall[x][\lnot(R(b,x) \lor
+  R(x,b))]}[s]$. Di lain pihak,
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s].
+  \]
+  Alasannya ialah $\Sat{M}{\lforall[x][\lnot(R(b,x) \land
+  R(x,b))]}[s]$, sebab untuk tidak satu pun $m \in \Domain M$ berlaku
+  $\Sat{M}{R(b,x) \land R(x,b)}[\Subst{s}{m}{x}]$. Seperti yang mungkin
+  dapat Anda duga dari contoh-contoh ini,
+  $\Sat{M}{\lexists[x][!A(x)]}[s]$ jika dan hanya jika
+  $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ bagi setidaknya satu
+  $m \in \Domain M$.}{}
+
+\iftag{defAll}{Untuk menentukan apakah suatu !!{formula} berkuantor
+  universal~$\lforall[x][!A(x)]$ terpenuhi, kita harus menentukan apakah
+  $\Sat{M}{\lnot\lexists[x][\lnot !A(x)]}[s]$. Misalnya,
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+  Pertama, $\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$ bagi semua
+  $m \in \Domain M$ ($\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$ dan
+  $\Sat/{M}{R(x,a)}[\Subst{s}{m}{x}]$ untuk $m = 2$, $3$, atau~$4$).
+  Jadi, tidak ada $m \in \Domain M$ sedemikian sehingga
+  $\Sat{M}{\lnot(R(x,a) \lif R(a,x))}[\Subst{s}{m}{x}]$, dan karenanya
+  $\Sat/{M}{\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$. Oleh karena itu,
+  $\Sat{M}{\lnot\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$. Di lain pihak,
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s],
+  \]
+  sebab $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$, dan dengan demikian
+  $\Sat{M}{\lexists[x][\lnot(R(a,x) \lif R(x,a))]}[s]$. Seperti yang mungkin
+  dapat Anda duga dari contoh-contoh ini,
+  $\Sat{M}{\lforall[x][!A(x)]}[s]$ jika dan hanya jika
+  $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ bagi setiap $m \in \Domain M$.}{}
+
+Untuk kasus yang lebih rumit, perhatikan
+\[
+\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])].
+\]
+Karena $\Sat/{M}{R(a,x)}[\Subst{s}{3}{x}]$ dan
+$\Sat/{M}{R(a,x)}[\Subst{s}{4}{x}]$, kasus menarik yang di dalamnya kita
+harus memperhatikan konsekuen dari kondisional itu hanya $m = 1$ dan
+$m = 2$. Apakah $\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{1}{x}]$ berlaku?
+Hal itu berlaku jika terdapat setidaknya satu $n \in \Domain M$ sedemikian
+sehingga $\Sat{M}{R(x,y)}[\Subst{\Subst{s}{1}{x}}{n}{y}]$. Bahkan, jika
+kita mengambil $n = 1$, kita mempunyai
+$\Subst{\Subst{s}{1}{x}}{n}{y} = \Subst{s}{1}{y} = s$. Karena
+$s(x) = 1$, $s(y) = 1$, dan $\tuple{1,1} \in \Assign{R}{M}$, jawabannya ya.
+
+Untuk menentukan apakah $\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{2}{x}]$,
+kita harus memperhatikan penugasan !!{variable}
+$\Subst{\Subst{s}{2}{x}}{n}{y}$. Di sini, untuk $n = 1$, penugasan ini
+ialah~$s_2 = \Subst{s}{2}{x}$, yang tidak memenuhi $R(x,y)$ ($s_2(x) = 2$,
+$s_2(y) = 1$, dan $\tuple{2,1}\notin \Assign{R}{M}$). Namun, perhatikan
+$\Subst{\Subst{s}{2}{x}}{3}{y} = \Subst{s_2}{3}{y}$.
+$\Sat{M}{R(x,y)}[\Subst{s_2}{3}{y}]$ sebab $\tuple{2,3} \in
+\Assign{R}{M}$, sehingga $\Sat{M}{\lexists[y][R(x,y)]}[s_2]$.
+
+Jadi, bagi semua $m \in \Domain M$, berlaku
+$\Sat/{M}{R(a,x)}[\Subst{s}{m}{x}]$ (jika $m = 3$, $4$) atau
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{m}{x}]$ (jika $m = 1$, $2$),
+sehingga
+\[
+\Sat{M}{\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])]}[s].
+\]
+Di lain pihak,
+\[
+\Sat/{M}{\lexists[x][(R(a,x) \land \lforall[y][R(x,y)])]}[s].
+\]
+Kita mempunyai $\Sat{M}{R(a,x)}[\Subst{s}{m}{x}]$ hanya untuk $m = 1$ dan
+$m = 2$. Namun, untuk kedua nilai~$m$ ini, pada gilirannya terdapat suatu
+$n \in \Domain M$---yakni $n = 4$ ketika $m = 1$, dan $n = 1$ ketika
+$m = 2$---sedemikian sehingga
+$\Sat/{M}{R(x,y)}[\Subst{\Subst{s}{m}{x}}{n}{y}]$, dan dengan demikian
+$\Sat/{M}{\lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$ untuk $m = 1$ dan
+$m = 2$. Singkatnya, tidak ada $m \in \Domain M$ sedemikian sehingga
+$\Sat{M}{R(a,x) \land \lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$.
+\end{ex}
+
+\iftag{defEx}{%
+\begin{prop}\ollabel{prop:sat-ex}
+$\Sat{M}{\lexists[x][!B(x)]}[s]$ jika dan hanya jika terdapat varian-$x$
+$s'$ dari $s$ sedemikian sehingga $\Sat{M}{!B(x)}[s']$.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+}{}
+
+\tagprob{defEx}
+\begin{prob}
+  Buktikan \olref[fol][syn][sat]{prop:sat-ex}
+\end{prob}
+\tagendprob
+
+\iftag{defAll}{%
+\begin{prop}\ollabel{prop:sat-all}
+$\Sat{M}{\lforall[x][!B(x)]}[s]$ jika dan hanya jika bagi setiap
+varian-$x$~$s'$ dari $s$, $\Sat{M}{!B(x)}[s']$
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+}{}
+
+\tagprob{defAll}
+\begin{prob}
+  Buktikan \olref[fol][syn][sat]{prop:sat-all}
+\end{prob}
+\tagendprob
+
+\begin{prob}
+Misalkan $\Lang L = \{c, f, A\}$ dengan satu !!{constant}, satu
+!!{function} satu-tempat, dan satu !!{predicate} dua-tempat, serta misalkan
+!!{structure}~$\Struct{M}$ diberikan oleh
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3\}$
+\item $\Assign{c}{M} = 3$
+\item $\Assign{f}{M}(1) = 2, \Assign{f}{M}(2) = 3, \Assign{f}{M}(3) = 2$
+\item $\Assign{A}{M} = \{\tuple{1, 2}, \tuple{2, 3}, \tuple{3, 3}\}$
+\end{enumerate}
+(a) Misalkan $s(v) = 1$ bagi semua !!{variable}s~$v$. Tentukan apakah
+\[
+\Sat{M}{\lexists[x][(A(f(z), c) \lif \lforall[y][(A(y, x) \lor A(f(y),
+      x))])]}[s]
+\]
+berlaku. Jelaskan mengapa berlaku atau mengapa tidak.
+
+(b) Berikan struktur dan penugasan !!{variable} lain yang di dalamnya
+!!{formula} tersebut tidak terpenuhi.
+\end{prob}
+
+\end{document}

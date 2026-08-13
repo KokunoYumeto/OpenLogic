@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0158` (158/722 files). It is incomplete and must not be represented as the
+`OLP-0166` (166/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -78,6 +78,12 @@ Exact source corrections currently include:
   misplaced delimiters, formation-sequence indices and induction measures,
   language subscripts, and syntactic-identity notation. It also localizes the
   reader-facing induction-case labels and substitution side-condition token.
+- First-Order Logic semantics repairs arity-neutral function interpretation,
+  malformed satisfaction clauses and delimiters, variable and witness indices,
+  assignment bases, duplicate carriers, extensionality premises, and exact
+  free-variable conditions. One Indonesian exclusive-alternative construction
+  was corrected independently; two low-priority upstream clarification
+  candidates remain explicitly preserved.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

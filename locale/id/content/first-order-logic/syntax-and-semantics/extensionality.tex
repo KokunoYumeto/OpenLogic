@@ -1,0 +1,142 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: extensionality
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{ext}
+
+\olsection{Ekstensionalitas}
+
+\begin{explain}
+Ekstensionalitas, yang kadang disebut relevansi, secara informal dapat
+dinyatakan sebagai berikut: satu-satunya faktor yang berpengaruh terhadap
+keterpenuhan !!{formula}~$!A$ dalam !!a{structure}~$\Struct M$ relatif
+terhadap penugasan !!a{variable}~$s$ ialah !!{domain} itu sendiri serta penetapan
+yang dibuat oleh~$\Struct M$ dan~$s$ kepada unsur-unsur bahasa yang
+benar-benar muncul dalam~$!A$.
+
+Salah satu akibat langsung ekstensionalitas ialah bahwa apabila dua
+!!{structure}s~$\Struct M$ dan~$\Struct M'$ bersepakat pada semua unsur
+bahasa yang muncul dalam suatu kalimat~$!A$ dan mempunyai domain yang sama,
+maka~$\Struct M$ dan~$\Struct M'$ juga harus bersepakat mengenai apakah
+$!A$ sendiri benar atau tidak.
+\end{explain}
+
+\begin{prop}[Ekstensionalitas]
+  \ollabel{prop:extensionality}
+  Misalkan $!A$ suatu !!a{formula}, dan $\Struct M_1$ serta $\Struct M_2$
+  merupakan !!{structure}s dengan $\Domain{M_1} = \Domain{M_2}$, dan $s$
+  suatu penugasan variabel pada $\Domain{M_1} = \Domain{M_2}$. Jika
+  $\Assign{c}{M_1} = \Assign{c}{M_2}$, $\Assign{R}{M_1}=\Assign{R}{M_2}$,
+  dan $\Assign{f}{M_1} = \Assign{f}{M_2}$ bagi setiap !!{constant}~$c$,
+  simbol relasi~$R$, dan !!{function} $f$ yang muncul dalam~$!A$, maka
+  $\Sat{M_1}{!A}[s]$ jika dan hanya jika $\Sat{M_2}{!A}[s]$.
+\end{prop}
+
+\begin{proof}
+  Pertama, buktikan (dengan induksi pada~$t$) bahwa bagi setiap suku yang
+  muncul dalam~$!A$,
+  $\Value{t}{M_1}[s] = \Value{t}{M_2}[s]$. Kemudian, buktikan proposisi
+  dengan induksi pada~$!A$, dengan menggunakan klaim yang baru saja
+  dibuktikan bagi dasar induksi (ketika $!A$ atomik).
+\end{proof}
+
+\begin{prob}
+Laksanakan secara terperinci pembuktian
+\olref[fol][syn][ext]{prop:extensionality}.
+\end{prob}
+
+\begin{cor}[Ekstensionalitas bagi !!^{sentence}s]
+  \ollabel{cor:extensionality-sent}
+  Misalkan $!A$ suatu !!a{sentence} dan $\Struct{M_1}$, $\Struct{M_2}$
+  seperti dalam \olref{prop:extensionality}. Maka $\Sat{M_1}{!A}$ jika dan
+  hanya jika $\Sat{M_2}{!A}$.
+\end{cor}
+
+\begin{proof}
+Hal ini mengikuti \olref{prop:extensionality} berdasarkan
+\olref[ass]{cor:sat-sentence}.
+\end{proof}
+
+Lebih lanjut, nilai suatu suku, dan apakah !!a{structure} memenuhi
+!!a{formula} atau tidak, hanya bergantung pada nilai sub-sukunya.
+
+\begin{prop}\ollabel{prop:ext-terms}
+Misalkan $\Struct M$ suatu !!a{structure}, $t$ dan $t'$ suku, dan $s$ suatu
+penugasan variabel. Maka $\Value{\Subst{t}{t'}{x}}{M}[s] =
+\Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\end{prop}
+
+\begin{proof}
+Dengan induksi pada~$t$.
+\begin{enumerate}
+\item Jika $t$ merupakan konstanta, katakanlah, $t\ident c$, maka
+  $\Subst{t}{t'}{x} = c$, dan $\Value{c}{M}[s] = \Assign{c}{M} =
+  \Value{c}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+
+\item Jika $t$ merupakan variabel selain~$x$, katakanlah, $t \ident y$, maka
+  $\Subst{t}{t'}{x} = y$, dan $\Value{y}{M}[s] =
+  \Value{y}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$ karena
+  $\varAssign{s}{\Subst{s}{\Value{t'}{M}[s]}{x}}{x}$.
+
+\item Jika $t \ident x$, maka $\Subst{t}{t'}{x} = t'$. Namun,
+  $\Value{x}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}] = \Value{t'}{M}[s]$
+  berdasarkan definisi~$\Subst{s}{\Value{t'}{M}[s]}{x}$.
+
+\item Jika $t \ident \Atom{f}{t_1,\dots,t_n}$, maka kita mempunyai:
+\begin{multline*}
+  \Value{\Subst{t}{t'}{x}}{M}[s]  \\
+  \begin{aligned}[b]
+& = \Value{\Atom{f}{\Subst{t_1}{t'}{x}, \dots, \Subst{t_n}{t'}{x}}}{M}[s]\\
+& \qquad    \text{ berdasarkan definisi $\Subst{t}{t'}{x}$}\\
+& = \Assign{f}{M}(\Value{\Subst{t_1}{t'}{x}}{M}[s], \dots,
+    \Value{\Subst{t_n}{t'}{x}}{M}[s])\\
+    & \qquad  \text{ berdasarkan definisi $\Value{\Atom{f}{\dots}}{M}[s]$}\\
+& = \Assign{f}{M}(\Value{t_1}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}], \dots,
+   \Value{t_n}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}])\\
+& \qquad    \text{ berdasarkan hipotesis induksi}\\
+& = \Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]
+    \text{ berdasarkan definisi $\Value{\Atom{f}{\dots}}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$}
+  \end{aligned}
+\end{multline*}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:ext-formulas} Misalkan $\Struct M$ suatu
+!!a{structure}, $!A$ suatu !!a{formula}, $t'$~suatu suku yang !!{free for}~$x$
+dalam~$!A$, dan $s$~suatu
+penugasan variabel. Maka $\Sat{M}{\Subst{!A}{t'}{x}}[s]$ jika dan hanya jika
+$\Sat{M}{!A}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][ext]{prop:ext-formulas}
+\end{prob}
+
+\begin{explain}
+  Pokok dari
+  \cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas} ialah
+  sebagai berikut. Andaikan kita mempunyai suatu suku $t$ atau
+  !!a{formula}~$!A$ dan suatu suku~$t'$, dan kita ingin mengetahui nilai
+  $\Subst{t}{t'}{x}$ atau apakah $\Subst{!A}{t'}{x}$ terpenuhi atau tidak
+  dalam !!a{structure}~$\Struct M$ relatif terhadap penugasan
+  !!a{variable}~$s$. Kita dapat terlebih dahulu melakukan substitusi dan
+  kemudian mempertimbangkan nilai atau keterpenuhannya relatif terhadap
+  $\Struct{M}$ dan~$s$, atau kita dapat terlebih dahulu menentukan
+  nilai~$m = \Value{t'}{M}[s]$ dari $t'$ dalam $\Struct{M}$ relatif
+  terhadap~$s$, mengubah penugasan !!{variable} menjadi~$\Subst{s}{m}{x}$,
+  dan kemudian mempertimbangkan nilai~$t$ dalam $\Struct{M}$
+  dan~$\Subst{s}{m}{x}$, atau apakah
+  $\Sat{M}{!A}[\Subst{s}{m}{x}]$.
+  \Cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas}
+  menjamin bahwa jawabannya akan sama, cara mana pun yang kita gunakan.
+\end{explain}
+
+\end{document}

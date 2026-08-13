@@ -1,0 +1,373 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: assignments
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{ass}
+
+\olsection{Penugasan Variabel}
+
+\begin{explain}
+Suatu penugasan !!{variable}~$s$ memberikan nilai kepada \emph{setiap}
+variabel---dan jumlahnya tak hingga. Tentu saja, hal ini tidak diperlukan.
+Kita mengharuskan penugasan !!{variable} menetapkan nilai kepada semua
+!!{variable}s semata-mata karena hal itu sangat mempermudah pembahasan.
+Nilai suatu suku~$t$, dan apakah suatu !!a{formula}~$!A$ terpenuhi atau
+tidak dalam !!a{structure} sehubungan dengan~$s$, hanya bergantung pada
+penetapan yang dibuat~$s$ kepada !!{variable}s dalam~$t$ dan kepada
+!!{variable}s bebas dari~$!A$. Inilah isi dua proposisi berikutnya. Untuk
+membuat gagasan ``bergantung pada'' tepat, kita menunjukkan bahwa setiap dua
+penugasan variabel yang bersepakat pada semua variabel dalam~$t$ memberikan
+nilai yang sama, dan bahwa $!A$ terpenuhi relatif terhadap penugasan yang
+satu jika dan hanya jika terpenuhi relatif terhadap yang lain apabila kedua
+penugasan variabel tersebut bersepakat pada semua variabel bebas dari~$!A$.
+\end{explain}
+
+\begin{prop}\ollabel{prop:valindep}
+Jika !!{variable}s dalam suatu suku~$t$ terdapat di antara $x_1$, \dots,
+~$x_n$, dan $s_1(x_i) = s_2(x_i)$ untuk $i = 1$, \dots,~$n$, maka
+$\Value{t}{M}[s_1] = \Value{t}{M}[s_2]$.
+\end{prop}
+
+\begin{proof}
+Dengan induksi pada kompleksitas~$t$. Bagi kasus dasar, $t$ dapat berupa
+!!a{constant} atau salah satu variabel~$x_1$, \dots,~$x_n$. Jika $t = c$,
+maka $\Value{t}{M}[s_1] = \Assign{c}{M} = \Value{t}{M}[s_2]$. Jika
+$t = x_i$, maka $s_1(x_i) = s_2(x_i)$ berdasarkan hipotesis proposisi,
+sehingga $\Value{t}{M}[s_1] = s_1(x_i) = s_2(x_i) =
+\Value{t}{M}[s_2]$.
+
+Bagi langkah induktif, andaikan $t = \Atom{f}{t_1, \dots, t_k}$ dan bahwa
+klaim berlaku bagi $t_1$, \dots, $t_k$. Maka
+\begin{align*}
+  \Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]).
+\intertext{Untuk $j = 1$, \dots,~$k$, !!{variable}s dari~$t_j$ terdapat
+    di antara $x_1$, \dots,~$x_n$. Berdasarkan hipotesis induksi,
+    $\Value{t_j}{M}[s_1] = \Value{t_j}{M}[s_2]$. Jadi,}
+\Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]) \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_2], \dots, \Value{t_k}{M}[s_2]) \\
+  & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_2] = \Value{t}{M}[s_2].
+\end{align*}
+\end{proof}
+
+\begin{prop}\ollabel{prop:satindep}
+Jika !!{variable}s bebas dalam $!A$ terdapat di antara $x_1$, \dots,~$x_n$,
+dan $s_1(x_i) = s_2(x_i)$ untuk $i = 1$, \dots,~$n$, maka
+$\Sat{M}{!A}[s_1]$ jika dan hanya jika $\Sat{M}{!A}[s_2]$.
+\end{prop}
+
+\begin{proof}
+Kita menggunakan induksi pada kompleksitas $!A$. Bagi kasus dasar, ketika
+$!A$ atomik, $!A$ dapat berupa:
+\iftag{prvTrue}{$\ltrue$,}{}
+\iftag{prvFalse}{$\lfalse$,}{}
+$\Atom{R}{t_1, \dots, t_k}$ bagi suatu predikat $k$-tempat $R$ dan suku
+$t_1$, \dots,~$t_k$, atau $\eq[t_1][t_2]$ bagi suku $t_1$ dan~$t_2$.
+Dalam dua kasus terakhir, kita hanya menunjukkan arah maju dari
+!!{biconditional}, sebab pembuktian arah sebaliknya simetris.
+
+\begin{enumerate}
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{baik $\Sat{M}{\indfrm}[s_1]$ maupun
+    $\Sat{M}{\indfrm}[s_2]$.}}{}
+
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{baik $\Sat/{M}{!A}[s_1]$ maupun
+    $\Sat/{M}{!A}[s_2]$.}}{}
+
+\item
+  \indcase{!A}{\Atom{R}{t_1, \ldots, t_k}}{andaikan
+    $\Sat{M}{\indfrm}[s_1]$. Maka
+    \[
+    \langle \Value{t_1}{M}[s_1], \ldots, \Value{t_k}{M}[s_1] \rangle
+    \in \Assign{R}{M}.
+    \]
+    Untuk $i = 1$, \dots,~$k$, $\Value{t_i}{M}[s_1] =
+    \Value{t_i}{M}[s_2]$ berdasarkan \olref{prop:valindep}. Jadi, kita juga
+    mempunyai $\langle \Value{t_1}{M}[s_2], \ldots,
+    \Value{t_k}{M}[s_2] \rangle \in \Assign{R}{M}$, dan karenanya
+    $\Sat{M}{\indfrm}[s_2]$.}
+\item
+  \indcase{!A}{\eq[t_1][t_2]}{andaikan $\Sat{M}{\indfrm}[s_1]$.
+    Maka $\Value{t_1}{M}[s_1] = \Value{t_2}{M}[s_1]$. Jadi,
+    \begin{align*}
+      \Value{t_1}{M}[s_2] & = \Value{t_1}{M}[s_1]
+      & \text{(berdasarkan \olref{prop:valindep})} \\
+      & = \Value{t_2}{M}[s_1]
+      & \text{(karena $\Sat{M}{\eq[t_1][t_2]}[s_1]$)}\\
+      &= \Value{t_2}{M}[s_2]
+      & \text{(berdasarkan \olref{prop:valindep}),}
+    \end{align*}
+    sehingga $\Sat{M}{\eq[t_1][t_2]}[s_2]$.}
+\end{enumerate}
+
+Sekarang andaikan $\Sat{M}{!B}[s_1]$ jika dan hanya jika
+$\Sat{M}{!B}[s_2]$ bagi semua !!{formula}s $!B$ yang kurang kompleks
+daripada~$!A$. Langkah induksi berjalan menurut kasus-kasus yang ditentukan
+oleh operator utama dari~$!A$. Dalam setiap kasus, kita hanya menunjukkan
+arah maju dari !!{biconditional}; pembuktian arah sebaliknya simetris. Dalam
+semua kasus selain kasus kuantor, kita menerapkan hipotesis induksi kepada
+!!{subformula}s~$!B$ dari~$!A$. Variabel bebas dari~$!B$ terdapat di antara
+variabel bebas dari~$!A$. Dengan demikian, jika $s_1$ dan $s_2$ bersepakat
+pada variabel bebas dari~$!A$, keduanya juga bersepakat pada variabel bebas
+dari~$!B$, dan hipotesis induksi berlaku bagi~$!B$.
+
+\begin{enumerate}
+\tagitem{defNot}{}{%
+  \iftag{probNot}{%
+    \indcase!{!A}{\lnot !B}{}}{%
+    \indcase{!A}{\lnot !B}{jika $\Sat{M}{\indfrm}[s_1]$, maka
+      $\Sat/{M}{!B}[s_1]$, sehingga berdasarkan hipotesis induksi,
+      $\Sat/{M}{!B}[s_2]$, dan karenanya $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defAnd}{}{%
+  \iftag{probAnd}{%
+    \indcase!{!A}{!B \land !C}{}}{%
+    \indcase{!A}{!B \land !C}{jika $\Sat{M}{\indfrm}[s_1]$, maka
+      $\Sat{M}{!B}[s_1]$ dan $\Sat{M}{!C}[s_1]$, sehingga berdasarkan
+      hipotesis induksi, $\Sat{M}{!B}[s_2]$ dan $\Sat{M}{!C}[s_2]$.
+      Dengan demikian, $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defOr}{}{%
+  \iftag{probOr}{%
+    \indcase!{!A}{!B \lor !C}{}}{%
+    \indcase{!A}{!B \lor !C}{jika $\Sat{M}{\indfrm}[s_1]$, maka
+      $\Sat{M}{!B}[s_1]$ atau $\Sat{M}{!C}[s_1]$. Berdasarkan hipotesis
+      induksi, $\Sat{M}{!B}[s_2]$ atau $\Sat{M}{!C}[s_2]$, sehingga
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defIf}{}{%
+  \iftag{probIf}{%
+    \indcase!{!A}{!B \lif !C}{}}{%
+    \indcase{!A}{!B \lif !C}{jika $\Sat{M}{\indfrm}[s_1]$, maka
+    $\Sat/{M}{!B}[s_1]$ atau $\Sat{M}{!C}[s_1]$. Berdasarkan hipotesis
+    induksi, $\Sat/{M}{!B}[s_2]$ atau $\Sat{M}{!C}[s_2]$, sehingga
+    $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defIff}{}{%
+  \iftag{probIff}{%
+    \indcase!{!A}{!B \liff !C}{}}{%
+    \indcase{!A}{!B \liff !C}{jika $\Sat{M}{\indfrm}[s_1]$, maka
+      $\Sat{M}{!B}[s_1]$ dan $\Sat{M}{!C}[s_1]$, atau
+      $\Sat/{M}{!B}[s_1]$ dan $\Sat/{M}{!C}[s_1]$. Berdasarkan hipotesis
+      induksi, $\Sat{M}{!B}[s_2]$ dan $\Sat{M}{!C}[s_2]$, atau
+      $\Sat/{M}{!B}[s_2]$ dan $\Sat/{M}{!C}[s_2]$. Dalam kedua kasus,
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defEx}{}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B]}{}}{%
+    \indcase{!A}{\lexists[x][!B]}{jika $\Sat{M}{\indfrm}[s_1]$, terdapat
+      $m \in \Domain{M}$ sedemikian sehingga
+      $\Sat{M}{!B}[\Subst{s_1}{m}{x}]$. Misalkan
+      $s_1' = \Subst{s_1}{m}{x}$ dan $s_2' =
+      \Subst{s_2}{m}{x}$. Variabel bebas dari~$!B$ terdapat di antara
+      $x_1$, \dots, $x_n$, dan $x$. $s_1'(x_i) = s_2'(x_i)$, sebab $s_1'$
+      dan $s_2'$ masing-masing merupakan varian-$x$ dari $s_1$ dan~$s_2$,
+      dan berdasarkan hipotesis $s_1(x_i) = s_2(x_i)$.
+      $s_1'(x) = s_2'(x) = m$ berdasarkan cara kita mendefinisikan
+      $s_1'$ dan~$s_2'$. Maka
+      hipotesis induksi berlaku bagi $!B$ dan $s_1'$, $s_2'$, sehingga
+      $\Sat{M}{!B}[s_2']$. Dengan demikian, karena
+      $s_2' = \Subst{s_2}{m}{x}$, terdapat $m \in \Domain{M}$ sedemikian
+      sehingga $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$, dan karenanya
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defAll}{}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B]}{}}{%
+    \indcase{!A}{\lforall[x][!B]}{jika $\Sat{M}{\indfrm}[s_1]$, maka bagi
+      setiap $m \in \Domain{M}$, $\Sat{M}{!B}[\Subst{s_1}{m}{x}]$. Kita
+      ingin menunjukkan bahwa bagi setiap $m \in \Domain{M}$ juga berlaku
+      $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$. Jadi, misalkan $m \in \Domain{M}$
+      sebarang, dan perhatikan $s_1' = \Subst{s_1}{m}{x}$ serta $s_2' =
+      \Subst{s_2}{m}{x}$. Kita mempunyai $\Sat{M}{!B}[s_1']$. Variabel bebas
+      dari~$!B$ terdapat di antara $x_1$, \dots, $x_n$, dan $x$.
+      $s_1'(x_i) = s_2'(x_i)$, sebab $s_1'$ dan $s_2'$ masing-masing
+      merupakan varian-$x$ dari $s_1$ dan~$s_2$, dan berdasarkan hipotesis
+      $s_1(x_i) = s_2(x_i)$. Kita mempunyai
+      $s_1'(x) = s_2'(x) = m$ berdasarkan cara kita mendefinisikan
+      $s_1'$ dan~$s_2'$. Maka hipotesis induksi berlaku
+      bagi~$!B$ serta~$s_1'$, $s_2'$, dan kita mempunyai
+      $\Sat{M}{!B}[s_2']$. Hal ini berlaku bagi setiap $m \in \Domain{M}$,
+      yakni, $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$ bagi semua~$m \in
+      \Domain{M}$, sehingga $\Sat{M}{\indfrm}[s_2]$.}}}
+\end{enumerate}
+Dengan induksi, kita memperoleh bahwa $\Sat{M}{!A}[s_1]$ jika dan hanya jika
+$\Sat{M}{!A}[s_2]$ setiap kali !!{variable}s bebas dalam $!A$ terdapat di
+antara $x_1$, \dots, $x_n$ dan $s_1(x_i)=s_2(x_i)$ untuk
+$i = 1$, \dots,~$n$.
+\end{proof}
+
+\begin{probtag}{probNot,probOr,probAnd,probIf,probIff,probEx,probAll}
+Lengkapilah pembuktian \olref[fol][syn][ass]{prop:satindep}.
+\end{probtag}
+
+\begin{explain}
+!!^{sentence}s tidak mempunyai variabel bebas, sehingga setiap dua
+penugasan variabel menetapkan hal yang sama kepada semua variabel bebas
+(yang jumlahnya nol) dari setiap kalimat. Dengan demikian, proposisi yang
+baru saja dibuktikan berarti bahwa apakah !!a{sentence} terpenuhi atau tidak
+dalam suatu struktur relatif terhadap penugasan variabel sama sekali tidak
+bergantung pada penugasan tersebut. Kita akan mencatat fakta ini. Fakta ini
+membenarkan definisi keterpenuhan !!a{sentence} dalam !!a{structure} (tanpa
+menyebutkan penugasan variabel) berikut ini.
+\end{explain}
+
+\begin{cor}
+\ollabel{cor:sat-sentence}
+Jika $!A$ merupakan !!a{sentence} dan $s$ suatu penugasan variabel, maka
+$\Sat{M}{!A}[s]$ jika dan hanya jika $\Sat{M}{!A}[s']$ bagi setiap
+penugasan variabel~$s'$.
+\end{cor}
+
+\begin{proof}
+  Misalkan $s'$ sebarang penugasan variabel. Karena $!A$ merupakan
+  !!a{sentence}, kalimat itu tidak mempunyai variabel bebas, sehingga setiap
+  penugasan variabel~$s'$ secara trivial menetapkan hal yang sama kepada
+  semua variabel bebas dari~$!A$ seperti yang ditetapkan~$s$. Jadi, syarat
+  \olref{prop:satindep} terpenuhi, dan kita mempunyai
+  $\Sat{M}{!A}[s]$ jika dan hanya jika $\Sat{M}{!A}[s']$.
+\end{proof}
+
+\begin{defn}
+\ollabel{defn:satisfaction}
+Jika $!A$ merupakan !!a{sentence}, kita mengatakan bahwa
+!!a{structure}~$\Struct M$ \emph{memenuhi}~$!A$, $\Sat{M}{!A}$, jika dan
+hanya jika $\Sat{M}{!A}[s]$ bagi semua penugasan variabel~$s$.
+\end{defn}
+
+Jika $\Sat{M}{!A}$, kita juga cukup mengatakan bahwa \emph{$!A$ benar
+dalam~$\Struct{M}$.} Gagasan keterpenuhan secara alamiah diperluas dari
+!!{sentence}s individual ke himpunan !!{sentence}s.
+
+\begin{defn}
+\ollabel{defn:sat}
+Jika $\Gamma$ merupakan himpunan !!{sentence}s, kita mengatakan
+bahwa !!a{structure}~$\Struct M$ \emph{memenuhi}~$\Gamma$,
+$\Sat{M}{\Gamma}$, jika dan hanya jika $\Sat{M}{!A}$ bagi semua
+$!A \in \Gamma$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sentence-sat-true}
+  Misalkan $\Struct{M}$ suatu !!a{structure}, $!A$ suatu !!a{sentence}, dan
+  $s$ suatu penugasan variabel. $\Sat{M}{!A}$ jika dan hanya jika
+  $\Sat{M}{!A}[s]$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][ass]{prop:sentence-sat-true}
+\end{prob}
+
+\begin{prop}\ollabel{prop:sat-quant}
+  Andaikan $!A(x)$ hanya memuat $x$ secara bebas, dan $\Struct M$ merupakan
+  !!a{structure}. Maka:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$\Sat{M}{\lexists[x][!A(x)]}$ jika dan hanya jika
+      $\Sat{M}{!A(x)}[s]$ bagi setidaknya satu penugasan variabel~$s$.}{}
+    \tagitem{prvAll}{$\Sat{M}{\lforall[x][!A(x)]}$ jika dan hanya jika
+      $\Sat{M}{!A(x)}[s]$ bagi semua penugasan variabel~$s$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][ass]{prop:sat-quant}.
+\end{prob}
+
+\begin{prob}
+\DeclareRobustCommand{\VDash}{\mathrel{||}\joinrel\Relbar}
+Andaikan $\Lang L$ merupakan bahasa tanpa !!{function}s. Misalkan diberikan
+!!{structure}~$\Struct M$, suatu !!a{constant}~$c$, dan
+$a \in \Domain M$. Definisikan $\Struct M[a/c]$ sebagai
+!!{structure} yang sama persis dengan~$\Struct M$, kecuali bahwa
+$\Assign{c}{M[a/c]} = a$. Definisikan $\Struct M \VDash !A$ bagi
+!!{sentence}s~$!A$ dengan:
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{tidak berlaku $\Struct{M} \VDash \indfrm$.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Struct{M} \VDash \indfrm$.}}{}
+
+\item \indcase{!A}{\Atom{R}{d_1, \dots, d_n}}{$\Struct M \VDash \indfrm$
+  jika dan hanya jika
+  $\langle \Assign{d_1}{M}, \dots, \Assign{d_n}{M} \rangle \in
+  \Assign{R}{M}$.}
+
+\item \indcase{!A}{\eq[d_1][d_2]}{$\Struct M \VDash \indfrm$ jika dan hanya
+  jika $\Assign{d_1}{M} = \Assign{d_2}{M}$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Struct{M} \VDash \indfrm$ jika dan hanya jika
+    tidak berlaku $\Struct{M} \VDash {!B}$.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Struct{M} \VDash
+    \indfrm$ jika dan hanya jika $\Struct{M} \VDash!B$ dan
+    $\Struct{M} \VDash !C$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Struct{M} \VDash \indfrm$ jika dan hanya jika
+    $\Struct{M} \VDash !B$ atau $\Struct{M} \VDash !C$ (atau keduanya).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Struct{M} \VDash \indfrm$ jika dan hanya jika
+    tidak berlaku $\Struct {M} \VDash !B$ atau $\Struct M \VDash !C$
+    (atau keduanya).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Struct{M} \VDash {\indfrm}$ jika dan hanya
+    jika baik $\Struct{M} \VDash {!B}$ maupun $\Struct{M} \VDash {!C}$
+    keduanya berlaku, atau baik $\Struct{M} \VDash {!B}$ maupun
+    $\Struct{M} \VDash {!C}$ keduanya tidak berlaku.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$\Struct{M} \VDash {\indfrm}$ jika dan hanya
+    jika bagi semua $a \in \Domain{M}$,
+    $\Struct{M[a/c]} \VDash \Subst{!B}{c}{x}$, jika $c$ tidak muncul
+    dalam~$!B$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$\Struct{M} \VDash
+  {\indfrm}$ jika dan hanya jika terdapat $a \in \Domain M$ sedemikian
+  sehingga $\Struct{M[a/c]} \VDash \Subst{!B}{c}{x}$, jika $c$ tidak
+  muncul dalam~$!B$.}}{}
+\end{enumerate}
+Misalkan $x_1$, \dots, $x_n$ semua !!{variable}s bebas dalam~$!A$,
+$c_1$, \dots, $c_n$ simbol konstanta yang tidak terdapat dalam~$!A$,
+$a_1$, \dots, $a_n \in \Domain M$, dan $s(x_i) = a_i$.
+
+Tunjukkan bahwa $\Sat{M}{!A}[s]$ jika dan hanya jika
+$\Struct M[a_1/c_1,\dots,a_n/c_n]
+\VDash \Subst{\Subst{!A}{c_1}{x_1}\dots}{c_n}{x_n}$.
+
+(Soal ini menunjukkan bahwa semantik bagi logika orde pertama dapat
+diberikan tanpa menggunakan penugasan variabel.)
+\end{prob}
+
+\begin{prob}
+Andaikan $f$ merupakan simbol fungsi yang tidak terdapat dalam~$!A(x,y)$.
+Tunjukkan bahwa terdapat !!a{structure}~$\Struct{M}$ sedemikian sehingga
+$\Sat{M}{\lforall[x][\lexists[y][!A(x,y)]]}$ jika dan hanya jika terdapat
+suatu~$\Struct M'$ sedemikian sehingga
+$\Sat{M'}{\lforall[x][!A(x,f(x))]}$.
+
+(Soal ini merupakan kasus khusus dari apa yang dikenal sebagai Teorema
+Skolem; $\lforall[x][!A(x,f(x))]$ disebut suatu \emph{bentuk normal Skolem}
+dari $\lforall[x][\lexists[y][!A(x,y)]]$.)
+\end{prob}
+
+\end{document}

@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **158 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0158`; unit berikutnya ialah `OLP-0159`,
-`content/first-order-logic/syntax-and-semantics/semantics.tex`.
+Status saat ini: **166 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0166`; unit berikutnya ialah `OLP-0167`,
+`content/first-order-logic/models-theories/models-theories.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -172,6 +172,23 @@ PDF itu berukuran 294.747 byte dengan SHA-256
 Semua 31 halaman telah dirender pada 144 dpi dan diperiksa; tidak ditemukan
 pemotongan, tumpang tindih, glif atau formula rusak, atau rujukan tak
 terselesaikan. Kursor global berikutnya adalah `OLP-0159`.
+
+Checkpoint terbaru menambahkan delapan unit Semantik Logika Orde Pertama
+(`OLP-0159`--`OLP-0166`). Replay deterministik lulus 259 pemeriksaan atas 901
+kerangka matematika dan 23 kelas koreksi sumber; tinjauan semantik independen
+tidak menemukan masalah Bahasa Indonesia yang belum diselesaikan. Penggerak
+kumulatif berikut membangun bab pengantar, sintaksis, dan semantik:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-semantics-id.tex
+```
+
+PDF 49 halaman itu berukuran 397.670 byte dengan SHA-256
+`afaac6ac9c76e813e75b885d6dcc5052ece4206ab0643874d7f80bc0d191bc94`.
+Halaman baru dan berubah 30--49 telah dirender pada 144 dpi dan diperiksa;
+halaman 1--29 dipertahankan dari checkpoint yang telah diterima. Tidak
+ditemukan pemotongan, tumpang tindih, glif atau formula rusak, atau rujukan tak
+terselesaikan. Kursor global berikutnya adalah `OLP-0167`.
 
 ## Syarat penerimaan tiap batch
 

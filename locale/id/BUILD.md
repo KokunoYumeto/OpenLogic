@@ -915,3 +915,79 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 versus 64,603 across all 158 admitted files. The exact next cursor is
 `OLP-0159`, `content/first-order-logic/syntax-and-semantics/semantics.tex`;
 564 closure rows remain.
+
+## First-Order Logic semantics checkpoint — 2026-08-13
+
+### Source binding, deterministic replay, and independent review
+
+The gap-free boundary extends through `OLP-0166`. Every source hash equals its
+row in the frozen 722-file manifest and its Git object at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. Run from the repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_fol_semantics_batch_replay.ps1
+```
+
+The replay script is 35,586 bytes, SHA-256
+`affe4ae38757ccd6863e1b897bbaaa47cb66f946ffda57c4ec886a4afd251852`.
+Its final result is:
+
+```text
+STRUCTURAL_TOTALS commands=1894 environments=216 semantic_tokens=246 labels=17 references=22 citations=0 assets=0 imports=7 tagged_items=37 tag_conditionals=23 math_skeletons=901 math_environments=10 localized_file_ids=7 chapter_ids=1
+CORRECTION_TOTALS source_classes=23 source_occurrences=26 structural_normalizations=18 target_assertions=23 target_review_assertions=1
+BINDING_DIGESTS source_set_sha256=a62e0bdd463c6152371597c2bf87ff175466de13b5d99498e905854280f2140e target_set_sha256=5e84209b9795f16388bdfa609d6abcd16dcc20823204b5baceb2d2083f5221ad
+FOL_SEMANTICS_BATCH_REPLAY_OK files=8 checks=259 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0159..OLP-0166
+```
+
+The independent review receipt is 10,998 bytes, SHA-256
+`986d9b94f7150d23b0bda9262665b57bc4832992b010564ab29bbec22e7086f8`.
+It records every admitted source correction, one independently repaired target
+logic defect, two residual upstream clarification candidates, and no unresolved
+Indonesian semantic finding.
+
+### Clean cumulative build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-semantics-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29. The driver is
+1,978 bytes, SHA-256
+`df5df0962b5a3fe449fedbbcb7ddac5a216bfb26b76295b2306840375f03565b`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-semantics-id.tex` | `locale/id/first-order-logic-semantics-id.pdf` | 49 | 397,670 | `afaac6ac9c76e813e75b885d6dcc5052ece4206ab0643874d7f80bc0d191bc94` |
+
+The final log has zero undefined control sequence, LaTeX error, emergency/fatal
+condition, undefined reference/citation, multiply-defined label, missing file,
+missing glyph, or underfull box. Twenty-five overfull boxes remain, maximum
+24.44377 pt. Exact-page inspection found no visible clipping or margin loss.
+All fonts are embedded; one inherited Type 3 mathematical font lacks a
+ToUnicode map, while searchable extraction remains intact.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 118,044 bytes and 18,420
+whitespace-delimited words, SHA-256
+`ecbe5d946b33510f56e2b90a0d68af804fd152662edbb9373dd32eb3e4007fab`.
+The changed semantics span on pages 30--47 is 44,317 bytes and 7,240 words,
+SHA-256
+`c991187e89a4edd512a338e9d784f3b621c855fac2535f3c5361c718af291851`.
+Searches found zero `??`, `Undefined`, raw LaTeX/OLP token, English environment
+label, or replacement/square encoding failure.
+
+All 49 pages were rendered at 144 dpi. Pages 30--49 were inspected directly at
+original render resolution after the final build; pages 1--29 are byte-stable
+in content from the prior admitted cumulative checkpoint and retain its
+all-page inspection evidence. No clipping, overlap, blank content page, broken
+glyph, lost formula, damaged table, unresolved reference, or margin loss was
+found.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+4,914 English-source and 4,700 Indonesian words for this batch, and 75,014
+versus 69,303 across all 166 admitted files. The exact next cursor is
+`OLP-0167`, `content/first-order-logic/models-theories/models-theories.tex`;
+556 closure rows remain.

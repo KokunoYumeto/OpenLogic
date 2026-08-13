@@ -1,0 +1,48 @@
+% Bagian: first-order-logic
+% Bab: semantics
+% Subbagian: intro-semantics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{its}
+
+\olsection{Pendahuluan}
+
+Memberikan makna kepada ungkapan merupakan ranah semantik. Konsep utama
+dalam semantik ialah keterpenuhan dalam !!a{structure}. !!^a{structure}
+memberikan makna kepada unsur-unsur pembentuk bahasa: !!a{domain} merupakan
+himpunan objek yang tak kosong. Kuantor ditafsirkan sebagai merentang atas
+  domain ini, !!{constant}s diberi anggota-anggota domain, !!{function}s diberi
+  operasi-operasi pada !!{domain}, dan !!{predicate}s diberi
+relasi-relasi pada !!{domain}. !!{domain} tersebut beserta penetapan kepada
+kosakata dasar membentuk !!a{structure}. !!^{variable}s dapat muncul dalam
+!!{formula}s, dan untuk memberikan semantik, kita juga harus menetapkan
+!!{element}s dari !!{domain} kepada variabel-variabel itu---inilah penugasan
+variabel. Relasi keterpenuhan akhirnya menyatukan semua hal tersebut.
+!!^a{formula} dapat terpenuhi dalam !!a{structure}~$\Struct{M}$ relatif
+terhadap penugasan !!a{variable}~$s$, yang ditulis sebagai
+$\Sat{M}{!A}[s]$. Relasi ini juga didefinisikan melalui induksi pada struktur
+dari~$!A$, dengan menggunakan tabel kebenaran bagi penghubung logis untuk
+mendefinisikan, misalnya, keterpenuhan $(!A \land !B)$ berdasarkan
+keterpenuhan (atau ketakterpenuhan) $!A$ dan~$!B$. Kemudian ternyata bahwa
+penugasan !!{variable} tidak relevan jika !!{formula}~$!A$ merupakan
+!!a{sentence}, yakni, tidak mempunyai variabel bebas, sehingga kita dapat
+berbicara tentang !!{sentence}s yang semata-mata terpenuhi (atau tidak)
+dalam !!{structure}s.
+
+Berdasarkan relasi keterpenuhan $\Sat{M}{!A}$ bagi !!{sentence}s, kita
+kemudian dapat mendefinisikan gagasan semantis dasar berupa validitas,
+perikutan, dan keterpenuhan. !!^a{sentence} valid, $\Entails !A$, jika setiap
+!!{structure} memenuhinya. Kalimat itu diakibatkan oleh suatu himpunan
+!!{sentence}s, $\Gamma \Entails !A$, jika setiap !!{structure} yang memenuhi
+semua !!{sentence}s dalam~$\Gamma$ juga memenuhi~$!A$. Dan suatu himpunan
+!!{sentence}s dapat dipenuhi jika ada suatu !!{structure} yang memenuhi
+semua !!{sentence}s di dalamnya sekaligus. Karena !!{formula}s didefinisikan
+secara induktif, dan keterpenuhan pada gilirannya didefinisikan melalui
+induksi pada struktur !!{formula}s, kita dapat menggunakan induksi untuk
+membuktikan sifat-sifat semantik kita dan menghubungkan gagasan-gagasan
+semantis yang telah didefinisikan.
+
+\end{document}

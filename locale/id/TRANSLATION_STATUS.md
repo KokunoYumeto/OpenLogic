@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 158/722 and the exact remainder is 564 files.
+Current target-file coverage is 166/722 and the exact remainder is 556 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -522,4 +522,50 @@ is present; its absence is not an admission blocker.
 Next global ordered cursor: `OLP-0159`,
 `content/first-order-logic/syntax-and-semantics/semantics.tex`.
 The remaining closure is 564 source files after the 158 target files currently
+present and admitted.
+
+### Contiguous First-Order Logic semantics batch
+
+The complete Semantics of First-Order Logic chapter adds
+`OLP-0159`--`OLP-0166`. All eight frozen source hashes match the 722-file
+manifest and their Git objects at the frozen commit. Deterministic replay binds
+the final commands, environments, semantic tokens, labels, references, imports,
+tag logic, mathematical skeletons, localized IDs, and every declared source
+correction. It passes 259 checks over 901 mathematical skeletons and 23
+source-correction classes covering 26 exact source occurrences.
+
+Independent semantic replay passes every final target byte after correcting one
+Indonesian exclusive-alternative defect. The exact review, source corrections,
+two residual upstream clarification candidates, and retracted false positives
+are preserved in
+`..\..\..\_control\OPENLOGIC_FOL_SEMANTICS_INDEPENDENT_REVIEW_20260813.md`
+(SHA-256
+`986d9b94f7150d23b0bda9262665b57bc4832992b010564ab29bbec22e7086f8`).
+
+The cumulative driver builds to 49 pages and 397,670 bytes, SHA-256
+`afaac6ac9c76e813e75b885d6dcc5052ece4206ab0643874d7f80bc0d191bc94`.
+The final log contains zero undefined control sequence, LaTeX error, fatal
+condition, undefined reference/citation, multiply-defined label, missing file,
+missing glyph, or underfull box. Twenty-five overfull boxes remain, maximum
+24.44377 pt; exact-page inspection found no visible loss. All fonts are
+embedded; one inherited Type 3 mathematical font lacks a ToUnicode map while
+searchable extraction remains intact.
+
+The final extracted text is 118,044 bytes / 18,420 whitespace-delimited words,
+SHA-256
+`ecbe5d946b33510f56e2b90a0d68af804fd152662edbb9373dd32eb3e4007fab`.
+The changed semantics span on pages 30--47 is 44,317 bytes / 7,240 words,
+SHA-256
+`c991187e89a4edd512a338e9d784f3b621c855fac2535f3c5361c718af291851`.
+Searches found zero unresolved marker, raw LaTeX/OLP token, English environment
+label, or replacement-character failure. Pages 30--49 were inspected at 144
+dpi; pages 1--29 retain the already admitted all-page inspection evidence.
+
+TeXcount reports 4,914 English-source and 4,700 Indonesian words for this
+batch, and 75,014 versus 69,303 cumulatively. No native/human review metadata
+is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0167`,
+`content/first-order-logic/models-theories/models-theories.tex`.
+The remaining closure is 556 source files after the 166 target files currently
 present and admitted.

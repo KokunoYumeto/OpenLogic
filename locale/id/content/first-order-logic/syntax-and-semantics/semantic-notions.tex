@@ -1,0 +1,170 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: Semantic Notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{sem}
+\olsection{Gagasan Semantis}
+
+\begin{explain}
+Setelah definisi !!{structure}s bagi bahasa orde pertama diberikan, kita
+dapat mendefinisikan beberapa sifat semantis dasar dari kalimat dan relasi
+semantis dasar di antara kalimat. Yang paling sederhana ialah gagasan
+\emph{validitas} suatu kalimat. Suatu kalimat valid jika kalimat itu
+terpenuhi dalam setiap !!{structure}. Kalimat valid ialah kalimat yang
+terpenuhi bagaimanapun simbol nonlogis di dalamnya ditafsirkan. Oleh karena
+itu, kalimat valid juga disebut \emph{kebenaran logis}---kalimat itu benar,
+yakni, terpenuhi, dalam setiap !!{structure}, sehingga kebenarannya hanya
+bergantung pada simbol logis yang muncul di dalamnya dan !!{structure}
+sintaktisnya, tetapi tidak pada simbol nonlogis atau interpretasinya.
+\end{explain}
+
+\begin{defn}[Validitas]
+Suatu kalimat $!A$ \emph{valid}, $\Entails !A$, jika dan hanya jika
+$\Sat{M}{!A}$ bagi setiap !!{structure}~$\Struct M$.
+\end{defn}
+
+\begin{defn}[Perikutan]
+Suatu himpunan kalimat~$\Gamma$ \emph{mengakibatkan} suatu kalimat~$!A$,
+$\Gamma \Entails !A$, jika dan hanya jika bagi setiap
+!!{structure}~$\Struct M$ dengan $\Sat{M}{\Gamma}$, berlaku
+$\Sat{M}{!A}$.
+\end{defn}
+
+
+\begin{defn}[Keterpenuhan]
+Suatu himpunan kalimat~$\Gamma$ \emph{dapat dipenuhi} jika
+$\Sat{M}{\Gamma}$ bagi suatu !!{structure}~$\Struct M$. Jika $\Gamma$ tidak
+dapat dipenuhi, himpunan itu disebut \emph{tak dapat dipenuhi}.
+\end{defn}
+
+\begin{prop}
+Suatu kalimat $!A$ valid jika dan hanya jika $\Gamma \Entails !A$ bagi setiap
+himpunan kalimat~$\Gamma$.
+\end{prop}
+
+\begin{proof}
+Bagi arah maju, misalkan $!A$ valid, dan misalkan $\Gamma$ suatu himpunan
+kalimat. Misalkan $\Struct M$ suatu !!a{structure} sedemikian sehingga
+$\Sat{M}{\Gamma}$. Karena $!A$ valid, $\Sat{M}{!A}$, maka
+$\Gamma \Entails !A$.
+
+Bagi kontraposisi arah sebaliknya, misalkan $!A$ tidak valid, sehingga
+terdapat !!a{structure}~$\Struct M$ dengan $\Sat/{M}{!A}$. Jika
+$\Gamma = \{ \ltrue \}$, karena $\ltrue$ valid, $\Sat{M}{\Gamma}$. Maka
+terdapat !!a{structure}~$\Struct M$ sedemikian sehingga
+$\Sat{M}{\Gamma}$ tetapi $\Sat/{M}{!A}$, sehingga $\Gamma$ tidak
+mengakibatkan $!A$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:entails-unsat}
+$\Gamma \Entails !A$ jika dan hanya jika $\Gamma \cup \{\lnot !A\}$ tidak
+dapat dipenuhi.
+\end{prop}
+
+\begin{proof}
+Bagi arah maju, andaikan $\Gamma \Entails !A$ dan andaikan, sebaliknya,
+bahwa terdapat !!a{structure}~$\Struct M$ sedemikian sehingga
+$\Sat{M}{\Gamma \cup \{ \lnot !A \}}$. Karena $\Sat{M}{\Gamma}$ dan
+$\Gamma \Entails !A$, maka $\Sat{M}{!A}$. Selain itu, karena
+$\Sat{M}{\Gamma\cup \{ \lnot !A \}}$, maka $\Sat{M}{\lnot !A}$, sehingga
+kita mempunyai baik $\Sat{M}{!A}$ maupun $\Sat/{M}{!A}$, suatu
+kontradiksi. Jadi, tidak mungkin ada !!{structure}~$\Struct M$ seperti itu,
+sehingga $\Gamma \cup \{ \lnot !A \}$ tidak dapat dipenuhi.
+
+Bagi arah sebaliknya, andaikan $\Gamma \cup \{ \lnot !A \}$ tidak dapat
+dipenuhi. Jadi, bagi setiap !!{structure}~$\Struct M$, berlaku
+$\Sat/{M}{\Gamma}$ atau $\Sat{M}{!A}$. Maka, bagi setiap !!{structure}
+$\Struct M$ dengan $\Sat{M}{\Gamma}$, berlaku $\Sat{M}{!A}$, sehingga
+$\Gamma \Entails !A$.
+\end{proof}
+
+\begin{prob}
+\begin{enumerate}
+\item Tunjukkan bahwa $\Gamma \Entails \bot$ jika dan hanya jika $\Gamma$
+  tidak dapat dipenuhi.
+\item Tunjukkan bahwa $\Gamma \cup \{!A\} \Entails \bot$ jika dan hanya jika
+  $\Gamma \Entails \lnot !A$.
+\item Andaikan $!A$ tidak mempunyai variabel bebas selain~$x$, dan $c$ tidak
+  muncul dalam $!A$ atau $\Gamma$. Tunjukkan bahwa
+  $\Gamma \Entails \lforall[x][!A]$ jika dan hanya jika
+  $\Gamma \Entails \Subst{!A}{c}{x}$.
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+Jika $\Gamma \subseteq \Gamma'$ dan $\Gamma \Entails !A$, maka
+$\Gamma' \Entails !A$.
+\end{prop}
+
+\begin{proof}
+Andaikan $\Gamma \subseteq \Gamma'$ dan $\Gamma \Entails !A$. Misalkan
+$\Struct M$ suatu struktur sedemikian sehingga $\Sat{M}{\Gamma'}$; maka
+$\Sat{M}{\Gamma}$, dan karena $\Gamma \Entails !A$, kita memperoleh
+$\Sat{M}{!A}$. Dengan demikian, setiap kali $\Sat{M}{\Gamma'}$, berlaku
+$\Sat{M}{!A}$, sehingga $\Gamma' \Entails !A$.
+\end{proof}
+
+
+\begin{thm}[Teorema Deduksi Semantis]
+\ollabel{thm:sem-deduction}
+$\Gamma \cup \{!A\} \Entails !B$ jika dan hanya jika
+$\Gamma \Entails !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+Bagi arah maju, misalkan $\Gamma \cup \{ !A \} \Entails !B$ dan misalkan
+$\Struct M$ suatu !!a{structure} sedemikian sehingga $\Sat{M}{\Gamma}$.
+Jika $\Sat{M}{!A}$, maka $\Sat{M}{\Gamma \cup \{ !A \} }$, sehingga karena
+$\Gamma \cup \{ !A \}$ mengakibatkan $!B$, kita memperoleh
+$\Sat{M}{!B}$. Oleh karena itu, $\Sat{M}{!A \lif !B}$, sehingga
+$\Gamma \Entails !A \lif !B$.
+
+Bagi arah sebaliknya, misalkan $\Gamma \Entails !A \lif !B$ dan
+$\Struct M$ suatu !!a{structure} sedemikian sehingga
+$\Sat{M}{\Gamma \cup \{ !A \}}$. Maka $\Sat{M}{\Gamma}$, sehingga
+$\Sat{M}{!A \lif !B}$, dan karena $\Sat{M}{!A}$, maka $\Sat{M}{!B}$.
+Dengan demikian, setiap kali $\Sat{M}{\Gamma \cup \{ !A \} }$, berlaku
+$\Sat{M}{!B}$, sehingga $\Gamma \cup \{ !A \} \Entails !B$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:quant-terms}
+  Misalkan $\Struct{M}$ suatu !!a{structure}, dan $!A(x)$ suatu
+  !!a{formula} dengan satu variabel bebas~$x$, dan $t$~suatu suku tertutup.
+  Maka:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$!A(t) \Entails \lexists[x][!A(x)]$}{}
+    \tagitem{prvAll}{$\lforall[x][!A(x)] \Entails !A(t)$}{}
+  \end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{%
+      \iftag{probEx}{Latihan.}{Andaikan $\Sat{M}{!A(t)}$. Misalkan $s$ suatu
+        penugasan variabel dengan $s(x) = \Value{t}{M}$. Maka
+        $\Sat{M}{!A(t)}[s]$ karena $!A(t)$ merupakan !!a{sentence}.
+        Berdasarkan \olref[ext]{prop:ext-formulas},
+        $\Sat{M}{!A(x)}[s]$. Berdasarkan
+        \olref[ass]{prop:sat-quant},
+        $\Sat{M}{\lexists[x][!A(x)]}$.}}{}
+    \tagitem{prvAll}{%
+      \iftag{probAll}{Latihan.}{Andaikan
+        $\Sat{M}{\lforall[x][!A(x)]}$. Misalkan $s$ suatu penugasan
+        variabel dengan $s(x) = \Value{t}{M}$. Berdasarkan
+        \olref[ass]{prop:sat-quant}, $\Sat{M}{!A(x)}[s]$. Berdasarkan
+        \olref[ext]{prop:ext-formulas}, $\Sat{M}{!A(t)}[s]$. Berdasarkan
+        \olref[ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t)}$ karena
+        $!A(t)$ merupakan !!a{sentence}.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\begin{probtag}{probEx,probAll}
+  Lengkapilah pembuktian \olref[fol][syn][sem]{prop:quant-terms}.
+\end{probtag}
+
+\end{document}

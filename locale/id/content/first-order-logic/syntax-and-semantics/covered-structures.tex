@@ -1,0 +1,73 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: covered-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{cov}
+
+\olsection{\printtoken{P}{structure} Tercakup untuk Bahasa Orde Pertama}
+
+\begin{explain}
+Ingat bahwa suatu suku \emph{tertutup} jika suku itu tidak memuat
+!!{variable}s.
+\end{explain}
+
+\begin{defn}[!!^{value} suku tertutup]
+Jika $t$ merupakan suku tertutup dari bahasa~$\Lang L$ dan $\Struct M$
+merupakan !!{structure} bagi~$\Lang L$, maka \emph{!!{value}}~$\Value{t}{M}$
+didefinisikan sebagai berikut:
+\begin{enumerate}
+\item Jika $t$ hanya merupakan !!{constant}~$c$, maka $\Value{c}{M} = \Assign{c}{M}$.
+\item Jika $t$ berbentuk $\Atom{f}{t_1, \ldots, t_n}$, maka
+  \[
+  \Value{t}{M} = \Assign{f}{M}(\Value{t_1}{M}, \ldots,
+  \Value{t_n}{M}).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!{structure} Tercakup]
+Suatu !!{structure} \emph{tercakup} jika setiap anggota domain merupakan
+!!{value} dari suatu suku tertutup.
+\end{defn}
+
+\begin{ex}
+Misalkan ~$\Lang L$ adalah bahasa dengan !!{constant}s $\Obj{zero}$,
+$\Obj{one}$, $\Obj{two}$, \dots, !!{predicate} biner~$<$, dan
+!!{function}s biner $+$ serta $\times$. Maka !!a{structure}~$\Struct M$
+bagi~$\Lang L$ adalah struktur dengan domain $\Domain M = \{0, 1, 2, \ldots
+\}$ dan penetapan $\Assign{\Obj{zero}}{M} = 0$,
+$\Assign{\Obj{one}}{M} = 1$, $\Assign{\Obj{two}}{M} = 2$, dan seterusnya.
+Bagi simbol relasi biner $<$, himpunan $\Assign{<}{M}$ merupakan himpunan
+semua pasangan $\tuple{c_1, c_2} \in \Domain{M}^2$ sedemikian sehingga
+$c_1$ lebih kecil daripada~$c_2$: misalnya, $\tuple{1, 3} \in
+\Assign{<}{M}$ tetapi $\tuple{2, 2} \notin \Assign{<}{M}$. Bagi
+!!{function} biner $+$, definisikan $\Assign{+}{M}$ dengan cara yang
+lazim---misalnya, $\Assign{+}{M}(2,3)$ dipetakan ke~$5$, dan demikian pula
+bagi !!{function} biner~$\times$. Dengan demikian, !!{value} dari
+$\Obj{four}$ hanyalah~$4$, dan !!{value} dari $\times(\Obj{two},
++(\Obj{three},\Obj{zero}))$ (atau, dalam notasi infiks, $\Obj{two} \times
+(\Obj{three} + \Obj{zero})$) ialah
+\begin{multline*}
+  \Value{\times(\Obj{two}, +(\Obj{three},\Obj{zero}))}{M} \\
+\begin{aligned}
+& =\Assign{\times}{M}(\Value{\Obj{two}}{M}, \Value{+(\Obj{three}, \Obj{zero})}{M})\\
+& = \Assign{\times}{M}(\Value{\Obj{two}}{M}, \Assign{+}{M}(\Value{\Obj{three}}{M},
+\Value{\Obj{zero}}{M})) \\
+& = \Assign{\times}{M}(\Assign{\Obj{two}}{M}, \Assign{+}{M}(\Assign{\Obj{three}}{M},
+\Assign{\Obj{zero}}{M})) \\
+& = \Assign{\times}{M}(2, \Assign{+}{M}(3, 0)) \\
+& = \Assign{\times}{M}(2, 3) \\
+& = 6
+\end{aligned}
+\end{multline*}
+\end{ex}
+
+\begin{prob}
+Apakah $\Struct N$, model standar aritmetika, tercakup? Jelaskan.
+\end{prob}
+
+\end{document}
