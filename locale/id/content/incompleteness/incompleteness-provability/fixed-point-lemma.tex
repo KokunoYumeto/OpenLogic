@@ -1,0 +1,140 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: fixed-point-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{fix}
+
+\olsection{Lema Titik Tetap}
+
+\begin{explain}
+Lema titik tetap mengatakan bahwa untuk setiap !!{formula}~$!B(x)$, terdapat
+!!a{sentence}~$!A$ sedemikian sehingga $\Th{T} \Proves !A \liff
+!B(\gn{!A})$, asalkan $\Th{T}$ memperluas~$\Th{Q}$. Dalam kasus kalimat
+pembohong, kita menginginkan $!A$ ekuivalen (secara terbukti
+dalam~$\Th{T}$) dengan~``$\gn{!A}$ salah,'' yakni pernyataan bahwa
+$\Gn{!A}$ adalah bilangan G\"odel dari !!{sentence} yang salah. Untuk
+memahami gagasan pembuktiannya, akan berguna membandingkannya dengan uraian
+informal Quine tentang~$!A$ sebagai ``{}`menghasilkan kepalsuan bila didahului
+kutipannya sendiri' menghasilkan kepalsuan bila didahului kutipannya
+sendiri.'' Operasi mengambil suatu ungkapan, lalu membentuk kalimat dengan
+mendahului ungkapan itu dengan kutipannya sendiri dapat disebut
+\emph{mendiagonalkan} ungkapan tersebut, dan hasilnya disebut
+diagonalisasinya. Jadi, diagonalisasi `menghasilkan kepalsuan bila didahului
+kutipannya sendiri' adalah ``{}`menghasilkan kepalsuan bila didahului
+kutipannya sendiri' menghasilkan kepalsuan bila didahului kutipannya
+sendiri.'' Perhatikan bahwa kalimat pembohong Quine bukan diagonalisasi
+`menghasilkan kepalsuan,' melainkan diagonalisasi `menghasilkan kepalsuan
+bila didahului kutipannya sendiri.' Jadi, sifat yang didiagonalkan untuk
+menghasilkan kalimat pembohong itu sendiri melibatkan diagonalisasi!{}
+
+Dalam bahasa aritmetika, kita membentuk kutipan !!a{formula} dengan satu
+variabel bebas dengan menghitung bilangan G\"odel-nya, lalu menyubstitusikan
+numeral standar bagi bilangan G\"odel tersebut ke variabel bebas.
+Diagonalisasi~$!E(x)$ ialah $!E(\num{n})$, dengan $n = \Gn{!E(x)}$.
+(Mulai sekarang, mari singkat $\num{\Gn{!E(x)}}$ sebagai $\gn{!E(x)}$.)
+Jadi, jika $!B(x)$ adalah ``merupakan suatu kepalsuan,'' maka ``menghasilkan
+kepalsuan bila didahului kutipannya sendiri'' menjadi ``menghasilkan
+kepalsuan ketika diterapkan pada bilangan G\"odel dari diagonalisasinya.''
+Jika kita memiliki simbol~$\Obj{diag}$ bagi fungsi $\fn{diag}(n)$ yang
+menghitung bilangan G\"odel dari diagonalisasi !!{formula} dengan bilangan
+G\"odel~$n$, kita dapat menuliskan $!E(x)$ sebagai
+$!B(\Obj{diag}(x))$. Versi kalimat pembohong Quine kemudian menjadi
+diagonalisasinya, yakni $!E(\gn{!E(x)})$ atau
+$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$. Tentu saja, $!B(x)$ kini dapat
+berupa sifat lain apa pun, dan konstruksi yang sama akan bekerja. Untuk
+teorema ketaklengkapan, kita ambil $!B(x)$ sebagai ``$x$~tidak
+!!{derivable} dalam~$\Th{T}$.'' Maka $!E(x)$ berarti ``menghasilkan
+!!a{sentence} yang tidak !!{derivable} dalam~$\Th{T}$ ketika diterapkan pada
+bilangan G\"odel dari diagonalisasinya.''
+
+Untuk memformalkan hal ini dalam~$\Th{T}$, kita harus menemukan cara untuk
+memformalkan $\fn{diag}$. Fungsi $\fn{diag}(n)$ dapat dihitung; bahkan,
+fungsi itu rekursif primitif: jika $n$ adalah bilangan G\"odel dari suatu
+formula~$!E(x)$, $\fn{diag}(n)$ mengembalikan bilangan G\"odel
+dari~$!E(\gn{!E(x)})$. (Ingat, $\gn{!E(x)}$ adalah numeral standar dari
+bilangan G\"odel~$!E(x)$, yakni $\num{\Gn{!E(x)}}$.) Jika $\Obj{diag}$
+merupakan simbol fungsi dalam $\Th{T}$ yang merepresentasikan fungsi
+$\fn{diag}$, kita dapat mengambil $!A$ sebagai formula
+$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$. Perhatikan bahwa
+\begin{align*}
+\fn{diag}(\Gn{!B(\Obj{diag}(x))}) & =
+\Gn{!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))} \\
+& = \Gn{!A}.
+\end{align*}
+Dengan mengasumsikan $\Th{T}$ dapat !!{derive}
+\[
+\Obj{diag}(\gn{!B(\Obj{diag}(x))}) = \gn{!A},
+\]
+teori itu dapat !!{derive} $!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))
+\liff !B(\gn{!A})$. Namun, ruas kiri menurut definisi adalah~$!A$.
+
+Tentu saja, secara umum $\Obj{diag}$ bukan simbol fungsi~$\Th{T}$, dan jelas
+bukan simbol fungsi~$\Th{Q}$. Namun, karena $\fn{diag}$ dapat dihitung,
+fungsi itu \emph{dapat direpresentasikan} dalam~$\Th{Q}$ oleh suatu formula
+$!D_{\fn{diag}}(x,y)$. Jadi, alih-alih menulis $!B(\Obj{diag}(x))$, kita
+dapat menulis $\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$. Selebihnya,
+sketsa pembuktian di atas tetap berlaku, dan bahkan sudah berlaku
+dalam~$\Th{Q}$.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:fixed-point} Misalkan $!B(x)$ adalah sebarang formula dengan satu
+variabel bebas~$x$. Maka terdapat suatu kalimat~$!A$ sedemikian sehingga
+$\Th{Q} \Proves !A \liff !B(\gn{!A})$.
+\end{lem}
+
+
+\begin{proof}
+Diberikan $!B(x)$, misalkan $!E(x)$ adalah formula
+$\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$ dan misalkan $!A$~adalah
+diagonalisasinya, yakni formula $!E(\gn{!E(x)})$.
+
+Karena $!D_{\fn{diag}}$ merepresentasikan $\fn{diag}$, dan
+$\fn{diag}(\Gn{!E(x)}) = \Gn{!A}$, $\Th{Q}$ dapat !!{derive}
+\begin{align}
+  & !D_{\fn{diag}}(\gn{!E(x)}, \gn{!A}) \ollabel{repdiag1} \\
+  & \lforall[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \lif
+  \eq[y][\gn{!A}])]. \ollabel{repdiag2}
+\end{align}
+Sekarang kita tunjukkan bahwa $\Th{Q} \Proves !A \liff !B(\gn{!A})$.
+Kita menalar secara informal dengan hanya menggunakan logika dan fakta-fakta
+yang !!{derivable} dalam~$\Th{Q}$.
+
+Pertama, andaikan~$!A$, yakni $!E(\gn{!E(x)})$. Dengan kembali ke definisi
+$!E(x)$, kita melihat bahwa $!E(\gn{!E(x)})$ tidak lain adalah
+\[
+\lexists[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \land !B(y))].
+\]
+Perhatikan suatu~$y$ semacam itu. Karena
+$!D_{\fn{diag}}(\gn{!E(x)},y)$, berdasarkan \olref{repdiag2},
+$y = \gn{!A}$. Jadi, dari $!B(y)$ kita memperoleh~$!B(\gn{!A})$.
+
+Sekarang andaikan $!B(\gn{!A})$. Berdasarkan \olref{repdiag1}, diperoleh
+\begin{align*}
+& !D_{\fn{diag}}(\gn{!E(x)}, \gn{!A}) \land !B(\gn{!A}).
+\intertext{Maka}
+& \lexists[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \land !B(y))].
+\end{align*}
+Namun, itu tepat $!E(\gn{!E(x)})$, yakni~$!A$.
+\end{proof}
+
+\begin{digress}
+Bandingkan pembuktian ini dengan pembuktian lema titik tetap dalam teori
+komputabilitas. Perbedaannya ialah bahwa di sini kita hendak mendefinisikan
+suatu \emph{pernyataan} dalam istilah dirinya sendiri, sedangkan di sana kita
+hendak mendefinisikan suatu \emph{fungsi} dalam istilah dirinya sendiri;
+terlepas dari perbedaan ini, gagasannya sungguh sama.
+\end{digress}
+
+\begin{prob}
+  !!^a{formula}~$!A(x)$ adalah \emph{definisi kebenaran} jika $\Th{Q}
+  \Proves !B \liff !A(\gn{!B})$ untuk semua !!{sentence}s~$!B$. Tunjukkan
+  dengan menggunakan lema titik tetap bahwa tidak ada !!{formula} yang
+  merupakan definisi kebenaran.
+\end{prob}
+
+\end{document}

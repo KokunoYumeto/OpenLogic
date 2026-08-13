@@ -1,0 +1,114 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: coding-terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{trm}
+\olsection{Pengodean Suku}
+
+\begin{explain}
+Suku hanyalah suatu jenis barisan simbol tertentu: suku dibangun secara
+induktif dari konstanta dan variabel menurut aturan pembentukan suku. Karena
+barisan simbol dapat dikodekan sebagai bilangan---dengan menggunakan skema
+pengodean simbol serta suatu cara untuk mengodekan barisan bilangan---tidak
+sulit untuk memasangkan bilangan G\"odel dengan suku. Tantangannya justru
+menunjukkan bahwa sifat yang dimiliki suatu bilangan apabila bilangan itu
+merupakan bilangan G\"odel dari suku yang terbentuk dengan benar bersifat dapat
+dihitung, atau bahkan rekursif primitif.
+\end{explain}
+
+!!^{variable}s dan !!{constant}s merupakan suku yang paling sederhana, dan
+mudah untuk menguji apakah $x$ adalah bilangan G\"odel dari suku semacam itu:
+$\fn{Var}(x)$ berlaku jika $x$ adalah $\Gn{\Obj v_i}$ untuk suatu~$i$. Dengan
+kata lain, $x$ adalah barisan dengan panjang~$1$ dan satu-satunya elemennya,
+$(x)_0$, merupakan kode suatu !!{variable}~$\Obj v_i$, yakni $x$ adalah
+$\tuple{\tuple{1, i}}$ untuk suatu~$i$. Demikian pula, $\fn{Const}(x)$ berlaku
+jika $x$ adalah $\Gn{\Obj c_i}$ untuk suatu~$i$. Kedua relasi ini rekursif
+primitif, sebab jika $i$ semacam itu ada, maka indeks tersebut harus $< x$:
+\begin{align*}
+  \fn{Var}(x) & \defiff \bexists{i<x}{x = \tuple{\tuple{1, i}}}\\
+  \fn{Const}(x) & \defiff \bexists{i<x}{x = \tuple{\tuple{2, i}}}
+\end{align*}
+
+\begin{prop}
+\ollabel{prop:term-primrec}
+Relasi $\fn{Term}(x)$ dan $\fn{ClTerm}(x)$, yang masing-masing berlaku jika dan
+hanya jika $x$ adalah bilangan G\"odel suatu suku atau suku tertutup, bersifat
+rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Suatu barisan simbol~$s$ adalah suku jika dan hanya jika terdapat barisan suku
+$s_0$, \dots, $s_{k-1} = s$ yang mencatat bagaimana suku~$s$ dibentuk dari
+!!{constant}s dan !!{variable}s menurut aturan pembentukan suku. Agar barisan
+yang disangka sebagai barisan pembentukan itu mengikuti aturan pembentukan,
+untuk setiap $i < k$ harus berlaku salah satu dari hal berikut:
+\begin{enumerate}
+\item $s_i$ adalah !!a{variable}~$\Obj v_j$; atau
+\item $s_i$ adalah !!a{constant}~$\Obj c_j$; atau
+\item $s_i$ dibangun dari $n$ suku $t_1$, \dots, $t_n$ yang muncul sebelum
+  posisi~$i$, dengan menggunakan !!{function} beraritas $n$,~$\Obj f^n_j$.
+\end{enumerate}
+Untuk menunjukkan bahwa relasi yang bersesuaian pada bilangan G\"odel bersifat
+rekursif primitif, kita harus menyatakan syarat ini secara rekursif primitif,
+yakni dengan menggunakan fungsi dan relasi rekursif primitif serta kuantifikasi
+terbatas.
+
+Andaikan $y$ adalah bilangan yang mengodekan barisan $s_0$, \dots,
+$s_{k-1}$, yakni $y = \tuple{\Gn{s_0}, \dots, \Gn{s_{k-1}}}$. Bilangan itu
+mengodekan barisan pembentukan bagi suku dengan bilangan G\"odel~$x$ jika dan
+hanya jika untuk setiap $i < k$:
+\begin{enumerate}
+\item $\fn{Var}((y)_i)$; atau
+\item $\fn{Const}((y)_i)$; atau
+\item terdapat $n$ dan bilangan~$z = \tuple{z_1, \dots, z_n}$ sedemikian rupa
+  sehingga setiap $z_l$ sama dengan suatu $(y)_{i'}$ untuk $i' < i$, dan
+\[
+(y)_i = \Gn{\Obj f^n_j(} \concat \fn{flatten}(z) \concat \Gn{)},
+\]
+\end{enumerate}
+serta $(y)_{k-1} = x$. (Fungsi $\fn{flatten}(z)$ mengubah barisan
+$\tuple{\Gn{t_1}, \dots, \Gn{t_n}}$ menjadi $\Gn{t_1, \dots, t_n}$ dan
+bersifat rekursif primitif.)
+
+Indeks $j$ dan $n$, bilangan G\"odel $z_l$ dari suku $t_l$, serta kode~$z$
+dari barisan~$\tuple{z_1, \dots, z_n}$ dalam (3), semuanya lebih kecil
+daripada~$y$. Kita dapat mengganti $k$ di atas dengan $\len{y}$. Dengan
+demikian, kita dapat menyatakan ``$y$ adalah kode suatu barisan pembentukan
+bagi suku dengan bilangan G\"odel~$x$'' dengan cara yang menunjukkan bahwa
+relasi ini rekursif primitif.
+
+Sekarang kita hanya perlu meyakinkan diri bahwa terdapat batas rekursif
+primitif bagi~$y$. Jika $x$ merupakan bilangan G\"odel suatu suku, suku itu
+harus memiliki barisan pembentukan yang memuat paling banyak $\len{x}$ suku
+(karena setiap suku dalam barisan pembentukan~$s$ harus dimulai pada suatu
+posisi dalam~$s$, dan tidak ada dua sub-suku yang dapat dimulai pada posisi
+yang sama). Tentu saja bilangan G\"odel setiap sub-suku~$s$ ialah $\le x$.
+Jadi, selalu terdapat barisan pembentukan dengan kode
+$\le p_{k-1}^{k(x+1)}$, dengan $k=\len{x}$.
+
+Untuk $\fn{ClTerm}$, cukup hilangkan klausa bagi !!{variable}s.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa fungsi $\fn{flatten}(z)$, yang mengubah barisan
+$\tuple{\Gn{t_1}, \dots, \Gn{t_n}}$ menjadi $\Gn{t_1, \dots, t_n}$,
+bersifat rekursif primitif.
+\end{prob}
+
+\begin{prop}\ollabel{prop:num-primrec}
+  Fungsi $\fn{num}(n) = \Gn{\num{n}}$ bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Kita mendefinisikan $\fn{num}(n)$ melalui rekursi primitif:
+  \begin{align*}
+    \fn{num}(0) & = \Gn{\Obj 0}\\
+    \fn{num}(n+1) & = \Gn{\prime(} \concat \fn{num}(n) \concat \Gn{)}.
+  \end{align*}
+\end{proof}
+
+\end{document}

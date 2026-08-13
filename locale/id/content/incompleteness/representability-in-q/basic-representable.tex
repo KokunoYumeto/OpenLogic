@@ -1,0 +1,240 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: basic-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{bre}
+\olsection{Fungsi-Fungsi Dasar Dapat Direpresentasikan dalam~$\Th{Q}$}
+
+Pertama-tama kita harus menunjukkan bahwa semua fungsi dasar dapat
+direpresentasikan dalam~$\Th{Q}$. Pada akhirnya, kita perlu menunjukkan cara
+menetapkan kepada setiap fungsi dasar berargumen $k$
+$f(x_0,\dots,x_{k-1})$ suatu !!a{formula}
+$!A_f(x_0,\dots,x_{k-1},y)$ yang merepresentasikannya.
+
+Kita akan dapat merepresentasikan nol, penerus, tambah, kali, fungsi
+karakteristik kesamaan, dan proyeksi. Dalam setiap kasus, formula yang sesuai
+untuk merepresentasikan fungsi itu sepenuhnya langsung; misalnya, nol
+direpresentasikan oleh formula $y = \Obj 0$, penerus direpresentasikan oleh
+!!{formula} $x_0' = y$, dan penjumlahan direpresentasikan oleh !!{formula}
+$(x_0 + x_1) = y$. Pekerjaannya terletak pada menunjukkan bahwa $\Th{Q}$
+dapat membuktikan !!{sentence}s yang relevan; misalnya, mengatakan bahwa
+penjumlahan direpresentasikan oleh !!{formula} di atas berarti menunjukkan
+bahwa untuk setiap pasangan bilangan asli $m$ dan $n$, $\Th{Q}$ membuktikan
+\begin{align*}
+& \eq[\num n + \num m][\num {n+m}] \text{ dan}\\
+& \lforall[y][(\eq[(\num n + \num m)][y] \lif \eq[y][\num{n+m}])].
+\end{align*}
+
+\begin{prop}
+\ollabel{prop:rep-zero}
+Fungsi nol $\Zero(x) = 0$ direpresentasikan dalam~$\Th{Q}$ oleh
+$!A_{\Zero}(x,y) \ident \eq[y][\Obj 0]$.
+\end{prop}
+
+\begin{prop}
+\ollabel{prop:rep-succ}
+Fungsi penerus $\Succ(x) = x+1$ direpresentasikan dalam~$\Th{Q}$ oleh
+$!A_{\Succ}(x,y) \ident \eq[y][x']$.
+\end{prop}
+
+\begin{prop}
+\ollabel{prop:rep-proj}
+Fungsi proyeksi $\Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i$
+direpresentasikan dalam~$\Th{Q}$ oleh
+\[!A_{\Proj{n}{i}}(x_0, \dots, x_{n-1}, y) \ident \eq[y][x_i].\]
+\end{prop}
+
+\begin{prob}
+Buktikan bahwa $\eq[y][\Obj 0]$, $\eq[y][x']$, dan $\eq[y][x_i]$
+masing-masing merepresentasikan $\Zero$, $\Succ$, dan $\Proj{n}{i}$.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:rep-id}
+Fungsi karakteristik dari~$=$,
+\[
+\Char{=}(x_0, x_1) =
+\begin{cases}
+  1 & \text{jika } x_0 =x_1\\
+  0 & \text{jika tidak}
+\end{cases}
+\]
+direpresentasikan dalam~$\Th{Q}$ oleh
+\[
+  !A_{\Char{=}}(x_0, x_1, y) \ident (\eq[x_0][x_1] \land
+  \eq[y][\num{1}]) \lor (\eq/[x_0][x_1] \land \eq[y][\num{0}]).
+\]
+\end{prop}
+
+Pembuktiannya memerlukan lema berikut.
+
+\begin{lem}
+\ollabel{lem:q-proves-neq} Diberikan bilangan asli $n$ dan $m$, jika
+$n \neq m$, maka $\Th{Q} \Proves \eq/[\num n][\num m]$.
+\end{lem}
+
+\begin{proof}
+Gunakan induksi pada $n$ untuk menunjukkan bahwa, bagi setiap $m$, jika
+$n \neq m$, maka $\Th{Q} \Proves \eq/[\num n][\num m]$.
+
+Dalam kasus dasar, $n = 0$. Jika $m$ tidak sama dengan $0$, maka
+$m = k + 1$ untuk suatu bilangan asli $k$. Kita mempunyai aksioma yang
+menyatakan $\lforall[x][\eq/[0][x']]$. Menurut suatu aksioma kuantor, dengan
+mengganti $x$ dengan $\num k$, kita dapat menyimpulkan
+$\eq/[0][\num k']$. Namun, $\num k'$ tidak lain ialah $\num m$.
+
+Dalam langkah induksi, kita dapat mengasumsikan bahwa klaim tersebut benar
+untuk $n$, lalu mempertimbangkan $n+1$. Misalkan $m$ sebarang bilangan asli.
+Ada dua kemungkinan: $m = 0$, atau terdapat suatu $k$ sedemikian sehingga
+$m = k+1$. Kasus pertama ditangani seperti di atas. Dalam kasus kedua,
+andaikan $n+1 \neq k+1$. Maka $n \neq k$. Menurut hipotesis induksi untuk
+$n$, kita mempunyai $\Th{Q} \Proves \eq/[\num n][\num k]$. Kita mempunyai
+aksioma yang menyatakan
+$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$. Dengan menggunakan
+aksioma kuantor, kita mempunyai
+$\eq[\num n'][\num k'] \lif \eq[\num n][\num k]$. Dengan menggunakan
+logika proposisional, dalam $\Th{Q}$ kita dapat menyimpulkan
+$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$. Dengan modus ponens,
+kita dapat menyimpulkan $\eq/[\num n'][\num k']$, sebagaimana diinginkan,
+karena $\num k'$ ialah $\num m$.
+\end{proof}
+
+\begin{explain}
+Perhatikan bahwa lema tersebut tidak mengatakan banyak hal: pada intinya,
+lema itu mengatakan bahwa $\Th{Q}$ dapat membuktikan bahwa numeral-numeral
+yang berbeda menunjuk objek yang berbeda. Misalnya, $\Th{Q}$ membuktikan
+$0'' \neq 0'''$. Namun, menunjukkan bahwa hal ini berlaku secara umum
+memerlukan kehati-hatian. Perhatikan pula bahwa meskipun kita menggunakan
+induksi, induksi itu dilakukan \emph{di luar} $\Th{Q}$.
+\end{explain}
+
+\begin{proof}[Pembuktian \olref{prop:rep-id}]
+Jika $n = m$, maka $\num{n}$ dan $\num{m}$ merupakan suku yang sama, dan
+$\Char{=}(n, m) = 1$. Namun, $\Th{Q} \Proves
+(\eq[\num{n}][\num{m}] \land \eq[\num{1}][\num{1}])$, sehingga teori itu
+membuktikan $!A_=(\num{n}, \num{m}, \num{1})$. Jika $n \neq m$, maka
+$\Char=(n, m) = 0$. Menurut \olref{lem:q-proves-neq},
+$\Th{Q} \Proves \eq/[\num{n}][\num{m}]$ dan dengan demikian juga
+$(\eq/[\num{n}][\num{m}] \land \Obj 0 = \Obj 0)$. Jadi,
+$\Th{Q} \Proves !A_=(\num{n}, \num{m}, \num{0})$.
+
+Untuk bagian kedua, kita juga mempunyai dua kasus. Jika $n = m$, kita harus
+menunjukkan bahwa $\Th{Q} \Proves \lforall[y][(!A_=(\num{n}, \num{m}, y)
+  \lif \eq[y][\num{1}])]$. Dengan berargumen secara informal, andaikan
+$!A_=(\num{n}, \num{m}, y)$, yakni
+\[
+(\eq[\num{n}][\num{n}] \land \eq[y][\num{1}]) \lor
+(\eq/[\num{n}][\num{n}] \land \eq[y][\num{0}])
+\]
+Disjungsi kiri menyiratkan $\eq[y][\num{1}]$ berdasarkan logika; disjungsi
+kanan bertentangan dengan $\eq[\num{n}][\num{n}]$, yang dapat dibuktikan
+berdasarkan logika.
+
+Sebaliknya, andaikan $n \neq m$. Maka $!A_=(\num{n}, \num{m}, y)$ ialah
+\[
+(\eq[\num{n}][\num{m}] \land \eq[y][\num{1}]) \lor
+(\eq/[\num{n}][\num{m}] \land \eq[y][\num{0}])
+\]
+Di sini, disjungsi kiri bertentangan dengan $\eq/[\num{n}][\num{m}]$, yang
+dapat dibuktikan dalam $\Th{Q}$ menurut \olref{lem:q-proves-neq}; disjungsi
+kanan menyiratkan $\eq[y][\num{0}]$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-add}
+Fungsi penjumlahan $\Add(x_0, x_1) = x_0+x_1$ direpresentasikan
+dalam~$\Th{Q}$ oleh
+\[
+  !A_{\Add}(x_0, x_1, y) \ident \eq[y][(x_0 + x_1)].
+\]
+\end{prop}
+
+\begin{lem}
+\ollabel{lem:q-proves-add}
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$
+\end{lem}
+
+\begin{proof}
+Kita membuktikan hal ini dengan induksi pada~$m$. Jika $m = 0$, klaimnya
+ialah bahwa $\Th{Q} \Proves \eq[(\num{n} + \Obj 0)][\num{n}]$. Hal ini
+mengikuti dari aksioma~$!Q_4$. Sekarang andaikan klaim tersebut berlaku bagi
+$m$; mari kita buktikan klaim bagi $m+1$, yakni buktikan bahwa
+$\Th{Q} \Proves \eq[(\num{n} + \num{m+1})][\num{n+m+1}]$. Perhatikan bahwa
+$\num{m+1}$ tidak lain ialah $\num{m}'$, dan $\num{n+m+1}$ tidak lain ialah
+$\num{n+m}'$. Menurut aksioma $!Q_5$,
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][(\num{n}+\num{m})']$. Menurut
+hipotesis induksi, $\Th{Q} \Proves
+\eq[(\num{n} + \num{m})][\num{n+m}]$. Jadi,
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][\num{n+m}']$.
+\end{proof}
+
+\begin{proof}[Pembuktian \olref{prop:rep-add}]
+!!{formula}~$!A_\Add(x_0, x_1, y)$ yang merepresentasikan $\Add$ ialah
+$\eq[y][(x_0 + x_1)]$. Pertama, kita menunjukkan bahwa jika
+$\Add(n, m) = k$, maka
+$\Th{Q} \Proves !A_\Add(\num{n}, \num{m}, \num{k})$, yakni
+$\Th{Q} \Proves \eq[\num{k}][(\num{n} + \num{m})]$. Namun, karena
+$k = n + m$, $\num{k}$ tidak lain ialah $\num{n+m}$, dan dalam
+\olref{lem:q-proves-add} telah kita tunjukkan bahwa
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$.
+
+Kita juga harus menunjukkan bahwa jika $\Add(n, m) = k$, maka
+\[
+\Th{Q} \Proves \lforall[y][(!A_\Add(\num{n}, \num{m}, y) \lif
+  \eq[y][\num{k}])].
+\]
+Andaikan kita mempunyai $\eq[(\num{n} + \num{m})][y]$. Karena
+\[
+\Th{Q} \Proves \eq[(\num{n}+\num{m})][\num{n+m}],
+\]
+kita dapat mengganti ruas kiri dengan $\num{n+m}$ dan memperoleh
+$\eq[\num{n+m}][y]$, untuk~$y$ sebarang.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-mult}
+Fungsi perkalian $\Mult(x_0, x_1) = x_0 \cdot x_1$ direpresentasikan
+dalam~$\Th{Q}$ oleh
+\[
+  !A_{\Mult}(x_0, x_1, y) \ident y = (x_0 \times x_1).
+\]
+\end{prop}
+
+\begin{proof} Latihan. \end{proof}
+
+\begin{lem}
+\ollabel{lem:q-proves-mult}
+$\Th{Q} \Proves \eq[(\num{n} \times \num{m})][\num{n \cdot m}]$
+\end{lem}
+
+\begin{proof} Latihan. \end{proof}
+
+\begin{prob}
+Buktikan \olref[inc][req][bre]{lem:q-proves-mult}.
+\end{prob}
+
+\begin{prob}
+Gunakan \olref[inc][req][bre]{lem:q-proves-mult} untuk membuktikan
+\olref[inc][req][bre]{prop:rep-mult}.
+\end{prob}
+
+\begin{explain}
+  Ingat bahwa kita menggunakan $\times$ bagi simbol fungsi dalam bahasa
+  aritmetika, dan $\cdot$ bagi operasi perkalian biasa pada bilangan. Jadi,
+  $\cdot$ dapat muncul di antara ungkapan-ungkapan bilangan (seperti dalam
+  $m \cdot n$), sedangkan $\times$ hanya muncul di antara suku-suku bahasa
+  aritmetika (seperti dalam $(\num{m} \times \num{n})$). Yang bahkan lebih
+  membingungkan, $+$ digunakan baik bagi !!{function} maupun bagi operasi
+  penjumlahan. Ketika muncul di antara suku---misalnya, dalam
+  $(\num{n} + \num{m})$---simbol itu merupakan !!{function} $2$-tempat dalam
+  bahasa aritmetika, dan ketika muncul di antara bilangan---misalnya, dalam
+  $n+m$---simbol itu merupakan operasi penjumlahan. Ini mencakup kasus
+  $\num{n+m}$: ungkapan tersebut ialah numeral standar yang bersesuaian
+  dengan bilangan~$n+m$.
+\end{explain}
+
+\end{document}

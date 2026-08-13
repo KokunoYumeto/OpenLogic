@@ -1,0 +1,118 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: representable-comp
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{rpc}
+\olsection{Fungsi yang Dapat Direpresentasikan dalam $\Th{Q}$ Dapat Dihitung}
+
+Kita akan membuktikan bahwa setiap fungsi yang dapat direpresentasikan
+dalam~$\Th{Q}$ dapat dihitung. Pertama-tama kita harus menetapkan sebuah lema
+tentang fungsi-fungsi yang dapat direpresentasikan dalam~$\Th{Q}$.
+
+\begin{lem}\ollabel{lem:rep-q}
+  Jika $f(x_0, \dots, x_k)$ dapat direpresentasikan dalam~$\Th{Q}$, terdapat
+  !!a{formula}~$!A_f(x_0, \dots, x_k, y)$ sedemikian sehingga
+  \[
+  \Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{m})
+  \quad\text{jika dan hanya jika}\quad m = f(n_0, \dots, n_k).
+  \]
+\end{lem}
+
+\begin{proof}
+  Bagian ``jika'' ialah
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a}. Bagian ``hanya
+jika'' terlihat sebagai berikut. Andaikan $\Th{Q} \Proves !A_f(\num{n_0},
+\dots, \num{n_k}, \num{m})$, tetapi $m \neq f(n_0, \dots, n_k)$. Misalkan
+$l = f(n_0, \dots, n_k)$. Menurut
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a}, $\Th{Q}
+\Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{l})$. Menurut
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:b}, $\Th{Q}$
+membuktikan $\lforall[y][(!A_f(\num{n_0}, \dots, \num{n_k}, y) \lif
+\num{l} = y)]$. Dengan menggunakan logika dan asumsi bahwa $\Th{Q} \Proves
+!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$, kita memperoleh bahwa
+$\Th{Q} \Proves \eq[\num{l}][\num{m}]$. Di sisi lain, menurut
+\olref[bre]{lem:q-proves-neq}, $\Th{Q} \Proves
+\eq/[\num{l}][\num{m}]$. Jadi $\Th{Q}$ tidak konsisten. Namun, hal itu
+mustahil karena $\Th{Q}$ dipenuhi oleh model standar (lihat
+\olref[int][def]{def:standard-model}), $\Sat{N}{\Th{Q}}$, dan teori yang
+dapat dipenuhi selalu konsisten menurut Teorema Kesahihan
+(\tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+prfSC/{fol:seq:sou:cor:consistency-soundness},
+prfND/{fol:ntd:sou:cor:consistency-soundness},
+prfTab/{fol:tab:sou:cor:consistency-soundness}}).
+\end{proof}
+
+\begin{lem}
+Setiap fungsi yang dapat direpresentasikan dalam $\Th{Q}$ dapat dihitung.
+\end{lem}
+
+\begin{proof}
+Pertama-tama mari kita berikan gagasan intuitif mengapa hal ini benar. Untuk
+menghitung~$f$, kita melakukan hal berikut. Daftarkan semua kemungkinan
+!!{derivation}s~$\delta$ dalam bahasa aritmetika. Hal ini dapat dilakukan
+secara mekanis. Untuk setiap kemungkinan itu, periksa apakah ia merupakan
+!!a{derivation} dari !!a{formula} berbentuk~$!A_f(\num{n_0}, \dots,
+\num{n_k}, \num{m})$ (!!{formula} yang mewakili $f$ dalam~$\Th{Q}$ dari
+\olref{lem:rep-q}). Jika ya, maka $m = f(n_0, \dots, n_k)$ menurut
+\olref{lem:rep-q}, dan kita telah menemukan nilai~$f$. Pencarian ini berakhir
+karena $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$, sehingga pada akhirnya kita menemukan suatu
+$\delta$ dari jenis yang tepat.
+
+Uraian ini belum sepenuhnya tepat karena prosedur kita bekerja pada
+!!{derivation}s dan !!{formula}s, bukan hanya pada bilangan, dan kita belum
+menjelaskan secara persis mengapa ``mendaftarkan semua kemungkinan
+!!{derivation}s'' dapat dilakukan secara mekanis. Namun, seperti yang telah
+kita lihat, suku, !!{formula}s, dan !!{derivation}s dapat dikodekan dengan
+bilangan G\"odel. Kita juga telah memperkenalkan model komputasi yang tepat,
+yakni fungsi rekursif umum. Selain itu, telah kita lihat bahwa relasi
+$\Prf[\Th{Q}](d,y)$, yang berlaku jika dan hanya jika $d$ adalah bilangan
+G\"odel dari !!a{derivation} atas !!{formula} bernomor G\"odel~$y$ dari
+aksioma-aksioma~$\Th{Q}$, bersifat rekursif (primitif). Fungsi-fungsi rekursif
+primitif lain yang kita perlukan ialah $\fn{num}$
+(\olref[art][trm]{prop:num-primrec}) dan $\fn{Subst}$
+(\olref[art][sub]{prop:subst-primrec}). Dari fungsi-fungsi ini, $f$ dapat
+didefinisikan dengan pencarian tak berbatas; dengan demikian, $f$ bersifat rekursif.
+
+Pertama, definisikan
+\begin{multline*}
+  A(n_0, \dots, n_k, m) = \\
+  \fn{Subst}(\fn{Subst}(\dots\fn{Subst}(\Gn{!A_f}, \fn{num}(n_0), \Gn{x_0}),\\ \dots),
+  \fn{num}(n_k),  \Gn{x_k}), \fn{num}(m), \Gn{y})
+\end{multline*}
+Ini tampak rumit, tetapi sebenarnya hanya fungsi
+$A(n_0, \dots, n_k, m) =
+\Gn{!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})}$.
+
+Sekarang, perhatikan relasi~$R(n_0, \dots, n_k, s)$ yang berlaku jika
+$(s)_0$ adalah bilangan G\"odel dari !!a{derivation} dalam~$\Th{Q}$ yang
+membuktikan $!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$:
+\[
+R(n_0, \dots, n_k, s) \quad\text{jika dan hanya jika}\quad
+\Prf[\Th{Q}]((s)_0, A(n_0, \dots, n_k, (s)_1))
+\]
+Jika kita dapat menemukan~$s$ sedemikian sehingga $R(n_0, \dots, n_k, s)$
+berlaku, berarti kita telah menemukan pasangan bilangan---$(s)_0$ dan
+$(s)_1$---sedemikian sehingga $(s)_0$ adalah bilangan G\"odel dari
+!!a{derivation} yang membuktikan
+$A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$.
+Jadi, mencari~$s$ sama seperti mencari pasangan $d$ dan $m$ dalam pembuktian
+informal. Fungsi yang dapat dihitung dan ``mencari'' $s$ semacam itu dapat
+didefinisikan dengan pencarian tak berbatas pada fungsi reguler. Perhatikan
+bahwa $R$ bersifat reguler: untuk setiap $n_0$, \dots, $n_k$, terdapat
+!!a{derivation}~$\delta$ yang menyaksikan
+$\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$, sehingga
+$R(n_0, \dots, n_k, s)$ berlaku bagi
+$s = \tuple{\Gn{\delta}, f(n_0, \dots, n_k)}$. Jadi, kita dapat menuliskan
+$f$ sebagai
+\[
+f(n_0,\dots,n_{k}) = (\umin{s}{R(n_0, \dots, n_k, s)})_1.
+\]
+\end{proof}
+
+\end{document}

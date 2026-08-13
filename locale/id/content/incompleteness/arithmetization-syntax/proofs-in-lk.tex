@@ -1,0 +1,281 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-lk
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{plk}
+\olsection{\usetoken{P}{derivation} dalam $\Log{LK}$}
+
+\begin{explain}
+Untuk mengaritmetisasi !!{derivation}s, kita harus merepresentasikan
+!!{derivation}s sebagai bilangan. Karena !!{derivation}s merupakan pohon sekuen
+dan setiap inferensi juga memiliki label, pendekatan yang paling jelas ialah
+representasi rekursif: kita merepresentasikan !!{derivation} sebagai tupel yang
+komponen-komponennya adalah sekuen akhir, label, dan representasi
+sub-!!{derivation}s yang menuju
+premis-premis inferensi terakhir.
+\end{explain}
+
+\begin{defn}
+Jika $\Gamma$ adalah barisan berhingga !!{sentence}s,
+$\Gamma = \tuple{!A_1, \dots, !A_n}$, maka
+$\Gn{\Gamma} = \tuple{\Gn{!A_1}, \dots, \Gn{!A_n}}$.
+
+Jika $\Gamma \Sequent \Delta$ adalah sekuen, maka bilangan G\"odel dari
+$\Gamma \Sequent \Delta$ ialah
+\[
+\Gn{\Gamma \Sequent \Delta} = \tuple{\Gn{\Gamma}, \Gn{\Delta}}
+\]
+
+Jika $\pi$ adalah !!a{derivation} dalam $\Log{LK}$, maka $\Gn{\pi}$
+didefinisikan sebagai berikut:
+\begin{enumerate}
+\item Jika $\pi$ hanya terdiri atas sekuen awal $\Gamma \Sequent \Delta$,
+  maka $\Gn{\pi}$ ialah
+  \[
+    \tuple{0, \Gn{\Gamma \Sequent \Delta}}.
+  \]
+\item Jika $\pi$ berakhir dengan inferensi yang memiliki satu atau dua premis,
+  sekuen kesimpulannya ialah $\Gamma \Sequent \Delta$, dan $\pi_1$ serta
+  $\pi_2$ adalah subpembuktian langsung yang berakhir dengan premis inferensi
+  terakhir, maka $\Gn{\pi}$ masing-masing ialah
+  \begin{align*}
+    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ atau}\\
+    & \tuple{2, \Gn{\pi_1}, \Gn{\pi_2}, \Gn{\Gamma \Sequent \Delta}, k},
+  \end{align*}
+  dengan $k$ diberikan oleh tabel berikut menurut aturan yang digunakan dalam
+  inferensi terakhir:
+
+  \begin{tabular}{lccccccc}
+    \text{Aturan:} & \LeftR{\Weakening} & \RightR{\Weakening} &
+    \LeftR{\Contraction} & \RightR{\Contraction} &
+    \LeftR{\Exchange} & \RightR{\Exchange} \\
+    $k$: & 1 & 2 & 3 & 4 & 5 & 6 \\[2ex]
+    \text{Aturan:} & \LeftR{\lnot} & \RightR{\lnot} &
+    \LeftR{\land} & \RightR{\land} &
+    \LeftR{\lor} & \RightR{\lor} \\
+    $k$: & 7 & 8 & 9 & 10 & 11 & 12 \\[2ex]
+    \text{Aturan:} & \LeftR{\lif} & \RightR{\lif} &
+    \LeftR{\lforall} & \RightR{\lforall} &
+    \LeftR{\lexists} & \RightR{\lexists} \\
+    $k$: & 13 & 14 & 15 & 16 & 17 & 18 \\[2ex]
+    \text{Aturan:} & \Cut & = \\
+    $k$: & 19 & 20
+  \end{tabular}
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+  Tinjaulah !!{derivation} yang sangat sederhana berikut:
+  \begin{prooftree}
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B \fCenter !A$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\fCenter (!A \land !B) \lif !A$
+  \end{prooftree}
+  Bilangan G\"odel sekuen awalnya ialah $p_0 = \tuple{0,
+    \Gn{!A \Sequent !A}}$. Bilangan G\"odel !!{derivation} yang berakhir
+  pada kesimpulan~$\LeftR{\land}$ ialah $p_1 =
+  \tuple{1, p_0, \Gn{!A \land !B \Sequent !A}, 9}$ ($1$ karena
+  $\LeftR{\land}$ memiliki satu premis, lalu bilangan G\"odel kesimpulan
+  $!A \land !B \Sequent !A$, dan $9$ adalah bilangan yang mengodekan
+  $\LeftR{\land}$). Jadi, bilangan G\"odel seluruh !!{derivation} itu ialah
+  $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$, yakni
+  \[
+  \tuple{1, \tuple{1, \tuple{0, \Gn{!A \Sequent !A}}, \Gn{!A \land !B \Sequent !A}, 9},
+    \Gn{\Sequent (!A \land !B) \lif !A}, 14}.
+  \]
+\end{ex}
+
+\begin{explain}
+Setelah menetapkan suatu representasi bagi !!{derivation}s, kita juga harus
+menunjukkan bahwa kita dapat memanipulasi !!{derivation}s tersebut secara
+rekursif primitif serta menyatakan sifat dan relasi pentingnya dengan cara yang
+sama. Beberapa operasi sederhana: misalnya, jika diberikan bilangan
+G\"odel~$p$ dari !!a{derivation}, $\fn{EndSequent}(p) = (p)_{(p)_0+1}$ memberikan
+bilangan G\"odel sekuen akhirnya dan $\fn{LastRule}(p) = (p)_{(p)_0+2}$
+memberikan kode aturan terakhirnya. Sifat $\fn{Sequent}(s)$ yang didefinisikan
+oleh
+\[
+  \len{s} = 2 \land \bforall{i<\len{(s)_0} + \len{(s)_1}}{\fn{Sent}(((s)_0 \concat (s)_1)_i)}
+\]
+berlaku bagi $s$ jika dan hanya jika $s$ adalah bilangan G\"odel sekuen yang
+terdiri atas !!{sentence}s. Sebagian sifat lain jauh lebih sulit. Setidaknya
+kita akan membuat sketsa cara menanganinya. Tujuan kita ialah menunjukkan
+bahwa relasi ``$\pi$ adalah !!a{derivation} dari~$!A$ berdasarkan~$\Gamma$''
+merupakan relasi rekursif primitif antara bilangan G\"odel $\pi$ dan~$!A$.
+\end{explain}
+
+\begin{prop}\ollabel{prop:followsby}
+  Sifat $\fn{Correct}(p)$, yang berlaku jika dan hanya jika inferensi terakhir
+  dalam !!{derivation}~$\pi$ dengan bilangan G\"odel~$p$ benar, bersifat
+  rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  $\Gamma \Sequent \Delta$ adalah sekuen awal jika terdapat
+  !!a{sentence}~$!A$ sedemikian rupa sehingga $\Gamma \Sequent \Delta$ adalah
+  $!A \Sequent !A$, atau terdapat suku~$t$ sedemikian rupa sehingga
+  $\Gamma \Sequent \Delta$ adalah $\emptyset \Sequent \eq[t][t]$. Dalam
+  bilangan G\"odel, $\fn{InitSeq}(s)$ berlaku jika dan hanya jika
+  \begin{align*}
+  \bexists{x < s}{} (\fn{Sent}(x) & \land
+  s = \tuple{\tuple{x},\tuple{x}})
+  \lor {}\\
+  \bexists{t<s}{} (\fn{Term}(t) & \land
+  s = \tuple{0, \tuple{\Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)}}}).
+  \end{align*}
+
+  Kita juga harus menunjukkan bahwa bagi setiap aturan inferensi~$R$, relasi
+  $\fn{FollowsBy}_R(p)$ bersifat rekursif primitif, dengan
+  $\fn{FollowsBy}_R(p)$ berlaku jika dan hanya jika $p$ adalah bilangan G\"odel
+  !!{derivation}~$\pi$, dan sekuen akhir~$\pi$ mengikuti melalui penerapan~$R$
+  yang benar dari sub-!!{derivation}s langsung~$\pi$.
+
+  Salah satu kasus sederhana ialah aturan \RightR{\land}. Jika $\pi$
+  berakhir dengan inferensi $\RightR{\land}$ yang benar, bentuknya ialah:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma \fCenter \Delta, !B$
+
+    \RightLabel{\RightR\land}
+    \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
+  \end{prooftree}
+  Jadi, inferensi terakhir dalam !!{derivation} $\pi$ merupakan penerapan
+  $\RightR{\land}$ yang benar jika dan hanya jika terdapat barisan
+  !!{sentence}s $\Gamma$ dan $\Delta$, serta dua !!{sentence}s $!A$ dan~$!B$,
+  sedemikian rupa sehingga sekuen akhir $\pi_1$ ialah
+  $\Gamma \Sequent \Delta, !A$, sekuen akhir $\pi_2$ ialah
+  $\Gamma \Sequent \Delta, !B$, dan sekuen akhir $\pi$ ialah
+  $\Gamma \Sequent \Delta, !A \land !B$. Kita hanya perlu menerjemahkannya ke
+  dalam bilangan G\"odel. Jika $s = \Gn{\Gamma \Sequent \Delta}$, maka
+  $(s)_0 = \Gn{\Gamma}$ dan $(s)_1 = \Gn{\Delta}$. Jadi,
+  $\fn{FollowsBy}_{\RightR{\land}}(p)$ berlaku jika dan hanya jika
+\begin{align*}
+& \bexists{g < p}{\bexists{d < p}{\bexists{a < p}{\bexists{b < p}{\quad}}}} \\
+& \qquad \fn{EndSequent}(p) =
+  \tuple{g, d \concat
+    \tuple{\Gn{(} \concat a \concat \Gn{\land} \concat b \concat \Gn{)}}} \land {} \\
+& \qquad \fn{EndSequent}((p)_1) = \tuple{g, d \concat \tuple{a}} \land {}\\
+& \qquad \fn{EndSequent}((p)_2) = \tuple{g, d \concat \tuple{b}} \land {}\\
+& \qquad (p)_0 = 2 \land \fn{LastRule}(p) = 10.
+\end{align*}
+Baris-baris tersebut masing-masing menyatakan bahwa ``terdapat barisan
+($\Gamma$) dengan bilangan G\"odel~$g$, terdapat barisan ($\Delta$) dengan
+bilangan G\"odel~$d$, !!a{formula} ($!A$) dengan bilangan G\"odel~$a$, dan
+!!a{formula} ($!B$) dengan bilangan G\"odel~$b$,'' sedemikian rupa sehingga
+``sekuen akhir $\pi$ ialah $\Gamma \Sequent \Delta, !A \land !B$,'' ``sekuen
+akhir $\pi_1$ ialah $\Gamma \Sequent \Delta, !A$,'' ``sekuen akhir $\pi_2$
+ialah $\Gamma \Sequent \Delta, !B$,'' dan ``$\pi$ memiliki dua subderivasi
+langsung dan aturan inferensi terakhirnya ialah $\RightR\land$ (dengan
+bilangan~$10$).''
+
+Inferensi terakhir dalam~$\pi$ merupakan penerapan $\RightR\lexists$ yang
+benar jika dan hanya jika terdapat barisan $\Gamma$ dan $\Delta$,
+!!a{formula}~$!A$, variabel~$x$, dan suku~$t$, sedemikian rupa sehingga sekuen
+akhir $\pi$ ialah $\Gamma \Sequent \Delta, \lexists[x][!A]$ dan sekuen akhir
+$\pi_1$ ialah $\Gamma \Sequent \Delta, \Subst{!A}{t}{x}$. Jadi, dalam bilangan
+G\"odel, $\fn{FollowsBy}_{\RightR\lexists}(p)$ berlaku jika dan hanya jika
+\begin{align*}
+  & \bexists{g<p}{\bexists{d<p}{\bexists{a<p}{\bexists{x<p}{\bexists{t<p}{\quad}}}}}\\
+  & \qquad \fn{EndSequent}(p) =
+  \tuple{
+    g,
+    d \concat \tuple{\Gn{\lexists} \concat x \concat a}
+  } \land {}\\
+  & \qquad \fn{EndSequent}((p)_1) =
+  \tuple{
+    g,
+    d \concat \tuple{\fn{Subst}(a, t, x)}
+  } \land {}\\
+  & \qquad (p)_0 = 1 \land \fn{LastRule}(p) = 18.
+\end{align*}
+Kemudian kita mendefinisikan $\fn{Correct}(p)$ sebagai
+\begin{multline*}
+  \fn{Sequent}(\fn{EndSequent}(p)) \land {}\\
+  [(\fn{LastRule}(p) = 1 \land
+  \fn{FollowsBy}_{\LeftR\Weakening}(p)) \lor \dots \lor {}\\
+  (\fn{LastRule}(p) = 20 \land \fn{FollowsBy}_{\eq}(p)) \lor {}\\
+  (p)_0 = 0 \land \fn{InitSeq}(\fn{EndSequent}(p))]
+\end{multline*}
+Baris pertama memastikan bahwa sekuen akhir derivasi berkode~$p$ benar-benar merupakan sekuen
+yang terdiri atas !!{sentence}s. Baris terakhir mencakup kasus ketika $p$
+hanyalah sekuen awal.
+\end{proof}
+
+\begin{prob}
+  Definisikan sifat-sifat berikut seperti dalam
+  \olref[inc][art][plk]{prop:followsby}:
+  \begin{enumerate}
+  \item $\fn{FollowsBy}_{\Cut}(p)$;
+  \item $\fn{FollowsBy}_{\LeftR\lif}(p)$;
+  \item $\fn{FollowsBy}_{\eq}(p)$;
+  \item $\fn{FollowsBy}_{\RightR{\lforall}}(p)$.
+  \end{enumerate}
+  Untuk yang terakhir, Anda juga harus menunjukkan bahwa kita dapat menguji
+  secara rekursif primitif apakah inferensi terakhir dari !!{derivation}
+  dengan bilangan G\"odel~$p$ memenuhi syarat variabel eigen, yakni variabel
+  eigen~$a$ dari $\RightR{\lforall}$ tidak muncul dalam sekuen akhir.
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:deriv}
+  Relasi $\fn{Deriv}(p)$, yang berlaku jika $p$ adalah bilangan G\"odel suatu
+  !!{derivation}~$\pi$ yang benar, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  !!^a{derivation}~$\pi$ benar jika setiap inferensinya merupakan penerapan
+  aturan yang benar, yakni jika setiap sub-!!{derivation}s berakhir dengan
+  inferensi yang benar. Jadi, $\fn{Deriv}(p)$ jika dan hanya jika
+  \[
+  \bforall{i<\len{\fn{SubtreeSeq}(p)}}{\fn{Correct}((\fn{SubtreeSeq}(p))_i)}.
+  \]
+\end{proof}
+
+
+\begin{prop}
+Andaikan $\Gamma$ adalah himpunan rekursif primitif yang terdiri atas
+!!{sentence}s. Maka relasi $\Prf[\Gamma](x, y)$ yang menyatakan ``$x$ adalah
+kode !!a{derivation}~$\pi$ dari $\Gamma_0 \Sequent !A$ untuk suatu
+$\Gamma_0 \subseteq \Gamma$ yang berhingga, dan $y$ adalah bilangan G\"odel
+dari~$!A$'' bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Andaikan ``$y \in \Gamma$'' diberikan oleh predikat rekursif primitif
+$R_\Gamma(y)$. Kita harus menunjukkan bahwa $\Prf[\Gamma](x, y)$ bersifat
+rekursif primitif, dengan relasi ini berlaku jika dan hanya jika $y$ adalah
+bilangan G\"odel suatu kalimat~$!A$ dan $x$ adalah kode suatu
+$\Log{LK}$-!!{derivation} dengan sekuen akhir $\Gamma_0 \Sequent !A$.
+
+Menurut proposisi sebelumnya, sifat $\fn{Deriv}(x)$, yang berlaku jika dan
+hanya jika $x$ adalah kode !!{derivation}~$\pi$ yang benar dalam $\Log{LK}$,
+bersifat rekursif primitif. Jika $x$ adalah kode semacam itu, maka
+$\fn{EndSequent}(x)$ adalah kode sekuen akhir~$\pi$, sehingga
+$(\fn{EndSequent}(x))_0$ adalah kode sisi kiri sekuen akhir dan
+$(\fn{EndSequent}(x))_1$ adalah kode sisi kanannya. Jadi, kita dapat menyatakan
+``sisi kanan sekuen akhir~$\pi$ ialah~$!A$'' sebagai
+$\len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 = y$.
+Sisi kiri sekuen akhir $\pi$ tentu secara otomatis berhingga; kita hanya perlu
+menyatakan bahwa setiap kalimat di dalamnya termasuk dalam~$\Gamma$. Dengan
+demikian, kita dapat mendefinisikan $\Prf[\Gamma](x, y)$ melalui
+\begin{align*}
+\Prf[\Gamma](x, y) \defiff {}&
+\fn{Deriv}(x) \land {} \\
+& \bforall{i <
+  \len{(\fn{EndSequent}(x))_0}}{R_\Gamma(((\fn{EndSequent}(x))_0)_i)} \land {}\\
+& \len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 = y.
+\end{align*}
+\end{proof}
+
+\end{document}

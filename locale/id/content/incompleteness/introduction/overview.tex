@@ -1,0 +1,98 @@
+% Part: incompleteness
+% Chapter: introduction
+% Section: overview
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{int}{ovr}
+
+\olsection{Ikhtisar Hasil-Hasil Ketaklengkapan}
+
+Hilbert berharap bahwa matematika dapat diformalkan dalam suatu teori
+!!{axiomatizable} yang dapat dibuktikan !!{complete} dan
+!!{decidable}. Selain itu, ia bermaksud membuktikan konsistensi teori
+tersebut dengan sarana yang sangat lemah dan ``finitistik,'' sehingga matematika
+klasik dapat dipertahankan dari tantangan intuisionisme. Teorema-teorema
+ketaklengkapan G\"odel menunjukkan bahwa tujuan-tujuan ini tidak dapat dicapai.
+
+Teorema ketaklengkapan pertama G\"odel menunjukkan bahwa suatu versi
+\emph{Principia Mathematica} karya Russell dan Whitehead tidak
+!!{complete}. Namun, pembuktiannya sebenarnya sangat umum dan berlaku bagi
+berbagai macam teori. Artinya, persoalannya bukan sekadar bahwa
+\emph{Principia Mathematica} gagal menangkap matematika secara lengkap,
+melainkan bahwa \emph{tidak ada} teori yang memadai yang dapat melakukannya.
+Diperlukan waktu untuk mengisolasi ciri-ciri teori yang cukup agar
+teorema-teorema ketaklengkapan berlaku, lalu menggeneralisasi pembuktian
+G\"odel sehingga hanya bergantung pada ciri-ciri tersebut. Kini kita dapat
+menyatakan versi yang sangat umum dari teorema ketaklengkapan pertama bagi
+teori-teori dalam bahasa aritmetika~$\Lang L_A$.
+
+\begin{thm}
+Jika $\Gamma$ adalah teori yang konsisten dan !!{axiomatizable} dalam~$\Lang
+L_A$ yang !!{represents} semua fungsi yang dapat dihitung dan relasi
+!!{decidable}, maka $\Gamma$ tidak !!{complete}.
+\end{thm}
+
+Pernyataan bahwa $\Gamma$ tidak !!{complete} berarti bahwa terdapat
+sekurang-kurangnya satu !!{sentence}~$!A$ sedemikian sehingga $\Gamma
+\Proves/ !A$ dan $\Gamma \Proves/ \lnot !A$. !!a{sentence} semacam itu
+disebut \emph{independen} (terhadap~$\Gamma)$. Kita sebenarnya dapat
+membuktikan dengan relatif cepat bahwa kalimat independen pasti ada. Namun,
+kekuatan pembuktian G\"odel terletak pada kenyataan bahwa pembuktian itu
+menampilkan sebuah \emph{contoh khusus} dari !!{sentence} independen
+tersebut. Konstruksi yang menarik ini menghasilkan !!a{sentence}~$!G_\Gamma$,
+yang disebut \emph{kalimat G\"odel} bagi~$\Gamma$, yang tidak dapat dibuktikan
+karena di dalam $\Gamma$, $!G_\Gamma$ ekuivalen dengan klaim bahwa
+$!G_\Gamma$ tidak dapat dibuktikan dalam~$\Gamma$. Konstruksi tersebut
+bersifat \emph{konstruktif}: jika diberikan aksiomatisasi~$\Gamma$ dan
+deskripsi sistem !!{derivation}, pembuktiannya memberikan metode untuk
+benar-benar menuliskan~$!G_\Gamma$.
+
+Konstruksi dalam pembuktian G\"odel mengharuskan kita menemukan cara untuk
+menyatakan dalam $\Lang L_A$ sifat dan operasi pada suku serta !!{formula}s
+dari $\Lang L_A$ itu sendiri. Di antaranya ialah sifat seperti ``$!A$ adalah
+!!a{sentence},'' ``$\delta$ adalah !!a{derivation} dari~$!A$,'' dan operasi
+seperti $\Subst{!A}{t}{x}$. Cara tersebut harus (a) menyatakan sifat dan
+relasi ini melalui suatu ``pengodean'' simbol dan barisannya (karena suku,
+!!{formula}s, !!{derivation}s, dan sebagainya merupakan barisan simbol) sebagai
+bilangan asli (yang dapat dibicarakan oleh $\Lang L_A$). Cara itu juga harus
+(b) melakukannya sedemikian rupa sehingga $\Gamma$ membuktikan fakta-fakta
+yang relevan; jadi kita harus menunjukkan bahwa sifat-sifat tersebut dikodekan
+oleh sifat !!{decidable} dari bilangan asli dan bahwa operasinya bersesuaian
+dengan fungsi yang dapat dihitung pada bilangan asli. Proses ini disebut
+``aritmetisasi sintaksis.''
+
+Namun, sebelum menyelidiki cara mengaritmetisasi sintaksis, kita akan
+mempertimbangkan syarat bahwa~$\Gamma$ ``cukup kuat,'' yakni !!{represents}
+semua fungsi yang dapat dihitung dan relasi !!{decidable}. Hal ini mengharuskan
+kita memberikan definisi yang tepat bagi ``dapat dihitung.'' Definisi tersebut
+dapat diberikan dengan berbagai cara, misalnya melalui model mesin Turing
+atau sebagai fungsi yang dapat dihitung oleh program dalam suatu bahasa
+pemrograman serbaguna. Akan tetapi, karena tujuan kita ialah
+!!{represents}s fungsi dan relasi tersebut dalam suatu teori berbahasa~$\Lang
+L_A$, sebaiknya kita memilih definisi sederhana tentang keterhitungan fungsi
+numerik saja. Definisi itu ialah gagasan \emph{fungsi rekursif}. Karena itu,
+mula-mula kita akan membahas fungsi rekursif. Selanjutnya kita akan menunjukkan
+bahwa $\Th{Q}$ sudah !!{represents} semua fungsi dan relasi rekursif. Hasil ini
+memungkinkan kita menerapkan teorema ketaklengkapan pada teori tertentu seperti
+$\Th{Q}$ dan $\Th{PA}$, sebab kita telah menetapkan bahwa keduanya merupakan
+contoh teori yang ``cukup kuat.''
+
+Hasil akhir aritmetisasi sintaksis ialah !!a{formula} $\OProv[\Gamma](x)$
+yang, melalui pengodean !!{formula}s sebagai bilangan, menyatakan
+keterbuktian dari aksioma-aksioma~$\Gamma$. Secara khusus, jika $!A$ dikodekan
+oleh bilangan~$n$ dan $\Gamma \Proves !A$, maka $\Gamma \Proves
+\OProv[\Gamma](\num{n})$. ``Predikat keterbuktian'' bagi $\Gamma$ ini juga
+memungkinkan kita menyatakan, dalam arti tertentu, konsistensi $\Gamma$
+sebagai !!a{sentence} dalam~$\Lang L_A$: tetapkan ``pernyataan konsistensi''
+bagi~$\Gamma$ sebagai !!{sentence} $\lnot \OProv[\Gamma](\num{n})$, dengan
+$n$ sebagai kode suatu kontradiksi, misalnya~$\lfalse$. Teorema
+ketaklengkapan kedua menyatakan bahwa teori konsisten yang !!{axiomatizable}
+juga tidak membuktikan pernyataan konsistensinya sendiri. Syarat agar teorema
+ini berlaku sedikit lebih ketat daripada sekadar bahwa teori tersebut
+merepresentasikan semua fungsi yang dapat dihitung dan relasi !!{decidable},
+tetapi kita akan menunjukkan bahwa $\Th{PA}$ memenuhinya.
+
+\end{document}

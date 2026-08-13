@@ -1,0 +1,78 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: undecidability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{und}
+\olsection{Ketakterputusan}
+
+Kita menyebut teori $\Th{T}$ \emph{tidak dapat diputuskan} jika tidak ada
+prosedur komputasional yang, setelah sejumlah langkah berhingga, selalu
+memberikan jawaban yang benar atas pertanyaan ``apakah $\Th{T}$
+membuktikan~$!A$?'' bagi sebarang kalimat~$!A$ dalam bahasa~$\Th{T}$. Jadi,
+$\Th{Q}$ dapat diputuskan jika dan hanya jika terdapat prosedur komputasional
+yang memutuskan, apabila diberikan kalimat~$!A$ dalam bahasa aritmetika,
+apakah $\Th{Q} \Proves !A$ atau tidak. Kita dapat membuat hal ini lebih tepat
+dengan bertanya: Apakah relasi~$\Prov[\Th{Q}](y)$, yang berlaku pada~$y$ jika
+dan hanya jika $y$ merupakan bilangan G\"odel dari kalimat yang dapat
+dibuktikan dalam~$\Th{Q}$, bersifat rekursif? Jawabannya: tidak.
+
+\begin{thm}
+$\Th{Q}$ tidak dapat diputuskan, yakni relasi
+\[
+\Prov[\Th{Q}](y) \defiff \fn{Sent}(y) \land
+\lexists[x][\Prf[\Th{Q}](x, y)]
+\]
+tidak rekursif.
+\end{thm}
+
+\begin{proof}
+Andaikan relasi itu rekursif. Maka kita dapat menyelesaikan masalah
+penghentian sebagai berikut. Diberikan $e$ dan $n$, kita tahu bahwa
+$\cfind{e}(n) \fdefined$ jika dan hanya jika terdapat~$s$ sedemikian sehingga
+$T(e, n, s)$, dengan $T$ merupakan predikat Kleene dari
+\olref[cmp][rec][nft]{thm:kleene-nf}. Karena $T$ rekursif primitif, relasi itu
+dapat direpresentasikan dalam~$\Th{Q}$ oleh formula $!B_T$, yakni
+$\Th{Q} \Proves !B_T(\num{e}, \num{n}, \num{s})$ jika dan hanya jika
+$T(e, n, s)$. Jika
+$\Th{Q} \Proves !B_T(\num{e}, \num{n}, \num{s})$, maka juga
+$\Th{Q} \Proves \lexists[y][!B_T(\num{e}, \num{n}, y)]$. Jika tidak ada
+$s$ semacam itu, maka $\Th{Q} \Proves
+\lnot !B_T(\num{e}, \num{n}, \num{s})$ bagi setiap~$s$. Namun, $\Th{Q}$
+bersifat $\omega$-konsisten, yakni jika
+$\Th{Q} \Proves \lnot !A(\num{n})$ bagi setiap~$n \in \Nat$, maka
+$\Th{Q} \Proves/ \lexists[y][!A(y)]$. Kita mengetahui hal ini karena
+aksioma-aksioma $\Th{Q}$ benar dalam model standar~$\Struct{N}$. Jadi,
+$\Th{Q} \Proves/ \lexists[y][!B_T(\num{e}, \num{n}, y)]$. Dengan kata lain,
+$\Th{Q} \Proves \lexists[y][!B_T(\num{e}, \num{n}, y)]$ jika dan hanya jika
+terdapat $s$ sedemikian sehingga $T(e, n, s)$, yakni jika dan hanya jika
+$\cfind{e}(n) \fdefined$. Dari $e$ dan~$n$ kita dapat menghitung
+$\Gn{\lexists[y][!B_T(\num{e}, \num{n}, y)]}$; misalkan $g(e, n)$ merupakan
+fungsi rekursif primitif yang melakukannya. Jadi,
+\[
+h(e, n) =
+\begin{cases}
+1 & \text{jika $\Prov[\Th{Q}](g(e, n))$}\\
+0 & \text{jika tidak}.
+\end{cases}
+\]
+Ini akan menunjukkan bahwa $h$ rekursif jika $\Prov[\Th{Q}]$ rekursif.
+Namun, menurut \olref[cmp][rec][hlt]{thm:halting-problem}, $h$ tidak rekursif,
+sehingga $\Prov[\Th{Q}]$ juga tidak mungkin rekursif.
+\end{proof}
+
+\begin{cor}
+Logika orde pertama tidak dapat diputuskan.
+\end{cor}
+
+\begin{proof}
+Jika logika orde pertama dapat diputuskan, keterbuktian dalam~$\Th{Q}$ juga
+dapat diputuskan, karena $\Th{Q} \Proves !A$ jika dan hanya jika
+$\Proves !T \lif !A$, dengan $!T$ merupakan konjungsi aksioma-aksioma
+$\Th{Q}$.
+\end{proof}
+
+\end{document}

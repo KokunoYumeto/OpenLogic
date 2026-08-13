@@ -1,0 +1,62 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: comp-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{crq}
+\olsection{Fungsi yang Dapat Dihitung Dapat Direpresentasikan dalam $\Th{Q}$}
+
+\begin{thm}
+Setiap fungsi yang dapat dihitung dapat direpresentasikan dalam~$\Th{Q}$.
+\end{thm}
+
+\begin{proof}
+Agar pasti, dan dengan menggunakan Tesis Church--Turing, katakanlah bahwa
+suatu fungsi dapat dihitung jika dan hanya jika fungsi itu rekursif umum.
+Fungsi-fungsi rekursif umum ialah fungsi-fungsi yang dapat didefinisikan dari
+fungsi nol~$\Zero$, fungsi penerus~$\Succ$, dan fungsi proyeksi~$\Proj{n}{i}$
+dengan menggunakan komposisi, rekursi primitif, dan pencarian tak berbatas
+pada fungsi reguler. Menurut \olref[pri]{lem:prim-rec}, setiap fungsi~$h$
+yang dapat didefinisikan dari $f$ dan~$g$ dengan rekursi primitif juga dapat
+didefinisikan melalui komposisi dan pencarian tak berbatas pada fungsi
+reguler dari $f$, $g$, dan $\Zero$, $\Succ$, $\Proj{n}{i}$, $\Add$, $\Mult$,
+$\Char{=}$. Akibatnya, suatu fungsi rekursif umum jika dan hanya jika fungsi
+itu dapat didefinisikan dari $\Zero$, $\Succ$, $\Proj{n}{i}$, $\Add$,
+$\Mult$, $\Char{=}$ dengan menggunakan komposisi dan pencarian tak berbatas
+pada fungsi reguler.
+
+Selain itu, telah kita tunjukkan bahwa fungsi-fungsi dasar yang bersangkutan
+dapat direpresentasikan dalam~$\Th{Q}$
+(\cref{inc:req:bre:prop:rep-zero,inc:req:bre:prop:rep-succ,inc:req:bre:prop:rep-proj,inc:req:bre:prop:rep-id,inc:req:bre:prop:rep-add,inc:req:bre:prop:rep-mult}),
+dan bahwa setiap fungsi yang didefinisikan dari fungsi-fungsi yang dapat
+direpresentasikan melalui komposisi atau pencarian tak berbatas pada fungsi
+reguler (\olref[cmp]{prop:rep-composition},
+\olref[min]{prop:rep-minimization}) juga dapat direpresentasikan. Jadi, setiap
+fungsi rekursif umum dapat direpresentasikan dalam~$\Th{Q}$.
+\end{proof}
+
+\begin{explain}
+Telah kita tunjukkan bahwa himpunan fungsi yang dapat dihitung dapat
+dicirikan sebagai himpunan fungsi yang dapat direpresentasikan dalam
+$\Th{Q}$. Sebenarnya, pembuktian tersebut lebih umum. Dari definisi
+representasi, tidak sulit melihat bahwa setiap teori yang memperluas
+$\Th{Q}$ (atau yang memungkinkan $\Th{Q}$ ditafsirkan di dalamnya) dapat
+merepresentasikan fungsi-fungsi yang dapat dihitung. Namun, sebaliknya, dalam
+setiap sistem !!{derivation} yang gagasan !!{derivation}-nya dapat dihitung,
+setiap fungsi yang dapat direpresentasikan dapat dihitung. Jadi, misalnya,
+himpunan fungsi yang dapat dihitung dapat dicirikan sebagai himpunan fungsi
+yang dapat direpresentasikan dalam aritmetika Peano, atau bahkan teori
+himpunan Zermelo--Fraenkel. Seperti dicatat G\"odel, hal ini agak
+mengejutkan. Akan kita lihat bahwa dalam perkara keterbuktian, jawabannya
+sangat peka terhadap teori mana yang dipertimbangkan; secara kasar, semakin
+kuat aksiomanya, semakin banyak yang dapat dibuktikan. Namun, dalam cakupan
+luas teori-teori aksiomatik, fungsi-fungsi yang dapat direpresentasikan tepat
+merupakan fungsi-fungsi yang dapat dihitung; teori yang lebih kuat tidak
+merepresentasikan lebih banyak fungsi selama teori tersebut dapat
+diaksiomatisasi.
+\end{explain}
+
+\end{document}

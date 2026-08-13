@@ -1,0 +1,66 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: representing-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{rel}
+
+\olsection{Merepresentasikan Relasi}
+
+Mari kita nyatakan apa artinya suatu \emph{relasi} dapat direpresentasikan.
+
+\begin{defn}
+\ollabel{defn:representing-relations} Relasi $R(x_0,\dots,x_k)$ pada
+bilangan asli {\em dapat direpresentasikan dalam $\Th{Q}$} jika terdapat
+formula $!A_R(x_0,\dots,x_k)$ sedemikian sehingga, setiap kali
+$R(n_0,\dots,n_k)$ benar, $\Th{Q}$ membuktikan
+$!A_R(\num{n_0},\dots,\num{n_k})$, dan setiap kali
+$R(n_0,\dots,n_k)$ salah, $\Th{Q}$ membuktikan
+$\lnot !A_R(\num{n_0}, \dots, \num{n_k})$.
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:representing-rels} Suatu relasi dapat direpresentasikan dalam
+$\Th{Q}$ jika dan hanya jika relasi itu dapat dihitung.
+\end{thm}
+
+\begin{proof}
+Untuk arah maju, andaikan $R(x_0,\dots,x_k)$ direpresentasikan oleh formula
+$!A_R(x_0,\dots,x_k)$. Berikut algoritme untuk menghitung $R$: dengan masukan
+$n_0$, \dots,~$n_k$, carilah secara serentak pembuktian atas
+$!A_R(\num{n_0}, \dots, \num{n_k})$ dan pembuktian atas
+$\lnot !A_R(\num{n_0}, \dots, \num{n_k})$. Menurut hipotesis kita,
+pencarian pasti menemukan salah satunya; jika yang ditemukan ialah yang
+pertama, laporkan ``ya,'' dan jika tidak, laporkan ``tidak.''
+
+Untuk arah lainnya, andaikan $R(x_0, \dots, x_k)$ dapat dihitung. Menurut
+definisi, ini berarti bahwa fungsi $\Char{R}(x_0, \dots, x_k)$ dapat
+dihitung. Menurut \olref[int]{thm:representable-iff-comp}, $\Char{R}$
+direpresentasikan oleh suatu formula, misalnya
+$!A_{\Char{R}}(x_0, \dots, x_k, y)$. Misalkan
+$!A_R(x_0, \dots, x_k)$ merupakan formula
+$!A_{\Char{R}}(x_0, \dots, x_k, \num{1})$. Maka, bagi sebarang
+$n_0$, \dots,~$n_k$, jika $R(n_0, \dots, n_k)$ benar, maka
+$\Char{R}(n_0, \dots, n_k) = 1$; dalam hal ini, $\Th{Q}$ membuktikan
+$!A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, \num{1})$, sehingga
+$\Th{Q}$ membuktikan $!A_R(\num{n_0}, \dots, \num{n_k})$. Di sisi lain,
+jika $R(n_0, \dots, n_k)$ salah, maka
+$\Char{R}(n_0, \dots, n_k) = 0$. Ini berarti bahwa $\Th{Q}$ membuktikan
+\[
+\lforall[y][(!A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, y) \lif y =
+  \num{0})].
+\]
+Karena $\Th{Q}$ membuktikan $\eq/[\num{0}][\num{1}]$, $\Th{Q}$ membuktikan
+$\lnot !A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, \num{1})$, dan dengan
+demikian membuktikan $\lnot !A_R(\num{n_0}, \dots, \num{n_k})$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa jika $R$ dapat direpresentasikan dalam~$\Th{Q}$, demikian
+pula~$\Char{R}$.
+\end{prob}
+
+\end{document}

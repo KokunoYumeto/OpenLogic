@@ -39,11 +39,11 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0251`.
-- Next row: `OLP-0252`.
+- Admitted ordered boundary: `OLP-0321`.
+- Next row: `OLP-0322`.
 - Next source:
-  `content/turing-machines/turing-machines.tex`.
-- Current coverage: 251/722; exact remainder: 471.
+  `content/second-order-logic/second-order-logic.tex`.
+- Current coverage: 321/722; exact remainder: 401.
 
 ## DOI and discoverability maintenance
 

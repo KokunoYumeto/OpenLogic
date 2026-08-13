@@ -1,0 +1,134 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: first-incompleteness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{1in}
+
+\olsection{Teorema Ketaklengkapan Pertama}
+
+Sekarang kita dapat menguraikan pembuktian asli G\"odel atas teorema
+ketaklengkapan pertama. Misalkan $\Th{T}$ sebarang teori yang diaksiomatisasi
+secara komputabel dalam suatu bahasa yang memperluas bahasa aritmetika, dan
+misalkan $\Th{T}$ memuat aksioma-aksioma~$\Th{Q}$. Ini berarti bahwa,
+khususnya, $\Th{T}$ merepresentasikan fungsi dan relasi yang dapat dihitung.
+
+Kita telah berargumen bahwa, dengan suatu pengodean formula dan pembuktian
+yang wajar sebagai bilangan, relasi $\Prf[\Th{T}](x,y)$ dapat dihitung; di
+sini $\Prf[\Th{T}](x,y)$ berlaku jika dan hanya jika $x$ adalah bilangan
+G\"odel dari !!a{derivation} atas !!{formula} bernomor G\"odel~$y$
+dalam~$\Th{T}$. Bahkan, untuk teori khusus yang dimaksud G\"odel, G\"odel
+dapat menunjukkan bahwa relasi ini rekursif primitif dengan menggunakan
+daftar 45 fungsi dan relasi dalam makalahnya. Relasi ke-45, $x B y$, tidak
+lain adalah $\Prf[\Th{T}](x,y)$ untuk pilihan khusus~$\Th{T}$ miliknya.
+Ingatlah bahwa ketika G\"odel menggunakan kata ``rekursif'' dalam
+makalahnya, sekarang kita akan menggunakan frasa ``rekursif primitif.''
+
+Karena $\Prf[\Th{T}](x,y)$ dapat dihitung, relasi itu dapat direpresentasikan
+dalam~$\Th{T}$. Kita akan menggunakan $\OPrf[\Th{T}](x,y)$ untuk menyebut
+formula yang merepresentasikannya. Misalkan $\OProv[\Th{T}](y)$ adalah
+formula $\lexists[x][\OPrf[\Th{T}](x,y)]$. Formula ini menguraikan relasi
+ke-46, $\fn{Bew}(y)$, dalam daftar G\"odel. Seperti dicatat G\"odel, inilah
+satu-satunya relasi yang ``tidak dapat dinyatakan sebagai rekursif.'' Yang
+mungkin ia maksud adalah ini: dari definisinya tidak jelas bahwa relasi itu
+dapat dihitung; dan perkembangan selanjutnya memang menunjukkan bahwa relasi
+itu tidak dapat dihitung.
+
+Misalkan $\Th{T}$ suatu teori !!{axiomatizable} yang memuat~$\Th{Q}$. Maka
+$\Prf[\Th{T}](x, y)$ dapat diputuskan, sehingga dapat direpresentasikan
+dalam~$\Th{Q}$ oleh !!a{formula}~$\OPrf[\Th{T}](x, y)$. Misalkan
+$\OProv[\Th{T}](y)$ adalah formula yang diuraikan di atas. Berdasarkan lema
+titik tetap, terdapat suatu formula $!G_\Th{T}$ sedemikian sehingga
+$\Th{Q}$ (dan karena itu $\Th{T}$) !!{derive}s
+\begin{equation}
+\ollabel{eqn:qpf}
+!G_\Th{T} \liff \lnot \OProv[\Th{T}](\gn{!G_\Th{T}}).
+\end{equation}
+Perhatikan bahwa pada intinya $!G_\Th{T}$ mengatakan,
+``$!G_\Th{T}$ tidak !!{derivable} dalam~$\Th{T}$.''
+
+\begin{lem}\ollabel{lem:cons-G-unprov}
+Jika $\Th{T}$ adalah teori konsisten dan !!{axiomatizable} yang
+memperluas~$\Th{Q}$, maka $\Th{T} \Proves/ !G_\Th{T}$.
+\end{lem}
+
+\begin{proof}
+Andaikan $\Th{T}$ !!{derive}s $!G_\Th{T}$. Maka \emph{memang} terdapat
+!!a{derivation}, sehingga untuk suatu bilangan $m$, relasi
+$\Prf[\Th{T}](m, \Gn{!G_\Th{T}})$ berlaku. Namun, kemudian $\Th{Q}$
+!!{derive}s kalimat $\OPrf[\Th{T}](\num m, \gn{!G_\Th{T}})$. Jadi,
+$\Th{Q}$ !!{derive}s $\lexists[x][\OPrf[\Th{T}](x,
+\gn{!G_\Th{T}})]$, yang menurut definisi adalah
+$\OProv[\Th{T}](\gn{!G_\Th{T}})$. Berdasarkan \olref{eqn:qpf}, $\Th{Q}$
+!!{derive}s $\lnot !G_\Th{T}$; dan karena $\Th{T}$ memperluas $\Th{Q}$,
+$\Th{T}$ juga !!{derive}s kalimat itu. Kita telah menunjukkan bahwa jika
+$\Th{T}$ !!{derive}s $!G_\Th{T}$, maka teori itu juga !!{derive}s
+$\lnot !G_\Th{T}$, sehingga teori itu akan tak konsisten.
+\end{proof}
+
+\begin{defn}
+\ollabel{def:omega-consistency-inp}
+Suatu teori $\Th{T}$ bersifat \emph{$\omega$-konsisten} jika hal berikut
+berlaku: jika $\lexists[x][!A(x)]$ adalah sebarang kalimat dan $\Th{T}$
+!!{derive}s $\lnot !A(\num 0)$, $\lnot !A(\num 1)$,
+$\lnot !A(\num 2)$, \dots maka $\Th{T}$ tidak membuktikan
+$\lexists[x][!A(x)]$.
+\end{defn}
+
+Perhatikan bahwa setiap teori $\omega$-konsisten juga konsisten. Hal ini
+langsung mengikuti fakta bahwa jika $\Th{T}$ tak konsisten, maka
+$\Th{T} \Proves !A$ untuk setiap~$!A$. Khususnya, jika $\Th{T}$ tak
+konsisten, teori itu !!{derive}s baik $\lnot !A(\num n)$ untuk setiap~$n$
+maupun~$\lexists[x][!A(x)]$. Jadi, jika $\Th{T}$ tak konsisten, teori itu
+tidak $\omega$-konsisten. Berdasarkan kontraposisi, jika $\Th{T}$
+$\omega$-konsisten, teori itu harus konsisten.
+
+\begin{lem}\ollabel{lem:omega-cons-G-unref}
+Jika $\Th{T}$ adalah teori $\omega$-konsisten dan !!{axiomatizable} yang
+memperluas~$\Th{Q}$, maka $\Th{T} \Proves/ \lnot !G_\Th{T}$.
+\end{lem}
+
+\begin{proof}
+Kita tunjukkan bahwa jika $\Th{T}$ !!{derive}s $\lnot !G_\Th{T}$, maka
+teori itu tidak $\omega$-konsisten. Andaikan $\Th{T}$ !!{derive}s
+$\lnot !G_\Th{T}$. Jika $\Th{T}$ tak konsisten, teori itu tak
+$\omega$-konsisten, dan pembuktian selesai. Jika tidak, $\Th{T}$ konsisten,
+sehingga teori itu tidak !!{derive} $!G_\Th{T}$ berdasarkan
+\olref{lem:cons-G-unprov}. Karena tidak terdapat !!{derivation} atas $!G_\Th{T}$
+dalam~$\Th{T}$, $\Th{Q}$ !!{derive}s
+\[
+\lnot \OPrf[\Th{T}](\num 0, \gn{!G_\Th{T}}), \lnot \OPrf[\Th{T}](\num 1,
+\gn{!G_\Th{T}}), \lnot \OPrf[\Th{T}](\num 2, \gn{!G_\Th{T}}), \dots
+\]
+dan demikian pula~$\Th{T}$. Di sisi lain, berdasarkan \olref{eqn:qpf},
+$\lnot !G_\Th{T}$ ekuivalen dengan
+$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$. Jadi, $\Th{T}$ tak
+$\omega$-konsisten.
+\end{proof}
+
+\begin{prob}
+  Setiap teori $\omega$-konsisten bersifat konsisten. Tunjukkan bahwa
+  konversnya tidak berlaku, yaitu bahwa terdapat teori yang konsisten tetapi
+  tidak $\omega$-konsisten. Lakukan ini dengan menunjukkan bahwa $\Th{Q} \cup
+  \{\lnot !G_\Th{Q}\}$ konsisten tetapi tidak $\omega$-konsisten.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:first-incompleteness} Misalkan $\Th{T}$ sebarang teori
+$\omega$-konsisten dan !!{axiomatizable} yang memperluas~$\Th{Q}$. Maka
+$\Th{T}$ tidak lengkap.
+\end{thm}
+
+\begin{proof}
+  Jika $\Th{T}$ $\omega$-konsisten, teori itu konsisten, sehingga
+  $\Th{T} \Proves/ !G_\Th{T}$ berdasarkan
+  \olref{lem:cons-G-unprov}. Berdasarkan
+  \olref{lem:omega-cons-G-unref}, $\Th{T} \Proves/ \lnot !G_\Th{T}$.
+  Ini berarti bahwa $\Th{T}$ tidak lengkap karena teori itu tidak !!{derive}s
+  $!G_\Th{T}$ maupun $\lnot !G_\Th{T}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,159 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: lob-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{lob}
+
+\olsection{Teorema L\"ob}
+
+Kalimat G\"odel bagi suatu teori~$\Th{T}$ adalah titik tetap dari
+$\lnot \OProv[\Th{T}](y)$, yakni !!a{sentence}~$!G$ sedemikian sehingga
+\[
+\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G.
+\]
+Kalimat itu tidak !!{derivable}, karena jika $\Th{T} \Proves !G$, maka
+(a)~berdasarkan syarat !!{derivability}~(1),
+$\Th{T} \Proves \OProv[\Th{T}](\gn{!G})$, dan (b)~$\Th{T} \Proves !G$
+bersama dengan
+$\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G$ menghasilkan
+$\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})$, sehingga $\Th{T}$ akan
+tak konsisten. Sekarang wajar untuk menanyakan status titik tetap dari
+$\OProv[\Th{T}](y)$, yakni !!a{sentence}~$!H$ sedemikian sehingga
+\[
+\Th{T} \Proves \OProv[\Th{T}](\gn{!H}) \liff !H.
+\]
+Jika kalimat itu !!{derivable}, maka berdasarkan syarat~(1),
+$\Th{T} \Proves \OProv[\Th{T}](\gn{!H})$; tetapi kesimpulan yang sama
+diperoleh jika kita menerapkan modus ponens pada ekuivalensi di atas. Dengan
+demikian, kita tidak memperoleh bahwa $\Th{T}$ tak konsisten, setidaknya
+tidak melalui argumen yang sama seperti dalam kasus kalimat G\"odel. Tentu saja,
+hal ini tidak menunjukkan bahwa $\Th{T}$ \emph{memang} !!{derive}~$!H$.
+
+Kita dapat memperoleh kemajuan atas pertanyaan ini jika kita membuatnya
+sedikit lebih umum. Arah dari kiri ke kanan pada ekuivalensi titik tetap,
+$\OProv[\Th{T}](\gn{!H}) \lif !H$, merupakan contoh suatu skema umum yang
+disebut \emph{prinsip refleksi}: $\OProv[\Th{T}](\gn{!A}) \lif !A$.
+Disebut demikian karena dalam suatu arti prinsip itu menyatakan bahwa
+$\Th{T}$ dapat ``merefleksikan'' hal-hal yang teori tersebut dapat
+!!{derive}; pada dasarnya, prinsip itu mengatakan, ``Jika $\Th{T}$ dapat
+!!{derive}~$!A$, maka~$!A$ benar,'' untuk sebarang~$!A$. Tentu saja, hal ini
+hanya benar bagi teori yang sahih, dan ini menunjukkan bahwa pada umumnya
+teori tidak akan !!{derive} setiap contohnya. Lalu, contoh-contoh mana yang
+suatu teori (yang cukup kuat dan memenuhi syarat
+!!{derivability}) dapat !!{derive}? Tentu saja semua contoh dengan $!A$
+itu sendiri !!{derivable}. Hanya itulah contoh-contohnya, sebagaimana ditunjukkan oleh hasil
+berikut.
+
+\begin{thm}\ollabel{thm:lob}
+Misalkan $\Th{T}$ adalah suatu teori yang !!a{axiomatizable} dan memperluas
+$\Th{Q}$, dan andaikan $\OProv[\Th{T}](y)$ adalah formula yang memenuhi
+syarat P1--P3 dari \olref[2in]{sec}. Jika $\Th{T}$ !!{derive}s
+$\OProv[\Th{T}](\gn{!A}) \lif !A$, maka sesungguhnya $\Th{T}$ !!{derive}s
+$!A$.
+\end{thm}
+
+Dengan kata lain, jika $\Th{T} \Proves/ !A$, maka $\Th{T} \Proves/
+\OProv[\Th{T}](\gn{!A}) \lif !A$. Hasil ini dikenal sebagai teorema L\"ob.
+
+\begin{explain}
+Heuristik bagi pembuktian teorema L\"ob adalah sebuah pembuktian cerdik
+bahwa Sinterklas ada. (Jika Anda tidak menyukai kesimpulan itu, Anda bebas
+menggantinya dengan kesimpulan lain apa pun yang Anda inginkan.) Berikut
+argumennya:
+\begin{enumerate}
+\item Misalkan $X$ adalah kalimat, ``Jika $X$ benar, maka Sinterklas ada.''
+\item Andaikan $X$ benar.
+\item Maka apa yang dikatakannya berlaku; yakni, kita memperoleh: jika $X$
+  benar, maka Sinterklas ada.
+\item Karena kita mengasumsikan $X$ benar, berdasarkan modus ponens dari
+  (2) dan~(3), kita dapat menyimpulkan bahwa Sinterklas ada.
+\item Kita telah berhasil menurunkan (4), ``Sinterklas ada,'' dari
+  asumsi~(2), ``$X$ benar.'' Berdasarkan pembuktian bersyarat, kita telah
+  menunjukkan: ``Jika $X$ benar, maka Sinterklas ada.''
+\item Namun, itu tidak lain adalah kalimat~$X$. Jadi, kita telah menunjukkan
+  bahwa $X$ benar.
+\item Namun kemudian, berdasarkan argumen (2)--(4) di atas, Sinterklas ada.
+\end{enumerate}
+Formalisasi gagasan ini, dengan mengganti ``benar'' dengan
+``!!{derivable},'' dan ``Sinterklas ada'' dengan~$!A$, menghasilkan
+pembuktian teorema L\"ob. Siasatnya ialah menerapkan lema titik tetap pada
+!!{formula}~$\OProv[\Th{T}](y) \lif !A$. Titik tetapnya bersesuaian dengan
+kalimat~$X$ dalam sketsa di atas.
+\end{explain}
+
+\begin{proof}[Pembuktian \olref{thm:lob}]
+Andaikan $!A$ adalah !!a{sentence} sedemikian sehingga $\Th{T}$ !!{derive}s
+$\OProv[\Th{T}](\gn{!A}) \lif !A$. Misalkan $!B(y)$ adalah
+!!{formula}~$\OProv[\Th{T}](y) \lif !A$, dan gunakan lema titik tetap untuk
+menemukan !!a{sentence}~$!D$ sedemikian sehingga $\Th{T}$ !!{derive}s
+$!D \liff !B(\gn{!D})$. Maka setiap pernyataan berikut !!{derivable}
+dalam~$\Th{T}$:
+\begin{align}
+  & !D \liff (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-1}\\
+  & \qquad \text{$!D$ adalah titik tetap dari~$!B(y)$}\notag \\
+  & !D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-2}\\
+  & \qquad\text{dari \olref{L-1}}\notag\\
+  & \OProv[\Th{T}](\gn{!D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A)}) \ollabel{L-3}\\
+  & \qquad \text{dari \olref{L-2} berdasarkan syarat P1}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D}) \lif !A})
+  \ollabel{L-4}\\
+  &\qquad \text{dari \olref{L-3} dengan menggunakan syarat P2}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \lif (\OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \lif \OProv[\Th{T}](\gn{!A})) \ollabel{L-5}\\
+  &\qquad \text{dari \olref{L-4} dengan menggunakan P2 sekali lagi} \notag\\
+& \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \ollabel{L-6}\\
+  & \qquad\text{berdasarkan syarat !!{derivability} P3} \notag\\
+  & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{!A}) \ollabel{L-7} \\
+  &\qquad\text{dari \olref{L-5} dan \olref{L-6}}\notag\\
+  & \OProv[\Th{T}](\gn{!A}) \lif !A \ollabel{L-8}\\
+  &\qquad\text{berdasarkan asumsi teorema} \notag\\
+  & \OProv[\Th{T}](\gn{!D}) \lif !A \ollabel{L-9}\\
+  &\qquad\text{dari \olref{L-7} dan \olref{L-8}}\notag\\
+  & (\OProv[\Th{T}](\gn{!D}) \lif !A) \lif !D \ollabel{L-10}\\
+  & \qquad \text{dari \olref{L-1}}\notag \\
+  & !D \ollabel{L-11}\\
+  & \qquad\text{dari \olref{L-9} dan \olref{L-10}}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \ollabel{L-12}\\
+  & \qquad\text{dari \olref{L-11} berdasarkan syarat~P1}\notag \\
+  & !A \qquad\qquad\text{dari \olref{L-9} dan \olref{L-12}}\notag
+\end{align}
+\end{proof}
+
+Dengan teorema L\"ob, tersedia pembuktian singkat bagi teorema
+ketaklengkapan kedua (untuk teori dengan predikat !!{derivability} yang
+memenuhi syarat P1--P3): jika
+$\Th{T} \Proves \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, maka
+$\Th{T} \Proves \lfalse$. Jika $\Th{T}$ konsisten,
+$\Th{T} \Proves/ \lfalse$. Jadi,
+$\Th{T} \Proves/ \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, yakni
+$\Th{T} \Proves/ \OCon[\Th{T}]$. Kita juga dapat menerapkannya untuk
+menunjukkan bahwa~$!H$, titik tetap dari $\OProv[\Th{T}](x)$,
+!!{derivable}. Sebab, karena
+\begin{align*}
+  \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \liff !H\\
+  \intertext{maka khususnya}
+    \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \lif !H
+\end{align*}
+dan dengan demikian, berdasarkan teorema L\"ob, $\Th{T} \Proves !H$.
+
+% Going in the other direction, for homework I
+% may ask you to work through a short proof of L\"ob's theorem, using
+% the second incompleteness theorem instead of the fixed-point lemma.
+
+\begin{prob}
+Misalkan $\Th{T}$ suatu teori yang diaksiomatisasi secara komputabel, dan
+misalkan $\OProv[\Th{T}]$ adalah predikat !!{derivability} bagi $\Th{T}$.
+Perhatikan empat pernyataan berikut:
+\begin{enumerate}
+\item Jika $T \Proves !A$, maka $T \Proves \OProv[\Th{T}](\gn{!A})$.
+\item $T \Proves !A \lif \OProv[\Th{T}](\gn{!A})$.
+\item Jika $T \Proves \OProv[\Th{T}](\gn{!A})$, maka $T \Proves !A$.
+\item $T \Proves \OProv[\Th{T}](\gn{!A}) \lif !A$
+\end{enumerate}
+Dalam kondisi apa masing-masing pernyataan ini benar?
+\end{prob}
+
+\end{document}

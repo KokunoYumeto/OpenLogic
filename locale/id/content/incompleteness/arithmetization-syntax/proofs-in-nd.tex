@@ -1,0 +1,334 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-nd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{pnd}
+\olsection{\usetoken{P}{derivation} dalam Deduksi Alami}
+
+\begin{explain}
+Untuk mengaritmetisasi !!{derivation}s, kita harus merepresentasikan
+!!{derivation}s sebagai bilangan. Karena !!{derivation}s merupakan pohon
+!!{formula}s dan setiap inferensi memiliki satu atau dua label, pendekatan yang
+paling jelas ialah representasi rekursif: kita merepresentasikan
+!!{derivation} sebagai tupel
+yang komponen-komponennya adalah banyaknya sub-!!{derivation}s langsung yang
+menuju premis-premis inferensi terakhir, representasi sub-!!{derivation}s
+tersebut, !!{formula} akhir, label pelepasan inferensi terakhir, dan sebuah
+bilangan yang menunjukkan jenis inferensi terakhir.
+\end{explain}
+
+\begin{defn}
+  Jika $\delta$ adalah !!a{derivation} dalam deduksi alami, maka
+  $\Gn{\delta}$ didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \item
+    Jika $\delta$ hanya terdiri atas asumsi~$!A$, maka $\Gn{\delta}$ ialah
+    $\tuple{0, \Gn{!A}, n}$. Bilangan~$n$ adalah~$0$ jika asumsi itu
+    !!{undischarged}, dan merupakan label numeriknya jika tidak.
+  \item
+    Jika $\delta$ berakhir dengan inferensi yang memiliki nol, satu, dua, atau
+    tiga premis, maka $\Gn{\delta}$ masing-masing ialah
+    \begin{align*}
+      & \tuple{0, \Gn{!A}, n, k}, \\
+      & \tuple{1, \Gn{\delta_1}, \Gn{!A}, n, k}, \\
+      & \tuple{2, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{!A}, n, k}, \text{ atau}\\
+      & \tuple{3, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{\delta_3}, \Gn{!A}, n,
+        k},
+    \end{align*}
+    Di sini $\delta_1$, $\delta_2$, dan $\delta_3$ adalah
+    sub-!!{derivation}s yang berakhir dengan premis(-premis) inferensi terakhir
+    dalam $\delta$; $!A$ adalah kesimpulan inferensi terakhir dalam~$\delta$;
+    $n$ adalah label pelepasan inferensi terakhir ($0$ jika inferensi tersebut
+    tidak melepaskan asumsi apa pun); dan $k$ diberikan oleh tabel berikut
+    menurut aturan yang digunakan dalam inferensi terakhir.
+
+    \begin{tabular}{lccccccc}
+      \text{Aturan:} & \Intro{\land} & \Elim{\land} & \Intro{\lor} & \Elim{\lor} \\
+      $k$: & 1 & 2 & 3 & 4  \\[1.5ex]
+      \text{Aturan:} &  \Intro{\lif} & \Elim{\lif} & \Intro{\lnot} & \Elim{\lnot} \\
+      $k$: & 5 & 6 & 7 & 8 \\[1.5ex]
+      \text{Aturan:}  &  \FalseInt & \FalseCl & \Intro{\lforall} & \Elim{\lforall} \\
+      $k$: & 9 & 10 & 11 & 12 \\[1.5ex]
+      \text{Aturan:} & \Intro{\lexists} & \Elim{\lexists} & \Intro{\eq} & \Elim{\eq} \\
+      $k$: & 13 & 14 & 15 & 16
+    \end{tabular}
+  \end{enumerate}
+\end{defn}
+
+\begin{ex}
+  Tinjaulah !!{derivation} yang sangat sederhana berikut:
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A \land !B}{1}$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+    \DischargeRule{\Intro{\lif}}{1}
+    \UnaryInfC{$(!A \land !B) \lif !A$}
+  \end{prooftree}
+  Bilangan G\"odel asumsi itu ialah $d_0 = \tuple{0,
+    \Gn{!A \land !B}, 1}$. Bilangan G\"odel !!{derivation} yang berakhir pada
+  kesimpulan~$\Elim{\land}$ ialah $d_1 = \tuple{1,
+     d_0, \Gn{!A}, 0, 2}$ ($1$ karena $\Elim{\land}$ memiliki satu premis,
+  lalu bilangan G\"odel kesimpulan~$!A$, $0$ karena tidak ada asumsi yang
+  dilepaskan, dan $2$ adalah bilangan yang mengodekan $\Elim{\land}$). Jadi,
+  bilangan G\"odel seluruh !!{derivation} itu ialah
+  $\tuple{1, d_1, \Gn{((!A \land !B) \lif
+      !A)}, 1, 5}$, yakni
+  \[
+  \tuple{1, \tuple{1, \tuple{0, \Gn{(!A \land !B)}, 1}, \Gn{!A}, 0, 2},
+    \Gn{((!A \land !B) \lif !A)}, 1, 5}.
+  \]
+\end{ex}
+
+\begin{explain}
+Setelah menetapkan suatu representasi bagi !!{derivation}s, kita juga harus
+menunjukkan bahwa kita dapat memanipulasi bilangan G\"odel dari
+!!{derivation}s tersebut secara rekursif primitif serta menyatakan sifat dan
+relasi pentingnya. Beberapa operasi sederhana: misalnya, jika diberikan
+bilangan G\"odel~$d$ dari !!a{derivation},
+$\fn{EndFmla}(d) = (d)_{(d)_0+1}$ memberikan bilangan G\"odel
+!!{formula} akhirnya, $\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ memberikan
+label pelepasan, dan $\fn{LastRule}(d) = (d)_{(d)_0 + 3}$ memberikan bilangan
+yang menunjukkan jenis inferensi terakhir. Sebagian operasi lain jauh lebih
+sulit. Setidaknya kita akan membuat sketsa cara menanganinya. Tujuan kita ialah
+menunjukkan bahwa relasi ``$\delta$ adalah !!a{derivation} dari~$!A$
+berdasarkan~$\Gamma$'' merupakan relasi rekursif primitif antara bilangan
+G\"odel $\delta$ dan~$!A$.
+\end{explain}
+
+\begin{prop}
+  Relasi-relasi berikut rekursif primitif:
+  \begin{enumerate}
+  \item $!A$ muncul sebagai asumsi dalam~$\delta$ dengan label~$n$.
+  \item Semua asumsi dalam $\delta$ dengan label~$n$ berbentuk~$!A$
+    (yakni, kita dapat !!{discharge} asumsi~$!A$ menggunakan label~$n$
+    dalam~$\delta$).
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Kita harus menunjukkan bahwa relasi-relasi yang bersesuaian antara bilangan
+  G\"odel !!{formula}s dan bilangan G\"odel !!{derivation}s bersifat rekursif
+  primitif.
+  \begin{enumerate}
+  \item Kita ingin menunjukkan bahwa $\fn{Assum}(x, d, n)$ bersifat rekursif
+    primitif, dengan relasi ini berlaku jika $x$ adalah bilangan G\"odel suatu
+    asumsi dari !!{derivation} dengan bilangan G\"odel~$d$ yang berlabel~$n$.
+    Hal ini berlaku jika !!{derivation} dengan bilangan G\"odel
+    $\tuple{0, x, n}$ merupakan sub-!!{derivation} dari~$d$. Perhatikan bahwa
+    cara kita mengodekan !!{derivation}s merupakan kasus khusus pengodean pohon
+    yang diperkenalkan dalam \olref[cmp][rec][tre]{sec}, sehingga fungsi
+    rekursif primitif $\fn{SubtreeSeq}(d)$ memberikan barisan bilangan G\"odel
+    dari semua sub-!!{derivation}s dari~$d$ (dengan panjang paling banyak $d$).
+    Jadi, kita dapat mendefinisikan
+    \[
+    \fn{Assum}(x, d, n) \defiff \bexists{i<d}{(\fn{SubtreeSeq}(d))_i =
+      \tuple{0, x, n}}.
+    \]
+  \item Kita ingin menunjukkan bahwa $\fn{Discharge}(x, d, n)$ bersifat
+    rekursif primitif, dengan relasi ini berlaku jika semua asumsi berlabel~$n$
+    dalam !!{derivation} dengan bilangan G\"odel~$d$ merupakan !!{formula}
+    dengan bilangan G\"odel~$x$. Relasi ini berlaku jika dan hanya jika
+    $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y = x)}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:followsby}
+  Sifat $\fn{Correct}(d)$, yang berlaku jika dan hanya jika inferensi terakhir
+  dalam !!{derivation}~$\delta$ dengan bilangan G\"odel~$d$ benar, bersifat
+  rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Di sini kita harus menunjukkan bahwa bagi setiap aturan inferensi~$R$, relasi
+  $\fn{FollowsBy}_R(d)$ bersifat rekursif primitif, dengan
+  $\fn{FollowsBy}_R(d)$ berlaku jika dan hanya jika $d$ adalah bilangan G\"odel
+  !!{derivation}~$\delta$, dan !!{formula} akhir~$\delta$ mengikuti melalui
+  penerapan~$R$ yang benar dari sub-!!{derivation}s langsung~$\delta$.
+
+  Salah satu kasus sederhana ialah aturan \Intro{\land}. Jika $\delta$
+  berakhir dengan inferensi $\Intro{\land}$ yang benar, bentuknya ialah:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+
+    \AxiomC{}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+
+    \RightLabel{\Intro\land}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  Maka bilangan G\"odel~$d$ dari~$\delta$ ialah $\tuple{2, d_1, d_2,
+    \Gn{(!A \land !B)}, 0, k}$, dengan $\fn{EndFmla}(d_1) = \Gn{!A}$,
+  $\fn{EndFmla}(d_2) = \Gn{!B}$, $n=0$, dan $k=1$. Jadi, kita dapat
+  mendefinisikan $\fn{FollowsBy}_{\Intro\land}(d)$ sebagai
+  \begin{multline*}
+    (d)_0 = 2 \land \fn{DischargeLabel}(d) = 0 \land \fn{LastRule}(d) = 1 \land {}\\
+    \fn{EndFmla}(d) = {}\\
+    \Gn{(} \concat \fn{EndFmla}((d)_1) \concat \Gn{\land}
+    \concat \fn{EndFmla}((d)_2) \concat \Gn{)}.
+  \end{multline*}
+
+  Contoh sederhana lainnya ialah aturan $\Intro\eq$. Aturan ini tidak memiliki
+  premis, sehingga $(d)_0 = 0$, seperti asumsi. Aturan ini juga tidak memiliki
+  label pelepasan, yakni $n=0$. Namun, $!A$ harus berbentuk $\eq[t][t]$ untuk
+  suatu suku tertutup~$t$. Definisi rekursif primitifnya ialah
+  \begin{multline*}
+    (d)_0 = 0 \land \fn{DischargeLabel}(d) = 0 \land {}\\
+    \bexists{t<d}{(\fn{ClTerm}(t) \land
+      \fn{EndFmla}(d) = {}\\
+      \Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)})}.
+  \end{multline*}
+
+  Sebagai contoh yang lebih rumit, $\fn{FollowsBy}_{\Intro{\lif}}(d)$ berlaku
+  jika dan hanya jika !!{formula} akhir~$\delta$ berbentuk $(!A \lif !B)$,
+  dengan !!{formula} akhir $\delta_1$ ialah~$!B$, dan setiap asumsi dalam
+  $\delta$ yang berlabel~$n$ berbentuk~$!A$. Kita dapat menyatakannya secara
+  rekursif primitif melalui
+  \begin{multline*}
+    (d)_0 = 1 \land {}\\
+    \bexists{a<d}{(\fn{Discharge}(a, (d)_1, \fn{DischargeLabel}(d)) \land {}}\\
+      \fn{EndFmla}(d) = (\Gn{(} \concat a \concat \Gn{\lif}
+      \concat \fn{EndFmla}((d)_1) \concat \Gn{)}))
+  \end{multline*}
+  (Bayangkan $a$ sebagai bilangan G\"odel dari~$!A$.)
+
+  Sebagai contoh lain, tinjaulah \Intro{\lexists}. Di sini, inferensi
+  terakhir dalam~$\delta$ benar jika dan hanya jika terdapat !!a{formula}~$!A$,
+  suku tertutup~$t$, dan !!a{variable}~$x$ sedemikian rupa sehingga
+  $\Subst{!A}{t}{x}$ merupakan !!{formula} akhir dari !!{derivation}
+  $\delta_1$, dan $\lexists[x][!A]$ merupakan kesimpulan inferensi terakhir.
+  Jadi, $\fn{FollowsBy}_{\Intro{\lexists}}(d)$ berlaku jika dan hanya jika
+  \begin{multline*}
+    (d)_0 = 1 \land \fn{DischargeLabel}(d) = 0 \land {} \\
+    \bexists{a < d}{\bexists{x<d}{\bexists{t<d}{
+          (\fn{ClTerm}(t) \land \fn{Var}(x)  \land {}}}}\\
+    \fn{Subst}(a,t,x) = \fn{EndFmla}((d)_1) \land
+    \fn{EndFmla}(d) = (\Gn{\lexists} \concat x \concat a)).
+  \end{multline*}
+
+  Kemudian kita mendefinisikan $\fn{Correct}(d)$ sebagai
+  \begin{multline*}
+    \fn{Sent}(\fn{EndFmla}(d)) \land {}\\
+    [(\fn{LastRule}(d) = 1 \land
+    \fn{FollowsBy}_{\Intro\land}(d)) \lor \dots \lor {}\\
+    (\fn{LastRule}(d) = 16 \land \fn{FollowsBy}_{\Elim\eq}(d)) \lor {}\\
+    \bexists{n<d}{\bexists{x<d}{(d = \tuple{0, x, n})}}].
+  \end{multline*}
+  Baris pertama memastikan bahwa !!{formula} akhir derivasi berkode~$d$
+  merupakan kalimat.
+  Baris terakhir mencakup kasus ketika $d$ hanyalah suatu asumsi.
+\end{proof}
+
+\begin{prob}
+  Definisikan sifat-sifat berikut seperti dalam
+  \olref[inc][art][pnd]{prop:followsby}:
+  \begin{enumerate}
+  \item $\fn{FollowsBy}_{\Elim{\lif}}(d)$;
+  \item $\fn{FollowsBy}_{\Elim{\eq}}(d)$;
+  \item $\fn{FollowsBy}_{\Elim{\lor}}(d)$;
+  \item $\fn{FollowsBy}_{\Intro{\lforall}}(d)$.
+  \end{enumerate}
+  Untuk yang terakhir, Anda juga harus menunjukkan bahwa kita dapat menguji
+  secara rekursif primitif apakah inferensi terakhir dari !!{derivation}
+  dengan bilangan G\"odel~$d$ memenuhi syarat variabel eigen, yakni variabel
+  eigen~$a$ dari inferensi $\Intro{\lforall}$ tidak muncul dalam !!{formula}
+  akhir~$d$ maupun dalam asumsi terbuka~$d$. Anda boleh menggunakan predikat
+  rekursif primitif $\fn{OpenAssum}$ dari
+  \olref[inc][art][pnd]{prop:openassum} untuk hal ini.
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:deriv}
+  Relasi $\fn{Deriv}(d)$, yang berlaku jika $d$ adalah bilangan G\"odel suatu
+  !!{derivation}~$\delta$ yang benar, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  !!^a{derivation}~$\delta$ benar jika setiap inferensinya merupakan penerapan
+  aturan yang benar, yakni jika setiap sub-!!{derivation}s berakhir dengan
+  inferensi yang benar. Jadi, $\fn{Deriv}(d)$ jika dan hanya jika
+  \[
+  \bforall{i<\len{\fn{SubtreeSeq}(d)}}{\fn{Correct}((\fn{SubtreeSeq}(d))_i)}
+  \]
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:openassum} Relasi $\fn{OpenAssum}(z, d)$, yang berlaku jika
+  $z$ adalah bilangan G\"odel dari suatu asumsi~$!A$ yang !!a{undischarged} dalam
+  !!{derivation}~$\delta$ dengan bilangan G\"odel~$d$, bersifat rekursif
+  primitif.
+\end{prop}
+
+\begin{proof}
+  Suatu kemunculan asumsi !!{discharged} jika kemunculan itu berlabel~$n$ dalam
+  sub-!!{derivation} dari~$\delta$ yang berakhir dengan aturan berlabel
+  pelepasan~$n$. Jadi, $!A$ merupakan asumsi yang !!a{undischarged} dalam
+  $\delta$ jika sedikitnya satu kemunculannya tidak !!{discharged} dalam
+  $\delta$. Kita harus berhati-hati: $\delta$ dapat memuat kemunculan $!A$
+  yang !!{discharged} sekaligus yang !!{undischarged}.
+
+  Tinjaulah barisan $\delta_0$, \dots, $\delta_k$, dengan
+  $\delta_0 = \delta$, $\delta_k$ adalah asumsi $\Discharge{!A}{n}$ (untuk
+  suatu~$n$), dan $\delta_{i+1}$ merupakan sub-!!{derivation} langsung dari
+  $\delta_i$. Jika $n=0$, asumsi itu terbuka menurut definisi pengodean kita.
+  Jika $n\neq0$ dan terdapat barisan semacam itu tanpa satu pun $\delta_i$
+  yang berakhir dengan inferensi berlabel pelepasan~$n$, maka $!A$ merupakan
+  asumsi yang !!a{undischarged} dalam~$\delta$.
+
+  Fungsi rekursif primitif $\fn{SubtreeSeq}(d)$ memberikan barisan bilangan
+  G\"odel semua sub-!!{derivation}s dari~$\delta$. Setiap barisan bilangan
+  G\"odel sub-!!{derivation}s dari~$\delta$ terdiri atas elemen-elemen barisan
+  tersebut. Sifat menjadi subbarisan merupakan relasi rekursif primitif:
+  $\fn{Subseq}(s, s')$ berlaku jika dan hanya jika
+  $\bforall{i<\len{s}}{\lexists[j<\len{s'}][(s)_i = (s')_j]}$. Sifat menjadi
+  sub-!!{derivation} langsung juga rekursif primitif:
+  $\fn{Subderiv}(d, d')$ berlaku jika dan hanya jika
+  $\bexists{j<(d')_0}{d = (d')_{j+1}}$. Jadi, kita dapat mendefinisikan
+  $\fn{OpenAssum}(z, d)$ melalui
+  \begin{multline*}
+    \bexists{s\leq\fn{SubtreeSeq}(d)}{\fn{Subseq}(s, \fn{SubtreeSeq}(d))
+      \land (s)_0 = d \land {}\\
+    \Bigl[(s)_{\len{s} \tsub 1} = \tuple{0, z, 0} \lor {}\\
+      \bexists{n<d}{n \neq 0 \land
+      (s)_{\len{s} \tsub 1} = \tuple{0, z, n} \land {}\\
+      \bforall{i<(\len{s} \tsub 1)}{\bigl(\fn{Subderiv}((s)_{i+1}, (s)_i) \land
+      \fn{DischargeLabel}((s)_i) \neq n\bigr)}}\Bigr]}.
+  \end{multline*}
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:prf-prim-rec}
+  Andaikan $\Gamma$ adalah himpunan rekursif primitif yang terdiri atas
+  !!{sentence}s. Maka relasi $\Prf[\Gamma](x, y)$ yang menyatakan ``$x$ adalah
+  kode !!a{derivation}~$\delta$ dari $!A$ berdasarkan asumsi-asumsi
+  !!{undischarged} dalam~$\Gamma$, dan $y$ adalah bilangan G\"odel dari~$!A$''
+  bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Andaikan ``$y \in \Gamma$'' diberikan oleh predikat rekursif primitif
+  $R_\Gamma(y)$. Kita harus menunjukkan bahwa $\Prf[\Gamma](x, y)$ bersifat
+  rekursif primitif, dengan relasi ini berlaku jika dan hanya jika $y$ adalah
+  bilangan G\"odel suatu kalimat~$!A$, dan $x$ adalah kode !!{derivation}
+  deduksi alami dengan !!{formula} akhir~$!A$ dan semua asumsi
+  !!{undischarged} termasuk dalam~$\Gamma$.
+
+  Menurut \olref{prop:deriv}, sifat $\fn{Deriv}(x)$, yang berlaku jika dan hanya
+  jika $x$ adalah bilangan G\"odel !!{derivation}~$\delta$ yang benar dalam
+  deduksi alami, bersifat rekursif primitif. Dengan demikian, kita dapat
+  mendefinisikan $\Prf[\Gamma](x, y)$ melalui
+  \begin{align*}
+    \Prf[\Gamma](x, y) \defiff {}
+    & \fn{Deriv}(x) \land \fn{EndFmla}(x) = y \land {} \\
+    & \bforall{z < x}{(\fn{OpenAssum}(z, x) \lif R_\Gamma(z))}.
+  \end{align*}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,106 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: composition-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{cmp}
+\olsection{Komposisi Dapat Direpresentasikan dalam $\Th{Q}$}
+
+Andaikan $h$ didefinisikan oleh
+\[
+h(x_0,\dots,x_{l-1}) = f(g_0(x_0,\dots,x_{l-1}), \dots,
+g_{k-1}(x_0,\dots,x_{l-1})).
+\]
+dengan kita telah menemukan !!{formula}s $!A_f, !A_{g_0}, \dots,
+!A_{g_{k-1}}$ yang masing-masing merepresentasikan fungsi $f$, dan $g_0$,
+\dots,~$g_{k-1}$. Kita harus menemukan !!a{formula}~$!A_h$ yang
+merepresentasikan $h$.
+
+Mari kita mulai dengan kasus sederhana ketika semua fungsi berargumen~$1$,
+yakni perhatikan $h(x) = f(g(x))$. Jika $!A_f(y, z)$ merepresentasikan~$f$
+dan $!A_g(x, y)$ merepresentasikan~$g$, kita memerlukan
+!!a{formula}~$!A_h(x, z)$ yang merepresentasikan~$h$. Perhatikan bahwa
+$h(x) = z$ jika dan hanya jika terdapat~$y$ sedemikian sehingga
+$z = f(y)$ sekaligus $y = g(x)$. (Jika $h(x) = z$, maka $g(x)$ merupakan
+$y$ semacam itu; jika $y$ semacam itu ada, maka karena $y = g(x)$ dan
+$z = f(y)$, diperoleh $z = f(g(x))$.) Hal ini menunjukkan bahwa
+$\lexists[y][(!A_g(x, y) \land !A_f(y, z))]$ merupakan kandidat yang baik
+bagi~$!A_h(x, z)$. Kita hanya perlu memverifikasi bahwa $\Th{Q}$ membuktikan
+!!{formula}s yang relevan.
+
+\begin{prop}
+\ollabel{prop:rep1}
+Jika $h(n) = m$, maka $\Th{Q} \Proves !A_h(\num{n}, \num{m})$.
+\end{prop}
+
+\begin{proof}
+Andaikan $h(n) = m$, yakni $f(g(n)) = m$. Misalkan $k = g(n)$. Maka
+\begin{align*}
+  \Th{Q} & \Proves !A_g(\num{n}, \num{k})
+  \intertext{karena $!A_g$ merepresentasikan~$g$, dan}
+  \Th{Q} & \Proves !A_f(\num{k}, \num{m})
+  \intertext{karena $!A_f$ merepresentasikan~$f$. Jadi,}
+  \Th{Q} & \Proves !A_g(\num{n}, \num{k}) \land !A_f(\num{k}, \num{m})
+  \intertext{dan akibatnya juga}
+  \Th{Q} & \Proves \lexists[y][(!A_g(\num{n}, y) \land
+  !A_f(y, \num{m}))],
+\end{align*}
+yakni $\Th{Q} \Proves !A_h(\num{n}, \num{m})$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep2}
+Jika $h(n) = m$, maka $\Th{Q} \Proves \lforall[z][(!A_h(\num{n}, z) \lif
+  z = \num{m})]$.
+\end{prop}
+
+\begin{proof}
+Andaikan $h(n) = m$, yakni $f(g(n)) = m$. Misalkan $k = g(n)$. Maka
+\begin{align*}
+  \Th{Q} & \Proves \lforall[y][(!A_g(\num{n}, y) \lif \eq[y][\num{k}])]
+  \intertext{karena $!A_g$ merepresentasikan~$g$, dan}
+  \Th{Q} & \Proves \lforall[z][(!A_f(\num{k}, z) \lif \eq[z][\num{m}])]
+  \intertext{karena $!A_f$ merepresentasikan~$f$. Dengan sedikit logika,
+    dapat kita tunjukkan bahwa juga}
+  \Th{Q} & \Proves \lforall[z][(\lexists[y][(!A_g(\num{n}, y) \land
+      !A_f(y, z))] \lif \eq[z][\num{m}])].
+\end{align*}
+yakni $\Th{Q} \Proves \lforall[y][(!A_h(\num n, y) \lif
+\eq[y][\num m])]$.
+\end{proof}
+
+Gagasan yang sama berlaku dalam kasus lebih rumit ketika $f$ dan~$g_i$
+mempunyai aritas lebih besar daripada~$1$.
+
+\begin{prop}
+\ollabel{prop:rep-composition}
+Jika $!A_f(y_0, \dots, y_{k-1}, z)$ merepresentasikan
+$f(y_0, \dots, y_{k-1})$ dalam~$\Th{Q}$, dan
+$!A_{g_i}(x_0, \dots, x_{l-1}, y)$ merepresentasikan
+$g_i(x_0, \dots, x_{l-1})$ dalam~$\Th{Q}$, maka
+\begin{multline*}
+  \lexists[y_0\dots][\lexists[y_{k-1}][(!A_{g_0}(x_0,\dots,x_{l-1},y_0) \land
+      \dots \land {}]]\\
+  !A_{g_{k-1}}(x_0,\dots,x_{l-1},y_{k-1}) \land !A_f(y_0,\dots,y_{k-1},z))
+\end{multline*}
+merepresentasikan
+\[
+h(x_0, \dots, x_{l-1}) = f(g_0(x_0, \dots, x_{l-1}), \dots,
+g_{k-1}(x_0, \dots, x_{l-1})).
+\]
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Dengan menggunakan pembuktian \olref[inc][req][cmp]{prop:rep1} dan
+\olref[inc][req][cmp]{prop:rep2} sebagai panduan, kerjakan pembuktian
+\olref[inc][req][cmp]{prop:rep-composition} secara terperinci.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,220 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-ax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{pax}
+\olsection{\usetoken{P}{derivation} Aksiomatik}
+
+\begin{explain}
+Untuk mengaritmetisasi !!{derivation}s aksiomatik, kita harus merepresentasikan
+!!{derivation}s sebagai bilangan. Karena !!{derivation}s hanyalah barisan
+!!{formula}s, pendekatan yang jelas ialah mengodekan setiap !!{derivation}
+sebagai kode barisan kode !!{formula}s di dalamnya.
+\end{explain}
+
+\begin{defn}
+Jika $\delta$ adalah !!{derivation} aksiomatik yang terdiri atas !!{formula}s
+$!A_1$, \dots,~$!A_n$, maka $\Gn{\delta}$ ialah
+\[
+\tuple{\Gn{!A_1}, \dots, \Gn{!A_n}}.
+\]
+\end{defn}
+
+\begin{ex}
+  Tinjaulah !!{derivation} yang sangat sederhana berikut:
+  \begin{derivation}
+  1. & $!B \lif (!B \lor !A)$ \\
+  2. & $(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))$\\
+  3. & $!A  \lif (!B \lif (!B \lor !A))$
+  \end{derivation}
+  Bilangan G\"odel !!{derivation} ini ialah
+  \begin{align*}
+  \openTuple\,
+    & \Gn{!B \lif (!B \lor !A)}, \\
+    &\Gn{(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))},\\
+    & \Gn{!A  \lif (!B \lif (!B \lor !A))} \,\closeTuple.
+  \end{align*}
+\end{ex}
+
+\begin{explain}
+Setelah menetapkan suatu representasi bagi !!{derivation}s, kita juga harus
+menunjukkan bahwa kita dapat memanipulasi !!{derivation}s tersebut secara
+rekursif primitif serta menyatakan sifat dan relasi pentingnya dengan cara yang
+sama. Beberapa operasi sederhana: misalnya, jika diberikan bilangan
+G\"odel~$d$ dari !!a{derivation}, $(d)_{\len{d}-1}$ memberikan bilangan
+G\"odel !!{formula} akhirnya. Sebagian operasi lain jauh lebih sulit.
+Setidaknya kita akan membuat sketsa cara menanganinya. Tujuannya ialah
+menunjukkan bahwa relasi ``$\delta$ adalah !!a{derivation} dari~$!A$
+berdasarkan~$\Gamma$'' bersifat rekursif primitif dalam bilangan G\"odel
+$\delta$ dan~$!A$.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:followsby}
+Relasi-relasi berikut rekursif primitif:
+\begin{enumerate}
+\item $!A$ adalah aksioma.
+\item Baris ke-$i$ dalam $\delta$ dibenarkan oleh modus ponens.
+\item Baris ke-$i$ dalam $\delta$ dibenarkan oleh \QR.
+\item $\delta$ adalah !!{derivation} yang benar.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Kita harus menunjukkan bahwa relasi-relasi yang bersesuaian antara bilangan
+G\"odel !!{formula}s dan bilangan G\"odel !!{derivation}s bersifat rekursif
+primitif.
+\begin{enumerate}
+\item Kita memiliki daftar skema aksioma tertentu, dan $!A$ adalah aksioma
+  jika bentuknya diberikan oleh salah satu skema tersebut. Karena daftar skema
+  itu berhingga, cukup ditunjukkan bahwa bagi setiap skema aksioma kita dapat
+  menguji secara rekursif primitif apakah $!A$ memiliki bentuk tersebut.
+  Sebagai contoh, tinjaulah skema aksioma
+  \[
+  !B \lif (!C \lif !B).
+  \]
+  $!A$ merupakan instans skema aksioma ini jika terdapat !!{formula}s $!B$
+  dan $!C$ sedemikian rupa sehingga kita memperoleh $!A$ dengan merangkaikan
+  `$($', lalu $!B$, lalu `$\lif$', lalu `$($', lalu $!C$, lalu `$\lif$', lalu
+  $!B$, dan akhirnya~`$))$'. Kita dapat menguji sifat yang bersesuaian dari
+  bilangan G\"odel $n$ bagi~$!A$, sebab perangkaian barisan bersifat rekursif
+  primitif dan bilangan G\"odel $!B$ serta $!C$ harus lebih kecil daripada
+  bilangan G\"odel~$!A$: apabila relasi tersebut berlaku, $!B$ dan $!C$
+  keduanya merupakan sub-!!{formula}s dari~$!A$. Jadi, kita dapat
+  mendefinisikan:
+  \begin{multline*}
+  \fn{IsAx}_{!B \lif (!C \lif !B)}(n) \defiff \bexists{b< n}{
+    \bexists{c < n}{(\fn{Sent}(b) \land \fn{Sent}(c) \land {}}}\\ n =
+  \Gn{(} \concat b \concat \Gn{\lif} \concat \Gn{(} \concat c \concat
+  \Gn{\lif} \concat b \concat \Gn{))}).
+  \end{multline*}
+  Jika kita memiliki definisi semacam itu bagi setiap skema aksioma,
+  disjungsi semua definisi tersebut mendefinisikan sifat $\fn{IsAx}(n)$,
+  yakni ``$n$ adalah bilangan G\"odel suatu aksioma.''
+\item Baris ke-$i$ dalam $\delta$ dibenarkan oleh modus ponens jika dan hanya
+  jika terdapat baris $j$ dan $k < i$ dengan !!{sentence} pada baris~$j$
+  merupakan suatu formula $!A$, kalimat pada baris~$k$ adalah
+  $!A \lif !B$, dan kalimat pada baris~$i$ adalah~$!B$.
+  \begin{multline*}
+    \fn{MP}(d, i) \defiff \bexists{j < i}{\bexists{k < i}{}}\\
+    (d)_k = \Gn{(} \concat (d)_j
+      \concat \Gn{\lif} \concat (d)_i \concat \Gn{)}
+  \end{multline*}
+  Karena kuantifikasi terbatas, perangkaian, dan $=$ bersifat rekursif
+  primitif, rumusan ini mendefinisikan relasi rekursif primitif.
+\item Suatu baris dalam $\delta$ dibenarkan oleh \QR{} jika berbentuk
+  $!B \lif \lforall[x][!A(x)]$, suatu baris sebelumnya adalah
+  $!B \lif !A(c)$ untuk suatu !!{constant}~$c$, dan $c$ tidak muncul dalam
+  $!B$. Hal ini berlaku jika dan hanya jika
+  \begin{enumerate}
+  \item terdapat !!a{sentence}~$!B$ dan
+  \item !!a{formula}~$!A(x)$ dengan satu-satunya variabel bebas~$x$ sedemikian
+    rupa sehingga
+  \item baris $i$ memuat $!B \lif \lforall[x][!A(x)]$,
+  \item suatu baris $j < i$ memuat $!B \lif \Subst{!A}{c}{x}$ untuk suatu
+    konstanta~$c$,
+  \item dan konstanta itu tidak muncul dalam~$!B$.
+  \end{enumerate}
+  Semua hal ini dapat diuji secara rekursif primitif, karena bilangan G\"odel
+  $!B$, $!A(x)$, dan $x$ lebih kecil daripada bilangan G\"odel formula pada
+  baris~$i$, sedangkan bilangan yang bersesuaian dengan $c$ lebih kecil daripada
+  G\"odel formula pada baris~$j$:
+  \begin{multline*}
+    \fn{QR}_1(d, i) \defiff \bexists{j<i}{\bexists{b < (d)_i}{\bexists{x <
+        (d)_i}{\bexists{a < (d)_i}{\bexists{c < (d)_j}{(}}}}}
+    \\ \fn{Var}(x) \land \fn{Const}(c) \land {} \\
+    (d)_i = \Gn{(} \concat
+    b \concat \Gn{\lif} \concat \Gn{\lforall} \concat x \concat a
+    \concat \Gn{)} \land {}\\
+    (d)_j = \Gn{(} \concat b \concat
+    \Gn{\lif} \concat \fn{Subst}(a,c,x) \concat \Gn{)} \land {}\\
+    \fn{Sent}(b) \land \fn{Sent}(\fn{Subst}(a,c,x)) \land {}
+    \bforall{k < \len{b}}{(b)_k \neq (c)_0}).
+  \end{multline*}
+  Di sini kita mengandaikan bahwa $c$ dan $x$ adalah bilangan G\"odel dari
+  variabel dan konstanta yang ditinjau sebagai suku (jadi, bukan kode
+  simbolnya). Kita menguji bahwa $x$ adalah satu-satunya variabel bebas dalam
+  $!A(x)$ dengan menguji apakah $\Subst{!A(x)}{c}{x}$ merupakan
+  !!a{sentence}, dan memastikan bahwa $c$ tidak muncul dalam $!B$ dengan
+  mensyaratkan agar setiap simbol~$!B$ berbeda dari~$c$.
+
+  Versi lain dari \QR{} kita tinggalkan sebagai latihan.
+\item $d$ adalah bilangan G\"odel !!{derivation} yang benar jika dan hanya
+  jika setiap baris di dalamnya merupakan aksioma atau dibenarkan oleh modus
+  ponens atau~\QR. Jadi:
+  \[
+  \fn{Deriv}(d) \defiff \bforall{i < \len{d}}{(\fn{IsAx}((d)_i) \lor
+    \fn{MP}(d,i) \lor \fn{QR}(d, i))}
+  \]
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Definisikan relasi-relasi berikut seperti dalam
+\olref[inc][art][pax]{prop:followsby}:
+\begin{enumerate}
+\item $\fn{IsAx}_{!A \lif (!B \lif (!A \land !B))}(n)$;
+\item $\fn{IsAx}_{\lforall[x][!A(x)] \lif !A(t)}(n)$;
+\item $\fn{QR}_{2}(d, i)$ (bagi versi lain dari \QR).
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+Andaikan $\Gamma$ adalah himpunan rekursif primitif yang terdiri atas
+!!{sentence}s. Maka relasi $\Prf[\Gamma](x, y)$ yang menyatakan ``$x$ adalah
+kode !!a{derivation}~$\delta$ dari $!A$ berdasarkan~$\Gamma$, dan $y$ adalah
+bilangan G\"odel dari~$!A$'' bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Andaikan ``$y \in \Gamma$'' diberikan oleh predikat rekursif primitif
+$R_\Gamma(y)$. Kita harus menunjukkan bahwa relasi $\Prf[\Gamma](x, y)$
+bersifat rekursif primitif, dengan $\Prf[\Gamma](x, y)$ berlaku jika dan hanya
+jika $y$ adalah bilangan G\"odel !!a{sentence}~$!A$, dan $x$ adalah kode
+!!a{derivation} dari~$!A$ berdasarkan $\Gamma$.
+
+Menurut proposisi sebelumnya, sifat $\fn{Deriv}(x)$, yang berlaku jika dan hanya
+jika $x$ adalah kode !!{derivation}~$\delta$ yang benar, bersifat rekursif
+primitif. Namun, definisi tersebut belum memperhitungkan himpunan $\Gamma$
+sebagai cara tambahan untuk membenarkan baris-baris dalam !!{derivation}.
+Pengujian rekursif primitif kita tentang apakah suatu baris dibenarkan oleh
+\QR{} juga belum memperhitungkan syarat bahwa konstanta~$c$ tidak boleh muncul
+dalam~$\Gamma$. Kita dapat mengubah definisi agar langsung memperhitungkan
+$\Gamma$, tetapi lebih mudah menggunakan $\fn{Deriv}$ dan teorema deduksi.
+$\Gamma \Proves !A$ jika dan hanya jika terdapat suatu daftar berhingga
+!!{sentence}s $!B_1$, \dots, $!B_n \in \Gamma$ sedemikian rupa sehingga
+$\{!B_1, \dots, !B_n\} \Proves !A$. Menurut teorema deduksi, hal ini berlaku
+jika $\Proves (!B_1 \lif (!B_2 \lif \cdots (!B_n \lif !A)\cdots))$. Kita
+dapat menguji secara rekursif primitif apakah !!a{sentence} dengan bilangan
+G\"odel~$z$ memiliki bentuk ini. Jadi, alih-alih meninjau $x$ sebagai bilangan
+G\"odel !!a{derivation} dari !!{sentence} dengan bilangan G\"odel~$y$
+\emph{berdasarkan $\Gamma$}, kita meninjau $x$ sebagai bilangan G\"odel
+!!a{derivation} dari suatu implikasi bersarang berbentuk seperti di atas
+berdasarkan~$\emptyset$.
+
+Pertama, jika kita memiliki barisan !!{sentence}s, kita dapat secara rekursif
+primitif membentuk implikasi yang menjadikan semua kalimat tersebut sebagai
+anteseden dan suatu !!{sentence} yang diberikan sebagai konsekuen:
+\begin{align*}
+  \fn{hCond}(s, y, 0) & = y \\
+  \fn{hCond}(s, y, n+1) & = \Gn{(} \concat (s)_{n} \concat \Gn{\lif}
+  \concat \fn{hCond}(s, y, n) \concat \Gn{)}\\
+  \fn{Cond}(s, y) & = \fn{hCond}(s, y, \len{s})\\
+  \intertext{Jadi, kita dapat mendefinisikan $\Prf[\Gamma](x, y)$ melalui}
+  \Prf[\Gamma](x, y) & \defiff \bexists{s < \fn{sequenceBound}(x,x)}{(} \\
+  &\qquad (x)_{\len{x}-1} = \fn{Cond}(s,y) \land {} \\
+  &\qquad\bforall{i<\len{s}}{R_\Gamma((s)_i)} \land {} \\
+  &\qquad\fn{Deriv}(x)).
+\end{align*}
+Batas bagi~$s$ diperoleh dengan memperhatikan bahwa setiap $(s)_i$ merupakan
+bilangan G\"odel suatu sub-!!{formula} dari baris terakhir !!{derivation},
+yakni lebih kecil daripada $(x)_{\len{x}-1}$. Banyaknya anteseden
+$!B \in \Gamma$, yakni panjang~$s$, lebih kecil daripada panjang baris
+terakhir~$x$.
+\end{proof}
+
+\end{document}

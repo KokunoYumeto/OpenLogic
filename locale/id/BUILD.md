@@ -1,6 +1,6 @@
 # Bahasa Indonesia Open Logic Build and QA
 
-Date: 2026-08-12  
+Date: 2026-08-14
 Repository: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic`  
 Authority commit: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
 
@@ -1282,3 +1282,74 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 111,061 versus 102,228 across all 251 admitted files. The exact next cursor is
 `OLP-0252`, `content/turing-machines/turing-machines.tex`; 471 closure rows
 remain.
+
+## Complete Incompleteness checkpoint through OLP-0321 — 2026-08-14
+
+### Frozen source, target, and deterministic replay
+
+The gap-free boundary now extends through `OLP-0321`: 321/722 content files,
+with 401 remaining. The new Incompleteness tranche contains 48 files,
+`OLP-0274`--`OLP-0321`; the preceding 22-file Turing Machines tranche remains
+admitted under its own receipt.
+
+Run from the repository root:
+
+```powershell
+& 'locale\id\qa_incompleteness_batch_replay.ps1'
+```
+
+The replay exits 0 with 4,619 checks. Source binding: 48 files / 225,237 bytes /
+SHA-256 digest
+`9300f264106a3c0041e733840fd8bdcdbccafb2198ce1be11016dfa71102265e`.
+Target binding: 48 files / 238,708 bytes / SHA-256 digest
+`fbfd4280a2a4daf3082a163a5d81e3e7a025f754a5af728365383513b04e80dc`.
+The replay script is 36,277 bytes, SHA-256
+`1883f03f48bc5fb7bfd3a1d677977454498fbad535aed23970cfcb2b2f037e5a`.
+Its exact correction normalization binds 47 path-scoped source repairs; the
+consolidated review and adverse receipt is
+`..\..\..\_control\OPENLOGIC_INCOMPLETENESS_CHECKPOINT_20260814.md`.
+
+### Clean cumulative build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error -file-line-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-through-incompleteness-id.tex
+```
+
+The driver is 5,534 bytes, SHA-256
+`258e3de4b6a1d640fa47486ac0ee92fab257ec6ae6643eb906b7d970b8d30b4e`.
+The build exits 0 and produces a 305-page, 1,589,133-byte PDF, SHA-256
+`4546565efbfc9298e5214e19ad925dcf100f059031e4a85db3d1f4870ef92a15`.
+The 159,713-byte log has SHA-256
+`ac99f606a52294eb565f2cac74d806a137e3cee24fda5a628363a36541fcda88`.
+It contains zero fatal or LaTeX error, undefined control/reference/citation,
+missing file, or missing glyph. There are 156 overfull hboxes (maximum
+54.25589 pt) and 14 underfull vboxes; exact-page review found no visible loss.
+All 21 fonts are embedded. Eighteen have ToUnicode maps; inherited Type 3
+mathematical fonts F111--F113 do not, while searchable extraction remains
+intact.
+
+### Extraction and exact-resolution page inspection
+
+Full ordinary extraction is 665,994 bytes, SHA-256
+`057ef1bb032632986859c3c61bebbb6d8b493dcd5efe2084dc1172d44a1a6210`.
+Full layout extraction is 742,741 bytes, SHA-256
+`414eaa1b713934689912f03db88e502026e09c63ba656e374799352473bf5f92`.
+Pages 221--305 extract to 188,798 ordinary bytes, SHA-256
+`036d2ff2568d919050f640336b75033428a65f40fb54094fdef05a2b535b5331`,
+and 207,005 layout bytes, SHA-256
+`b93cfc6e454ee4eef3b4d9a8978ba32f3cf5f44eab3cc9aa3912f4d80e673d27`.
+
+Residue scans find zero replacement glyph, unresolved marker, raw TeX/locale
+command, TODO/FIXME/placeholder, or English environment/prose fallback. Raster
+hashes prove 219 of the prior 221 pages pixel-identical. Page 95 and every page
+221--305 were inspected individually at original 1224x1584 render resolution.
+No clipping, overlap, margin loss, cropped formula, broken glyph/reference,
+anomalous blank page, duplication, or pagination defect was found.
+
+TeXcount 3.1.1 reports 38,103 English-source and 34,286 Indonesian words for
+`OLP-0252`--`OLP-0321`, and 149,164 versus 136,514 cumulatively. The exact next
+cursor is `OLP-0322`, `content/second-order-logic/second-order-logic.tex`; 401
+closure rows remain.

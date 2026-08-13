@@ -1,0 +1,268 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: minimization-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{min}
+\olsection{Pencarian Tak Berbatas pada Fungsi Reguler Dapat
+Direpresentasikan dalam $\Th{Q}$}
+
+Mari kita perhatikan pencarian tak berbatas. Andaikan $g(x, z)$ bersifat
+reguler dan direpresentasikan dalam $\Th{Q}$, misalnya oleh
+!!{formula}~$!A_g(x, z, y)$. Misalkan $f$ didefinisikan oleh
+$f(z) = \umin{x}{[g(x, z) = 0]}$. Kita ingin menemukan
+!!a{formula}~$!A_f(z, y)$ yang merepresentasikan~$f$. Nilai~$f(z)$ ialah
+bilangan~$x$ yang (a) memenuhi $g(x, z) = 0$ dan (b) merupakan bilangan
+terkecil semacam itu, yakni untuk setiap $w < x$, $g(w, z) \neq 0$. Jadi,
+berikut merupakan pilihan yang alami:
+\[
+!A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
+  !A_g(w, z, \Obj 0))].
+\]
+Dalam kasus umum, tentu saja, kita harus mengganti $z$ dengan $z_0$, \dots,
+$z_k$.
+
+Pembuktiannya kembali melibatkan beberapa lema mengenai pernyataan-pernyataan
+yang dapat dibuktikan oleh $\Th{Q}$ karena teori tersebut cukup kuat.
+
+\begin{lem}
+\ollabel{lem:succ} Untuk setiap !!{constant}~$a$ dan setiap bilangan
+asli~$n$,
+\[
+\Th{Q} \Proves \eq[(a' + \num n)][(a + \num n)'].
+\]
+\end{lem}
+
+\begin{proof}
+Seperti biasa, pembuktian dilakukan dengan induksi pada $n$. Dalam kasus
+dasar, $n = 0$, kita perlu menunjukkan bahwa $\Th{Q}$ membuktikan
+$\eq[(a' + \Obj 0)][(a + \Obj 0)']$. Namun, kita mempunyai:
+\begin{align}
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][a'] \quad
+  \text{menurut aksioma $Q_4$} \ollabel{step1}\\
+  \Th{Q} & \Proves  \eq[(a + \Obj 0)][a] \quad
+  \text{menurut aksioma $Q_4$} \ollabel{step2} \\
+  \Th{Q} & \Proves \eq[(a + \Obj 0)'][a'] \quad
+  \text{menurut \olref{step2}} \ollabel{step3} \\
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][(a + \Obj 0)'] \quad
+  \text{menurut \olref{step1} dan \olref{step3}}\notag
+\end{align}
+Dalam langkah induksi, kita dapat mengasumsikan bahwa telah kita tunjukkan
+$\Th{Q} \Proves \eq[(a' + \num n)][(a + \num n)']$. Karena
+$\num{n+1}$ ialah $\num{n}'$, kita perlu menunjukkan bahwa $\Th{Q}$
+membuktikan $\eq[(a' + \num{n}')][(a + \num{n}')']$. Kita mempunyai:
+\begin{align}
+  \Th{Q} & \Proves \eq[(a' + \num n')][(a' + \num n)'] \quad
+  \text{menurut aksioma $!Q_5$} \ollabel{step5}\\
+  \Th{Q} & \Proves \eq[(a' + \num n)'][(a + \num n)''] \quad
+  \text{menurut hipotesis induksi} \ollabel{step6}\\
+  \Th{Q} & \Proves \eq[(a + \num n')'][(a + \num n)''] \quad
+  \text{menurut aksioma $!Q_5$} \ollabel{step7}\\
+  \Th{Q} & \Proves \eq[(a' + \num n')][(a + \num n')'] \quad
+  \text{menurut \olref{step5}, \olref{step6}, dan \olref{step7}.} \notag
+\end{align}
+\end{proof}
+
+Perlu kembali disebutkan bahwa hal ini lebih lemah daripada mengatakan bahwa
+$\Th{Q}$ membuktikan $\lforall[x][\lforall[y][(x' + y) = (x + y)']]$.
+Walaupun !!{sentence} ini benar dalam~$\Struct{N}$, $\Th{Q}$ tidak
+membuktikannya.
+
+\begin{lem}
+\ollabel{lem:less-zero}
+$\Th{Q} \Proves \lforall[x][\lnot x < \Obj 0]$.
+\end{lem}
+
+\begin{proof}
+Kita memberikan pembuktian secara informal (yakni hanya memberi petunjuk
+tentang cara menyusun !!{derivation} formalnya).
+
+Kita harus membuktikan $\lnot a < \Obj 0$ untuk~$a$ sebarang. Menurut
+definisi $<$, kita perlu membuktikan
+$\lnot \lexists[y][\eq[(y'+a)][\Obj 0]]$ dalam $\Th{Q}$. Kita akan
+mengasumsikan $\lexists[y][\eq[(y'+a)][\Obj 0]]$ lalu membuktikan suatu
+kontradiksi. Andaikan $\eq[(b'+a)][\Obj 0]$. Dengan menggunakan $!Q_3$, kita
+mempunyai $\eq[a][\Obj 0] \lor \lexists[y][\eq[a][y']]$. Kita bedakan
+kasus-kasusnya.
+
+Kasus 1: $\eq[a][\Obj 0]$ berlaku. Dari $\eq[(b'+a)][\Obj 0]$, kita
+mempunyai $\eq[(b' + \Obj 0)][\Obj 0]$. Menurut aksioma~$!Q_4$ dari
+$\Th{Q}$, kita mempunyai $\eq[(b' + \Obj 0)][b']$, sehingga
+$\eq[b'][\Obj 0]$. Namun, menurut aksioma~$!Q_2$, kita juga mempunyai
+$\eq/[b'][\Obj 0]$, suatu kontradiksi.
+
+Kasus 2: Untuk suatu $c$, $\eq[a][c']$. Namun, kita kemudian mempunyai
+$\eq[(b' + c')][\Obj 0]$. Menurut aksioma~$!Q_5$, kita mempunyai
+$\eq[(b' + c)'][\Obj 0]$, yang kembali bertentangan dengan aksioma~$Q_2$.
+\end{proof}
+
+\begin{lem}
+\ollabel{lem:less-nsucc}
+Untuk setiap bilangan asli~$n$,
+  \[
+  \Th{Q} \Proves
+  \lforall[x][(x < \num {n+1} \lif (\eq[x][\Obj 0] \lor \dots \lor
+    \eq[x][\num n]))].
+  \]
+\end{lem}
+
+\begin{proof}
+Kita menggunakan induksi pada~$n$. Mari kita perhatikan kasus dasar ketika
+$n = 0$. Dalam kasus itu, kita perlu menunjukkan
+$a < \num 1 \lif \eq[a][\Obj 0]$, untuk~$a$ sebarang. Andaikan
+$a < \num 1$. Maka, menurut aksioma yang mendefinisikan $<$, kita mempunyai
+$\lexists[y][\eq[(y'+a)][\Obj 0']]$ (karena
+$\num 1 \ident \Obj 0'$).
+
+Andaikan $b$ mempunyai sifat tersebut, yakni kita mempunyai
+$\eq[(b'+a)][\Obj 0']$. Kita perlu menunjukkan $\eq[a][\Obj 0]$. Menurut
+aksioma~$!Q_3$, kita mempunyai $\eq[a][\Obj 0]$ atau terdapat suatu $c$
+sedemikian sehingga $\eq[a][c']$. Dalam kasus pertama, tidak ada yang perlu
+ditunjukkan. Jadi, andaikan $\eq[a][c']$. Maka kita mempunyai
+$\eq[(b' + c')][\Obj 0']$. Menurut aksioma~$!Q_5$ dari $\Th{Q}$, kita
+mempunyai $\eq[(b'+c)'][\Obj 0']$. Menurut aksioma~$!Q_1$, kita mempunyai
+$\eq[(b' + c)][\Obj 0]$. Akan tetapi, menurut aksioma~$!Q_8$, ini berarti
+bahwa $c < \Obj 0$, bertentangan dengan \olref{lem:less-zero}.
+
+Sekarang untuk langkah induksi. Kita membuktikan kasus bagi $n+1$ dengan
+mengasumsikan kasus bagi~$n$. Jadi, andaikan $a < \num {n+2}$. Dengan
+kembali menggunakan $!Q_3$, kita dapat membedakan dua kasus:
+$\eq[a][\Obj 0]$, dan untuk suatu $b$, $\eq[a][b']$. Dalam kasus pertama,
+$\eq[a][\Obj 0] \lor \dots \lor \eq[a][\num{n+1}]$ mengikuti secara
+langsung. Dalam kasus kedua, kita mempunyai $b' < \num {n+2}$, yakni
+$b' < \num{n+1}'$. Menurut aksioma~$!Q_8$, untuk suatu $c$,
+$\eq[(c'+b')][\num{n+1}']$. Menurut aksioma $!Q_5$,
+$\eq[(c'+b)'][\num{n+1}']$. Menurut aksioma~$!Q_1$,
+$\eq[(c'+b)][\num{n+1}]$, sehingga $b < \num{n+1}$ menurut
+aksioma~$!Q_8$. Menurut hipotesis induksi,
+$\eq[b][\Obj 0] \lor \dots \lor \eq[b][\num{n}]$. Dari sini, berdasarkan
+logika kita memperoleh
+$\eq[b'][\Obj 0'] \lor \dots \lor \eq[b'][\num{n}']$, sehingga
+$\eq[a][\num{1}] \lor \dots \lor \eq[a][\num{n+1}]$ karena
+$\eq[a][b']$.
+\end{proof}
+
+\begin{lem}
+  \ollabel{lem:trichotomy} Untuk setiap bilangan asli~$m$,
+  \[
+  \Th{Q} \Proves
+  \lforall[y][((y < \num{m} \lor \num{m} < y) \lor \eq[y][\num{m}])].
+  \]
+\end{lem}
+
+\begin{proof}
+Dengan induksi pada~$m$. Pertama, perhatikan kasus $m=0$.
+$\Th{Q} \Proves
+\lforall[y][(\eq[y][\Obj 0] \lor \lexists[z][\eq[y][z']])]$ menurut~$!Q_3$.
+Misalkan $a$ sebarang. Maka berlaku $\eq[a][\Obj 0]$, atau untuk suatu~$b$,
+$\eq[a][b']$. Dalam kasus pertama, kita juga mempunyai
+$(a < \Obj 0 \lor \Obj 0 < a) \lor \eq[a][\Obj 0]$. Namun, jika
+$\eq[a][b']$, maka $\eq[(b' + \Obj 0)][(a + \Obj 0)]$ berdasarkan logika
+dari~$\eq$. Menurut $!Q_4$, $\eq[(a + \Obj 0)][a]$, sehingga kita mempunyai
+$\eq[(b' + \Obj 0)][a]$, dan oleh karena itu
+$\lexists[z][\eq[(z' + \Obj 0)][a]]$. Menurut definisi $<$ dalam $!Q_8$,
+$\Obj 0 < a$. Jika $\Obj 0 < a$, maka juga
+$(\Obj 0 < a \lor a < \Obj 0) \lor \eq[a][\Obj 0]$.
+
+Sekarang andaikan kita mempunyai
+\begin{align*}
+  \Th{Q} & \Proves \lforall[y][((y < \num{m} \lor \num{m} < y) \lor
+    \eq[y][\num{m}])]
+  \intertext{dan kita ingin menunjukkan}
+  \Th{Q} & \Proves \lforall[y][((y < \num{m+1} \lor \num{m+1} < y) \lor
+    \eq[y][\num{m+1}])]
+\end{align*}
+Misalkan $a$ sebarang. Menurut $!Q_3$, berlaku $\eq[a][\Obj 0]$ atau, untuk
+suatu~$b$, $\eq[a][b']$. Dalam kasus pertama, kita mempunyai
+$\eq[\num{m}' + a][\num{m+1}]$ menurut $!Q_4$, sehingga
+$a < \num{m+1}$ menurut $!Q_8$.
+
+Sekarang perhatikan kasus kedua, $\eq[a][b']$. Menurut hipotesis induksi,
+$(b < \num{m} \lor \num{m} < b) \lor \eq[b][\num{m}]$.
+
+Disjungsi pertama $b < \num{m}$ ekuivalen (menurut $!Q_8$) dengan
+$\lexists[z][\eq[(z' + b)][\num{m}]]$. Andaikan $c$ mempunyai sifat ini.
+Jika $\eq[(c' + b)][\num{m}]$, maka juga
+$\eq[(c' + b)'][\num{m}']$. Menurut $!Q_5$,
+$\eq[(c' + b)'][(c' + b')]$. Dengan demikian,
+$\eq[(c' + b')][\num{m}']$. Kita memperoleh
+$\lexists[u][\eq[(u' + b')][\num{m+1}]]$ dengan menggeneralisasi secara
+eksistensial atas~$c$ dan mengingat bahwa
+$\num{m}' \ident \num{m+1}$. Jadi, jika $b < \num{m}$, maka
+$b' < \num{m+1}$ dan dengan demikian $a < \num{m+1}$.
+
+Sekarang andaikan $\num{m} < b$, yakni
+$\lexists[z][\eq[(z' + \num{m})][b]]$. Andaikan $c$ merupakan~$z$ semacam
+itu, yakni $\eq[(c' + \num{m})][b]$. Berdasarkan logika,
+$\eq[(c' + \num{m})'][b']$. Menurut $!Q_5$,
+$\eq[(c' + \num{m}')][b']$. Karena $\eq[a][b']$ dan
+$\num{m}' \ident \num{m+1}$, kita mempunyai
+$\eq[(c' + \num{m+1})][a]$. Menurut $!Q_8$, $\num{m+1} < a$.
+
+Terakhir, andaikan $\eq[b][\num{m}]$. Maka, berdasarkan logika,
+$\eq[b'][\num{m}']$, sehingga $\eq[a][\num{m+1}]$.
+
+Jadi, dari setiap disjungsi dalam kasus bagi~$m$ dan~$b$, kita dapat
+memperoleh disjungsi yang bersesuaian bagi~$m+1$ dan~$a$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-minimization}
+Jika $!A_g(x, z, y)$ merepresentasikan $g(x, z)$ dalam~$\Th{Q}$, maka
+\[
+!A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
+  !A_g(w, z, \Obj 0))]
+\]
+merepresentasikan $f(z) = \umin{x}{[g(x, z) = 0]}$.
+\end{prop}
+
+\begin{proof}
+Pertama, kita menunjukkan bahwa jika $f(n) = m$, maka
+$\Th{Q} \Proves !A_f(\num n, \num m)$, yakni
+\begin{align}
+  \Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0) \land
+  \lforall[w][(w < \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]. \notag
+  \intertext{Karena $!A_g(x, z, y)$ merepresentasikan $g(x, z)$ dan
+    $g(m, n) = 0$ jika $f(n) = m$, kita mempunyai}
+\Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0). \notag
+\intertext{Jika $f(n) = m$, maka untuk setiap $k < m$, $g(k, n) \neq 0$.
+  Jadi,}
+\Th{Q} & \Proves \lnot !A_g(\num{k}, \num{n}, \Obj 0). \notag
+\intertext{Kita memperoleh}
+\Th{Q} & \Proves \lforall[w][(w < \num{m} \lif \lnot
+  !A_g(w, \num{n}, \Obj 0))]. \ollabel{rep-less}
+\end{align}
+menurut \olref{lem:less-zero} ketika $m = 0$, dan menurut
+\olref{lem:less-nsucc} dalam kasus lainnya.
+
+Sekarang mari kita tunjukkan bahwa jika $f(n) = m$, maka
+$\Th{Q} \Proves
+\lforall[y][(!A_f(\num{n}, y) \lif \eq[y][\num{m}])]$. Kita kembali
+menguraikan argumennya secara informal dan menyerahkan formalisasinya kepada
+pembaca.
+
+Andaikan $!A_f(\num{n}, b)$. Dari sini kita memperoleh (a)
+$!A_g(b, \num{n}, \Obj 0)$ dan (b)
+$\lforall[w][(w < b \lif \lnot !A_g(w, \num{n}, \Obj 0))]$. Menurut
+\olref{lem:trichotomy},
+$(b < \num{m} \lor \num{m} < b) \lor \eq[b][\num{m}]$. Kita akan
+menunjukkan bahwa baik $b < \num{m}$ maupun $\num{m} < b$ menghasilkan
+kontradiksi.
+
+Jika $\num{m} < b$, maka dari~(b) diperoleh
+$\lnot !A_g(\num{m}, \num{n}, \Obj 0)$. Namun, $m = f(n)$, sehingga
+$g(m, n) = 0$, dan dengan demikian
+$\Th{Q} \Proves !A_g(\num{m}, \num{n}, \Obj 0)$ karena $!A_g$
+merepresentasikan~$g$. Jadi, kita mempunyai
+suatu kontradiksi.
+
+Sekarang andaikan $b < \num{m}$. Karena
+$\Th{Q} \Proves \lforall[w][(w < \num{m} \lif
+\lnot !A_g(w, \num{n}, \Obj 0))]$ menurut \olref{rep-less}, kita memperoleh
+$\lnot !A_g(b, \num{n}, \Obj 0)$. Ini kembali bertentangan dengan~(a).
+\end{proof}
+
+\end{document}

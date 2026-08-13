@@ -1,0 +1,63 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: prim-rec
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{pri}
+\olsection{Menyimulasikan Rekursi Primitif}
+
+Sekarang kita dapat menunjukkan bahwa definisi dengan rekursi primitif dapat
+``disimulasikan'' oleh pencarian tak berbatas pada fungsi reguler dengan
+menggunakan fungsi beta. Andaikan kita mempunyai $f(\vec x)$ dan
+$g(\vec x, y, z)$. Maka fungsi~$h(\vec x,y)$ yang didefinisikan dari $f$
+dan~$g$ dengan rekursi primitif ialah
+\begin{align*}
+h(\vec x, 0) & =  f(\vec x) \\
+h(\vec x, y+1) & =  g(\vec x, y, h(\vec x, y)).
+\end{align*}
+Kita perlu menunjukkan bahwa $h$ dapat didefinisikan dari $f$ dan~$g$ hanya
+dengan menggunakan komposisi dan pencarian tak berbatas pada fungsi reguler,
+dengan fungsi-fungsi dasar dan fungsi-fungsi yang didefinisikan darinya
+melalui komposisi dan pencarian tak berbatas pada fungsi reguler (seperti
+$\beta$).
+
+\begin{lem}
+\ollabel{lem:prim-rec}
+Jika $h$ dapat didefinisikan dari $f$ dan $g$ dengan menggunakan rekursi
+primitif, fungsi itu dapat didefinisikan dari $f$, $g$, fungsi-fungsi $\Zero$,
+$\Succ$, $\Proj{n}{i}$, $\Add$, $\Mult$, $\Char{=}$, dengan menggunakan
+komposisi dan pencarian tak berbatas pada fungsi reguler.
+\end{lem}
+
+\begin{proof}
+Pertama, definisikan fungsi bantu $\hat h(\vec x, y)$ yang mengembalikan
+bilangan~$d$ terkecil sedemikian sehingga $d$ mengodekan suatu barisan yang
+memenuhi
+\begin{enumerate}
+\item $(d)_0 = f(\vec x)$, dan
+\item untuk setiap $i < y$, $(d)_{i+1} = g(\vec x, i, (d)_i)$,
+\end{enumerate}
+dengan $(d)_i$ sekarang merupakan singkatan bagi $\beta(d,i)$. Dengan kata
+lain, $\hat h$ mengembalikan barisan
+$\tuple{h(\vec x, 0), h(\vec x, 1), \dots, h(\vec x, y)}$. Kita dapat
+menuliskan $\hat h$ sebagai
+\[
+\hat h(\vec x, y) = \umin{d}{(\beta(d,0) = f(\vec x) \land \bforall{i <
+  y}{\beta(d,i+1) = g(\vec x, i,\beta(d,i))})}.
+\]
+Perhatikan: rekursi primitif tidak diperlukan di sini, hanya pencarian tak berbatas.
+Fungsi yang kita minimalkan bersifat reguler menurut lema fungsi beta
+\olref[bet]{lem:beta}.
+
+Namun, sekarang kita mempunyai
+\[
+h(\vec x, y) = \beta(\hat h(\vec x, y), y),
+\]
+sehingga $h$ dapat didefinisikan dari fungsi-fungsi dasar hanya dengan
+menggunakan komposisi dan pencarian tak berbatas pada fungsi reguler.
+\end{proof}
+
+\end{document}

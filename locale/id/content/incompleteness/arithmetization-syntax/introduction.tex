@@ -1,0 +1,88 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{int}
+\olsection{Pendahuluan}
+
+Untuk menghubungkan komputabilitas dengan logika, kita memerlukan cara untuk
+membicarakan objek-objek logika (simbol, suku, !!{formula}s,
+!!{derivation}s), operasi atas objek-objek itu, serta sifat dan relasi di
+antara mereka, dengan cara yang dapat ditangani secara komputasional. Kita
+dapat melakukannya secara langsung dengan meninjau fungsi dan relasi yang dapat
+dihitung pada simbol, barisan simbol, dan objek lain yang dibangun darinya.
+Karena semua objek sintaksis logis berhingga dan dibangun dari himpunan simbol
+yang !!a{enumerable}, hal ini mungkin dilakukan untuk beberapa model
+komputasi. Namun, model komputasi lain---seperti fungsi rekursif---terbatas
+pada bilangan serta relasi dan fungsi atas bilangan. Selain itu, pada akhirnya
+kita juga ingin dapat menangani sintaksis di dalam teori-teori tertentu,
+khususnya teori yang dirumuskan dalam bahasa aritmetika. Dalam kasus-kasus ini,
+kita perlu \emph{mengaritmetisasi} sintaksis, yakni merepresentasikan objek
+sintaksis, operasi atasnya, dan relasi di antaranya masing-masing sebagai
+bilangan, fungsi aritmetis, dan relasi aritmetis. Gagasan yang dapat dilacak
+kembali sampai Leibniz ini ialah memasangkan bilangan dengan objek sintaksis.
+
+Memasangkan bilangan sebagai ``kode'' bagi simbol relatif mudah. Beberapa
+simbol sedikit menantang karena, misalnya, terdapat tak berhingga banyak
+!!{variable}s, bahkan tak berhingga banyak !!{function}s untuk setiap
+aritas~$n$. Namun, tentu saja kita dapat memasangkan bilangan dengan simbol
+secara sistematis sedemikian rupa sehingga, misalnya, $\Obj v_2$ dan
+$\Obj v_3$ memperoleh kode yang berbeda. Barisan simbol (seperti suku dan
+!!{formula}s) lebih menantang. Akan tetapi, jika kita dapat menangani barisan
+bilangan secara murni aritmetis (misalnya, melalui pengodean barisan dengan
+pangkat bilangan prima), kita dapat memperluas pengodean simbol tunggal
+menjadi pengodean barisan simbol, lalu memperluasnya lagi ke barisan atau
+susunan !!{formula}s lainnya, seperti !!{derivation}s. Pengodean yang
+diperluas ini disebut ``penomoran G\"odel.'' Setiap suku, !!{formula}, dan
+!!{derivation} dipasangkan dengan sebuah bilangan G\"odel.
+
+Dengan mengodekan barisan simbol sebagai barisan kode simbol-simbolnya dan
+memilih sistem pengodean barisan yang dapat ditangani menggunakan fungsi dapat
+dihitung, kita kemudian juga dapat menangani bilangan G\"odel menggunakan
+fungsi dapat dihitung. Dalam praktiknya, semua fungsi yang relevan akan
+rekursif primitif. Sebagai contoh, menghitung panjang suatu barisan dan
+menghitung elemen ke-$i$ suatu barisan dari kode barisan tersebut keduanya
+rekursif primitif. Jika bilangan yang mengodekan barisan itu, misalnya,
+merupakan bilangan G\"odel !!a{formula}~$!A$, kita segera melihat bahwa
+panjang !!a{formula} dan (kode) simbol ke-$i$ dalam !!a{formula} juga dapat
+dihitung dari bilangan G\"odel~$!A$. Sedikit lebih sulit untuk membuktikan
+bahwa, misalnya, sifat menjadi bilangan G\"odel suatu suku yang terbentuk
+dengan benar atau suatu !!{derivation} yang benar bersifat rekursif primitif.
+Meskipun demikian, hal itu mungkin karena barisan yang kita tinjau (suku,
+!!{formula}s, !!{derivation}s) didefinisikan secara induktif.
+
+Sebagai contoh, tinjaulah operasi substitusi. Jika $!A$ adalah formula, $x$
+variabel, dan $t$ suku, maka $\Subst{!A}{t}{x}$ adalah hasil penggantian setiap
+kemunculan bebas~$x$ dalam~$!A$ dengan~$t$. Sekarang andaikan kita telah
+memasangkan bilangan G\"odel dengan $!A$, $x$, dan $t$---misalnya, masing-masing
+$k$, $l$, dan $m$. Skema yang sama memasangkan bilangan G\"odel dengan
+$\Subst{!A}{t}{x}$, misalnya~$n$. Pemetaan ini---dari $k$, $l$, dan $m$ ke
+$n$---merupakan analog aritmetis dari operasi substitusi. Ketika operasi
+substitusi memetakan $!A$, $x$, dan $t$ ke $\Subst{!A}{t}{x}$, fungsi
+substitusi yang telah diaritmetisasi memetakan bilangan G\"odel $k$, $l$, dan
+$m$ ke bilangan G\"odel~$n$. Kita akan melihat bahwa fungsi ini rekursif
+primitif.
+
+Aritmetisasi sintaksis bukan sekadar hal yang menarik secara abstrak,
+meskipun pada mulanya merupakan wawasan yang tidak sepele bahwa bahasa seperti
+bahasa aritmetika, yang tidak dilengkapi mekanisme untuk ``membicarakan''
+bahasa, ternyata dapat memformalkan sifat-sifat ekspresi yang kompleks. Dari
+sini hanya diperlukan satu langkah kecil untuk menanyakan apa yang dapat
+\emph{dibuktikan} oleh suatu teori dalam bahasa ini, seperti aritmetika Peano,
+tentang bahasanya sendiri (termasuk, misalnya, apakah !!{sentence}s dapat
+dibuktikan atau benar). Hal ini membawa kita pada teorema pembatas G\"odel
+yang terkenal (tentang ketakterbuktian) dan teorema Tarski (tentang
+ketakterdefinisian kebenaran). Namun, kiat mengaritmetisasi sintaksis juga
+penting untuk membuktikan beberapa hasil penting dalam teori komputabilitas,
+misalnya mengenai daya komputasional teori atau hubungan antara model-model
+komputabilitas yang berbeda. Aritmetisasi sintaksis menjadi pola bagi
+aritmetisasi objek dan sifat lain. Sebagai contoh, konfigurasi dan komputasi
+(misalnya, komputasi mesin Turing) dapat diaritmetisasi dengan cara serupa.
+Hal ini memungkinkan simulasi komputasi dalam satu model (misalnya, mesin
+Turing) di dalam model lain (misalnya, fungsi rekursif).
+
+\end{document}

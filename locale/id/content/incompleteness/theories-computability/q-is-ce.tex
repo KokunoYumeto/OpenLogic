@@ -1,0 +1,56 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: q-is-ce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{qce}
+
+\olsection{$\Th{Q}$ \printtoken{S}{c.e.}-Lengkap}
+
+
+\begin{thm}
+$\Th{Q}$ bersifat !!{c.e.}, tetapi tidak dapat diputuskan. Bahkan,
+teori itu merupakan himpunan !!{c.e.} lengkap.
+\end{thm}
+
+\begin{proof}
+Mudah dilihat bahwa $\Th{Q}$ bersifat !!{c.e.}, sebab teori itu merupakan
+himpunan (kode) kalimat~$y$ sedemikian sehingga terdapat bukti~$x$ atas~$y$
+dalam~$\Th{Q}$:
+\[
+Q = \Setabs{y}{\lexists[x][\Prf[\Th{Q}](x,y)]}.
+\]
+Namun, kita mengetahui bahwa $\Prf[\Th{Q}](x,y)$ dapat dihitung (bahkan
+rekursif primitif), dan setiap himpunan yang dapat ditulis dalam bentuk di
+atas bersifat c.e.
+
+Pernyataan bahwa teori itu merupakan himpunan c.e. lengkap ekuivalen dengan
+pernyataan bahwa $K \leq_m Q$, dengan $K = \Setabs{x}{!A_x(x) \downarrow}$.
+Jadi, mari kita tunjukkan bahwa $K$ tereduksi ke~$\Th{Q}$. Karena predikat
+Kleene~$T(e,x,s)$ bersifat rekursif primitif, predikat itu dapat
+direpresentasikan dalam~$\Th{Q}$, misalnya oleh~$!A_T$. Maka untuk setiap~$x$,
+kita mempunyai
+\begin{align*}
+x \in K & \lif \lexists[s][T(x,x,s)] \\
+& \lif \lexists[s][(\Th{Q} \Proves !A_T(\num x,\num x, \num s))]
+  \\
+& \lif \Th{Q} \Proves \lexists[s][!A_T(\num x, \num x, s)].
+\end{align*}
+Sebaliknya, jika $\Th{Q} \Proves \lexists[s][!A_T(\num x, \num x, s)]$,
+maka sesungguhnya, untuk suatu bilangan asli~$n$, formula $!A_T(\num x,
+\num x, \num n)$ harus benar. Sekarang, jika $T(x,x,n)$ salah, $\Th{Q}$
+akan membuktikan $\lnot !A_T(\num x, \num x, \num n)$, sebab $!A_T$
+merepresentasikan~$T$. Namun, dengan demikian $\Th{Q}$ membuktikan suatu
+formula yang salah, dan ini merupakan kontradiksi. Jadi $T(x,x,n)$ harus
+benar, yang mengimplikasikan $!A_x(x) \downarrow$.
+
+Ringkasnya, untuk setiap~$x$, $x$ berada dalam~$K$ jika dan hanya jika
+$\Th{Q}$ membuktikan $\lexists[s][T(\num x,\num x,s)]$. Jadi fungsi~$f$
+yang memetakan~$x$ ke (kode) kalimat $\lexists[s][T(\num x,
+  \num x, s)]$ merupakan reduksi dari~$K$ ke~$\Th{Q}$.
+\end{proof}
+
+\end{document}

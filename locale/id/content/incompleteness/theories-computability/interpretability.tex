@@ -1,0 +1,69 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: intepretability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{itp}
+
+\olsection{Teori Tempat $\Th{Q}$ Dapat Diinterpretasikan Tidak Dapat
+  Diputuskan}
+
+Kita dapat memperkuat hasil-hasil ini lebih jauh lagi. Secara informal, suatu
+interpretasi bahasa~$\Lang{L_1}$ dalam bahasa lain~$\Lang{L_2}$ melibatkan
+pendefinisian semesta, simbol relasi, dan simbol fungsi~$\Lang{L_1}$ dengan
+!!{formula}s dalam~$\Lang{L_2}$. Walaupun kita tidak akan meluangkan waktu
+untuk melakukannya, definisi ini dapat dibuat tepat.
+
+\begin{thm}
+  Andaikan $\Th{T}$ suatu teori dalam bahasa tempat bahasa aritmetika dapat
+  diinterpretasikan sedemikian sehingga $\Th{T}$ konsisten dengan
+  interpretasi~$\Th{Q}$. Maka $\Th{T}$ tidak dapat diputuskan. Jika $\Th{T}$
+  membuktikan interpretasi aksioma-aksioma~$\Th{Q}$, maka tidak ada perluasan
+  konsisten~$\Th{T}$ yang dapat diputuskan.
+\end{thm}
+
+Pembuktiannya hanya merupakan sedikit perubahan dari pembuktian teorema
+terakhir; suatu contoh tandingan dapat digunakan untuk memperoleh pemisahan
+$\Th{Q}$ dan~$\Th{\bar Q}$. Kita dapat menggunakan~$\Th{ZFC}$, yakni teori
+himpunan Zermelo--Fraenkel dengan aksioma pilihan, sebagai landasan aksiomatik
+yang cukup kuat untuk melaksanakan sebagian besar matematika biasa.
+Dalam~$\Th{ZFC}$, bilangan asli dapat didefinisikan dan, melalui interpretasi
+ini, aksioma-aksioma~$\Th{Q}$ benar. Jadi kita memperoleh
+
+\begin{cor}
+Tidak ada perluasan konsisten $\Th{ZFC}$ yang dapat diputuskan.
+\end{cor}
+
+\begin{cor}
+Tidak ada perluasan $\Th{ZFC}$ yang lengkap, konsisten, dan secara komputabel
+!!{axiomatizable}.
+\end{cor}
+
+Bahasa $\Th{ZFC}$ hanya memiliki satu relasi dua-tempat, yakni~$\in$. (Bahkan,
+kita tidak memerlukan kesamaan.) Jadi kita memperoleh
+
+\begin{cor}
+Logika orde pertama untuk setiap bahasa dengan suatu simbol relasi dua-tempat
+tidak dapat diputuskan.
+\end{cor}
+
+Hasil ini meluas ke setiap bahasa dengan dua simbol fungsi satu-tempat, sebab
+keduanya dapat digunakan untuk menyimulasikan suatu simbol relasi dua-tempat.
+Hasil-hasil yang baru dikutip bersifat tajam: ternyata logika orde pertama
+untuk bahasa yang hanya memiliki simbol relasi \emph{satu-tempat} dan paling
+banyak satu simbol fungsi \emph{satu-tempat} dapat diputuskan.
+
+Satu fakta kecil lagi. Kita mengetahui bahwa himpunan kalimat dalam bahasa
+$\Obj 0$, $'$, $+$, $\times$, $<$ yang benar dalam model standar tidak dapat
+diputuskan. Sesungguhnya, $<$ dapat didefinisikan dengan simbol-simbol
+lainnya, lalu $+$ dapat didefinisikan menggunakan~$\times$ dan~$'$. Jadi,
+himpunan kalimat benar dalam bahasa $\Obj 0$, $'$, $\times$ tidak dapat
+diputuskan. Di pihak lain, Presburger telah menunjukkan bahwa himpunan
+kalimat dalam bahasa $\Obj 0$, $'$, $+$ yang benar dalam model standar
+aritmetika dapat diputuskan. Namun, prosedurnya tidak layak secara
+komputasional.
+
+\end{document}

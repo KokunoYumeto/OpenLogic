@@ -1,0 +1,112 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: coding-symbols
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{cod}
+\olsection{Pengodean Simbol}
+
+Bahasa dasar~$\Lang L$ bagi logika orde pertama menggunakan simbol-simbol
+\[
+\lfalse \quad \lnot \quad \lor \quad \land \quad \lif \quad \lforall
+\quad \lexists \quad \eq \quad ( \quad ) \quad ,
+\]
+bersama himpunan variabel dan !!{constant}s yang !!{enumerable}, serta
+himpunan !!{function}s dan !!{predicate}s beraritas sembarang yang
+!!{enumerable}. Kita dapat memasangkan \emph{kode}
+dengan setiap simbol ini
+sedemikian rupa sehingga setiap simbol memperoleh sebuah bilangan unik sebagai
+kodenya dan tidak ada dua simbol berbeda yang memperoleh bilangan yang sama.
+Kita tahu bahwa hal ini mungkin karena himpunan semua simbol !!{enumerable},
+sehingga terdapat !!a{bijection} antara himpunan itu dan himpunan bilangan asli.
+Namun, kita ingin memastikan bahwa simbolnya (serta beberapa informasi tentang
+simbol itu, misalnya aritas !!a{function}) dapat ditemukan kembali dari kodenya
+dengan cara yang dapat dihitung. Tentu saja ada banyak cara untuk melakukannya.
+Berikut salah satunya, yang menggunakan fungsi-fungsi rekursif primitif.
+(Ingat bahwa $\tuple{n_0, \dots, n_k}$ adalah bilangan yang mengodekan barisan
+bilangan $n_0$, \dots, $n_k$.)
+
+\begin{defn}
+Jika $s$ adalah simbol~$\Lang L$, definisikan \emph{kode simbol}~$\scode s$
+sebagai berikut:
+\begin{enumerate}
+\item Jika $s$ termasuk simbol logis, $\scode s$ diberikan oleh tabel berikut:
+\[
+\begin{array}{cccccccccc}
+  \lfalse & \lnot & \lor & \land & \lif & \lforall \\
+\tuple{0, 0} & \tuple{0, 1} & \tuple{0, 2} & \tuple{0, 3} &
+\tuple{0, 4} & \tuple{0, 5} \\
+\lexists & \eq & ( & ) & ,\\
+\tuple{0, 6} & \tuple{0, 7} &
+\tuple{0, 8} & \tuple{0, 9} & \tuple{0, 10}
+\end{array}
+\]
+\item Jika $s$ adalah variabel ke-$i$, $\Obj v_i$, maka
+  $\scode s = \tuple{1, i}$.
+\item Jika $s$ adalah !!{constant} ke-$i$,~$\Obj c_i$, maka
+  $\scode s = \tuple{2, i}$.
+\item Jika $s$ adalah !!{function} ke-$i$ yang beraritas $n$,~$\Obj f_i^n$,
+  maka $\scode s = \tuple{3, n, i}$.
+\item Jika $s$ adalah !!{predicate} ke-$i$ yang beraritas $n$,~$\Obj P_i^n$,
+  maka $\scode s = \tuple{4, n, i}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+Relasi-relasi berikut rekursif primitif:
+\begin{enumerate}
+\item $\fn{Fn}(x, n)$ jika dan hanya jika $x$ adalah kode $\Obj f^n_i$ untuk
+  suatu~$i$, yakni $x$ adalah kode suatu !!{function} beraritas $n$.
+\item $\fn{Pred}(x, n)$ jika dan hanya jika $x$ adalah kode $\Obj P^n_i$ untuk
+  suatu~$i$, atau $x$ adalah kode $\eq$ dan $n = 2$, yakni $x$ adalah kode
+  suatu !!{predicate} beraritas $n$.
+\end{enumerate}
+\end{prop}
+
+\begin{defn}
+Jika $s_0, \dots, s_{n-1}$ adalah barisan simbol, \emph{bilangan
+  G\"odel}-nya ialah $\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$.
+\end{defn}
+
+\begin{explain}
+Perhatikan bahwa \emph{kode} dan \emph{bilangan G\"odel} merupakan dua hal
+yang berbeda. Sebagai contoh, variabel~$\Obj v_5$ memiliki kode~$\scode{\Obj
+  v_5} = \tuple{1, 5} = 2^2\cdot 3^6$. Namun, variabel~$\Obj v_5$ yang
+ditinjau sebagai suku juga merupakan barisan simbol (dengan panjang~$1$).
+\emph{Bilangan G\"odel}~$\Gn{\Obj v_5}$ dari \emph{suku}~$\Obj v_5$ ialah
+$\tuple{\scode{\Obj v_5}} = 2^{\scode{\Obj v_5} + 1} =
+2^{2^2\cdot 3^6 + 1}$.
+\end{explain}
+
+\begin{ex}
+Ingat bahwa jika $k_0$, \dots, $k_{n-1}$ adalah barisan bilangan, maka kode
+barisan $\tuple{k_0, \dots, k_{n-1}}$ dalam pengodean dengan pangkat bilangan
+prima ialah
+\[
+2^{k_0+1}\cdot3^{k_1+1}\cdot \dots \cdot p_{n-1}^{k_{n-1}+1},
+\]
+dengan $p_i$ bilangan prima ke-$i$ (dimulai dengan $p_0 = 2$). Jadi, sebagai
+contoh, formula $\eq[\Obj v_0][\Obj 0]$, atau, jika dituliskan lebih lengkap,
+${\eq}(\Obj v_0,\Obj c_0)$, memiliki bilangan G\"odel
+\[
+\tuple{\scode{\eq},\scode{(},\scode{\Obj v_0},\scode{,}, \scode{\Obj
+    c_0},\scode{)}}.
+\]
+Di sini, $\scode{\eq}$ ialah $\tuple{0,7} = 2^{0+1}\cdot
+3^{7+1}$, $\scode{\Obj v_0}$ ialah $\tuple{1,0} = 2^{1+1}\cdot3^{0+1}$,
+dan seterusnya. Jadi, $\Gn{=(\Obj v_0,\Obj c_0)}$ ialah
+\begin{multline*}
+2^{\scode{=} + 1}\cdot 3^{\scode{(}+1}\cdot 5^{\scode{\Obj v_0}+1}
+\cdot 7^{\scode{,} + 1} \cdot 11^{\scode{\Obj c_0}+1} \cdot
+13^{\scode{)}+1} = \\
+2^{2^1\cdot 3^8 + 1}\cdot 3^{2^1\cdot 3^9+1}\cdot 5^{2^2\cdot 3^1+1}
+\cdot 7^{2^1\cdot 3^{11} + 1} \cdot 11^{2^3\cdot3^1+1} \cdot
+13^{2^1\cdot3^{10}+1} = \\
+2^{13\,123}\cdot 3^{39\,367}\cdot 5^{13}\cdot 7^{354\,295}\cdot11^{25}\cdot13^{118\,099}.
+\end{multline*}
+\end{ex}
+
+\end{document}

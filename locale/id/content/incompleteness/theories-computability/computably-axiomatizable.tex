@@ -1,0 +1,38 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: computably-axiomatizable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{cax}
+
+\olsection{Teori yang \printtoken{S}{axiomatizable}}
+
+Suatu teori~$\Th{T}$ disebut \emph{!!{axiomatizable}} jika teori itu memiliki
+suatu himpunan aksioma~$A$ yang dapat dihitung. (Pernyataan bahwa $A$ adalah
+himpunan aksioma bagi~$\Th{T}$ berarti $T = \Setabs{!A}{A \Proves !A}$.)
+Setiap aksiomatisasi bilangan asli yang ``wajar'' akan memiliki sifat ini.
+Secara khusus, setiap teori dengan himpunan aksioma berhingga bersifat
+!!{axiomatizable}.
+
+\begin{lem}
+Andaikan $\Th{T}$ bersifat !!{axiomatizable}. Maka $\Th{T}$
+!!{computably enumerable}.
+\end{lem}
+
+\begin{proof}
+Andaikan $A$ merupakan himpunan aksioma yang dapat dihitung bagi~$\Th{T}$.
+Untuk menentukan apakah $!A \in T$, cukup cari !!a{derivation} atas~$!A$
+dari aksioma-aksioma tersebut.
+
+Dengan ungkapan yang sedikit berbeda, $!A$ berada dalam~$\Th{T}$ jika dan
+hanya jika terdapat suatu daftar berhingga aksioma $!B_1$, \dots, $!B_k$
+dalam~$A$ dan !!a{derivation} atas $(!B_1 \land \dots \land !B_k) \lif !A$
+dalam logika orde pertama. Namun, kita telah mengetahui bahwa setiap himpunan
+dengan definisi berbentuk ``terdapat \dots sedemikian sehingga \dots''
+bersifat !!{c.e.}, asalkan bagian ``\dots'' yang kedua dapat dihitung.
+\end{proof}
+
+\end{document}

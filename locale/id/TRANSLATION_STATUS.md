@@ -1,6 +1,6 @@
 # Bahasa Indonesia Open Logic Translation Status
 
-Date: 2026-08-13
+Date: 2026-08-14
 
 ## Authority and branch state
 
@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 251/722 and the exact remainder is 471 files.
+Current target-file coverage is 321/722 and the exact remainder is 401 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -770,3 +770,46 @@ metadata is present; its absence is not an admission blocker.
 Next global ordered cursor: `OLP-0252`,
 `content/turing-machines/turing-machines.tex`. The exact remaining closure is
 471 source files after the 251 target files currently present and admitted.
+
+### Complete Turing Machines and Incompleteness parts through OLP-0321
+
+The next 70 stable closure units, `OLP-0252`--`OLP-0321`, are translated and
+admitted. The 22-file Turing Machines part remains bound by its prior source,
+semantic, structural, build, extraction, and page-level review receipt. The
+complete 48-file Incompleteness part is bound by
+`..\..\..\_control\OPENLOGIC_INCOMPLETENESS_CHECKPOINT_20260814.md` and
+`qa_incompleteness_batch_replay.ps1`.
+
+The Incompleteness replay exits 0 with 4,619 checks. It binds 48 frozen sources
+(225,237 bytes; digest
+`9300f264106a3c0041e733840fd8bdcdbccafb2198ce1be11016dfa71102265e`),
+48 Indonesian targets (238,708 bytes; digest
+`fbfd4280a2a4daf3082a163a5d81e3e7a025f754a5af728365383513b04e80dc`),
+770 environment tokens, 94 labels, 121 references, 47 imports, 585 semantic
+tokens, 2,959 math segments, and 58 math environments. No unresolved
+Indonesian target defect or reader-facing English fallback remains.
+
+The cumulative driver `first-order-logic-through-incompleteness-id.tex` builds
+successfully to a 305-page, 1,589,133-byte PDF with SHA-256
+`4546565efbfc9298e5214e19ad925dcf100f059031e4a85db3d1f4870ef92a15`.
+The final log contains zero fatal or LaTeX error, undefined control/reference/
+citation, missing file, or missing glyph. Its 156 overfull hboxes (maximum
+54.25589 pt) and 14 underfull vboxes produce no visible loss.
+
+Ordinary full extraction is 665,994 bytes, SHA-256
+`057ef1bb032632986859c3c61bebbb6d8b493dcd5efe2084dc1172d44a1a6210`;
+layout extraction is 742,741 bytes, SHA-256
+`414eaa1b713934689912f03db88e502026e09c63ba656e374799352473bf5f92`.
+Residue scans find zero replacement glyph, unresolved marker, raw locale token,
+placeholder, or English environment/prose fallback. Raster comparison proves
+219/221 prior pages pixel-identical. Page 95 and every page 221--305 were
+inspected at original 1224x1584 render resolution with no clipping, overlap,
+margin loss, formula/glyph damage, anomalous blank page, or pagination defect.
+
+TeXcount reports 38,103 English-source and 34,286 Indonesian words for
+`OLP-0252`--`OLP-0321`, and 149,164 versus 136,514 cumulatively. No native/human
+review metadata is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0322`,
+`content/second-order-logic/second-order-logic.tex`. Exactly 401 closure files
+remain after the 321 target files currently present and admitted.

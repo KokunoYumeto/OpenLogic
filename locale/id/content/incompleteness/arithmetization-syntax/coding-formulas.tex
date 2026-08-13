@@ -1,0 +1,96 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: coding-formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{frm}
+\olsection{Pengodean \printtoken{P}{formula}}
+
+Setelah kita mendefinisikan relasi $\fn{Term}(x)$ secara rekursif primitif,
+kita dapat menggunakannya untuk mendefinisikan secara rekursif primitif relasi
+yang bersesuaian bagi !!{formula}s, yakni $\fn{Frm}(x)$.
+
+\begin{prop}
+Relasi $\fn{Atom}(x)$, yang berlaku jika dan hanya jika $x$ adalah bilangan
+G\"odel dari !!{formula} atomik, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Bilangan $x$ adalah bilangan G\"odel dari !!{formula} atomik jika dan hanya jika
+salah satu hal berikut berlaku:
+\begin{enumerate}
+\item Terdapat $n$, $j < x$, dan $z < x$ sedemikian rupa sehingga untuk setiap
+  $i < n$, $\fn{Term}((z)_i)$, $\len{z}=n$, dan $x = $
+\[
+\Gn{\Obj P^n_j(} \concat \fn{flatten}(z) \concat \Gn{)}.
+\]
+\item Terdapat $z_1, z_2 < x$ sedemikian rupa sehingga $\fn{Term}(z_1)$,
+  $\fn{Term}(z_2)$, dan $x = $
+\[
+\Gn{{\eq}(} \concat z_1 \concat \Gn{,} \concat z_2 \concat{\Gn{)}}.
+\]
+  \tagitem{prvFalse}{$x = \Gn{\lfalse}$.}{}
+  \tagitem{prvTrue}{$x = \Gn{\ltrue}$.}{}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:frm-primrec}
+Relasi $\fn{Frm}(x)$, yang berlaku jika dan hanya jika $x$ adalah bilangan
+G\"odel !!a{formula}, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Suatu barisan simbol~$s$ adalah !!a{formula} jika dan hanya jika terdapat
+barisan pembentukan $s_0$, \dots, $s_{k-1} = s$ dari !!{formula} yang mencatat
+bagaimana~$s$ dibentuk dari !!{formula}s atomik menurut aturan pembentukan.
+Kode setiap $s_i$ tidak melebihi kode~$x$ dari~$s$. Selain itu, kita dapat
+memilih $k \le \len{x}$, sehingga kode barisan
+$\tuple{s_0, \dots, s_{k-1}}$ memiliki batas rekursif primitif,
+misalnya $p_{k-1}^{k(x+1)}$. Karena itu, keberadaan barisan pembentukan yang
+sesuai dapat dinyatakan dengan kuantifikasi terbatas rekursif primitif.
+\end{proof}
+
+\begin{prob}
+Berikan pembuktian terperinci bagi
+\olref[inc][art][frm]{prop:frm-primrec} dengan mengikuti pola pembuktian
+pertama \olref[inc][art][trm]{prop:term-primrec}.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:freeocc-primrec}
+Relasi $\fn{FreeOcc}(x, z, i)$, yang berlaku jika dan hanya jika simbol ke-$i$
+dalam formula dengan bilangan G\"odel~$x$ merupakan kemunculan bebas variabel
+dengan bilangan G\"odel~$z$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[inc][art][frm]{prop:freeocc-primrec}. Anda boleh menggunakan
+fakta bahwa setiap subuntai dari !!a{formula} yang juga merupakan
+!!a{formula} adalah sub-!!{formula} dari formula tersebut.
+\end{prob}
+
+\begin{prop}
+Sifat $\fn{Sent}(x)$, yang berlaku jika dan hanya jika $x$ adalah bilangan
+G\"odel !!a{sentence}, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+!!{sentence} adalah !!a{formula} tanpa kemunculan bebas !!{variable}s. Jadi,
+$\fn{Sent}(x)$ berlaku jika dan hanya jika
+\begin{multline*}
+\fn{Frm}(x) \land {}\\
+\bforall{i<\len{x}}{\bforall{z<x}{}}\\
+(\bexists{j<z}{z=\Gn{\Obj v_j}} \lif \lnot\fn{FreeOcc}(x,z,i)).
+\end{multline*}
+\end{proof}
+
+
+\end{document}

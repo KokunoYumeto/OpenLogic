@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0251` (251/722 files). It is incomplete and must not be represented as the
+`OLP-0321` (321/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -123,6 +123,13 @@ Exact source corrections currently include:
 - Final render review corrected three duplicated synthetic cross-reference
   labels and one missing paragraph boundary. These are adaptation/build
   corrections, not upstream mathematical changes.
+- Turing Machines and Incompleteness repair exact transition/configuration,
+  coding, binder, index, proof-predicate, representability, consistency,
+  theorem-scope, citation, and partial-equality defects where the frozen source
+  conflicts with its own definitions or proofs. Uncertain sequence/path,
+  aggregate-QR, beta-remainder, formula-notation, existential-scope,
+  meta-constant, and coded-relation issues remain explicitly adverse for the
+  bounded post-closure upstream report rather than being silently rewritten.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

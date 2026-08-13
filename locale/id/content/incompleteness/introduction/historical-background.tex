@@ -1,0 +1,216 @@
+% Part: incompleteness
+% Chapter: introduction
+% Section: historical-background
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{int}{bgr}
+
+\olsection{Latar Belakang Historis}
+
+Dalam bagian ini, kita akan membahas secara singkat perkembangan historis
+yang membantu menempatkan teorema-teorema ketaklengkapan dalam konteksnya.
+Secara khusus, kita akan memberikan ikhtisar yang sangat garis besar tentang
+sejarah logika matematika, lalu menyampaikan beberapa hal mengenai sejarah
+landasan matematika.
+
+\begin{digress}
+  Frasa ``logika matematika'' bersifat ambigu. Kata ``matematika'' dapat
+  dipahami sebagai penjelas pokok bahasan, seperti dalam ``logika
+  matematika,'' yang menunjuk pada prinsip-prinsip penalaran matematis; atau
+  sebagai penjelas metode, seperti dalam ``matematika tentang logika,'' yang
+  menunjuk pada kajian matematis atas prinsip-prinsip penalaran. Uraian
+  berikut melibatkan logika matematika dalam kedua arti tersebut, sering kali
+  secara bersamaan.
+\end{digress}
+
+Kajian logika pada dasarnya bermula dari Aristoteles, yang hidup sekitar
+384--322 \textsc{sm}. Karyanya \emph{Categories}, \emph{Prior Analytics},
+dan \emph{Posterior Analytics} memuat kajian sistematis tentang
+prinsip-prinsip penalaran ilmiah, termasuk kajian silogisme yang menyeluruh
+dan sistematis.
+
+Logika Aristoteles mendominasi filsafat skolastik sepanjang Abad Pertengahan;
+bahkan hingga abad kedelapan belas, Kant berpendapat bahwa logika Aristoteles
+sudah sempurna dan tidak memerlukan revisi. Namun, teori silogisme terlalu
+terbatas untuk memodelkan lebih daripada aspek-aspek paling dangkal dari
+penalaran matematis. Seabad sebelumnya, Leibniz, sezaman dengan Newton,
+membayangkan suatu ``kalkulus'' lengkap bagi penalaran logis dan mengambil
+beberapa langkah awal untuk merancang kalkulus tersebut, yang pada dasarnya
+mendeskripsikan suatu versi logika proposisional.
+
+Abad kesembilan belas merupakan titik balik bagi logika. Pada 1854 George
+Boole menulis \emph{The Laws of Thought}, dengan kajian aljabar yang mendalam
+atas logika proposisional dan tidak jauh dari penyajian modern. Pada 1879
+Gottlob Frege menerbitkan \emph{Begriffsschrift} (Tulisan Konsep), yang
+memperluas logika proposisional dengan kuantor dan relasi sehingga mencakup
+logika orde pertama. Bahkan, sistem logika Frege juga mencakup logika orde
+tinggi dan lebih banyak lagi. Dalam \emph{Basic Laws of Arithmetic}, Frege
+berusaha menunjukkan bahwa seluruh aritmetika dapat diturunkan dalam
+Begriffsschrift-nya dari asumsi-asumsi yang murni logis. Sayangnya,
+asumsi-asumsi itu ternyata tak konsisten, sebagaimana ditunjukkan Russell pada
+1902. Namun, jika aksioma yang tak konsisten itu disisihkan, Frege kurang
+lebih menciptakan logika modern seorang diri---sebuah pencapaian yang
+menakjubkan. Logika kuantifikasional juga dikembangkan secara independen oleh
+para pemikir berorientasi aljabar setelah Boole, termasuk Peirce dan
+Schr\"oder.
+
+Sekarang mari beralih ke perkembangan dalam landasan matematika. Tentu saja,
+karena logika memainkan peran penting dalam matematika, terdapat banyak
+interaksi dengan perkembangan yang baru dijelaskan. Sebagai contoh, Frege
+mengembangkan logikanya dengan tujuan eksplisit untuk menunjukkan bahwa
+seluruh matematika dapat didasarkan hanya pada kerangka logisnya; secara
+khusus, ia ingin menunjukkan bahwa matematika terdiri atas kebenaran
+\emph{analitik} a priori, bukan kebenaran \emph{sintetik} a priori seperti
+yang dipertahankan Kant.
+
+Banyak orang menganggap kelahiran matematika dalam arti sebenarnya terjadi
+bersama bangsa Yunani. \emph{Elements} karya Euklides, yang ditulis sekitar
+300 SM, sudah merupakan contoh matang matematika Yunani dengan penekanannya
+pada keketatan dan ketepatan. Definisi dan pembuktian dalam \emph{Elements}
+bertahan kurang lebih utuh dalam buku teks geometri sekolah menengah hingga
+kini (sejauh geometri masih diajarkan di sekolah menengah). Model penalaran
+matematis ini dipandang sebagai paradigma argumentasi ketat, bukan hanya dalam
+matematika tetapi juga dalam cabang-cabang filsafat. (Spinoza bahkan
+menyajikan argumen moral dan keagamaan dalam gaya Euklides, yang terasa aneh
+ketika dibaca!)
+
+Kalkulus diciptakan oleh Newton dan Leibniz pada abad ketujuh belas. (Sengketa
+keras tentang siapa yang lebih dahulu berlangsung selama berabad-abad, tetapi
+kebanyakan sarjana masa kini berpendapat bahwa kedua perkembangan tersebut
+sebagian besar berlangsung secara independen.) Kalkulus melibatkan penalaran,
+misalnya, tentang jumlah tak hingga dari besaran infinitesimal;
+ciri-ciri ini memicu kritik Uskup Berkeley, yang berpendapat bahwa kepercayaan
+kepada Tuhan tidak kurang rasional daripada matematika pada masanya. Metode
+kalkulus digunakan secara luas pada abad kedelapan belas, misalnya oleh
+Leonhard Euler, yang menggunakan perhitungan yang melibatkan jumlah tak hingga
+dengan hasil yang mencolok.
+
+Pada abad kesembilan belas, matematikawan berusaha menjawab kritik Berkeley
+dengan meletakkan kalkulus di atas landasan yang lebih kukuh. Upaya Cauchy,
+Weierstrass, Bolzano, dan lainnya menghasilkan definisi modern tentang limit,
+kekontinuan, diferensiasi, dan integrasi dalam istilah ``epsilon dan delta,''
+dengan kata lain tanpa mengacu pada infinitesimal. Pada masa selanjutnya
+dalam abad itu, matematikawan mencoba melangkah lebih jauh dan menjelaskan
+semua aspek kalkulus, termasuk bilangan real itu sendiri, dalam istilah
+bilangan asli. (Kronecker: ``Tuhan menciptakan bilangan bulat; segala yang
+lain adalah karya manusia.'') Pada 1872, Dedekind menulis ``Continuity and
+the Irrational Numbers,'' tempat ia menunjukkan cara ``membangun'' bilangan
+real sebagai himpunan bilangan rasional (yang, sebagaimana diketahui, dapat
+dipandang sebagai pasangan bilangan asli); pada 1888 ia menulis ``Was sind
+und was sollen die Zahlen'' (kira-kira, ``Apakah bilangan asli itu dan
+bagaimana seharusnya?''), yang bertujuan menjelaskan bilangan asli dalam
+istilah yang murni ``logis.'' Pada 1887 Kronecker menulis ``\"Uber den
+Zahlbegriff'' (``Tentang konsep bilangan''), tempat ia membahas representasi
+semua objek matematis dalam istilah bilangan bulat; pada 1889 Giuseppe Peano
+memberikan aksioma formal simbolis bagi bilangan asli.
+
+Akhir abad kesembilan belas juga membawa keberanian baru dalam menangani yang
+tak hingga. Sebelumnya, objek dan struktur infinit (seperti himpunan bilangan
+asli) diperlakukan dengan sangat hati-hati; ``tak hingga banyaknya'' dipahami
+sebagai ``sebanyak yang diinginkan,'' dan ``mendekati dalam limit'' dipahami
+sebagai ``sedekat yang diinginkan.'' Namun, Georg Cantor menunjukkan bahwa
+yang tak hingga dapat diperlakukan apa adanya. Karya Cantor, Dedekind, dan
+lainnya membantu memperkenalkan pemahaman teori-himpunan umum tentang
+matematika yang sekarang diterima luas.
+
+Hal ini membawa kita ke perkembangan logika dan landasan pada abad kedua
+puluh. Pada 1902 Russell menemukan paradoks dalam sistem logis Frege. Pada
+1904 Zermelo membuktikan prinsip pengurutan-baik Cantor dengan menggunakan
+apa yang disebut ``aksioma pilihan''; keabsahan aksioma ini memicu banyak
+perdebatan. Antara 1910 dan 1913 terbit tiga jilid \emph{Principia
+Mathematica} karya Russell dan Whitehead, yang memperluas program Frege untuk
+mendasarkan matematika pada landasan logis. Sayangnya, Russell dan Whitehead
+terpaksa menerima dua prinsip yang tampak sulit dibenarkan sebagai prinsip
+yang murni logis: aksioma ketakhinggaan dan aksioma ``ketereduksian.'' Pada
+dekade 1900-an, Poincar\'e mengkritik penggunaan ``definisi impredikatif''
+dalam matematika, dan pada dekade 1910-an Brouwer mulai mengusulkan agar
+seluruh matematika dilandaskan kembali pada basis ``intuisionistik,'' yang
+menghindari hukum tiada jalan tengah ($!A \lor \lnot !A$).
+
+Sungguh masa yang aneh!{} Program mereduksi seluruh matematika menjadi logika
+kini disebut ``logisisme'' dan umumnya dipandang gagal akibat kesulitan yang
+disebutkan di atas. Program mengembangkan matematika dalam istilah konstruksi
+mental intuisionistik disebut ``intuisionisme'' dan dipandang menerapkan
+pembatasan yang terlalu berat pada matematika sehari-hari. Sekitar pergantian
+abad, David Hilbert, salah satu matematikawan paling berpengaruh sepanjang
+masa, merupakan pendukung kuat metode baru dan abstrak yang diperkenalkan
+Cantor dan Dedekind: ``tidak seorang pun akan mengusir kita dari surga yang
+diciptakan Cantor bagi kita.'' Pada saat yang sama, ia peka terhadap kritik
+landasan atas metode baru ini (yang, secara ganjil, sekarang disebut
+``klasik''). Ia mengusulkan cara untuk memperoleh keduanya:
+\begin{enumerate}
+\item Representasikan metode klasik dengan aksioma dan aturan formal;
+  representasikan persoalan matematis sebagai !!{formula}s dalam suatu sistem
+  aksiomatik.
+\item Gunakan metode ``finitistik'' yang aman untuk membuktikan bahwa sistem
+  deduktif formal ini konsisten.
+\end{enumerate}
+
+Karya Hilbert sudah membawa kemajuan besar menuju tujuan pertama. Pada 1899,
+ia telah melakukannya untuk geometri dalam bukunya yang terkenal,
+\emph{Foundations of Geometry}. Pada tahun-tahun berikutnya, ia dan sejumlah
+murid serta koleganya mengerjakan bidang matematika lain untuk melakukan apa
+yang telah dilakukan Hilbert bagi geometri. Hilbert sendiri memberikan
+sistem aksioma bagi aritmetika dan analisis. Zermelo memberikan aksiomatisasi
+teori himpunan, yang dikembangkan lebih lanjut oleh Fraenkel, Skolem, von
+Neumann, dan lainnya. Menjelang pertengahan dekade 1920-an, terdapat dua
+pendekatan yang sama-sama mengklaim sebagai aksiomatisasi ``seluruh''
+matematika: \emph{Principia Mathematica} karya Russell dan Whitehead, serta
+apa yang kemudian dikenal sebagai teori himpunan Zermelo--Fraenkel.
+
+Pada 1921, Hilbert memulai proyek penelitian untuk mencapai tujuan
+membuktikan konsistensi sistem-sistem tersebut. Ia dibantu oleh beberapa
+muridnya, khususnya Bernays, Ackermann, dan kemudian Gentzen. Gagasan dasarnya
+ialah mengubah pertanyaan tentang kemungkinan adanya !!{derivation} suatu
+inkonsistensi dalam matematika menjadi persoalan kombinatorial mengenai
+barisan simbol yang mungkin, yakni barisan kalimat yang memenuhi kriteria
+sebagai !!{derivation} yang benar atas, misalnya, $!A \land \lnot !A$ dari
+aksioma sistem aksioma bagi aritmetika, analisis, atau teori himpunan. Bukti
+bahwa barisan simbol semacam itu mustahil ada---karena bukti itu sendiri
+merupakan bukti matematis---akan dapat diformalkan dalam sistem aksiomatik
+tersebut. Dengan kata lain, akan ada suatu kalimat $\OCon$ yang menyatakan
+bahwa, misalnya, aritmetika konsisten. Lebih jauh, kalimat ini seharusnya dapat
+dibuktikan dalam sistem yang dimaksud, khususnya jika pembuktiannya hanya
+memerlukan sarana ``finitistik'' yang sangat terbatas.
+
+Tujuan kedua, yaitu agar sistem aksioma yang dikembangkan menyelesaikan setiap
+persoalan matematis, dapat dibuat tepat dalam dua cara. Cara pertama ialah
+merumuskannya sebagai berikut: untuk setiap kalimat~$!A$ dalam bahasa suatu
+sistem aksioma bagi matematika, $!A$ atau $\lnot !A$ dapat dibuktikan dari
+aksioma-aksiomanya. Jika hal ini benar, tidak akan ada kalimat yang tidak dapat
+dibuktikan maupun disangkal berdasarkan aksioma, dan tidak ada pertanyaan yang
+tidak diselesaikan oleh aksioma. Sistem aksioma dengan sifat ini disebut
+\emph{lengkap}. Tentu saja, untuk kalimat tertentu mungkin tetap sulit
+menentukan alternatif mana yang berlaku. Namun, pada prinsipnya seharusnya ada
+metode untuk menentukannya. Bahkan, untuk sistem aksioma dan !!{derivation}
+yang dipertimbangkan Hilbert, kelengkapan akan mengimplikasikan adanya metode
+semacam itu---meskipun Hilbert tidak menyadarinya. Cara kedua untuk memahami
+pertanyaan tersebut ialah persyaratan yang lebih kuat: adanya metode mekanis
+dan komputasional yang, untuk suatu kalimat~$!A$, menentukan apakah kalimat itu
+dapat diturunkan dari aksioma atau tidak.
+
+Pada 1931, G\"odel membuktikan dua ``teorema ketaklengkapan,'' yang
+menunjukkan bahwa program ini tidak dapat berhasil. Tidak ada sistem aksioma
+efektif dan cukup kuat bagi aritmetika yang sekaligus konsisten dan lengkap. Secara
+khusus, teori semacam itu tidak dapat membuktikan kalimat yang menyatakan
+konsistensinya sendiri.
+
+Hasil ini memberi pukulan mematikan bagi program Hilbert yang semula. Namun,
+seperti yang sering terjadi dalam matematika, hasil tersebut juga membuka
+jalur penelitian baru yang menarik. Jika tidak ada satu sistem formal yang
+mencakup seluruh matematika, masuk akal untuk mengembangkan sistem yang
+lingkupnya lebih terbatas dan menyelidiki apa yang dapat dibuktikan di
+dalamnya. Masuk akal pula untuk mengembangkan metode pembuktian yang tidak
+terlalu dibatasi guna menetapkan konsistensi sistem tersebut, serta menemukan
+cara mengukur seberapa sulit konsistensinya dibuktikan. Karena G\"odel
+menunjukkan bahwa (hampir) setiap sistem formal memiliki pertanyaan yang
+tidak dapat diselesaikannya, masuk akal untuk mencari pertanyaan ``menarik''
+yang tidak dapat diselesaikan suatu sistem formal dan menentukan seberapa kuat
+sistem formal yang diperlukan untuk menyelesaikannya. Hingga kini, para ahli
+logika terus meneliti pertanyaan tersebut dalam disiplin matematika baru,
+yakni teori pembuktian.
+
+\end{document}

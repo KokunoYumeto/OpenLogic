@@ -1,0 +1,50 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: oconsis-ext-of-q-undec
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{oqn}
+
+\olsection{Perluasan yang $\omega$-Konsisten dari $\Th{Q}$ Tidak Dapat Diputuskan}
+
+\begin{explain}
+Pembuktian bahwa $\Th{Q}$ bersifat c.e.-lengkap bergantung pada fakta bahwa
+setiap kalimat yang dapat dibuktikan dalam~$\Th{Q}$ adalah ``benar'' mengenai
+bilangan asli. Definisi dan teorema berikut memperkuat hasil ini dengan
+menunjukkan secara tepat aspek-aspek ``kebenaran'' yang diperlukan dalam
+pembuktian di atas. Namun, jangan terlalu lama mencurahkan perhatian pada
+teorema ini, sebab kita akan segera memperkuatnya lebih jauh lagi. Kita
+menyertakannya terutama untuk tujuan historis: makalah asli G\"odel
+menggunakan gagasan $\omega$-konsistensi, tetapi tak lama kemudian hasilnya
+diperkuat dengan mengganti $\omega$-konsistensi dengan konsistensi biasa.
+\end{explain}
+
+\begin{defn}
+\ollabel{thm:oconsis-q}
+Suatu teori~$\Th{T}$ bersifat $\omega$-konsisten jika hal berikut berlaku:
+jika $\lexists[x][!A(x)]$ adalah sebarang kalimat dan $\Th{T}$ membuktikan
+$\lnot !A(\num 0)$, $\lnot !A(\num 1)$, $\lnot !A(\num 2)$, \dots, maka
+$\Th{T}$ tidak membuktikan $\lexists[x][!A(x)]$.
+\end{defn}
+
+\begin{thm}
+  Misalkan $\Th{T}$ sebarang teori $\omega$-konsisten yang memuat~$\Th{Q}$.
+  Maka $\Th{T}$ tidak dapat diputuskan.
+\end{thm}
+
+\begin{proof}
+Jika $\Th{T}$ memuat~$\Th{Q}$, maka $\Th{T}$ merepresentasikan fungsi dan
+relasi yang dapat dihitung. Kita hanya perlu mengubah sedikit pembuktian
+sebelumnya. Seperti di atas, jika $x \in K$, maka $\Th{T}$ membuktikan
+$\lexists[s][!A_T(\num x,\num x, s)]$. Sebaliknya, andaikan $\Th{T}$
+membuktikan $\lexists[s][!A_T(\num x, \num x, s)]$. Maka $x$ harus berada
+dalam~$K$: jika tidak, tidak ada komputasi berhenti dari mesin~$x$ dengan
+masukan~$x$; karena $!A_T$ merepresentasikan relasi~$T$ Kleene, $\Th{T}$
+membuktikan $\lnot !A_T(\num x, \num x, \num 0)$, $\lnot !A_T(\num x, \num
+x, \num 1)$, \dots, yang membuat $\Th{T}$ tidak $\omega$-konsisten.
+\end{proof}
+
+\end{document}

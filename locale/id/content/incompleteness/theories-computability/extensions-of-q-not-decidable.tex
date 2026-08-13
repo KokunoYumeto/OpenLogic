@@ -1,0 +1,88 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: extensions-of-q-not-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{cqn}
+
+\olsection{Perluasan $\Th{Q}$ yang Konsisten Tidak Dapat Diputuskan}
+
+\begin{explain}
+Ingat bahwa suatu teori \emph{konsisten} jika teori itu tidak membuktikan
+$!A$ sekaligus $\lnot !A$ untuk sebarang formula~$!A$. Karena apa pun
+merupakan konsekuensi logis dari suatu kontradiksi, teori yang tak konsisten bersifat trivial:
+setiap kalimat dapat dibuktikan. Jelas bahwa jika suatu teori
+$\omega$-konsisten, maka teori itu konsisten. Namun, konsistensi merupakan
+syarat yang lebih lemah (yakni terdapat teori yang konsisten tetapi tidak
+$\omega$-konsisten). Kita dapat memperlemah asumsi dalam
+\olref[oqn]{thm:oconsis-q} menjadi konsistensi biasa untuk memperoleh teorema
+yang lebih kuat.
+\end{explain}
+
+\begin{lem}
+Tidak ada ``relasi dapat dihitung universal.'' Artinya, tidak ada relasi
+dapat dihitung dua-tempat~$R(x,y)$ dengan sifat berikut: setiap kali $S(y)$
+merupakan relasi dapat dihitung satu-tempat, terdapat suatu~$k$ sedemikian
+sehingga, untuk setiap~$y$, $S(y)$ benar jika dan hanya jika $R(k,y)$ benar.
+\end{lem}
+
+\begin{proof}
+Andaikan $R(x,y)$ merupakan relasi dapat dihitung universal. Definisikan
+$S(y)$ sebagai relasi $\lnot R(y,y)$. Karena $S(y)$ dapat dihitung, untuk suatu~$k$,
+$S(y)$ ekuivalen dengan~$R(k,y)$. Namun, dengan demikian $S(k)$ ekuivalen
+dengan $R(k,k)$ sekaligus $\lnot R(k,k)$, dan ini merupakan kontradiksi.
+\end{proof}
+
+
+\begin{thm}
+Misalkan $\Th{T}$ sebarang teori konsisten yang memuat~$\Th{Q}$. Maka
+$\Th{T}$ tidak dapat diputuskan.
+\end{thm}
+
+
+\begin{proof}
+Andaikan $\Th{T}$ merupakan perluasan $\Th{Q}$ yang konsisten dan dapat
+diputuskan. Kita akan memperoleh kontradiksi dengan menggunakan~$\Th{T}$
+untuk mendefinisikan relasi dapat dihitung universal.
+
+Misalkan $R(x,y)$ berlaku jika dan hanya jika
+\begin{quote}
+$x$ mengodekan suatu formula~$!D(u)$, dan $\Th{T}$ membuktikan
+$!D(\num y)$.
+\end{quote}
+Karena kita mengasumsikan bahwa $\Th{T}$ dapat diputuskan, $R$ dapat dihitung.
+Mari kita tunjukkan bahwa $R$ bersifat universal. Jika $S(y)$ sebarang relasi yang
+dapat dihitung, maka relasi itu dapat direpresentasikan dalam~$\Th{Q}$ (dan
+karena itu dalam~$\Th{T}$) oleh suatu formula~$!D_S(u)$. Maka untuk setiap~$n$,
+kita mempunyai
+\begin{eqnarray*}
+S(\num n) & \lif & T \vdash !D_S(\num n) \\
+& \lif & R(\Gn{!D_S(u)}, n)
+\end{eqnarray*}
+dan
+\begin{eqnarray*}
+\lnot S(\num n) & \lif & T \vdash \lnot !D_S(\num n) \\
+& \lif & T \not\vdash !D_S(\num n) \quad \text{(karena $\Th{T}$
+  konsisten)} \\
+& \lif & \lnot R(\Gn{!D_S(u)}, n).
+\end{eqnarray*}
+Artinya, untuk setiap~$y$, $S(y)$ benar jika dan hanya jika
+$R(\Gn{!D_S(u)}, y)$ benar. Jadi $R$ bersifat universal, dan kita memperoleh
+kontradiksi yang dicari.
+\end{proof}
+
+Misalkan ``aritmetika sejati'' sebagai teori $\Setabs{!A}{ \Sat{\Nat}{!A}}$,
+yakni himpunan kalimat dalam bahasa aritmetika yang benar dalam interpretasi
+standar.
+
+\begin{cor}
+Aritmetika sejati tidak dapat diputuskan.
+\end{cor}
+
+%Dalam Bagian~\olref{undefinability:truth:section} kita akan menyatakan hasil
+%yang lebih kuat, yang disebabkan oleh Tarski.
+
+\end{document}

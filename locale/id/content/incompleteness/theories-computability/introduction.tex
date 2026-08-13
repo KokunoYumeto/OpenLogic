@@ -1,0 +1,43 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{int}
+
+\olsection{Pengantar}
+
+\begin{editorial}
+Bagian ini perlu ditulis ulang.
+\end{editorial}
+
+Kita telah memperoleh hal-hal berikut:
+\begin{enumerate}
+\item definisi tentang apa artinya suatu fungsi dapat direpresentasikan
+  dalam~$\Th{Q}$ (\olref[req][int]{defn:representable-fn});
+\item definisi tentang apa artinya suatu relasi dapat direpresentasikan
+  dalam~$\Th{Q}$ (\olref[req][rel]{defn:representing-relations});
+\item teorema yang menyatakan bahwa fungsi-fungsi yang dapat direpresentasikan
+  dalam~$\Th{Q}$ tepat merupakan fungsi-fungsi yang dapat dihitung
+  (\olref[req][int]{thm:representable-iff-comp});
+\item teorema yang menyatakan bahwa relasi-relasi yang dapat direpresentasikan
+  dalam~$\Th{Q}$ tepat merupakan relasi-relasi yang dapat dihitung
+  \olref[req][rel]{thm:representing-rels}.
+\end{enumerate}
+
+Suatu {\em teori} adalah himpunan kalimat yang tertutup secara deduktif,
+yakni memiliki sifat bahwa setiap kali $T$ membuktikan~$!A$, maka $!A$ berada
+dalam~$T$. Barangkali paling baik memandang teori sebagai kumpulan kalimat
+beserta semua hal yang diimplikasikan oleh kalimat-kalimat tersebut. Mulai
+sekarang, kita akan menggunakan~$\Th{Q}$ untuk menyebut {\em teori} yang
+terdiri atas himpunan kalimat yang dapat diturunkan dari delapan aksioma dalam
+\olref[req][int]{sec}. Ingat bahwa kita dapat mengodekan formula-formula
+$\Th{Q}$ sebagai bilangan; jika $!A$ adalah formula semacam itu, misalkan
+$\Gn{!A}$ menyatakan bilangan yang mengodekan~$!A$. Dengan pengodean ini, kita
+sekarang dapat menanyakan apakah berbagai himpunan formula dapat dihitung atau
+tidak.
+
+\end{document}

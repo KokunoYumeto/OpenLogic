@@ -1,0 +1,78 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: provability-conditions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{prc}
+
+\olsection{Syarat \usetoken{S}{derivability} bagi $\Th{PA}$}
+
+Aritmetika Peano, atau $\Th{PA}$, adalah teori yang memperluas $\Th{Q}$
+dengan aksioma induksi bagi semua !!{formula}s. Dengan kata lain, pada
+$\Th{Q}$ ditambahkan aksioma-aksioma berbentuk
+\[
+(!A(0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
+\]
+untuk setiap !!{formula}~$!A$. Perhatikan bahwa ini sebenarnya suatu
+\emph{skema}, yakni tak berhingga banyaknya aksioma (dan ternyata $\Th{PA}$
+{\em tidak} dapat diaksiomatisasi secara berhingga). Namun, karena kita
+dapat menentukan secara efektif apakah suatu untai simbol merupakan contoh
+aksioma induksi, himpunan aksioma bagi $\Th{PA}$ dapat dihitung. $\Th{PA}$
+adalah teori yang jauh lebih kuat daripada~$\Th{Q}$. Misalnya, dengan
+menggunakan induksi dengan cara biasa, kita dapat dengan mudah membuktikan
+bahwa penjumlahan dan perkalian bersifat komutatif. Bahkan, sebagian besar
+argumen finitistik dalam teori bilangan dan kombinatorika dapat dilakukan
+dalam~$\Th{PA}$.
+
+Karena $\Th{PA}$ diaksiomatisasi secara komputabel, predikat
+!!{derivability} $\Prf[\Th{PA}](x,y)$ dapat dihitung dan karenanya
+direpresentasikan dalam~$\Th{Q}$ (dan dengan demikian dalam~$\Th{PA}$).
+Seperti sebelumnya, kita akan menggunakan $\OPrf[\Th{PA}](x,y)$ untuk
+menyatakan formula yang merepresentasikan relasi tersebut. Misalkan
+$\OProv[\Th{PA}](y)$ adalah formula
+$\lexists[x][\OPrf[\Th{PA}](x,y)]$, yang secara intuitif mengatakan,
+``$y$~!!{derivable} dari aksioma-aksioma $\Th{PA}$.'' Alasan kita
+memerlukan sedikit lebih banyak daripada aksioma-aksioma $\Th{Q}$ ialah
+bahwa kita perlu mengetahui bahwa teori yang digunakan cukup kuat untuk
+!!{derive} beberapa fakta dasar tentang predikat !!{derivability} ini.
+Fakta-fakta yang kita perlukan adalah sebagai berikut:
+\begin{enumerate}
+\item[P1.] Jika $\Th{PA} \Proves !A$, maka $\Th{PA} \Proves
+  \OProv[\Th{PA}](\gn{!A})$.
+\item[P2.] Untuk semua !!{formula}s $!A$ dan $!B$,
+  \[
+  \Th{PA} \Proves \OProv[\Th{PA}](\gn{!A \lif !B}) \lif
+  (\OProv[\Th{PA}](\gn{!A}) \lif \OProv[\Th{PA}](\gn{!B})).
+  \]
+\item[P3.] Untuk setiap !!{formula}~$!A$,
+  \[
+  \Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})
+  \lif \OProv[\Th{PA}](\gn{\OProv[\Th{PA}](\gn{!A})}).
+  \]
+\end{enumerate}
+Satu-satunya cara untuk memverifikasi bahwa ketiga sifat ini berlaku ialah
+menguraikan !!{formula} $\OProv[\Th{PA}](y)$ dengan cermat dan menggunakan
+aksioma-aksioma $\Th{PA}$ untuk menguraikan !!{derivation}s formal yang
+relevan. Syarat~(1) dan~(2) mudah; sesungguhnya syarat~(3)-lah yang
+memerlukan usaha. (Pikirkan jenis usaha apa yang diperlukannya \dots)
+Menjabarkan perinciannya akan menjemukan dan tidak menarik, sehingga di sini
+kita meminta Anda menerima bahwa $\Th{PA}$ memiliki ketiga sifat di atas.
+Pilihan yang wajar bagi $\OProv[\Th{PA}](y)$ juga akan memenuhi
+\begin{enumerate}
+\item[P4.] Jika $\Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})$, maka
+  $\Th{PA} \Proves !A$.
+\end{enumerate}
+Namun, kita tidak akan memerlukan fakta ini.
+
+\begin{digress}
+Kebetulan, G\"odel juga bermalas-malasan seperti kita sekarang. Pada akhir
+makalah tahun 1931 itu, ia membuat sketsa pembuktian teorema ketaklengkapan
+kedua dan menjanjikan perinciannya dalam makalah berikutnya. Ia tidak pernah
+sempat melakukannya; karena setiap orang yang memahami argumennya percaya
+bahwa pembuktian itu dapat dijabarkan, ia tidak perlu mengisi perinciannya.
+\end{digress}
+
+\end{document}

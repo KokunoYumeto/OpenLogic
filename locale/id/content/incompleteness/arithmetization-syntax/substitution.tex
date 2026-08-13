@@ -1,0 +1,54 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{art}{sub}
+\olsection{Substitusi}
+
+Ingat bahwa substitusi adalah operasi mengganti semua kemunculan bebas
+!!a{variable}~$u$ dalam !!a{formula}~$!A$ dengan suatu suku~$t$, yang
+dituliskan $\Subst{!A}{t}{u}$. Jika dilaksanakan pada bilangan G\"odel dari
+!!{variable}s, !!{formula}s, dan suku, operasi ini bersifat rekursif primitif.
+
+\begin{prop}\ollabel{prop:subst-primrec}
+Terdapat fungsi rekursif primitif $\fn{Subst}(x, y, z)$ dengan sifat
+\[
+\fn{Subst}(\Gn{!A}, \Gn{t}, \Gn{u}) = \Gn{\Subst{!A}{t}{u}}.
+\]
+\end{prop}
+
+\begin{proof}
+Kita dapat mendefinisikan fungsi $\fn{hSubst}$ melalui rekursi primitif sebagai
+berikut:
+\begin{multline*}
+\begin{aligned}
+\fn{hSubst}(x, y, z, 0) & = \emptyseq \\
+\fn{hSubst}(x, y, z, i+1) & =
+\end{aligned}\\
+\begin{cases}
+\fn{hSubst}(x, y, z, i) \concat y & \text{jika $\fn{FreeOcc}(x, z, i)$} \\
+\fn{append}(\fn{hSubst}(x, y, z, i), (x)_{i}) & \text{jika tidak.}
+\end{cases}
+\end{multline*}
+Sekarang $\fn{Subst}(x, y, z)$ dapat didefinisikan sebagai
+$\fn{hSubst}(x, y, z, \len{x})$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:free-for}
+Relasi $\fn{FreeFor}(x, y, z)$, yang berlaku jika dan hanya jika suku dengan
+bilangan G\"odel~$y$ !!{free for} variabel dengan bilangan G\"odel~$z$ dalam
+formula dengan bilangan G\"odel~$x$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof} Latihan. \end{proof}
+
+\begin{prob}
+Buktikan \olref[inc][art][sub]{prop:free-for}.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,298 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: sigma1-completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{s1c}
+\olsection{Kelengkapan \texorpdfstring{$\Sigma_1$}{Sigma-1}}
+
+Walaupun $\Th{Q}$ dan perluasan-perluasannya yang konsisten serta dapat
+diaksiomatisasi tidak lengkap, telah kita lihat bahwa $\Th{Q}$ memang
+membuktikan banyak fakta dasar tentang numeral. Bahkan, hasil ini dapat
+diperluas secara cukup berarti. Untuk memahami cakupan hal-hal yang dapat
+dibuktikan dalam~$\Th{Q}$, kita memperkenalkan gagasan !!{formula}s
+$\Delta_0$, $\Sigma_1$, dan $\Pi_1$. Secara kasar, !!{formula} $\Sigma_1$
+ialah formula berbentuk $\lexists[x][!B(x)]$, dengan $!B$ dibentuk hanya
+menggunakan penghubung proposisional dan kuantor terbatas. Kita akan
+menunjukkan bahwa jika $!A$ adalah !!{sentence} $\Sigma_1$ yang benar dalam
+$\Struct{N}$, maka $\Th{Q} \Proves !A$
+(\olref{thm:sigma1-completeness}).
+
+\begin{defn}
+\ollabel{defn:bd-quant}
+\emph{!!{formula} eksistensial terbatas} ialah formula berbentuk
+$\lexists[x][(x < t \land !A(x))]$, dengan $t$ sebarang suku, yang secara
+konvensional kita tulis sebagai $\bexists{x < t}{!A(x)}$.
+%
+\emph{!!{formula} universal terbatas} ialah formula berbentuk
+$\lforall[x][(x < t \lif !A(x))]$, dengan $t$ sebarang suku, yang secara
+konvensional kita tulis sebagai $\bforall{x < t}{!A(x)}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:delta0-sigma1-pi1-frm}
+!!{formula} $!B$ merupakan $\Delta_0$ jika dibentuk dari !!{formula}s atomik
+hanya dengan menggunakan penghubung proposisional dan kuantifikasi terbatas.
+%
+!!{formula} $!A$ merupakan $\Sigma_1$ jika
+$!A \ident \lexists[x][!B(x)]$ dengan $!B$ merupakan $\Delta_0$.
+%
+!!{formula} $!A$ merupakan $\Pi_1$ jika
+$!A \ident \lforall[x][!B(x)]$ dengan $!B$ merupakan $\Delta_0$.
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:q-proves-clterm-id} Andaikan $t$ adalah suku tertutup sedemikian
+sehingga $\Value{t}{N} = n$. Maka $\Th{Q} \Proves \eq[t][\num n]$.
+\end{lem}
+
+\begin{proof}
+Kita membuktikannya dengan induksi pada kompleksitas~$t$. Untuk kasus dasar,
+$\Value{\Obj 0}{N} = 0$, dan $\Th{Q} \Proves \eq[\Obj 0][\num 0]$ karena
+$\num 0 \ident \Obj 0$.
+%
+Untuk kasus induktif, misalkan $t_1$ dan $t_2$ merupakan suku sedemikian
+sehingga $\Value{t_1}{N} = n_1$, $\Value{t_2}{N} = n_2$,
+$\Th{Q} \Proves \eq[t_1][\num n_1]$, dan
+$\Th{Q} \Proves \eq[t_2][\num n_2]$.
+
+Maka $\Value{(t_1')}{N} = n_1 + 1$, dan kita mempunyai
+$\Th{Q} \Proves \eq[t_1'][{\num n_1}']$ berdasarkan aturan orde pertama
+bagi identitas yang diterapkan pada hipotesis induksi dan !!{formula}
+$\eq[\num{n_1}'][\num{n_1}']$, sehingga
+$\Th{Q} \Proves \eq[t_1'][\num{n_1 + 1}]$ menurut definisi numeral.
+
+Untuk penjumlahan, kita mempunyai
+\[
+      \Value{(t_1 + t_2)}{N}
+    = \Value{t_1}{N} + \Value{t_2}{N}
+    = n_1 + n_2.
+\]
+Menurut hipotesis induksi dan aturan identitas,
+$\Th{Q} \Proves \eq[t_1 + t_2][\num{n_1} + t_2]$, lalu
+$\Th{Q} \Proves \eq[t_1 + t_2][\num{n_1} + \num{n_2}]$
+berdasarkan penerapan kedua aturan identitas. Menurut
+\olref[inc][req][bre]{lem:q-proves-add},
+$\Th{Q} \Proves \eq[\num{n_1} + \num{n_2}][\num{n_1 + n_2}]$, sehingga
+$\Th{Q} \Proves \eq[t_1 + t_2][\num{n_1 + n_2}]$.
+
+Penalaran serupa juga berlaku bagi~$\times$, dengan menggunakan
+\olref[inc][req][bre]{lem:q-proves-mult}.
+%
+Karena ini mencakup semua suku tertutup aritmetika, kita mempunyai
+$\Th{Q} \Proves \eq[t][\num n]$ bagi semua suku tertutup~$t$ sedemikian
+sehingga $\Value{t}{N} = n$.
+\end{proof}
+
+\begin{prob}
+Buktikan secara terperinci bagian \olref{lem:q-proves-clterm-id} yang
+melibatkan~$\times$.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:atomic-completeness}
+Andaikan $t_1$ dan $t_2$ merupakan suku tertutup. Maka
+\begin{enumerate}
+\item Jika $\Value{t_1}{N} = \Value{t_2}{N}$,
+    maka $\Th{Q} \Proves \eq[t_1][t_2]$.
+\item Jika $\Value{t_1}{N} \neq \Value{t_2}{N}$,
+    maka $\Th{Q} \Proves \eq/[t_1][t_2]$.
+\item Jika $\Value{t_1}{N} < \Value{t_2}{N}$,
+    maka $\Th{Q} \Proves t_1 < t_2$.
+\item Jika $\Value{t_2}{N} \leq \Value{t_1}{N}$,
+    maka $\Th{Q} \Proves \lnot(t_1 < t_2)$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Diberikan suku $t_1$ dan $t_2$, tetapkan $n = \Value{t_1}{N}$ dan
+$m = \Value{t_2}{N}$.
+
+Andaikan $!A \ident t_1 = t_2$. Menurut \olref{lem:q-proves-clterm-id},
+$\Th{Q} \Proves \eq[t_1][\num n]$ dan
+$\Th{Q} \Proves \eq[t_2][\num m]$. Jika $n = m$, maka
+$\Th{Q} \Proves \eq[\num n][\num m]$, sehingga
+$\Th{Q} \Proves \eq[t_1][t_2]$ berdasarkan transitivitas identitas.
+Jika $n \neq m$, maka $\Th{Q} \Proves \eq/[\num n][\num m]$, dan kembali
+berdasarkan transitivitas identitas,
+$\Th{Q} \Proves \eq/[t_1][t_2]$.
+
+Sekarang misalkan $!A \ident t_1 < t_2$. Untuk kedua kasus, kita mengandalkan
+aksioma~$!Q_8$, yang menyatakan bahwa
+$x < y \liff \lexists[z][\eq[z' + x][y]]$ bagi semua $x,y$.
+
+Andaikan $\Sat{N}{t_1 < t_2}$. Maka terdapat suatu $k \in \Nat$ sedemikian
+sehingga $n + k + 1 = m$. Menurut \olref{lem:q-proves-clterm-id},
+$\Th{Q} \Proves \eq[t_1][\num n]$ dan
+$\Th{Q} \Proves \eq[t_2][\num m]$, dan menurut bagian pertama lema ini,
+$\Th{Q} \Proves \eq[ {\num k}' + \num n][\num m]$. Berdasarkan
+transitivitas identitas, diperoleh
+$\Th{Q} \Proves \eq[ {\num k}' + t_1][t_2]$, sehingga
+$\Th{Q} \Proves \lexists[z][\eq[z' + t_1][t_2]]$. Menurut arah kanan-ke-kiri
+dari~$!Q_8$, $\Th{Q} \Proves t_1 < t_2$.
+
+Sebaliknya, andaikan $\Sat/{N}{t_1 < t_2}$, yakni $m \leq n$.
+%
+Kita bekerja dalam~$\Th{Q}$ dan mengasumsikan bahwa $t_1 < t_2$. Menurut arah
+kiri-ke-kanan dari~$!Q_8$, terdapat suatu~$z$ sedemikian sehingga
+$\eq[z' + t_1][t_2]$. Karena $\Th{Q} \Proves \eq[t_1][\num n]$ dan
+$\Th{Q} \Proves \eq[t_2][\num m]$, diperoleh
+$\eq[z' + \num n][\num m]$.
+%
+Dengan induksi eksternal pada~$m$ menggunakan~$!Q_5$, diperoleh
+$\eq[z' + \num{n - m}][\Obj 0]$. Jika $m = n$, maka
+$\eq[z'][\Obj 0]$, yang menghasilkan kontradiksi melalui~$!Q_2$.
+Jika $m < n$, maka $\eq[(z' + \num{n - m - 1})'][\Obj 0]$ menurut~$!Q_5$
+sekali lagi, yang menghasilkan kontradiksi melalui~$!Q_2$.
+Jadi, $\Th{Q} \Proves \lnot(t_1 < t_2)$.
+\end{proof}
+
+\begin{lem}
+\ollabel{lem:bounded-quant-equiv}
+Andaikan $!A$ adalah !!a{formula}, $t$ suku tertutup, dan
+$k=\Value{t}{N}$. Maka
+\begin{enumerate}
+\item $\Th{Q} \Proves \bforall{x<t}{!A(x)}$ jika dan hanya jika
+    $\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num{k-1})$.
+\item $\Th{Q} \Proves \bexists{x<t}{!A(x)}$ jika dan hanya jika
+    $\Th{Q} \Proves !A(\num 0) \lor \dots \lor !A(\num{k-1})$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+    Kita membuktikan kasus bagi kuantor universal terbatas. Jika
+    $\Value{t}{N} = 0$, maka ruas kiri ekuivalensi dapat dibuktikan
+    dalam~$\Th{Q}$ karena tidak ada $x<\num 0$ menurut
+    \olref[inc][req][min]{lem:less-zero}. Demikian pula, konjungsi kosong
+    dapat kita anggap sebagai $\ltrue$, yang juga dapat dibuktikan
+    dalam~$\Th{Q}$.
+    %
+    Karena itu, andaikan $\Value{t}{N} = k+1$ untuk suatu bilangan asli~$k$.
+    Menurut \olref{lem:q-proves-clterm-id}, kita dapat mengasumsikan bahwa
+    kita bekerja dengan !!a{formula} berbentuk
+    $\bforall{x<\num{k+1}}{!A(x)}$.
+
+    Andaikan $\Th{Q} \Proves \bforall{x<\num{k+1}}{!A(x)}$, dan misalkan
+    $n \leq k$. Karena $\Th{Q} \Proves \num n < \num{k+1}$ menurut
+    \olref{lem:atomic-completeness}, berdasarkan logika diperoleh
+    $\Th{Q} \Proves !A(\num n)$. Dengan menerapkan fakta ini sebanyak $k+1$
+    kali, masing-masing bagi $n \leq k$, kita memperoleh
+    $\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num k)$ sebagaimana
+    diinginkan.
+
+    Untuk arah lainnya, andaikan
+    $\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num k)$. Dengan
+    bekerja dalam $\Th{Q}$, andaikan $x < \num{k+1}$. Menurut
+    \olref[inc][req][min]{lem:less-nsucc}, kita mempunyai
+    $x = \num 0 \lor \dots \lor x = \num k$, sehingga berdasarkan logika
+    diperoleh~$!A(x)$, dan dengan demikian klaim universal
+    $\bforall{x<\num{k+1}}{!A(x)}$ mengikuti.
+
+    Pembuktian ekuivalensi bagi !!{formula}s yang dikuantifikasi secara
+    eksistensial terbatas serupa.
+\end{proof}
+
+\begin{prob}
+Berikan pembuktian terperinci bagi kasus eksistensial dalam
+\olref{lem:bounded-quant-equiv}.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:delta0-completeness}
+Jika $!A$ adalah !!{sentence} $\Delta_0$ yang benar dalam $\Struct{N}$,
+maka $\Th{Q} \Proves !A$.
+\end{lem}
+
+\begin{proof}
+Kita membuktikannya dengan induksi pada kompleksitas !!{formula}.
+%
+Kasus dasar diberikan oleh \olref{lem:atomic-completeness}, sehingga kita
+beralih ke langkah induksi. Demi kesederhanaan, kita membagi kasus negasi
+menjadi beberapa subkasus berdasarkan struktur !!{formula} yang dikenai
+negasi.
+
+\begin{enumerate}
+\item Andaikan $(!A \land !B)$ benar dalam $\Struct{N}$, sehingga $!A$ dan
+$!B$ benar dalam~$\Struct{N}$. Menurut hipotesis induksi,
+$\Th{Q} \Proves !A$ dan $\Th{Q} \Proves !B$, sehingga berdasarkan logika
+$\Th{Q} \Proves (!A \land !B)$.
+%
+\item Andaikan $\lnot (!A \land !B)$ benar dalam $\Struct{N}$, sehingga
+$\lnot !A$ atau $\lnot !B$ benar dalam $\Struct{N}$. Tanpa mengurangi
+keumuman, andaikan yang pertama. Menurut hipotesis induksi,
+$\Th{Q} \Proves \lnot !A$, sehingga berdasarkan logika
+$\Th{Q} \Proves \lnot (!A \land !B)$.
+%
+\item Andaikan $(!A \lor !B)$ benar dalam $\Struct{N}$, sehingga $!A$ benar
+dalam $\Struct{N}$ atau $!B$ benar dalam $\Struct{N}$. Tanpa mengurangi
+keumuman, andaikan yang pertama berlaku. Menurut hipotesis induksi,
+$\Th{Q} \Proves !A$, sehingga berdasarkan logika
+$\Th{Q} \Proves (!A \lor !B)$.
+%
+\item Andaikan $\lnot(!A \lor !B)$ benar dalam $\Struct{N}$, sehingga
+$\lnot !A$ dan $\lnot !B$ benar dalam $\Struct{N}$. Menurut hipotesis
+induksi, $\Th{Q} \Proves \lnot !A$ dan
+$\Th{Q} \Proves \lnot !B$. Akibatnya, berdasarkan logika
+$\Th{Q} \Proves \lnot(!A \lor !B)$.
+%
+\item Andaikan $\bforall{x<t}{!A(x)}$ benar dalam~$\Struct{N}$, dengan $t$
+merupakan suku tertutup dan $k=\Value{t}{N}$. Menurut hipotesis induksi dan
+logika, jika $!A(\num n)$ benar dalam~$\Struct{N}$ bagi semua
+$n < \Value{t}{N}$, maka
+$\Th{Q} \Proves !A(\num 0) \land \dots \land !A(\num{k-1})$. Menurut
+\olref{lem:bounded-quant-equiv}, diperoleh
+$\Th{Q} \Proves \bforall{x<t}{!A(x)}$.
+%
+\item Kasus bagi kuantor eksistensial terbatas, ketika kita mempunyai
+!!a{sentence} berbentuk $\bexists{x < t}{!A(x)}$, serupa dengan kasus bagi
+kuantor universal terbatas.
+%
+\item Andaikan $\lnot \bforall{x<t}{!A(x)}$ benar dalam~$\Struct{N}$, dengan
+$t$ merupakan suku tertutup. !!{sentence} ini ekuivalen dengan !!{sentence}
+$\bexists{x<t}{\lnot !A(x)}$, dengan ekuivalensinya dapat diturunkan dalam
+$\Th{Q}$, sehingga kita dapat menerapkan penalaran bagi kuantor eksistensial
+terbatas.
+%
+\item Demikian pula, andaikan $\lnot \bexists{x<t}{!A(x)}$ benar dalam
+$\Struct{N}$, dengan $t$ merupakan suku tertutup. !!{sentence} ini ekuivalen
+dalam $\Th{Q}$ dengan $\bforall{x<t}{\lnot!A(x)}$, sehingga kita dapat
+menerapkan penalaran bagi kuantor universal terbatas.
+%
+\item Terakhir, andaikan $\lnot !A$ benar dalam $\Struct{N}$. Satu-satunya
+kasus yang tersisa ialah ketika $!A$ atomik dan ketika
+$\lnot !A \ident \lnot\lnot !B$ bagi suatu !!{sentence} $\Delta_0$ $!B$.
+Jika $!A$ atomik, maka menurut \olref{lem:atomic-completeness},
+$\Th{Q} \Proves \lnot !A$. Jika
+$\lnot !A \ident \lnot\lnot !B$, maka berdasarkan logika formula itu dapat
+dibuktikan ekuivalen dalam~$\Th{Q}$ dengan~$!B$, yang benar dalam
+$\Struct{N}$ karena $\lnot !A$ benar dalam~$\Struct{N}$. Oleh karena itu,
+menurut hipotesis induksi kita mempunyai $\Th{Q} \Proves \lnot !A$.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Berikan pembuktian terperinci bagi kasus eksistensial dalam
+\olref{lem:delta0-completeness}.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:sigma1-completeness}
+Jika $!A$ adalah !!{sentence} $\Sigma_1$ yang benar dalam~$\Struct{N}$,
+maka $\Th{Q} \Proves !A$.
+\end{thm}
+
+\begin{proof}
+Jika $\lexists[x][!A(x)]$ adalah !!{sentence} $\Sigma_1$ yang benar
+dalam~$\Struct{N}$, maka terdapat bilangan asli~$n$ dan penetapan
+variabel~$s$ sedemikian sehingga $s(x) = n$ dan $\Sat{N}{!A(x)}[s]$.
+Menurut fakta-fakta standar tentang relasi kepuasan, diperoleh
+$\Sat{N}{!A(\num n)}$. Namun, $!A(\num n)$ merupakan !!{formula} $\Delta_0$,
+sehingga menurut \olref{lem:delta0-completeness} kita mempunyai
+$\Th{Q} \Proves !A(\num n)$, dan berdasarkan logika kita juga mempunyai
+$\Th{Q} \Proves \lexists[x][!A(x)]$.
+\end{proof}
+
+\end{document}

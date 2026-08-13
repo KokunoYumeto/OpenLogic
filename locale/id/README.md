@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **251 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0251`; unit berikutnya ialah `OLP-0252`,
-`content/turing-machines/turing-machines.tex`.
+Status saat ini: **321 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0321`; unit berikutnya ialah `OLP-0322`,
+`content/second-order-logic/second-order-logic.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -261,6 +261,24 @@ halaman 156 dikoreksi, dibangun ulang, dan diperiksa ulang. Tidak tersisa
 pemotongan, tumpang tindih, kerusakan glif atau formula, fallback prosa
 Inggris, atau rujukan tak terselesaikan. Kursor global berikutnya adalah
 `OLP-0252`.
+
+Checkpoint terbaru menambahkan 70 unit berurutan (`OLP-0252`--`OLP-0321`),
+yang menuntaskan bagian Mesin Turing dan Ketaklengkapan dalam sasaran
+Bahasa Indonesia. Replay khusus bagian Ketaklengkapan lulus 4.619 pemeriksaan
+atas 48 berkas, sedangkan seluruh sumber tranche tetap terikat pada commit
+Inggris beku. Penggerak kumulatif berikut menghasilkan pembaca 305 halaman:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-through-incompleteness-id.tex
+```
+
+PDF itu berukuran 1.589.133 byte dengan SHA-256
+`4546565efbfc9298e5214e19ad925dcf100f059031e4a85db3d1f4870ef92a15`.
+Sebanyak 219 dari 221 halaman checkpoint sebelumnya identik piksel; halaman
+95 dan setiap halaman 221--305 diperiksa satu per satu pada resolusi render
+asli. Tidak ditemukan pemotongan, tumpang tindih, kerusakan glif atau formula,
+fallback prosa Inggris, atau rujukan tak terselesaikan. Kursor global berikutnya
+adalah `OLP-0322`.
 
 ## Syarat penerimaan tiap batch
 

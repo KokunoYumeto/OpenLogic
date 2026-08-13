@@ -1,0 +1,93 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{int}
+
+\olsection{Pengantar}
+
+Hilbert berpendapat bahwa suatu sistem aksioma bagi struktur matematis,
+seperti bilangan asli, tidak memadai kecuali memungkinkan kita menurunkan
+semua pernyataan yang benar tentang struktur tersebut. Jika digabungkan
+dengan minatnya kemudian terhadap sistem deduksi formal, hal ini menunjukkan
+bahwa menurutnya kita harus menjamin bahwa, misalnya, sistem formal yang kita
+gunakan untuk menalar tentang bilangan asli bukan hanya konsisten, melainkan
+juga \emph{lengkap}, yakni setiap pernyataan dalam bahasanya atau negasinya
+!!{derivable}. Teorema ketaklengkapan pertama G\"odel menunjukkan bahwa tidak
+ada sistem aksioma semacam itu: tidak ada sistem formal aritmetika yang
+lengkap, konsisten, dan !!{axiomatizable}. Bahkan, tidak ada teori matematika
+yang ``cukup kuat,'' konsisten, dan !!{axiomatizable} yang lengkap.
+
+Tujuan Hilbert yang lebih penting, yang menjadi inti programnya untuk
+membenarkan matematika modern (``klasik''), ialah menemukan pembuktian
+konsistensi finitistik bagi sistem formal yang merepresentasikan penalaran
+klasik. Dalam kaitannya dengan program Hilbert, teorema ketaklengkapan kedua
+G\"odel memberi pukulan yang jauh lebih berat. Seperti teorema
+ketaklengkapan pertama, teorema ketaklengkapan kedua dapat dinyatakan secara
+garis besar. Secara kasar, teorema itu mengatakan bahwa tidak ada teori
+aritmetika yang cukup kuat yang dapat membuktikan konsistensinya sendiri. Kita
+harus memahami ``cukup kuat'' sebagai mencakup sedikit lebih banyak
+daripada~$\Th{Q}$.
+
+Gagasan di balik pembuktian asli G\"odel atas teorema ketaklengkapan dapat
+ditemukan dalam paradoks Epimenides. Epimenides, seorang Kreta, menyatakan
+bahwa semua orang Kreta adalah pembohong; bentuk paradoks yang lebih langsung
+ialah pernyataan ``kalimat ini salah.'' Pada dasarnya, dengan mengganti
+kebenaran dengan !!{derivability}, G\"odel berhasil memformalkan
+!!a{sentence} yang, secara tidak langsung, menyatakan bahwa dirinya sendiri
+tidak !!{derivable}. Jika !!{sentence} tersebut !!{derivable}, teorinya akan
+tak konsisten. G\"odel menunjukkan bahwa negasi !!{sentence} itu juga tidak
+!!{derivable} dari sistem aksioma yang dipertimbangkannya. (Untuk bagian
+kedua ini, G\"odel harus mengasumsikan bahwa teori~$\Th{T}$ bersifat apa yang
+disebut ``$\omega$-konsisten.'' $\omega$-Konsistensi berkaitan dengan
+konsistensi, tetapi merupakan sifat yang lebih kuat.\footnote{Artinya, setiap
+teori yang $\omega$-konsisten bersifat konsisten, tetapi tidak sebaliknya.}
+Beberapa tahun setelah G\"odel, Rosser menunjukkan bahwa asumsi konsistensi
+biasa~$\Th{T}$ sudah cukup.)
+
+Tantangan pertama ialah memahami cara membangun !!a{sentence} yang merujuk
+pada dirinya sendiri. Untuk setiap !!{formula}~$!A$ dalam bahasa~$\Th{Q}$,
+misalkan~$\gn{!A}$ menyatakan numeral yang bersesuaian dengan~$\Gn{!A}$.
+Perhatikan artinya: $!A$~adalah !!a{formula} dalam bahasa~$\Th{Q}$,
+$\Gn{!A}$~adalah bilangan asli, dan $\gn{!A}$~adalah sebuah \emph{suku}
+dalam bahasa~$\Th{Q}$. Jadi, setiap !!{formula}~$!A$ dalam bahasa~$\Th{Q}$
+memiliki sebuah \emph{nama}, yakni~$\gn{!A}$, yang merupakan suku dalam
+bahasa~$\Th{Q}$; hal ini memberi kita kerangka konseptual tempat
+!!{formula}s dalam bahasa~$\Th{Q}$ dapat ``mengatakan'' sesuatu tentang
+!!{formula}s lain. Lema berikut dikenal sebagai lema titik tetap.
+
+\begin{lem}
+Misalkan $\Th{T}$ adalah sebarang teori yang memperluas~$\Th{Q}$, dan
+misalkan $!B(x)$ adalah sebarang !!{formula} yang hanya memiliki variabel
+bebas~$x$. Maka terdapat !!a{sentence}~$!A$ sedemikian sehingga $\Th{T}
+\Proves!A \liff !B(\gn{!A})$.
+\end{lem}
+
+Lema tersebut menyatakan bahwa, untuk setiap sifat $!B(x)$, terdapat
+!!a{sentence}~$!A$ yang menyatakan ``$!B(x)$ benar tentang saya,'' dan
+$\Th{T}$ ``mengetahui'' hal ini.
+
+Bagaimana kita dapat membangun !!a{sentence} semacam itu? Perhatikan versi
+paradoks Epimenides berikut, yang berasal dari Quine:
+\begin{quote}
+``Menghasilkan kepalsuan bila didahului kutipannya'' menghasilkan kepalsuan
+bila didahului kutipannya.
+\end{quote}
+Kalimat ini tidak merujuk langsung pada dirinya sendiri. Kalimat itu hanya
+membuat pernyataan mengenai objek sintaksis di antara tanda kutip, dan dalam
+hal ini setara dengan kalimat-kalimat seperti
+\begin{enumerate}
+\item ``Robert'' adalah nama yang bagus.
+\item ``Saya berlari.'' adalah kalimat pendek.
+\item ``Memiliki tiga kata'' memiliki tiga kata.
+\end{enumerate}
+Namun, apa yang terjadi jika frasa ``menghasilkan kepalsuan bila didahului
+kutipannya'' didahului oleh versi dirinya sendiri yang dikutip? Kita
+memperoleh kalimat semula!{} Singkatnya, kalimat tersebut menyatakan bahwa
+dirinya salah.
+
+\end{document}

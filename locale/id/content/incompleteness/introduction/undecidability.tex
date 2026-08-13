@@ -1,0 +1,140 @@
+% Part: incompleteness
+% Chapter: introduction
+% Section: undecidability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{int}{dec}
+
+\olsection{Ketakterputusan dan Ketaklengkapan}
+
+Pembuktian G\"odel atas teorema-teorema ketaklengkapan memerlukan
+aritmetisasi sintaksis. Akan tetapi, bahkan tanpa aritmetisasi itu, kita dapat
+memperoleh beberapa hasil yang baik hanya dengan asumsi bahwa suatu teori
+!!{represents} semua relasi !!{decidable}. Pembuktiannya merupakan argumen
+diagonal yang serupa dengan pembuktian ketakterputusan masalah penghentian.
+
+\begin{thm}
+Jika $\Gamma$ adalah teori konsisten yang !!{represents} setiap relasi
+!!{decidable}, maka $\Gamma$ tidak !!{decidable}.
+\end{thm}
+
+\begin{proof}
+Andaikan $\Gamma$ !!{decidable}. Kita tunjukkan bahwa jika $\Gamma$
+!!{represents} setiap relasi !!{decidable}, teori itu pasti tak konsisten.
+
+Sifat !!^{decidable} (relasi satu-tempat) direpresentasikan oleh
+!!{formula}s dengan satu variabel bebas. Misalkan $!A_0(x)$, $!A_1(x)$,
+\dots, merupakan enumerasi yang dapat dihitung atas semua !!{formula}s
+semacam itu. Sekarang perhatikan himpunan $D \subseteq \Nat$ berikut:
+\[
+D = \Setabs{n}{\Gamma \Proves \lnot !A_n(\num{n})}
+\]
+Himpunan $D$ !!{decidable}, sebab kita dapat menguji apakah $n \in D$
+dengan mula-mula menghitung $!A_n(x)$, lalu dari situ menghitung $\lnot
+!A_n(\num{n})$. Jelas bahwa menyubstitusikan suku $\num{n}$ bagi setiap
+kemunculan bebas $x$ dalam $!A_n(x)$ dan mengawali $!A_n(\num{n})$ dengan
+$\lnot$ merupakan prosedur mekanis. Berdasarkan asumsi, $\Gamma$
+!!{decidable}, sehingga kita dapat menguji apakah $\lnot !A_n(\num{n}) \in
+\Gamma$. Jika ya, $n \in D$; jika tidak, $n \notin D$. Jadi $D$ juga
+!!{decidable}.
+
+Karena $\Gamma$ !!{represents} semua sifat !!{decidable}, teori itu
+!!{represents}~$D$. Semua !!{formula}s yang !!{represents}s $D$
+dalam~$\Gamma$ terdapat di antara $!A_0(x)$, $!A_1(x)$, \dots. Maka,
+misalkan $d$ adalah bilangan sedemikian sehingga $!A_d(x)$ !!{represents}
+$D$ dalam~$\Gamma$. Jika $d \notin D$, karena $!A_d(x)$ !!{represents}~$D$,
+$\Gamma \Proves \lnot !A_d(\num{d})$. Namun, ini berarti bahwa $d$
+memenuhi syarat penentu~$D$, sehingga $d \in D$. Hal ini bertentangan dengan
+$d \notin D$. Jadi, melalui pembuktian tak langsung, $d \in D$.
+
+Karena $d \in D$, menurut definisi~$D$, $\Gamma \Proves \lnot
+!A_d(\num{d})$. Di pihak lain, karena $!A_d(x)$ !!{represents}~$D$
+dalam $\Gamma$, $\Gamma \Proves !A_d(\num{d})$. Dengan demikian,
+$\Gamma$ tak konsisten.
+\end{proof}
+
+\begin{explain}
+Teorema sebelumnya menunjukkan bahwa tidak ada teori konsisten yang
+!!{represents} semua relasi !!{decidable} yang sekaligus !!{decidable}.
+Kita akan menunjukkan bahwa $\Th{Q}$ memang !!{represents}s semua relasi
+!!{decidable}; artinya, semua teori yang memuat $\Th{Q}$, seperti $\Th{PA}$
+dan $\Th{TA}$, juga demikian dan karenanya juga tidak !!{decidable}.
+(Karena semua teori ini benar dalam model standar, semuanya konsisten.)
+
+Hasil ini juga dapat kita gunakan untuk memperoleh versi lemah teorema
+ketaklengkapan pertama. Setiap teori yang !!{axiomatizable} dan !!{complete}
+adalah !!{decidable}. Karena itu, teori konsisten yang !!{axiomatizable} dan
+!!{represents}s semua sifat !!{decidable} tidak mungkin !!{complete}.
+\end{explain}
+
+\begin{thm}
+Jika $\Gamma$ !!{axiomatizable} dan !!{complete}, maka teori itu
+!!{decidable}.
+\end{thm}
+
+\begin{proof}
+Setiap teori tak konsisten adalah !!{decidable}, sebab teori tak konsisten
+memuat semua !!{sentence}s; jadi jawaban atas pertanyaan ``apakah $!A \in
+\Gamma$'' selalu ``ya,'' sehingga dapat diputuskan.
+
+Sekarang andaikan $\Gamma$ konsisten, serta !!{axiomatizable} dan
+!!{complete}. Karena $\Gamma$ !!{axiomatizable}, teori itu
+!!{computably enumerable}. Kita dapat mengenumerasi semua !!{derivation}s
+yang benar dari aksioma-aksioma~$\Gamma$ dengan suatu fungsi yang dapat
+dihitung. Dari suatu !!{derivation} yang benar, kita dapat menghitung
+!!{sentence} hasilnya karena derivasi tersebut !!{derive}s kalimat itu;
+dengan menggabungkan keduanya, diperoleh fungsi yang
+dapat dihitung yang mengenumerasi semua teorema~$\Gamma$. Untuk suatu
+!!{sentence}~$!A$, kalimat tersebut merupakan teorema~$\Gamma$ jika dan
+hanya jika $\lnot !A$ bukan teorema,
+sebab $\Gamma$ konsisten dan !!{complete}. Karena itu, kita dapat memutuskan
+apakah $!A \in \Gamma$ sebagai berikut. Enumerasikan semua teorema
+$\Gamma$. Ketika $!A$ muncul dalam daftar, kita mengetahui bahwa $\Gamma
+\Proves !A$. Ketika $\lnot !A$ muncul dalam daftar, kita mengetahui bahwa
+$\Gamma \Proves/ !A$. Karena $\Gamma$ !!{complete}, salah satu kasus ini
+pada akhirnya terjadi, sehingga prosedur tersebut akhirnya menghasilkan
+jawaban.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:incompleteness}
+Jika $\Gamma$ konsisten, !!{axiomatizable}, dan !!{represents} setiap sifat
+!!{decidable}, maka teori itu tidak !!{complete}.
+\end{cor}
+
+\begin{proof}
+Jika $\Gamma$ !!{complete}, teori itu akan !!{decidable} menurut teorema
+sebelumnya (karena teori itu !!{axiomatizable} dan konsisten). Namun, karena
+$\Gamma$ !!{represents} setiap sifat !!{decidable}, teori itu tidak
+!!{decidable} menurut teorema pertama.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa $\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$ tidak
+!!{axiomatizable}. Anda boleh mengasumsikan bahwa $\Th{TA}$ merepresentasikan
+semua sifat yang dapat diputuskan.
+\end{prob}
+
+Setelah kita menetapkan bahwa, misalnya, $\Th{Q}$ !!{represents} semua sifat
+!!{decidable}, korolari tersebut memberi tahu kita bahwa $\Th{Q}$ pasti tak
+lengkap. Namun, pembuktiannya tidak memberikan contoh !!{sentence}
+independen; pembuktian itu hanya menunjukkan bahwa !!a{sentence} semacam itu
+pasti ada. Untuk memperoleh contohnya, kita harus mengaritmetisasi sintaksis
+dan mengikuti gagasan pembuktian asli G\"odel. Tentu saja, kita juga masih
+harus menunjukkan klaim pertama, yakni bahwa $\Th{Q}$ memang
+!!{represents}s semua sifat !!{decidable}.
+
+Perlu dicatat bahwa tidak setiap teori yang \emph{menarik} bersifat tak
+lengkap atau tak dapat diputuskan. Ada banyak teori yang cukup kuat untuk
+mendeskripsikan fakta matematis yang menarik, tetapi tidak memenuhi syarat
+hasil G\"odel. Sebagai contoh, $\Th{Pres} = \Setabs{!A \in
+\Lang{L_{A^+}}}{\Sat{N}{!A}}$, yakni himpunan !!{sentence}s dalam bahasa
+aritmetika tanpa~$\times$ yang benar dalam model standar, bersifat lengkap
+dan dapat diputuskan. Teori ini disebut aritmetika Presburger dan membuktikan
+semua kebenaran tentang bilangan asli yang dapat dirumuskan hanya dengan
+$\Obj{0}$, $\prime$, dan~$+$.
+
+\end{document}

@@ -1,0 +1,50 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: inseparability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{ins}
+
+\olsection{Kalimat yang Dapat Dibuktikan dan Disangkal dalam $\Th{Q}$ Tak
+  Terpisahkan secara Komputabel}
+
+
+Misalkan $\Th{\bar Q}$ sebagai himpunan kalimat yang {\em negasinya} dapat
+dibuktikan dalam~$\Th{Q}$, yakni $\Th{\bar Q} = \Setabs{!A}{\Th{Q} \Proves
+  \lnot !A}$. Ingat bahwa himpunan saling lepas~$A$ dan~$B$ disebut tak
+terpisahkan secara komputabel jika tidak ada himpunan dapat dihitung~$C$
+sedemikian sehingga $A \subseteq C$ dan $B \subseteq \Complement{C}$.
+
+\begin{lem}
+$\Th{Q}$ dan $\Th{\bar Q}$ tak terpisahkan secara komputabel.
+\end{lem}
+
+\begin{proof}
+Andaikan $C$ suatu himpunan dapat dihitung sedemikian sehingga $\Th{Q}
+\subseteq C$ dan $\Th{\bar Q} \subseteq \Complement{C}$. Misalkan $R(x,y)$
+sebagai relasi
+\begin{quote}
+$x$ mengodekan suatu formula~$!D(u)$ dan $!D(\num y)$ berada dalam~$C$.
+\end{quote}
+Kita akan menunjukkan bahwa $R(x,y)$ merupakan relasi dapat dihitung
+universal, yang menghasilkan kontradiksi.
+
+Andaikan $S(y)$ dapat dihitung dan direpresentasikan oleh~$!D_S(u)$
+dalam~$\Th{Q}$. Maka
+\begin{eqnarray*}
+S(\num n) & \lif & \Th{Q} \Proves !D_S(\num n) \\
+& \lif & !D_S(\num n) \in C
+\end{eqnarray*}
+dan
+\begin{eqnarray*}
+\lnot S(\num n) & \lif & \Th{Q} \Proves \lnot !D_S(\num n) \\
+& \lif & !D_S(\num n) \in \Th{\bar Q} \\
+& \lif & !D_S(\num n) \not\in C
+\end{eqnarray*}
+Jadi $S(y)$ ekuivalen dengan $R(\#(!D_S(\num u)),y)$.
+\end{proof}
+
+\end{document}

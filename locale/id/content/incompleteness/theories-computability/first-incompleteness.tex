@@ -1,0 +1,45 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: first-incompleteness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{inc}
+
+\olsection{$\Th{Q}$ Tidak Memiliki Perluasan Lengkap dan Konsisten yang
+  !!^{axiomatizable}}
+
+\begin{thm}
+\ollabel{thm:first-incompleteness}
+Tidak ada perluasan $\Th{Q}$ yang lengkap, konsisten, dan
+!!{axiomatizable}.
+\end{thm}
+
+\begin{proof}
+Kita telah mengetahui bahwa tidak ada perluasan $\Th{Q}$ yang konsisten dan
+dapat diputuskan. Namun, jika $\Th{T}$ lengkap dan !!{axiomatized} secara
+komputabel, maka teori itu dapat diputuskan.
+\end{proof}
+
+\begin{explain}
+Teorema ini tidak terlalu jauh dari rumusan asli G\"odel pada 1931 tentang
+Teorema Ketaklengkapan Pertama. Selain istilah yang lebih modern, perbedaan
+utamanya ialah sebagai berikut: G\"odel menggunakan
+``$\omega$-konsisten'' alih-alih ``konsisten''; dan ia belum dapat mengatakan
+``!!{axiomatizable}'' dalam keumuman penuh karena gagasan formal
+komputabilitas belum tersedia. (Model-model formal komputabilitas dikembangkan
+sepanjang dasawarsa berikutnya, termasuk oleh G\"odel, dan sebagian besar
+untuk dapat mencirikan jenis teori yang terkena fenomena G\"odel.)
+
+Teorema tersebut menyatakan bahwa kita tidak dapat memperoleh semuanya
+sekaligus, yakni kelengkapan, konsistensi, dan !!{axiomatizability}. Namun,
+jika salah satunya dilepaskan, dua sifat lainnya dapat diperoleh: $\Th{Q}$
+konsisten dan diaksiomatisasi secara komputabel, tetapi tidak lengkap; teori
+tak konsisten lengkap dan diaksiomatisasi secara komputabel (misalnya oleh
+$\{ \eq/[0][0] \}$), tetapi tidak konsisten; dan himpunan kalimat aritmetika
+yang benar lengkap dan konsisten, tetapi tidak diaksiomatisasi secara
+komputabel.
+\end{explain}
+\end{document}

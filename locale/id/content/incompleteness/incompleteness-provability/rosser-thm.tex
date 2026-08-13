@@ -1,0 +1,154 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: rosser-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{ros}
+
+\olsection{Teorema Rosser}
+
+Dapatkah kita memodifikasi pembuktian G\"odel untuk memperoleh hasil yang
+lebih kuat, dengan mengganti ``$\omega$-konsisten'' cukup dengan
+``konsisten''? Jawabannya adalah ``ya,'' dengan menggunakan suatu siasat yang
+ditemukan Rosser. Siasat Rosser ialah menggunakan predikat !!{derivability}
+``termodifikasi'' $\ORProv_T(y)$ sebagai pengganti $\OProv[\Th{T}](y)$.
+
+\begin{thm}
+\ollabel{thm:rosser}
+Misalkan $\Th{T}$ sebarang teori konsisten dan !!{axiomatizable} yang
+memperluas $\Th{Q}$. Maka $\Th{T}$ tidak lengkap.
+\end{thm}
+
+\begin{proof}
+Ingat bahwa $\OProv[\Th{T}](y)$ didefinisikan sebagai
+$\lexists[x][\OPrf[\Th{T}](x,y)]$, dengan $\OPrf[\Th{T}](x,y)$
+merepresentasikan relasi dapat diputuskan yang berlaku jika dan hanya jika
+$x$ adalah bilangan G\"odel dari !!a{derivation} atas !!{sentence} bernomor
+G\"odel~$y$. Relasi yang berlaku antara $x$ dan~$y$ jika $x$ adalah bilangan
+G\"odel dari suatu \emph{refutasi} atas kalimat bernomor G\"odel~$y$ juga
+dapat diputuskan. Misalkan $\fn{not}(x)$ adalah fungsi rekursif primitif yang
+bekerja sebagai berikut: jika $x$ adalah kode suatu formula $!A$,
+$\fn{not}(x)$ adalah kode~$\lnot !A$. Maka $\Refut[\Th{T}](x,y)$ berlaku jika
+dan hanya jika $\Prf[\Th{T}](x,\fn{not}(y))$. Misalkan
+$\ORefut[\Th{T}](x,y)$ merepresentasikannya. Jadi, jika
+$\Th{T} \Proves \lnot !A$ dan $\delta$ adalah !!a{derivation} yang
+bersesuaian, maka $\Th{Q} \Proves \ORefut[\Th{T}](\gn{\delta},\gn{!A})$.
+Kita mendefinisikan $\ORProv[\Th{T}](y)$ sebagai
+\[
+\lexists[x][(\OPrf[\Th{T}](x,y) \land \lforall[z][(z < x \lif \lnot
+  \ORefut[\Th{T}](z,y))])].
+\]
+Secara kasar, $\ORProv[\Th{T}](y)$ mengatakan ``terdapat pembuktian atas
+$y$ dalam $\Th{T}$, dan tidak terdapat refutasi yang lebih pendek
+atas~$y$.'' Dengan mengasumsikan $\Th{T}$ konsisten,
+$\ORProv[\Th{T}](y)$ benar atas bilangan-bilangan yang sama dengan
+$\OProv[\Th{T}](y)$; tetapi dari sudut pandang \emph{keterbuktian}
+dalam~$\Th{T}$ (dan sekarang kita tahu bahwa kebenaran dan keterbuktian itu
+berbeda!) keduanya memiliki sifat yang berbeda. Jika $\Th{T}$
+\emph{tak} konsisten, keduanya \emph{tidak} berlaku atas bilangan-bilangan
+yang sama!{} ($\ORProv[\Th{T}](y)$ sering dibaca sebagai ``$y$ terbukti
+menurut Rosser.'' Karena, seperti baru dibahas, keterbuktian menurut Rosser
+bukanlah suatu jenis keterbuktian khusus---dalam teori tak konsisten terdapat
+!!{sentence}s yang terbukti tetapi tidak terbukti menurut Rosser---ungkapan
+ini dapat membingungkan. Untuk menghindari kebingungan, Anda dapat membacanya
+sebagai ``$y$ dapat di-shmove.'')
+
+Berdasarkan lema titik tetap, terdapat suatu formula $!R_\Th{T}$ sedemikian
+sehingga
+\begin{equation}
+  \Th{Q} \Proves !R_\Th{T} \liff \lnot \ORProv[\Th{T}](\gn{!R_\Th{T}}).
+  \ollabel{RT}
+\end{equation}
+Berbeda dengan pembuktian \olref[1in]{thm:first-incompleteness}, di sini kita
+menyatakan bahwa jika $\Th{T}$ konsisten, $\Th{T}$ tidak !!{derive}
+$!R_\Th{T}$, dan $\Th{T}$ juga tidak !!{derive} $\lnot !R_\Th{T}$. (Dengan
+kata lain, kita tidak memerlukan asumsi $\omega$-konsistensi.)
+
+Pertama, mari kita tunjukkan bahwa $\Th{T} \Proves/ !R_{\Th{T}}$. Andaikan
+sebaliknya, sehingga terdapat !!a{derivation} atas~$!R_{\Th{T}}$
+dari~$T$; misalkan $n$ adalah bilangan G\"odel-nya. Maka
+$\Th{Q} \Proves \OPrf[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$, karena
+$\OPrf[\Th{T}]$ merepresentasikan $\Prf[\Th{T}]$ dalam~$\Th{Q}$. Selain
+itu, untuk setiap $k<n$, $k$ bukanlah bilangan G\"odel dari
+!!a{derivation} atas $\lnot !R_{\Th{T}}$, karena $\Th{T}$ konsisten. Jadi,
+untuk setiap $k<n$,
+$\Th{Q} \Proves \lnot \ORefut[\Th{T}](\num{k},\gn{!R_{\Th{T}}})$.
+Berdasarkan \olref[req][min]{lem:less-nsucc},
+$\Th{Q} \Proves \lforall[z][(z < \num{n} \lif \lnot
+\ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))]$. Dengan demikian,
+\[
+\Th{Q} \Proves \lexists[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \land
+  \lforall[z][(z < x \lif \lnot \ORefut[\Th{T}](z,
+  \gn{!R_{\Th{T}}}))])],
+\]
+tetapi itu tidak lain adalah $\ORProv[\Th{T}](\gn{!R_{\Th{T}}})$.
+Berdasarkan \olref{RT}, $\Th{Q} \Proves \lnot !R_{\Th{T}}$. Karena
+$\Th{T}$ memperluas $\Th{Q}$, juga
+$\Th{T} \Proves \lnot !R_{\Th{T}}$. Kita telah mengasumsikan bahwa
+$\Th{T} \Proves !R_{\Th{T}}$, sehingga $\Th{T}$ akan tak konsisten,
+bertentangan dengan asumsi teorema.
+
+Sekarang, mari kita tunjukkan bahwa
+$\Th{T} \Proves/ \lnot !R_{\Th{T}}$. Sekali lagi, andaikan sebaliknya,
+dan andaikan $n$ adalah bilangan G\"odel dari !!a{derivation}
+atas~$\lnot !R_{\Th{T}}$. Maka $\Refut[\Th{T}](n,\Gn{!R_{\Th{T}}})$
+berlaku, dan karena $\ORefut[\Th{T}]$ merepresentasikan
+$\Refut[\Th{T}]$ dalam $\Th{Q}$,
+$\Th{Q} \Proves \ORefut[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$. Kita kembali
+akan menunjukkan bahwa $\Th{T}$ akan tak konsisten karena teori itu juga
+akan !!{derive}~$!R_{\Th{T}}$. Karena
+\begin{align*}
+\Th{Q} & \Proves !R_{\Th{T}} \liff \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}),
+\intertext{dan karena $\Th{T}$ memperluas~$\Th{Q}$, cukup ditunjukkan bahwa}
+\Th{Q} & \Proves \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}).
+\end{align*}
+!!^{sentence} $\lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}})$, yaitu
+\begin{align*}
+  \lnot & \lexists[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \land
+    \lforall[z][(z < x \lif \lnot \ORefut[\Th{T}](z,
+    \gn{!R_{\Th{T}}}))])],
+  \intertext{secara logis ekuivalen dengan}
+  & \lforall[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \lif
+    \lexists[z][(z < x \land \ORefut[\Th{T}](z,
+    \gn{!R_{\Th{T}}}))])].
+\end{align*}
+Kita menalar secara informal dengan menggunakan logika dan memanfaatkan
+fakta-fakta mengenai hal-hal yang $\Th{Q}$ !!{derive}s. Andaikan $x$
+sebarang dan $\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}})$. Kita telah mengetahui
+bahwa $\Th{T} \Proves/ !R_{\Th{T}}$, sehingga untuk setiap $k$,
+$\Th{Q} \Proves \lnot \OPrf[\Th{T}](\num{k},\gn{!R_{\Th{T}}})$. Jadi,
+untuk setiap $k$ diperoleh $\eq/[x][\num{k}]$. Khususnya, kita memiliki
+(a)~$\eq/[x][\num{n}]$. Kita juga memiliki
+$\lnot(\eq[x][\num{0}] \lor \eq[x][\num{1}] \lor \dots \lor
+\eq[x][\num{n-1}])$, sehingga berdasarkan
+\olref[req][min]{lem:less-nsucc}, (b)~$\lnot(x < \num{n})$. Berdasarkan
+\olref[req][min]{lem:trichotomy}, $\num{n}<x$. Karena
+$\Th{Q} \Proves \ORefut[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$, kita memiliki
+$\num{n}<x \land \ORefut[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$, dan dari
+hal itu $\lexists[z][(z < x \land \ORefut[\Th{T}](z,
+\gn{!R_{\Th{T}}}))]$. Karena $x$ sebarang, sebagaimana diperlukan kita
+memperoleh
+\[
+\lforall[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \lif
+  \lexists[z][(z < x \land \ORefut[\Th{T}](z,
+  \gn{!R_{\Th{T}}}))])].
+\]
+\end{proof}
+
+\begin{prob}
+Dua himpunan bilangan asli, $A$ dan $B$, disebut
+\emph{tak terpisahkan secara komputabel} jika tidak ada himpunan
+!!{decidable}~$X$ sedemikian sehingga $A \subseteq X$ dan
+$B \subseteq \Complement{X}$ ($\Complement{X}$ adalah komplemen, yaitu
+$\Nat \setminus X$, dari~$X$). Misalkan $\Th{T}$ adalah perluasan konsisten dan
+!!{axiomatizable} dari~$\Th{Q}$. Andaikan $A$ adalah himpunan bilangan
+G\"odel dari !!{sentence}s yang terbukti dalam~$\Th{T}$ dan $B$ adalah
+himpunan bilangan G\"odel dari kalimat-kalimat yang terbantahkan
+dalam~$\Th{T}$. Buktikan bahwa $A$ dan~$B$ tak terpisahkan secara
+komputabel.
+\end{prob}
+
+\end{document}

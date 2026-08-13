@@ -1,0 +1,132 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: second-incompleteness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{2in}
+
+\olsection{Teorema Ketaklengkapan Kedua}
+
+Bagaimana kita dapat mengungkapkan pernyataan bahwa $\Th{PA}$ tidak
+membuktikan konsistensinya sendiri? Menyatakan bahwa $\Th{PA}$ tak konsisten
+sama artinya dengan menyatakan bahwa $\Th{PA} \Proves \eq[0][1]$. Jadi,
+kita dapat memilih pernyataan konsistensi $\OCon[\Th{PA}]$ sebagai
+!!{sentence} $\lnot \OProv[\Th{PA}](\gn{\eq[0][1]})$, dan teorema berikut
+memberi hasil yang kita inginkan:
+
+\begin{thm}
+\ollabel{thm:second-incompleteness}
+Dengan mengasumsikan $\Th{PA}$ konsisten, $\Th{PA}$ tidak !!{derive}
+$\OCon[\Th{PA}]$.
+\end{thm}
+
+Penting diperhatikan bahwa teorema ini bergantung pada representasi khusus
+$\OCon[\Th{PA}]$ (yakni representasi khusus $\OProv[\Th{PA}](y)$). Yang
+akan kita gunakan hanyalah bahwa representasi $\OProv[\Th{PA}](y)$ memenuhi
+ketiga syarat !!{derivability}, sehingga teorema ini berlaku lebih umum bagi
+setiap teori dengan predikat !!{derivability} yang memiliki sifat-sifat
+tersebut.
+
+Sketsa argumen G\"odel layak dibaca karena teorema tersebut kemudian muncul
+seperti penutup jenaka yang tepat. Argumennya berjalan sebagai berikut.
+Misalkan $!G_\Th{PA}$ adalah kalimat G\"odel yang kita bangun dalam
+pembuktian \olref[1in]{thm:first-incompleteness}. Kita telah menunjukkan,
+``Jika $\Th{PA}$ konsisten, maka $\Th{PA}$ tidak !!{derive}
+$!G_\Th{PA}$.'' Jika kita memformalkan hal ini \emph{di dalam} $\Th{PA}$,
+kita memperoleh pembuktian atas
+\[
+\OCon[\Th{PA}] \lif \lnot \OProv[\Th{PA}](\gn{!G_\Th{PA}}).
+\]
+Sekarang andaikan $\Th{PA}$ !!{derive}s $\OCon[\Th{PA}]$. Maka teori itu
+!!{derive}s $\lnot \OProv[\Th{PA}](\gn{!G_\Th{PA}})$. Namun, karena
+$!G_\Th{PA}$ adalah kalimat G\"odel, formula ini ekuivalen dengan
+$!G_\Th{PA}$. Jadi, $\Th{PA}$ !!{derive}s $!G_\Th{PA}$.
+
+Namun, kita tahu bahwa jika $\Th{PA}$ konsisten, teori itu tidak !!{derive}
+$!G_\Th{PA}$!{} Jadi, jika $\Th{PA}$ konsisten, teori itu tidak mungkin
+!!{derive} $\OCon[\Th{PA}]$.
+
+Untuk membuat argumen tersebut lebih cermat, kita akan memilih
+$!G_\Th{PA}$ sebagai kalimat G\"odel bagi~$\Th{PA}$ dan menggunakan
+syarat !!{derivability} (P1)--(P3) untuk menunjukkan bahwa $\Th{PA}$
+!!{derive}s $\OCon[\Th{PA}] \lif !G_\Th{PA}$. Hal ini akan menunjukkan
+bahwa $\Th{PA}$ tidak !!{derive} $\OCon[\Th{PA}]$. Berikut sketsa
+pembuktiannya di dalam~$\Th{PA}$. (Demi kesederhanaan, kita menghilangkan
+subskrip $\Th{PA}$.)
+\begin{align}
+& !G \liff \lnot \OProv(\gn{!G}) \ollabel{G2-1}\\
+& \qquad\text{$!G$ adalah kalimat G\"odel}\notag \\
+& !G \lif \lnot \OProv(\gn{!G}) \ollabel{G2-2}\\
+  & \qquad\text{dari \olref{G2-1}} \notag\\
+& !G \lif
+  (\OProv(\gn{!G}) \lif \lfalse) \ollabel{G2-3}\\
+  & \qquad\text{dari \olref{G2-2} berdasarkan logika}\notag\\
+& \OProv(\gn{
+    !G \lif
+    (\OProv(\gn{!G}) \lif \lfalse)
+  }) \ollabel{G2-4}\\
+  & \qquad\text{dari \olref{G2-3} berdasarkan syarat P1} \notag\\
+& \OProv(\gn{!G}) \lif
+  \OProv(\gn{
+    (\OProv(\gn{!G}) \lif \lfalse)
+    }) \ollabel{G2-5}\\
+  & \qquad\text{dari \olref{G2-4} berdasarkan syarat P2} \notag\\
+& \OProv(\gn{!G}) \lif (\OProv(\gn{\OProv(\gn{!G})}) \lif \OProv(\gn{\lfalse})) \ollabel{G2-6}\\
+  & \qquad\text{dari \olref{G2-5} berdasarkan syarat P2 dan logika} \notag\\
+& \OProv(\gn{!G}) \lif
+  \OProv(\gn{\OProv(\gn{!G})}) \ollabel{G2-7}\\
+   & \qquad\text{berdasarkan P3} \notag\\
+& \OProv(\gn{!G}) \lif \OProv(\gn{\lfalse}) \ollabel{G2-8}\\
+  & \qquad \text{dari \olref{G2-6} dan \olref{G2-7} berdasarkan logika}\notag\\
+& \OCon \lif \lnot \OProv(\gn{!G}) \ollabel{G2-9}\\
+  & \qquad\text{kontraposisi \olref{G2-8} dan $\OCon \ident \lnot \OProv(\gn{\lfalse})$}\notag \\
+& \OCon \lif !G \notag\\
+  & \qquad\text{dari \olref{G2-1} dan \olref{G2-9} berdasarkan logika}\notag
+\end{align}
+Penggunaan logika di atas hanya melibatkan fakta-fakta dasar logika
+proposisional; misalnya, \olref{G2-3} menggunakan
+$\Proves \lnot!A \liff (!A\lif \lfalse)$ dan \olref{G2-8} menggunakan
+$!A \lif (!B \lif !C), !A \lif !B \Proves !A \lif !C$. Penggunaan
+syarat~P2 dalam \olref{G2-5} dan \olref{G2-6} bergantung pada contoh-contoh
+P2, yakni $\OProv(\gn{!A \lif !B}) \lif
+(\OProv(\gn{!A}) \lif \OProv(\gn{!B}))$. Dalam contoh pertama,
+$!A \ident !G$ dan $!B \ident \OProv(\gn{!G}) \lif \lfalse$; dalam
+contoh kedua, $!A \ident \OProv(\gn{!G})$ dan $!B \ident \lfalse$.
+
+Versi teorema ketaklengkapan kedua yang lebih abstrak adalah sebagai berikut:
+
+\begin{thm}
+\ollabel{thm:second-incompleteness-gen} Misalkan $\Th{T}$ sebarang teori
+konsisten dan !!{axiomatized} yang memperluas $\Th{Q}$, dan misalkan
+$\OProv[\Th{T}](y)$ sebarang formula yang memenuhi syarat !!{derivability}
+P1--P3 bagi~$\Th{T}$. Maka $\Th{T}$ tidak !!{derive}~$\OCon[\Th{T}]$.
+\end{thm}
+
+\begin{prob}
+Tunjukkan bahwa $\Th{PA}$ !!{derive}s
+$!G_{\Th{PA}} \lif \OCon[\Th{PA}]$.
+\end{prob}
+
+\begin{digress}
+Pesan utamanya ialah bahwa tidak ada teori konsisten yang ``wajar'' bagi
+matematika yang dapat !!{derive} pernyataan konsistensinya sendiri. Andaikan
+$\Th{T}$ adalah teori matematika yang mencakup $\Th{Q}$ dan penalaran
+``finitistik'' Hilbert (apa pun tepatnya yang dimaksud). Maka keseluruhan
+$\Th{T}$ tidak dapat !!{derive} pernyataan konsistensi $\Th{T}$; terlebih
+lagi, fragmen finitistiknya juga tidak dapat !!{derive} pernyataan
+konsistensi~$\Th{T}$. Dalam arti ini, tidak mungkin ada pembuktian
+konsistensi finitistik bagi ``seluruh matematika.''
+
+Ada sedikit kelonggaran dalam menafsirkan istilah ``finitistik,'' dan dalam
+makalah tahun 1931, G\"odel mengakui kemungkinan bahwa sesuatu yang kita
+anggap ``finitistik'' mungkin berada di luar jenis matematika yang hendak
+diformalkan Hilbert. Namun, G\"odel bersikap murah hati; dewasa ini sulit
+melihat bagaimana kita dapat menemukan sesuatu yang layak disebut finitistik
+tetapi tidak dapat diformalkan, misalnya, dalam~$\Th{ZFC}$, yakni teori
+himpunan Zermelo--Fraenkel dengan aksioma pilihan.
+\end{digress}
+
+\end{document}

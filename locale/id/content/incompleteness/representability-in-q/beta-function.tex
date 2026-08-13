@@ -1,0 +1,186 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: beta-function
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{bet}
+\olsection{Lema Fungsi Beta}
+
+
+Untuk menunjukkan bahwa kita dapat melaksanakan rekursi primitif jika
+penjumlahan, perkalian, dan $\Char{=}$ tersedia, kita perlu mengembangkan
+fungsi-fungsi yang menangani barisan. (Jika perpangkatan juga tersedia, tugas
+kita akan lebih mudah.) Ketika rekursi primitif tersedia, kita dapat
+mendefinisikan hal-hal seperti ``bilangan prima ke-$n$,'' lalu memilih
+pengodean yang cukup langsung. Namun, di sini rekursi primitif tidak
+tersedia---bahkan, kita ingin menunjukkan bahwa rekursi primitif dapat
+dilakukan dengan menggunakan pencarian tak berbatas---sehingga kita harus lebih cerdik.
+
+\begin{lem}
+\ollabel{lem:beta}
+Terdapat fungsi $\beta(d,i)$ sedemikian sehingga, untuk setiap barisan $a_0$,
+\dots,~$a_n$, terdapat bilangan~$d$ sedemikian sehingga untuk setiap
+$i \le n$, $\beta(d,i) = a_i$. Selain itu, $\beta$ dapat didefinisikan dari
+fungsi-fungsi dasar hanya dengan komposisi dan pencarian tak berbatas pada
+fungsi reguler.
+\end{lem}
+
+Bayangkan $d$ sebagai kode barisan $\tuple{a_0, \dots, a_n}$ dan
+$\beta(d,i)$ sebagai fungsi yang mengembalikan elemen ke-$i$. (Perhatikan
+bahwa ``pengodean'' ini \emph{tidak} menggunakan pengodean dengan pangkat
+bilangan prima yang sudah kita kenal!) Lema tersebut cukup minimal; lema itu
+tidak mengatakan bahwa kita dapat menggabungkan barisan, menambahkan elemen,
+atau bahkan \emph{menghitung}~$d$ dari $a_0$, \dots,~$a_n$ dengan fungsi yang
+dapat didefinisikan melalui komposisi dan pencarian tak berbatas pada fungsi
+reguler. Lema itu hanya mengatakan bahwa terdapat suatu fungsi ``pengurai
+kode'' sedemikian sehingga setiap barisan ``dikodekan.''
+
+Penggunaan notasi $\beta$ berasal dari G\"odel. Sekali lagi, bagian sulit
+dalam membuktikan lema tersebut ialah mendefinisikan~$\beta$ yang sesuai
+dengan sumber daya yang tampaknya terbatas, yakni hanya menggunakan komposisi
+dan pencarian tak berbatas---namun, kita diperbolehkan menggunakan penjumlahan,
+perkalian, dan~$\Char{=}$. Ada berbagai cara untuk membuktikan lema ini,
+tetapi salah satu yang paling jernih tetap metode asli G\"odel, yang
+menggunakan fakta teori bilangan bernama Teorema Sunzi (secara tradisional,
+``Teorema Sisa Tiongkok'').
+
+\begin{defn}
+Dua bilangan asli $a$ dan $b$ disebut \emph{relatif prima} jika dan hanya
+jika faktor persekutuan terbesarnya ialah~$1$; dengan kata lain, keduanya tidak
+memiliki pembagi bersama lain.
+\end{defn}
+
+\begin{defn}
+Bilangan asli $a$ dan $b$ disebut \emph{kongruen modulo~$c$},
+$a \equiv b \mod c$, jika dan hanya jika $c \mid (a-b)$, yakni $a$ dan $b$
+memiliki sisa yang sama ketika dibagi dengan~$c$.
+\end{defn}
+
+Berikut Teorema Sunzi:
+\begin{thm}
+Andaikan $x_0$, \dots,~$x_n$ relatif prima sepasang-sepasang. Misalkan
+$y_0$, \dots,~$y_n$ sebarang bilangan. Maka terdapat bilangan $z$ sedemikian
+sehingga
+\begin{align*}
+z & \equiv y_0 \mod x_0 \\
+z & \equiv y_1 \mod x_1 \\
+& \vdots  \\
+z & \equiv y_n \mod x_n.
+\end{align*}
+\end{thm}
+
+Kita akan menggunakan Teorema Sunzi sebagai berikut: jika $x_0$,
+\dots,~$x_n$ masing-masing lebih besar daripada $y_0$, \dots,~$y_n$, kita
+dapat menggunakan $z$ untuk mengodekan barisan $\tuple{y_0, \dots,y_n}$.
+Untuk memperoleh kembali~$y_i$, kita hanya perlu membagi $z$ dengan~$x_i$
+dan mengambil sisanya. Untuk menggunakan pengodean ini, kita perlu menemukan
+nilai-nilai yang sesuai bagi $x_0$, \dots,~$x_n$.
+
+Beberapa pengamatan akan membantu kita dalam hal ini. Diberikan
+$y_0$, \dots,~$y_n$, misalkan
+\begin{align*}
+j &= \max(n, y_0 + 1, \dots, y_n + 1), \\
+m &= \lcm(1,\dots,j),
+\end{align*}
+dan misalkan
+\begin{align*}
+x_0 & = 1 + m \\
+x_1 & = 1 + 2 \cdot m \\
+x_2 & = 1 + 3 \cdot m \\
+& \vdots  \\
+x_n & = 1 + (n+1) \cdot m
+\end{align*}
+Maka dua hal berikut benar:
+\begin{enumerate}
+\item\ollabel{rel-prime} $x_0,\dots,x_n$ relatif prima sepasang-sepasang.
+\item\ollabel{less} Untuk setiap $i$, $y_i < x_i$.
+\end{enumerate}
+Untuk melihat bahwa \olref{rel-prime} benar, perhatikan bahwa jika $p$ adalah
+bilangan prima dan $p \mid x_i$ serta $p \mid x_k$, maka
+$p \mid 1 + (i+1) m$ dan $p \mid 1 + (k+1) m$. Akan tetapi, $p$ kemudian
+membagi selisih keduanya,
+\[
+(1 + (i+1)m) - (1+ (k+1)m) = (i-k) m.
+\]
+Karena $p$ membagi $1 + (i+1)m$, bilangan itu tidak mungkin juga membagi $m$
+(jika demikian, pembagian pertama akan menyisakan~$1$). Jadi $p$ membagi
+$i-k$, karena $p$ membagi $(i-k)m$. Namun, $\left|i-k\right|$ paling besar
+bernilai~$n$, dan kita telah memilih $j \geq n$, sehingga ini menyiratkan
+bahwa $p \mid m$, sekali lagi suatu kontradiksi. Jadi, tidak ada bilangan
+prima yang membagi baik $x_i$ maupun $x_k$. Butir~\olref{less} mudah:
+kita mempunyai $y_i < j \leq m < x_i$.
+
+Sekarang mari kita buktikan lema fungsi $\beta$. Ingat bahwa kita dapat
+menggunakan $0$, penerus, tambah, kali, $\Char{=}$, proyeksi, dan setiap
+fungsi yang didefinisikan darinya dengan menggunakan komposisi dan
+pencarian tak berbatas pada fungsi reguler. Kita juga dapat menggunakan
+suatu relasi jika fungsi karakteristiknya dapat didefinisikan dengan cara
+tersebut. Seperti sebelumnya, dapat kita tunjukkan bahwa relasi-relasi ini
+tertutup terhadap kombinasi Boolean dan kuantifikasi terbatas; misalnya:
+\begin{align*}
+\fn{not}(x) & \defis \Char{=}(x,0)\\
+\bmin{x \leq z}{R(x,y)} & \defis \umin{x}{(R(x,y) \lor x = z)}\\
+\bexists{x \leq z}{R(x,y)} & \defiff R(\bmin{x \leq z}{R(x,y)}, y)
+\end{align*}
+Kemudian dapat kita tunjukkan bahwa semua hal berikut juga dapat didefinisikan
+tanpa rekursi primitif:
+\begin{enumerate}
+\item Fungsi pemasangan, $J(x,y) = \frac{1}{2}[(x+y)(x+y+1)] + x$;
+% maybe explain more what is going on here, a bit confusing.
+\item fungsi-fungsi proyeksi
+\begin{align*}
+K(z) & = \bmin{x \leq z}{\bexists{y \leq z}{z = J(x,y)}},\\
+L(z) & = \bmin{y \leq z}{\bexists{x \leq z}{z = J(x,y)}};
+\end{align*}
+\item relasi kurang-dari $x < y$;
+\item relasi keterbagian $x \mid y$;
+% \item $x \tsub y$
+% \item $\fn{Prime}(x)$
+% \item Assuming $p$ is prime, the relation ``$x$ is a power of $p$'':
+% \[
+% \bforall{y \leq x}{(y \mid x \lif y = 1 \lor y = x)}.
+% \]
+\item fungsi $\fn{rem}(x,y)$ yang mengembalikan sisa ketika $y$ dibagi
+  dengan~$x$.
+\end{enumerate}
+Sekarang definisikan
+\begin{align*}
+\beta^*(d_0,d_1,i) & = \fn{rem}(1+(i+1) d_1,d_0) \text{ dan}\\
+\beta(d,i) & = \beta^*(K(d),L(d),i).
+\end{align*}
+Inilah fungsi yang kita inginkan. Diberikan $a_0,\dots,a_n$ seperti di atas,
+misalkan
+\[
+j = \max(n,a_0+1,\dots,a_n+1),
+\]
+dan misalkan $d_1 = \lcm(1,\dots,j)$. Menurut \olref{rel-prime} di atas,
+kita tahu bahwa $1+d_1$, $1+2 d_1$, \dots, $1+(n+1) d_1$ relatif prima
+sepasang-sepasang, dan menurut~\olref{less} bahwa semuanya lebih besar
+daripada $a_0,\dots,a_n$. Menurut Teorema Sunzi terdapat nilai~$d_0$
+sedemikian sehingga, untuk setiap~$i$,
+\[
+d_0 \equiv a_i \mod (1+(i+1)d_1)
+\]
+dan karena itu (karena $d_1$ lebih besar daripada~$a_i$),
+\[
+a_i = \fn{rem}(1+(i+1)d_1,d_0).
+\]
+Misalkan $d = J(d_0,d_1)$. Maka, untuk setiap $i \le n$, kita mempunyai
+\begin{align*}
+\beta(d,i) & =  \beta^*(d_0,d_1,i) \\
+& =  \fn{rem}(1+(i+1) d_1,d_0) \\
+& =  a_i
+\end{align*}
+sebagaimana diperlukan. Ini menyelesaikan pembuktian lema fungsi $\beta$.
+
+\begin{prob}
+  Tunjukkan bahwa relasi $x < y$, $x \mid y$, dan fungsi
+  $\fn{rem}(x,y)$ dapat didefinisikan tanpa rekursi primitif. Anda boleh
+  menggunakan $0$, penerus, tambah, kali, $\Char{=}$, proyeksi, serta
+  minimisasi berbatas dan kuantifikasi terbatas.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,66 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: consis-with-q
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{con}
+
+\olsection{Teori yang Konsisten dengan $\Th{Q}$ Tidak Dapat Diputuskan}
+
+Teorema berikut menyatakan bahwa bukan hanya $\Th{Q}$ yang tidak dapat
+diputuskan, tetapi sesungguhnya setiap teori yang tidak bertentangan
+dengan~$\Th{Q}$ juga tidak dapat diputuskan.
+
+\begin{thm}
+Misalkan $\Th{T}$ sebarang teori dalam bahasa aritmetika yang konsisten
+dengan~$\Th{Q}$ (yakni $\Th{T} \cup \Th{Q}$ konsisten). Maka $\Th{T}$ tidak
+dapat diputuskan.
+\end{thm}
+
+\begin{proof}
+Ingat bahwa $\Th{Q}$ mempunyai himpunan aksioma berhingga, $!Q_1$, \dots,
+$!Q_8$. Kita bahkan dapat mengganti semua aksioma tersebut dengan satu
+aksioma, $!E = !Q_1 \land \dots \land !Q_8$.
+
+Andaikan $\Th{T}$ suatu teori yang dapat diputuskan dan konsisten
+dengan~$\Th{Q}$. Misalkan
+\[
+C = \Setabs{!A}{\Th{T} \Proves !E \lif !A}.
+\]
+Kita tunjukkan bahwa $C$ akan menjadi pemisah dapat dihitung bagi $\Th{Q}$
+dan~$\Th{\bar Q}$, suatu kontradiksi. Pertama, jika $!A$ berada
+dalam~$\Th{Q}$, maka $!A$ dapat dibuktikan dari aksioma-aksioma~$\Th{Q}$;
+menurut teorema deduksi, terdapat !!a{derivation} atas $!E \lif !A$ dalam
+logika orde pertama. Jadi $!A$ berada dalam~$C$.
+
+Di pihak lain, jika $!A$ berada dalam~$\Th{\bar Q}$, maka terdapat suatu
+pembuktian atas $!E \lif \lnot !A$ dalam logika orde pertama. Jika
+$\Th{T}$ juga membuktikan $!E \lif !A$, maka $\Th{T}$ membuktikan
+$\lnot !E$; dalam hal itu $\Th{T} \cup \Th{Q}$ tak konsisten. Namun, kita
+mengasumsikan bahwa $\Th{T} \cup \Th{Q}$ konsisten, sehingga $\Th{T}$
+tidak membuktikan $!E \lif !A$, dan dengan demikian $!A$ tidak berada
+dalam~$C$.
+
+Kita telah menunjukkan bahwa jika $!A$ berada dalam~$\Th{Q}$, maka kalimat
+itu berada dalam~$C$, dan jika $!A$ berada dalam~$\Th{\bar Q}$, maka kalimat
+itu berada dalam~$\Complement{C}$. Jadi $C$ merupakan pemisah dapat dihitung,
+dan inilah kontradiksi yang dicari.
+\end{proof}
+
+Teorema ini sangat kuat. Sebagai contoh, teorema itu mengimplikasikan:
+
+\begin{cor}
+  Logika orde pertama untuk bahasa aritmetika (yakni himpunan
+  $\Setabs{!A}{\text{$!A$ dapat dibuktikan dalam logika orde pertama}}$)
+  tidak dapat diputuskan.
+\end{cor}
+
+\begin{proof}
+Logika orde pertama merupakan himpunan konsekuensi dari~$\emptyset$,
+yang konsisten dengan~$\Th{Q}$.
+\end{proof}
+
+\end{document}

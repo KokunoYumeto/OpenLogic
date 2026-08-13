@@ -1,0 +1,121 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: tarski-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{inp}{tar}
+
+\olsection{Ketakterdefinisian Kebenaran}
+
+Gagasan \emph{keterdefinisian} bergantung pada adanya semantik formal bagi
+bahasa aritmetika. Kita telah menguraikan suatu himpunan formula dan kalimat
+dalam bahasa aritmetika. ``Interpretasi yang dimaksudkan'' ialah membaca
+kalimat-kalimat tersebut sebagai pernyataan mengenai bilangan asli; suatu
+pernyataan semacam itu dapat benar atau salah. Misalkan $\Struct{N}$ adalah
+!!{structure} dengan domain~$\Nat$ dan interpretasi standar bagi simbol-simbol
+dalam bahasa aritmetika. Maka $\Sat{N}{!A}$ berarti ``$!A$ benar dalam
+interpretasi standar.''
+
+\begin{defn}
+Suatu relasi $R(x_1,\dots,x_k)$ bilangan asli \emph{dapat didefinisikan}
+dalam $\Struct{N}$ jika dan hanya jika terdapat formula
+$!A(x_1,\dots,x_k)$ dalam bahasa aritmetika sedemikian sehingga untuk setiap
+$n_1,\dots,n_k$, $R(n_1,\dots,n_k)$ jika dan hanya jika
+$\Sat{N}{!A(\num n_1,\dots,\num n_k)}$.
+\end{defn}
+
+Dengan kata lain, suatu relasi dapat didefinisikan dalam $\Struct{N}$ jika
+dan hanya jika relasi itu dapat direpresentasikan dalam teori $\Th{TA}$,
+dengan $\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$ sebagai himpunan kalimat
+aritmetika yang benar. (Jika hal ini tidak langsung jelas bagi Anda,
+kembalilah memeriksa definisi-definisi tersebut dan yakinkan diri Anda bahwa
+memang demikian.)
+
+\begin{lem}
+Setiap relasi yang dapat dihitung dapat didefinisikan dalam~$\Struct{N}$.
+\end{lem}
+
+\begin{proof}
+Mudah diperiksa bahwa formula yang merepresentasikan suatu relasi dalam
+$\Th{Q}$ mendefinisikan relasi yang sama dalam $\Struct{N}$.
+\end{proof}
+
+Sekarang kita dapat bertanya: apakah konversnya juga benar? Dengan kata lain,
+apakah setiap relasi yang dapat didefinisikan dalam~$\Struct{N}$ dapat
+dihitung? Jawabannya tidak. Misalnya:
+
+\begin{lem}
+Relasi penghentian dapat didefinisikan dalam $\Struct{N}$.
+\end{lem}
+
+\begin{proof}
+Ingat bahwa teorema bentuk normal Kleene menyatakan bahwa setiap fungsi
+parsial yang dapat dihitung~$f$ mempunyai indeks~$e$ sedemikian sehingga
+$f(x) \simeq U(\umin{s}{T(e,x,s)})$ untuk semua $x \in \Nat$, dengan $U$
+dan $T$ rekursif primitif dan karenanya total. Jadi, $f(x)$ terdefinisi
+(yakni komputasinya berhenti) jika dan hanya jika terdapat~$s$ sedemikian
+sehingga $T(e,x,s)$ berlaku.
+
+Sekarang misalkan $H$ adalah relasi penghentian, yakni
+\[
+H = \Setabs{\tuple{e,x}}{\lexists[s][T(e, x, s)]}.
+\]
+Misalkan $!D_T$ mendefinisikan $T$ dalam $\Struct{N}$. Maka
+\[
+H = \Setabs{\tuple{e,x}}{\Sat{N}{\lexists[s][!D_T(\num e, \num x, s)]}},
+\]
+sehingga $\lexists[s][!D_T(z, x, s)]$ mendefinisikan~$H$ dalam
+$\Struct{N}$.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa $Q(n) \defiff n \in
+\Setabs{\Gn{!A}}{\Th{Q} \Proves !A}$ dapat didefinisikan dalam aritmetika.
+\end{prob}
+
+Bagaimana dengan $\Th{TA}$ sendiri? Apakah teori itu dapat didefinisikan
+dalam aritmetika? Dengan kata lain, apakah himpunan
+$\Setabs{\Gn{!A}}{\Sat{N}{!A}}$ dapat didefinisikan dalam aritmetika?
+Teorema Tarski menjawabnya secara negatif.
+
+\begin{thm}
+\ollabel{thm:tarski}
+Himpunan !!{sentence}s aritmetika yang benar tidak dapat didefinisikan dalam
+aritmetika.
+\end{thm}
+
+\begin{proof}
+Andaikan $!D(x)$ mendefinisikannya, yakni $\Sat{N}{!A}$ jika dan hanya jika
+$\Sat{N}{!D(\gn{!A})}$. Berdasarkan lema titik tetap, terdapat suatu formula
+$!A$ sedemikian sehingga
+$\Th{Q} \Proves !A \liff \lnot !D(\gn{!A})$, dan karena itu
+$\Sat{N}{!A \liff \lnot !D(\gn{!A})}$. Namun, kemudian $\Sat{N}{!A}$ jika
+dan hanya jika $\Sat{N}{\lnot !D(\gn{!A})}$, yang bertentangan dengan fakta
+bahwa $!D(y)$ seharusnya mendefinisikan himpunan pernyataan aritmetika yang
+benar.
+\end{proof}
+
+Tarski menerapkan analisis ini pada gagasan filosofis yang lebih umum tentang
+kebenaran. Untuk sebarang bahasa $L$, Tarski berpendapat bahwa suatu gagasan
+kebenaran yang memadai bagi $L$ harus memenuhi, untuk setiap kalimat $X$,
+\begin{quote}
+`$X$' benar jika dan hanya jika $X$.
+\end{quote}
+Contoh Tarski yang sering dikutip, untuk bahasa Inggris, adalah kalimat
+\begin{quote}
+`Salju berwarna putih' benar jika dan hanya jika salju berwarna putih.
+\end{quote}
+Namun, bagi sebarang bahasa yang cukup kuat untuk merepresentasikan fungsi
+diagonal dan sebarang predikat linguistik $T(x)$, kita dapat membangun suatu
+kalimat $X$ yang memenuhi ``$X$ jika dan hanya jika bukan
+$T(\text{`$X$'})$.'' Karena kita tidak menghendaki predikat kebenaran
+menyatakan beberapa kalimat benar sekaligus salah, Tarski menyimpulkan bahwa
+kita tidak dapat menentukan predikat kebenaran bagi semua kalimat dalam
+suatu bahasa tanpa, dengan suatu cara, melangkah ke luar batas bahasa
+tersebut. Dengan kata lain, predikat kebenaran bagi suatu bahasa tidak dapat
+didefinisikan dalam bahasa itu sendiri.
+
+\end{document}

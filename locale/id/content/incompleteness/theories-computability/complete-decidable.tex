@@ -1,0 +1,40 @@
+% Bagian: incompleteness
+% Bab: theories-computability
+% Subbagian: complete-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{tcp}{cdc}
+
+\olsection{Teori Lengkap yang \printtoken{S}{axiomatizable} Dapat Diputuskan}
+
+Suatu teori disebut {\em lengkap} jika, untuk setiap kalimat~$!A$, $!A$
+atau $\lnot !A$ dapat dibuktikan.
+
+\begin{lem}
+Andaikan suatu teori~$\Th{T}$ lengkap dan !!{axiomatizable}. Maka $\Th{T}$
+dapat diputuskan.
+\end{lem}
+
+\begin{proof}
+Andaikan $\Th{T}$ lengkap dan $A$ merupakan himpunan aksioma yang dapat
+dihitung. Jika $\Th{T}$ tak konsisten, teori itu jelas dapat dihitung.
+(Algoritmenya: ``cukup jawab ya.'') Jadi, kita dapat mengasumsikan bahwa
+$\Th{T}$ juga konsisten.
+
+Untuk memutuskan apakah suatu kalimat~$!A$ berada dalam~$\Th{T}$ atau tidak,
+carilah secara bersamaan !!a{derivation} atas~$!A$ dari~$\Th{T}$ dan
+!!a{derivation} atas~$\lnot !A$. Karena $\Th{T}$ lengkap, salah satunya pasti
+ditemukan; dan karena $\Th{T}$ konsisten, jika !!a{derivation} atas~$\lnot !A$
+ditemukan, tidak ada !!{derivation} atas~$!A$.
+
+Dengan ungkapan lain, kita telah mengetahui bahwa $\Th{T}$ bersifat
+!!{c.e.}; jadi, menurut suatu teorema yang telah dibuktikan sebelumnya, cukup
+ditunjukkan bahwa komplemen~$\Th{T}$ juga bersifat !!{c.e.}. Namun,
+!!a{formula}~$!A$ berada dalam~$\Th{\bar T}$ jika dan hanya jika $\lnot !A$
+berada dalam~$\Th{T}$; jadi $\Th{\bar T} \leq_m \Th{T}$.
+\end{proof}
+
+\end{document}
