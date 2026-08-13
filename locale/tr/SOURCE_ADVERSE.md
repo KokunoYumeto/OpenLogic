@@ -88,3 +88,23 @@ Dedekind union and bisection introduce no separate Axiom of Choice issue.
 
 These records support a bounded 48/722 checkpoint only. They do not call the
 remaining corpus translated or the omitted source arguments supplied.
+
+## OLP-0049--OLP-0054 -- Infinite Sets chapter
+
+The chapter-level disclosure is preserved in `SOURCE_ADVERSE_0054.md`. It
+binds the six files to the official commit and records the grammar repair in
+Hilbert's Hotel; the explicit distinction between ordinary and
+Dedekind-infinitude; typed function closures; the induction proof through
+`N\cap X`; the explicit conclusions `A\approx B` and `B\approx C`; and the
+missing `\ran g\subseteq B` half of the intermediate-set proof. The Open
+Logic convention `\comp{f}{g}=g\circ f` remains unchanged.
+
+The disclosure also preserves the source's deferred recursive-definition
+machinery and its explicit warning that the surrounding set-existence theory
+is still naif. These are set-existence and recursion dependencies, not a
+hidden Axiom of Choice use: the displayed Dedekind-algebra, induction, and
+Schröder-Bernstein constructions are choice-free once their sets and
+functions exist.
+
+This record supports a bounded cumulative scope through 54 of 722 closure
+files. Build and publication evidence remain separate.

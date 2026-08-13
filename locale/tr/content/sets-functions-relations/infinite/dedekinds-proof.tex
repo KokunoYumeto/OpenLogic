@@ -1,0 +1,105 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekinds-proof
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{infinite}{dedekindsproof}
+
+\olsection[Dedekind'in ``İspatı'']{Dedekind'in Sonsuz Bir Kümenin
+Varlığına İlişkin ``İspatı''}
+
+Bu bölümde doğal sayıları Dedekind cebirleri aracılığıyla küme teorisi
+çerçevesinde ele aldık. \olref[arith][ref]{sec}'te, analizin
+aritmetikleştirilmesinin (başka şeylerin yanı sıra) felsefi önemi üzerine
+düşündük. Şimdi burada başardığımız şeyin önemi üzerine düşünmeliyiz.
+
+\olref[sfr][arith][]{chap} boyunca doğal sayıları verilmiş kabul ettik ve
+onları kullanarak tam sayıları, rasyonel sayıları ve gerçel sayıları açıkça
+kurduk. Bu bölümdeyse doğal sayıların açık bir kuruluşunu vermedik. Yalnızca,
+\emph{herhangi bir Dedekind-sonsuz küme verildiğinde}, $\Nat$'ın davranmasını
+istediğimiz gibi davranacak bir küme tanımlayabileceğimizi gösterdik.
+
+Dolayısıyla \emph{hangi nesneler doğal sayılardır} gibi metafizik bir soruyu
+yanıtladığımızı ileri süremeyeceğimiz açıktır. Fakat bu iyi bir şeydir.
+Nitekim \olref[sfr][arith][ref]{sec}'te, $\Real$'ın Dedekind kesimleri kümesi
+olarak tanımını elverişli bir koşul koyma yerine bir \emph{keşif} saymanın
+yanlış olacağını vurgulamıştık. Kilit gözlem, Dedekind kesimlerinin gerçel
+sayıların temel matematiksel özelliklerini örneklemesidir. Burada da aynı şey
+geçerlidir: \emph{her} Dedekind cebiri doğal sayıların temel matematiksel
+özelliklerini örnekler. (Gerçekten Dedekind, bütün Dedekind cebirlerinin
+\emph{izomorf} olduğunu ispatlayarak bu noktayı pekiştirmiştir
+(\citeyear[Theorems 132--3]{Dedekind1888}). Dolayısıyla günümüzdeki birçok
+``yapısalcı''nın Dedekind'i bir öncü olarak anması şaşırtıcı değildir.)
+
+Üstelik doğal sayılar teorisinin, kendisi hâlâ oldukça gayriresmî olan ama
+doğal sayıları verilmiş kabul etmeyen (öyle görünüyor) naif basit küme
+teorisine nasıl gömüleceğini gösterdik. Böylece Dedekind'in kendi iddialı
+tasarısını gerçekleştirme yolunda olabiliriz. Dedekind bu tasarıyı şöyle
+açıklamıştı:
+\begin{quote}
+	Bilimde, ispatlanabilir hiçbir şeye ispatı olmaksızın inanılmamalıdır.
+	Bu talep akla yatkın görünse de, en basit bilimin temellerini atmaya
+	yönelik en yeni yöntemlerde bile; yani mantığın sayılar teorisini ele
+	alan bölümünde bile karşılandığını düşünemiyorum. Aritmetikten (cebir,
+	analiz) yalnızca mantığın bir parçası olarak söz ederken, sayı kavramını
+	uzay ve zaman tasarımlarından ya da sezgilerinden bütünüyle bağımsız
+	saydığımı---onu daha ziyade saf düşünce yasalarının dolaysız bir ürünü
+	olarak gördüğümü anlatmak istiyorum.
+	\citep[preface]{Dedekind1888}
+\end{quote}
+Dedekind'in cesur düşüncesi şudur. Doğal sayıların yalnızca (naif) küme
+teorisi kullanılarak nasıl kurulacağını az önce gösterdik.
+\olref[sfr][arith][]{chap}'da doğal sayılar ve bir miktar küme teorisi
+verildiğinde gerçel sayıların nasıl kurulacağını gördük. Öyleyse belki de
+``aritmetiğin (cebir, analiz)'', Dedekind'in ``mantık'' sözcüğüne verdiği
+geniş anlamda, ``yalnızca mantığın bir parçası'' olduğu ortaya çıkar.
+
+Düşünce budur. Fakat bir an duralım. Doğal sayıların yerine kullandığımız
+Dedekind cebirini kurmamız, bir Dedekind-sonsuz kümenin varlığı koşuluna
+bağlıdır. (\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra}'ya
+bakmanız yeter.) Bir Dedekind-sonsuz kümenin varlığı ``mantık''la ya da
+``saf düşünce yasaları''yla kurulamazsa tasarı burada durur.
+
+Öyleyse bir Dedekind-sonsuz kümenin varlığı ``saf düşünce yasaları''yla
+kurulabilir mi? Dedekind'in girişimi şuydu:
+\begin{quote}
+  Kendi düşünceler alanım, yani düşüncemin nesnesi olabilecek bütün şeylerin
+  oluşturduğu $S$ toplamı sonsuzdur. Çünkü $s$, $S$'nin bir elemanını
+  gösteriyorsa $s$'nin düşüncemin bir nesnesi olabileceği düşüncesi $s'$ de
+  $S$'nin bir elemanıdır. Bunu $s$ elemanının bir görüntüsü $\phi(s)$
+  sayarsak, o zaman \dots~$S$ [Dedekind anlamında] sonsuzdur; ispatlanması
+  gereken de buydu.
+	\citep[\S66]{Dedekind1888}
+\end{quote}
+Büyük bölümü son derece titiz matematiksel ispatlardan oluşan bir kitabın
+ortasında böyle bir şeyle karşılaşmak hayli şaşırtıcıdır. İki noktayı
+belirtmek gerekir.
+
+Birincisi: bu ``ispat'', bugün ``matematiksel'' sayacağımız bir nitelik
+taşımaktan uzaktır. Psikolojik nesnelerden (düşüncelerden), üstelik yalnızca
+\emph{mümkün} olanlardan söz eder.
+
+İkincisi: en azından Dedekind cebirlerini bizim sunduğumuz biçimiyle
+alırsak, bu ``ispat''ın açık bir teknik eksiği vardır. Dedekind'in argümanı
+başarılıysa yalnızca sonsuz sayıda şey (özellikle sonsuz sayıda düşünce)
+bulunduğunu kurar. Fakat Dedekind'in ayrıca $S$'yi, çoğul anlamda
+\emph{bazı şeyler} saymak yerine, sonsuz sayıda !!{element} içeren tek bir
+\emph{küme} saymak için bize bir gerekçe vermesi gerekir.
+
+Dedekind'in burada bir boşluk görmemiş olması, onun ``toplam'' sözcüğünü
+kullanımının \emph{bizim} ``küme'' sözcüğünü kullanımımızla tam olarak
+örtüşmediğini düşündürebilir.\footnote{Bunun böyle olduğunu düşünmek için
+başka nedenlerimiz de vardır; bkz. \citet[p.~23]{Potter2004}.} Fakat bu pek
+şaşırtıcı olmazdı. Son iki bölümde izlediğimiz tasarı---doğal sayıların bir
+``kuruluşu'' ve onlardan tam sayıların, gerçel sayıların ve rasyonel sayıların
+bir ``kuruluşu''---bütünüyle naifçe yürütüldü. Tam olarak hangi kümelerin ne
+zaman var olduğuna ilişkin birçok genel ilke koymadan, ihtiyaç duydukça şu ya
+da bu kümeyi hazırdan kullandık. Oysa \emph{bazı} genel ilkelere ihtiyaç
+duyduğumuzu biliyoruz; yoksa Russell Paradoksu'na düşeriz.
+
+Naifliğimizi geride bırakmanın zamanı geldi.
+
+\end{document}

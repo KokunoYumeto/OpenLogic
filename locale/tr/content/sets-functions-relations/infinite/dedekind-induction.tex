@@ -1,0 +1,85 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind-induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{infinite}{induction}
+\olsection[Aritmetik Tümevarım]{Dedekind Cebirleri ve Aritmetik Tümevarım}
+
+Artık önemli olan şudur: bir Dedekind cebiri---hatta \emph{herhangi bir}
+Dedekind cebiri---doğal sayıların yerine kullanılabilir. Bunun nedeni
+aşağıdaki dolaysız sonuçtur:
+
+\begin{thm}[Aritmetik tümevarım]\ollabel{thm:dedinfiniteinduction}
+$N,s,o$ bir Dedekind cebiri oluştursun. O zaman her $X$ kümesi için:
+	\begin{center}
+		$o \in X$ ve $(\forall {n} \in N \cap X){s}({n}) \in X$ ise
+		$N \subseteq X$.
+	\end{center}
+\end{thm}
+
+\begin{proof}
+Bir Dedekind cebirinin tanımına göre $N=\closureofunder{s}{o}$'dır.
+$Y=N\cap X$ olsun. $o\in N$ ve varsayım gereği $o\in X$ olduğundan
+$o\in Y$'dir. Ayrıca $n\in Y$ ise hem $n\in N$ hem de $n\in X$ olur.
+$N$, $s$ altında kapalı olduğundan $s(n)\in N$; varsayım gereği de
+$s(n)\in X$ olur. Böylece $s(n)\in Y$ ve $Y$, $s$ altında kapalıdır.
+$N=\closureofunder{s}{o}$, $o$'yu içeren en küçük $s$ altında kapalı küme
+olduğundan $N\subseteq Y=N\cap X\subseteq X$.
+\end{proof}
+
+Tümevarım doğal sayıların ayırt edici bir özelliği olduğuna göre meselenin
+özü şudur. Herhangi bir Dedekind-sonsuz küme verildiğinde bir Dedekind cebiri
+oluşturabilir ve bu cebiri doğal sayıların yerine kullanabiliriz.
+
+Kuşkusuz \olref{thm:dedinfiniteinduction}, tümevarımı \emph{küme teorisi}
+terimleriyle formüle eder. Fakat ilkeyi daha tanıdık gelebilecek terimlerle
+kolayca ifade edebiliriz:
+
+\begin{cor}\ollabel{natinductionschema}
+$N,s,o$ bir Dedekind cebiri oluştursun. O zaman parametreler içerebilen her
+$\phi(x)$ formülü için:
+\begin{center}
+	$\phi(o)$ ve $(\forall {n} \in N)(\phi(n)\lif
+	\phi({s}({n})))$ ise $(\forall n \in N)\phi(n)$.
+\end{center}
+\end{cor}
+
+\begin{proof}
+$X=\Setabs{n\in N}{\phi(n)}$ olsun ve şimdi
+\olref{thm:dedinfiniteinduction}'ı kullanın.
+\end{proof}
+
+Bu sonuçta bir formülün ``parametreler içermesinden'' söz ettik. Bunun
+kabaca anlamı, herhangi $c_1,\ldots,c_k$ nesneleri için
+$\phi(x,c_1,\ldots,c_k)$ ile çalışabilmemizdir. Daha kesin olarak, sonucu
+``parametreler''den söz etmeden şöyle ifade edebiliriz. Serbest değişkenlerinin
+tümü gösterilmiş herhangi bir $\phi(x,v_1,\ldots,v_k)$ formülü için:
+	\begin{align*}
+			\forall v_1 \ldots \forall v_k((&\phi(o, v_1,\ldots, v_k) \land {}\\
+			&	(\forall x \in N)(\phi(x,v_1, \ldots, v_k) \lif \phi(s(x), v_1,\ldots, v_k))) \lif {}\\
+			&\hspace{3em} (\forall x \in N)\phi(x, v_1,\ldots, v_k))
+	\end{align*}
+elde ederiz. ``Parametreler içermek''ten söz etmek, açıkça, ifadeleri çok
+daha okunaklı kılabilir. (Bu aracı ilerideki Küme Teorisi kısmında epey sık
+kullanacağız.)
+
+Dedekind cebirlerine dönelim: herhangi bir Dedekind cebiri verildiğinde,
+toplama, çarpma ve üs alma gibi olağan aritmetik fonksiyonları da
+tanımlayabiliriz. Ancak bu önemsiz değildir ve \emph{özyinelemeli tanım}
+tekniğini gerektirir. Bu tekniği çok daha sonra ve çok daha genel bir
+bağlamda tanıtıp gerekçelendireceğiz. (Meraklı okurlar ilerideki Sıra Sayısı
+Aritmetiği bölümünden sonra buraya dönmek ya da
+\citealt[pp.~95--8]{Potter2004} gibi alternatif bir sunumu okumak
+isteyebilir.) Bununla birlikte, $N,s,o$ bir Dedekind cebiri oluşturduğunda
+sonunda aşağıdakileri koşul olarak koyabileceğiz:
+\begin{align*}
+	{a} + {o} &= {a} & & & {a} \times {o} &= {o} & & & {a}^{o} &= s(o)\\
+{a} + {s}({b}) &= {s}({a}+{b}) &&& {a} \times {s}({b}) &= ({a}\times {b}) + {a}  & & & {a}^{{s}({b})} &= {a}^{b} \times {a}
+\end{align*}
+ve bunların umduğumuz gibi davrandığını gösterebileceğiz.
+
+\end{document}

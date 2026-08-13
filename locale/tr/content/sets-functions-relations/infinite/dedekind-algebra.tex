@@ -1,0 +1,129 @@
+% Part: sets-functions-relations
+% Chapter: infinite
+% Section: dedekind
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{infinite}{dedekind}
+\olsection{Dedekind Cebirleri}
+
+Doğal sayıların yalnızca sonsuz olmasını değil, belirli (cebirsel)
+özelliklere de sahip olmasını isteriz: toplama, çarpma ve benzeri işlemler
+altında iyi davranmaları gerekir.
+
+Dedekind'in düşüncesi, \emph{ardıl fonksiyonu} fikrini temel almak ve
+ardından sayıları aşağıdaki özelliklere sahip nesneler olarak
+nitelemekti:
+\begin{enumerate}
+	\item Hiçbir sayının ardılı olmayan bir $0$ sayısı vardır
+	\\yani $0 \notin \ran{s}$
+	\\yani $\forall x\ s(x) \neq 0$
+	\item Farklı sayıların ardılları da farklıdır
+	\\yani $s$ bir !!a{injection}dur
+	\\yani $\forall x \forall y (s(x) = s(y) \lif x = y)$
+	\item\ollabel{repeatedapplication} Her sayı, ardıl fonksiyonunun $0$'a
+	tekrar tekrar uygulanmasıyla elde edilir.
+\end{enumerate}
+İlk iki koşulu birinci derece mantıkla ele almak kolaydır (yukarıya
+bakın). Fakat yalnızca birinci derece mantığı kullanarak
+\olref{repeatedapplication}'ı ele alamayız. Dedekind'in çığır açan adımı,
+\olref{repeatedapplication} koşulunu küme teorisi terimleriyle şöyle yeniden
+ifade etmekti:
+\begin{enumerate}
+	\item[3$'$.] Doğal sayılar, \emph{ardıl fonksiyonu altında kapalı} olan
+	en küçük kümedir: yani $s$'yi kümenin herhangi bir !!{element}ına
+	uygularsak yine kümenin bir !!{element}ını elde ederiz.
+\end{enumerate}
+Ancak bunu ağır ağır açmamız gerekecek.
+
+\begin{defn}\ollabel{Closure}
+	Her $A$ kümesi, her $f\colon A\to A$ fonksiyonu ve her $X\subseteq A$ için, $X$'e ancak
+	ve ancak $(\forall x\in X)f(x)\in X$ ise \emph{$f$ altında kapalı} denir.
+	Şimdi her $o\in A$ için şöyle tanımlayalım:
+	$$\closureofunder{f}{o} = \bigcap\Setabs{X}{X\subseteq A,\ o \in X
+\text{ ve $X$, $f$ altında kapalıdır}}$$
+\end{defn}
+
+Böylece $\closureofunder{f}{o}$, $o$'yu !!a{element} olarak içeren ve $f$
+altında kapalı olan bütün $A$ alt kümelerinin kesişimidir. Dolayısıyla sezgisel
+olarak $\closureofunder{f}{o}$, $o$'yu !!a{element} olarak içeren \emph{en
+küçük} $f$ altında kapalı kümedir. Sıradaki sonuç bu sezgisel düşünceyi
+kesinleştirir:
+\begin{lem}\ollabel{closureproperties}
+	Her $A$ kümesi, her $f\colon A\to A$ fonksiyonu ve her $o\in A$ için:
+	\begin{enumerate}
+		\item\ollabel{closurehaselem} $o \in \closureofunder{f}{o}$; ve
+		\item\ollabel{closureclosed} $\closureofunder{f}{o}$, $f$ altında
+		kapalıdır; ve
+		\item\ollabel{closuresmallest} $X\subseteq A$, $f$ altında kapalı ve
+		$o\in X$ ise $\closureofunder{f}{o} \subseteq X$.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$o$'yu !!a{element} olarak içeren en az bir $f$ altında kapalı küme vardır;
+bu küme $\ran{f}\cup\{o\}$'dur. Dolayısıyla bu tür kümelerin \emph{tümünün}
+kesişimi olan $\closureofunder{f}{o}$ vardır. Şimdi
+\olref{closurehaselem}--\olref{closuresmallest}'ı denetlemeliyiz.
+
+\olref{closurehaselem} için: $\closureofunder{f}{o}$, hepsi $o$'yu
+!!a{element} olarak içeren kümelerin kesişimi olduğundan
+$o\in\closureofunder{f}{o}$.
+
+\olref{closureclosed} için: $x\in\closureofunder{f}{o}$ olduğunu varsayın.
+Öyleyse $o\in X$ ve $X$, $f$ altında kapalı olduğunda $x\in X$ olur; $X$,
+$f$ altında kapalı olduğu için de $f(x)\in X$ olur. Dolayısıyla
+$f(x)\in\closureofunder{f}{o}$.
+
+\olref{closuresmallest} için: genel olarak $X\in C$ ise
+$\bigcap C\subseteq X$ olur.
+\end{proof}
+
+Bunu kullanarak şunu söyleyebiliriz:
+
+\begin{defn}
+Bir \emph{Dedekind cebiri}, bir $A$ kümesi, bir $f\colon A\to A$ fonksiyonu
+ve aşağıdakileri sağlayan bir $o\in A$'dan oluşur:
+	\begin{enumerate}
+		\item \ollabel{ded:proper} $o \notin \ran{f}$
+		\item \ollabel{ded:injection} $f$ bir !!a{injection}dur
+		\item \ollabel{ded:closure} $A = \closureofunder{f}{o}$
+	\end{enumerate}
+\end{defn}
+
+$A=\closureofunder{f}{o}$ olduğundan önceki sonucumuz, $A$'nın $o$'yu
+!!a{element} olarak içeren en küçük $f$ altında kapalı küme olduğunu söyler.
+Bir Dedekind cebirinin Dedekind-sonsuz olduğu açıktır; tanımın
+\olref{ded:proper} ve \olref{ded:injection} maddelerine bakmak yeterlidir.
+Ancak daha heyecan verici olgu, her Dedekind-sonsuz kümenin bir Dedekind
+cebirine dönüştürülebilmesidir.
+
+\begin{thm}\ollabel{thm:DedekindInfiniteAlgebra}
+Dedekind-sonsuz bir küme varsa bir Dedekind cebiri vardır.
+\end{thm}
+
+\begin{proof}
+$D$ Dedekind-sonsuz olsun. Öyleyse $g\colon D\to D$ bire bir fonksiyonu ve
+bir $o\in D\setminus\ran{g}$ vardır. Şimdi
+$A=\closureofunder{g}{o}$ olsun; \olref{closureproperties}'a göre $A$
+vardır ve $o\in A$'dır. $f=\funrestrictionto{g}{A}$ olsun. $A,f,o$'nun bir
+Dedekind cebiri oluşturduğunu göstereceğiz.
+
+\olref{ded:proper} için: $o\notin\ran{g}$ ve $\ran{f}\subseteq\ran{g}$
+olduğundan $o\notin\ran{f}$.
+
+\olref{ded:injection} için: $g$, $D$ üzerinde bire birdir; öyleyse
+$f\subseteq g$ de bire bir olmalıdır.
+
+\olref{ded:closure} için: \olref{closureproperties}'a göre $A$, $g$ altında
+kapalıdır; dolayısıyla özellikle $f$ altında da kapalıdır. Bu yüzden yine
+\olref{closureproperties}'a göre $\closureofunder{f}{o}\subseteq A$.
+Ayrıca $\closureofunder{f}{o}$, $f$ altında kapalı ve
+$f=\funrestrictionto{g}{A}$ olduğundan $g$ altında da kapalıdır. Dolayısıyla
+\olref{closureproperties}'a göre
+$A\subseteq\closureofunder{f}{o}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,114 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{infinite}{card-sb}
+
+\olsection{Ek: Schr\"oder--Bernstein'ın İspatı}
+
+Naif küme teorisinden ayrılmadan önce ele almamız gereken son bir naif (ama
+incelikli!) ispat var. Bu, Schr\"oder--Bernstein Teoremi'nin
+(\olref[sfr][siz][sb]{thm:schroder-bernstein}) ispatıdır:
+$\cardle{A}{B}$ ve $\cardle{B}{A}$ ise $\cardeq{A}{B}$; yani
+!!{injection} $f\colon A\to B$ ve $g\colon B\to A$ verildiğinde bir
+!!a{bijection} $h\colon A\to B$ vardır.
+
+Bu bölümde Dedekind'in \emph{kapanış} kavramını izledik. Aslında Dedekind,
+bu kavramı kullanarak Schr\"oder--Bernstein için çok güzel bir ispat
+vermiştir; onu burada sunacağız. Biraz farklı ama özünde benzer bir sunum
+isterseniz bu ispat \citet[pp.~157--8]{Potter2004}'i yakından izler. İnternette
+yapacağınız kısa bir arama da bunun---tıpkı $\sqrt{2}$'nin irrasyonelliği
+gibi---\emph{birçok} ilginç ve farklı ispatı olan bir teorem olduğuna sizi
+inandıracaktır.
+
+\olref[sfr][infinite][dedekind]{Closure}'dakine benzer bir gösterim
+kullanarak, her $C$ kümesi, $f\colon C\to C$ fonksiyonu ve $B\subseteq C$
+için
+\[
+\Closureofunder{f}{B} = \bigcap \Setabs{X}{B \subseteq X \subseteq C
+\text{ ve $X$, $f$ altında kapalıdır}}
+\]
+olsun. Böyle tanımlanan $\Closureofunder{f}{B}$, $B$'yi içeren en küçük
+$f$ altında kapalı $C$ alt kümesidir; şu anlamda:
+
+\begin{lem}\ollabel{Closureprops}
+	Her $f\colon C\to C$ fonksiyonu ve her $B\subseteq C$ için:
+	\begin{enumerate}
+		\item\ollabel{Closurehaselem} $B \subseteq \Closureofunder{f}{B}$; ve
+		\item\ollabel{Closureclosed} $\Closureofunder{f}{B}$, $f$ altında
+		kapalıdır; ve
+		\item\ollabel{Closuresmallest} $X\subseteq C$, $f$ altında kapalı ve
+		$B\subseteq X$ ise $\Closureofunder{f}{B}\subseteq X$.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Tıpkı \olref[sfr][infinite][dedekind]{closureproperties}'daki gibi.
+\end{proof}
+
+Schr\"oder--Bernstein'a ulaşmak için son bir olguya ihtiyacımız var:
+
+\begin{prop}\ollabel{sbhelper}
+$A\subseteq B\subseteq C$ ve $A\approx C$ ise $\cardeq{A}{B}$ ve
+$\cardeq{B}{C}$.
+\end{prop}
+
+\begin{proof}
+Bir !!a{bijection} $f\colon C\to A$ verilsin,
+$F=\Closureofunder{f}{C\setminus B}$ olsun ve tanım kümesi $C$ olan bir $g$
+fonksiyonu şöyle tanımlansın:
+\[
+	g(x) =
+	\begin{cases}
+			f(x) &\text{$x \in F$ ise}\\
+			x & \text{aksi hâlde}
+		\end{cases}
+\]
+$g$'nin $C$'den $B$'ye bir !!a{bijection} olduğunu göstereceğiz. Bundan
+$\comp{f^{-1}}{g}\colon A\to B$'nin bir !!a{bijection} olduğu ve ispatın
+tamamlandığı çıkacaktır.
+
+Önce, $x\in F$ fakat $y\notin F$ ise $g(x)\neq g(y)$ olduğunu ileri sürüyoruz.
+Çelişki elde etmek üzere tersini varsayalım; o zaman
+$y=g(y)=g(x)=f(x)$ olur. $x\in F$ ve $F$,
+\olref{Closureprops}'a göre $f$ altında kapalı olduğundan
+$y=f(x)\in F$ elde ederiz; bu bir çelişkidir.
+
+Şimdi $g(x)=g(y)$ olduğunu varsayın. Yukarıdakine göre $x\in F$, ancak ve
+ancak $y\in F$ olur. $x,y\in F$ ise $f(x)=g(x)=g(y)=f(y)$ olur; $f$ bir
+!!a{bijection} olduğundan $x=y$'dir. $x,y\notin F$ ise
+$x=g(x)=g(y)=y$'dir. Böylece $g$ bir !!a{injection}dur.
+
+Geriye $\ran{g}=B$ olduğunu göstermek kalır. Önce $z\in C$ olsun.
+$z\in F$ ise $g(z)=f(z)\in A\subseteq B$'dir. $z\notin F$ ise
+$C\setminus B\subseteq F$ olduğundan $z\in B$ ve $g(z)=z$'dir. Dolayısıyla
+$\ran{g}\subseteq B$.
+
+Şimdi $x\in B\subseteq C$ sabitlensin. $x\notin F$ ise $g(x)=x$'tir.
+$x\in F$ ise bir $y\in F$ için $x=f(y)$ olmalıdır; aksi hâlde
+$F\setminus\{x\}$, $f$ altında kapalı olup $C\setminus B$'yi içeren bir
+küme olurdu ve bu \olref{Closureprops} gereği olanaksızdır. Bu durumda
+$g(y)=f(y)=x$ olur. Öyleyse $B\subseteq\ran{g}$ ve dolayısıyla
+$\ran{g}=B$.
+\end{proof}
+
+Son olarak ana sonucun ispatı şöyledir. Bir $h$ fonksiyonu ve $D$ kümesi
+verildiğinde $\funimage{h}{D}=\Setabs{h(x)}{x\in D}$ tanımını yaptığımızı
+hatırlayın.
+
+\begin{proof}[Schr\"oder--Bernstein'ın ispatı] $f\colon A\to B$ ve
+$g\colon B\to A$ birer !!{injection} olsun. $\funimage{f}{A}\subseteq B$
+olduğundan
+$\funimage{g}{\funimage{f}{A}}\subseteq g[B]\subseteq A$ elde ederiz.
+Ayrıca hem $g$ hem de $f$ bire bir olduğundan
+$\comp{f}{g}\colon A\to\funimage{g}{\funimage{f}{A}}$ bir
+!!{injection}dur; hatta görüntü kümesini tanımlama biçimimiz gereği bir
+!!a{bijection}dır. Öyleyse
+$\cardeq{\funimage{g}{\funimage{f}{A}}}{A}$ ve dolayısıyla
+\olref{sbhelper} gereği bir !!a{bijection}
+$h\colon A\to\funimage{g}{B}$ vardır. Üstelik $g^{-1}$,
+$\funimage{g}{B}\to B$ bir !!a{bijection}dır. Dolayısıyla
+$\comp{h}{g^{-1}}\colon A\to B$ bir !!a{bijection}dır.
+\end{proof}
+
+\end{document}
