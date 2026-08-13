@@ -1,0 +1,60 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{seq}{qpr}
+\olsection{\usetoken{S}{derivability} dan Kuantor}
+
+\begin{explain}
+  Teorema kelengkapan juga memerlukan agar aturan-aturan kalkulus sekuen
+  menghasilkan fakta-fakta tentang~$\Proves$ yang dibuktikan dalam
+  bagian ini.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} Jika $c$ adalah simbol konstanta yang
+tidak muncul dalam $\Gamma$ ataupun $!A(x)$ dan $\Gamma \Proves !A(c)$,
+maka $\Gamma \Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Misalkan $\pi_0$ adalah $\Log{LK}$-!!{derivation} untuk
+$\Gamma_0 \Sequent !A(c)$ bagi suatu $\Gamma_0 \subseteq \Gamma$ yang
+berhingga. Dengan menambahkan inferensi $\RightR{\lforall}$, kita
+memperoleh !!a{derivation} untuk
+$\Gamma_0 \Sequent \lforall[x][!A(x)]$, sebab $c$ tidak muncul dalam
+$\Gamma$ ataupun $!A(x)$ sehingga syarat variabel eigen terpenuhi.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Sekuen $!A(t) \Sequent \lexists[x][!A(x)]$
+  !!{derivable}:
+  \begin{prooftree}
+    \Axiom$!A(t) \fCenter !A(t)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$!A(t) \fCenter \lexists[x][!A(x)]$
+    \end{prooftree}}{}
+\tagitem{prvAll}{Sekuen $\lforall[x][!A(x)] \Sequent !A(t)$
+  !!{derivable}:
+  \begin{prooftree}
+    \Axiom$!A(t) \fCenter !A(t)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x)] \fCenter !A(t)$
+    \end{prooftree}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

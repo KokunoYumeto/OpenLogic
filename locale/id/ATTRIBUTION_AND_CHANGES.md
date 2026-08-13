@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0054` (54/722 files). It is incomplete and must not be represented as the
+`OLP-0083` (83/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -43,6 +43,14 @@ Exact source corrections currently include:
   type/exposition defects.
 - Infinite Sets repairs the malformed intermediate Schröder--Bernstein
   consequent and supplies the omitted range-inclusion argument.
+- Propositional syntax and semantics repair formation-sequence identity and
+  index scope, a fixed-formula rebinding, implication punctuation, and the
+  direction of semantic consequence.
+- The Proof Systems overview repairs sequent endpoints, tableau rule labels,
+  finite-assumption quantification, and the scope of axiomatic derivability.
+- Sequent Calculus repairs four exchange-side labels, two omitted De Morgan
+  negations, a mismatched-context conjunction proof, two soundness sequents,
+  and two proof-system descriptions.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

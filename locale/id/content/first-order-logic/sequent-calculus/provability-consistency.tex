@@ -1,0 +1,132 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{seq}{prv}}
+      {\olfileid[id]{pl}{seq}{prv}}
+
+\olsection{\usetoken{S}{derivability} dan Konsistensi}
+
+Sekarang kita akan membuktikan sejumlah sifat relasi !!{derivability}.
+Sifat-sifat tersebut menarik secara mandiri, tetapi masing-masing juga
+akan berperan dalam pembuktian teorema kelengkapan.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Jika $\Gamma \Proves !A$ dan $\Gamma \cup \{!A\}$ tak konsisten,
+  maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+Terdapat himpunan berhingga $\Gamma_0$ dan $\Gamma_1 \subseteq \Gamma$
+sedemikian sehingga $\Log{LK}$ !!{derive} $\Gamma_0 \Sequent !A$ dan
+$!A, \Gamma_1 \Sequent \quad$. Misalkan $\Log{LK}$-!!{derivation} untuk
+$\Gamma_0 \Sequent !A$ adalah~$\pi_0$ dan $\Log{LK}$-!!{derivation}
+untuk $\Gamma_1, !A \Sequent \quad$ adalah~$\pi_1$. Kita kemudian dapat
+!!{derive}
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ \Gamma_0 \fCenter !A $
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A, \Gamma_1 \fCenter $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0,\Gamma_1 \fCenter $
+\end{prooftree}
+
+Karena $\Gamma_0 \subseteq \Gamma$ dan $\Gamma_1 \subseteq \Gamma$,
+maka $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$, sehingga $\Gamma$ tak
+konsisten.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ jika dan hanya jika $\Gamma \cup \{\lnot !A\}$
+tak konsisten.
+\end{prop}
+
+\begin{proof}
+Pertama, andaikan $\Gamma \Proves !A$, yakni terdapat
+!!a{derivation}~$\pi_0$ untuk $\Gamma \Sequent !A$. Dengan menambahkan
+aturan $\LeftR{\lnot}$, kita memperoleh !!a{derivation} untuk
+$\lnot !A, \Gamma \Sequent \quad$, yakni $\Gamma \cup \{\lnot !A\}$
+tak konsisten.
+
+Jika $\Gamma \cup \{\lnot !A\}$ tak konsisten, terdapat
+!!a{derivation}~$\pi_1$ untuk $\lnot !A, \Gamma \Sequent \quad$.
+Berikut ini adalah !!a{derivation} untuk $\Gamma \Sequent !A$:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\fCenter !A, \lnot !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\lnot !A, \Gamma \fCenter$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma \fCenter !A$
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+Buktikan bahwa $\Gamma \Proves \lnot !A$ jika dan hanya jika
+$\Gamma \cup \{!A\}$ tak konsisten.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Jika $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$, maka $\Gamma$
+  tak konsisten.
+\end{prop}
+
+\begin{proof}
+  Andaikan $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$. Maka terdapat
+  !!a{derivation}~$\pi$ untuk suatu sekuen $\Gamma_0 \Sequent !A$.
+  Sekuen $\lnot !A, \Gamma_0 \Sequent \quad$ juga !!{derivable}:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi$}
+    \Deduce$\Gamma_0 \fCenter !A$
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, !A \fCenter$
+    \RightLabel{\LeftR{\Exchange}}
+    \UnaryInf$!A, \lnot !A \fCenter$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_0, \lnot !A \fCenter$
+  \end{prooftree}
+  Karena $\lnot !A \in \Gamma$ dan $\Gamma_0 \subseteq \Gamma$, hal ini
+  menunjukkan bahwa $\Gamma$ tak konsisten.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Jika $\Gamma \cup \{!A\}$ dan $\Gamma \cup \{\lnot !A\}$ keduanya
+  tak konsisten, maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+Terdapat himpunan berhingga $\Gamma_0 \subseteq \Gamma$ dan
+$\Gamma_1 \subseteq \Gamma$, serta $\Log{LK}$-!!{derivation} $\pi_0$
+dan $\pi_1$ masing-masing untuk $!A, \Gamma_0 \Sequent \quad$ dan
+$\lnot !A, \Gamma_1 \Sequent \quad$. Kita kemudian dapat !!{derive}
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ !A, \Gamma_0 \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \Gamma_0 \fCenter \lnot !A$
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lnot !A, \Gamma_1 \fCenter  $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0, \Gamma_1 \fCenter $
+\end{prooftree}
+Karena $\Gamma_0 \subseteq \Gamma$ dan $\Gamma_1 \subseteq \Gamma$,
+maka $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. Jadi, $\Gamma$ tak
+konsisten.
+\end{proof}
+
+\end{document}

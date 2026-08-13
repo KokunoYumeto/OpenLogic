@@ -1,0 +1,411 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness.tex
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{seq}{sou}}
+      {\olfileid[id]{pl}{seq}{sou}}
+
+\olsection{Kesahihan}
+
+\begin{explain}
+Sebuah sistem !!{derivation}, seperti kalkulus sekuen, disebut
+\emph{sahih} jika sistem tersebut tidak dapat !!{derive} hal-hal yang
+sebenarnya tidak berlaku. Dengan demikian, kesahihan merupakan sejenis
+sifat keselamatan yang dijamin bagi sistem !!{derivation}. Bergantung pada sifat teori-bukti
+yang sedang dibahas, kita ingin mengetahui, misalnya, bahwa
+\begin{enumerate}
+\item setiap~$!A$ yang !!{derivable} bersifat
+  \iftag{FOL}{valid}{tautologis};
+\item jika !!a{sentence} !!{derivable} dari beberapa kalimat lain,
+  kalimat itu juga merupakan konsekuensi dari kalimat-kalimat tersebut;
+\item jika suatu himpunan !!{sentence} tak konsisten, himpunan itu tak
+  dapat dipenuhi.
+\end{enumerate}
+Ini adalah sifat-sifat penting dari suatu sistem !!{derivation}. Jika salah
+satunya tidak berlaku, sistem !!{derivation} tersebut cacat---sistem itu
+akan !!{derive} terlalu banyak. Oleh karena itu, membuktikan kesahihan
+suatu sistem !!{derivation} sangatlah penting.
+
+Karena semua sifat teori-bukti tersebut didefinisikan melalui
+!!{derivability} sekuen-sekuen tertentu dalam kalkulus sekuen, pembuktian
+(1)--(3) di atas memerlukan pembuktian sesuatu mengenai sifat semantik
+sekuen yang !!{derivable}. Pertama-tama kita akan mendefinisikan apa
+artinya suatu sekuen \emph{valid}, lalu menunjukkan bahwa setiap sekuen
+yang !!{derivable} bersifat valid. (1)--(3) kemudian mengikuti sebagai
+akibat dari hasil tersebut.
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}~$\Struct M$}{!!^a{valuation}~$\pAssign{v}$}
+\emph{memenuhi} sekuen $\Gamma \Sequent \Delta$ jika dan hanya jika
+entah $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ untuk suatu
+$!A \in \Gamma$, atau $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ untuk suatu
+$!A \in \Delta$.
+
+Suatu sekuen \emph{valid} jika dan hanya jika setiap
+\iftag{FOL}{!!{structure}~$\Struct M$}{!!{valuation}~$\pAssign{v}$}
+memenuhinya.
+\end{defn}
+
+\begin{thm}[Kesahihan]
+\ollabel{thm:sequent-soundness} Jika $\Log{LK}$ !!{derive}
+$\Theta \Sequent \Xi$, maka $\Theta \Sequent \Xi$ valid.
+\end{thm}
+
+\begin{proof}
+Misalkan $\pi$ adalah !!a{derivation} untuk $\Theta \Sequent \Xi$.
+Kita menggunakan induksi pada banyaknya inferensi~$n$ dalam~$\pi$.
+
+Jika banyaknya inferensi adalah~$0$, maka $\pi$ hanya terdiri atas suatu
+sekuen awal. Setiap sekuen awal $!A \Sequent !A$ jelas valid, sebab untuk
+setiap \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}, berlaku salah satu dari
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ atau
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+
+Jika banyaknya inferensi lebih besar daripada~0, kita membedakan kasus
+menurut jenis inferensi paling bawah. Berdasarkan hipotesis induksi, kita
+dapat mengandaikan bahwa premis-premis inferensi tersebut valid, sebab
+banyaknya inferensi dalam !!{derivation} setiap premis lebih kecil
+daripada~$n$.
+
+Pertama, kita membahas inferensi-inferensi yang mungkin dengan hanya satu
+premis.
+\begin{enumerate}
+\item Inferensi terakhir adalah pelemahan. Maka $\Theta \Sequent \Xi$
+  adalah $!A, \Gamma \Sequent \Delta$ (jika inferensi terakhirnya
+  \LeftR{\Weakening}) atau $\Gamma \Sequent \Delta, !A$ (jika
+  inferensi terakhirnya \RightR{\Weakening}), dan !!{derivation} itu
+  berakhir dengan salah satu bentuk
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Weakening}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof\qquad\bottomAlignProof
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A$
+  \end{prooftree}
+  Menurut hipotesis induksi, $\Gamma \Sequent \Delta$ valid; artinya,
+  untuk setiap
+  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+  entah terdapat suatu $!C \in \Gamma$ sedemikian sehingga
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, atau terdapat suatu
+  $!C \in \Delta$ sedemikian sehingga
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.
+
+  Jika $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ untuk suatu
+  $!C \in \Gamma$, maka $!C \in \Theta$ juga karena
+  $\Theta = !A, \Gamma$, sehingga
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ untuk suatu $!C \in \Theta$.
+  Demikian pula, jika $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ untuk suatu
+  $!C \in \Delta$, karena $!C \in \Xi$, maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ untuk suatu $!C \in \Xi$.
+  Akibatnya, $\Theta \Sequent \Xi$ valid.
+\item Inferensi terakhir adalah \LeftR{\lnot}. Maka premis inferensi
+  terakhir adalah $\Gamma \Sequent \Delta, !A$ dan kesimpulannya
+  $\lnot !A, \Gamma \Sequent \Delta$; dengan kata lain,
+  !!{derivation} itu berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, \Gamma \fCenter \Delta$
+  \end{prooftree}
+  serta $\Theta = \lnot !A, \Gamma$ dan $\Xi = \Delta$.
+
+  Hipotesis induksi memberi tahu kita bahwa
+  $\Gamma \Sequent \Delta, !A$ valid; artinya, untuk setiap
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}, entah (a) untuk suatu
+  $!C \in \Gamma$, $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, atau
+  (b) untuk suatu $!C \in \Delta$,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, atau (c)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Kita hendak menunjukkan bahwa
+  $\Theta \Sequent \Xi$ juga valid. Misalkan
+  \iftag{FOL}{$\Struct{M}$ adalah !!a{structure}}{$\pAssign{v}$ adalah
+    !!a{valuation}}. Jika (a) berlaku, terdapat $!C \in \Gamma$
+  sedemikian sehingga $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, dan
+  $!C \in \Theta$ juga. Jika (b) berlaku, terdapat $!C \in \Delta$
+  sedemikian sehingga $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, dan
+  $!C \in \Xi$ juga. Terakhir, jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, maka
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$. Karena
+  $\lnot !A \in \Theta$, terdapat $!C \in \Theta$ sedemikian sehingga
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Akibatnya,
+  $\Theta \Sequent \Xi$ valid.
+\item Inferensi terakhir adalah \RightR{\lnot}: Latihan.
+\item Inferensi terakhir adalah \LeftR{\land}. Ada dua varian:
+  $!A \land !B$ dapat diinferensikan di sisi kiri dari $!A$ atau dari
+  $!B$ di sisi kiri premis. Dalam kasus pertama, $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+  \end{prooftree}
+  serta $\Theta = !A \land !B, \Gamma$ dan $\Xi = \Delta$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct M$}{!!a{valuation}~$\pAssign{v}$}.
+  Karena menurut hipotesis induksi $!A, \Gamma \Sequent \Delta$ valid,
+  berlaku salah satu dari (a)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$, (b)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ untuk suatu $!C \in \Gamma$,
+  atau (c)~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ untuk suatu
+  $!C \in \Delta$. Dalam kasus (a),
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \land !B}$, sehingga terdapat
+  $!C \in \Theta$ (yaitu $!A \land !B$) sedemikian sehingga
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Dalam kasus (b), terdapat
+  $!C \in \Gamma$ sedemikian sehingga
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$, dan $!C \in \Theta$ juga.
+  Dalam kasus (c), terdapat $!C \in \Delta$ sedemikian sehingga
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$, dan $!C \in \Xi$ juga karena
+  $\Xi = \Delta$. Jadi, dalam setiap kasus,
+  \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} memenuhi
+  $!A \land !B, \Gamma \Sequent \Delta$. Karena
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} dipilih sebarang,
+  $!A \land !B, \Gamma \Sequent \Delta$ valid. Kasus ketika
+  $!A \land !B$ diinferensikan dari $!B$ ditangani dengan cara yang sama,
+  dengan mengganti $!A$ menjadi $!B$.
+\item Inferensi terakhir adalah \RightR{\lor}. Ada dua varian:
+  $!A \lor !B$ dapat diinferensikan di sisi kanan dari $!A$ atau dari
+  $!B$ di sisi kanan premis. Dalam kasus pertama, $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
+  \end{prooftree}
+  Sekarang $\Theta = \Gamma$ dan $\Xi = \Delta, !A \lor !B$.
+  Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Karena $\Gamma \Sequent \Delta, !A$ valid, berlaku salah satu dari
+  (a) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, (b)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ untuk suatu $!C \in \Gamma$,
+  atau (c)~$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ untuk suatu
+  $!C \in \Delta$. Dalam kasus (a),
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. Dalam kasus (b),
+  terdapat $!C \in \Gamma$ sedemikian sehingga
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Dalam kasus (c), terdapat
+  $!C \in \Delta$ sedemikian sehingga
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Jadi, dalam setiap kasus,
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi
+  $\Gamma \Sequent \Delta, !A \lor !B$, yakni $\Theta \Sequent \Xi$.
+  Karena \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} dipilih sebarang,
+  $\Theta \Sequent \Xi$ valid. Kasus ketika $!A \lor !B$
+  diinferensikan dari $!B$ ditangani dengan cara yang sama, dengan
+  mengganti $!A$ menjadi $!B$.
+\item Inferensi terakhir adalah \RightR{\lif}. Maka $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A, \Gamma \fCenter \Delta, !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A \lif !B$
+  \end{prooftree}
+  Sekali lagi, hipotesis induksi menyatakan bahwa premisnya valid; kita
+  hendak menunjukkan bahwa kesimpulannya juga valid. Misalkan
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} dipilih sebarang. Karena
+  $!A, \Gamma \Sequent \Delta, !B$ valid, sedikitnya satu dari kasus
+  berikut berlaku: (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$,
+  (b) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$,
+  (c) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ untuk suatu
+  $!C \in \Gamma$, atau (d) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$
+  untuk suatu $!C \in \Delta$. Dalam kasus (a) dan (b),
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$, sehingga terdapat
+  suatu $!C \in \Delta, !A \lif !B$ sedemikian sehingga
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Dalam kasus (c), untuk suatu
+  $!C \in \Gamma$, $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Dalam
+  kasus (d), untuk suatu $!C \in \Delta$,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Dalam setiap kasus,
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi
+  $\Gamma \Sequent \Delta, !A \lif !B$. Karena
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} dipilih sebarang,
+  $\Gamma \Sequent \Delta, !A \lif !B$ valid. \iftag{FOL}{%
+\item Inferensi terakhir adalah \LeftR{\lforall}. Maka terdapat
+  !!a{formula}~$!A(x)$ dan suatu suku tertutup~$t$ sedemikian sehingga
+  $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A(t), \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x)], \Gamma \fCenter \Delta$
+  \end{prooftree}
+  Kita hendak menunjukkan bahwa kesimpulan
+  $\lforall[x][!A(x)], \Gamma \Sequent \Delta$ valid. Perhatikan
+  !!a{structure}~$\Struct M$. Karena premis
+  $!A(t), \Gamma \Sequent \Delta$ valid, berlaku salah satu dari
+  (a) $\Sat/{M}{!A(t)}$, (b) $\Sat/{M}{!C}$ untuk suatu
+  $!C \in \Gamma$, atau (c)~$\Sat{M}{!C}$ untuk suatu $!C \in \Delta$.
+  Dalam kasus (a), menurut \olref[syn][sem]{prop:quant-terms}, jika
+  $\Sat{M}{\lforall[x][!A(x)]}$, maka $\Sat{M}{!A(t)}$. Karena
+  $\Sat/{M}{!A(t)}$, maka $\Sat/{M}{\lforall[x][!A(x)]}$. Dalam kasus
+  (b) dan (c), $\Struct{M}$ juga memenuhi
+  $\lforall[x][!A(x)], \Gamma \Sequent \Delta$. Karena $\Struct M$
+  dipilih sebarang, $\lforall[x][!A(x)], \Gamma \Sequent \Delta$ valid.
+\item Inferensi terakhir adalah \RightR{\lexists}: Latihan.
+\item Inferensi terakhir adalah \RightR{\lforall}. Maka terdapat
+  !!a{formula}~$!A(x)$ dan !!a{constant}~$a$ sedemikian sehingga $\pi$
+  berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A(a)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+  \end{prooftree}
+  dengan syarat variabel eigen terpenuhi, yakni $a$ tidak muncul dalam
+  $!A(x)$, $\Gamma$, maupun $\Delta$. Menurut hipotesis induksi, premis
+  inferensi terakhir itu valid. Kita harus menunjukkan bahwa
+  kesimpulannya juga valid, yakni bahwa untuk sebarang
+  !!{structure}~$\Struct M$, berlaku salah satu dari (a)
+  $\Sat{M}{\lforall[x][!A(x)]}$, (b) $\Sat/{M}{!C}$ untuk suatu
+  $!C \in \Gamma$, atau (c)~$\Sat{M}{!C}$ untuk suatu $!C \in \Delta$.
+
+  Andaikan $\Struct{M}$ adalah !!{structure} sebarang. Jika (b) atau
+  (c) berlaku, pembuktian selesai; jadi andaikan keduanya tidak berlaku:
+  untuk setiap $!C \in \Gamma$, $\Sat{M}{!C}$, dan untuk setiap
+  $!C \in \Delta$, $\Sat/{M}{!C}$. Kita harus menunjukkan bahwa (a)
+  berlaku, yakni $\Sat{M}{\lforall[x][!A(x)]}$. Menurut
+  \olref[syn][ass]{prop:sat-quant}, cukup ditunjukkan bahwa
+  $\Sat{M}{!A(x)}[s]$ untuk setiap penugasan variabel~$s$. Jadi, misalkan
+  $s$ adalah penugasan variabel sebarang. Perhatikan struktur~$\Struct{M'}$
+  yang sama persis dengan~$\Struct{M}$ kecuali
+  $\Assign{a}{M'} = s(x)$. Menurut
+  \olref[syn][ext]{cor:extensionality-sent}, untuk setiap $!C \in \Gamma$,
+  $\Sat{M'}{!C}$ karena $a$ tidak muncul dalam~$\Gamma$, dan untuk setiap
+  $!C \in \Delta$, $\Sat/{M'}{!C}$. Namun, premisnya valid, sehingga
+  $\Sat{M'}{!A(a)}$. Menurut
+  \olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M'}{!A(a)}[s]$, sebab
+  $!A(a)$ adalah sebuah kalimat. Sekarang $\varAssign{s}{s}{x}$ dengan
+  $s(x) = \Value{a}{M'}[s]$, sebab kita telah mendefinisikan
+  $\Struct{M'}$ tepat dengan cara ini. Jadi,
+  \olref[syn][ext]{prop:ext-formulas} dapat diterapkan dan kita memperoleh
+  $\Sat{M'}{!A(x)}[s]$. Karena $a$ tidak muncul dalam~$!A(x)$, menurut
+  \olref[syn][ext]{prop:extensionality}, $\Sat{M}{!A(x)}[s]$. Karena
+  $s$ dipilih sebarang, kita telah menyelesaikan pembuktian bahwa
+  $\Sat{M}{!A(x)}[s]$ untuk semua penugasan variabel.
+\item Inferensi terakhir adalah \LeftR{\lexists}: Latihan.
+}{}
+\end{enumerate}
+Sekarang mari kita bahas inferensi-inferensi yang mungkin dengan dua premis.
+\begin{enumerate}
+\item Inferensi terakhir adalah aturan potong. Maka $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$!A, \Pi \fCenter \Lambda$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+  \end{prooftree}
+  Misalkan \iftag{FOL}{$\Struct{M}$ adalah !!a{structure}}{$\pAssign{v}$
+    adalah !!a{valuation}}. Menurut hipotesis induksi, kedua premis valid,
+  sehingga \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi kedua
+  premis. Kita membedakan dua kasus: (a)
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ dan (b)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Dalam kasus (a), agar
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi premis kiri, ia
+  harus memenuhi $\Gamma \Sequent \Delta$. Namun, dengan demikian ia juga
+  memenuhi kesimpulannya. Dalam kasus (b), agar
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi premis kanan, ia
+  harus memenuhi $\Pi \Sequent \Lambda$. Sekali lagi,
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi kesimpulannya.
+\item Inferensi terakhir adalah \RightR{\land}. Maka $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !B$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
+  \end{prooftree}
+  Perhatikan \iftag{FOL}{!!a{structure}~$\Struct M$}{!!a{valuation}~$\pAssign{v}$}.
+  Jika \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} memenuhi
+  $\Gamma \Sequent \Delta$, pembuktian selesai. Jadi, andaikan ia tidak
+  memenuhinya. Karena $\Gamma \fCenter \Delta, !A$ valid menurut hipotesis
+  induksi, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Demikian pula, karena
+  $\Gamma \Sequent \Delta, !B$ valid,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. Namun, dengan demikian
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$.
+\item Inferensi terakhir adalah \LeftR{\lor}: Latihan.
+\item Inferensi terakhir adalah \LeftR{\lif}. Maka $\pi$ berakhir dengan
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$!B, \Pi \fCenter \Lambda$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+  \end{prooftree}
+  Sekali lagi, perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$},
+  dan andaikan \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} tidak memenuhi
+  $\Gamma, \Pi \Sequent \Delta, \Lambda$. Kita harus menunjukkan bahwa
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. Jika
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} tidak memenuhi
+  $\Gamma, \Pi \Sequent \Delta, \Lambda$, ia tidak memenuhi baik
+  $\Gamma \Sequent \Delta$ maupun $\Pi \Sequent \Lambda$. Karena
+  $\Gamma \Sequent \Delta, !A$ valid, kita memperoleh
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Karena
+  $!B, \Pi \Sequent \Lambda$ valid, kita memperoleh
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Namun, dengan demikian
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$, tepat seperti yang
+  hendak ditunjukkan.
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Lengkapi pembuktian \olref[fol][seq][sou]{thm:sequent-soundness}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Lengkapi pembuktian \olref[pl][seq][sou]{thm:sequent-soundness}.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Jika $\Proves !A$, maka $!A$ \iftag{FOL}{valid}{merupakan tautologi}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+Jika $\Gamma \Proves !A$, maka $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+Jika $\Gamma \Proves !A$, maka untuk suatu himpunan bagian berhingga
+$\Gamma_0 \subseteq \Gamma$, terdapat !!a{derivation} untuk
+$\Gamma_0 \Sequent !A$. Menurut \olref{thm:sequent-soundness}, setiap
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+entah membuat suatu $!B \in \Gamma_0$ salah atau membuat $!A$ benar.
+Jadi, jika $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, maka
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ juga.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Jika $\Gamma$ dapat dipenuhi, maka himpunan tersebut konsisten.
+\end{cor}
+
+\begin{proof}
+Kita membuktikan kontraposisinya. Andaikan $\Gamma$ tidak konsisten.
+Maka terdapat $\Gamma_0 \subseteq \Gamma$ yang berhingga dan
+!!a{derivation} untuk $\Gamma_0 \Sequent \quad$. Menurut
+\olref{thm:sequent-soundness}, $\Gamma_0 \Sequent \quad$ valid. Dengan
+kata lain, untuk setiap
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+terdapat $!C \in \Gamma_0$ sedemikian sehingga
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$; dan karena
+$\Gamma_0 \subseteq \Gamma$, $!C$ tersebut juga berada dalam~$\Gamma$.
+Jadi, tidak ada \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} yang memenuhi
+~$\Gamma$, dan $\Gamma$ tidak dapat dipenuhi.
+\end{proof}
+
+\end{document}

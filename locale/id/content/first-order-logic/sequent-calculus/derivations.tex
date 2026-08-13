@@ -1,0 +1,125 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{seq}{der}}
+      {\olfileid[id]{pl}{seq}{der}}
+
+\olsection{\usetoken{P}{derivation}}
+
+\begin{explain}
+Kita telah menjelaskan bentuk sekuen awal dan memberikan aturan-aturan
+inferensi. !!^{derivation}s dalam kalkulus sekuen dibangkitkan secara
+induktif dari keduanya: setiap !!{derivation} merupakan sekuen awal itu
+sendiri, atau terdiri atas satu atau dua !!{derivation}s yang diikuti oleh
+suatu inferensi.
+\end{explain}
+
+\begin{defn}[!!^{derivation} $\Log{LK}$]
+Sebuah \emph{$\Log{LK}$-!!{derivation}} dari sekuen~$S$ adalah pohon
+berhingga yang terdiri atas sekuen-sekuen dan memenuhi syarat berikut:
+\begin{enumerate}
+\item Sekuen-sekuen paling atas pada pohon tersebut merupakan sekuen awal.
+\item Sekuen paling bawah pada pohon tersebut adalah~$S$.
+\item Setiap sekuen pada pohon tersebut selain $S$ merupakan premis dari
+  penerapan aturan inferensi yang benar, dan kesimpulan aturan itu berada
+  tepat di bawah sekuen tersebut pada pohon.
+\end{enumerate}
+Kita lalu mengatakan bahwa $S$ adalah \emph{sekuen akhir} dari
+!!{derivation} tersebut dan bahwa $S$ \emph{!!{derivable} dalam
+$\Log{LK}$} (atau $\Log{LK}$-!!{derivable}).
+\end{defn}
+
+\begin{ex}
+Setiap sekuen awal, misalnya $!C \Sequent !C$, merupakan
+!!a{derivation}. Kita dapat memperoleh !!a{derivation} baru darinya
+dengan menerapkan, misalnya, aturan $\LeftR{\Weakening}$,
+\begin{prooftree}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\end{prooftree}
+Namun, aturan tersebut dimaksudkan untuk berlaku umum: kita dapat
+mengganti $!A$ dalam aturan itu dengan sebarang !!{sentence}, misalnya
+juga dengan~$!D$. Jika premisnya dicocokkan dengan sekuen awal kita
+$!C \Sequent !C$, ini berarti $\Gamma$ dan $\Delta$ masing-masing
+hanyalah~$!C$, sehingga kesimpulannya adalah $!D, !C \Sequent !C$.
+Jadi, berikut ini merupakan !!a{derivation}:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\end{prooftree}
+Sekarang kita dapat menerapkan aturan lain, misalnya
+$\LeftR{\Exchange}$, yang memungkinkan kita menukar dua !!{sentence}s
+di sebelah kiri. Jadi, berikut ini juga merupakan !!a{derivation} yang
+benar:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\end{prooftree}
+Dalam penerapan aturan ini, yang diberikan sebagai
+\begin{prooftree}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta,$
+\end{prooftree}
+$\Gamma$ dan $\Pi$ sama-sama kosong, $\Delta$ adalah $!C$, dan peran
+$!A$ serta $!B$ masing-masing dimainkan oleh $!D$ dan~$!C$. Dengan cara
+yang hampir sama, kita juga melihat bahwa
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\end{prooftree}
+merupakan !!a{derivation}. Sekarang kita dapat mengambil kedua
+!!{derivation}s ini dan menggabungkannya dengan $\RightR{\land}$. Aturan
+tersebut adalah
+\begin{prooftree}
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\end{prooftree}
+Dalam kasus kita, premis-premisnya harus cocok dengan sekuen terakhir
+dari !!{derivation}s yang berakhir pada premis-premis tersebut. Artinya,
+$\Gamma$ adalah $!C, !D$, $\Delta$ kosong, $!A$ adalah $!C$, dan $!B$
+adalah $!D$. Jadi, agar inferensi itu benar, kesimpulannya ialah $!C, !D
+\Sequent !C \land !D$.
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !C \land !D $
+\end{prooftree}
+Tentu saja, kita juga dapat membalik urutan premis-premisnya; dalam hal
+itu $!A$ adalah $!D$ dan $!B$ adalah~$!C$.
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !D \land !C $
+\end{prooftree}
+\end{ex}
+
+\end{document}

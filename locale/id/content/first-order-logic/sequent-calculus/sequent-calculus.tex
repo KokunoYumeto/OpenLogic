@@ -1,0 +1,57 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter[id]{fol}{seq}{Kalkulus Sekuen}}
+      {\olchapter[id]{pl}{seq}{Kalkulus Sekuen}}
+
+\begin{editorial}
+  Bab ini menyajikan kalkulus sekuen standar LK karya Gentzen untuk
+  logika orde pertama klasik. Bab ini masih memerlukan lebih banyak
+  contoh dan latihan. Untuk menyertakan atau mengecualikan materi yang
+  relevan dengan kalkulus sekuen sebagai sistem pembuktian, gunakan tag
+  ``prfLK''.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{structural-rules}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

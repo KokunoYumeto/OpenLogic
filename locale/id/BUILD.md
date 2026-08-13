@@ -466,3 +466,67 @@ environment/reference heading, named English proof-system fallback, hard-coded
 at 144 dpi and inspected. No clipping, overlap, blank content page, broken
 glyph, lost formula, damaged proof tree, or margin loss was found. The exact
 next cursor is OLP-0069.
+
+## Sequent Calculus checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The gap-free boundary extends through `OLP-0083`. Every source hash equals its
+row in the frozen 722-file closure manifest. The durable replay command is:
+
+```powershell
+& 'locale\id\qa_sequent_calculus_batch_replay.ps1'
+```
+
+Its final result is:
+
+```text
+SEQUENT_CALCULUS_BATCH_REPLAY_OK files=15 checks=248 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 next=OLP-0084
+```
+
+The replay binds 3,690 commands, 358 environment markers, 180 localization
+tokens, 22 labels, 15 references, 14 imports, 1,009 mathematical skeletons,
+and 58 proof/derivation blocks. Seven source-correction classes comprise twelve
+exact occurrences. An independent read-only semantic replay found no remaining
+translation-origin omission, reader-facing English, polarity, quantifier,
+scope, altered exercise, mathematical, or material-register defect. Full
+dispositions and hashes are in
+`..\_control\OPENLOGIC_SEQUENT_CALCULUS_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean bounded build
+
+Run from `locale\id`:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error sequent-calculus-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `sequent-calculus-id.tex` | `locale/id/sequent-calculus-id.pdf` | 26 | 212,888 | `9990d74508d6f1e5eee911001c5ea9417b4bc37969b6f8344e0682bab166613f` |
+
+The final log has zero fatal error, undefined control sequence/reference/
+citation, multiply defined label, underfull box, or missing glyph. Seven small
+overfull boxes remain, maximum 5.95644 pt; render inspection found no visible
+loss. `pdfinfo` confirms 26 letter-size pages, no encryption or forms. Every
+font is embedded; the one Type 3 mathematical font renders correctly.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 58,371 bytes and 7,935 whitespace-delimited words.
+Searches found zero `??`, `Undefined`, English environment/reference heading,
+localization-token fallback, or reader-facing English residue. All 26 pages
+were rendered at 144 dpi and inspected at original render resolution. No
+clipping, overlap, blank content page, broken glyph, lost formula, cutoff proof
+tree, damaged hyperlink, or margin loss was found.
+
+After final source-whitespace cleanup, a fresh 144-dpi render of all 26 pages
+was compared byte-for-byte with the inspected render: all 26 PNG pairs were
+identical. The PDF SHA above binds the final rebuild bytes.
+
+TeXcount 3.1.1 reports 5,455 English-source and 4,912 Indonesian words for this
+batch, and 37,187 versus 33,962 across all eighty-three admitted files. The
+exact next cursor is `OLP-0084`,
+`content/first-order-logic/natural-deduction/natural-deduction.tex`.

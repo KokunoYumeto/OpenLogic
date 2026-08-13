@@ -1,0 +1,177 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\begin{editorial}
+  Bagian ini menghimpun definisi relasi keterbuktian dan konsistensi
+  untuk kalkulus sekuen.
+\end{editorial}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{seq}{ptn}}
+      {\olfileid[id]{pl}{seq}{ptn}}
+
+\olsection{Gagasan Teori-Bukti}
+
+\begin{explain}
+Sebagaimana kita telah mendefinisikan sejumlah gagasan semantik penting
+(validitas, perikutan, keterpenuhan), kini kita mendefinisikan
+\emph{gagasan teori-bukti} yang bersesuaian. Gagasan-gagasan ini tidak
+didefinisikan dengan mengacu pada terpenuhinya !!{sentence} di dalam
+!!{structure}, melainkan dengan mengacu pada !!{derivability} atau
+!!{nonderivability} sekuen-sekuen tertentu. Penemuan bahwa gagasan-gagasan
+tersebut berimpit merupakan penemuan penting. Keberimpitan itu adalah isi
+\emph{teorema kesahihan} dan \emph{teorema kelengkapan}.
+\end{explain}
+
+\begin{defn}[Teorema]
+!!^a{sentence}~$!A$ adalah sebuah \emph{teorema} jika terdapat
+!!a{derivation} dalam~$\Log{LK}$ untuk sekuen $\quad \Sequent !A$.
+Kita menulis $\Proves !A$ jika $!A$ merupakan teorema dan
+$\Proves/ !A$ jika bukan.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence}~$!A$ \emph{!!{derivable} dari} suatu himpunan
+!!{sentence}~$\Gamma$, $\Gamma \Proves !A$, jika dan hanya jika terdapat
+himpunan bagian berhingga~$\Gamma_0 \subseteq \Gamma$ dan suatu barisan
+$\Gamma_0'$ dari !!{sentence} di~$\Gamma_0$ sedemikian sehingga
+$\Log{LK}$ !!{derive} $\Gamma_0' \Sequent !A$. Jika $!A$ tidak
+!!{derivable} dari $\Gamma$, kita menulis $\Gamma \Proves/ !A$.
+\end{defn}
+
+Karena adanya aturan kontraksi, pelemahan, dan pertukaran, urutan dan
+banyaknya !!{sentence} di dalam~$\Gamma_0'$ tidaklah penting: jika sekuen
+$\Gamma_0' \Sequent !A$ !!{derivable}, maka begitu pula
+$\Gamma_0'' \Sequent !A$ untuk setiap $\Gamma_0''$ yang memuat
+!!{sentence} yang sama dengan~$\Gamma_0'$. Sebagai contoh, jika
+$\Gamma_0 = \{!B, !C\}$, maka baik $\Gamma_0' = \tuple{!B, !B, !C}$
+maupun $\Gamma_0'' = \tuple{!C, !C, !B}$ merupakan barisan yang hanya
+memuat !!{sentence} di~$\Gamma_0$. Jika sekuen yang memuat salah satu
+barisan itu !!{derivable}, maka demikian pula sekuen yang memuat barisan
+lainnya, misalnya:
+\begin{prooftree}
+  \AxiomC{}
+  \Deduce$!B, !B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Exchange}}
+  \UnaryInf$!C, !B \fCenter !A$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!C, !C, !B \fCenter !A$
+\end{prooftree}
+Mulai sekarang, jika $\Gamma_0$ adalah himpunan berhingga !!{sentence},
+kita akan menggunakan $\Gamma_0 \Sequent !A$ untuk menyatakan sebarang
+sekuen yang antesedennya merupakan barisan !!{sentence} di~$\Gamma_0$,
+serta secara tersirat menyertakan kontraksi, pertukaran, dan pelemahan
+jika diperlukan.
+
+\begin{defn}[Konsistensi]
+Suatu himpunan kalimat~$\Gamma$ \emph{tak konsisten} jika dan hanya jika
+terdapat himpunan bagian berhingga~$\Gamma_0 \subseteq \Gamma$ sedemikian
+sehingga $\Log{LK}$ !!{derive} $\Gamma_0 \Sequent \quad$. Jika $\Gamma$
+tidak tak konsisten, yakni jika untuk setiap $\Gamma_0 \subseteq \Gamma$
+yang berhingga, $\Log{LK}$ tidak !!{derive} $\Gamma_0 \Sequent \quad$,
+kita menyebutnya \emph{konsisten}.
+\end{defn}
+
+\begin{prop}[Refleksivitas]
+\ollabel{prop:reflexivity}
+Jika $!A \in \Gamma$, maka $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+Sekuen awal $!A \Sequent !A$ !!{derivable}, dan $\{!A\}
+\subseteq \Gamma$.
+\end{proof}
+
+\begin{prop}[Monotonisitas]
+\ollabel{prop:monotonicity}
+Jika $\Gamma \subseteq \Delta$ dan $\Gamma \Proves !A$, maka
+$\Delta \Proves !A$.
+\end{prop}
+
+\begin{proof}
+Andaikan $\Gamma \Proves !A$, yakni terdapat $\Gamma_0 \subseteq
+\Gamma$ yang berhingga sedemikian sehingga $\Gamma_0 \Sequent !A$
+!!{derivable}. Karena $\Gamma \subseteq \Delta$, maka $\Gamma_0$ juga
+merupakan himpunan bagian berhingga dari~$\Delta$. Dengan demikian,
+!!{derivation} $\Gamma_0 \Sequent !A$ itu juga menunjukkan
+$\Delta \Proves !A$.
+\end{proof}
+
+\begin{prop}[Transitivitas]
+\ollabel{prop:transitivity}
+Jika $\Gamma \Proves !A$ dan $\{!A\} \cup \Delta \Proves !B$, maka
+$\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+Jika $\Gamma \Proves !A$, terdapat $\Gamma_0 \subseteq \Gamma$ yang
+berhingga dan !!a{derivation}~$\pi_0$ untuk $\Gamma_0 \Sequent !A$.
+Jika $\{!A\} \cup \Delta \Proves !B$, maka untuk suatu himpunan bagian
+berhingga $\Delta_0 \subseteq \Delta$, terdapat !!a{derivation}~$\pi_1$
+untuk $!A, \Delta_0 \Sequent !B$. Perhatikan !!{derivation} berikut:
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{$\pi_0$}
+  \Deduce$\Gamma_0 \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!A, \Delta_0 \fCenter !B$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_0, \Delta_0 \fCenter !B$
+\end{prooftree}
+Karena $\Gamma_0 \cup \Delta_0 \subseteq \Gamma \cup \Delta$, hal ini
+menunjukkan $\Gamma \cup \Delta \Proves !B$.
+\end{proof}
+
+Perhatikan bahwa ini khususnya berarti: jika $\Gamma \Proves !A$ dan
+$!A \Proves !B$, maka $\Gamma \Proves !B$. Juga diperoleh bahwa jika
+$!A_1, \dots, !A_n \Proves !B$ dan $\Gamma \Proves !A_i$ untuk setiap
+$i$, maka $\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ tak konsisten jika dan hanya jika $\Gamma \Proves {!A}$ untuk
+setiap kalimat~$!A$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][seq][ptn]{prop:incons}.
+\end{prob}
+
+\begin{prop}[Kekompakan]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Jika $\Gamma \Proves !A$, maka terdapat himpunan bagian berhingga
+    $\Gamma_0 \subseteq \Gamma$ sedemikian sehingga
+    $\Gamma_0 \Proves !A$.
+  \item Jika setiap himpunan bagian berhingga dari~$\Gamma$ konsisten, maka
+    $\Gamma$ konsisten.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Jika $\Gamma \Proves !A$, maka terdapat himpunan bagian berhingga
+      $\Gamma_0 \subseteq \Gamma$ sedemikian sehingga sekuen
+      $\Gamma_0 \Sequent !A$ mempunyai !!a{derivation}. Akibatnya,
+      $\Gamma_0 \Proves !A$.
+    \item Jika $\Gamma$ tak konsisten, terdapat himpunan bagian berhingga
+      $\Gamma_0 \subseteq \Gamma$ sedemikian sehingga $\Log{LK}$
+      !!{derive} $\Gamma_0 \Sequent \quad$. Namun, dengan demikian
+      $\Gamma_0$ merupakan himpunan bagian berhingga dari~$\Gamma$ yang tak
+      konsisten.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

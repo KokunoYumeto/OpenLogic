@@ -1,0 +1,109 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{seq}{prq}
+
+\olsection{\usetoken{P}{derivation} dengan Kuantor}
+
+\begin{ex}
+Berikan sebuah $\Log{LK}$-!!{derivation} untuk sekuen
+$\lexists[x][\lnot !A(x)] \Sequent \lnot \lforall[x][!A(x)]$.
+
+Ketika menangani kuantor, kita harus memastikan bahwa syarat variabel
+eigen tidak dilanggar, dan kadang-kadang hal ini mengharuskan kita mengubah
+urutan pelaksanaan inferensi tertentu. Secara umum, sebaiknya kita mencoba
+menangani terlebih dahulu aturan-aturan yang tunduk pada syarat variabel
+eigen (aturan-aturan tersebut akan berada lebih bawah dalam pembuktian
+akhir). Sebaiknya kita juga melihat beberapa langkah ke depan dan mencoba
+menebak bentuk sekuen awalnya. Dalam kasus kita, bentuknya harus menyerupai
+$!A(a) \Sequent !A(a)$. Artinya, ketika ``membalik'' aturan kuantor, kita
+harus memilih suku yang sama---yang akan kita sebut $a$---untuk aturan
+$\lforall$ maupun $\lexists$. Jika kita memilih suku yang berbeda untuk
+setiap aturan, kita akan berakhir dengan bentuk seperti $!A(a) \Sequent
+!A(b)$, yang tentu saja tidak dapat diturunkan.
+
+Seperti biasa, kita mulai dengan menulis
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+Kita dapat menerapkan aturan \LeftR{\exists} atau aturan
+\RightR{\lnot}. Karena aturan \LeftR{\exists} tunduk pada syarat variabel
+eigen, sebaiknya aturan itu ditangani lebih awal, jadi kita terapkan aturan
+tersebut terlebih dahulu.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+Dengan menerapkan aturan \LeftR{\lnot} dan \RightR{\lnot} secara mundur,
+kita memperoleh
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x] !A(x)$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x] \lnot !A(x) \fCenter \lnot \lforall[x] !A(x)$
+\end{prooftree}
+Pada tahap ini, satu-satunya pilihan kita adalah menerapkan aturan
+\LeftR{\forall}. Karena aturan ini tidak tunduk pada pembatasan variabel
+eigen, kita dapat melanjutkan. Ingat bahwa kita ingin memperoleh sekuen
+awal (berbentuk $!A(a) \Sequent !A(a)$), jadi kita harus memilih $a$
+sebagai argumen bagi $!A$ ketika menerapkan aturan tersebut.
+\begin{prooftree}
+\Axiom$!A(a) \fCenter !A(a)$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][ \lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+Terutama ketika menangani kuantor, pada tahap ini penting untuk memeriksa
+kembali bahwa syarat variabel eigen tidak dilanggar. Karena satu-satunya
+aturan yang kita terapkan dan tunduk pada syarat variabel eigen adalah
+\LeftR{\exists}, sedangkan variabel eigen~$a$ tidak muncul dalam sekuen
+bawahnya (yakni sekuen akhir), ini merupakan !!a{derivation} yang benar.
+\end{ex}
+
+\begin{prob}
+Berikan !!{derivation}s untuk sekuen-sekuen berikut:
+\begin{enumerate}
+\item $\Sequent (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Sequent (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Sequent \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Sequent \lnot\lexists[x][!A(x)]$.
+\item $\Sequent \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Sequent \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Berikan !!{derivation}s untuk sekuen-sekuen berikut:
+\begin{enumerate}
+\item $\Sequent \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Sequent \lexists[y][(!A(y) \lif !B)]$.
+\item $\Sequent \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(Semua sekuen ini memerlukan aturan~$\RightR{\Contraction}$.)
+\end{prob}
+
+\end{document}

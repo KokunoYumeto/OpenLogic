@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **62 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0062`; unit berikutnya ialah `OLP-0063`,
-`content/first-order-logic/proof-systems/proof-systems.tex`.
+Status saat ini: **83 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0083`; unit berikutnya ialah `OLP-0084`,
+`content/first-order-logic/natural-deduction/natural-deduction.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -51,12 +51,12 @@ latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdfla
 latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/propositional-syntax-semantics-id.tex
 ```
 
-Checkpoint terbaru menghasilkan dua PDF bounded dengan total 13 halaman dan
+Checkpoint proposisional menghasilkan dua PDF bounded dengan total 13 halaman dan
 SHA-256 `9747a415962fa62c0b263965f966cd457fb42b8b8147666bdcf41520237aa2a8`
 serta `8e04657dc409e29d59badaa0b9d411e2a633799384777ac58d44654e20294d0c`.
 Perintah QA dan bukti render yang tepat dicatat dalam `BUILD.md`.
 
-Checkpoint terbaru menambahkan enam unit ikhtisar Sistem Derivasi
+Checkpoint berikutnya menambahkan enam unit ikhtisar Sistem Derivasi
 (`OLP-0063`--`OLP-0068`). Penggerak bounded berikut menghasilkan PDF delapan
 halaman tanpa fallback bahasa Inggris:
 
@@ -68,6 +68,19 @@ latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdfla
 PDF itu memiliki SHA-256
 `c8e7475d52cd072d13c0e58467d04976f1bfef976d7e2a9a79b7905e26e94902`;
 seluruh delapan halamannya telah dirender dan diperiksa.
+
+Checkpoint terbaru menambahkan seluruh lima belas unit Kalkulus Sekuen
+(`OLP-0069`--`OLP-0083`). Dari `locale\id`, penggerak bounded berikut
+menghasilkan PDF 26 halaman tanpa fallback bahasa Inggris:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error sequent-calculus-id.tex
+```
+
+PDF itu memiliki SHA-256
+`9990d74508d6f1e5eee911001c5ea9417b4bc37969b6f8344e0682bab166613f`;
+seluruh 26 halamannya telah dirender pada 144 dpi dan diperiksa pada resolusi
+render asli.
 
 ## Syarat penerimaan tiap batch
 

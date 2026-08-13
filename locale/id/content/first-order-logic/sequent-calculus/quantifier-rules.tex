@@ -1,0 +1,105 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{seq}{qrl}
+
+\olsection{Aturan Kuantor}
+
+\subsection{Aturan untuk $\lforall$}
+
+\begin{defish}
+\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+Dalam \LeftR{\lforall}, $t$ adalah suku tertutup (yakni suku tanpa
+variabel). Dalam \RightR{\lforall}, $a$~adalah !!a{constant} yang tidak
+boleh muncul di mana pun dalam sekuen bawah aturan \RightR{\lforall}.
+Kita menyebut $a$ sebagai \emph{variabel eigen} dari inferensi
+\RightR{\forall}.\footnote{Kita menggunakan istilah ``variabel eigen''
+meskipun $a$ dalam aturan di atas adalah !!a{constant}. Alasannya bersifat
+historis.}
+
+\subsection{Aturan untuk $\lexists$}
+
+\begin{defish}
+\Axiom$ !A(a), \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][!A(x)], \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(t) $
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+Sekali lagi, $t$~adalah suku tertutup, dan $a$~adalah !!a{constant}
+yang tidak muncul dalam sekuen bawah aturan \LeftR{\lexists}. Kita
+menyebut $a$ sebagai \emph{variabel eigen} dari inferensi
+\LeftR{\lexists}.
+
+Syarat bahwa suatu variabel eigen tidak muncul dalam sekuen bawah
+inferensi \RightR{\lforall} atau \LeftR{\lexists} disebut
+\emph{syarat variabel eigen}.
+
+\begin{explain}
+Ingat kembali konvensi bahwa ketika $!A$ adalah !!a{formula} dengan
+!!{variable}~$x$ bebas, kita menandainya dengan menulis~$!A(x)$. Dalam
+konteks yang sama, $!A(t)$ adalah singkatan dari~$\Subst{!A}{t}{x}$.
+Jadi, aturan \RightR{\lexists} juga dapat kita tulis sebagai:
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter \Delta, \Subst{!A}{t}{x}$
+  \RightLabel{\RightR{\lexists}}
+  \UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!A]$
+\end{prooftree}
+Perhatikan bahwa $t$ mungkin sudah muncul dalam~$!A$; misalnya, $!A$
+mungkin berupa~$\Atom{\Obj P}{t,x}$. Jadi, menyimpulkan $\Gamma \Sequent
+\Delta, \lexists[x][\Atom{\Obj P}{t,x}]$ dari~$\Gamma \Sequent \Delta,
+\Atom{\Obj P}{t,t}$ merupakan penerapan \RightR{\lexists} yang benar---kita
+dapat ``mengganti'' satu atau lebih, dan tidak harus semua, kemunculan~$t$
+dalam premis dengan !!{variable}~$x$ yang terikat. Akan tetapi, syarat
+variabel eigen dalam \RightR{\lforall} dan~\LeftR{\lexists} mengharuskan
+!!{constant}~$a$ tidak muncul dalam~$!A$. Karena itu, kita tidak dapat
+menyimpulkan $\Gamma \Sequent \Delta, \lforall[x][\Atom{\Obj P}{a,x}]$
+secara benar dari $\Gamma \Sequent \Delta, \Atom{\Obj P}{a,a}$ dengan
+menggunakan~$\RightR{\lforall}$.
+\end{explain}
+
+\begin{explain}
+Dalam \RightR{\lexists} dan \LeftR{\lforall} tidak ada pembatasan atas
+suku~$t$. Sebaliknya, dalam aturan \LeftR{\lexists} dan
+\RightR{\lforall}, syarat variabel eigen mengharuskan !!{constant}~$a$
+tidak muncul di mana pun di luar~$!A(a)$ dalam sekuen atas. Syarat ini
+diperlukan untuk memastikan sistem itu sahih, yakni hanya !!{derive}
+sekuen-sekuen yang valid. Tanpa syarat ini, hal berikut akan diizinkan:
+\begin{prooftree}
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter !A(a)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+  \DisplayProof\bottomAlignProof
+  \qquad
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\RightR{\lforall}}
+  \UnaryInf$!A(a) \fCenter \lforall[x][!A(x)]$
+  \RightLabel{\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+\end{prooftree}
+Padahal, $\lexists[x][!A(x)] \Sequent \lforall[x][!A(x)]$ tidak valid.
+\end{explain}
+
+\end{document}

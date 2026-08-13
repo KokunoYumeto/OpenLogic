@@ -1,0 +1,80 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: equality
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{seq}{ide}
+
+\olsection{\usetoken{P}{derivation} dengan \usetoken{S}{identity}}
+
+!!^{derivation} dengan !!{identity} memerlukan sekuen awal dan aturan
+inferensi tambahan.
+
+\begin{defn}[Sekuen awal untuk $\eq$]
+Jika $t$ adalah suku tertutup, maka ${} \Sequent \eq[t][t]$ merupakan
+sekuen awal.
+\end{defn}
+
+Aturan-aturan untuk $\eq$ adalah sebagai berikut ($t_1$ dan $t_2$
+merupakan suku tertutup):
+
+\begin{defish}
+\Axiom$ \eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_1) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2)$
+\DisplayProof
+\hfill
+\Axiom$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma  \fCenter \Delta, !A(t_1)$
+\DisplayProof
+\end{defish}
+
+\begin{ex}
+Jika $s$ dan $t$ merupakan suku tertutup, maka
+$\eq[s][t], !A(s) \Proves !A(t)$:
+\begin{prooftree}
+\Axiom$ !A(s) \fCenter !A(s)$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(s)$
+\RightLabel{$\eq$}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(t)$
+\end{prooftree}
+Hal ini mungkin telah dikenal sebagai prinsip substitutabilitas hal-hal
+yang identik, atau Hukum Leibniz.
+
+$\Log{LK}$ membuktikan bahwa $\eq$ bersifat simetris dan transitif:
+\begin{prooftree}
+\Axiom$ \fCenter \eq[t_1][t_1] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_1][t_1] $
+\RightLabel{$\eq$}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_2][t_1]$
+\DisplayProof\qquad\bottomAlignProof
+\Axiom$ \eq[t_1][t_2] \fCenter \eq[t_1][t_2] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_2] $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_3]$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\eq[t_1][t_2], \eq[t_2][t_3]  \fCenter \eq[t_1][t_3]$
+\end{prooftree}
+Dalam !!{derivation} di sebelah kiri, !!{formula}~$\eq[x][t_1]$ adalah
+$!A(x)$ kita. Di sebelah kanan, kita mengambil
+$!A(x)$ sebagai~$\eq[t_1][x]$.
+\end{ex}
+
+\begin{prob}
+Berikan !!{derivation} untuk sekuen-sekuen berikut:
+\begin{enumerate}
+\item $\Sequent \lforall[x][\lforall[y][((x = y \land !A(x)) \lif !A(y))]]$
+\item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land
+    !A(z)) \lif y = z)]] \Sequent
+\lexists[x][(!A(x) \land \lforall[y][(!A(y) \lif y = x)])]$
+\end{enumerate}
+\end{prob}
+
+\end{document}

@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 62/722 and the exact remainder is 660 files.
+Current target-file coverage is 83/722 and the exact remainder is 639 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -333,19 +333,24 @@ heading, or localization-token fallback. Exact hashes and dispositions are in
 - OLP-0001 has no mathematical formula or `\olfileid`; its QA is therefore
   structural, semantic, link, build, extraction, and visual rather than formula
   replay.
+- The bounded Sequent Calculus build contains seven small overfull boxes,
+  maximum 5.95644 pt. All 26 pages, including every proof-tree-heavy page, were
+  inspected at original render resolution with no visible clipping or loss.
 - No claim is made that the whole 722-file corpus, a complete downstream
   textbook, or public release is complete.
 
 ## Continuation cursor
 
-The contiguous Proof Systems overview batch adds OLP-0063--OLP-0068. Its
-six-file replay passes 122 checks and 137 mathematical skeletons; two
-independent semantic replays pass after explicit source repairs and
-render-driven localization corrections. The bounded driver builds to eight
-pages, all inspected at 144 dpi. Exact hashes and dispositions are recorded in
-`..\_control\OPENLOGIC_PROOF_SYSTEMS_OVERVIEW_INDEPENDENT_REVIEW_20260813.md`.
+The complete Sequent Calculus chapter adds OLP-0069--OLP-0083. Its fifteen-file
+replay passes 248 checks and 1,009 mathematical skeletons; an independent
+read-only semantic replay passes after seven exact source-correction classes.
+The bounded driver builds to 26 pages, all rendered at 144 dpi and inspected at
+original resolution. TeXcount reports 5,455 English-source and 4,912
+Indonesian words for this batch, and 37,187 versus 33,962 cumulatively. Exact
+hashes and dispositions are recorded in
+`..\_control\OPENLOGIC_SEQUENT_CALCULUS_INDEPENDENT_REVIEW_20260813.md`.
 
-Next global ordered cursor: `OLP-0069`,
-`content/first-order-logic/sequent-calculus/sequent-calculus.tex`.
-The remaining closure is 654 source files after the 68 target files currently
+Next global ordered cursor: `OLP-0084`,
+`content/first-order-logic/natural-deduction/natural-deduction.tex`.
+The remaining closure is 639 source files after the 83 target files currently
 present and admitted.

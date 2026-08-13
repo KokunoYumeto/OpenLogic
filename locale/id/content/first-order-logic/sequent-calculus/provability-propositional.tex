@@ -1,0 +1,148 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-propositional
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{seq}{ppr}}
+      {\olfileid[id]{pl}{seq}{ppr}}
+
+\olsection{\usetoken{S}{derivability} dan Penghubung Proposisional}
+
+\begin{explain}
+  Kita membuktikan bahwa relasi !!{derivability}~$\Proves$ dari kalkulus
+  sekuen cukup kuat untuk membuktikan beberapa fakta dasar yang melibatkan
+  penghubung proposisional, seperti $!A \land !B \Proves !A$ dan
+  $!A, !A \lif !B \Proves !B$ (modus ponens). Fakta-fakta ini diperlukan
+  dalam pembuktian teorema kelengkapan.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Baik
+    $!A \land !B \Proves !A$ maupun $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right}
+    $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Kedua sekuen $!A \land !B \Sequent !A$ dan
+    $!A \land !B \Sequent !B$ !!{derivable}:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\land}}
+      \UnaryInf$!A \land !B \fCenter !A$
+      \DisplayProof\qquad\bottomAlignProof
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\LeftR{\land}}
+      \UnaryInf$!A \land !B \fCenter !B$
+    \end{prooftree}
+  \item Berikut adalah !!a{derivation} untuk sekuen
+    $!A, !B \Sequent !A \land !B$:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\Weakening}}
+      \UnaryInf$!B, !A \fCenter !A$
+      \RightLabel{\LeftR{\Exchange}}
+      \UnaryInf$!A, !B \fCenter !A$
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\LeftR{\Weakening}}
+      \UnaryInf$!A, !B \fCenter !B$
+      \RightLabel{\RightR{\land}}
+      \BinaryInf$!A, !B \fCenter !A \land !B$
+    \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ tak konsisten.
+  \item Baik $!A \Proves !A \lor !B$ maupun
+    $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Kita memberikan !!a{derivation} untuk sekuen
+    $!A \lor !B, \lnot !A, \lnot !B \Sequent$:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\lnot}}
+      \UnaryInf$\lnot !A, !A \fCenter$
+      \doubleLine
+      \UnaryInf$!A, \lnot !A, \lnot !B \fCenter$
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\LeftR{\lnot}}
+      \UnaryInf$\lnot !B, !B \fCenter$
+      \doubleLine
+      \UnaryInf$!B, \lnot !A, \lnot !B \fCenter$
+      \RightLabel{\LeftR{\lor}}
+      \BinaryInf$ !A \lor !B, \lnot !A, \lnot !B \fCenter $
+    \end{prooftree}
+    (Ingat bahwa garis inferensi ganda menunjukkan beberapa inferensi
+    pelemahan, kontraksi, dan pertukaran.)
+  \item Kedua sekuen $!A \Sequent !A \lor !B$ dan
+    $!B \Sequent !A \lor !B$ mempunyai !!{derivation}:
+    \begin{prooftree}
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\RightR{\lor}}
+      \UnaryInf$!A \fCenter !A \lor !B$
+      \DisplayProof\qquad\bottomAlignProof
+      \Axiom$!B \fCenter !B$
+      \RightLabel{\RightR{\lor}}
+      \UnaryInf$!B \fCenter !A \lor !B$
+    \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left}
+    $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Baik $\lnot !A \Proves !A \lif !B$ maupun
+    $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Sekuen $!A \lif !B, !A \Sequent !B$ !!{derivable}:
+      \begin{prooftree}
+        \Axiom$!A \fCenter !A$
+        \Axiom$!B \fCenter !B$
+        \RightLabel{\LeftR{\lif}}
+        \BinaryInf$!A \lif !B, !A  \fCenter !B$
+      \end{prooftree}
+    \item Kedua sekuen $\lnot !A \Sequent !A \lif !B$ dan
+      $!B \Sequent !A \lif !B$ !!{derivable}:
+      \begin{prooftree}
+        \Axiom$!A \fCenter !A$
+        \RightLabel{\LeftR{\lnot}}
+        \UnaryInf$\lnot !A, !A \fCenter$
+        \RightLabel{\LeftR{\Exchange}}
+        \UnaryInf$!A, \lnot !A \fCenter$
+        \RightLabel{\RightR{\Weakening}}
+        \UnaryInf$!A, \lnot !A \fCenter !B$
+        \RightLabel{\RightR{\lif}}
+        \UnaryInf$\lnot !A \fCenter !A \lif !B$
+        \DisplayProof\qquad\bottomAlignProof
+        \Axiom$!B \fCenter !B$
+        \RightLabel{\LeftR{\Weakening}}
+        \UnaryInf$!A, !B \fCenter !B$
+        \RightLabel{\RightR{\lif}}
+        \UnaryInf$!B \fCenter !A \lif !B$
+      \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+\end{document}

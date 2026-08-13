@@ -1,0 +1,47 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{seq}{sid}
+
+\olsection{Kesahihan dengan \usetoken{S}{identity}}
+
+\begin{prop}
+$\Log{LK}$ dengan sekuen awal dan aturan identitas bersifat sahih.
+\end{prop}
+
+\begin{proof}
+Sekuen awal berbentuk ${} \Sequent \eq[t][t]$ valid, sebab untuk setiap
+!!{structure}~$\Struct M$, berlaku $\Sat{M}{\eq[t][t]}$. (Perhatikan
+bahwa kita mengandaikan suku $t$ tertutup, yakni tidak memuat variabel,
+sehingga penugasan variabel tidak relevan.)
+
+Andaikan inferensi terakhir dalam !!a{derivation} adalah $=$. Maka
+premisnya ialah $\eq[t_1][t_2], \Gamma \Sequent \Delta, !A(t_1)$ dan
+kesimpulannya ialah $\eq[t_1][t_2], \Gamma \Sequent \Delta, !A(t_2)$.
+Perhatikan !!a{structure}~$\Struct M$. Kita perlu menunjukkan bahwa
+kesimpulannya valid; artinya, jika $\Sat{M}{\eq[t_1][t_2]}$ dan
+$\Sat{M}{\Gamma}$, maka entah $\Sat{M}{!C}$ untuk suatu
+$!C \in \Delta$ atau $\Sat{M}{!A(t_2)}$.
+
+Menurut hipotesis induksi, premisnya valid. Artinya, jika
+$\Sat{M}{\eq[t_1][t_2]}$ dan $\Sat{M}{\Gamma}$, maka entah (a) untuk
+suatu $!C \in \Delta$, $\Sat{M}{!C}$, atau (b)
+$\Sat{M}{!A(t_1)}$. Dalam kasus (a), pembuktian selesai. Perhatikan kasus
+(b). Misalkan $s$ adalah penugasan variabel dengan
+$s(x) = \Value{t_1}{M}$. Menurut
+\olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t_1)}[s]$. Karena
+$\varAssign{s}{s}{x}$, menurut \olref[syn][ext]{prop:ext-formulas},
+$\Sat{M}{!A(x)}[s]$. Karena $\Sat{M}{\eq[t_1][t_2]}$, kita mempunyai
+$\Value{t_1}{M} = \Value{t_2}{M}$, sehingga
+$s(x) = \Value{t_2}{M}$. Dengan menerapkan
+\olref[syn][ext]{prop:ext-formulas} sekali lagi, kita juga memperoleh
+$\Sat{M}{!A(t_2)}[s]$. Menurut
+\olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t_2)}$.
+\end{proof}
+
+\end{document}

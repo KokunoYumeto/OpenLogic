@@ -1,0 +1,75 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{seq}{rul}}
+      {\olfileid[id]{pl}{seq}{rul}}
+
+\olsection{Aturan dan \usetoken{P}{derivation}}
+
+Untuk uraian berikut, misalkan $\Gamma, \Delta, \Pi, \Lambda$ menyatakan
+barisan berhingga !!{sentence}s.
+
+\begin{defn}[Sekuen]
+Sebuah \emph{sekuen} adalah ekspresi berbentuk
+\[
+\Gamma \Sequent \Delta
+\]
+dengan $\Gamma$ dan $\Delta$ merupakan barisan berhingga (yang mungkin
+kosong) dari !!{sentence}s dalam bahasa $\Lang L$. $\Gamma$ disebut
+\emph{anteseden}, sedangkan $\Delta$ disebut \emph{sukseden}.
+\end{defn}
+
+\begin{explain}
+Gagasan intuitif di balik sebuah sekuen ialah: jika semua !!{sentence}s
+dalam anteseden berlaku, maka setidaknya satu !!{sentence} dalam sukseden
+berlaku. Artinya, jika $\Gamma = \tuple{!A_1, \dots, !A_m}$ dan
+$\Delta = \tuple{!B_1, \dots, !B_n}$, maka $\Gamma \Sequent \Delta$
+berlaku jika dan hanya jika
+\[
+(!A_1 \land \cdots \land !A_m) \lif (!B_1 \lor \cdots \lor
+!B_n)
+\]
+berlaku. Ada dua kasus khusus: ketika $\Gamma$ kosong dan ketika
+$\Delta$~kosong. Ketika $\Gamma$ kosong, yaitu $m = 0$, $\quad
+\Sequent \Delta$ berlaku jika dan hanya jika $!B_1 \lor \dots \lor !B_n$
+berlaku. Ketika $\Delta$ kosong, yaitu $n = 0$, $\Gamma \Sequent \quad$
+berlaku jika dan hanya jika $\lnot(!A_1 \land \dots \land !A_m)$ berlaku.
+Kita mengatakan bahwa sebuah sekuen valid jika dan hanya jika
+!!{sentence} yang bersesuaian dengannya valid.
+\end{explain}
+
+Jika $\Gamma$ adalah barisan !!{sentence}s, kita menulis $\Gamma, !A$
+untuk hasil menambahkan $!A$ pada ujung kanan~$\Gamma$ (dan $!A, \Gamma$
+untuk hasil menambahkan $!A$ pada ujung kiri~$\Gamma$). Jika $\Delta$
+juga merupakan barisan !!{sentence}s, maka $\Gamma, \Delta$ adalah
+konkatenasi kedua barisan itu.
+
+\begin{defn}[Sekuen Awal]
+Sebuah \emph{sekuen awal} adalah sekuen
+\iftag{prvFalse,prvTrue}{dengan salah satu bentuk berikut:
+  \begin{enumerate}
+    \item $!A \Sequent !A$
+    \tagitem{prvTrue}{$\quad \Sequent \ltrue$}{}
+    \tagitem{prvFalse}{$\lfalse \Sequent \quad$}{}
+  \end{enumerate}}
+{berbentuk $!A \Sequent !A$} untuk sebarang !!{sentence} $!A$ dalam bahasa tersebut.
+\end{defn}
+
+!!^{derivation}s dalam kalkulus sekuen merupakan pohon-pohon sekuen
+tertentu, dengan sekuen paling atas berupa sekuen awal; jika sebuah
+sekuen berada di bawah satu atau dua sekuen lain, sekuen tersebut harus
+mengikuti secara benar melalui suatu aturan inferensi. Aturan-aturan untuk
+$\Log{LK}$ terbagi menjadi dua jenis utama: aturan \emph{logis} dan aturan
+\emph{struktural}. Aturan logis dinamai menurut !!{main operator} dari
+!!{sentence} yang memuat $!A$ dan/atau $!B$ dalam sekuen bawah. Setiap
+aturan mempunyai dua versi: satu untuk menyimpulkan sekuen dengan
+!!{sentence} yang memuat !!{operator} di sebelah kiri, dan satu lagi
+dengan !!{sentence} tersebut di sebelah kanan.
+
+\end{document}
