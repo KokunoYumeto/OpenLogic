@@ -1,0 +1,67 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: downward-ls
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{com}{dls}
+\olsection{Teorema L\"owenheim--Skolem}
+
+Teorema L\"owenheim--Skolem menyatakan bahwa jika suatu teori mempunyai
+model tak hingga, maka teori itu juga mempunyai model yang berhingga atau
+!!{denumerable}. Salah satu konsekuensi langsung fakta ini ialah bahwa
+logika orde pertama tidak dapat menyatakan bahwa ukuran !!a{structure}
+bersifat !!{nonenumerable}: setiap !!{sentence} atau himpunan
+!!{sentence} yang dipenuhi dalam semua !!{structure} !!{nonenumerable}
+juga dipenuhi dalam suatu struktur !!{enumerable}.
+
+\begin{thm}
+\ollabel{thm:downward-ls} Jika $\Gamma$ konsisten, maka himpunan itu
+mempunyai !!a{enumerable} model; yakni, dapat dipenuhi dalam
+!!a{structure} yang domainnya berhingga atau !!{denumerable}.
+\end{thm}
+
+\begin{proof}
+Jika $\Gamma$ konsisten, !!{structure}~$\Struct M$ yang dihasilkan oleh
+pembuktian teorema kelengkapan mempunyai domain $\Domain{M}$ yang tidak
+lebih besar daripada himpunan suku tertutup dari bahasa~$\Lang{L'}$.
+Jadi, $\Struct M$ berhingga atau !!{denumerable}.
+\end{proof}
+
+\begin{thm}
+\ollabel{noidentity-ls} Jika $\Gamma$ adalah himpunan konsisten dari
+!!{sentence} dalam bahasa logika orde pertama tanpa identitas, maka
+himpunan itu mempunyai !!a{denumerable} model; yakni, dapat dipenuhi
+dalam !!a{structure} yang domainnya tak hingga dan !!{enumerable}.
+\end{thm}
+
+\begin{proof}
+Jika $\Gamma$ konsisten dan tidak memuat kalimat yang mengandung
+identitas, maka !!{structure}~$\Struct M$ yang dihasilkan oleh pembuktian
+teorema kelengkapan mempunyai domain $\Domain{M}$ yang identik dengan
+himpunan suku tertutup dari bahasa~$\Lang L'$. Jadi, $\Struct{M}$
+!!{denumerable}: himpunan suku tertutup tersebut merupakan himpunan
+bagian terhitung dari $\Trm[L']$ dan memuat tak hingga banyak konstanta
+Henkin.
+\end{proof}
+
+\begin{ex}[Paradoks Skolem]
+Teori himpunan Zermelo--Fraenkel~$\Log{ZFC}$ merupakan kerangka kerja yang
+sangat kuat; di dalamnya, praktis semua pernyataan matematis dapat
+dinyatakan, termasuk fakta-fakta mengenai ukuran himpunan. Sebagai
+contoh, $\Log{ZFC}$ dapat membuktikan bahwa himpunan~$\Real$ dari bilangan
+real bersifat !!{nonenumerable}; teori tersebut dapat membuktikan Teorema
+Cantor bahwa himpunan kuasa sebarang himpunan lebih besar daripada
+himpunan itu sendiri; dan sebagainya. Jika $\Log{ZFC}$ konsisten, semua
+modelnya tak hingga. Lebih jauh, semua model tersebut memuat !!{element}
+yang menurut teori bersifat !!{nonenumerable}; salah satu contohnya ialah
+anggota yang keberadaannya membuat benar teorema~$\Log{ZFC}$ bahwa
+himpunan kuasa bilangan asli ada. Berdasarkan Teorema
+L\"owenheim--Skolem, $\Log{ZFC}$
+juga mempunyai model-model !!{enumerable}---model yang memuat himpunan
+``!!{nonenumerable}'' tetapi yang sendiri bersifat !!{enumerable}.
+\end{ex}
+
+\end{document}

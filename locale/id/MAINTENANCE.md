@@ -39,11 +39,22 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0125`.
-- Next row: `OLP-0126`.
+- Admitted ordered boundary: `OLP-0137`.
+- Next row: `OLP-0138`.
 - Next source:
-  `content/first-order-logic/completeness/completeness.tex`.
-- Current coverage: 125/722; exact remainder: 597.
+  `content/first-order-logic/first-order-logic.tex`.
+- Current coverage: 137/722; exact remainder: 585.
+
+## DOI and discoverability maintenance
+
+The durable publication architecture is
+`..\..\..\_control\INDONESIAN_CORPUS_DOI_AND_DISCOVERABILITY_PROTOCOL_20260813.md`.
+Treat it as a release control, not as a reason to interrupt translation. The
+front-facing artifact will be the cumulative Indonesian reader, with editable
+sources, full decision/provenance/QA records, and checksums retained as
+downloadable release assets. Do not mint the Indonesian Open Logic DOI before
+the complete-draft gate reaches 722/722 and the cumulative build and QA package
+is present.
 
 After the final row, run a clean complete Indonesian reader build, full
 extraction/search replay, page-level visual QA, full hash inventory, and a

@@ -1,0 +1,130 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: completeness-theorem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{cth}}
+      {\olfileid[id]{pl}{com}{cth}}
+
+\olsection{Teorema Kelengkapan}
+
+\begin{explain}
+Mari kita gabungkan hasil-hasil yang telah diperoleh: kita sampai pada
+teorema kelengkapan.
+\end{explain}
+
+\begin{thm}[Teorema Kelengkapan]
+\ollabel{thm:completeness}
+Misalkan $\Gamma$ adalah suatu himpunan !!{sentence}. Jika $\Gamma$
+konsisten, maka himpunan itu dapat dipenuhi.
+\end{thm}
+
+\begin{proof}
+Andaikan $\Gamma$ konsisten.\iftag{FOL}{ Berdasarkan
+  \olref[hen]{lem:henkin}, terdapat himpunan konsisten dan jenuh
+  $\Gamma' \supseteq \Gamma$.}{} Berdasarkan
+\olref[lin]{lem:lindenbaum}, terdapat $\Gamma^* \supseteq
+\iftag{FOL}{\Gamma'}{\Gamma}$ yang konsisten dan !!{complete}.
+\iftag{FOL}{
+  Karena $\Gamma' \subseteq \Gamma^*$, untuk setiap
+  !!{formula}~$!A(x)$, $\Gamma^*$ memuat !!a{sentence} berbentuk
+  \iftag{prvEx}
+        {$\lexists[x][!A(x)] \lif !A(c)$}
+        {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$}
+  sehingga $\Gamma^*$ jenuh. Jika $\Gamma$ tidak memuat~$\eq$, maka
+  berdasarkan}{Berdasarkan}
+\olref[mod]{lem:truth},
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ jika dan hanya
+jika $!A \in \Gamma^*$. Khususnya, dari sini diperoleh bahwa untuk
+setiap $!A \in \Gamma$,
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$; jadi $\Gamma$
+dapat dipenuhi.\iftag{FOL}{
+  Jika $\Gamma$ memuat~$\eq$, maka berdasarkan
+  \olref[ide]{lem:truth}, untuk setiap !!{sentence}~$!A$,
+  $\Sat{\equivclass{M}{\approx}}{!A}$ jika dan hanya jika $!A \in
+  \Gamma^*$. Khususnya, $\Sat{\equivclass{M}{\approx}}{!A}$ untuk setiap
+  $!A \in \Gamma$; jadi $\Gamma$ dapat dipenuhi.}{}
+\end{proof}
+
+\begin{cor}[Teorema Kelengkapan, Versi Kedua]
+\ollabel{cor:completeness}
+Untuk setiap $\Gamma$ dan !!{sentence}~$!A$: jika $\Gamma \Entails !A$,
+maka $\Gamma \Proves !A$.
+\end{cor}
+
+\begin{proof}
+Perhatikan bahwa $\Gamma$ dalam \olref{cor:completeness} dan
+\olref{thm:completeness} dikuantifikasi secara universal. Untuk
+menghindari kekeliruan, mari kita nyatakan kembali
+\olref{thm:completeness} dengan variabel lain: untuk sebarang himpunan
+!!{sentence}~$\Delta$, jika $\Delta$ konsisten, maka himpunan itu dapat
+dipenuhi. Dengan mengambil kontraposisinya, jika $\Delta$ tidak dapat
+dipenuhi, maka $\Delta$ tak konsisten. Kita akan menggunakan fakta ini
+untuk membuktikan korolari tersebut.
+
+Andaikan $\Gamma \Entails !A$. Maka $\Gamma \cup \{\lnot !A\}$ tidak
+dapat dipenuhi berdasarkan \olref[syn][sem]{prop:entails-unsat}. Dengan
+mengambil $\Gamma \cup \{\lnot !A\}$ sebagai $\Delta$, versi sebelumnya
+dari \olref{thm:completeness} menyatakan bahwa $\Gamma \cup \{\lnot
+!A\}$ tak konsisten. Berdasarkan
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:prov-incons},
+    prfSC/{fol:seq:prv:prop:prov-incons},
+    prfND/{fol:ntd:prv:prop:prov-incons},
+    prfTab/{fol:tab:prv:prop:prov-incons}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:prov-incons},
+    prfSC/{pl:seq:prv:prop:prov-incons},
+    prfND/{pl:ntd:prv:prop:prov-incons},
+    prfTab/{pl:tab:prv:prop:prov-incons}}},
+$\Gamma \Proves !A$.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Gunakan \olref[fol][com][cth]{cor:completeness} untuk membuktikan
+\olref[fol][com][cth]{thm:completeness}, sehingga ditunjukkan bahwa kedua
+rumusan teorema kelengkapan tersebut ekuivalen.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Gunakan \olref[pl][com][cth]{cor:completeness} untuk membuktikan
+\olref[pl][com][cth]{thm:completeness}, sehingga ditunjukkan bahwa kedua
+rumusan teorema kelengkapan tersebut ekuivalen.
+\end{prob}
+\tagendprob
+
+\tagprob{FOL}
+\begin{prob}
+Agar suatu sistem !!a{derivation} lengkap, aturan-aturannya harus cukup
+kuat untuk membuktikan bahwa setiap himpunan yang tidak dapat dipenuhi
+tak konsisten. Aturan !!{derivation} manakah yang diperlukan untuk
+membuktikan kelengkapan? Adakah aturan-aturan ini yang tidak digunakan
+di mana pun dalam pembuktian? Untuk menjawab pertanyaan-pertanyaan
+tersebut, buatlah daftar atau diagram yang menunjukkan aturan
+!!{derivation} mana yang digunakan dalam hasil mana saja yang mengarah pada
+pembuktian \olref[fol][com][cth]{thm:completeness}. Pastikan Anda mencatat
+setiap penggunaan aturan yang tersirat dalam pembuktian-pembuktian ini.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Agar suatu sistem !!a{derivation} lengkap, aturan-aturannya harus cukup
+kuat untuk membuktikan bahwa setiap himpunan yang tidak dapat dipenuhi
+tak konsisten. Aturan !!{derivation} manakah yang diperlukan untuk
+membuktikan kelengkapan? Adakah aturan-aturan ini yang tidak digunakan
+di mana pun dalam pembuktian? Untuk menjawab pertanyaan-pertanyaan
+tersebut, buatlah daftar atau diagram yang menunjukkan aturan
+!!{derivation} mana yang digunakan dalam hasil mana saja yang mengarah pada
+pembuktian \olref[pl][com][cth]{thm:completeness}. Pastikan Anda mencatat
+setiap penggunaan aturan yang tersirat dalam pembuktian-pembuktian ini.
+\end{prob}
+\tagendprob
+
+\end{document}

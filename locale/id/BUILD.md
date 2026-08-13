@@ -714,3 +714,74 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 3,442 English-source and 3,216 Indonesian words for this batch, and 51,961
 versus 47,641 across all 125 admitted files. The exact next cursor is
 `OLP-0126`, `content/first-order-logic/completeness/completeness.tex`.
+
+## Completeness checkpoint — 2026-08-13
+
+### Source binding, replay, and independent semantic review
+
+The gap-free boundary extends through `OLP-0137`. Every source hash equals its
+row in the frozen 722-file closure manifest and its Git object at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. The durable replay requires
+PowerShell 7 (`pwsh`); Windows PowerShell 5.1 does not expose the
+`ProcessStartInfo.ArgumentList` API used by the bounded runner. Run from the
+repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_completeness_batch_replay.ps1
+```
+
+The replay script SHA-256 is
+`df272d805090f777199872be236d149b0932a584738e70bf7442bc2a2774f77e`.
+Its final result is:
+
+```text
+STRUCTURAL_TOTALS commands=2423 environments=238 semantic_tokens=254 labels=30 references=91 citations=0 assets=0 imports=11 tag_keys=182 math_skeletons=959 math_environments=4 localized_file_ids=19 localized_chapter_ids=2
+CORRECTION_TOTALS classes=21 source_occurrences=27 target_assertions=21
+COMPLETENESS_BATCH_REPLAY_OK files=12 checks=334 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0126..OLP-0137
+```
+
+Independent semantic review passes all twelve final target files. Its receipt,
+`..\..\..\_control\OPENLOGIC_COMPLETENESS_INDEPENDENT_REVIEW_20260813.md`,
+has SHA-256
+`05c6ae1b2616db86d7e7f9b0de1f46bc71f13444574a4995fc71fab93f8b3e02`.
+It preserves two upstream risks rather than disguising them as translation
+defects: the direct compactness proof's identity-enabled case appears to need
+the quotient/factored term-model analogue, and the identity well-definedness
+statement leaves the scope `i=1,...,n` implicit.
+
+### Clean bounded build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' completeness-id.tex
+```
+
+Result: exit 0.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `completeness-id.tex` | `locale/id/completeness-id.pdf` | 22 | 268,745 | `fd962d07b6096d7a243ca39fec1303d4e880ad97c4f55436e44c7c0b3c6e5a2c` |
+
+The final log has zero fatal condition, undefined reference/citation, or
+missing glyph. It contains 17 overfull boxes, maximum 29.23381 pt, and two
+underfull boxes. All 22 pages were rendered at exact readable resolution and
+visually inspected; the boxes produced no clipping, overlap, damaged glyph,
+lost formula, reference damage, or margin loss. A final rebuild after removing
+one whitespace-only line produced 22 rendered page PNGs byte-identical to the
+already inspected render.
+
+### Extraction, canonical placement, and counts
+
+Extracted-text searches found zero `??` and zero English environment labels.
+The bounded build also verified canonical chapter number 23 and the full-reader
+prerequisite reference numbers. The PDF is therefore an admitted bounded
+chapter build, not a claim that the full 722-file Indonesian reader exists.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+8,171 English-source and 7,824 Indonesian words for this batch, and 60,132
+versus 55,465 across all 137 admitted files. No native/human review metadata
+is present; its absence is not an admission blocker. The exact next cursor is
+`OLP-0138`, `content/first-order-logic/first-order-logic.tex`; 585 closure rows
+remain.

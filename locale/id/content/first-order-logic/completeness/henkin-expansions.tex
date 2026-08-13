@@ -1,0 +1,220 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: henkin-expansion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{com}{hen}
+
+\olsection{Perluasan Henkin}
+
+\begin{explain}
+Salah satu tantangan dalam membuktikan teorema kelengkapan adalah bahwa
+model yang kita bangun dari himpunan lengkap dan konsisten~$\Gamma$ harus
+membuat semua !!{formula}s berkuantor dalam~$\Gamma$ benar. Untuk
+menjaminnya, kita menggunakan siasat yang berasal dari Leon Henkin. Pada
+intinya, siasat tersebut terdiri atas perluasan bahasa dengan tak hingga
+banyak !!{constant}s serta penambahan, untuk setiap !!{formula} dengan
+satu !!{variable} bebas $!A(x)$, suatu formula berbentuk
+\iftag{prvEx}
+      {$\lexists[x][!A(x)] \lif !A(c)$}
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c)$},
+dengan $c$ sebagai salah satu di antara !!{constant}s baru. Ketika kita membangun
+!!{structure} yang memenuhi~$\Gamma$, cara ini menjamin bahwa setiap
+\iftag{prvEx}
+{kalimat eksistensial yang benar memiliki saksi}
+{kalimat universal yang salah memiliki contoh penyangkal}
+di antara konstanta-konstanta baru.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:lang-exp}
+Jika $\Gamma$ konsisten dalam $\Lang L$ dan $\Lang L'$ diperoleh dari
+$\Lang L$ dengan menambahkan suatu himpunan yang !!a{denumerable}, dengan
+anggota berupa !!{constant}s baru $\Obj d_0$, $\Obj d_1$, \dots, maka $\Gamma$
+konsisten dalam~$\Lang L'$.
+\end{prop}
+
+\begin{defn}[Himpunan jenuh]
+Suatu himpunan $\Gamma$ dari !!{formula}s dalam bahasa $\Lang {L}$
+bersifat \emph{jenuh} jika dan hanya jika, untuk setiap
+!!{formula}~$!A(x) \in \Frm[L]$ dengan satu !!{variable} bebas~$x$,
+terdapat !!a{constant}~$c \in \Lang{L}$ sedemikian sehingga
+\iftag{prvEx}
+      {$\lexists[x][!A(x)] \lif !A(c) \in \Gamma$}
+      {$\lnot\lforall[x][!A(x)] \lif \lnot !A(c) \in \Gamma$}.
+\end{defn}
+
+Definisi berikut akan digunakan dalam pembuktian teorema selanjutnya.
+
+\begin{defn}
+\ollabel{defn:henkin-exp}
+Misalkan $\Lang L'$ seperti dalam \olref{prop:lang-exp}. Tetapkan suatu
+enumerasi $!A_0(x_0)$, $!A_1(x_1)$, \dots dari semua
+!!{formula}s~$!A_i(x_i)$ dalam~$\Lang L'$ yang mempunyai satu variabel
+bebas ($x_i$). Kita mendefinisikan !!{sentence}s~$!D_n$ melalui
+induksi pada~$n$.
+
+Misalkan $c_0$ adalah !!{constant} pertama di antara $\Obj d_i$ yang
+kita tambahkan ke~$\Lang{L}$ yang tidak muncul dalam~$!A_0(x_0)$.
+Dengan mengandaikan bahwa $!D_0$, \dots,~$!D_{n-1}$ telah didefinisikan,
+misalkan $c_n$ adalah yang pertama di antara !!{constant}s baru~$\Obj d_i$ yang tidak
+muncul dalam $!D_0$, \dots,~$!D_{n-1}$ maupun dalam~$!A_n(x_n)$.
+
+Sekarang, misalkan $!D_{n}$ adalah !!{formula} \iftag{prvEx}
+{$\lexists[x_{n}][!A_{n}(x_{n})] \lif
+  !A_{n}(c_{n})$}{$\lnot\lforall[x_{n}][!A_{n}(x_{n})] \lif \lnot
+  !A_{n}(c_{n})$}.
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:henkin}
+Setiap himpunan konsisten~$\Gamma$ dapat diperluas menjadi himpunan
+konsisten yang jenuh~$\Gamma'$.
+\end{lem}
+
+\begin{proof}
+Diberikan suatu himpunan kalimat yang konsisten~$\Gamma$ dalam
+bahasa~$\Lang{L}$, perluas bahasa tersebut dengan menambahkan suatu
+himpunan yang !!a{denumerable}, dengan anggota berupa !!{constant}s baru,
+sehingga terbentuk~$\Lang{L'}$.
+Menurut \olref{prop:lang-exp}, $\Gamma$ tetap konsisten dalam bahasa yang
+lebih kaya ini. Selanjutnya, misalkan $!D_i$ seperti dalam
+\olref{defn:henkin-exp}. Misalkan
+\begin{align*}
+\Gamma_0 & = \Gamma \\
+\Gamma_{n+1} & = \Gamma_n \cup \{!D_n \}
+\end{align*}
+yakni, $\Gamma_{n+1} = \Gamma \cup \{ !D_0, \dots, !D_n \}$, dan
+misalkan $\Gamma' = \bigcup_{n} \Gamma_n$. Jelas bahwa $\Gamma'$ jenuh.
+
+Jika $\Gamma'$ tak konsisten, maka untuk suatu $n$, $\Gamma_n$ tak
+konsisten (Latihan: jelaskan mengapa). Jadi, untuk menunjukkan bahwa
+$\Gamma'$ konsisten, cukup ditunjukkan, melalui induksi pada~$n$, bahwa
+setiap himpunan~$\Gamma_n$ konsisten.
+
+Basis induksinya hanyalah klaim bahwa $\Gamma_0 = \Gamma$ konsisten,
+yang merupakan hipotesis teorema. Untuk langkah induksi, andaikan bahwa
+$\Gamma_{n}$ konsisten, tetapi $\Gamma_{n+1} = \Gamma_n \cup \{!D_n\}$
+tak konsisten. Ingat bahwa $!D_n$~adalah
+\iftag{prvEx}
+{$\lexists[x_{n}][!A_{n}(x_n)] \lif !A_{n}(c_{n})$}
+{$\lnot\lforall[x_{n}][!A_{n}(x_n)] \lif \lnot !A_{n}(c_{n})$},
+dengan $!A_n(x_n)$ sebagai !!a{formula} dalam $\Lang{L'}$ yang hanya
+memuat variabel~$x_n$ secara bebas. Berdasarkan cara kita memilih~$c_n$
+(lihat \olref{defn:henkin-exp}), $c_n$ tidak muncul dalam~$!A_n(x_n)$
+maupun dalam~$\Gamma_n$.
+
+Jika $\Gamma_n \cup \{!D_n\}$ tak konsisten, maka $\Gamma_n
+\Proves \lnot !D_n$, sehingga kedua hal berikut berlaku:
+\iftag{prvEx}{
+\[
+\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves \lnot !A_n(c_n)
+\]}{
+\[
+\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves !A_n(c_n)
+\]}
+Karena $c_n$ tidak muncul dalam
+$\Gamma_n$ maupun dalam~$!A_n(x_n)$,
+\tagrefs{prfAX/{fol:axd:qpr:thm:strong-generalization},prfSC/{fol:seq:qpr:thm:strong-generalization},prfND/{fol:ntd:qpr:thm:strong-generalization},prfTab/{fol:tab:qpr:thm:strong-generalization}}
+berlaku. Dari \iftag{prvEx}
+{$\Gamma_n \Proves \lnot !A_n(c_n)$}
+{$\Gamma_n \Proves !A_n(c_n)$},
+kita memperoleh
+\iftag{prvEx}
+{$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$}.
+Dengan demikian, kita memperoleh sekaligus
+\iftag{prvEx}
+{$\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]$ dan
+$\Gamma_n \Proves \lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]$ dan
+$\Gamma_n \Proves \lforall[x_n][!A_n(x_n)]$},
+sehingga $\Gamma_n$ sendiri tak konsisten.
+\iftag{prvEx}
+{(Perhatikan bahwa
+\iftag{prvAll}
+{$\lforall[x_n][\lnot !A_n(x_n)] \Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}
+{$\lforall[x_n][\lnot !A_n(x_n)]$ didefinisikan sebagai
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]$ dan
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)] \Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}.)}{}
+Kontradiksi: $\Gamma_n$ seharusnya konsisten. Jadi,
+$\Gamma_n \cup \{ !D_n\}$ konsisten.
+\end{proof}
+
+\begin{explain}
+Sekarang akan kita tunjukkan bahwa himpunan yang \emph{lengkap},
+konsisten, dan jenuh memiliki sifat bahwa \iftag{prvAll}{himpunan itu
+  memuat suatu !!{sentence} berkuantor universal jika dan hanya jika
+  himpunan itu memuat semua instansnya}{}\iftag{defAll,defEx}{}{ dan }
+\iftag{prvEx}{himpunan itu memuat suatu !!{sentence} berkuantor
+  eksistensial jika dan hanya jika himpunan itu memuat sekurang-kurangnya
+  satu instansnya}{}. Kita akan menggunakan sifat ini untuk menunjukkan
+bahwa !!{structure} yang akan kita hasilkan dari suatu himpunan lengkap,
+konsisten, dan jenuh membuat semua kalimat berkuantornya benar.
+\end{explain}
+
+\begin{prop}\ollabel{prop:saturated-instances}
+Andaikan $\Gamma$ lengkap, konsisten, dan jenuh.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ jika dan hanya jika
+  $!A(t) \in \Gamma$ untuk sekurang-kurangnya satu suku tertutup~$t$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ jika dan hanya jika
+  $!A(t) \in \Gamma$ untuk semua suku tertutup~$t$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+  \tagitem{prvEx}{%
+    \iftag{probEx}{Latihan.}{Pertama, andaikan bahwa
+      $\lexists[x][!A(x)] \in \Gamma$. Karena $\Gamma$ jenuh,
+      $(\lexists[x][!A(x)] \lif !A(c)) \in \Gamma$ untuk suatu
+      !!{constant}~$c$. Menurut
+      \tagrefs{prfAX/{fol:axd:ppr:prop:provability-lif},prfSC/{fol:seq:ppr:prop:provability-lif},prfND/{fol:ntd:ppr:prop:provability-lif},prfTab/{fol:tab:ppr:prop:provability-lif}}, butir~(1),
+      dan \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in}, $!A(c)
+      \in \Gamma$.
+
+    Untuk arah sebaliknya, kejenuhan tidak diperlukan: andaikan
+    $!A(t) \in \Gamma$. Maka $\Gamma \Proves \lexists[x][!A(x)]$
+    menurut
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}, butir~(1). Menurut
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in},
+    $\lexists[x][!A(x)] \in \Gamma$.}}{}
+  \tagitem{prvAll}{%
+    \iftag{probAll}{Latihan.}{Andaikan bahwa $!A(t) \in \Gamma$ untuk
+      semua suku tertutup~$t$. Demi memperoleh kontradiksi, andaikan
+      $\lforall[x][!A(x)] \notin \Gamma$. Karena $\Gamma$ lengkap,
+      $\lnot\lforall[x][!A(x)] \in \Gamma$. Karena jenuh,
+      \iftag{prvEx}{$(\lexists[x][\lnot !A(x)] \lif \lnot !A(c)) \in
+        \Gamma$}{$(\lnot\lforall[x][!A(x)] \lif \lnot !A(c)) \in
+        \Gamma$} untuk suatu !!{constant}~$c$. Menurut asumsi, karena
+      $c$ merupakan suku tertutup, $!A(c) \in \Gamma$. Namun, hal ini
+      akan membuat $\Gamma$ tak konsisten. (Latihan: berikan
+      !!{derivation} yang menunjukkan bahwa
+      \[
+      \lnot \lforall[x][!A(x)],
+      \iftag{prvEx}{\lexists[x][\lnot !A(x)] \lif \lnot
+        !A(c)}{\lnot\lforall[x][!A(x)] \lif \lnot
+        !A(c)}, !A(c)
+      \]
+      tak konsisten.)
+
+      Untuk arah sebaliknya, kita tidak memerlukan kejenuhan: andaikan
+      $\lforall[x][!A(x)] \in \Gamma$. Maka $\Gamma \Proves !A(t)$
+      menurut
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}},
+      butir~(2). Kita memperoleh $!A(t) \in \Gamma$ menurut
+      \olref[ccs]{prop:ccs}.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\end{document}

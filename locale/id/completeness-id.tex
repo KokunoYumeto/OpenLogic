@@ -1,0 +1,132 @@
+% Penggerak mandiri untuk bab Teorema Kelengkapan dalam pelokalan Bahasa
+% Indonesia. Penggerak ini membatasi build pada OLP-0126--OLP-0137.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Pisahkan judul soal berturut-turut setelah daftar atau pembuktian panjang.
+\BeforeBeginEnvironment{probdeferred}{\par\medskip}
+\BeforeBeginEnvironment{probdeferredtag}{\par\medskip}
+
+% Bab kelengkapan merujuk silang ke bab semantik dan keempat sistem
+% pembuktian. Catat label maju memakai penomoran pembaca Inggris beku;
+% semuanya menjadi label internal ketika pembaca kumulatif memuat bab-bab
+% tersebut. Ini menghindari rujukan tak terdefinisi dan penomoran bab-mandiri
+% yang menyesatkan.
+\makeatletter
+\hypertarget{ol-id-forward-fol-prerequisites}{}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sat-quant}{{16.{19}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sat-quant@cref}{{[prop][19][16]16.{19}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:ext-formulas}{{16.{23}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:ext-formulas@cref}{{[prop][23][16]16.{23}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sem:prop:entails-unsat}{{16.{27}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sem:prop:entails-unsat@cref}{{[prop][27][16]16.{27}}{[1][0][]0}{}{}{}}}
+\newcommand*{\olidforwardlabel}[5]{%
+  \protected@write\@auxout{}{\string\newlabel{#1}{{#2}{0}{}{ol-id-forward-fol-prerequisites}{}}}%
+  \protected@write\@auxout{}{\string\newlabel{#1@cref}{{[#3][#4][#5]#2}{[1][0][]0}{}{}{}}}}
+\olidforwardlabel{fol:syn:ass:prop:sentence-sat-true}{16.{18}}{prop}{18}{16}
+
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ptn:sec}{{19.8}{0}{Gagasan Teori-Bukti}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ptn:sec@cref}{{[section][8][19]19.8}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ptn:prop:proves-compact}{{19.{17}}{0}{Kekompakan}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ptn:prop:proves-compact@cref}{{[prop][17][19]19.{17}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:prv:prop:prov-incons}{{19.{19}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:prv:prop:prov-incons@cref}{{[prop][19][19]19.{19}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:prv:prop:explicit-inc}{{19.{20}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:prv:prop:explicit-inc@cref}{{[prop][20][19]19.{20}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ppr:prop:provability-lor}{{19.{23}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ppr:prop:provability-lor@cref}{{[prop][23][19]19.{23}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ppr:prop:provability-lif}{{19.{24}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:seq:ppr:prop:provability-lif@cref}{{[prop][24][19]19.{24}}{[1][0][]0}{}{}{}}}
+\olidforwardlabel{fol:seq:ppr:prop:provability-land}{19.{22}}{prop}{22}{19}
+\olidforwardlabel{fol:seq:prv:prop:provability-exhaustive}{19.{21}}{prop}{21}{19}
+\olidforwardlabel{fol:seq:qpr:thm:strong-generalization}{19.{25}}{thm}{25}{19}
+\olidforwardlabel{fol:seq:qpr:prop:provability-quantifiers}{19.{26}}{prop}{26}{19}
+\olidforwardlabel{fol:seq:sou:cor:consistency-soundness}{19.{31}}{cor}{31}{19}
+
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ptn:sec}{{20.7}{0}{Gagasan Teori-Bukti}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ptn:sec@cref}{{[section][7][20]20.7}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ptn:prop:proves-compact}{{20.{17}}{0}{Kekompakan}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ptn:prop:proves-compact@cref}{{[prop][17][20]20.{17}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:prv:prop:prov-incons}{{20.{19}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:prv:prop:prov-incons@cref}{{[prop][19][20]20.{19}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:prv:prop:explicit-inc}{{20.{20}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:prv:prop:explicit-inc@cref}{{[prop][20][20]20.{20}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ppr:prop:provability-lor}{{20.{23}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ppr:prop:provability-lor@cref}{{[prop][23][20]20.{23}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ppr:prop:provability-lif}{{20.{24}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:ntd:ppr:prop:provability-lif@cref}{{[prop][24][20]20.{24}}{[1][0][]0}{}{}{}}}
+\olidforwardlabel{fol:ntd:ppr:prop:provability-land}{20.{22}}{prop}{22}{20}
+\olidforwardlabel{fol:ntd:prv:prop:provability-exhaustive}{20.{21}}{prop}{21}{20}
+\olidforwardlabel{fol:ntd:qpr:thm:strong-generalization}{20.{25}}{thm}{25}{20}
+\olidforwardlabel{fol:ntd:qpr:prop:provability-quantifiers}{20.{26}}{prop}{26}{20}
+\olidforwardlabel{fol:ntd:sou:cor:consistency-soundness}{20.{29}}{cor}{29}{20}
+
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ptn:sec}{{21.7}{0}{Gagasan Teori-Bukti}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ptn:sec@cref}{{[section][7][21]21.7}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ptn:prop:proves-compact}{{21.{17}}{0}{Kekompakan}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ptn:prop:proves-compact@cref}{{[prop][17][21]21.{17}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:prv:prop:prov-incons}{{21.{19}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:prv:prop:prov-incons@cref}{{[prop][19][21]21.{19}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:prv:prop:explicit-inc}{{21.{20}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:prv:prop:explicit-inc@cref}{{[prop][20][21]21.{20}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ppr:prop:provability-lor}{{21.{23}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ppr:prop:provability-lor@cref}{{[prop][23][21]21.{23}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ppr:prop:provability-lif}{{21.{24}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:tab:ppr:prop:provability-lif@cref}{{[prop][24][21]21.{24}}{[1][0][]0}{}{}{}}}
+\olidforwardlabel{fol:tab:ppr:prop:provability-land}{21.{22}}{prop}{22}{21}
+\olidforwardlabel{fol:tab:prv:prop:provability-exhaustive}{21.{21}}{prop}{21}{21}
+\olidforwardlabel{fol:tab:qpr:thm:strong-generalization}{21.{25}}{thm}{25}{21}
+\olidforwardlabel{fol:tab:qpr:prop:provability-quantifiers}{21.{26}}{prop}{26}{21}
+\olidforwardlabel{fol:tab:sou:cor:consistency-soundness}{21.{31}}{cor}{31}{21}
+
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ptn:sec}{{22.6}{0}{Gagasan Teori-Bukti}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ptn:sec@cref}{{[section][6][22]22.6}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ptn:prop:proves-compact}{{22.{21}}{0}{Kekompakan}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ptn:prop:proves-compact@cref}{{[prop][21][22]22.{21}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:prv:prop:prov-incons}{{22.{27}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:prv:prop:prov-incons@cref}{{[prop][27][22]22.{27}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:prv:prop:explicit-inc}{{22.{28}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:prv:prop:explicit-inc@cref}{{[prop][28][22]22.{28}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ppr:prop:provability-lor}{{22.{31}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ppr:prop:provability-lor@cref}{{[prop][31][22]22.{31}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ppr:prop:provability-lif}{{22.{32}}{0}{}{ol-id-forward-fol-prerequisites}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:axd:ppr:prop:provability-lif@cref}{{[prop][32][22]22.{32}}{[1][0][]0}{}{}{}}}
+\olidforwardlabel{fol:axd:ppr:prop:provability-land}{22.{30}}{prop}{30}{22}
+\olidforwardlabel{fol:axd:prv:prop:provability-exhaustive}{22.{29}}{prop}{29}{22}
+\olidforwardlabel{fol:axd:qpr:thm:strong-generalization}{22.{33}}{thm}{33}{22}
+\olidforwardlabel{fol:axd:qpr:prop:provability-quantifiers}{22.{34}}{prop}{34}{22}
+\olidforwardlabel{fol:axd:sou:cor:consistency-soundness}{22.{38}}{cor}{38}{22}
+\makeatother
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+% Pertahankan nomor bab pembaca lengkap (bab 23) pada build terbatas ini.
+\setcounter{chapter}{22}
+
+\olimport*[first-order-logic/completeness]{completeness}
+
+\end{document}

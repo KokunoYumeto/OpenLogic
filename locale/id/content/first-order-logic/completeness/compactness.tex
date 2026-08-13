@@ -1,0 +1,219 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{com}}
+      {\olfileid[id]{pl}{com}{com}}
+
+\olsection{Teorema Kekompakan}
+
+Salah satu konsekuensi penting teorema kelengkapan ialah teorema
+kekompakan. Teorema kekompakan menyatakan bahwa jika setiap himpunan
+bagian \emph{berhingga} dari suatu himpunan !!{sentence} dapat dipenuhi,
+maka keseluruhan himpunan tersebut dapat dipenuhi---sekalipun himpunan
+itu sendiri tak hingga. Hal ini sama sekali tidak jelas dengan
+sendirinya. Sekilas, tampaknya tidak ada yang menutup kemungkinan adanya
+himpunan tak hingga dari !!{sentence} yang bersifat kontradiktif, tetapi
+yang kontradiksinya baru timbul, boleh dikatakan, dari jumlah yang tak
+hingga tersebut. Teorema kekompakan menyatakan bahwa skenario semacam
+itu dapat dikesampingkan: tidak ada himpunan tak hingga dari !!{sentence}
+yang tidak dapat dipenuhi sementara setiap himpunan bagian berhingganya
+dapat dipenuhi. Seperti teorema kelengkapan, teorema ini juga mempunyai
+versi yang berkaitan dengan perikutan: jika suatu himpunan tak hingga
+dari !!{sentence} mengakibatkan sesuatu, maka suatu himpunan bagian
+berhingganya sudah mengakibatkan hal tersebut.
+
+\begin{defn}
+  Suatu himpunan $\Gamma$ dari !!{formula} disebut \emph{dapat dipenuhi
+  secara berhingga} jika dan hanya jika setiap $\Gamma_0 \subseteq
+  \Gamma$ yang berhingga dapat dipenuhi.
+\end{defn}
+
+\begin{thm}[Teorema Kekompakan]
+\ollabel{thm:compactness}
+Pernyataan-pernyataan berikut berlaku bagi setiap himpunan kalimat
+$\Gamma$ dan setiap kalimat~$!A$:
+\begin{enumerate}
+  \item $\Gamma \Entails !A$ jika dan hanya jika terdapat $\Gamma_0
+    \subseteq \Gamma$ yang berhingga sedemikian sehingga
+    $\Gamma_0 \Entails !A$.
+  \item $\Gamma$ dapat dipenuhi jika dan hanya jika dapat dipenuhi
+    secara berhingga.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Kita membuktikan (2). Jika $\Gamma$ dapat dipenuhi, maka terdapat
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+sedemikian sehingga $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ untuk setiap
+$!A \in \Gamma$. Tentu saja,
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ ini juga memenuhi setiap himpunan
+bagian berhingga dari~$\Gamma$, sehingga $\Gamma$ dapat dipenuhi secara
+berhingga.
+
+Sekarang andaikan $\Gamma$ dapat dipenuhi secara berhingga. Maka setiap
+himpunan bagian berhingga~$\Gamma_0 \subseteq \Gamma$ dapat dipenuhi.
+Berdasarkan kesahihan
+(\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+    prfSC/{fol:seq:sou:cor:consistency-soundness},
+    prfND/{fol:ntd:sou:cor:consistency-soundness},
+    prfTab/{fol:tab:sou:cor:consistency-soundness}}}{%
+  \tagrefs{prfAX/{pl:axd:sou:cor:consistency-soundness},
+    prfSC/{pl:seq:sou:cor:consistency-soundness},
+    prfND/{pl:ntd:sou:cor:consistency-soundness},
+    prfTab/{pl:tab:sou:cor:consistency-soundness}}}),
+setiap himpunan bagian berhingga tersebut konsisten. Selanjutnya,
+$\Gamma$ sendiri harus konsisten berdasarkan
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}.
+Berdasarkan kelengkapan (\olref[cth]{thm:completeness}), karena
+$\Gamma$ konsisten, himpunan itu dapat dipenuhi.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan (1) dari \olref[fol][com][com]{thm:compactness}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Buktikan (1) dari \olref[pl][com][com]{thm:compactness}.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{ex}
+Dalam setiap model~$\Struct{M}$ dari suatu teori~$\Gamma$, setiap suku
+tertutup~$t$ tentu menunjuk !!a{element} dari~$\Domain{M}$. Dapatkah kita
+menjamin bahwa sebaliknya juga benar, yakni bahwa setiap !!{element}
+dari~$\Domain{M}$ ditunjuk oleh suatu suku tertutup? Dengan kata lain,
+adakah teori~$\Gamma$ yang semua modelnya tercakup? Teorema kekompakan
+menunjukkan bahwa jawabannya negatif jika $\Gamma$ mempunyai model tak
+hingga. Berikut penjelasannya. Misalkan $\Struct{M}$ adalah suatu model
+tak hingga dari~$\Gamma$, dan misalkan $c$ adalah !!a{constant} yang
+tidak terdapat dalam bahasa~$\Gamma$. Misalkan $\Delta$ adalah himpunan
+semua kalimat $\eq/[c][t]$ untuk $t$ suatu suku tertutup dalam bahasa
+$\Lang{L}$ dari~$\Gamma$, yakni
+  \[
+  \Delta = \Setabs{\eq/[c][t]}{t \in \Trm[L],\ t \text{ tertutup}}.
+  \]
+Suatu himpunan bagian berhingga dari $\Gamma \cup \Delta$ dapat ditulis
+sebagai $\Gamma' \cup \Delta'$, dengan $\Gamma' \subseteq \Gamma$ dan
+$\Delta' \subseteq \Delta$. Karena $\Delta'$ berhingga, himpunan itu
+hanya dapat memuat berhingga banyak suku. Ambil $a \in \Domain{M}$,
+!!a{element} dari~$\Domain{M}$ yang tidak ditunjuk oleh satu pun suku
+tersebut, dan misalkan $\Struct{M'}$ adalah !!{structure} yang sama
+persis dengan $\Struct{M}$
+kecuali bahwa $\Assign{c}{M'} = a$. Karena $a \neq \Value{t}{M}$ untuk
+setiap~$t$ yang muncul dalam~$\Delta'$, $\Sat{M'}{\Delta'}$. Karena
+$\Sat{M}{\Gamma}$, $\Gamma' \subseteq \Gamma$, dan $c$ tidak muncul
+dalam~$\Gamma$, juga berlaku $\Sat{M'}{\Gamma'}$. Dengan demikian,
+$\Sat{M'}{\Gamma' \cup \Delta'}$ untuk setiap himpunan bagian berhingga
+$\Gamma' \cup \Delta'$ dari $\Gamma \cup \Delta$. Jadi, setiap
+himpunan bagian berhingga dari $\Gamma \cup \Delta$ dapat dipenuhi.
+Berdasarkan kekompakan, $\Gamma \cup \Delta$ sendiri dapat dipenuhi.
+Dengan demikian, untuk suatu model berlaku
+$\Sat{M}{\Gamma \cup \Delta}$. Setiap $\Struct{M}$ semacam itu merupakan
+model dari~$\Gamma$, tetapi tidak tercakup, sebab $\Value{c}{M} \neq
+\Value{t}{M}$ untuk setiap suku tertutup~$t$ dari~$\Lang{L}$.
+\end{ex}
+
+\begin{ex}
+Tinjau !!a{language} $\Lang{L}$ yang memuat !!{predicate}~$<$,
+!!{constant} $\Obj{0}$ dan $\Obj{1}$, serta !!{function} $+$, $\times$,
+dan $-$. Misalkan $\Gamma$ adalah himpunan semua !!{sentence} dalam
+!!{language} ini yang benar dalam !!{structure}~$\Struct{Q}$ dengan
+domain~$\Rat$ dan interpretasi yang lazim. Jadi, $\Gamma$ adalah
+himpunan semua !!{sentence} dari~$\Lang{L}$ yang benar mengenai bilangan
+rasional. Tentu saja, dalam~$\Rat$ (bahkan dalam~$\Real$) tidak terdapat
+bilangan~$r$ yang lebih besar daripada~$0$ tetapi lebih kecil daripada
+$1/k$ untuk setiap $k \in \PosInt$. Bilangan semacam itu, seandainya
+ada, disebut \emph{infinitesimal:} tak nol, tetapi kecil tak hingga.
+Teorema kekompakan dapat digunakan untuk menunjukkan bahwa terdapat
+model-model dari~$\Gamma$ yang di dalamnya ada infinitesimal. Bahasa kita
+tidak mempunyai !!a{function} untuk pembagian (pembagian dengan nol
+tidak terdefinisi, sedangkan !!{function} harus diinterpretasikan sebagai
+fungsi total). Meskipun demikian, kita tetap dapat menyatakan bahwa
+$r < 1/k$, sebab hal ini berlaku jika dan hanya jika $r \cdot k < 1$.
+Sekarang misalkan $c$ adalah !!{constant} baru dan misalkan $\Delta$
+adalah
+\[
+\{\Obj{0} < c\}
+\cup \Setabs{ c \times \num k < \Obj{1} }{k \in \PosInt}
+\]
+(dengan $\num{k} = (\Obj{1} + (\Obj{1} + \dots + (\Obj{1} +
+\Obj{1})\dots))$ yang memuat $k$ buah~$\Obj{1}$). Untuk setiap himpunan
+bagian berhingga~$\Delta_0$ dari~$\Delta$, terdapat suatu~$K$ sedemikian
+sehingga setiap !!{sentence} $c \times \num{k} < \Obj{1}$ dalam
+$\Delta_0$ mempunyai $k < K$. Jika kita memperluas $\Struct{Q}$ menjadi
+$\Struct{Q'}$ dengan $\Assign{c}{Q'} = 1/K$, maka
+$\Sat{Q'}{\Gamma_0 \cup \Delta_0}$ untuk sebarang $\Gamma_0 \subseteq
+\Gamma$ yang berhingga. Karena itu, $\Gamma \cup \Delta$ dapat dipenuhi
+secara berhingga (Latihan: buktikan hal ini secara terperinci).
+Berdasarkan kekompakan, $\Gamma \cup \Delta$ dapat dipenuhi. Setiap
+model~$\Struct{S}$ dari $\Gamma \cup \Delta$ memuat suatu infinitesimal,
+yakni~$\Assign{c}{S}$.
+\end{ex}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+Dalam model standar aritmetika~$\Struct{N}$, tidak ada !!{element}~$k \in
+\Domain{N}$ yang memenuhi setiap formula~$\num{n} < x$ (dengan $\num{n}$
+ialah $\Obj{0}^{\prime\dots\prime}$ dengan $n$ buah $\prime$). Gunakan
+teorema kekompakan untuk menunjukkan bahwa himpunan !!{sentence} dalam
+bahasa aritmetika yang benar dalam model standar aritmetika $\Struct{N}$
+juga benar dalam !!a{structure}~$\Struct{N'}$ yang memuat !!a{element}
+yang \emph{memang} memenuhi setiap formula $\num{n} < x$.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{ex}
+Kita mengetahui bahwa logika orde pertama dengan !!{identity} dapat
+menyatakan bahwa ukuran !!{domain} harus sekurang-kurangnya sebesar suatu
+ukuran minimum: kalimat~$!A_{\ge n}$ (yang mengatakan ``terdapat
+sekurang-kurangnya $n$ objek yang berbeda'') hanya benar dalam struktur
+yang $\Domain{M}$-nya mempunyai sekurang-kurangnya~$n$ objek. Jadi, jika
+kita mengambil
+  \[
+  \Delta = \Setabs{!A_{\ge n}}{n \ge 1}
+  \]
+maka setiap model dari $\Delta$ harus tak hingga. Dengan demikian, kita
+dapat menjamin bahwa suatu teori hanya mempunyai model tak hingga dengan
+menambahkan~$\Delta$ kepadanya: model-model dari $\Gamma \cup \Delta$
+ialah tepat semua model tak hingga dari~$\Gamma$.
+
+Jadi, logika orde pertama dapat menyatakan ketakhinggaan. Akan tetapi,
+teorema kekompakan menunjukkan bahwa logika ini tidak dapat menyatakan
+keberhinggaan. Andaikan, sebaliknya, suatu himpunan kalimat $\Lambda$
+dipenuhi dalam tepat semua !!{structure} berhingga. Maka $\Delta \cup
+\Lambda$ dapat dipenuhi secara berhingga. Mengapa? Andaikan $\Delta'
+\cup \Lambda' \subseteq \Delta \cup \Lambda$ berhingga dengan $\Delta'
+\subseteq \Delta$ dan $\Lambda' \subseteq \Lambda$. Definisikan $n$
+sebagai 1 jika komponen pertama itu kosong, dan selain itu sebagai bilangan
+terbesar sedemikian sehingga $!A_{\ge n} \in \Delta'$. Karena dipenuhi dalam
+setiap struktur berhingga, $\Lambda$ mempunyai model~$\Struct{M}$ yang
+memiliki berhingga banyak !!{element}, tetapi jumlahnya $\ge n$. Dengan
+demikian, $\Sat{M}{\Delta' \cup \Lambda'}$. Berdasarkan
+kekompakan, $\Delta \cup \Lambda$ mempunyai model tak hingga, yang
+bertentangan dengan asumsi bahwa $\Lambda$ hanya dipenuhi dalam
+!!{structure} berhingga.
+\end{ex}
+}{}
+
+\end{document}

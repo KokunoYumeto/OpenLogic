@@ -1,0 +1,106 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{lin}}
+      {\olfileid[id]{pl}{com}{lin}}
+
+\olsection{Lema Lindenbaum}
+
+\begin{explain}
+Sekarang kita membuktikan suatu lema yang menunjukkan bahwa setiap
+himpunan konsisten yang terdiri atas !!{sentence}s termuat dalam suatu
+himpunan kalimat yang tidak hanya konsisten, tetapi juga !!{complete}.
+Dalam pembuktiannya, satu !!{sentence} ditambahkan pada setiap
+langkah sambil dijamin bahwa himpunan tersebut tetap konsisten. Kita
+melakukannya sedemikian rupa sehingga untuk setiap $!A$, $!A$ atau
+$\lnot !A$ ditambahkan pada suatu tahap. Gabungan semua tahap dalam
+konstruksi itu kemudian memuat $!A$ atau negasinya~$\lnot !A$, sehingga
+bersifat lengkap. Gabungan tersebut juga konsisten karena pada setiap
+tahap kita memastikan agar tidak menimbulkan inkonsistensi.
+\end{explain}
+
+\begin{lem}[Lema Lindenbaum]
+\ollabel{lem:lindenbaum} Setiap himpunan konsisten~$\Gamma$ dalam
+bahasa~$\Lang{L}$ dapat diperluas menjadi suatu himpunan~$\Gamma^*$ yang
+!!a{complete} dan konsisten.
+\end{lem}
+
+\begin{proof}
+Misalkan $\Gamma$ konsisten. Misalkan $!A_0$, $!A_1$,
+\dots{} merupakan suatu enumerasi semua !!{sentence}s dalam~$\Lang L$.
+Definisikan $\Gamma_0 = \Gamma$, dan
+\[
+\Gamma_{n+1} =
+\begin{cases}
+\Gamma_n \cup \{ !A_n \} & \textrm{jika $\Gamma_n \cup \{!A_n\}$
+  konsisten;} \\
+\Gamma_n \cup \{ \lnot !A_n \} & \textrm{jika tidak.}
+\end{cases}
+\]
+Misalkan $\Gamma^* = \bigcup_{n \geq 0} \Gamma_n$.
+
+Setiap $\Gamma_n$ konsisten: $\Gamma_0$ konsisten menurut hipotesis dan
+definisi~$\Gamma_0$.
+Jika $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$, hal ini karena himpunan
+yang disebut terakhir itu konsisten. Jika tidak, $\Gamma_{n+1} =
+\Gamma_n \cup \{\lnot !A_n\}$. Kita harus memastikan bahwa
+$\Gamma_n \cup \{\lnot !A_n\}$ konsisten. Andaikan himpunan itu tak
+konsisten. Maka \emph{kedua} himpunan $\Gamma_n \cup \{!A_n\}$ dan
+$\Gamma_n \cup \{\lnot !A_n\}$ tak konsisten. Hal ini berarti bahwa
+$\Gamma_n$ tak konsisten menurut
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:provability-exhaustive},
+    prfSC/{fol:seq:prv:prop:provability-exhaustive},
+    prfND/{fol:ntd:prv:prop:provability-exhaustive},
+    prfTab/{fol:tab:prv:prop:provability-exhaustive}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:provability-exhaustive},
+    prfSC/{pl:seq:prv:prop:provability-exhaustive},
+    prfND/{pl:ntd:prv:prop:provability-exhaustive},
+    prfTab/{pl:tab:prv:prop:provability-exhaustive}}},
+bertentangan dengan hipotesis induksi.
+
+Untuk setiap~$n$ dan setiap $i < n$, $\Gamma_i \subseteq \Gamma_n$.
+Hal ini mengikuti melalui induksi sederhana pada~$n$. Untuk $n=0$,
+tidak terdapat $i < 0$, sehingga klaim tersebut berlaku secara otomatis.
+Untuk langkah induksi, andaikan klaim itu benar bagi~$n$. Kita tunjukkan
+bahwa jika $i < n+1$, maka $\Gamma_i \subseteq \Gamma_{n+1}$. Menurut
+konstruksi, $\Gamma_{n+1} = \Gamma_n \cup \{!A_n\}$ atau
+$= \Gamma_n \cup \{\lnot !A_n\}$. Jadi, $\Gamma_n \subseteq
+\Gamma_{n+1}$. Jika $i < n+1$, maka $\Gamma_i \subseteq \Gamma_n$
+menurut hipotesis induksi (jika $i < n$), atau menurut fakta sepele bahwa
+$\Gamma_n \subseteq \Gamma_n$ (jika $i = n$). Kita memperoleh
+$\Gamma_i \subseteq \Gamma_{n+1}$ melalui transitivitas
+relasi~$\subseteq$.
+
+Dari hasil ini, diperoleh bahwa $\Gamma^*$ konsisten. Alasannya sebagai
+berikut: misalkan $\Gamma' \subseteq \Gamma^*$ berhingga. Jika
+$\Gamma'=\varnothing$, maka $\Gamma'$ konsisten secara sepele. Jika
+$\Gamma'\ne\varnothing$, setiap $!B \in \Gamma'$ juga berada
+dalam~$\Gamma_i$ untuk suatu~$i$. Misalkan $n$ adalah indeks terbesar di
+antara indeks-indeks tersebut. Karena $\Gamma_i \subseteq \Gamma_n$ jika
+$i \le n$, setiap $!B \in \Gamma'$ juga $\in \Gamma_n$, yakni $\Gamma'
+\subseteq \Gamma_n$, dan $\Gamma_n$ konsisten. Jadi, setiap himpunan
+bagian berhingga $\Gamma' \subseteq \Gamma^*$ konsisten.
+Menurut \iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}, $\Gamma^*$ konsisten.
+
+Setiap !!{sentence} dalam $\Frm[L]$ muncul dalam daftar yang digunakan
+untuk mendefinisikan~$\Gamma^*$. Jika $!A_n \notin \Gamma^*$, penyebabnya
+adalah bahwa $\Gamma_n \cup \{!A_n\}$ tak konsisten. Namun, dalam hal
+itu $\lnot !A_n \in \Gamma^*$, sehingga $\Gamma^*$ !!{complete}.
+\end{proof}
+
+\end{document}

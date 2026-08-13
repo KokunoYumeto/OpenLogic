@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 125/722 and the exact remainder is 597 files.
+Current target-file coverage is 137/722 and the exact remainder is 585 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -411,3 +411,49 @@ Next global ordered cursor: `OLP-0126`,
 `content/first-order-logic/completeness/completeness.tex`.
 The remaining closure is 597 source files after the 125 target files currently
 present and admitted.
+
+### Contiguous Completeness batch
+
+The complete Completeness chapter adds `OLP-0126`--`OLP-0137`. The frozen-byte
+deterministic replay passes 334 checks across all twelve files, admits exactly
+21 path-scoped correction classes covering 27 source occurrences, and preserves
+all unrelated command, environment, token, label, reference, import, tag-key,
+and mathematical structure. Its SHA-256 is
+`df272d805090f777199872be236d149b0932a584738e70bf7442bc2a2774f77e`.
+
+Independent read-only semantic replay passes all twelve final targets with no
+translation-origin omission, reversal, quantifier swap, term/formula-variable
+corruption, or untranslated reader prose. It preserves two upstream risks:
+the direct compactness proof's identity-enabled case appears to require the
+quotient/factored term-model analogue, and the identity well-definedness
+statement does not explicitly quantify its indexed equivalences. Exact hashes,
+corrections, and dispositions are in
+`..\..\..\_control\OPENLOGIC_COMPLETENESS_INDEPENDENT_REVIEW_20260813.md` (SHA-256
+`05c6ae1b2616db86d7e7f9b0de1f46bc71f13444574a4995fc71fab93f8b3e02`).
+
+The bounded driver builds to 22 pages and 268,745 bytes, SHA-256
+`fd962d07b6096d7a243ca39fec1303d4e880ad97c4f55436e44c7c0b3c6e5a2c`.
+The final log contains zero undefined reference/citation, missing glyph, or
+fatal condition. Seventeen overfull boxes (maximum 29.23381 pt) and two
+underfull boxes remain; exact-resolution inspection found them visually clean.
+All 22 pages were rendered and inspected. Extracted-text searches found zero
+`??` or English environment labels, and verified canonical chapter number 23
+and the required full-reader prerequisite reference numbers.
+
+TeXcount reports 8,171 English-source and 7,824 Indonesian words for this
+batch, and 60,132 versus 55,465 cumulatively. No native/human review metadata
+is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0138`,
+`content/first-order-logic/first-order-logic.tex`.
+The remaining closure is 585 source files after the 137 target files currently
+present and admitted.
+
+## Publication/discoverability gate
+
+The durable language-and-corpus DOI architecture is recorded in
+`..\..\..\_control\INDONESIAN_CORPUS_DOI_AND_DISCOVERABILITY_PROTOCOL_20260813.md`.
+It does not change the translation cursor. No Indonesian Open Logic DOI has
+been minted, and none may be minted before a complete-draft 722/722 closure
+with a cumulative reader build, source package, provenance package, QA
+receipts, and checksums.

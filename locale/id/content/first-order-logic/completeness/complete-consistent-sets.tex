@@ -1,0 +1,229 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: complete-sets
+
+% Definition of complete consistent sets. Properties of complete sets required
+% for completeness proved are in provability.tex in the
+% chapter on the proof system used.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{ccs}}
+      {\olfileid[id]{pl}{com}{ccs}}
+
+\olsection{Himpunan \usetoken{P}{sentence} yang Lengkap dan Konsisten}
+
+\begin{defn}[Himpunan lengkap]
+\ollabel{def:complete-set} Suatu himpunan~$\Gamma$ dari !!{sentence}s
+bersifat \emph{!!{complete}} jika dan hanya jika, untuk setiap
+!!{sentence}~$!A$, berlaku $!A \in \Gamma$ atau $\lnot !A \in \Gamma$.
+\end{defn}
+
+\begin{explain}
+Himpunan kalimat yang !!^{complete} tidak membiarkan pertanyaan apa pun
+tanpa jawaban. Untuk setiap !!{sentence}~$!A$, $\Gamma$ ``menyatakan''
+apakah $!A$ benar atau salah. Arti penting himpunan !!{complete} tidak
+terbatas pada pembuktian teorema kelengkapan. Sebagai contoh, teori yang
+!!{complete} dan dapat diaksiomakan selalu bersifat terputuskan.
+\end{explain}
+
+\begin{explain}
+Himpunan konsisten yang !!^{complete} penting dalam pembuktian
+kelengkapan karena kita dapat menjamin bahwa setiap himpunan konsisten
+dari !!{sentence}s~$\Gamma$ termuat dalam suatu himpunan konsisten
+$\Gamma^*$ yang !!a{complete}. Suatu himpunan konsisten yang
+!!^a{complete} memuat, untuk setiap !!{sentence}~$!A$, $!A$ atau
+negasinya $\lnot !A$, tetapi tidak keduanya. Hal ini berlaku khususnya bagi
+\iftag{FOL}{!!{sentence}s atomik}{variabel proposisi}; maka, dari suatu
+himpunan konsisten yang !!a{complete}\iftag{FOL}{ dalam bahasa yang
+diperluas secara tepat dengan !!{constant}s}{}, kita dapat membangun
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} dengan
+\iftag{FOL}{interpretasi !!{predicate}s}{nilai kebenaran yang ditetapkan
+kepada variabel proposisi} didefinisikan menurut
+\iftag{FOL}{!!{sentence}s atomik}{!!{propositional variable}s} mana yang
+berada dalam~$\Gamma^*$. Selanjutnya, dapat dibuktikan bahwa
+\iftag{FOL}{!!{structure}}{!!{valuation}} ini membuat semua
+!!{sentence}s dalam~$\Gamma^*$ (dan karena itu juga semua kalimat
+dalam~$\Gamma$) benar. Pembuktian fakta terakhir ini mengharuskan bahwa
+$\lnot !A \in \Gamma^*$ jika dan hanya jika $!A \notin \Gamma^*$,
+$(!A \lor !B) \in \Gamma^*$ jika dan hanya jika $!A \in \Gamma^*$
+atau $!B \in \Gamma^*$, dan seterusnya.
+\end{explain}
+
+Dalam pembahasan berikut, kita akan sering menggunakan secara tersirat
+sifat refleksivitas, monotonisitas, dan transitivitas $\Proves$ (lihat
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ptn:sec},prfND/{fol:ntd:ptn:sec},prfAX/{fol:axd:ptn:sec},prfTab/{fol:tab:ptn:sec}}}{%
+  \tagrefs{prfSC/{pl:seq:ptn:sec},prfND/{pl:ntd:ptn:sec},prfAX/{pl:axd:ptn:sec},prfTab/{pl:tab:ptn:sec}}}).
+
+\begin{prop}
+\ollabel{prop:ccs}
+Andaikan $\Gamma$ !!{complete} dan konsisten. Maka:
+\begin{enumerate}
+\item \ollabel{prop:ccs-prov-in} Jika $\Gamma \Proves !A$, maka $!A \in
+  \Gamma$.
+
+\tagitem{prvAnd}{\ollabel{prop:ccs-and} $!A \land !B \in \Gamma$
+  jika dan hanya jika $!A \in \Gamma$ dan $!B \in \Gamma$.}{}
+
+\tagitem{prvOr}{\ollabel{prop:ccs-or} $!A \lor !B \in \Gamma$ jika dan
+  hanya jika $!A \in \Gamma$ atau $!B \in \Gamma$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:ccs-if} $!A \lif !B \in \Gamma$ jika dan
+  hanya jika $!A \notin \Gamma$ atau $!B \in \Gamma$.}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Untuk seluruh pembahasan berikut, andaikan bahwa $\Gamma$ !!{complete}
+dan konsisten.
+\begin{enumerate}
+\item Jika $\Gamma \Proves !A$, maka $!A \in \Gamma$.
+
+Andaikan $\Gamma \Proves !A$. Demi memperoleh kontradiksi, andaikan bahwa
+$!A \notin \Gamma$. Karena $\Gamma$ !!{complete}, $\lnot !A \in \Gamma$.
+Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:prv:prop:explicit-inc},
+    prfND/{fol:ntd:prv:prop:explicit-inc},
+    prfAX/{fol:axd:prv:prop:explicit-inc},
+    prfTab/{fol:tab:prv:prop:explicit-inc}}}{%
+  \tagrefs{prfSC/{pl:seq:prv:prop:explicit-inc},
+    prfND/{pl:ntd:prv:prop:explicit-inc},
+    prfAX/{pl:axd:prv:prop:explicit-inc},
+    prfTab/{pl:tab:prv:prop:explicit-inc}}},
+$\Gamma$ tak konsisten. Hal ini bertentangan dengan asumsi bahwa
+$\Gamma$ konsisten. Jadi, tidak mungkin $!A \notin \Gamma$, sehingga
+$!A \in \Gamma$.
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{Latihan.}{%
+$!A \land !B \in \Gamma$ jika dan hanya jika $!A \in \Gamma$ dan
+$!B \in \Gamma$:
+
+Untuk arah maju, andaikan $!A \land !B \in \Gamma$. Maka, menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}}, butir~(1),
+$\Gamma \Proves !A$ dan $\Gamma \Proves !B$. Menurut
+\olref{prop:ccs-prov-in}, $!A \in \Gamma$ dan $!B \in \Gamma$, seperti
+yang diperlukan.
+
+Untuk arah sebaliknya, misalkan $!A \in \Gamma$ dan $!B \in
+\Gamma$. Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}}, butir~(2),
+$\Gamma \Proves !A \land !B$. Menurut \olref{prop:ccs-prov-in},
+$!A \land !B \in \Gamma$.}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{Latihan.}{%
+Pertama, kita tunjukkan bahwa jika $!A \lor !B \in \Gamma$, maka
+$!A \in \Gamma$ atau $!B \in \Gamma$. Andaikan $!A \lor !B \in
+\Gamma$, tetapi $!A \notin \Gamma$ dan $!B \notin \Gamma$. Karena
+$\Gamma$ !!{complete}, $\lnot !A \in \Gamma$ dan $\lnot !B \in
+\Gamma$. Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}},
+butir~(1), $\Gamma$ tak konsisten; ini suatu kontradiksi. Jadi,
+$!A \in \Gamma$ atau $!B \in \Gamma$.
+
+Untuk arah sebaliknya, andaikan $!A \in \Gamma$ atau $!B \in
+\Gamma$. Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}}, butir~(2),
+$\Gamma \Proves !A \lor !B$. Menurut \olref{prop:ccs-prov-in},
+$!A \lor !B \in \Gamma$, seperti yang diperlukan.}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{Latihan.}{%
+Untuk arah maju, andaikan $!A \lif !B \in \Gamma$, lalu, demi memperoleh
+kontradiksi, andaikan bahwa $!A \in \Gamma$ dan $!B \notin \Gamma$.
+Berdasarkan asumsi-asumsi ini, $!A \lif !B \in \Gamma$ dan $!A \in \Gamma$.
+Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}}, butir~(1),
+$\Gamma \Proves !B$. Namun, menurut \olref{prop:ccs-prov-in}, hal ini
+berarti $!B \in \Gamma$, bertentangan dengan asumsi bahwa $!B \notin
+\Gamma$.
+
+Untuk arah sebaliknya, pertama-tama tinjau kasus ketika $!A \notin
+\Gamma$. Karena $\Gamma$ !!{complete}, $\lnot !A \in \Gamma$. Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}}, butir~(2),
+$\Gamma \Proves !A \lif !B$. Sekali lagi, menurut
+\olref{prop:ccs-prov-in}, kita memperoleh $!A \lif !B \in \Gamma$,
+seperti yang diperlukan.
+
+Sekarang tinjau kasus ketika $!B \in \Gamma$. Menurut
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif}}},
+butir~(2) sekali lagi, $\Gamma \Proves !A \lif !B$. Menurut
+\olref{prop:ccs-prov-in}, $!A \lif !B \in \Gamma$.}}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Lengkapi pembuktian \olref[fol][com][ccs]{prop:ccs}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Lengkapi pembuktian \olref[pl][com][ccs]{prop:ccs}.
+\end{prob}
+\tagendprob
+
+\end{document}

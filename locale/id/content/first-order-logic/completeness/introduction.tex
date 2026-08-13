@@ -1,0 +1,80 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{int}}
+      {\olfileid[id]{pl}{com}{int}}
+
+\olsection{Pendahuluan}
+
+Teorema kelengkapan merupakan salah satu hasil paling mendasar dalam
+logika. Teorema ini memiliki dua formulasi, yang ekuivalensinya akan
+kita buktikan. Dalam formulasi pertama, teorema ini menyatakan sesuatu
+yang mendasar mengenai hubungan antara konsekuensi semantis dan sistem
+!!{derivation} kita: jika !!a{sentence}~$!A$ merupakan konsekuensi dari
+sejumlah !!{sentence}s~$\Gamma$, maka terdapat pula !!a{derivation} yang
+menetapkan $\Gamma \Proves !A$. Dengan demikian, sistem !!{derivation}
+tersebut sekuat mungkin tanpa membuktikan sesuatu yang sebenarnya bukan
+merupakan konsekuensi.
+
+Dalam formulasi kedua, teorema ini dapat dinyatakan sebagai hasil
+keberadaan model: setiap himpunan !!{sentence}s yang konsisten dapat
+dipenuhi. Konsistensi merupakan gagasan teori-bukti: konsistensi
+menyatakan bahwa sistem !!{derivation} kita tidak mampu menghasilkan
+!!{derivation}s tertentu. Namun, apa yang menjamin bahwa hanya karena
+tidak terdapat !!{derivation}s tertentu dari~$\Gamma$, pasti terdapat
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!{valuation}{~$\pAssign{v}$}
+dengan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$}? Sebelum teorema
+kelengkapan pertama kali dibuktikan---bahkan sebelum kita memiliki
+sistem-sistem !!{derivation} yang kini kita gunakan---matematikawan besar
+Jerman, David Hilbert, berpandangan bahwa konsistensi teori-teori
+matematika menjamin keberadaan objek-objek yang dibahas oleh teori
+tersebut. Dalam sepucuk surat kepada Gottlob Frege, ia mengungkapkannya
+sebagai berikut:
+\begin{quote}
+  Jika aksioma-aksioma yang diberikan secara sebarang, beserta semua
+  konsekuensinya, tidak saling bertentangan, maka aksioma-aksioma itu
+  benar dan objek-objek yang didefinisikan oleh aksioma-aksioma tersebut
+  ada. Bagi saya, inilah kriteria kebenaran dan keberadaan.
+\end{quote}
+Frege menentang pandangan ini dengan keras. Formulasi kedua teorema
+kelengkapan menunjukkan bahwa Hilbert benar, setidaknya dalam arti bahwa
+jika aksioma-aksioma itu konsisten, maka memang terdapat
+\emph{suatu} \iftag{FOL}{!!{structure}}{!!{valuation}} yang membuat
+semuanya benar.
+
+Hal-hal tersebut bukanlah satu-satunya alasan teorema kelengkapan---atau,
+lebih tepatnya, buktinya---penting. Teorema ini memiliki sejumlah
+konsekuensi penting, beberapa di antaranya akan kita bahas secara
+terpisah. Misalnya, karena setiap !!{derivation} yang menunjukkan
+$\Gamma \Proves !A$ berhingga sehingga hanya dapat menggunakan berhingga
+banyak !!{sentence}s dalam~$\Gamma$, dari teorema kelengkapan diperoleh
+bahwa jika $!A$ merupakan konsekuensi dari~$\Gamma$, maka kalimat itu
+sudah merupakan konsekuensi dari suatu himpunan bagian berhingga
+dari~$\Gamma$. Sifat ini disebut \emph{kekompakan}. Secara ekuivalen,
+jika setiap himpunan bagian berhingga dari $\Gamma$ konsisten, maka
+$\Gamma$ sendiri juga harus konsisten.
+
+Meskipun teorema kekompakan mengikuti dari teorema kelengkapan melalui
+jalur memutar yang melewati !!{derivation}s, \emph{bukti} teorema
+kelengkapan juga dapat digunakan untuk menetapkannya secara langsung.
+Bukti tersebut mengambil suatu himpunan !!{sentence}s yang memiliki sifat tertentu---
+konsistensi---dan dari himpunan itu membangun !!a{structure} yang
+memiliki sifat tertentu (dalam hal ini, struktur itu memenuhi himpunan
+tersebut). Konstruksi yang hampir sama persis dapat digunakan untuk
+menetapkan kekompakan secara langsung dengan bertolak dari himpunan
+!!{sentence}s yang ``dapat dipenuhi secara berhingga'', alih-alih dari
+himpunan yang konsisten.
+\iftag{FOL}{Konstruksi tersebut juga menghasilkan konsekuensi lain,
+  misalnya bahwa setiap himpunan !!{sentence}s yang dapat dipenuhi
+  memiliki model yang berhingga atau !!{denumerable}s. (Hasil ini disebut
+  teorema L\"owenheim--Skolem.) Secara umum, konstruksi !!{structure}s
+  dari himpunan !!{sentence}s sering digunakan dalam logika, dan
+  terkadang bahkan dalam filsafat.}{}
+
+\end{document}

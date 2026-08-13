@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0125` (125/722 files). It is incomplete and must not be represented as the
+`OLP-0137` (137/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -65,9 +65,19 @@ Exact source corrections currently include:
   first-order carriers; and corrects deduction-theorem, compactness, soundness,
   and identity claims where the frozen source conflicts with its own rule
   statements or proof obligations.
+- Completeness repairs closed-term carriers and quantifier ranges, Henkin and
+  Lindenbaum scope, Truth-Lemma matrices, quotient representatives, compactness
+  edge cases, and the expanded-language carrier used in downward
+  Löwenheim--Skolem. Two upstream proof-scope/statement-precision risks remain
+  expressly preserved rather than silently altered.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.
 
 This adaptation is independent. Open Logic Project has not endorsed, certified,
 or sponsored it, and no such endorsement is implied.
+
+No DOI has been minted for this incomplete checkpoint. The durable
+language-and-corpus DOI architecture is recorded in
+`..\..\..\_control\INDONESIAN_CORPUS_DOI_AND_DISCOVERABILITY_PROTOCOL_20260813.md`;
+minting begins only after complete-draft closure at 722/722.

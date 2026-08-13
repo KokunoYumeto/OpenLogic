@@ -1,0 +1,298 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: construction-of-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{mod}}
+      {\olfileid[id]{pl}{com}{mod}}
+
+\olsection{Konstruksi Model}
+
+\begin{explain}
+\iftag{FOL}{Untuk sementara kita tidak membahas~$\eq$; dengan kata lain,
+  kita hanya ingin menunjukkan bahwa suatu himpunan konsisten~$\Gamma$
+  dari !!{sentence} yang tidak memuat~$\eq$ dapat dipenuhi. Pertama-tama
+  kita perluas~$\Gamma$ menjadi himpunan~$\Gamma^*$ yang konsisten,
+  !!{complete}, dan jenuh. Dalam hal ini, definisi model
+  $\Struct{M(\Gamma^*)}$ sederhana: kita mengambil himpunan suku tertutup
+  dari~$\Lang{L'}$ sebagai domain. Kita menafsirkan setiap !!{constant}
+  sebagai dirinya sendiri dan, secara lebih umum, memastikan bahwa untuk
+  setiap suku tertutup~$t$, $\Value{t}{M(\Gamma^*)} = t$. Setiap
+  !!{predicate} diberi ekstensi sedemikian rupa sehingga suatu
+  !!{sentence} atomik benar dalam $\Struct{M(\Gamma^*)}$ jika dan hanya
+  jika kalimat itu berada dalam~$\Gamma^*$. Dengan demikian, semua
+  !!{sentence} atomik dalam~$\Gamma^*$ jelas menjadi benar dalam
+  $\Struct{M(\Gamma^*)}$. Kalimat-kalimat selebihnya juga benar asalkan
+  $\Gamma^*$ yang menjadi titik awal kita konsisten, lengkap, dan
+  jenuh.}{Sekarang kita siap mendefinisikan !!a{valuation} yang membuat
+  semua $!A \in \Gamma$ benar. Untuk itu, mula-mula kita menerapkan
+  Lema Lindenbaum: kita memperoleh himpunan lengkap dan konsisten
+  $\Gamma^* \supseteq \Gamma$. Kita membiarkan !!{propositional variable}
+  dalam~$\Gamma^*$ menentukan~$\pAssign v(\Gamma^*)$.}
+\end{explain}
+
+\iftag{FOL}{%
+\begin{defn}[Model suku]
+\ollabel{defn:termmodel}
+Misalkan $\Gamma^*$ adalah himpunan !!{sentence} yang !!a{complete},
+konsisten, dan jenuh dalam suatu bahasa~$\Lang L$. \emph{Model
+  suku}~$\Struct M(\Gamma^*)$ dari $\Gamma^*$ ialah !!{structure} yang
+didefinisikan sebagai berikut:
+\begin{enumerate}
+\item !!{domain}~$\Domain{M(\Gamma^*)}$ ialah himpunan semua suku
+  tertutup dari~$\Lang L$.
+\item Interpretasi !!a{constant} $c$ ialah $c$ itu sendiri:
+  $\Assign{c}{M(\Gamma^*)} = c$.
+\item Kepada !!{function}~$f$ diberikan fungsi yang, jika menerima suku
+  tertutup $t_1$, \dots, $t_n$ sebagai argumen, bernilai suku tertutup
+  $f(t_1, \dots, t_n)$:
+\[
+\Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) = f(t_1,\dots, t_n)
+\]
+\item Jika $R$ adalah !!{predicate} beraritas-$n$, maka
+  \[
+  \tuple{t_1, \dots,
+  t_n} \in \Assign{R}{M(\Gamma^*)} \text{ jika dan hanya jika } \Atom{R}{t_1, \dots,
+    t_n} \in \Gamma^*.
+  \]
+\end{enumerate}
+\end{defn}
+}{%
+\begin{defn}
+\ollabel{defn:termmodel}
+Misalkan $\Gamma^*$ adalah himpunan !!{formula} yang lengkap dan konsisten.
+Kita definisikan
+\[
+\pAssign v(\Gamma^*)(p) = \begin{cases}
+  \True & \text{jika $p \in \Gamma^*$}\\
+  \False & \text{jika $p \notin \Gamma^*$}
+  \end{cases}
+\]
+\end{defn}
+}
+
+\iftag{FOL}{%
+Sekarang kita akan memeriksa bahwa, bagi setiap suku tertutup, memang
+berlaku $\Value{t}{M(\Gamma^*)} = t$.
+
+\begin{lem}
+\ollabel{lem:val-in-termmodel} Misalkan $\Struct M(\Gamma^*)$ adalah model
+suku dari \olref{defn:termmodel}. Maka, bagi setiap suku tertutup,
+$\Value{t}{M(\Gamma^*)} = t$.
+\end{lem}
+\begin{proof}
+ Pembuktian dilakukan dengan induksi pada~$t$. Kasus dasar, ketika $t$
+ merupakan !!a{constant}, langsung mengikuti definisi model suku. Untuk
+ langkah induksi, andaikan $t_1, \ldots, t_n$ adalah suku-suku tertutup
+ sedemikian sehingga $\Value{t_i}{M(\Gamma^*)} = t_i$, dan andaikan $f$
+ adalah !!{function} beraritas-$n$. Maka
+\begin{align*}
+\Value{f(t_1,\ldots,t_n)}{M(\Gamma^*)} &= \Assign{f}{M(\Gamma^*)}(\Value{t_1}
+ {M(\Gamma^*)},
+\ldots, \Value{t_n}{M(\Gamma^*)}) \\
+&= \Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) \\
+&= f(t_1,\dots, t_n),
+\end{align*}
+sehingga, berdasarkan induksi, hasil ini berlaku bagi setiap suku
+tertutup~$t$.
+\end{proof}
+}
+
+\iftag{FOL}{%
+\begin{explain}
+  \iftag{prvEx}{!!^a{structure}~$\Struct{M}$ dapat membuat suatu
+    !!{sentence} berkuantor eksistensial~$\lexists[x][!A(x)]$ benar
+    tanpa adanya instansiasi~$!A(t)$ yang dibuatnya benar.}{}
+  \iftag{prvAll}{!!^a{structure}~$\Struct{M}$ dapat membuat semua
+    instansiasi~$!A(t)$ dari !!{sentence} berkuantor universal
+    $\lforall[x][!A(x)]$ benar tanpa membuat~$\lforall[x][!A(x)]$
+    benar.}{} Hal ini terjadi karena, pada umumnya, tidak setiap
+  !!{element} dari~$\Domain{M}$ merupakan nilai suatu suku tertutup
+  ($\Struct{M}$ mungkin tidak tercakup). Karena alasan inilah relasi
+  keterpenuhan didefinisikan melalui penetapan variabel. Akan tetapi,
+  bagi model suku kita~$\Struct{M(\Gamma^*)}$ hal itu tidak diperlukan---
+  sebab model tersebut tercakup. Inilah isi hasil berikutnya.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:quant-termmodel}
+Misalkan $\Struct M(\Gamma^*)$ adalah model suku dari
+\olref{defn:termmodel}.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ jika dan hanya
+  jika $\Sat{M(\Gamma^*)}{!A(t)}$ untuk sekurang-kurangnya satu suku
+  tertutup~$t$.}{}
+\tagitem{prvAll}{$\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ jika dan hanya
+  jika $\Sat{M(\Gamma^*)}{!A(t)}$ untuk semua suku tertutup~$t$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{%
+  \iftag{probEx}{Latihan.}{Berdasarkan \olref[syn][ass]{prop:sat-quant},
+    $\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ jika dan hanya jika, untuk
+    sekurang-kurangnya satu penetapan variabel~$s$,
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$. Karena $\Domain{M(\Gamma^*)}$
+    terdiri atas suku-suku tertutup dari~$\Lang{L}$, hal ini berlaku
+    jika dan hanya jika terdapat sekurang-kurangnya satu suku tertutup
+    $t$ sedemikian sehingga $s(x) = t$ dan
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$. Berdasarkan
+    \olref[fol][syn][ext]{prop:ext-formulas},
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$ jika dan hanya jika
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$, dengan $s(x) = t$. Berdasarkan
+    \olref[fol][syn][ass]{prop:sentence-sat-true},
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ jika dan hanya jika
+    $\Sat{M(\Gamma^*)}{!A(t)}$, sebab $!A(t)$ merupakan suatu
+    kalimat.}}{}
+\tagitem{prvAll}{%
+  \iftag{probAll}{Latihan.}{Berdasarkan \olref[syn][ass]{prop:sat-quant},
+    $\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ jika dan hanya jika, untuk
+    setiap penetapan variabel~$s$, $\Sat{M(\Gamma^*)}{!A(x)}[s]$.
+    Ingat bahwa $\Domain{M(\Gamma^*)}$ terdiri atas suku-suku tertutup
+    dari~$\Lang{L}$. Jadi, untuk setiap suku tertutup~$t$, terdapat suatu
+    penetapan variabel yang memenuhi $s(x) = t$; dan bagi sebarang
+    penetapan variabel, $s(x)$ merupakan suatu suku tertutup~$t$. Berdasarkan
+    \olref[fol][syn][ext]{prop:ext-formulas},
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$ jika dan hanya jika
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$, dengan $s(x) = t$. Berdasarkan
+    \olref[fol][syn][ass]{prop:sentence-sat-true},
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ jika dan hanya jika
+    $\Sat{M(\Gamma^*)}{!A(t)}$, sebab $!A(t)$ merupakan suatu
+    kalimat.}}{}
+\end{tagenumerate}
+\end{proof}
+}{}
+
+\tagprob[FOL]{probEx,probAll}
+\begin{prob}
+Lengkapilah pembuktian \olref[fol][com][mod]{prop:quant-termmodel}.
+\end{prob}
+\tagendprob
+
+\begin{lem}[Lema Kebenaran]
+\ollabel{lem:truth} \iftag{FOL}{Andaikan $!A$ tidak memuat~$\eq$. Maka}{}
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ jika dan hanya
+jika $!A \in \Gamma^*$.
+\end{lem}
+
+\begin{proof}
+Kita membuktikan kedua arah sekaligus dengan induksi pada~$!A$.
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}
+  {$\iftag{FOL}{\Sat/{M(\Gamma^*)}{\lfalse}}{\pSat/{v(\Gamma^*)}{\lfalse}}$
+    berdasarkan definisi keterpenuhan. Di lain pihak, $\lfalse \notin
+    \Gamma^*$ karena $\Gamma^*$ konsisten.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}
+  {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\ltrue}$
+    berdasarkan definisi keterpenuhan. Di lain pihak, $\ltrue \in
+    \Gamma^*$ karena $\Gamma^*$ konsisten dan !!{complete}, serta
+    $\Gamma^* \Proves \ltrue$.}}{}
+
+\tagitem{FOL}{\indcase{!A}{R(t_1, \dots, t_n)}
+  {$\Sat{M(\Gamma^*)}{\Atom{R}{t_1, \dots, t_n}}$ jika dan hanya jika
+    $\tuple{t_1, \dots, t_n} \in \Assign{R}{M(\Gamma^*)}$ (berdasarkan
+    definisi keterpenuhan), jika dan hanya jika $R(t_1, \dots, t_n)
+    \in \Gamma^*$ (berdasarkan konstruksi $\Struct
+    M(\Gamma^*)$).}}{\indcase{!A}{p}{$\pSat{v(\Gamma^*)}{p}$ jika dan hanya
+    jika $\pAssign v(\Gamma^*)(p) = \True$ (berdasarkan definisi
+    keterpenuhan), jika dan hanya jika $p \in \Gamma^*$ (berdasarkan
+    konstruksi $\pAssign v(\Gamma^*)$).}}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$ jika dan
+    hanya jika $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$
+    (berdasarkan definisi keterpenuhan). Berdasarkan hipotesis induksi,
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$ jika dan
+    hanya jika $!B \notin \Gamma^*$. Karena $\Gamma^*$ konsisten dan
+    !!{complete}, $!B \notin \Gamma^*$ jika dan hanya jika
+    $\lnot !B \in \Gamma^*$.}}{}
+
+\tagitem{prvAnd}{%
+\iftag{probAnd}{%
+  \indcase!{!A}{!B \land !C}{}}{%
+  \indcase{!A}{!B \land
+    !C}{$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    jika dan hanya jika sekaligus
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$ dan
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ (berdasarkan
+    definisi keterpenuhan), jika dan hanya jika sekaligus $!B \in
+    \Gamma^*$ dan $!C \in \Gamma^*$ (berdasarkan hipotesis induksi).
+    Menurut \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-and}, hal ini
+    berlaku jika dan hanya jika $(!B \land !C) \in \Gamma^*$.}}}{}
+
+\tagitem{prvOr}{%
+\iftag{probOr}{%
+  \indcase!{!A}{!B \lor !C}{}}{%
+  \indcase{!A}{!B \lor !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    jika dan hanya jika $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$
+    atau $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$
+    (berdasarkan definisi keterpenuhan), jika dan hanya jika $!B \in
+    \Gamma^*$ atau $!C \in \Gamma^*$ (berdasarkan hipotesis induksi).
+    Hal ini berlaku jika dan hanya jika $(!B \lor !C) \in \Gamma^*$
+    (berdasarkan \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-or}).}}}{}
+
+\tagitem{prvIf}{%
+\iftag{probIf}{%
+  \indcase!{!A}{!B \lif !C}{}}{%
+  \indcase{!A}{!B \lif !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    jika dan hanya jika $\iftag{FOL}{\Sat/{M(\Gamma^*)}}{\pSat/{v(\Gamma^*)}}{!B}$
+    atau $\iftag{FOL}{\Sat{M (\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$
+    (berdasarkan definisi keterpenuhan), jika dan hanya jika $!B \notin
+    \Gamma^*$ atau $!C \in \Gamma^*$ (berdasarkan hipotesis induksi).
+    Hal ini berlaku jika dan hanya jika $(!B \lif !C) \in \Gamma^*$
+    (berdasarkan \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-if}).}}}{}
+
+\iftag{FOL}{%
+\tagitem{prvAll}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B(x)]}{}}{%
+    \indcase{!A}{\lforall[x][!B(x)]}{$\Sat{M(\Gamma^*)}{\indfrm}$ jika dan
+      hanya jika $\Sat{M(\Gamma^*)}{!B(t)}$ untuk semua suku tertutup~$t$
+      (\olref{prop:quant-termmodel}). Berdasarkan hipotesis induksi, hal
+      ini berlaku jika dan hanya jika $!B(t) \in \Gamma^*$ untuk semua
+      suku tertutup~$t$; menurut \olref[hen]{prop:saturated-instances},
+      pada gilirannya hal ini berlaku jika dan hanya jika
+      $\lforall[x][!B(x)] \in \Gamma^*$.}}}{}
+
+\tagitem{prvEx}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B(x)]}{}}{%
+    \indcase{!A}{\lexists[x][!B(x)]}{$\Sat{M(\Gamma^*)}{\indfrm}$ jika dan
+      hanya jika $\Sat{M(\Gamma^*)}{!B(t)}$ untuk sekurang-kurangnya satu
+      suku tertutup~$t$ (\olref{prop:quant-termmodel}). Berdasarkan
+      hipotesis induksi, hal ini berlaku jika dan hanya jika $!B(t) \in
+      \Gamma^*$ untuk sekurang-kurangnya satu suku tertutup~$t$.
+      Menurut \olref[hen]{prop:saturated-instances}, pada gilirannya hal
+      ini berlaku jika dan hanya jika $\lexists[x][!B(x)] \in
+      \Gamma^*$.}}}{}
+}{}
+\end{enumerate}
+\end{proof}
+
+
+\tagprob[FOL]{probOr,probAnd,probIf,probEx,probAll}
+
+\begin{prob}
+Lengkapilah pembuktian \olref[fol][com][mod]{lem:truth}.
+\end{prob}
+
+\tagendprob
+
+\tagprob[notFOL]{probOr,probAnd,probIf}
+
+\begin{prob}
+Lengkapilah pembuktian \olref[pl][com][mod]{lem:truth}.
+\end{prob}
+
+\tagendprob
+
+\end{document}

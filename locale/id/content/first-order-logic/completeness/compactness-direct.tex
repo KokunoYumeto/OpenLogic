@@ -1,0 +1,170 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness-direct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{cpd}}
+      {\olfileid[id]{pl}{com}{cpd}}
+
+\olsection{Pembuktian Langsung Teorema Kekompakan}
+
+Kita dapat membuktikan teorema kekompakan secara langsung, tanpa
+menggunakan teorema kelengkapan, dengan gagasan yang sama seperti dalam
+pembuktian teorema kelengkapan. Dalam pembuktian teorema kelengkapan,
+kita mulai dengan himpunan konsisten~$\Gamma$ dari !!{sentence},
+memperluasnya menjadi himpunan !!{sentence} yang
+konsisten\iftag{FOL}{, jenuh,}{} dan !!{complete}, yaitu~$\Gamma^*$,
+lalu menunjukkan bahwa
+dalam \iftag{FOL}{model suku~$\Struct{M(\Gamma^*)}$}{!!{valuation}
+~$\pAssign{v(\Gamma^*)}$} yang dikonstruksi dari $\Gamma^*$, semua
+!!{sentence} dalam~$\Gamma$ benar, sehingga $\Gamma$ dapat dipenuhi.
+
+Kita dapat menggunakan metode yang sama untuk menunjukkan bahwa suatu
+himpunan kalimat yang dapat dipenuhi secara berhingga dapat dipenuhi.
+Kita hanya perlu membuktikan versi-versi yang bersesuaian dari
+hasil-hasil yang menuju lema kebenaran, dengan mengganti ``konsisten''
+dengan ``dapat dipenuhi secara berhingga.''
+
+\begin{prop}
+\ollabel{prop:fsat-ccs}
+Andaikan $\Gamma$ !!{complete} dan dapat dipenuhi secara berhingga. Maka:
+\begin{enumerate}
+\tagitem{prvAnd}{$(!A \land !B) \in \Gamma$ jika dan hanya jika sekaligus
+  $!A \in \Gamma$ dan $!B \in \Gamma$.}{}
+
+\tagitem{prvOr}{$(!A \lor !B) \in \Gamma$ jika dan hanya jika
+  $!A \in \Gamma$ atau $!B \in \Gamma$.}{}
+
+\tagitem{prvIf}{$(!A \lif !B) \in \Gamma$ jika dan hanya jika
+  $!A \notin \Gamma$ atau $!B \in \Gamma$.}{}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][com][cpd]{prop:fsat-ccs}. Hindari penggunaan
+$\Proves$.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Buktikan \olref[pl][com][cpd]{prop:fsat-ccs}. Hindari penggunaan
+$\Proves$.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{lem}
+\ollabel{lem:fsat-henkin} Setiap himpunan~$\Gamma$ yang dapat dipenuhi
+secara berhingga dapat diperluas menjadi himpunan~$\Gamma'$ yang jenuh
+dan dapat dipenuhi secara berhingga.
+\end{lem}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][com][cpd]{lem:fsat-henkin}. (Petunjuk: langkah
+pentingnya ialah menunjukkan bahwa jika $\Gamma_n$ dapat dipenuhi secara
+berhingga, maka $\Gamma_n \cup \{!D_n\}$ juga demikian, tanpa menggunakan
+!!{derivation} ataupun konsistensi.)
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{prop}\ollabel{prop:fsat-instances}
+Andaikan $\Gamma$ lengkap, dapat dipenuhi secara berhingga, dan jenuh.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)] \in \Gamma$ jika dan hanya jika
+  $!A(t) \in \Gamma$ untuk sekurang-kurangnya satu suku tertutup~$t$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \in \Gamma$ jika dan hanya jika
+  $!A(t) \in \Gamma$ untuk semua suku tertutup~$t$.}{}
+\end{tagenumerate}
+\end{prop}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][com][cpd]{prop:fsat-instances}.
+\end{prob}
+\tagendprob
+
+\begin{lem}
+\ollabel{lem:fsat-lindenbaum} Setiap himpunan~$\Gamma$ yang dapat
+dipenuhi secara berhingga dapat diperluas menjadi himpunan~$\Gamma^*$
+yang !!a{complete} dan dapat dipenuhi secara berhingga.
+\end{lem}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][com][cpd]{lem:fsat-lindenbaum}. (Petunjuk: langkah
+pentingnya ialah menunjukkan bahwa jika $\Gamma_n$ dapat dipenuhi secara
+berhingga, maka salah satu dari $\Gamma_n \cup \{!A_n\}$ dan $\Gamma_n
+\cup \{\lnot !A_n\}$ dapat dipenuhi secara berhingga.)
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Buktikan \olref[pl][com][cpd]{lem:fsat-lindenbaum}. (Petunjuk: langkah
+pentingnya ialah menunjukkan bahwa jika $\Gamma_n$ dapat dipenuhi secara
+berhingga, maka salah satu dari $\Gamma_n \cup \{!A_n\}$ dan $\Gamma_n
+\cup \{\lnot !A_n\}$ dapat dipenuhi secara berhingga.)
+\end{prob}
+\tagendprob
+
+\begin{thm}[Kekompakan]
+\ollabel{thm:compactness-direct} $\Gamma$ dapat dipenuhi jika dan hanya
+jika dapat dipenuhi secara berhingga.
+\end{thm}
+
+\begin{proof}
+Jika $\Gamma$ dapat dipenuhi, maka terdapat
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+sedemikian sehingga $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ untuk setiap
+$!A \in \Gamma$. Tentu saja,
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} ini juga memenuhi setiap
+himpunan bagian berhingga dari~$\Gamma$, sehingga $\Gamma$ dapat dipenuhi
+secara berhingga.
+
+Sekarang andaikan $\Gamma$ dapat dipenuhi secara berhingga.\iftag{FOL}{
+  Berdasarkan \olref{lem:fsat-henkin}, terdapat himpunan $\Gamma'
+  \supseteq \Gamma$ yang dapat dipenuhi secara berhingga dan jenuh.}{}
+Berdasarkan \olref{lem:fsat-lindenbaum},
+$\iftag{FOL}{\Gamma'}{\Gamma}$ dapat diperluas menjadi himpunan
+$\Gamma^*$ yang !!a{complete} dan dapat dipenuhi secara
+berhingga\iftag{FOL}{, serta $\Gamma^*$ tetap jenuh}{}. Konstruksikan
+\iftag{FOL}{model suku~$\Struct{M(\Gamma^*)}$}{!!{valuation}
+~$\pAssign{v(\Gamma^*)}$} seperti dalam
+\olref[mod]{defn:termmodel}.\iftag{FOL}{ Perhatikan bahwa
+\olref[mod]{prop:quant-termmodel} tidak bergantung pada fakta bahwa
+$\Gamma^*$ konsisten (atau !!{complete} ataupun jenuh), melainkan hanya
+pada fakta bahwa $\Struct{M(\Gamma^*)}$ tercakup.}{} Pembuktian Lema
+Kebenaran (\olref[mod]{lem:truth}) tetap berlaku jika rujukan pada
+\olref[ccs]{prop:ccs} diganti dengan rujukan pada
+\olref{prop:fsat-ccs}\iftag{FOL}{, dan rujukan pada
+\olref[hen]{prop:saturated-instances} diganti dengan rujukan pada
+\olref{prop:fsat-instances}}.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Tuliskan pembuktian lengkap Lema Kebenaran
+(\olref[fol][com][mod]{lem:truth}) dalam versi yang diperlukan bagi
+pembuktian \olref[fol][com][cpd]{thm:compactness-direct}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Tuliskan pembuktian lengkap Lema Kebenaran
+(\olref[pl][com][mod]{lem:truth}) dalam versi yang diperlukan bagi
+pembuktian \olref[pl][com][cpd]{thm:compactness-direct}.
+\end{prob}
+\tagendprob
+
+\end{document}

@@ -1,0 +1,187 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: outline
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{com}{out}}
+      {\olfileid[id]{pl}{com}{out}}
+
+\olsection{Garis Besar Pembuktian}
+
+Pembuktian teorema kelengkapan agak rumit, dan pembaca mudah kehilangan
+arah ketika pertama kali membacanya. Karena itu, mari kita uraikan garis
+besar pembuktiannya. Langkah pertama ialah mengubah sudut pandang agar
+kita dapat melihat jalan menuju suatu bukti. Jika kelengkapan dipahami
+sebagai ``setiap kali $\Gamma \Entails !A$, berlaku $\Gamma \Proves
+!A$,'' bahkan menemukan gagasannya saja mungkin sulit: untuk menunjukkan
+bahwa $\Gamma \Proves !A$, kita harus menemukan !!a{derivation}, sedangkan
+hipotesis $\Gamma \Entails !A$ tampaknya sama sekali tidak membantu kita
+menemukannya. Pada beberapa sistem bukti, !!a{derivation} dapat dibangun
+secara langsung, tetapi kita akan mengambil pendekatan yang sedikit
+berbeda. Perubahan sudut pandang yang diperlukan adalah sebagai berikut:
+kelengkapan juga dapat dirumuskan dengan pernyataan ``jika $\Gamma$
+konsisten, maka himpunan itu dapat dipenuhi.'' Barangkali kita dapat
+menggunakan informasi dalam~$\Gamma$, bersama dengan hipotesis bahwa
+himpunan itu konsisten, untuk membangun
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} yang memenuhi setiap
+\iftag{FOL}{!!{sentence}}{!!{formula}} dalam~$\Gamma$. Bagaimanapun, kita
+mengetahui jenis \iftag{FOL}{!!{structure}}{!!{valuation}} yang kita
+cari: yang persis seperti digambarkan oleh~$\Gamma$!{}
+
+Jika $\Gamma$ hanya memuat \iftag{FOL}{!!{sentence}s
+  atomik}{!!{propositional variable}s}, model untuknya mudah dibangun.
+\iftag{FOL}{ Andaikan semua !!{sentence}s atomik itu berbentuk
+  $\Atom{P}{a_1,\dots,a_n}$, dengan $a_i$ sebagai !!{constant}s.}{}
+Kita hanya perlu menentukan
+\iftag{FOL}{%
+  !!a{domain}~$\Domain{M}$ dan suatu penetapan bagi~$P$ sedemikian
+  sehingga $\Sat{M}{\Atom{P}{a_1,\ldots,a_n}}$. Namun, hal itu tidak
+  terlalu sulit: tetapkan $\Domain{M} = \Nat$, $\Assign{\Obj c_i}{M} =
+  i$, dan untuk setiap $\Atom{P}{a_1,\ldots,a_n} \in \Gamma$, masukkan
+  tupel $\tuple{k_1, \dots, k_n}$ ke dalam $\Assign{P}{M}$, dengan $k_i$
+  sebagai indeks simbol konstanta~$a_i$ (yakni, $a_i \ident \Obj
+  c_{k_i}$).}{%
+  !!a{valuation}~$\pAssign{v}$ sedemikian sehingga $\pSat{v}{p}$ untuk
+  semua $p \in \Gamma$. Tetapkan saja $\pAssign{v}(p) = \True$ jika dan
+  hanya jika $p \in \Gamma$.}
+
+Sekarang andaikan $\Gamma$ memuat suatu !!{formula}~$\lnot !B$, dengan
+$!B$ atomik. Kita mungkin khawatir bahwa konstruksi
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ mengganggu kemungkinan untuk
+membuat $\lnot !B$ benar. Namun, di sinilah konsistensi~$\Gamma$
+berperan: jika $\lnot !B \in \Gamma$, maka $!B \notin \Gamma$; jika
+tidak demikian, $\Gamma$ akan tak konsisten. Jika $!B \notin \Gamma$,
+maka menurut konstruksi $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ kita,
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, sehingga
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$. Sejauh ini tidak ada
+masalah.
+
+Bagaimana jika $\Gamma$ memuat formula kompleks yang tidak atomik?
+Misalkan himpunan itu memuat $!A \land !B$. Agar formula itu benar, kita
+harus bertindak seolah-olah $!A$ dan $!B$ keduanya berada
+dalam~$\Gamma$. Jika $!A \lor !B \in \Gamma$, kita harus membuat
+sekurang-kurangnya salah satunya benar, yakni bertindak seolah-olah salah
+satunya berada dalam~$\Gamma$.
+
+Hal ini menyarankan gagasan berikut: kita tambahkan !!{formula}s lain
+ke~$\Gamma$ sedemikian rupa sehingga (a)~himpunan yang dihasilkan tetap
+konsisten, (b)~untuk setiap !!{sentence} atomik~$!A$ yang mungkin,
+himpunan yang dihasilkan memuat $!A$ atau $\lnot !A$, dan (c)~setiap
+kali himpunan itu memuat $!A \land !B$, himpunan tersebut juga memuat
+$!A$ dan $!B$; jika memuat $!A \lor !B$, himpunan tersebut juga memuat
+sekurang-kurangnya salah satu di antara $!A$ dan $!B$; dan seterusnya.
+Kita terus melakukan hal ini (mungkin tanpa akhir). Sebut himpunan semua
+!!{formula}s yang ditambahkan dengan cara tersebut~$\Gamma^*$. Konstruksi
+di atas kemudian memberikan \iftag{FOL}{!!a{structure}~$\Struct{M}$}
+{!!a{valuation}~$\pAssign{v}$} yang, melalui induksi, dapat kita buktikan
+memenuhi semua kalimat dalam~$\Gamma^*$, dan karena itu juga semua
+kalimat dalam~$\Gamma$, sebab $\Gamma \subseteq \Gamma^*$. Ternyata,
+menjamin (a) dan~(b) sudah memadai. Himpunan kalimat yang memenuhi (b)
+disebut \emph{lengkap}. Jadi, tugas kita ialah memperluas himpunan
+konsisten~$\Gamma$ menjadi himpunan konsisten dan lengkap~$\Gamma^*$.
+
+\iftag{FOL}{%
+Rencana ini menghadapi satu kendala: jika $\lexists[x][!A(x)] \in
+\Gamma$, kita berharap dapat memilih suatu !!{constant}~$c$ dan
+menambahkan $!A(c)$ dalam proses tersebut. Namun, bagaimana kita tahu
+bahwa hal itu selalu dapat dilakukan? Barangkali bahasa kita hanya
+memiliki beberapa !!{constant}s, dan untuk setiap konstanta tersebut kita
+memiliki $\lnot !A(c) \in \Gamma$. Kita tidak dapat sekaligus
+menambahkan $!A(c)$ karena penambahan itu akan membuat himpunan tersebut
+tak konsisten, dan kita tidak akan tahu apakah $\Struct{M}$ harus membuat
+$!A(c)$ atau $\lnot !A(c)$ benar. Terlebih lagi, mungkin saja $\Gamma$
+hanya memuat kalimat-kalimat dalam suatu bahasa yang sama sekali tidak
+memiliki simbol konstanta (misalnya, bahasa teori himpunan).
+
+Penyelesaian masalah ini adalah menambahkan tak hingga banyak konstanta
+sejak awal, beserta kalimat-kalimat yang menghubungkan konstanta tersebut
+dengan kuantor dengan cara yang tepat. (Tentu saja, kita harus memastikan
+bahwa tindakan ini tidak dapat menimbulkan inkonsistensi.)
+
+Konstruksi awal kita berfungsi dengan baik jika kalimat-kalimat atomik
+hanya memuat !!{constant}s. Namun, bahasa tersebut mungkin juga memuat
+!!{function}s. Dalam hal itu, menemukan fungsi-fungsi yang tepat
+pada~$\Nat$ untuk ditetapkan kepada !!{function}s tersebut agar seluruh
+konstruksi berhasil mungkin sulit. Karena itu, kita gunakan siasat lain: alih-alih
+menggunakan $i$ untuk menafsirkan $\Obj c_i$, gunakan saja himpunan
+!!{constant}s itu sendiri sebagai domain. Dengan demikian, $\Struct M$
+dapat menetapkan setiap !!{constant} kepada dirinya sendiri:
+$\Assign{\Obj c_i}{M} = \Obj c_i$. Namun, mengapa tidak melanjutkannya
+sepenuhnya: tetapkan $\Domain{M}$ sebagai himpunan semua \emph{suku tertutup}
+dalam bahasa tersebut!{} Dengan pilihan ini, terdapat penetapan fungsi
+yang jelas bagi !!{function}s (fungsi-fungsi ini menerima suku tertutup sebagai
+argumen dan menghasilkan suku tertutup sebagai nilai): kepada
+!!{function}~$\Obj f^n_i$ kita tetapkan fungsi yang, ketika menerima
+$n$ suku tertutup $t_1$, \dots,~$t_n$ sebagai masukan, menghasilkan suku tertutup
+$\Obj f^n_i(t_1, \dots, t_n)$ sebagai nilainya.
+
+Potongan teka-teki terakhir adalah cara menangani~$\eq$.
+!!{predicate}~$\eq$ memiliki interpretasi tetap:
+$\Sat{M}{\eq[t][t']}$ jika dan hanya jika $\Value{t}{M} =
+\Value{t'}{M}$. Jika kita mengatur agar !!{value} suku~$t$ adalah $t$
+sendiri, !!{structure} ini tidak akan membuat \emph{satu pun} kalimat
+berbentuk $\eq[t][t']$ benar, kecuali jika $t$ dan $t'$ merupakan suku
+yang sama persis. Tentu saja hal ini bermasalah, sebab hampir setiap
+teori yang menarik dalam bahasa dengan !!{function}s memiliki kalimat
+$\eq[t][t']$ sebagai teorema meskipun $t$ dan $t'$ bukan suku yang sama
+(misalnya, dalam teori aritmetika: $\eq[(\Obj 0+ \Obj 0)][\Obj 0]$).
+Untuk menyelesaikan masalah ini, kita ubah domain~$\Struct M$: alih-alih
+menggunakan suku sebagai objek dalam~$\Domain{M}$, kita menggunakan
+himpunan-himpunan suku, dan setiap himpunan memuat semua suku yang harus
+disamakan menurut kalimat-kalimat dalam~$\Gamma$. Jadi, misalnya, jika
+$\Gamma$ merupakan teori aritmetika, salah satu himpunan ini akan memuat
+$\Obj 0$, $(\Obj 0 + \Obj 0)$, $(\Obj 0 \times \Obj 0)$, dan seterusnya.
+Himpunan inilah yang kita tetapkan kepada $\Obj 0$, dan ternyata himpunan
+ini juga merupakan nilai semua suku di dalamnya, misalnya nilai
+$(\Obj 0 + \Obj 0)$. Oleh karena itu, kalimat
+$\eq[(\Obj 0+ \Obj 0)][\Obj 0]$ akan benar dalam !!{structure} yang
+telah diperbaiki ini.}{}
+
+Jadi, inilah yang akan kita lakukan. Pertama, kita menyelidiki sifat-sifat
+himpunan konsisten yang !!{complete}; khususnya, kita membuktikan bahwa
+himpunan konsisten yang !!a{complete} memuat $!A \land !B$ jika dan hanya jika
+himpunan itu memuat $!A$ dan~$!B$, memuat $!A \lor !B$ jika dan hanya
+jika himpunan itu memuat sekurang-kurangnya salah satunya, dan seterusnya
+(\olref[ccs]{prop:ccs}).\iftag{FOL}{ Kemudian kita mendefinisikan dan
+  menyelidiki himpunan kalimat ``jenuh''. Himpunan jenuh adalah himpunan
+  yang memuat implikasi-implikasi yang menghubungkan setiap !!{sentence}
+  berkuantor dengan instans-instansnya
+  (\olref[hen]{defn:henkin-exp}). Kita menunjukkan bahwa setiap himpunan
+  konsisten~$\Gamma$ selalu dapat diperluas menjadi himpunan
+  jenuh~$\Gamma'$ (\olref[hen]{lem:henkin}). Jika suatu himpunan
+  konsisten, jenuh, dan !!{complete}, himpunan itu juga memiliki sifat
+  bahwa ia memuat \iftag{prvEx}{$\lexists[x][!A(x)]$ jika dan hanya jika
+    ia memuat $!A(t)$ untuk suatu suku tertutup~$t$}{}
+  \iftag{defEx,defAll}{}{ dan }
+  \iftag{prvAll}{$\lforall[x][!A(x)]$ jika dan hanya jika ia memuat
+    $!A(t)$ untuk semua suku tertutup~$t$}{}
+  (\olref[hen]{prop:saturated-instances}).}{}
+Selanjutnya, kita mengambil himpunan konsisten yang\iftag{FOL}{ jenuh}{}
+~$\iftag{FOL}{\Gamma'}{\Gamma}$ dan menunjukkan bahwa himpunan tersebut
+dapat diperluas menjadi suatu \iftag{FOL}{himpunan yang jenuh, konsisten,
+dan}{himpunan yang konsisten dan} !!{complete}~$\Gamma^*$
+(\olref[lin]{lem:lindenbaum}). Himpunan $\Gamma^*$ inilah yang akan kita
+gunakan untuk mendefinisikan \iftag{FOL}{model suku~$\Struct
+  M(\Gamma^*)$}{!!{valuation}~$\pAssign v(\Gamma^*)$} kita.
+\iftag{FOL}{Domain model suku tersebut adalah himpunan suku tertutup,
+  sedangkan interpretasi !!{predicate}snya ditentukan oleh
+  !!{sentence}s atomik}{Valuasi tersebut ditentukan oleh
+  !!{propositional
+    variable}s} dalam~$\Gamma^*$
+(\olref[mod]{defn:termmodel}). Kita akan menggunakan sifat-sifat
+himpunan konsisten yang\iftag{FOL}{ jenuh dan}{} lengkap untuk
+menunjukkan bahwa
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ jika dan hanya
+jika $!A \in \Gamma^*$ (\olref[mod]{lem:truth}), dan dengan demikian,
+khususnya,
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\Gamma}$.
+\iftag{FOL}{Terakhir, kita akan membahas cara mendefinisikan model suku
+  jika $\Gamma$ juga memuat~$\eq$
+  (\olref[ide]{defn:term-model-factor}) dan menunjukkan bahwa model itu
+  memenuhi~$\Gamma^*$ (\olref[ide]{lem:truth}).}{}
+
+\end{document}

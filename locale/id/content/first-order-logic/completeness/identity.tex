@@ -1,0 +1,212 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{com}{ide}
+\olsection{Identitas}
+
+\begin{explain}
+Konstruksi model suku yang diberikan pada bagian sebelumnya sudah cukup
+untuk menetapkan kelengkapan logika orde pertama bagi himpunan~$\Gamma$
+yang tidak memuat~$\eq$. Model suku tersebut memenuhi setiap $!A \in
+\Gamma^*$ yang tidak memuat~$\eq$ (dan karenanya setiap $!A \in
+\Gamma$). Akan tetapi, konstruksi itu tidak berhasil apabila terdapat
+$\eq$. Alasannya, $\Gamma^*$ dalam keadaan tersebut dapat memuat
+!!a{sentence}~$\eq[t][t']$, sedangkan dalam model suku nilai setiap suku
+adalah suku itu sendiri. Jadi, jika $t$ dan $t'$ merupakan suku yang
+berbeda, nilai masing-masing dalam model suku---yakni $t$ dan $t'$---juga
+berbeda, sehingga $\eq[t][t']$ salah. Namun, kita dapat mengatasi masalah
+ini dengan konstruksi yang dikenal sebagai ``pemfaktoran.''
+\end{explain}
+
+\begin{defn}
+  Misalkan $\Gamma^*$ adalah himpunan kalimat yang konsisten dan
+  !!{complete} dalam~$\Lang L$. Kita mendefinisikan relasi $\approx$
+  pada himpunan suku tertutup dari~$\Lang L$ dengan
+  \[
+  t \approx t' \text{\quad jika dan hanya jika \quad} \eq[t][t'] \in \Gamma^*
+  \]
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:approx-equiv}
+Relasi $\approx$ mempunyai sifat-sifat berikut:
+\begin{enumerate}
+\item $\approx$ bersifat refleksif.
+\item $\approx$ bersifat simetris.
+\item $\approx$ bersifat transitif.
+\item Jika $t \approx t'$, $f$ adalah !!a{function}, dan $t_1$, \dots,
+  $t_{i-1}$, $t_{i+1}$, \dots, $t_n$ adalah suku-suku tertutup, maka
+\[
+\Atom{f}{t_1,\dots, t_{i-1}, t, t_{i+1}, \dots, t_n} \approx
+\Atom{f}{t_1,\dots, t_{i-1}, t', t_{i+1}, \dots, t_n}.
+\]
+\item Jika $t \approx t'$, $R$ adalah !!a{predicate}, dan $t_1$, \dots,
+  $t_{i-1}$, $t_{i+1}$, \dots, $t_n$ adalah suku-suku tertutup, maka
+\begin{multline*}
+\Atom{R}{t_1,\dots, t_{i-1}, t, t_{i+1}, \dots, t_n} \in \Gamma^* \text{ jika dan hanya jika } \\
+\Atom{R}{t_1,\dots, t_{i-1}, t', t_{i+1}, \dots, t_n} \in \Gamma^*.
+\end{multline*}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Karena $\Gamma^*$ konsisten dan !!{complete}, $\eq[t][t'] \in
+\Gamma^*$ jika dan hanya jika $\Gamma^* \Proves \eq[t][t']$. Oleh
+karena itu, cukup ditunjukkan hal-hal berikut:
+\begin{enumerate}
+\item $\Gamma^* \Proves \eq[t][t]$ untuk setiap suku tertutup~$t$.
+\item Jika $\Gamma^* \Proves \eq[t][t']$, maka $\Gamma^* \Proves \eq[t'][t]$.
+\item Jika $\Gamma^* \Proves \eq[t][t']$ dan $\Gamma^* \Proves
+  \eq[t'][t'']$, maka $\Gamma^* \Proves \eq[t][t'']$.
+\item Jika $\Gamma^* \Proves \eq[t][t']$, maka
+\[
+\Gamma^* \Proves
+\eq[\Atom{f}{t_1,\dots,t_{i-1},t,t_{i+1},\dots,t_n}][\Atom{f}{t_1,\dots,t_{i-1},t',t_{i+1},\dots,t_n}]
+\]
+untuk setiap !!{function} beraritas-$n$~$f$ dan suku-suku tertutup
+$t_1$, \dots, $t_{i-1}$, $t_{i+1}$, \dots,~$t_n$.
+\item Jika $\Gamma^* \Proves \eq[t][t']$ dan
+$\Gamma^* \Proves
+\Atom{R}{t_1,\dots,t_{i-1},t,t_{i+1},\dots,t_n}$, maka
+$\Gamma^* \Proves \Atom{R}{t_1,\dots,t_{i-1},t',t_{i+1},\dots,t_n}$
+untuk setiap !!{predicate} beraritas-$n$~$R$ dan suku-suku tertutup
+$t_1$, \dots, $t_{i-1}$, $t_{i+1}$, \dots,~$t_n$.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Lengkapilah pembuktian~\olref[fol][com][ide]{prop:approx-equiv}.
+\end{prob}
+
+\begin{defn}
+Andaikan $\Gamma^*$ adalah himpunan konsisten dan !!{complete} dalam
+suatu bahasa~$\Lang L$, $t$ adalah suku tertutup, dan $\approx$ adalah
+seperti pada definisi sebelumnya. Maka:
+\[
+\equivrep{t}{\approx} = \Setabs{t'}{t'\in \Trm[L],\ t' \text{ tertutup},\ t \approx t'}
+\]
+dan
+$\equivclass{\Setabs{t}{t \in \Trm[L],\ t \text{ tertutup}}}{\approx}
+= \Setabs{\equivrep{t}{\approx}}{t \in \Trm[L],\ t \text{ tertutup}}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:term-model-factor}
+Misalkan $\Struct M = \Struct M(\Gamma^*)$ adalah model suku
+bagi~$\Gamma^*$ dari \olref[mod]{defn:termmodel}. Maka
+$\Struct{\equivclass{M}{\approx}}$ ialah !!{structure} berikut:
+\begin{enumerate}
+\item $\Domain{\equivclass{M}{\approx}} =
+  \equivclass{\Setabs{t}{t \in \Trm[L],\ t \text{ tertutup}}}{\approx}$.
+\item $\Assign{c}{\equivclass{M}{\approx}} = \equivrep{c}{\approx}$.
+\item $\Assign{f}{\equivclass{M}{\approx}}(\equivrep{t_1}{\approx}, \dots,
+  \equivrep{t_n}{\approx}) = \equivrep{\Atom{f}{t_1,\dots, t_n}}{\approx}$.
+\item $\tuple{\equivrep{t_1}{\approx}, \dots, \equivrep{t_n}{\approx}} \in
+  \Assign{R}{\equivclass{M}{\approx}}$ jika dan hanya jika
+  $\Sat{M}{\Atom{R}{t_1,\dots, t_n}}$, yakni jika dan hanya jika
+  $\Atom{R}{t_1,\dots, t_n} \in \Gamma^*$.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Perhatikan bahwa kita telah mendefinisikan
+$\Assign{f}{\equivclass{M}{\approx}}$ dan
+$\Assign{R}{\equivclass{M}{\approx}}$ bagi anggota
+$\equivclass{\Setabs{t}{t \in \Trm[L],\ t \text{ tertutup}}}{\approx}$
+dengan menyebutnya sebagai
+$\equivrep{t}{\approx}$, yakni melalui \emph{wakil}~$t \in
+\equivrep{t}{\approx}$. Kita harus memastikan bahwa definisi-definisi
+ini tidak bergantung pada pemilihan wakil tersebut. Dengan kata lain,
+jika pilihan lain~$t'$ menentukan kelas ekuivalensi yang sama
+($\equivrep{t}{\approx} = \equivrep{t'}{\approx}$), definisi-definisi itu
+harus memberikan hasil yang sama. Sebagai contoh, jika $R$ adalah
+!!{predicate} beraritas satu, klausa terakhir dalam definisi mengatakan
+bahwa $\equivrep{t}{\approx} \in \Assign{R}{\equivclass{M}{\approx}}$
+jika dan hanya jika $\Sat{M}{\Atom{R}{t}}$. Jika, untuk suatu suku lain
+$t'$ dengan $t \approx t'$, $\Sat/{M}{\Atom{R}{t'}}$, definisi tersebut
+akan mengharuskan $\equivrep{t'}{\approx} \notin
+\Assign{R}{\equivclass{M}{\approx}}$. Jika $t \approx t'$, maka
+$\equivrep{t}{\approx} = \equivrep{t'}{\approx}$, tetapi tidak mungkin
+sekaligus berlaku $\equivrep{t}{\approx} \in
+\Assign{R}{\equivclass{M}{\approx}}$ dan $\equivrep{t}{\approx} \notin
+\Assign{R}{\equivclass{M}{\approx}}$. Namun,
+\olref{prop:approx-equiv} menjamin bahwa hal itu tidak dapat terjadi.
+\end{explain}
+
+\begin{prop}
+$\Struct{\equivclass{M}{\approx}}$ terdefinisi dengan baik; yakni, jika
+$t_1$, \dots, $t_n$, $t_1'$, \dots, $t_n'$ adalah suku-suku tertutup,
+dan $t_i \approx t_i'$, maka
+\begin{enumerate}
+\item $\equivrep{\Atom{f}{t_1,\dots, t_n}}{\approx} =
+    \equivrep{\Atom{f}{t_1',\dots, t_n'}}{\approx}$, yakni
+  \[
+  \Atom{f}{t_1,\dots, t_n} \approx \Atom{f}{t_1',\dots, t_n'}
+  \]
+  dan
+\item $\Sat{M}{\Atom{R}{t_1,\dots, t_n}}$ jika dan hanya jika
+  $\Sat{M}{\Atom{R}{t_1',\dots, t_n'}}$, yakni
+  \[
+    \Atom{R}{t_1,\dots, t_n} \in \Gamma^* \text{ jika dan hanya jika }
+    \Atom{R}{t_1',\dots, t_n'} \in \Gamma^*.
+  \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Hasil ini mengikuti \olref{prop:approx-equiv} melalui induksi pada~$n$.
+\end{proof}
+
+Seperti dalam kasus model suku, sebelum membuktikan lema kebenaran kita
+memerlukan lema berikut.
+
+\begin{lem}
+\ollabel{lem:val-in-termmodel-factored} Misalkan $\Struct M = \Struct M
+ (\Gamma^*)$. Maka, bagi setiap suku tertutup,
+$\Value{t}{\equivclass{M}{\approx}} = \equivrep{t} {\approx}$.
+\end{lem}
+\begin{proof}
+Pembuktiannya serupa dengan pembuktian
+\olref[mod]{lem:val-in-termmodel}.
+\end{proof}
+
+\begin{prob}
+Lengkapilah pembuktian~\olref[fol][com][ide]{lem:val-in-termmodel-factored}.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:truth}
+$\Sat{\equivclass{M}{\approx}}{!A}$ jika dan hanya jika $!A \in
+\Gamma^*$ untuk setiap kalimat~$!A$.
+\end{lem}
+
+\begin{proof}
+Lakukan induksi pada~$!A$, sama seperti dalam pembuktian
+\olref[mod]{lem:truth}. Satu-satunya kasus yang memerlukan perhatian
+tambahan ialah ketika $!A \ident \eq[t][t']$.
+\begin{align*}
+\Sat{\equivclass{M}{\approx}}{\eq[t][t']} & \text{ jika dan hanya jika } \equivrep{t}{\approx} = \equivrep{t'}{\approx}
+\text{ (berdasarkan definisi $\Struct{\equivclass{M}{\approx}}$)}\\
+& \text{ jika dan hanya jika } t \approx t' \text{ (berdasarkan definisi $\equivrep{t}{\approx}$)}\\
+& \text{ jika dan hanya jika } \eq[t][t'] \in \Gamma^* \text{ (berdasarkan definisi $\approx$).}
+\end{align*}
+\end{proof}
+
+\begin{digress}
+Perhatikan bahwa meskipun $\Struct{M(\Gamma^*)}$ selalu !!{enumerable}
+dan tak hingga, $\Struct{\equivclass{M}{\approx}}$ mungkin berhingga,
+sebab mungkin hanya terdapat berhingga banyak kelas
+$\equivrep{t}{\approx}$. Hal ini memang patut diduga karena $\Gamma$
+mungkin memuat !!{sentence} yang mengharuskan setiap !!{structure} tempat
+kalimat-kalimat itu benar bersifat berhingga. Sebagai contoh,
+$\lforall[x][\lforall[y][x = y]]$ adalah !!{sentence} konsisten, tetapi
+hanya dipenuhi dalam !!{structure} dengan !!a{domain} yang memuat tepat
+satu !!{element}.
+\end{digress}
+
+\end{document}
