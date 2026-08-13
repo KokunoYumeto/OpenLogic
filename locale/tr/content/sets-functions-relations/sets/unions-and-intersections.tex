@@ -1,0 +1,175 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: unions-and-intersections
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{set}{uni}
+\olsection{Birleşimler ve Kesişimler}
+
+\begin{explain}
+\olref[sfr][set][bas]{sec} kesiminde soyutlama yoluyla, yani
+$\Setabs{x}{\phi(x)}$ biçiminde küme tanımları vermiştik. Burada bir
+özellik~$\phi$ kullanırız ve bu özellik, daha önce tanımladığımız kümelerden
+söz edebilir. Örneğin $A$ ve~$B$ kümelerse
+$\Setabs{x}{x \in A \lor x \in B}$ kümesi, $A$ kümesinin veya~$B$ kümesinin elemanı
+olan bütün nesnelerden oluşur; başka bir deyişle $A$ ve~$B$ kümelerinin
+elemanlarını bir araya getirir. Bunu, taralı bölgenin iki kümenin birlikte
+alınan elemanlarını gösterdiği \olref{fig:union} ile görselleştirebiliriz.
+
+\begin{figure}
+  \olasset{assets/diagrams/union.tikz}
+  \caption{İki kümenin birleşimi $A \cup B$, $A$ ve $B$ kümelerinin tüm
+    elemanlarından oluşan kümedir.}
+  \ollabel{fig:union}
+\end{figure}
+
+Kümeler üzerinde yapılan bu işlem---onları bir araya getirmek---çok yararlı ve
+yaygındır; bu nedenle ona biçimsel bir ad ve simge veririz.
+\end{explain}
+
+\begin{defn}[Birleşim]
+$A$ ve $B$ kümelerinin \emph{birleşimi}, $A \cup B$ ile gösterilen ve $A$
+kümesinin, $B$ kümesinin ya da her ikisinin elemanı olan bütün nesnelerden
+oluşan kümedir.
+\[
+A \cup B = \Setabs{x}{x \in A \lor x \in B}
+\]
+\end{defn}
+
+\begin{ex}
+Bir elemanın kaç kez yinelendiği önemli olmadığından, ortak bir elemanı
+bulunan iki kümenin birleşiminde bu eleman yalnızca bir kez yer alır; örneğin
+$\{ a, b, c\} \cup \{ a, 0, 1\} = \{a, b, c, 0, 1\}$.
+
+Bir küme ile onun bir alt kümesinin birleşimi yalnızca büyük olan kümedir:
+$\{a, b, c \} \cup \{a \} = \{a, b, c\}$.
+
+Bir kümenin boş kümeyle birleşimi yine o kümedir:
+$\{a, b, c \} \cup \emptyset = \{a, b, c \}$.
+\end{ex}
+
+\begin{prob}
+$A \subseteq B$ ise $A \cup B = B$ olduğunu ispatlayın.
+\end{prob}
+
+\begin{explain}
+Birleşimin \emph{duali} olan işlemi de ele alabiliriz. Bu işlem, hem $A$
+kümesinin hem de $B$ kümesinin elemanı olan bütün nesnelerden oluşan kümeyi kurar. İşleme
+\emph{kesişim} denir ve \olref{fig:intersection} ile gösterilebilir.
+\begin{figure}
+  \olasset{assets/diagrams/intersection.tikz}
+  \caption{İki kümenin kesişimi $A \cap B$, $A$ ve $B$ kümelerinin ortak
+    elemanlarından oluşan kümedir.}
+  \ollabel{fig:intersection}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Kesişim]
+$A$ ve $B$ kümelerinin \emph{kesişimi}, $A \cap B$ ile gösterilen ve hem
+$A$ kümesinin hem de~$B$ kümesinin elemanı olan bütün nesnelerden oluşan
+kümedir.
+\[
+A \cap B = \Setabs{x}{x \in A \land x \in B}
+\]
+Kesişimleri boş olan iki kümeye \emph{ayrık} denir. Bu, ortak elemanlarının
+bulunmadığı anlamına gelir.
+\end{defn}
+
+\begin{ex}
+İki kümenin hiçbir ortak elemanı yoksa kesişimleri boştur:
+$\{ a, b, c\} \cap \{ 0, 1\} = \emptyset$.
+
+İki kümenin ortak elemanları varsa kesişimleri bu elemanların tümünden oluşan
+kümedir:
+$\{a, b, c \} \cap \{a, b, d \} = \{a, b\}$.
+
+Bir küme ile onun bir alt kümesinin kesişimi yalnızca küçük olan kümedir:
+$\{a, b, c\} \cap \{a, b\} = \{a, b\}$.
+
+Herhangi bir kümenin boş kümeyle kesişimi boştur:
+$\{a, b, c \} \cap \emptyset = \emptyset$.
+\end{ex}
+
+\begin{prob}
+$A \subseteq B$ ise $A \cap B = A$ olduğunu titizlikle ispatlayın.
+\end{prob}
+
+\begin{explain}
+İkiden fazla kümenin birleşimini veya kesişimini de oluşturabiliriz. Bunu genel
+olarak ele almanın zarif bir yolu şudur: birleşimini (veya kesişimini)
+oluşturmak istediğimiz bütün kümeleri tek bir kümede topladığımızı varsayalım.
+Bu durumda başlangıçtaki kümelerin birleşimini, topladığımız kümenin elemanı
+olan kümelerden en az birinin elemanı olan bütün nesnelerin kümesi; kesişimini
+ise bu kümelerin her birinin elemanı olan bütün nesnelerin kümesi olarak
+tanımlayabiliriz.
+\end{explain}
+
+\begin{defn}
+$A$ bir kümeler kümesiyse $\bigcup A$, $A$ kümesinin elemanları olan
+kümelerin elemanlarından oluşan kümedir:
+\begin{align*}
+\bigcup A & = \Setabs{x}{x \text{, } A\text{ kümesindeki bir kümeye aittir}},
+\text{ yani}\\
+& = \Setabs{x}{\text{öyle bir } B \in A
+  \text{ vardır ki } x \in B}
+\end{align*}
+\end{defn}
+
+\begin{defn}
+$A$ bir kümeler kümesiyse $\bigcap A$, $A$ kümesinin elemanı olan her kümede
+bulunan nesnelerden oluşan kümedir:
+\begin{align*}
+\bigcap A & = \Setabs{x}{x \text{, } A\text{ kümesindeki her kümeye aittir}},
+\text{ yani}\\
+ & = \Setabs{x}{\text{her } B \in A \text{ için } x \in B}
+\end{align*}
+\end{defn}
+
+\begin{ex}
+$A = \{ \{ a, b \}, \{ a, d, e \}, \{ a, d \} \}$ olduğunu varsayalım.
+Bu durumda $\bigcup A = \{ a, b, d, e \}$ ve $\bigcap A = \{ a \}$ olur.
+\end{ex}
+\begin{prob}
+	$A$ bir kümeyse ve $A \in B$ ise $A \subseteq \bigcup B$ olduğunu gösterin.
+\end{prob}
+
+Aynı işlemleri $A_1$, $A_2$, \dots{} küme dizisi için de yapabiliriz:
+\begin{align*}
+\bigcup_i A_i & = \Setabs{x}{x \text{, } A_i\text{ kümelerinden birine aittir}}\\
+\bigcap_i A_i & = \Setabs{x}{x \text{, her } A_i\text{ kümesine aittir}}.
+\end{align*}
+
+Kümeleri indislemek üzere, her $i \in I$ için $A_i$ kümesini ele aldığımız bir
+$I$ kümesi verilmişse şu kısaltmaları da kullanabiliriz:
+\begin{align*}
+	\bigcup_{i \in I} A_i & = \bigcup \Setabs{A_i }{i \in I}\\
+	\bigcap_{i \in I} A_i & = \bigcap\Setabs{A_i}{i \in I}
+\end{align*}
+
+Son olarak $A$ kümesinde bulunup $B$ kümesinde bulunmayan bütün elemanlardan
+oluşan kümeyi düşünmek isteyebiliriz. Bunu \olref{difference} ile
+gösterebiliriz.
+
+\begin{figure}
+  \olasset{assets/diagrams/difference.tikz}
+  \caption{$A$ kümesinin $B$ kümesinden farkı $A \setminus B$, $A$
+    kümesinde bulunup $B$ kümesinde bulunmayan elemanlardan oluşur.}
+  \ollabel{difference}
+\end{figure}
+
+\begin{defn}[Küme Farkı]
+$A$ kümesinin $B$ kümesinden \emph{farkı}~$A \setminus B$, $A$'da bulunup
+$B$'de bulunmayan bütün elemanlardan oluşur; yani
+\[
+A\setminus B = \Setabs{x}{x\in A \text{ ve } x \notin B}.
+\]
+\end{defn}
+
+\begin{prob}
+	$A \subsetneq B$ ise $B \setminus A \neq \emptyset$ olduğunu ispatlayın.
+\end{prob}
+
+\end{document}

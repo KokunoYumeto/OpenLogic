@@ -1,0 +1,99 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{set}{bas}
+\olsection{Kaplamsallık}
+
+Bir \emph{küme}, tek bir nesne olarak ele alınan nesneler topluluğudur.
+Kümeyi oluşturan nesnelere kümenin \emph{elemanları} veya \emph{üyeleri}
+denir. Eğer $x$, $A$ kümesinin elemanıysa $x \in A$ yazarız; değilse
+$x \notin A$ yazarız. Hiç elemanı olmayan kümeye \emph{boş küme} denir ve
+bu küme ``$\emptyset$'' ile gösterilir.
+
+\begin{explain}
+Kümeyi nasıl \emph{belirttiğimizin}, elemanlarını hangi \emph{sırayla}
+yazdığımızın, hatta aynı elemanı \emph{kaç kez} yazdığımızın önemi yoktur.
+Önemli olan yalnızca elemanlarının hangileri olduğudur. Bunu aşağıdaki ilkeyle
+kesinleştiririz.
+\end{explain}
+
+\begin{defn}[Kaplamsallık]
+  $A$ ve $B$ kümelerse, $A = B$ eşitliği ancak ve ancak $A$ kümesinin her
+  elemanı aynı zamanda $B$ kümesinin de elemanıysa ve bunun tersi de
+  geçerliyse sağlanır.
+\end{defn}
+
+Kaplamsallık bazı gösterimleri kullanmamıza olanak verir. Genel olarak
+$a_{1}$, \dots, $a_{n}$ nesneleri verildiğinde $\{a_{1}, \dots, a_{n}\}$,
+elemanları $a_1, \ldots, a_n$ olan \emph{tek} kümedir. ``\emph{Tek}''
+sözcüğünü vurguluyoruz; çünkü kaplamsallık böyle bir kümeden yalnızca
+\emph{bir} tane olabileceğini söyler. Gerçekten kaplamsallık aşağıdakine de
+izin verir:
+  \[
+    \{a, a, b\} = \{a, b\} = \{b,a\}.
+  \]
+Bu eşitlik, kümeler söz konusu olduğunda elemanların sırasını veya kaç kez
+belirtildiklerini önemsemediğimizi gösterir.
+
+\begin{tagblock}{novice}
+\begin{ex}
+Elinizde bir grup nesne olduğunda onları bir kümede toplayabilirsiniz.
+Örneğin Richard'ın kardeşleri bir kişiyi içeren bir küme oluşturur ve bunu
+$S=\{\textrm{Ruth}\}$ diye yazabiliriz. $4$'ten küçük pozitif tam sayıların
+kümesi $\{1, 2, 3\}$'tür; ancak $\{3, 2, 1\}$, hatta $\{1, 2, 1, 2, 3\}$
+biçiminde de yazılabilir. Kaplamsallık gereğince bunların tümü aynı kümedir.
+Çünkü $\{1, 2, 3\}$ kümesinin her elemanı, $\{3, 2, 1\}$ kümesinin de
+(ve $\{1, 2, 1, 2, 3\}$ kümesinin de) elemanıdır; bunun tersi de geçerlidir.
+\end{ex}
+\end{tagblock}
+
+Bir kümeyi çoğu kez elemanlarının ortak bir özelliğiyle
+belirteceğiz. Bunun için şu kısa gösterimi kullanacağız:
+$\Setabs{x}{\phi(x)}$. Burada $\phi(x)$, $x$ nesnesinin kümenin elemanları
+arasında sayılabilmesi için sahip olması gereken özelliği gösterir.
+
+\begin{tagblock}{novice}
+\begin{ex}
+Örneğimizde $S$ kümesini şöyle de belirtebilirdik:
+\[
+S = \Setabs{x}{x \text{ Richard'ın kardeşidir}}.
+\]
+\end{ex}
+\end{tagblock}
+
+\begin{tagblock}{math}
+\begin{ex}
+Bir sayı, öz bölenlerinin (yani sayıyı kalansız bölen ama sayının kendisi
+olmayan sayıların) toplamına eşitse \emph{mükemmel} olarak adlandırılır.
+Örneğin $6$ mükemmeldir; çünkü öz bölenleri $1$, $2$ ve~$3$'tür ve
+$6 = 1 + 2 + 3$ olur. Gerçekte $6$, $10$'dan küçük tek mükemmel pozitif tam
+sayıdır. Dolayısıyla kaplamsallığı
+kullanarak şöyle diyebiliriz:
+\[
+	\{6\} = \Setabs{x}{x\text{ mükemmeldir ve }0 \leq x \leq 10}
+\]
+Sağdaki gösterimi, ``$x$ mükemmeldir ve $0 \leq x \leq 10$ koşulunu sağlayan
+tüm $x$ değerlerinin kümesi'' diye okuruz. Buradaki özdeşlik, kümeler söz
+konusu olduğunda onların nasıl belirtildiğini önemsemediğimizi doğrular. Daha
+genel olarak kaplamsallık, $\phi(x)$ özelliğini taşıyan $x$ değerlerinin
+kümesinin her zaman yalnızca bir tane olduğunu güvence altına alır. Böylece
+kaplamsallık, $\Setabs{x}{\phi(x)}$ ifadesini $\phi(x)$ özelliğini taşıyan
+$x$ değerlerinin \emph{kümesi} diye adlandırmamızı haklı çıkarır.
+\end{ex}
+\end{tagblock}
+
+Kaplamsallık, kümelerin özdeş olduğunu göstermek için bize bir yol verir:
+$A = B$ olduğunu göstermek için, $x \in A$ olduğunda $x \in B$ olduğunu ve
+$y \in B$ olduğunda $y \in A$ olduğunu gösterin.
+
+\begin{prob}
+En fazla bir boş küme bulunduğunu ispatlayın; başka bir deyişle, $A$ ve $B$
+hiç elemanı olmayan kümelerse $A = B$ olduğunu gösterin.
+\end{prob}
+
+\end{document}

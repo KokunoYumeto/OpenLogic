@@ -1,0 +1,90 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: russells-paradox
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[tr]{sfr}{set}{rus}
+\olsection{Russell Paradoksu}
+
+Kaplamsallık, $\phi(x)$ özelliğini taşıyan $x$ değerlerinin \emph{kümesi} için
+$\Setabs{x}{\phi(x)}$ gösterimini kullanmamıza olanak verir. Ancak
+kaplamsallığın \emph{gerçekte} izin verdiği düşünce yalnızca şudur:
+elemanları tam olarak $\phi$ özelliğini taşıyan nesneler olan bir küme
+\emph{varsa}, bu tanımı karşılayan yalnızca bir küme vardır. Başka bir deyişle,
+belirli bir $\phi$ seçildikten sonra $\Setabs{x}{\phi(x)}$ kümesi \emph{varsa}
+tektir.
+
+Ne var ki bu koşul önemlidir!{} En önemlisi, her özellik \emph{küme
+oluşturmaya} elverişli değildir. Yani bazı özellikler küme tanımlamaz. Hepsi
+tanımlasaydı doğrudan çelişkilere varırdık. Bunun en ünlü örneği Russell
+paradoksudur.
+
+Kümeler başka kümelerin elemanları olabilir---örneğin bir $A$ kümesinin
+kuvvet kümesi, kümelerden oluşur. Dolayısıyla bir kümenin başka bir kümenin
+elemanı olup olmadığını sormak veya araştırmak anlamlıdır. Bir küme kendisinin
+elemanı olabilir mi? Küme düşüncesindeki hiçbir şey bunu
+dışlıyor gibi görünmez. Örneğin \emph{bütün} kümeler bir nesneler topluluğu
+oluşturuyorsa bunların tek bir kümede---bütün kümelerin kümesinde---
+toplanabileceği düşünülebilir. Bütün kümelerin kümesi de kendisi bir küme
+olduğuna göre kendi elemanı olurdu.
+
+Russell paradoksu, bir kümenin \emph{kendi kendisinin elemanı olmaması}
+özelliğini ele aldığımızda ortaya çıkar. Kendi kendisinin elemanı olmayan bütün kümelerden
+oluşan bir küme
+bulunduğunu varsayarsak ne olur?
+\[
+R = \Setabs{x}{x \notin x}
+\]
+Böyle bir $R$ var mıdır? Böyle bir kümenin var olmadığını
+ispatlayabileceğimiz ortaya çıkar.
+
+\begin{thm}[Russell Paradoksu]\ollabel{thm:russells-paradox}
+	$R = \Setabs{x}{x \notin x}$ eşitliğini sağlayan hiçbir $R$ kümesi yoktur.
+\end{thm}
+
+\begin{proof}
+$R = \Setabs{x}{x \notin x}$ eşitliğini sağlayan bir $R$ kümesi varsa,
+$R \in R$ ancak ve ancak $R \notin R$ olur; bu da bir çelişkidir.
+\end{proof}
+
+\begin{tagblock}{novice}
+\begin{explain}
+Bu ispatı daha yavaş inceleyelim. $R$ varsa $R \in R$ olup olmadığını sormak
+anlamlıdır. Önce gerçekten $R \in R$ olduğunu varsayalım. $R$, kendi kendisini
+eleman olarak içermeyen bütün kümelerin kümesi diye tanımlanmıştı. Dolayısıyla
+$R \in R$ ise $R$'nin kendisi, $R$'yi tanımlayan özelliği taşımaz. Oysa
+yalnızca bu özelliği taşıyan kümeler $R$'de bulunur; öyleyse $R$, $R$'nin
+elemanı olamaz, yani $R \notin R$ olur. Fakat $R$ aynı anda hem kendisinin elemanı hem de kendisinin
+elemanı olmayan bir küme olamaz; dolayısıyla bir çelişkiye ulaştık.
+
+$R \in R$ varsayımı çelişkiye götürdüğüne göre $R \notin R$ sonucunu elde
+ederiz. Ancak bu da bir çelişkiye götürür!{} Çünkü $R \notin R$ ise $R$'nin
+kendisi, $R$'yi tanımlayan özelliği taşır; o hâlde kendi kendisinin elemanı
+olmayan diğer tüm kümeler gibi $R$ de kendisinin elemanı olurdu. Yine $R$
+aynı anda hem kendisinin elemanı olmayan hem de kendisinin elemanı olan bir
+küme olamaz.
+\end{explain}
+\end{tagblock}
+
+\begin{digress}
+Russell paradoksuna düşmeyen, yani
+$R = \Setabs{x}{x \notin x}$ kümesinin var olduğu yönündeki \emph{tutarsız}
+savı ileri sürmekten kaçınan bir küme kuramını nasıl kurabiliriz? Kümelerin ne
+zaman var olduğunu (ve ne zaman var olmadığını) söylemek için çok kesin
+koşullar veren aksiyomlar koymamız gerekir.
+	
+Bu bölümde ana hatları çizilen küme kuramı bunu yapmaz. Kuram
+\emph{gerçekten naiftir}. Yalnızca kümelerin kaplamsallığa uyduğunu ve bazı
+kümeler varsa bunların birleşimini, kesişimini vb. oluşturabileceğinizi
+söyler. Küme kuramını bundan daha titiz biçimde geliştirmek mümkündür.
+\oliflabeldef{cumul:::part}{Bu titizlik, \olref[cumul][][]{part}.~Kısım için
+saklanacaktır. Şimdilik naif biçimde ilerleyecek ve çelişkilerden dikkatle
+kaçınmaya çalışacağız.}{}
+\end{digress}
+
+
+\end{document}

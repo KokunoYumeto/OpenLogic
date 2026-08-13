@@ -1,0 +1,82 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: equivalence-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{rel}{eqv}
+
+\olsection{Denklik Bağıntıları}
+
+Bir küme üzerindeki özdeşlik bağıntısı yansımalı, simetrik ve geçişlidir. Bu üç
+özelliğin hepsini taşıyan $R$ bağıntılarına çok sık rastlanır.
+
+\begin{defn}[Denklik bağıntısı]
+Yansımalı, simetrik ve geçişli bir $R \subseteq A^2$ bağıntısına \emph{denklik
+bağıntısı} denir. $A$'nın $x$ ve $y$ elemanlarına, $Rxy$ ise
+\emph{$R$-denk} denir.
+\end{defn}
+
+Denklik bağıntıları \emph{denklik sınıfı} kavramını doğurur. Bir denklik
+bağıntısı tanım kümesini birbirinden ayrı parçalara ayırır. Her parçadaki bütün
+nesneler birbiriyle bağıntılıdır; farklı parçalardaki hiçbir nesne birbiriyle
+bağıntılı değildir. Kimi zaman doğrudan bu parçalardan söz etmek yararlı olur.
+Bu amaçla şu tanımı getiriyoruz:
+
+\begin{defn}\ollabel{def:equivalenceclass}
+$R \subseteq A^2$ bir denklik bağıntısı olsun. Her $x \in A$ için $x$'in
+$A$'daki \emph{denklik sınıfı},
+$\equivrep{x}{R}=\Setabs{y \in A}{Rxy}$ kümesidir. $A$'nın $R$'ye göre
+\emph{bölüm kümesi},
+$\equivclass{A}{R}=\Setabs{\equivrep{x}{R}}{x \in A}$; yani bu denklik
+sınıflarının kümesidir.
+\end{defn}
+
+Bir sonraki sonuç, denklik sınıflarının gerçekten de $A$'nın parçaları
+olduğunu ispatlayarak denklik sınıfı tanımının yerindeliğini gösterir:
+
+\begin{prop}
+$R \subseteq A^2$ bir denklik bağıntısıysa, $Rxy$ ancak ve ancak
+$\equivrep{x}{R}=\equivrep{y}{R}$ olur.
+\end{prop}
+
+\begin{proof}
+Soldan sağa yön için $Rxy$ olduğunu varsayalım ve
+$z \in \equivrep{x}{R}$ olsun. O hâlde tanım gereği $Rxz$'dir. $R$ bir denklik
+bağıntısı olduğundan $Ryz$ olur. (Ayrıntılı yazarsak: $Rxy$ ve $R$'nin
+simetrikliği $Ryx$'i; $Rxz$ ve $R$'nin geçişliliği de $Ryz$'yi verir.)
+Dolayısıyla $z \in \equivrep{y}{R}$. Genelleştirirsek
+$\equivrep{x}{R} \subseteq \equivrep{y}{R}$ elde ederiz. Tam olarak aynı
+biçimde $\equivrep{y}{R} \subseteq \equivrep{x}{R}$ olur. Kaplamsallık
+uyarınca $\equivrep{x}{R}=\equivrep{y}{R}$ sonucuna varırız.
+
+Sağdan sola yön için $\equivrep{x}{R}=\equivrep{y}{R}$ olduğunu varsayalım.
+$R$ yansımalı olduğundan $Ryy$ ve dolayısıyla
+$y \in \equivrep{y}{R}$ olur. $\equivrep{x}{R}=\equivrep{y}{R}$ varsayımına
+göre $y \in \equivrep{x}{R}$ da geçerlidir. Öyleyse $Rxy$'dir.
+\end{proof}
+
+\begin{ex}
+Denklik bağıntılarının güzel bir örneği modüler aritmetikten gelir. Her
+$a$, $b$ ve $n \in \PosInt$ için, $a \equiv_n b$ ancak ve ancak $a$'nın
+~$n$'ye bölümünden kalanla $b$'nin~$n$'ye bölümünden kalan aynı olduğunda
+geçerli olsun. (Biraz daha simgesel olarak: $a \equiv_n b$ ancak ve ancak
+$a-b=kn$ olacak biçimde bir $k \in \Int$ bulunduğunda geçerli olsun.) Bu
+durumda her~$n$ için $\equiv_n$ bir denklik
+bağıntısıdır. Ayrıca $\equiv_n$'nin oluşturduğu tam olarak $n$ ayrı denklik
+sınıfı vardır; yani $\equivclass{\Nat}{\equiv_n}$ kümesinin $n$ elemanı vardır.
+Bunlar şunlardır: $n$'ye kalansız bölünebilen sayıların kümesi, yani
+$\equivrep{0}{\equiv_n}$; $n$'ye bölümünden kalan~$1$ olan sayıların kümesi,
+yani $\equivrep{1}{\equiv_n}$; \ldots; ve $n$'ye bölümünden kalan~$n-1$ olan
+sayıların kümesi, yani~$\equivrep{n-1}{\equiv_n}$.
+\end{ex}
+
+\begin{prob}
+Her $n \in \PosInt$ için $\equiv_n$'nin bir denklik bağıntısı olduğunu ve
+$\equivclass{\Nat}{\equiv_n}$ kümesinin tam olarak $n$ elemanı olduğunu
+gösterin.
+\end{prob}
+
+\end{document}

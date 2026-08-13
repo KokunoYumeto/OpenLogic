@@ -1,0 +1,15 @@
+\documentclass[article]{memoir}
+\PassOptionsToPackage{english}{babel}
+\usepackage{subfiles}
+\newcommand*{\olpath}{../../../../..}
+\newcommand*{\ollangid}{tr}
+\newcommand*{\ollanguage}{english}
+\input{\olpath/sty/open-logic.sty}
+\babelprovide[import]{turkish}
+\AtBeginDocument{\selectlanguage{turkish}}
+\input{\olpath/sty/open-logic-debug.sty}
+\def\thechapter{\theolchapter}
+\pagestyle{openlogic}
+\begin{document}
+Bu dosya tek başına derlenmek için değil, kesimleri ayrı ayrı derlemek için şablon olarak hazırlanmıştır.
+\end{document}

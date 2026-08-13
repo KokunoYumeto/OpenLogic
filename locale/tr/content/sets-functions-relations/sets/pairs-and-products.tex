@@ -1,0 +1,137 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: pairs-and-products
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{set}{pai}
+\olsection{İkililer, Demetler ve Kartezyen Çarpımlar}
+
+\begin{explain}
+Kaplamsallıktan, bir kümenin elemanları arasında herhangi bir sıra bulunmadığı
+sonucu çıkar. Bu yüzden bir sırayı temsil etmek istediğimizde \emph{sıralı
+ikilileri} $\tuple{x, y}$ kullanırız. Sırasız bir $\{x, y\}$ ikilisinde sıra
+önemli değildir: $\{x, y\} = \{y, x\}$. Sıralı bir ikilide ise önemlidir:
+$x \neq y$ ise $\tuple{x, y} \neq \tuple{y, x}$ olur.
+
+Küme kuramında sıralı ikilileri nasıl düşünmeliyiz? En önemlisi, sıralı
+ikililerin ancak ve ancak birinci elemanları kendi aralarında, ikinci
+elemanları da kendi aralarında aynı olduğunda özdeş olduğu düşüncesini korumak
+isteriz; yani
+\[
+  \tuple{a, b}= \tuple{c, d}\quad\Longleftrightarrow\quad
+  a = c\ \text{ ve }\ b=d.
+\]
+Sıralı ikilileri küme kuramında Wiener--Kuratowski tanımını kullanarak
+verebiliriz.
+\end{explain}
+
+\begin{defn}[Sıralı ikili]\ollabel{wienerkuratowski}
+	$\tuple{a, b} = \{\{a\}, \{a, b\}\}$.
+\end{defn}
+
+\begin{prob}
+	\olref[sfr][set][pai]{wienerkuratowski} tanımını kullanarak
+	$\tuple{a, b}= \tuple{c, d}$ eşitliğinin ancak ve ancak hem $a = c$ hem de
+	$b=d$ olduğunda geçerli olduğunu ispatlayın.
+\end{prob}
+
+\begin{explain}
+Sıralı ikili tanımını belirledikten sonra onu başka kümeleri tanımlamak için
+kullanabiliriz. Örneğin bazen ikiden fazla nesnenin sıralı dizilerine de gerek
+duyarız: \emph{üçlüler} $\tuple{x, y, z}$, \emph{dörtlüler}
+$\tuple{x, y, z, u}$ vb. Üçlüleri, ilk elemanı kendisi de bir sıralı ikili
+olan özel sıralı ikililer olarak düşünebiliriz: $\tuple{x, y, z}$,
+$\tuple{\tuple{x, y},z}$ demektir. Aynı şey dörtlüler için de geçerlidir:
+$\tuple{x,y,z,u}$, $\tuple{\tuple{\tuple{x,y},z},u}$ demektir ve böyle devam
+eder. Genel olarak \emph{sıralı $n$-lilerden}
+$\tuple{x_1, \dots, x_n}$ söz ederiz.
+
+Sıralı ikililerden veya başka sıralı $n$-lilerden oluşan belirli kümeler
+yararlı olacaktır.
+\end{explain}
+
+\begin{defn}[Kartezyen çarpım]
+$A$ ve $B$ kümeleri verildiğinde bunların \emph{Kartezyen çarpımı}
+$A \times B$ şöyle tanımlanır:
+\[
+  A \times B = \Setabs{\tuple{x, y}}{x \in A \text{ ve } y \in B}.
+\]
+\end{defn}
+
+\begin{ex}
+$A = \{0, 1\}$ ve $B = \{1, a, b\}$ ise çarpımları şöyledir:
+\[
+A \times B = \{ \tuple{0, 1}, \tuple{0, a}, \tuple{0, b},
+    \tuple{1, 1}, \tuple{1, a}, \tuple{1, b} \}.
+\]
+\end{ex}
+
+\begin{ex}
+$A$ bir kümeyse $A$ kümesinin kendisiyle çarpımı $A \times A$, $A^2$ olarak da
+yazılır. Bu, $x, y \in A$ koşulunu sağlayan \emph{bütün}
+$\tuple{x, y}$ ikililerinin kümesidir. Bütün $\tuple{x, y, z}$ üçlülerinin
+kümesi $A^3$'tür ve böyle devam eder. Özyinelemeli bir tanım verebiliriz:
+\begin{align*}
+  A^1 & = A\\
+  A^{k+1} & = A^k \times A
+\end{align*}
+\end{ex}
+
+\begin{prob}
+$\{1, 2, 3\}^3$ kümesinin bütün elemanlarını listeleyin.
+\end{prob}
+
+\begin{prop}\ollabel{cardnmprod}
+$A$ kümesinin $n$ elemanı, $B$ kümesinin de $m$ elemanı varsa $A \times B$
+kümesinin $n\cdot m$ elemanı vardır.
+\end{prop}
+
+\begin{proof}
+$A$ kümesinin her $x$ elemanı için, $y \in B$ olmak üzere $A \times B$
+kümesinde $\tuple{x, y}$ biçiminde $m$ eleman bulunur.
+$B_x = \Setabs{\tuple{x, y}}{y \in B}$ olsun. $x_1 \neq x_2$ olduğunda
+$\tuple{x_1, y} \neq \tuple{x_2, y}$ de olduğundan
+$B_{x_1} \cap B_{x_2} = \emptyset$ olur. Ancak
+$A = \{x_1, \dots, x_n\}$ ise
+$A \times B = B_{x_1} \cup \dots \cup B_{x_n}$ olur; dolayısıyla bu kümede
+$n\cdot m$ eleman bulunur.
+
+Bunu görselleştirmek için $A \times B$ kümesinin elemanlarını bir
+ızgarada düzenleyin:
+\[
+\begin{array}{rcccc}
+  B_{x_1} = & \{\tuple{x_1, y_1} & \tuple{x_1, y_2} & \dots & \tuple{x_1, y_m}\}\\
+  B_{x_2} = & \{\tuple{x_2, y_1} & \tuple{x_2, y_2} & \dots & \tuple{x_2, y_m}\}\\
+  \vdots & & \vdots\\
+  B_{x_n} = & \{\tuple{x_n, y_1} & \tuple{x_n, y_2} & \dots & \tuple{x_n, y_m}\}
+\end{array}
+\]
+$x_i$ değerlerinin tümü birbirinden, $y_j$ değerlerinin tümü de birbirinden
+farklı olduğundan, bu ızgaradaki ikililerin hiçbiri bir diğeriyle aynı değildir;
+toplam $n\cdot m$ ikili vardır.
+\end{proof}
+
+\begin{prob}
+$k$'ye göre tümevarımla, tüm $k \ge 1$ değerleri için, $A$ kümesinin $n$
+elemanı varsa $A^k$ kümesinin $n^k$ elemanı bulunduğunu
+gösterin.
+\end{prob}
+
+\begin{ex}
+$A$ bir kümeyse $A$ üzerindeki bir \emph{sözcük}, $A$ kümesinin
+elemanlarından oluşan herhangi bir \emph{sonlu} dizidir. Böyle bir sonlu dizi,
+$A$ kümesinin elemanlarından oluşan bir $n$-li olarak düşünülebilir. Örneğin
+$A = \{a, b, c\}$ ise ``$bac$'' dizisi $\tuple{b, a, c}$ üçlüsü olarak
+düşünülebilir. Sözcükler, yani simge dizileri, bilgisayar biliminde temel bir
+öneme sahiptir. Uzlaşım gereği $A$ kümesinin elemanlarını uzunluğu
+$1$ olan diziler, $\emptyset$ kümesini de uzunluğu $0$ olan dizi sayarız.
+Böylece $A$ üzerindeki \emph{bütün} sözcüklerin kümesi şöyledir:
+\[
+A^* = \{\emptyset\} \cup A \cup A^2 \cup A^3 \cup \dots
+\]
+\end{ex}
+
+\end{document}

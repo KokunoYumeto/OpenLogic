@@ -1,0 +1,21 @@
+# SHA-256 — Turkish Open Logic OLP-0001 through OLP-0019
+
+9d30f00f8d320feba9b09e62192e85790e5980050f89321a5767f96f8f5f6d4c  locale/tr/content/open-logic-about.tex
+a9abb8f329b682acea399a3ca61667fc1d369fc3294a242c72070fb9dc60d0ab  locale/tr/content/content.tex
+0b8896c1018ff7472b4ec977f91f2a2c55a979bf86049be52f50c2a899fb4a5a  locale/tr/content/sets-functions-relations/sets-functions-relations-complete.tex
+5bc224aa380c712011797fca40747adcf486cddeb4d4cc969f2db06f9325a7db  locale/tr/content/sets-functions-relations/sets/sets.tex
+05b969a4d42f090daab737e87b482ac3dd7bf8050a1b100789864497a4a0f6e8  locale/tr/content/sets-functions-relations/sets/basics.tex
+9362c9b6280a1aedae99525c2e2ab1f4439855fddb71b5adb0b5220077477912  locale/tr/content/sets-functions-relations/sets/subsets.tex
+9ee41305d94ad008e5a495507fe7b9cd41c598fbebe29d930c1c541586d25c3c  locale/tr/content/sets-functions-relations/sets/important-sets.tex
+3531d0a54d2002b9a638baa6c099254927ff7aa3f9c417ef8111507b5a33f4d4  locale/tr/content/sets-functions-relations/sets/unions-and-intersections.tex
+7bfd3f3080af1b4762636aece836a0ac5d3b04be195a31966786fd5c087e8748  locale/tr/content/sets-functions-relations/sets/pairs-and-products.tex
+538f5024792bfa5e9d43a6716cbe496423687924c15baf7a28adee6d15c15fc2  locale/tr/content/sets-functions-relations/sets/russells-paradox.tex
+9fb3b07a931eec3b5dc9408982bcc3ea2c7dc50dbd0170cf6b54d8ad6772807f  locale/tr/content/sets-functions-relations/relations/relations-complete.tex
+34d156476f595e0117e424494a9c4d24d70cd7fa057502e5173abeee29e59896  locale/tr/content/sets-functions-relations/relations/relations-as-sets.tex
+45e868c400b2ffd15e313b1989bda45e22e18e271c5f0d3477233bc9b12779e1  locale/tr/content/sets-functions-relations/relations/reflections.tex
+ae615d01a19577cb85ff3004c730a051e076f98244500898337aac632f3a1271  locale/tr/content/sets-functions-relations/relations/special-properties.tex
+afd9525388a36c73c9fa4b8b83f4b22be3b43acad6610ae2bb21e26760a6a7d9  locale/tr/content/sets-functions-relations/relations/equivalence-relations.tex
+67ff2488fa7c1e1cff1777585d3a7025f80f92432e0c664ba5d69f742a774a24  locale/tr/content/sets-functions-relations/relations/orders.tex
+e4e50eaa9879f9b4cafdc998b82b95eb8d909af44a9b014072fbc96726abbfd5  locale/tr/content/sets-functions-relations/relations/graphs.tex
+eb8f187c5f4b14274fd4145b417b996724ac9d840ca2ecab337094bcc2737983  locale/tr/content/sets-functions-relations/relations/trees.tex
+837bb2b4cf16a00eacd64e5b7c9e6fd7293d74d1e74ee5f4724f639fcb2e998c  locale/tr/content/sets-functions-relations/relations/operations.tex

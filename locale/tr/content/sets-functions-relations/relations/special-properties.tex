@@ -1,0 +1,84 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: special-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{rel}{prp}
+\olsection{Bağıntıların Özel Özellikleri}
+
+\begin{intro}
+Bazı bağıntı türlerine öylesine sık rastlanır ki bunlara özel adlar verilmiştir.
+Örneğin $\le$ ve~$\subseteq$, kendi tanım kümelerindeki elemanları (söz gelimi
+$\le$ için $\Nat$'ın, $\subseteq$ için $\Pow{A}$'nın elemanlarını) benzer
+biçimlerde birbirine bağlar. Bu bağıntıların tam olarak hangi bakımlardan
+benzeştiğini ve hangi bakımlardan ayrıldığını görmek için onları, bağıntıların
+taşıyabileceği bazı özel özelliklere göre sınıflandırırız. Bu özel özelliklerin
+bazılarının ve bunların birleşimlerinin özellikle önemli olduğu ortaya çıkar:
+sıralamalar ve denklik bağıntıları.
+\end{intro}
+
+\begin{defn}[Yansımalılık]
+Bir $R \subseteq A^2$ bağıntısı, ancak ve ancak her $x \in A$ için $Rxx$
+geçerliyse \emph{yansımalıdır}.
+\end{defn}
+
+\begin{defn}[Geçişlilik]
+Bir $R \subseteq A^2$ bağıntısı, ancak ve ancak $Rxy$ ile $Ryz$ birlikte geçerli
+olduğunda $Rxz$ de geçerliyse \emph{geçişlidir}.
+\end{defn}
+
+\begin{defn}[Simetriklik]
+Bir $R \subseteq A^2$ bağıntısı, ancak ve ancak $Rxy$ geçerli olduğunda
+$Ryx$ de geçerliyse \emph{simetriktir}.
+\end{defn}
+
+\begin{defn}[Ters simetriklik]
+Bir $R \subseteq A^2$ bağıntısı, ancak ve ancak hem $Rxy$ hem de $Ryx$ geçerli
+olduğunda $x=y$ ise \emph{ters simetriktir} (başka bir deyişle,
+$x\neq y$ ise ya $\lnot Rxy$ ya da $\lnot Ryx$ olur).
+\end{defn}
+
+\begin{explain}
+Simetrik bir bağıntıda $Rxy$ ile $Ryx$ ya her zaman birlikte geçerlidir ya da
+ikisi de geçerli değildir. Ters simetrik bir bağıntıda $Rxy$ ile $Ryx$'in
+birlikte geçerli olmasının tek yolu $x=y$ olmasıdır. Bunun, $x=y$ olduğunda
+$Rxy$ ile $Ryx$'in geçerli olmasını \emph{gerektirmediğine}; yalnızca bunu
+dışlamadığına dikkat edin. Dolayısıyla ters simetrik bir bağıntı yansımalı
+olabilir, ancak her ters simetrik bağıntı yansımalı değildir. Ters simetrik
+olmakla yalnızca simetrik olmamak da farklı koşullardır. Nitekim bir bağıntı
+aynı anda hem simetrik hem de ters simetrik olabilir (örneğin özdeşlik bağıntısı
+böyledir).
+\end{explain}
+
+\begin{defn}[Bağlantılılık]
+Bir $R \subseteq A^2$ bağıntısı, bütün $x,y\in A$ için $x\neq y$ olduğunda
+$Rxy$ ya da~$Ryx$ ifadelerinden en az biri geçerliyse \emph{bağlantılıdır}.
+\end{defn}
+
+\begin{prob}
+Şu özellikleri taşıyan bağıntılara örnekler verin: (a) yansımalı ve simetrik
+olup geçişli olmayan, (b) yansımalı ve ters simetrik olan, (c) ters simetrik ve
+geçişli olup yansımalı olmayan ve (d) yansımalı, simetrik ve geçişli olan.
+Sayılar veya kümeler üzerindeki bağıntıları kullanmayın.
+\end{prob}
+
+\begin{defn}[Yansımasızlık]
+Bir $R \subseteq A^2$ bağıntısına, bütün $x \in A$ için $Rxx$ geçerli değilse
+\emph{yansımasız} denir.
+\end{defn}
+
+\begin{defn}[Asimetriklik]
+Bir $R \subseteq A^2$ bağıntısına, hiçbir $x,y\in A$ ikilisi için $Rxy$ ile
+$Ryx$ birlikte geçerli olmuyorsa \emph{asimetrik} denir.
+\end{defn}
+
+$A \neq \emptyset$ ise $A$ üzerindeki hiçbir yansımasız bağıntının yansımalı
+olmadığına ve $A$ üzerindeki her asimetrik bağıntının aynı zamanda ters
+simetrik olduğuna dikkat edin. Bununla birlikte yansımalı da yansımasız da
+olmayan $R \subseteq A^2$ bağıntıları ve asimetrik olmayan ters
+simetrik bağıntılar vardır.
+
+\end{document}

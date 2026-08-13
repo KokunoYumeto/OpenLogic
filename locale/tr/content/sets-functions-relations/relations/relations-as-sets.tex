@@ -1,0 +1,123 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: relations-as-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{rel}{set}
+\olsection{Küme Olarak Bağıntılar}
+
+\begin{explain}
+\olref[sfr][set][imp]{sec} kesiminde bazı önemli kümelerden söz etmiştik:
+$\Nat$, $\Int$, $\Rat$, $\Real$. Bu kümelerden bazılarının elemanları arasındaki
+ilginç bağıntılardan birkaçını kuşkusuz anımsayacaksınız. Örneğin bu kümelerin
+her biri üzerinde tümüyle standart bir \emph{sıralama bağıntısı} vardır. Ayrıca
+her nesnenin kendisiyle ve yalnızca kendisiyle kurduğu \emph{kendisiyle özdeş
+olma} bağıntısı bulunur. İleride daha birçok ilginç bağıntıyla karşılaşacağız; mümkün olan
+bağıntıların sayısı ise daha da fazladır. Ancak bunları gözden geçirmeden önce,
+bağıntılara özel bir küme türü olarak bakabileceğimize dikkat çekerek
+başlayacağız.
+
+Bunun için \olref[sfr][set][pai]{sec} kesiminden iki şeyi anımsayın. İlk olarak
+\emph{sıralı ikili} kavramını anımsayın: $a$ ve $b$ verildiğinde
+~$\tuple{a, b}$ ikilisini oluşturabiliriz. Burada elemanların sırası gerçekten
+önemlidir. Dolayısıyla $a \neq b$ ise $\tuple{a, b} \neq \tuple{b, a}$ olur.
+(Bunu sırasız ikililerle, yani $2$ elemanlı kümelerle karşılaştırın; bunlarda
+$\{a, b\}=\{b, a\}$ olur.) İkinci olarak \emph{Kartezyen çarpım} kavramını
+anımsayın: $A$ ve $B$ kümelerse, $x \in A$ ve $y \in B$ olan bütün
+$\tuple{x, y}$ ikililerinin kümesi~$A \times B$'yi oluşturabiliriz. Özellikle
+$A^{2}= A \times A$, elemanları $A$'dan gelen bütün sıralı ikililerin kümesidir.
+
+Şimdi bir küme üzerindeki belirli bir bağıntıyı ele alacağız: doğal sayılar
+kümesi~$\Nat$ üzerindeki $<$ bağıntısı. $n<m$ olan bütün $\tuple{n, m}$ sayı
+ikililerinin kümesini düşünün; yani
+\[
+  R=\Setabs{\tuple{n, m}}{n, m \in \Nat \text{ ve } n<m}.
+\]
+$n$'nin $m$'den küçük olmasıyla $\tuple{n, m}$ ikilisinin $R$'nin bir elemanı
+olması arasında şu yakın bağlantı vardır:
+\[
+      n<m\text{ ancak ve ancak }\tuple{n, m} \in R.
+\]
+Gerçekten de hiçbir bilgi yitirmeden, $R$ kümesini $\Nat$ üzerindeki $<$
+bağıntısının kendisi olarak \emph{ele alabiliriz}.
+
+Aynı biçimde, sayılar arasındaki herhangi bir bağıntı için $\Nat^{2}$'nin bir
+alt kümesini kurabiliriz. Tersine, herhangi bir sayı ikilileri kümesi
+$S \subseteq \Nat^{2}$ verildiğinde, sayılar arasında buna karşılık gelen bir
+bağıntı vardır: $n$ ile $m$ arasındaki bağıntı, ancak ve ancak
+$\tuple{n, m} \in S$ olduğunda geçerlidir. Bu da aşağıdaki tanımı gerekçelendirir:
+\end{explain}
+
+\begin{defn}[İkili bağıntı]
+Bir $A$ kümesi üzerindeki \emph{ikili bağıntı}, $A^{2}$'nin bir alt kümesidir.
+$R \subseteq A^{2}$, $A$ üzerinde bir ikili bağıntı ve $x, y \in A$ ise,
+$\tuple{x, y} \in R$ yerine kimi zaman $Rxy$ (veya $xRy$) yazarız.
+\end{defn}
+
+\begin{ex}
+  \ollabel{relations}
+Doğal sayı ikililerinin kümesi $\Nat^{2}$, iki boyutlu bir matris biçiminde
+şöyle listelenebilir:
+\[
+  \begin{array}{ccccc}
+  \mathbf{\tuple{ 0,0 }} & \tuple{ 0,1 } &
+    \tuple{ 0,2 } & \tuple{ 0,3 } & \ldots\\
+  \tuple{ 1,0 } & \mathbf{\tuple{ 1,1 }} &
+    \tuple{ 1,2 } & \tuple{ 1,3 } & \ldots\\
+  \tuple{ 2,0 } & \tuple{ 2,1 } &
+    \mathbf{\tuple{ 2,2 }} & \tuple{ 2,3 } & \ldots\\
+  \tuple{ 3,0 } & \tuple{ 3,1 } & \tuple{ 3,2 } &
+    \mathbf{\tuple{ 3,3 }} & \ldots\\
+  \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+  \end{array}
+\]
+Köşegen üzerinde bulunan ikililerden oluşan $\Nat^2$ alt kümesi, yani
+\[
+  \{\tuple{0,0 }, \tuple{ 1,1 }, \tuple{ 2,2 }, \dots\},
+\]
+$\Nat$ üzerindeki \emph{özdeşlik bağıntısı} olduğu için burada köşegeni kalın
+yazdık. (Özdeşlik bağıntısı sık kullanıldığından, herhangi bir $A$ kümesi için
+$\Id{A}=\Setabs{\tuple{ x,x }}{x \in A}$ biçiminde tanımlayalım.) Köşegenin
+üstünde kalan bütün ikililerin alt kümesi, yani
+\[
+  L = \{\tuple{ 0,1 },\tuple{ 0,2 },\ldots,\tuple{ 1,2 },
+  \tuple{ 1,3 }, \dots, \tuple{ 2,3 }, \tuple{ 2,4 },\ldots\},
+\]
+\emph{küçüktür} bağıntısıdır; başka bir deyişle $Lnm$ ancak ve ancak $n<m$
+olduğunda geçerlidir. Köşegenin altında kalan ikililerin alt kümesi, yani
+\[
+  G=\{ \tuple{ 1,0 },\tuple{ 2,0 },\tuple{
+    2,1 }, \tuple{ 3,0 },\tuple{ 3,1 },\tuple{ 3,2 }, \dots\},
+\]
+\emph{büyüktür} bağıntısıdır; yani $Gnm$ ancak ve ancak $n>m$ olduğunda
+geçerlidir. $L$ ile $\Id{\Nat}$'ın birleşimi---$K=L\cup\Id{\Nat}$ diyebileceğimiz
+bağıntı---\emph{küçük veya eşittir} bağıntısıdır: $Knm$ ancak ve ancak
+$n \le m$. Benzer biçimde $H=G\cup\Id{\Nat}$, \emph{büyük veya eşittir}
+bağıntısıdır. $L$, $G$, $K$ ve $H$ bağıntıları, \emph{sıralamalar} denilen özel
+bağıntı türleridir. $L$ ile $G$'nin şöyle bir özelliği vardır: hiçbir sayı
+kendisiyle $L$ veya $G$ bağıntısını kurmaz;
+başka bir deyişle her $n$ için ne $Lnn$ ne de $Gnn$ geçerlidir. Bu özelliği
+taşıyan bağıntılara \emph{yansımasız}; aynı zamanda sıralama iseler \emph{sıkı
+sıralama} denir.
+\end{ex}
+
+\begin{explain}
+Sıralamalar ve özdeşlik önemli ve doğal bağıntılar olsa da tanımımıza göre,
+ne kadar yapay ya da zorlama görünürse görünsün, $A^{2}$'nin \emph{herhangi}
+bir alt kümesinin $A$ üzerinde bir bağıntı olduğu vurgulanmalıdır. Özellikle
+$\emptyset$ her küme üzerinde bir bağıntıdır (hiçbir eleman ikilisinin kurmadığı
+\emph{boş bağıntı}); $A^{2}$'nin kendisi de $A$ üzerinde, her eleman ikilisinin
+kurduğu \emph{evrensel bağıntı} denilen bir bağıntıdır. Bunun yanı sıra
+$E=\Setabs{\tuple{n, m}}{n>5 \text{ veya } m \times n \ge 34}$ gibi bir küme de
+bağıntı sayılır.
+\end{explain}
+
+\begin{prob}
+  $\Pow{\{a, b, c\}}$ kümesi üzerindeki $\subseteq$ bağıntısının elemanlarını
+  listeleyin.
+\end{prob}
+
+\end{document}

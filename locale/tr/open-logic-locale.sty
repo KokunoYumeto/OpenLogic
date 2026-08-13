@@ -1,0 +1,106 @@
+% Open Logic Project Turkish localization (tr-Latn).
+% Upstream's current loader initializes cleveref in English because the
+% installed cleveref has no Turkish module. Turkish Babel data is imported
+% separately by each driver for captions and hyphenation. The names below are
+% explicit so cleveref remains usable without pretending it has a Turkish
+% module.
+
+\setlocalecaption{english}{photocredits}{Fotoğraf Bilgileri}
+\setlocalecaption{english}{history}{Tarihsel Notlar}
+\setlocalecaption{english}{reading}{İleri Okumalar}
+\setlocalecaption{english}{appendix}{Ek}
+\setlocalecaption{english}{appendices}{Ekler}
+
+\setlocalecaption{english}{theorem}{Teorem}
+\setlocalecaption{english}{example}{Örnek}
+\setlocalecaption{english}{definition}{Tanım}
+\setlocalecaption{english}{lemma}{Lemma}
+\setlocalecaption{english}{proposition}{Önerme}
+\setlocalecaption{english}{corollary}{Sonuç}
+\setlocalecaption{english}{problem}{Alıştırma}
+\setlocalecaption{english}{problems}{Alıştırmalar}
+\setlocalecaption{english}{remark}{Not}
+\setlocalecaption{english}{axiom}{Aksiyom}
+\setlocalecaption{english}{note}{Not}
+\setlocalecaption{english}{case}{Durum}
+\setlocalecaption{english}{convention}{Uzlaşım}
+
+% ntheorem's proof environment uses \proofname independently of the locale
+% caption table.
+\AtBeginDocument{\renewcommand*{\proofname}{İspat}}
+
+\setlocalecaption{english}{OLP}{Açık Mantık Projesi}
+\setlocalecaption{english}{OLT}{Açık Mantık Metni}
+\setlocalecaption{english}{OLTlink}{https://github.com/OpenLogicProject/OpenLogic}
+\setlocalecaption{english}{license}{Creative Commons Atıf 4.0 Uluslararası Lisansı}
+\setlocalecaption{english}{instigator}{Başlatan}
+\setlocalecaption{english}{editorialboard}{Yayın Kurulu}
+\setlocalecaption{english}{contributors}{Katkıda Bulunanlar}
+
+% cleveref does not ship Turkish localization names in every installed
+% version, so define them explicitly after the package is loaded.
+\crefname{page}{s.}{s.}
+\crefname{part}{kısım}{kısımlar}
+\crefname{chapter}{bölüm}{bölümler}
+\crefname{section}{kesim}{kesimler}
+\crefname{thm}{teorem}{teoremler}
+\crefname{ex}{örnek}{örnekler}
+\crefname{defn}{tanım}{tanımlar}
+\crefname{lem}{lemma}{lemmalar}
+\crefname{prop}{önerme}{önermeler}
+\crefname{prob}{alıştırma}{alıştırmalar}
+\crefname{rem}{not}{notlar}
+\crefname{cor}{sonuç}{sonuçlar}
+\crefname{axiom}{aksiyom}{aksiyomlar}
+\crefname{note}{not}{notlar}
+\crefname{case}{durum}{durumlar}
+\crefname{conv}{uzlaşım}{uzlaşımlar}
+\crefname{figure}{şekil}{şekiller}
+\crefname{table}{tablo}{tablolar}
+\Crefname{page}{S.}{S.}
+\Crefname{part}{Kısım}{Kısımlar}
+\Crefname{chapter}{Bölüm}{Bölümler}
+\Crefname{section}{Kesim}{Kesimler}
+\Crefname{thm}{Teorem}{Teoremler}
+\Crefname{ex}{Örnek}{Örnekler}
+\Crefname{defn}{Tanım}{Tanımlar}
+\Crefname{lem}{Lemma}{Lemmalar}
+\Crefname{prop}{Önerme}{Önermeler}
+\Crefname{prob}{Alıştırma}{Alıştırmalar}
+\Crefname{rem}{Not}{Notlar}
+\Crefname{cor}{Sonuç}{Sonuçlar}
+\Crefname{axiom}{Aksiyom}{Aksiyomlar}
+\Crefname{note}{Not}{Notlar}
+\Crefname{case}{Durum}{Durumlar}
+\Crefname{conv}{Uzlaşım}{Uzlaşımlar}
+\Crefname{figure}{Şekil}{Şekiller}
+\Crefname{table}{Tablo}{Tablolar}
+
+\renewcommand*{\ollicensetext}[3]
+  {\textit{#1}, #2 tarafından hazırlanmış ve #3 ile lisanslanmıştır.}
+\renewcommand*{\olshortlicensetext}[1]
+  {\textit{\href{\OLTlinkname}{\jobname}}, #1 / 
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+\renewcommand*{\oluselicensetext}
+  {Bu çalışma, \href{http://openlogicproject.org/}{\OLPname} tarafından
+  hazırlanmış \textit{\href{\OLTlinkname}{\OLTname}} temel alınarak,
+  \href{http://creativecommons.org/licenses/by/4.0/}{\licensename}
+  kapsamında kullanılmıştır.}
+\renewcommand*{\olshortuselicensetext}[2]
+  {\textit{#1}, #2; kaynak: 
+  \href{http://openlogicproject.org/}{OLP} / 
+  \href{http://creativecommons.org/licenses/by/4.0/}{CC--BY}.}
+
+\renewcommand*{\olremixedby}{Türkçe uyarlama: \OLPauthor}
+\renewcommand*{\olacknowledgements}
+  {Open Logic Project, Alberta hükûmetinin yatırımıyla gerçekleştirilen
+  University of Calgary Taylor Institute of Teaching and Learning ile Alberta
+  Open Educational Resources (ABOER) girişiminin önemli desteğine teşekkür eder.}
+\renewcommand*{\olillustrations}
+  {Kapak çizimleri Matthew Leadbeater tarafından hazırlanmış ve Creative
+  Commons Atıf--GayriTicari 4.0 Uluslararası Lisansı kapsamında kullanılmıştır.}
+\renewcommand*{\olcolophon}{\LaTeX{} ile dizilmiştir.}
+\renewcommand*{\olbookrevision}
+  {\emph{\OLPbooktitle} adlı bu sürüm, \gitAbbrevHash{} (\gitAuthorDate)
+  revizyonudur ve \emph{Open Logic Text} \OLPrevision revizyonundan
+  üretilmiştir. Ücretsiz indirme: \url{\OLPsourcelink}}

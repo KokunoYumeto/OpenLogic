@@ -1,0 +1,102 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: subsets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{set}{sub}
+\olsection{Alt Kümeler ve Kuvvet Kümeleri}
+
+\begin{explain}
+Kümeleri sık sık karşılaştırmak isteyeceğiz. Doğal bir karşılaştırma şudur:
+\emph{bir kümedeki her şey ötekinde de bulunur}. Bu durum,
+yeni bir gösterim kullanmamızı gerektirecek kadar önemlidir.
+\end{explain}
+
+\begin{defn}[Alt Küme]
+$A$ kümesinin her elemanı aynı zamanda $B$ kümesinin de elemanıysa, $A$
+kümesine $B$ kümesinin bir \emph{alt kümesi} der ve $A \subseteq B$ yazarız.
+$A$, $B$ kümesinin bir alt kümesi değilse $A \not\subseteq B$ yazarız.
+$A \subseteq B$ ama $A \neq B$ ise $A \subsetneq B$ yazar ve $A$ kümesine
+$B$ kümesinin bir \emph{öz alt kümesi} deriz.
+\end{defn}
+
+\begin{ex}
+Her küme kendisinin bir alt kümesidir ve $\emptyset$ her kümenin bir
+alt kümesidir. Çift doğal sayılar kümesi, doğal sayılar kümesinin bir
+alt kümesidir. Ayrıca $\{ a, b \} \subseteq \{ a, b, c \}$ olur. Buna karşılık
+$\{ a, b, e \}$, $\{ a, b, c \}$ kümesinin bir alt kümesi değildir.
+\end{ex}
+
+\begin{ex}
+$2$ sayısı tam sayılar kümesinin bir elemanıyken çift sayılar kümesi, tam
+sayılar kümesinin bir alt kümesidir. Bununla birlikte bir küme, başka bir
+kümenin hem elemanı hem de alt kümesi olabilir.
+Örneğin $\{0\} \in \{0, \{0\}\}$ ve aynı zamanda
+$\{0\} \subseteq \{0, \{0\}\}$ olur.
+\end{ex}
+
+Kaplamsallık kümeler için bir özdeşlik ölçütü verir: $A = B$ eşitliği ancak ve
+ancak $A$ kümesinin her elemanı $B$ kümesinin de elemanıysa ve bunun tersi de
+geçerliyse sağlanır. ``Alt küme'' tanımı, $A \subseteq B$ ifadesini bu ölçütün
+ilk yarısı olarak tanımlar: $A$ kümesinin her elemanı aynı zamanda $B$
+kümesinin de elemanıdır. Tanım, $A$ ile $B$ kümelerinin yerleri
+değiştirildiğinde de geçerlidir: $B \subseteq A$ ancak ve ancak $B$ kümesinin
+her elemanı $A$ kümesinin de elemanıysa. Bu, kaplamsallıktaki ``tersine''
+bölümüdür. Başka bir deyişle, kümeler ancak ve ancak birbirlerinin alt
+kümeleriyse eşittir.
+
+\begin{prop}
+$A = B$ eşitliği ancak ve ancak hem $A \subseteq B$ hem de $B \subseteq A$
+olduğunda geçerlidir.
+\end{prop}
+
+Şimdi birkaç kullanışlı gösterim daha tanıtabiliriz. $A$ kümesinin ne zaman
+$B$ kümesinin bir alt kümesi olduğunu tanımlarken ``$A$ kümesinin her elemanı
+\dots'' dedik ve ``$\dots$'' yerini ``$B$ kümesinin de elemanıdır''
+ifadesiyle doldurduk. Bu anlatım \emph{biçimi} çok sık kullanıldığından onun
+için biçimsel bir gösterim vermek yararlı olacaktır.
+
+\begin{defn}\ollabel{forallxina}
+$(\forall x \in A)\phi$, $\forall x(x \in A \lif \phi)$ ifadesinin
+kısaltmasıdır. Benzer biçimde $(\exists x \in A)\phi$,
+$\exists x(x \in A \land \phi)$ ifadesinin kısaltmasıdır.
+\end{defn}
+
+Bu gösterimle $A \subseteq B$ ifadesinin $(\forall x \in A)x \in B$
+ifadesine denk olduğunu söyleyebiliriz.
+
+Şimdi belirli türden bir kümeye geçiyoruz: verilmiş bir kümenin bütün
+alt kümelerinden oluşan kümeye.
+
+\begin{defn}[Kuvvet Kümesi]
+Bir $A$ kümesinin bütün alt kümelerinden oluşan kümeye $A$ kümesinin
+\emph{kuvvet kümesi} denir ve bu küme $\Pow{A}$ ile gösterilir.
+  \[
+    \Pow{A} = \Setabs{B}{B \subseteq A}
+  \]
+\end{defn}
+
+\begin{ex}
+$\{ a, b, c \}$ kümesinin olası bütün alt kümeleri nelerdir? Bunlar
+$\emptyset$, $\{a \}$, $\{b\}$, $\{c\}$, $\{a, b\}$, $\{a, c\}$,
+$\{b, c\}$ ve $\{a, b, c\}$ kümeleridir. Bu alt kümelerin tümünden oluşan
+küme $\Pow{\{a,b,c\}}$'dir:
+\[
+\Pow{\{ a, b, c \}} = \{\emptyset, \{a \}, \{b\}, \{c\}, \{a, b\},
+\{b, c\}, \{a, c\}, \{a, b, c\}\}
+\]
+\end{ex}
+
+\begin{prob}
+$\{a, b, c, d\}$ kümesinin bütün alt kümelerini listeleyin.
+\end{prob}
+
+\begin{prob}
+$A$ kümesinin $n$ elemanı varsa $\Pow{A}$ kümesinin $2^n$ elemanı bulunduğunu
+gösterin.
+\end{prob}
+
+\end{document}

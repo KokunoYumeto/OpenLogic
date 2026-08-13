@@ -1,0 +1,73 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: reflections
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{rel}{ref}
+\olsection{Felsefi Düşünceler}
+
+\olref[set]{sec} kesiminde bağıntıları belirli kümeler olarak tanımladık. Burada
+durup kısa bir felsefi soru sormalıyız: böyle bir tanım ne \emph{yapmaktadır}?
+Birtakım metafizik özdeşlik olgularını \emph{keşfettiğimizi} söylemek
+isteyeceğimizden ciddi biçimde kuşku duymalıyız; örneğin $\Nat$ üzerindeki sıralama
+bağıntısının, \olref[set]{sec} kesiminde tanımladığımız
+$R=\Setabs{\tuple{n,m}}{n, m \in \Nat\text{ ve } n < m}$ kümesi olduğunun
+\emph{ortaya çıktığını} söylemek istemeyiz. Bunun üç nedeni vardır.
+
+Birincisi: \olref[set][pai]{wienerkuratowski} içinde sıralı ikiliyi
+$\tuple{a, b}=\{\{a\}, \{a, b\}\}$ olarak tanımladık. Bunun yerine
+$\lVert a,b\rVert = \{\{b\}, \{a, b\}\}=\tuple{b,a}$ tanımını düşünün.
+$a \neq b$ olduğunda $\tuple{a, b} \neq \lVert a,b\rVert$ olur. Ancak sıralı
+ikili tanımımız olarak $\tuple{a,b}$ yerine $\lVert a,b\rVert$ ifadesini de
+aynı ölçüde benimseyebilirdik. Her iki tanım da eşit ölçüde işe yarardı. Böylece
+doğal sayılar üzerindeki sıralama bağıntısı ``olmaya'' eşit ölçüde uygun iki
+adayımız vardır:
+\begin{align*}
+		R &= \Setabs{\tuple{n,m}}{n, m \in \Nat \text{ ve }n < m}\\
+		S &= \Setabs{\lVert n,m\rVert}{n, m \in \Nat \text{ ve }n < m}.
+\end{align*}
+$R \neq S$ olduğuna göre, kaplamsallık uyarınca ikisinin birden $\Nat$ üzerindeki
+sıralama bağıntısıyla özdeş olamayacağı açıktır. Öte yandan olgusal bir mesele
+olarak $S$ yerine $R$'nin (ya da $R$ yerine $S$'nin) sıralama bağıntısının kendisi olduğunu
+öne sürmek keyfî ve dolayısıyla biraz mahcup edici olurdu. (Bu, Benacerraf'ın
+\citeyear{Benacerraf1965} tarihli çalışmasında ün kazandırdığı küme kuramsal
+indirgemeciliğe karşı savın çok basit bir örneğidir. Bu konuya birkaç kez
+yeniden döneceğiz.)
+
+İkincisi: \emph{her} bağıntının bir kümeyle özdeşleştirilmesi gerektiğini
+düşünüyorsak, kümeye eleman olma bağıntısı $\in$ de belirli bir küme olmalıdır.
+Gerçekten de bunun $\Setabs{\tuple{x,y}}{x \in y}$ kümesi olması gerekirdi.
+Peki bu küme var mıdır? Russell paradoksu göz önüne alındığında böyle bir
+kümenin var olduğu hiç de önemsiz bir iddia değildir. Nitekim
+\oliflabeldef{cumul:::part}{\olref[cumul][][]{part} kısmında geliştirdiğimiz
+küme teorisi bu kümenin varlığını \emph{reddedecektir}.\footnote{Biraz ilerisini
+söylersek, gerekçe şudur: olmayana ergi yoluyla
+$I=\Setabs{\tuple{x,y}}{x \in y}$ kümesinin var olduğunu varsayalım. O zaman
+$\bigcup \bigcup I$ evrensel kümedir; bu da
+\olref[sfr][z][sep]{thm:NoUniversalSet} ile çelişir.}}{küme teorisini aksiyomatik
+bir teori olarak titizlikle geliştirmek mümkündür ve bu teori gerçekten de bu
+kümenin varlığını reddeder.} Dolayısıyla bazı bağıntılar küme olarak ele
+alınabilse bile, kümeye eleman olma bağıntısı özel bir durum olmak zorundadır.
+
+Üçüncüsü: bağıntıları kümelerle ``özdeşleştirirken'', $\tuple{x,y} \in R$
+yerine $Rxy$ yazmaya izin vereceğimizi söylemiştik. Elemanlık bağıntısı
+``$\in$'' bir yüklem \emph{olarak} ele alındığı sürece bunda sorun yoktur. Ancak
+``$\in$'' işaretinin belirli türde bir kümeyi gösterdiğini düşünürsek,
+``$\tuple{x,y} \in R$'' ifadesi yalnızca kümeleri gösteren üç tekil terimden
+oluşur: ``$\tuple{x,y}$'', ``$\in$'' ve ``$R$''. Böyle bir ad listesi,
+``fincan kalemlik masa'' anlamsız dizisinin bir önerme dile getirebilmesinden
+daha fazla önerme dile getiremez. Yine, bazı bağıntılar kümeler olarak ele
+alınabilse bile elemanlık bağıntısı özel bir durum olmak zorundadır. (Burada
+Frege'nin \emph{kavram at} paradoksunun basit bir biçimiyle Wittgenstein'ın bir
+zamanlar Russell'a yönelttiği ünlü itiraz bir araya getirilmektedir.)
+
+Öyleyse sonuç nedir? Sayılar üzerindeki bağıntıların kümeler olduğunu
+söylememizde \emph{yanlış} bir şey yoktur. Yalnızca bu sözün hangi anlayışla
+söylendiğini kavramamız gerekir. Metafizik bir özdeşlik olgusunu dile
+getirmiyoruz. Yalnızca belirli bağlamlarda (belirli) bağıntıları belirli kümeler
+\emph{olarak ele alabileceğimizi} (ve alacağımızı) belirtiyoruz.
+
+\end{document}

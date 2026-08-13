@@ -1,0 +1,45 @@
+% Complete Turkish Open Logic reader driver.
+\documentclass[openany]{memoir}
+\PassOptionsToPackage{english}{babel}
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{tr}
+\newcommand*{\ollanguage}{english}
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setlength{\emergencystretch}{1em}
+\usepackage{gitinfo2}
+\input{\olpath/sty/open-logic.sty}
+\babelprovide[import]{turkish}
+\AtBeginDocument{\selectlanguage{turkish}}
+\input{\olpath/sty/open-logic-defer.sty}
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+\begin{document}
+\begin{titlingpage}
+\begin{raggedleft}
+\HUGE\selectfont\bfseries\sffamily\MakeUppercase{\OLTname}
+\vskip 3ex
+\normalfont\huge Tam Derleme (Türkçe / tr)
+\vskip 4ex
+\textbf{\href{http://openlogicproject.org/}{\OLPname}}
+\vskip 4ex
+\Large Kaynak revizyonu \gitRel: \gitAbbrevHash{} (\gitBranch)\\
+\gitAuthorDate
+\end{raggedleft}
+\vfill
+\ollicense
+\end{titlingpage}
+\pagestyle{giheadings}
+\include{content/open-logic-about}
+\tableofcontents*
+\olimport[content]{content}
+\photocredits
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+\end{document}

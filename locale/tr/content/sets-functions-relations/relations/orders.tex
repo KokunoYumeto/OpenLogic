@@ -1,0 +1,164 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: orders
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{rel}{ord}
+\olsection{Sıralamalar}
+
+\begin{explain}
+Karşılaştırmalarımızın birçoğunda, belirli bir bakımdan bazı nesneleri başka
+nesnelerden ``küçük'', onlara ``eşit'' ya da onlardan ``büyük'' diye niteleriz.
+Bu karşılaştırmalar \emph{sıralama} bağıntılarını içerir. Ancak sıralama
+bağıntılarının farklı türleri vardır. Örneğin bazıları herhangi iki nesnenin
+karşılaştırılabilir olmasını gerektirirken bazıları gerektirmez. Bazıları
+özdeşliği içerir ($\le$ gibi), bazılarıysa dışlar ($<$ gibi). Burada bir
+sınıflandırma yapmak yararlı olacaktır.
+\end{explain}
+
+\begin{defn}[Ön sıralama]
+Hem yansımalı hem de geçişli olan bir bağıntıya \emph{ön sıralama} denir.
+\end{defn}
+
+\begin{defn}[Kısmi sıralama]
+Aynı zamanda ters simetrik olan bir ön sıralamaya \emph{kısmi sıralama} denir.
+\end{defn}
+
+\begin{defn}[Doğrusal sıralama]\ollabel{def:linearorder}
+Aynı zamanda bağlantılı olan bir kısmi sıralamaya \emph{tam sıralama} veya
+\emph{doğrusal sıralama} denir.
+\end{defn}
+
+\begin{ex}
+Her doğrusal sıralama aynı zamanda kısmi sıralama, her kısmi sıralama da aynı
+zamanda ön sıralamadır; fakat tersleri doğru değildir. $A$ üzerindeki evrensel
+bağıntı, yansımalı ve geçişli olduğu için bir ön sıralamadır. Ancak $A$'nın
+birden fazla elemanı varsa evrensel bağıntı ters simetrik değildir ve dolayısıyla
+bir kısmi sıralama değildir.
+\end{ex}
+
+\begin{ex}
+$\Bin^*$ üzerinde $\preccurlyeq$ ile göstereceğimiz \emph{daha uzun değildir}
+bağıntısını ele alalım: $x \preccurlyeq y$ ancak ve ancak $\len{x} \le \len{y}$. Bu, yansımalı
+ve geçişli bir ön sıralamadır; hatta bağlantılıdır, fakat ters simetrik olmadığı
+için bir kısmi sıralama değildir. Örneğin $01 \preccurlyeq 10$ ve
+$10 \preccurlyeq 01$ olduğu hâlde $01 \neq 10$'dur.
+\end{ex}
+
+\begin{ex}
+Önemli bir kısmi sıralama, bir kümeler kümesi üzerindeki $\subseteq$
+bağıntısıdır. Bu genel olarak doğrusal bir sıralama değildir. Çünkü $a \neq b$
+ve $\Pow{\{a, b\}}=\{\emptyset, \{a\}, \{b\}, \{a,b\}\}$ kümesini ele
+aldığımızda $\{a\} \nsubseteq \{b\}$, $\{a\} \neq \{b\}$ ve
+$\{b\} \nsubseteq \{a\}$ olduğunu görürüz.
+\end{ex}
+
+\begin{ex}
+\emph{Kalansız bölünebilme} bağıntısı bize doğrusal olmayan bir kısmi sıralama
+verir. $n$ ve~$m$ tam sayıları için $n \mid m$ yazımı, $n$'nin $m$'yi kalansız
+böldüğü; yani $m=kn$ olacak biçimde bir $k$ tam sayısının bulunduğu anlamına
+gelsin. Bu bağıntı $\Nat$ üzerinde bir kısmi sıralamadır fakat doğrusal sıralama
+değildir; örneğin $2 \nmid 3$ ve $3 \nmid 2$. Bölünebilme, $\Int$ üzerinde bir
+bağıntı olarak ele alındığında ters simetrik olmadığı için yalnızca bir ön
+sıralamadır: $1 \mid -1$ ve $-1 \mid 1$ olduğu hâlde $1 \neq -1$'dir.
+\end{ex}
+
+\begin{ex}
+$A^*$ dizileri kümesi üzerindeki \emph{uzantı} bağıntısı şöyledir:
+$s \sqsubseteq s'$ ancak ve ancak $s=\emptyseq$ (boş dizi), $s=s'$ veya
+$s=\tuple{s_1, \dots, s_n}$ ve
+$s'=\tuple{s_1, \dots, s_n, s_{n+1}, \dots, s_m}$. $s \sqsubseteq s'$ ise
+$s$'ye ayrıca $s'$ dizisinin bir \emph{başlangıç kesiti} deriz. $A^*$
+üzerindeki uzantı bağıntısı kısmi bir sıralamadır, fakat doğrusal bir sıralama
+değildir. Örneğin $a \neq b$ ise $ab \not\sqsubseteq ba$ ve
+$ba \not\sqsubseteq ab$ olur.
+\end{ex}
+
+\begin{defn}[Sıkı sıralama]
+Yansımasız, asimetrik ve geçişli olan bir bağıntıya \emph{sıkı sıralama} denir.
+\end{defn}
+
+\begin{defn}[Sıkı doğrusal sıralama]\ollabel{def:strictlinearorder}
+Aynı zamanda bağlantılı olan bir sıkı sıralamaya \emph{sıkı tam sıralama} veya
+\emph{sıkı doğrusal sıralama} denir.
+\end{defn}
+
+\begin{ex}
+$\le$, sıkı doğrusal sıralama~$<$'ye karşılık gelen doğrusal sıralamadır.
+$\subseteq$ ise sıkı sıralama~$\subsetneq$'ye karşılık gelen kısmi sıralamadır.
+\end{ex}
+
+$A$ üzerindeki herhangi bir sıkı sıralama $R$'ye köşegen $\Id{A}$, yani bütün
+$\tuple{x,x}$ ikilileri eklenerek bir kısmi sıralama elde edilebilir. (Buna
+$R$'nin \emph{yansımalı kapanışı} denir.) Tersine, bir kısmi sıralamadan
+başlayıp $\Id{A}$ çıkarılarak sıkı bir sıralama elde edilebilir. Sonraki iki
+sonuç bunu kesin olarak ifade eder.
+
+\begin{prop}\ollabel{prop:stricttopartial}
+$R$, $A$ üzerinde sıkı bir sıralamaysa $R^+=R\cup\Id{A}$ bir kısmi sıralamadır.
+Ayrıca $R$ sıkı bir doğrusal sıralamaysa $R^+$ doğrusal bir sıralamadır.
+\end{prop}
+
+\begin{proof}
+$R$'nin sıkı bir sıralama olduğunu; yani $R \subseteq A^2$ olup $R$'nin
+yansımasız, asimetrik ve geçişli olduğunu varsayalım. $R^+=R\cup\Id{A}$ olsun.
+$R^+$'nın yansımalı, ters simetrik ve geçişli olduğunu göstermeliyiz.
+
+Her $x \in A$ için $\tuple{x,x}\in\Id{A}\subseteq R^+$ olduğundan $R^+$
+açıkça yansımalıdır.
+
+$R^+$'nın ters simetrik olduğunu göstermek için, olmayana ergi yoluyla $R^+xy$
+ve $R^+yx$ geçerli olduğu hâlde $x \neq y$ olduğunu varsayalım.
+$\tuple{x,y}\in R\cup\Id{A}$, fakat $\tuple{x,y}\notin\Id{A}$ olduğundan
+$\tuple{x,y}\in R$; yani $Rxy$ olmalıdır. Benzer biçimde $Ryx$ olur. Ancak bu,
+$R$'nin asimetrik olduğu varsayımıyla çelişir.
+
+Geçişliliği göstermek için $R^+xy$ ve $R^+yz$ olduğunu varsayalım. Hem
+$\tuple{x,y}\in R$ hem de $\tuple{y,z}\in R$ ise, $R$ geçişli olduğundan
+$\tuple{x,z}\in R$ olur. Aksi hâlde ya $\tuple{x,y}\in\Id{A}$, yani $x=y$;
+ya da $\tuple{y,z}\in\Id{A}$, yani $y=z$ olur. İlk durumda varsayım gereği
+$R^+yz$ geçerlidir ve $x=y$ olduğundan $R^+xz$ elde edilir. İkinci durumda da
+benzer biçimde aynı sonuç çıkar. Her iki durumda $R^+xz$ olduğuna göre $R^+$
+geçişlidir.
+
+``Ayrıca'' bölümüne gelince, $R$'nin bağlantılı da olduğunu varsayalım.
+Dolayısıyla $A$'nın bütün farklı $x,y$ elemanları için ya $Rxy$ ya da $Ryx$; yani ya
+$\tuple{x,y}\in R$ ya da $\tuple{y,x}\in R$ olur. $R\subseteq R^+$ olduğundan
+bu $R^+$ için de geçerliliğini korur; dolayısıyla $R^+$ da bağlantılıdır.
+\end{proof}
+
+\begin{prop}\ollabel{prop:partialtostrict}
+$R$, $A$ üzerinde bir kısmi sıralamaysa $R^-=R\setminus\Id{A}$ sıkı bir
+sıralamadır. Ayrıca $R$ doğrusal bir sıralamaysa $R^-$ sıkı bir doğrusal
+sıralamadır.
+\end{prop}
+
+\begin{proof}
+Bu, alıştırma olarak bırakılmıştır.
+\end{proof}
+
+\begin{prob}
+\olref[sfr][rel][ord]{prop:partialtostrict} için bir ispat verin.
+\end{prob}
+
+Aşağıdaki basit sonuç, sıkı doğrusal sıralamaların kaplamsallık benzeri bir
+özelliği sağladığını gösterir:
+
+\begin{prop}\ollabel{prop:extensionality-strictlinearorders}
+$<$, $A$ üzerinde sıkı bir doğrusal sıralamaysa
+\[
+  (\forall a, b \in A)((\forall x \in A)(x < a \liff x < b) \lif a = b).
+\]
+\end{prop}
+
+\begin{proof}
+$(\forall x \in A)(x<a\liff x<b)$ olduğunu varsayalım. $a<b$ olsaydı
+$a<a$ olurdu; bu da $<$'nin yansımasız olmasıyla çelişirdi. Öyleyse
+$a\nless b$. Tam olarak aynı biçimde $b\nless a$. $<$ bağlantılı olduğundan
+$a=b$ sonucuna varırız.
+\end{proof}
+
+\end{document}

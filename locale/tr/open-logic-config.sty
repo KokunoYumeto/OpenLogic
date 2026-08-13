@@ -1,0 +1,19 @@
+% Turkish token and notation overrides.
+% Turkish morphology is not captured by English singular/plural templates;
+% add only reviewed overrides here and retain context-specific prose in files.
+
+\settexttoken{element}{eleman}{elemanlar}[Eleman][Elemanlar]
+\settexttoken{formula}*{formül}{formüller}
+\settexttoken{language}*{dil}{diller}
+\settexttoken{derivation}*{türetim}{türetimler}
+
+% Turkish has no indefinite article. Keep upstream token calls structurally
+% intact while suppressing English a/an output for admitted tokens.
+\definetoken{a}{element}{}
+\definetoken{A}{element}{}
+\definetoken{a}{formula}{}
+\definetoken{A}{formula}{}
+\definetoken{a}{language}{}
+\definetoken{A}{language}{}
+\definetoken{a}{derivation}{}
+\definetoken{A}{derivation}{}

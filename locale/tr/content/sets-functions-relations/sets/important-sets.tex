@@ -1,0 +1,66 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: important-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{set}{imp}
+\olsection{Bazı Önemli Kümeler}
+
+\begin{ex}
+Çoğunlukla elemanları matematiksel nesneler olan kümelerle
+uğraşacağız. Bu kümelerden dördü, özel adları olacak kadar önemlidir:
+\begin{multline*}
+    \Nat = \{0, 1, 2, 3, \ldots\} \\
+    \shoveright{\text{doğal sayılar kümesi}}\\
+    \shoveleft{\Int = \{\ldots, -2, -1, 0, 1, 2, \ldots\}} \\
+    \shoveright{\text{tam sayılar kümesi}}\\
+    \shoveleft{\Rat = \Setabs{\nicefrac{m}{n}}{m, n \in \Int\text{ ve }n \neq 0}}\\
+    \shoveright{\text{rasyonel sayılar kümesi}}\\
+    \shoveleft{\Real = (-\infty, \infty)}\\
+    \text{gerçel sayılar kümesi (kontinuum)}
+\end{multline*}
+Bunların hepsi \emph{sonsuz} kümelerdir; yani her birinin sonsuz sayıda
+elemanı vardır.
+
+Bu kümelerde ilerledikçe sayı dağarcığımıza \emph{daha çok} sayı ekleriz.
+Gerçekten $\Nat \subseteq \Int \subseteq \Rat \subseteq \Real$ olduğu açık
+olmalıdır: her doğal sayı bir tam sayıdır; her tam sayı bir rasyonel sayıdır;
+her rasyonel sayı da bir gerçel sayıdır. Benzer biçimde
+$\Nat \subsetneq \Int \subsetneq \Rat$ olduğu da açık olmalıdır; çünkü $-1$
+bir tam sayı olup doğal sayı değildir ve $\nicefrac{1}{2}$ rasyonel olup tam
+sayı değildir. $\Rat \subsetneq \Real$ olduğu, yani rasyonel olmayan bazı
+gerçel sayıların bulunduğu daha az açıktır\oliflabeldef{sfr:arith:real:realline}{;
+ancak buna \olref[arith][real]{realline} kesiminde döneceğiz}{}.
+
+Bazen $\PosInt = \{1, 2, 3, \dots\}$ pozitif tam sayılar kümesini ve yalnızca
+ilk iki doğal sayıyı içeren $\Bin = \{0, 1\}$ kümesini de kullanacağız.
+\end{ex}
+
+\begin{tagblock}{compsci}
+\begin{ex}[Dizgiler]
+Başka ilginç bir örnek, bir $A$ alfabesi üzerindeki \emph{sonlu dizgilerin}
+$A^{*}$ kümesidir: $A$ alfabesinin elemanlarından oluşan her sonlu dizi, $A$ üzerinde
+bir dizgidir. Her $A$ alfabesi için \emph{boş dizgiyi $\Lambda$} da $A$
+üzerindeki dizgilere katarız. Örneğin
+\begin{multline*}
+\Bin^*
+=\{\Lambda,0,1,00,01,10,11,\\
+000,001,010,011,100,101,110,111,0000,\ldots\}.
+\end{multline*}
+$x=x_{1}\ldots x_{n}\in A^{*}$, $A$ alfabesinden alınmış $n$ ``harften'' oluşan bir
+dizgiyse dizginin \emph{uzunluğunun} $n$ olduğunu söyler ve $\len{x}=n$
+yazarız.
+\end{ex}
+\end{tagblock}
+
+\begin{ex}[Sonsuz diziler]
+Herhangi bir $A$ kümesi için, $A$ kümesinin elemanlarından oluşan
+sonsuz dizilerin $A^\omega$ kümesini de ele alabiliriz. Bir
+$a_1a_2a_3a_4\dots$ sonsuz dizisi, her biri $A$ kümesinin elemanı olan
+nesnelerin tek yönde sonsuza uzanan bir listesidir.
+\end{ex}
+
+\end{document}

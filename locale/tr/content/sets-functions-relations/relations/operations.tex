@@ -1,0 +1,72 @@
+% Part: sets-functions-relations
+% Chapter: relations
+% Section: operations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{rel}{ops}
+\olsection{Bağıntılar Üzerindeki İşlemler}
+
+Bağıntıları değiştirmek veya birleştirmek çoğu zaman yararlıdır.
+\olref[sfr][rel][ord]{prop:stricttopartial} içinde bağıntıların
+\emph{birleşimini} ele aldık; bu yalnızca, sıralı ikililerden oluşan kümeler
+olarak görülen iki bağıntının birleşimidir. Benzer biçimde
+\olref[sfr][rel][ord]{prop:partialtostrict} içinde bağıntılar arasındaki küme farkını
+ele aldık. Bağıntılar üzerinde yapabileceğimiz başka işlemler de şunlardır.
+
+\begin{defn}\ollabel{relationoperations}
+$R$ ve $S$ bağıntılar, $A$ da herhangi bir küme olsun.
+
+$R$'nin \emph{tersi},
+$R^{-1}=\Setabs{\tuple{y,x}}{\tuple{x,y}\in R}$ bağıntısıdır.
+
+$R$ ile $S$'nin \emph{bileşkesi},
+$(R \mid S)=\{\tuple{x,z}:\exists y(Rxy\land Syz)\}$ bağıntısıdır.
+
+$R$'nin $A$'ya \emph{kısıtlaması},
+$\funrestrictionto{R}{A}=R\cap A^2$ bağıntısıdır.
+
+$R$'nin $A$'ya \emph{uygulanması},
+$\funimage{R}{A}=\{y:(\exists x \in A)Rxy\}$ kümesidir.
+\end{defn}
+
+\begin{ex}
+$S \subseteq \Int^2$, $\Int$ üzerindeki ardıl bağıntısı olsun; yani
+$S=\Setabs{\tuple{x,y}\in\Int^2}{x+1=y}$ ve dolayısıyla $Sxy$ ancak ve ancak
+$x+1=y$ olduğunda geçerli olsun.
+
+$S^{-1}$, $\Int$ üzerindeki öncül bağıntısıdır; yani
+$\Setabs{\tuple{x,y}\in\Int^2}{x-1=y}$ bağıntısıdır.
+
+$S\mid S$, $\Setabs{\tuple{x,y}\in\Int^2}{x+2=y}$ bağıntısıdır.
+
+$\funrestrictionto{S}{\Nat}$, $\Nat$ üzerindeki ardıl bağıntısıdır.
+
+$\funimage{S}{\{1,2,3\}}$, $\{2,3,4\}$ kümesidir.
+\end{ex}
+
+\begin{defn}[Geçişli kapanış]
+$R \subseteq A^2$ bir ikili bağıntı olsun.
+
+$R$'nin \emph{geçişli kapanışı},
+$R^+=\bigcup_{0<n\in\Nat}R^n$ bağıntısıdır; burada $R^1=R$ ve
+$R^{n+1}=R^n\mid R$ ifadelerini özyinelemeli olarak tanımlarız.
+
+$R$'nin \emph{yansımalı geçişli kapanışı}, $R^*=R^+\cup\Id{A}$ bağıntısıdır.
+\end{defn}
+
+\begin{ex}
+$S \subseteq \Int^2$ ardıl bağıntısını ele alalım. $S^2xy$ ancak ve ancak
+$x+2=y$, $S^3xy$ ancak ve ancak $x+3=y$ vb. olur. Dolayısıyla $S^+xy$ ancak
+ve ancak $x+n=y$ olacak biçimde bir $n\geq 1$ bulunduğunda geçerlidir. Başka bir deyişle
+$S^+xy$ ancak ve ancak $x<y$ olduğunda; $S^*xy$ ise ancak ve ancak $x\le y$
+olduğunda geçerlidir.
+\end{ex}
+
+\begin{prob}
+$R$'nin geçişli kapanışının gerçekten geçişli olduğunu gösterin.
+\end{prob}
+
+\end{document}
