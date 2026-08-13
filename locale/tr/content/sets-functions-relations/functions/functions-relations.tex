@@ -1,0 +1,101 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: functions-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{rel}
+
+\olsection{Bağıntı Olarak Fonksiyonlar}
+
+\begin{explain}
+$A$'nın elemanlarını $B$'nin elemanlarına eşleyen bir fonksiyon, açıktır ki
+$A$ ile $B$ arasında bir bağıntı tanımlar: bu bağıntı $x$ ile $y$ arasında
+ancak ve ancak $f(x)=y$ olduğunda geçerlidir. Hatta, örneğin matematiğin
+yapıtaşlarını daha temel öğelere indirgemekle ilgileniyorsak, $f$
+fonksiyonunu bu bağıntıyla, yani bir ikililer kümesiyle
+\emph{özdeşleştirebiliriz}. Bu da şu soruyu ortaya çıkarır: hangi bağıntılar
+bu yolla fonksiyon tanımlar?
+\end{explain}
+
+\begin{defn}[Bir fonksiyonun grafiği] $f\colon A \to B$ bir fonksiyon olsun.
+$f$'nin \emph{grafiği},
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}
+\]
+eşitliğiyle tanımlanan $R_f \subseteq A \times B$ bağıntısıdır.
+\end{defn}
+
+\begin{explain}
+Kaplamsallık gereğince bir fonksiyonun grafiği biricik biçimde belirlenir.
+Ayrıca kümeler için kaplamsallık, fonksiyonlara ilişkin örtük kaplamsallık
+ilkesini hemen doğrular: $f$ ile $g$ aynı tanım ve değer kümelerine sahipse,
+bütün değerlerde uyuştuklarında özdeştirler.
+
+Benzer biçimde bir bağıntı ``fonksiyonel'' ise bir fonksiyonun grafiğidir.
+\end{explain}
+
+\begin{prop}\ollabel{prop:graph-function}
+$R \subseteq A \times B$ bağıntısı aşağıdaki koşulları sağlasın:
+\begin{enumerate}
+\item $Rxy$ ve $Rxz$ ise $y=z$'dir; ve
+\item her $x \in A$ için $\tuple{x,y}\in R$ olacak biçimde bir $y \in B$
+vardır.
+\end{enumerate}
+O hâlde $R$, $f(x)=y$ ancak ve ancak $Rxy$ olduğunda geçerli olacak biçimde
+tanımlanan $f\colon A \to B$ fonksiyonunun grafiğidir.
+\end{prop}
+
+\begin{proof}
+İkinci koşul gereğince her $x \in A$ için $Rxy$ olacak biçimde en az bir
+$y \in B$ vardır. Böyle bir $y$ seçelim. $Rxz$ olacak biçimde başka bir
+$z\neq y$ bulunsaydı birinci koşul çiğnenirdi. Dolayısıyla her $x \in A$ için
+$Rxy$ olacak biçimde bir ve yalnızca bir $y \in B$ vardır; böylece $f$ iyi
+tanımlıdır. Açıktır ki $R_f=R$'dir.
+\end{proof}
+
+\begin{explain}
+Her $f\colon A \to B$ fonksiyonunun bir grafiği, yani $f(x)=y$ eşitliğiyle
+tanımlanan, $A$ ile $B$ arasında bir bağıntısı (bir $A\times B$ alt kümesi)
+vardır. Öte yandan
+\olref{prop:graph-function}'ta verilen özellikleri taşıyan her
+$R \subseteq A \times B$ bağıntısı, bir $f \colon A \to B$ fonksiyonunun
+grafiğidir. Fonksiyonlarla grafikleri arasındaki bu yakın bağlantı nedeniyle
+bir fonksiyonu yalnızca grafiği olarak düşünebiliriz. Başka bir deyişle
+fonksiyonlar, belirli bağıntılarla, yani belirli sıralı ikili kümeleriyle
+özdeşleştirilebilir. \oliflabeldef{sfr:rel:ref:sec}{Yine de bu
+``özdeşleştirmenin'' anlamı \olref[sfr][rel][ref]{sec}'teki gibidir: bu,
+fonksiyonların metafiziği hakkında bir iddia değil, fonksiyonları belirli
+kümeler olarak \emph{ele almanın} elverişli olduğuna ilişkin bir gözlemdir.
+Bu özdeşleştirme elverişlidir; çünkü artık}{Artık} fonksiyonlar
+üzerinde, bağıntılar üzerinde gerçekleştirdiğimize benzer işlemleri ele
+alabiliriz (bkz. \olref[sfr][rel][ops]{sec}). Özellikle:
+\end{explain}
+
+\begin{defn}\ollabel{defn:funimage}
+$f \colon A \to B$ bir fonksiyon ve $C\subseteq A$ olsun.
+
+$f$'nin $C$'ye \emph{kısıtlaması}, her $x \in C$ için
+$(\funrestrictionto{f}{C})(x)=f(x)$ eşitliğiyle tanımlanan
+$\funrestrictionto{f}{C}\colon C \to B$ fonksiyonudur. Başka bir deyişle,
+$\funrestrictionto{f}{C} = \Setabs{\tuple{x, y} \in R_f}{x \in C}$.
+
+$f$'nin $C$'ye \emph{uygulanması}, $\funimage{f}{C} =
+\Setabs{f(x)}{x \in C}$ kümesidir. Buna $C$'nin $f$ altındaki
+\emph{görüntüsü} de denir.
+\end{defn}
+
+\begin{explain}
+Bu tanımlardan, her $f$ fonksiyonu için $\ran{f} =
+\funimage{f}{\dom{f}}$ eşitliği çıkar.
+\oliflabeldef{sfr:rel:ops:sec}{Bu kavramlar, \olref[sfr][rel][ops]{sec}'teki
+tanımlar ve fonksiyonları bağıntılarla özdeşleştirmemiz göz önüne alındığında,
+tam da bekleneceği gibidir. Ancak diğer iki işlem, ters alma ve bağıntı
+bileşkesi, biraz daha ayrıntı gerektirir. Bu ayrıntıları \olref[inv]{sec} ve
+\olref[cmp]{sec}'te vereceğiz.}{}
+\end{explain}
+
+\end{document}

@@ -1,0 +1,115 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: kinds
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{kin}
+\olsection{Fonksiyon Türleri}
+
+\begin{explain}
+En sık karşılaştığımız bazı fonksiyon türleri için bir sınıflandırma yapmak
+yararlı olacaktır.
+
+Önce, değer kümesinin her elemanının fonksiyonun bir değeri olduğu
+fonksiyonları ele alabiliriz. Bu tür fonksiyonlara örten denir ve
+\olref{fig:surjective}'teki gibi gösterilebilirler.
+
+\begin{figure}
+  \olasset{assets/diagrams/surjective.tikz}
+  \caption{Örten bir fonksiyonda değer kümesinin her elemanı fonksiyonun bir
+    değeridir.}
+  \ollabel{fig:surjective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Örten fonksiyon]
+Bir $f \colon A \rightarrow B$ fonksiyonu, ancak ve ancak $B$ aynı zamanda
+$f$'nin görüntü kümesiyse \emph{örtendir}; başka bir deyişle her $y \in B$
+için $f(x)=y$ olacak biçimde en az bir $x \in A$ vardır. Simgelerle:
+\[
+  (\forall y \in B)(\exists x \in A)f(x) = y.
+\]
+Böyle bir fonksiyona $A$'dan $B$'ye bir örten fonksiyon deriz.
+\end{defn}
+
+\begin{explain}
+$f$'nin örten olduğunu göstermek istiyorsanız, $f$'nin değer kümesindeki her
+nesnenin bir $x$ girdisi için $f(x)$ değeri olduğunu göstermelisiniz.
+
+Her fonksiyonun bir örten fonksiyon \emph{türettiğine} dikkat edin. Gerçekten
+$f \colon A \to B$ fonksiyonu verildiğinde, $f'(x)=f(x)$ eşitliğiyle
+$f' \colon A \to \ran{f}$ fonksiyonunu tanımlayalım. $\ran{f}$,
+\emph{tanım gereği} $\Setabs{f(x)}{x \in A}$ olduğundan, bu $f'$
+fonksiyonunun örten olduğu güvence altındadır.
+\end{explain}
+
+\begin{explain}
+Her fonksiyon olası her girdiyi biricik bir çıktıya eşler. Bunun yanında,
+farklı girdileri hiçbir zaman aynı çıktıya eşlemeyen fonksiyonlar da vardır.
+Bu tür fonksiyonlara bire bir denir ve
+\olref{fig:injective}'teki gibi gösterilebilirler.
+\begin{figure}
+  \olasset{assets/diagrams/injective.tikz}
+  \caption{Bire bir fonksiyon iki farklı argümanı hiçbir zaman aynı
+    değere eşlemez.}
+  \ollabel{fig:injective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Bire bir fonksiyon]
+Bir $f \colon A \rightarrow B$ fonksiyonu, ancak ve ancak her $y \in B$ için
+$f(x)=y$ olacak biçimde en fazla bir $x \in A$ varsa \emph{bire birdir}.
+Böyle bir fonksiyona $A$'dan $B$'ye bir bire bir fonksiyon deriz.
+\end{defn}
+
+\begin{explain}
+$f$'nin bire bir olduğunu göstermek istiyorsanız, $f$'nin tanım kümesindeki
+herhangi iki $x$ ve $y$ elemanı için $f(x)=f(y)$ ise $x=y$ olduğunu
+göstermelisiniz.
+\end{explain}
+
+\begin{ex}
+$f(x)=1$ eşitliğiyle verilen sabit $f\colon \Nat \to \Nat$ fonksiyonu ne
+bire birdir ne de örtendir.
+
+$f(x)=x$ eşitliğiyle verilen özdeşlik $f\colon \Nat \to \Nat$ fonksiyonu hem
+bire bir hem de örtendir.
+
+$f(x)=x+1$ eşitliğiyle verilen ardıl $f \colon \Nat \to \Nat$ fonksiyonu
+bire birdir, fakat örten değildir.
+
+\[
+  f(x) =
+  \begin{cases}
+    \frac{x}{2} & \text{$x$ çiftse} \\
+    \frac{x+1}{2} & \text{$x$ tekse.}
+  \end{cases}
+\]
+biçiminde tanımlanan $f \colon \Nat \to \Nat$ fonksiyonu örtendir, fakat
+bire bir değildir.
+\end{ex}
+
+\begin{explain}
+Çoğu zaman hem bire bir hem de örten olan fonksiyonları ele almak isteriz.
+Böyle fonksiyonlara bire bir örten denir. Bunlar
+\olref{fig:bijective}'te gösterilen fonksiyona benzer. Bire bir örten
+fonksiyonlara bazen \emph{bire bir eşlemeler} de denir; çünkü değer kümesinin
+elemanlarıyla tanım kümesinin elemanlarını biricik biçimde eşleştirirler.
+\begin{figure}
+  \olasset{assets/diagrams/bijective.tikz}
+  \caption{Bire bir örten bir fonksiyon, değer kümesinin elemanlarıyla tanım
+    kümesinin elemanlarını biricik biçimde eşleştirir.}
+  \ollabel{fig:bijective}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Bire bir örten fonksiyon]
+Bir $f \colon A \to B$ fonksiyonu, ancak ve ancak hem örten hem de bire bir ise
+\emph{bire bir örtendir}. Böyle bir fonksiyona $A$'dan $B$'ye (veya $A$ ile
+$B$ arasında) bir bire bir örten fonksiyon deriz.
+\end{defn}
+
+\end{document}

@@ -1,0 +1,68 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{cmp}
+\olsection{Fonksiyonların Bileşkesi}
+
+\begin{explain}
+\oliflabeldef{sfr:fun:inv:sec}{\olref[inv]{sec}'te bire bir örten bir $f$
+fonksiyonunun tersi $f^{-1}$'in de bir fonksiyon olduğunu gördük.
+Fonksiyonlar üzerindeki bir başka işlem de bileşkedir: }{}$f$ ve $g$
+fonksiyonlarını, önce $f$'yi sonra $g$'yi uygulayarak bileştirmek suretiyle yeni
+bir fonksiyon tanımlayabiliriz. Elbette bu, yalnızca görüntü ve tanım kümeleri
+uyuşuyorsa mümkündür; yani $f$'nin görüntü kümesi $g$'nin tanım kümesinin bir
+alt kümesi olmalıdır. \oliflabeldef{sfr:rel:ops:sec}{Fonksiyonlar üzerindeki
+bu işlem, \olref[rel][ops]{sec}'teki bağıntı bileşkesi işleminin
+karşılığıdır.}{}
+
+Bileşke düşüncesini açıklamak için bir şema yardımcı olabilir.
+\olref{fig:composition}'te iki $f \colon A \to B$ ve $g \colon B \to C$
+fonksiyonuyla bunların bileşkesi $(\comp{f}{g})$'yi gösteriyoruz.
+$(\comp{f}{g}) \colon A \to C$ fonksiyonu, $A$'nın her elemanını $C$'nin bir
+elemanıyla eşler. $A$'nın bir elemanının $C$'nin hangi elemanıyla
+eşlendiğini şöyle belirleriz: bir $x \in A$ girdisi verildiğinde önce $f$
+fonksiyonunu $x$'e uygularız ve bu işlem $f(x)=y \in B$ çıktısını verir;
+sonra $g$ fonksiyonunu $y$'ye uygularız ve bu işlem de
+$g(f(x))=g(y)=z \in C$ çıktısını verir.
+\begin{figure}
+  \olasset[2\olphotowidth]{assets/diagrams/composition.tikz}
+  \caption{İki $f$ ve $g$ fonksiyonunun $g \circ f$ bileşkesi.}
+  \ollabel{fig:composition}
+\end{figure}
+\end{explain}
+
+\begin{defn}[Bileşke]
+$f\colon A \to B$ ve $g\colon B \to C$ fonksiyonlar olsun. $f$ ile $g$'nin
+\emph{bileşkesi}, $(\comp{f}{g})(x)=g(f(x))$ eşitliğiyle tanımlanan
+$\comp{f}{g} \colon A \to C$ fonksiyonudur.
+\end{defn}
+
+\begin{ex}
+$f(x)=x+1$ ve $g(x)=2x$ fonksiyonlarını ele alalım.
+$(\comp{f}{g})(x)=g(f(x))$ olduğundan, her $x$ girdisi için önce onun
+ardılını almalı, sonra sonucu ikiyle çarpmalısınız. Dolayısıyla bileşkeleri
+$(\comp{f}{g})(x)=2(x+1)$ eşitliğiyle verilir.
+\end{ex}
+
+\begin{prob}
+$f \colon A \to B$ ve $g \colon B \to C$ fonksiyonlarının her ikisi de
+bire bir ise $\comp{f}{g}\colon A \to C$ fonksiyonunun da bire bir olduğunu
+gösterin.
+\end{prob}
+
+\begin{prob}
+$f \colon A \to B$ ve $g \colon B \to C$ fonksiyonlarının her ikisi de
+örtense $\comp{f}{g}\colon A \to C$ fonksiyonunun da örten olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+$f \colon A \to B$ ve $g \colon B \to C$ olduğunu varsayın.
+$\comp{f}{g}$'nin grafiğinin $R_f \mid R_g$ olduğunu gösterin.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,132 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: basics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{bas}
+\olsection{Temel Kavramlar}
+
+\begin{explain}
+Bir \emph{fonksiyon}, verilen bir kümenin her elemanını verilen başka bir
+kümedeki belirli bir elemana gönderen eşlemedir. Örneğin $1$ ekleme işlemi bir
+fonksiyon tanımlar: her $n$ sayısı biricik $n+1$ sayısına eşlenir.
+
+Daha genel olarak fonksiyonlar girdi olarak ikililer, üçlüler vb. alıp bir tür
+çıktı verebilir. Temel aritmetikten birçok fonksiyonu tanırız. Örneğin toplama
+ve çarpma birer fonksiyondur. İki sayı alıp üçüncü bir sayı verirler.
+
+Bu matematiksel, soyut anlamda fonksiyon bir \emph{kara kutu}dur: önemli olan
+çıktının hesaplanma yöntemi değil, hangi çıktının hangi girdiye eşlendiğidir.
+\end{explain}
+
+\begin{defn}[Fonksiyon]
+Bir $f \colon A \to B$ \emph{fonksiyonu}, $A$'nın her elemanını $B$'nin bir
+elemanına eşleyen bir eşlemedir.
+
+$A$'ya $f$'nin \emph{tanım kümesi}, $B$'ye ise $f$'nin \emph{değer kümesi}
+deriz. $A$'nın elemanlarına $f$'nin girdileri veya \emph{argümanları};
+$f$'nin bir $x$ argümanıyla eşlediği $B$ elemanına da $f$'nin $x$
+argümanındaki \emph{değeri} denir ve bu değer $f(x)$ ile yazılır.
+
+$f$'nin \emph{görüntü kümesi} $\ran{f}$, değer kümesinin $f$'nin bir
+argümandaki değerlerinden oluşan alt kümesidir; $\ran{f} =
+\Setabs{f(x)}{x \in A}$.
+\end{defn}
+
+\olref{fig:function}'teki şema, fonksiyonları düşünmeyi kolaylaştırabilir.
+Soldaki elips fonksiyonun \emph{tanım kümesini}, sağdaki elips fonksiyonun
+\emph{değer kümesini} temsil eder; bir ok da tanım kümesindeki bir
+\emph{argümandan} değer kümesindeki karşılık gelen \emph{değere} yönelir.
+
+\begin{figure}
+  \olasset{assets/diagrams/function.tikz}
+  \caption{Bir fonksiyon, bir kümenin her elemanını başka bir kümenin bir
+    elemanına eşler. Bir ok, tanım kümesindeki bir argümandan değer
+    kümesindeki karşılık gelen değere yönelir.}
+  \ollabel{fig:function}
+\end{figure}
+
+\begin{ex}
+Çarpma, girdi olarak doğal sayı ikililerini alıp çıktı olarak doğal sayılara
+eşler; dolayısıyla $\Nat \times \Nat$'tan (tanım kümesinden) $\Nat$'a (değer
+kümesine) gider. Her $n \in \Nat$ sayısı $n \times 1$ olduğundan, görüntü
+kümesi de $\Nat$'tır.
+\end{ex}
+
+\begin{ex}
+Çarpma bir fonksiyondur; çünkü her girdiyi, yani her doğal sayı ikilisini,
+tek bir çıktıyla eşler: $\times \colon \Nat^2 \to \Nat$. Buna karşılık, bir
+$n$ doğal sayısını $x^2=n$ olacak biçimde bir $x$ gerçel sayısına eşlemek
+fonksiyonel değildir; çünkü her pozitif tam sayı $n$'nin $\sqrt{n}$ ve
+$-\sqrt{n}$ olmak üzere iki karekökü vardır. Yalnızca negatif olmayan esas
+karekökü vererek bunu fonksiyonel hâle getirebiliriz:
+$\sqrt{\phantom{X}} \colon \Nat \to \Real$.
+\end{ex}
+
+\begin{ex}
+Bir sınıftaki her öğrenciyi dönem sonu notuyla eşleyen bağıntı bir
+fonksiyondur; aynı sınıfta hiçbir öğrenci iki farklı dönem sonu notu alamaz.
+Bir sınıftaki her öğrenciyi ebeveynleriyle eşleyen bağıntı ise fonksiyon
+değildir: öğrencilerin sıfır, iki veya daha çok ebeveyni olabilir.
+\end{ex}
+
+\begin{explain}
+Fonksiyonları, her olası argümandaki değerlerinin ne olduğunu kesin bir
+biçimde belirterek tanımlayabiliriz. Bunun farklı yolları arasında bir formül
+vermek, değeri hesaplayan bir yöntem betimlemek veya her argümandaki değerleri
+listelemek bulunur. Fonksiyonları nasıl tanımlarsak tanımlayalım, her argüman
+için bir ve yalnızca bir değer belirttiğimizden emin olmalıyız.
+\end{explain}
+
+
+\begin{ex}
+$f(x)=x+1$ olacak biçimde bir $f \colon \Nat \to \Nat$ fonksiyonu
+tanımlayalım. Bu tanım, $f$'yi doğal sayıları girdi olarak alıp doğal sayıları
+çıktı olarak veren bir fonksiyon olarak belirler. Bir $x$ doğal sayısı
+verildiğinde $f$'nin, onun ardılı olan $x+1$'i vereceğini söyler.
+Bu durumda değer kümesi $\Nat$, $f$'nin görüntü kümesi değildir; çünkü $0$
+doğal sayısı hiçbir doğal sayının ardılı değildir. $f$'nin görüntü kümesi,
+bütün pozitif tam sayıların kümesi $\Int^{+}$'dır.
+\end{ex}
+
+\begin{ex}\ollabel{examplefunext}
+$g(x)=x+2-1$ olacak biçimde bir $g \colon \Nat \to \Nat$ fonksiyonu
+tanımlayalım. Bu, $g$'nin doğal sayıları girdi olarak alıp doğal sayıları
+çıktı olarak veren bir fonksiyon olduğunu söyler. Bir $x$ doğal sayısı
+verildiğinde $g$, $x$'in ardılının ardılının öncülünü, yani $x+1$'i verir.
+\end{ex}
+
+\begin{explain}
+Az önce farklı \emph{tanımlara} sahip iki $f$ ve $g$ fonksiyonunu ele aldık.
+Ancak bunlar \emph{aynı fonksiyondur}. Gerçekten her $n$ doğal sayısı için
+$f(n)=n+1=n+2-1=g(n)$ olur. Başka bir deyişle $f$ ve $g$ tanımlarımız,
+farklı denklemler aracılığıyla aynı eşlemeyi belirtir. Öyleyse örtük olarak
+fonksiyonlara ilişkin bir kaplamsallık ilkesine dayanıyoruz:
+\[
+  \text{eğer }\forall x\, f(x) = g(x)\text{ ise }f = g
+\]
+Burada $f$ ile $g$'nin aynı tanım ve değer kümelerine sahip olduğu
+varsayılır.
+\end{explain}
+
+\begin{ex}
+Fonksiyonları durumlara göre de tanımlayabiliriz. Örneğin
+$h \colon \Nat \to \Nat$ fonksiyonunu
+\[
+h(x) =
+\begin{cases}
+  \frac{x}{2} & \text{$x$ çiftse} \\
+  \frac{x+1}{2} & \text{$x$ tekse.}
+\end{cases}
+\]
+biçiminde tanımlayabiliriz. Her doğal sayı ya çift ya da tek olduğundan, bu
+fonksiyonun çıktısı her zaman bir doğal sayı olacaktır. Bir fonksiyonu
+durumlara göre tanımladığınızda her olası girdinin tam olarak bir duruma
+girmesi gerektiğini unutmayın. Bazı durumlarda bunun için durumların bütün
+olasılıkları tükettiğinin ve birbirini dışladığının ispatlanması gerekir.
+\end{ex}
+
+\end{document}

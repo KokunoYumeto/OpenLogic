@@ -1,0 +1,73 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{par}
+
+\olsection{Kısmi Fonksiyonlar}
+
+\begin{explain}
+Bazen fonksiyon tanımını, fonksiyonun çıktısının bütün olası girdiler için
+tanımlı olmasını gerektirmeyecek biçimde gevşetmek yararlıdır. Bu tür
+eşlemelere \emph{kısmi fonksiyonlar} denir.
+\end{explain}
+
+\begin{defn}
+Bir \emph{kısmi fonksiyon} $f \colon A \pto B$, $A$'nın her elemanına
+$B$'nin en fazla bir elemanını atayan bir eşlemedir. $f$, bir $x \in A$
+elemanına $B$'nin bir elemanını atıyorsa $f(x)$'in \emph{tanımlı}, aksi
+hâlde \emph{tanımsız} olduğunu söyleriz. $f(x)$ tanımlıysa
+$f(x) \fdefined$, değilse $f(x) \fundefined$ yazarız. Bir $f$ kısmi
+fonksiyonunun \emph{tanım kümesi}, $A$'nın fonksiyonun tanımlı olduğu alt
+kümesidir; yani $\dom{f} = \Setabs{x \in A}{f(x) \fdefined}$.
+\end{defn}
+
+\begin{ex}
+Her $f\colon A \to B$ fonksiyonu aynı zamanda bir kısmi fonksiyondur.
+$A$'nın her yerinde tanımlı olan, yani şimdiye kadar yalnızca fonksiyon
+dediğimiz kısmi fonksiyonlara \emph{tümel} fonksiyonlar da denir.
+\end{ex}
+
+\begin{ex}
+$f(x)=1/x$ eşitliğiyle verilen $f \colon \Real \pto \Real$ kısmi fonksiyonu
+$x=0$ için tanımsız, diğer her yerde tanımlıdır.
+\end{ex}
+
+\begin{prob}
+$f\colon A \pto B$ verildiğinde $g\colon B \pto A$ kısmi fonksiyonunu şöyle
+tanımlayın: Her $y \in B$ için $f(x)=y$ olacak biçimde biricik bir
+$x \in A$ varsa $g(y)=x$; aksi hâlde $g(y) \fundefined$ olsun. $f$ bire bir ise
+her $x \in \dom{f}$ için $g(f(x))=x$ ve her $y \in \ran{f}$ için
+$f(g(y))=y$ olduğunu gösterin.
+\end{prob}
+
+\begin{defn}[Bir kısmi fonksiyonun grafiği]
+$f\colon A \pto B$ bir kısmi fonksiyon olsun. $f$'nin \emph{grafiği},
+\[
+R_f = \Setabs{\tuple{x,y}}{f(x) = y}
+\]
+eşitliğiyle tanımlanan $R_f \subseteq A \times B$ bağıntısıdır.
+\end{defn}
+
+\begin{prop}
+$R \subseteq A \times B$ bağıntısının, $Rxy$ ve $Rxy'$ olduğunda $y=y'$
+olması özelliğini taşıdığını varsayalım. O hâlde $R$, şu şekilde tanımlanan
+$f\colon A \pto B$ kısmi fonksiyonunun grafiğidir: $Rxy$ olacak biçimde bir
+$y$ varsa $f(x)=y$; aksi hâlde $f(x) \fundefined$ olur. $R$ ayrıca
+\emph{seri} ise, yani her $x \in A$ için $Rxy$ olacak biçimde bir $y \in B$
+varsa, $f$ tümeldir.
+\end{prop}
+
+\begin{proof}
+$Rxy$ olacak biçimde bir $y$ bulunduğunu varsayalım. $Rxy'$ olacak biçimde
+başka bir $y'\neq y$ bulunsaydı $R$ üzerindeki koşul çiğnenirdi. Dolayısıyla
+$Rxy$ olacak biçimde bir $y$ varsa bu $y$ biriciktir ve böylece $f$ iyi
+tanımlıdır. Açıktır ki $R_f=R$'dir ve $R$ seri ise $f$ tümeldir.
+\end{proof}
+
+\end{document}

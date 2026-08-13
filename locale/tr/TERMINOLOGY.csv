@@ -1,0 +1,88 @@
+term_id,english_source,turkish_candidate,status,scope,adverse_or_note,review_state
+OLP-TR-TERM-0001,Open Logic Project,Açık Mantık Projesi,provisional,project_name,"Keep the official English name in attribution and repository URLs; Turkish reader name is an adaptation label, not an endorsed official name.",active_no_native_gate
+OLP-TR-TERM-0002,The Open Logic Text,Açık Mantık Metni,provisional,work_title,"Preserve official English title in attribution metadata.",active_no_native_gate
+OLP-TR-TERM-0003,theorem,teorem,provisional,environment_label,,active_no_native_gate
+OLP-TR-TERM-0004,definition,tanım,provisional,environment_label,,active_no_native_gate
+OLP-TR-TERM-0005,lemma,lemma,provisional,environment_label,,active_no_native_gate
+OLP-TR-TERM-0006,proposition,önerme,provisional,environment_label,"Do not merge proposition with theorem without a file-level reason.",active_no_native_gate
+OLP-TR-TERM-0007,corollary,sonuç,provisional,environment_label,"Potential collision with ordinary 'result'; review contextually.",active_no_native_gate
+OLP-TR-TERM-0008,proof,ispat,admitted_producer_term,logic_and_mathematics,"Kanıt is a valid competitor but must not look like a separate proof category; use ispat consistently in this edition.",active_no_native_gate
+OLP-TR-TERM-0009,set,küme,provisional,sets,,active_no_native_gate
+OLP-TR-TERM-0010,relation,bağıntı,provisional,relations,"İlişki is an adverse/common-language competitor; mathematical register generally favors bağıntı.",active_no_native_gate
+OLP-TR-TERM-0011,function,fonksiyon,provisional,functions,,active_no_native_gate
+OLP-TR-TERM-0012,formula,formül,provisional,logic,,active_no_native_gate
+OLP-TR-TERM-0013,satisfaction,sağlama,provisional,model_theory,"Tatmin is an adverse calque candidate; resolve against Turkish logic sources.",active_no_native_gate
+OLP-TR-TERM-0014,soundness,sağlamlık,admitted_producer_term,metalogic,"Never merge with tutarlılık (consistency), geçerlilik (validity), or doğruluk (truth).",active_no_native_gate
+OLP-TR-TERM-0015,completeness,tamlık,admitted_producer_term,metalogic,"Eksiksizlik is an attested crosswalk competitor, not a second target term; preserve syntactic/semantic context.",active_no_native_gate
+OLP-TR-TERM-0016,naive set theory,naif küme teorisi,admitted_producer_term,sets,"Avoid saf (can mean pure sets) and sezgisel (can suggest intuitionistic set theory).",active_no_native_gate
+OLP-TR-TERM-0017,extensionality,kaplamsallık,admitted_producer_term,sets,"Keep separate from broader logical extensional/genişlemsel uses.",active_no_native_gate
+OLP-TR-TERM-0018,empty set,boş küme,admitted_producer_term,sets,,active_no_native_gate
+OLP-TR-TERM-0019,subset,alt küme,admitted_producer_term,sets,"Preserve source distinction between subset and proper subset, including symbols.",active_no_native_gate
+OLP-TR-TERM-0020,proper subset,öz alt küme,admitted_producer_term,sets,"Has alt küme and özalt küme are attested competitors; do not alternate in the reader.",active_no_native_gate
+OLP-TR-TERM-0021,power set,kuvvet kümesi,admitted_producer_term,sets,"Güç kümesi is attested but mixing is undesirable.",active_no_native_gate
+OLP-TR-TERM-0022,union,birleşim,admitted_producer_term,sets,,active_no_native_gate
+OLP-TR-TERM-0023,intersection,kesişim,admitted_producer_term,sets,,active_no_native_gate
+OLP-TR-TERM-0024,disjoint,ayrık,admitted_producer_term,sets,"Do not render as bağımsız.",active_no_native_gate
+OLP-TR-TERM-0025,set difference,küme farkı,admitted_producer_term,sets,"Definitions should make direction explicit: A kümesinin B kümesinden farkı; avoid bare fark kümesi.",active_no_native_gate
+OLP-TR-TERM-0026,ordered pair,sıralı ikili,admitted_producer_term,sets,"Avoid literal düzenli çift.",active_no_native_gate
+OLP-TR-TERM-0027,ordered n-tuple,sıralı n-li,admitted_producer_term,sets,"Use n-li rather than n'li.",active_no_native_gate
+OLP-TR-TERM-0028,Cartesian product,Kartezyen çarpım,admitted_producer_term,sets,,active_no_native_gate
+OLP-TR-TERM-0029,Russell's paradox,Russell paradoksu,admitted_producer_term,sets,,active_no_native_gate
+OLP-TR-TERM-0030,comprehension,küme oluşturma,admitted_producer_term,sets,"Use descriptive Turkish in the introductory reader. Kapsamlılık ilkesi was rejected here as nontransparent and confusable with ordinary comprehensiveness; generic anlama is also unsuitable.",active_no_native_gate
+OLP-TR-TERM-0031,set-builder notation,ortak özellik yöntemiyle küme gösterimi,provisional,sets,"Küme kurma gösterimi is a technical synonym.",active_no_native_gate
+"OLP-TR-TERM-0032","binary relation","ikili bağıntı","admitted_producer_term","relations","Keep separate from ikili işlem (binary operation).","active_no_native_gate"
+"OLP-TR-TERM-0033","identity relation","özdeşlik bağıntısı","admitted_producer_term","relations","Birim bağıntı is an attested competitor; do not alternate inside the reader.","active_no_native_gate"
+"OLP-TR-TERM-0034","empty relation","boş bağıntı","admitted_producer_term","relations","","active_no_native_gate"
+"OLP-TR-TERM-0035","universal relation","evrensel bağıntı","admitted_producer_term","relations","","active_no_native_gate"
+"OLP-TR-TERM-0036","reflexive","yansımalı","provisional","relation_property","Yansıyan is an attested Turkish competitor. Keep the chosen adjective distinct from reflexive closure.","active_no_native_gate"
+"OLP-TR-TERM-0037","irreflexive","yansımasız","provisional","relation_property","Do not confuse irreflexive with merely non-reflexive.","active_no_native_gate"
+"OLP-TR-TERM-0038","transitive","geçişli","provisional","relation_property","Geçişken is an attested competitor; do not alternate without additional contextual evidence.","active_no_native_gate"
+"OLP-TR-TERM-0039","symmetric","simetrik","admitted_producer_term","relation_property","","active_no_native_gate"
+"OLP-TR-TERM-0040","antisymmetric","ters simetrik","provisional","relation_property","Antisimetrik is a competitor. Never merge with asymmetric/asimetrik.","active_no_native_gate"
+"OLP-TR-TERM-0041","asymmetric","asimetrik","admitted_producer_term","relation_property","Keep separate from antisymmetric/ters simetrik.","active_no_native_gate"
+"OLP-TR-TERM-0042","connected (relation)","bağlantılı","provisional","relation_property","Scope-tagged to order-theoretic relation connectedness; it does not authorize a later graph-connectedness term by itself.","active_no_native_gate"
+"OLP-TR-TERM-0043","equivalence relation","denklik bağıntısı","admitted_producer_term","relations","","active_no_native_gate"
+"OLP-TR-TERM-0044","equivalence class","denklik sınıfı","admitted_producer_term","relations","","active_no_native_gate"
+"OLP-TR-TERM-0045","quotient set","bölüm kümesi","admitted_producer_term","relations","Bölüm is too broad alone; retain kümesi in first-use prose.","active_no_native_gate"
+"OLP-TR-TERM-0046","preorder","ön sıralama","provisional","orders","","active_no_native_gate"
+"OLP-TR-TERM-0047","partial order","kısmi sıralama","admitted_producer_term","orders","","active_no_native_gate"
+"OLP-TR-TERM-0048","total order","tam sıralama","admitted_producer_term","orders","Preserve the source synonym relation with linear order; do not collapse the labels invisibly.","active_no_native_gate"
+"OLP-TR-TERM-0049","linear order","doğrusal sıralama","admitted_producer_term","orders","Preserve alongside total order/tam sıralama where the source gives both.","active_no_native_gate"
+"OLP-TR-TERM-0050","strict order","sıkı sıralama","provisional","orders","Kesin sıralama is a competitor requiring additional contextual evidence.","active_no_native_gate"
+"OLP-TR-TERM-0051","directed graph","yönlü çizge","admitted_producer_term","graph_theory","Graf is an attested competitor; this reader chooses çizge.","active_no_native_gate"
+"OLP-TR-TERM-0052","vertex","köşe","admitted_producer_term","graph_theory","Düğüm is retained as introductory common-language synonym, not a second formal vertex label.","active_no_native_gate"
+"OLP-TR-TERM-0053","edge","kenar","admitted_producer_term","graph_theory","","active_no_native_gate"
+"OLP-TR-TERM-0054","tree","ağaç","admitted_producer_term","trees","","active_no_native_gate"
+"OLP-TR-TERM-0055","root","kök","admitted_producer_term","trees","","active_no_native_gate"
+"OLP-TR-TERM-0056","branch","dal","admitted_producer_term","trees","Keep separate from branching/dallanma.","active_no_native_gate"
+"OLP-TR-TERM-0057","well-order","iyi sıralama","admitted_producer_term","orders_and_trees","","active_no_native_gate"
+"OLP-TR-TERM-0058","successor","ardıl","provisional","relations_and_trees","Scope-dependent; a graph/tree child is also introduced contextually.","active_no_native_gate"
+"OLP-TR-TERM-0059","predecessor","öncül","provisional","relations_and_trees","Scope-dependent; parent/ebeveyn remains a contextual synonym in trees.","active_no_native_gate"
+"OLP-TR-TERM-0060","finitely branching","sonlu dallanan","provisional","trees","","active_no_native_gate"
+"OLP-TR-TERM-0061","inverse relation","ters bağıntı","admitted_producer_term","relation_operations","Keep separate from inverse function/ters fonksiyon.","active_no_native_gate"
+"OLP-TR-TERM-0062","relative product / relation composition","bağıntı bileşkesi","admitted_producer_term","relation_operations","The literal producer draft bağıl çarpım was rejected after adverse review: Turkish university course descriptions consistently use bağıntıların bileşkesi. Preserve the source notation order: (R|S)xz iff there exists y with Rxy and Syz.","active_no_native_gate"
+"OLP-TR-TERM-0063","restriction (of a relation)","kısıtlama","provisional","relation_operations","Scope-tagged; do not infer function-restriction morphology without context.","active_no_native_gate"
+"OLP-TR-TERM-0064","application/image of a relation","bağıntının kümeye uygulanması","provisional","relation_operations","Görüntü is a competitor; formula governs until additional evidence resolves it.","active_no_native_gate"
+"OLP-TR-TERM-0065","transitive closure","geçişli kapanış","provisional","relation_operations","Geçişken kapanış is an attested-form competitor.","active_no_native_gate"
+"OLP-TR-TERM-0066","reflexive transitive closure","yansımalı geçişli kapanış","provisional","relation_operations","Keep both properties explicit; do not merge with reflexive closure alone.","active_no_native_gate"
+"OLP-TR-TERM-0067","map / mapping","eşleme","evidence_checked_producer_term","functions","Use gönderme only as ordinary explanatory prose, not a second formal label.","active_no_native_gate"
+"OLP-TR-TERM-0068","domain (function)","tanım kümesi","evidence_checked_producer_term","functions","Keep distinct from codomain and range.","active_no_native_gate"
+"OLP-TR-TERM-0069","codomain","değer kümesi","evidence_checked_producer_term","functions","Edition convention follows Ankara University, 2013 MEB, and TMD; never use this label for the attained range.","active_no_native_gate"
+"OLP-TR-TERM-0070","range (function)","görüntü kümesi","evidence_checked_producer_term","functions","Keep distinct from codomain/değer kümesi and subset image/görüntü.","active_no_native_gate"
+"OLP-TR-TERM-0071","argument / input","argüman / girdi","evidence_checked_producer_term","functions","Argüman is the formal noun; girdi is the explanatory reader crosswalk.","active_no_native_gate"
+"OLP-TR-TERM-0072","function value","fonksiyon değeri","evidence_checked_producer_term","functions","Do not let bare değer denote the range set.","active_no_native_gate"
+"OLP-TR-TERM-0073","injective / injection","bire bir / bire bir fonksiyon","evidence_checked_producer_term","functions","Injektif is a search crosswalk, not an alternating reader term.","active_no_native_gate"
+"OLP-TR-TERM-0074","surjective / surjection","örten / örten fonksiyon","evidence_checked_producer_term","functions","Sürjektif is a search crosswalk, not an alternating reader term.","active_no_native_gate"
+"OLP-TR-TERM-0075","bijective / bijection","bire bir örten / bire bir örten fonksiyon","evidence_checked_producer_term","functions","Full explanatory surface is bire bir ve örten; bijektif is a search crosswalk.","active_no_native_gate"
+"OLP-TR-TERM-0076","one-to-one correspondence","bire bir eşleme","evidence_checked_producer_term","functions","Do not confuse with injection when the source means a bijective correspondence.","active_no_native_gate"
+"OLP-TR-TERM-0077","graph of a function","fonksiyonun grafiği","evidence_checked_producer_term","functions","Keep graph as grafik here; directed graph remains yönlü çizge.","active_no_native_gate"
+"OLP-TR-TERM-0078","restriction (of a function)","fonksiyonun kısıtlaması","evidence_checked_producer_term","functions","Scope-tagged counterpart of relation restriction.","active_no_native_gate"
+"OLP-TR-TERM-0079","image under a function","fonksiyon altındaki görüntü","evidence_checked_producer_term","functions","Keep distinct from the whole range/görüntü kümesi.","active_no_native_gate"
+"OLP-TR-TERM-0080","inverse function","ters fonksiyon / fonksiyonun tersi","evidence_checked_producer_term","functions","Keep distinct from inverse relation and inverse image.","active_no_native_gate"
+"OLP-TR-TERM-0081","left inverse","sol ters","evidence_checked_producer_term","functions","Equation governs: g(f(x))=x.","active_no_native_gate"
+"OLP-TR-TERM-0082","right inverse","sağ ters","evidence_checked_producer_term","functions","Equation governs: f(h(y))=y.","active_no_native_gate"
+"OLP-TR-TERM-0083","function composition","fonksiyon bileşkesi","evidence_checked_producer_term","functions","For comp(f,g)=g∘f, apply f first and g second; never infer order from prose alone.","active_no_native_gate"
+"OLP-TR-TERM-0084","partial function","kısmi fonksiyon","evidence_checked_producer_term","functions","Ambient A may exceed the actual domain of definition.","active_no_native_gate"
+"OLP-TR-TERM-0085","total / everywhere-defined function","tümel fonksiyon / her yerde tanımlı fonksiyon","evidence_checked_producer_term","functions","Avoid tam fonksiyon because it collides with entire function in complex analysis.","active_no_native_gate"
+"OLP-TR-TERM-0086","serial relation","seri bağıntı","evidence_checked_producer_term","relations_and_functions","State the quantified definition at first occurrence; serial is an adverse loan crosswalk.","active_no_native_gate"
+"OLP-TR-TERM-0087","Axiom of Choice","Seçim Aksiyomu","evidence_checked_producer_term","set_theory_and_functions","Preserve the source footnote dependence for surjection-implies-right-inverse.","active_no_native_gate"

@@ -1,0 +1,178 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: inverses
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{inv}
+\olsection{Fonksiyonların Tersleri}
+
+\begin{explain}
+Fonksiyonları eşlemeler olarak düşünürüz. Öyleyse fonksiyonlarla ilgili açık
+bir soru, eşlemenin ``tersine çevrilip çevrilemeyeceğidir.'' Örneğin
+$f(x)=x+1$ ardıl fonksiyonu, $g(y)=y-1$ fonksiyonunun $f$'nin yaptığını
+``geri alması'' anlamında tersine çevrilebilir.
+
+Ancak dikkatli olmalıyız. $g$'nin tanımı bir $\Int \to \Int$ fonksiyonu
+tanımlasa da $g(0)\notin\Nat$ olduğundan bir \emph{$\Nat \to \Nat$
+fonksiyonu} tanımlamaz. Dolayısıyla basit durumlarda bile bir fonksiyonun
+tersine çevrilip çevrilemeyeceği pek açık değildir; bu, tanım ve değer
+kümelerine bağlı olabilir.
+
+Bu düşünce, bir fonksiyonun tersi kavramıyla daha kesin hâle gelir.
+\end{explain}
+
+\begin{defn}
+Bir $g \colon B \to A$ fonksiyonu, her $x \in A$ ve $y \in B$ için
+$f(g(y))=y$ ve $g(f(x))=x$ oluyorsa $f \colon A \to B$ fonksiyonunun bir
+\emph{tersidir}.
+\end{defn}
+
+$f$'nin bir $g$ tersi varsa, çoğu kez $g$ yerine $f^{-1}$ yazarız.
+
+\begin{explain}
+Şimdi fonksiyonların ne zaman terslerinin bulunduğunu belirleyeceğiz. Bir
+$f\colon A \to B$ fonksiyonunun tersi için iyi bir aday, şu şekilde
+``tanımlanan'' $g\colon B \to A$ fonksiyonudur:
+\[
+g(y) = \text{$f(x)=y$ olacak biçimdeki ``o'' $x$.}
+\]
+Ancak ``tanımlanan'' (ve ``o'') sözcüklerinin tırnak içinde olması, bunun bir
+tanım olmadığını düşündürür. En azından bu, tam bir genellik içinde her zaman
+işe yaramaz. Bu tanımın bir fonksiyon belirtmesi için $f(x)=y$ olacak biçimde
+bir ve yalnızca bir $x$ bulunmalıdır; $g$'nin çıktısı biricik biçimde
+belirtilmelidir. Üstelik bu çıktı her $y \in B$ için belirtilmelidir.
+$x_1\neq x_2$ fakat $f(x_1)=f(x_2)$ olacak biçimde $x_1,x_2\in A$ varsa,
+$y=f(x_1)=f(x_2)$ için $g(y)$ biricik biçimde belirtilmiş olmaz. $f(x)=y$
+olacak biçimde hiçbir $x$ yoksa da $g(y)$ hiç belirtilmemiş olur. Başka bir
+deyişle $g$'nin tanımlı olması için $f$ hem bire bir hem de örten olmalıdır.
+
+Yavaş ilerleyelim ve soruyu ikiye ayıralım. Bir $f\colon A \to B$ fonksiyonu
+verildiğinde, $g(f(x))=x$ olacak biçimde bir $g\colon B \to A$ fonksiyonu ne
+zaman vardır? Böyle bir $g$, $f$'nin yaptığını ``geri alır'' ve $f$'nin bir
+\emph{sol tersi} olarak adlandırılır. İkinci olarak $f(h(y))=y$ olacak biçimde
+bir $h\colon B \to A$ fonksiyonu ne zaman vardır? Böyle bir $h$, $f$'nin bir
+\emph{sağ tersi} olarak adlandırılır; $f$, $h$'nin yaptığını ``geri alır.''
+\end{explain}
+
+\begin{prop}
+$A\neq\emptyset$ ve $f\colon A \to B$ bire bir ise, her $x \in A$ için
+$g(f(x))=x$ olacak biçimde $f$'nin bir \emph{sol tersi}
+$g\colon B \to A$ vardır.
+\end{prop}
+
+\begin{proof}
+$A\neq\emptyset$ ve $f\colon A \to B$ fonksiyonunun bire bir olduğunu
+varsayalım ve bir
+$y \in B$ elemanı ele alalım. $y \in \ran{f}$ ise $f(x)=y$ olacak biçimde bir
+$x \in A$ vardır. $f$ bire bir olduğundan böyle yalnızca bir $x \in A$ vardır.
+Bu durumda $g(y)=x$ biçiminde tanımlayabiliriz; yani $g(y)$, $f(x)=y$ olacak
+biçimdeki ``o'' $x \in A$'dır. $y \notin \ran{f}$ ise onu herhangi bir
+$a \in A$ elemanına eşleyebiliriz. Dolayısıyla bir $a \in A$ seçip
+$g\colon B \to A$ fonksiyonunu şöyle tanımlayabiliriz:
+\[
+g(y) = \begin{cases}
+    x & \text{$f(x) = y$ ise}\\
+    a & \text{$y \notin \ran{f}$ ise.}
+\end{cases}
+\]
+Bu fonksiyon bütün $y \in B$ için tanımlıdır; çünkü bu elemanlardan
+$y \in \ran{f}$ olan her biri için $f(x)=y$ olacak biçimde tam olarak bir
+$x \in A$ vardır. Tanım gereği $y=f(x)$ ise $g(y)=x$, yani $g(f(x))=x$ olur.
+\end{proof}
+
+\begin{prob}
+$f\colon A \to B$ fonksiyonunun bir sol tersi $g$ varsa $f$'nin bire bir
+olduğunu gösterin.
+\end{prob}
+
+\begin{prop}
+    $f\colon A \to B$ örtense, her $y \in B$ için $f(h(y))=y$ olacak biçimde
+    $f$'nin bir \emph{sağ tersi} $h\colon B \to A$ vardır.
+\end{prop}
+
+\begin{proof}
+$f\colon A \to B$ fonksiyonunun örten olduğunu varsayalım ve bir $y \in B$
+elemanı ele alalım. $f$ örten olduğundan $f(x_y)=y$ olacak biçimde bir
+$x_y \in A$ vardır. O hâlde $h(y)=x_y$ biçiminde tanımlayabiliriz; yani her
+$y \in B$ için $f(x)=y$ olacak biçimde bir $x \in A$ seçeriz. $f$ örten
+olduğundan her zaman seçilebilecek en az bir eleman vardır.\footnote{$f$ örten
+olduğundan, her $y \in B$ için $\Setabs{x}{f(x) = y}$ kümesi boş değildir.
+$h$ tanımımız bu kümelerin her birinden tek bir $x$ seçmemizi gerektirir. Bu
+seçimlerin her zaman yapılabilmesi aslında açık değildir; bu seçimleri yapma
+olanağı yalnızca bir aksiyom olarak varsayılır. Başka bir deyişle bu önerme,
+sözde Seçim Aksiyomunu varsayar; bu konuyu
+\oliflabeldef{sth:choice::chap}{\olref[sth][choice][]{chap}'te yeniden ele
+alacağız}{burada ayrıntıya girmeden geçeceğiz}. Ancak birçok özel durumda,
+örneğin $A=\Nat$ veya $A$ sonlu olduğunda ya da $f$ bire bir örten olduğunda,
+Seçim Aksiyomuna gerek yoktur. ($f$'nin bire bir örten olduğu özel durumda,
+her $y \in B$ için $\Setabs{x}{f(x) = y}$ kümesinin tam olarak bir elemanı
+vardır; dolayısıyla yapılacak bir seçim yoktur.)}
+Tanım gereği $x=h(y)$ ise $f(x)=y$ olur; yani her $y \in B$ için
+$f(h(y))=y$'dir.
+\end{proof}
+
+\begin{prob}
+$f\colon A \to B$ fonksiyonunun bir sağ tersi $h$ varsa $f$'nin örten
+olduğunu gösterin.
+\end{prob}
+
+\begin{explain}
+  Önceki ispattaki düşünceleri birleştirerek artık her bire bir örten
+  fonksiyonun bir tersinin olduğunu, yani $f$'nin hem sol hem de sağ tersi
+  olan tek bir fonksiyon bulunduğunu elde ederiz.
+\end{explain}
+
+\begin{prop}\ollabel{prop:bijection-inverse}
+$f\colon A \to B$ bire bir örten ise, her $x \in A$ için
+$f^{-1}(f(x))=x$ ve her $y \in B$ için $f(f^{-1}(y))=y$ olacak biçimde bir
+$f^{-1}\colon B \to A$ fonksiyonu vardır.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[sfr][fun][inv]{prop:bijection-inverse}'i ispatlayın. $f^{-1}$'i
+tanımlamalı, bunun bir fonksiyon olduğunu göstermeli ve $f$'nin bir tersi
+olduğunu, yani her $x \in A$ ve $y \in B$ için $f^{-1}(f(x))=x$ ve
+$f(f^{-1}(y))=y$ eşitliklerini göstermelisiniz.
+\end{prob}
+
+\begin{explain}
+Tersleri elde etmenin biraz daha genel bir yolu vardır. \olref[kin]{sec}'te
+her $f$ fonksiyonunun, her $x \in A$ için $f'(x)=f(x)$ alarak
+$f' \colon A \to \ran{f}$ örten fonksiyonunu türettiğini gördük. Açıktır ki
+$f$ bire bir ise $f'$ bire bir örtendir; dolayısıyla
+\olref{prop:bijection-inverse} gereğince biricik bir tersi vardır. Gösterimi
+çok az kötüye kullanarak bazen $f'$ fonksiyonunun tersine yalnızca ``$f$'nin
+tersi'' deriz.
+\end{explain}
+
+\begin{prop}\ollabel{prop:left-right}%
+  $f\colon A \to B$ fonksiyonunun bir sol tersi $g$ ve bir sağ tersi $h$
+  varsa $h=g$ olduğunu gösterin.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[sfr][fun][inv]{prop:left-right}'ı ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:inverse-unique}
+Her $f$ fonksiyonunun en fazla bir tersi vardır.
+\end{prop}
+
+\begin{proof}
+  $g$ ve $h$'nin her ikisinin de $f$'nin tersi olduğunu varsayalım. O hâlde
+  özellikle $g$, $f$'nin bir sol tersi; $h$ de bir sağ tersidir.
+  \olref{prop:left-right} gereğince $g=h$ olur.
+\end{proof}
+
+\end{document}

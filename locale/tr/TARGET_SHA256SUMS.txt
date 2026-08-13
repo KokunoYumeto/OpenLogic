@@ -1,5 +1,3 @@
-# SHA-256 — Turkish Open Logic OLP-0001 through OLP-0019
-
 9d30f00f8d320feba9b09e62192e85790e5980050f89321a5767f96f8f5f6d4c  locale/tr/content/open-logic-about.tex
 a9abb8f329b682acea399a3ca61667fc1d369fc3294a242c72070fb9dc60d0ab  locale/tr/content/content.tex
 0b8896c1018ff7472b4ec977f91f2a2c55a979bf86049be52f50c2a899fb4a5a  locale/tr/content/sets-functions-relations/sets-functions-relations-complete.tex
@@ -19,3 +17,10 @@ afd9525388a36c73c9fa4b8b83f4b22be3b43acad6610ae2bb21e26760a6a7d9  locale/tr/cont
 e4e50eaa9879f9b4cafdc998b82b95eb8d909af44a9b014072fbc96726abbfd5  locale/tr/content/sets-functions-relations/relations/graphs.tex
 eb8f187c5f4b14274fd4145b417b996724ac9d840ca2ecab337094bcc2737983  locale/tr/content/sets-functions-relations/relations/trees.tex
 837bb2b4cf16a00eacd64e5b7c9e6fd7293d74d1e74ee5f4724f639fcb2e998c  locale/tr/content/sets-functions-relations/relations/operations.tex
+42a119b8f79f03ebc3863d8dde9dcddfb431cf44172caa8e39eb45d83b05060d  locale/tr/content/sets-functions-relations/functions/functions.tex
+f35f3955d7958317dc6642629abcc70121c25e4462d606c252aee9c3983aa702  locale/tr/content/sets-functions-relations/functions/function-basics.tex
+87bae39f90e5aa33ec71a1693aa365f4cadddf30106825a76c19ff0b842ab6a4  locale/tr/content/sets-functions-relations/functions/function-kinds.tex
+e633eb0f54f48d340aac8c295c499e9d4789c15360f011029b7eae2a2f9b31e6  locale/tr/content/sets-functions-relations/functions/functions-relations.tex
+92f874b697c6003c29fa0826ccb19b282135657d416bd7161e21f498ab9dfb54  locale/tr/content/sets-functions-relations/functions/inverses.tex
+98d2ea5f1a5aba70b678f92bae03b5c733b4925296ca93bdfbd21848ab38800f  locale/tr/content/sets-functions-relations/functions/composition.tex
+01320e6aa60054d71afb65dfcc94f16bccb8e54920b16b198509b5c43024b8d1  locale/tr/content/sets-functions-relations/functions/partial-functions.tex
