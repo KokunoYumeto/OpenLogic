@@ -1,0 +1,125 @@
+% Bagian: first-order-logic
+% Bab: models-theories
+% Subbagian: expressing-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{mat}{exr}
+
+\olsection{Mengungkapkan Relasi dalam \article{structure}
+  \printtoken{S}{structure}}
+
+\begin{explain}
+Salah satu kegunaan utama !!{formula}s ialah mengungkapkan sifat dan relasi
+dalam !!a{structure}~$\Struct M$ berdasarkan konsep-konsep primitif bahasa
+$\Lang L$ dari~$\Struct M$. Maksudnya adalah sebagai berikut: !!{domain} dari
+$\Struct M$ merupakan suatu himpunan objek. !!^{constant}s, !!{function}s,
+dan !!{predicate}s ditafsirkan dalam~$\Struct M$ masing-masing oleh beberapa
+objek dalam~$\Domain M$, fungsi pada~$\Domain M$, dan relasi pada~$\Domain M$.
+Misalnya, jika $\Obj A^2_0$ berada dalam $\Lang L$, maka $\Struct M$
+menetapkan kepadanya suatu relasi~$R = \Assign{{\Obj A^2_0}}{M}$. Kemudian
+formula $\Atom{\Obj A^2_0}{\Obj v_1, \Obj v_2}$ \emph{mengungkapkan} relasi
+itu sendiri dalam pengertian berikut: jika suatu penugasan variabel~$s$
+memetakan $\Obj v_1$ ke $a \in \Domain{M}$ dan $\Obj v_2$ ke
+$b \in \Domain M$, maka
+\[
+Rab \text{\quad jika dan hanya jika\quad} \Sat{M}{\Atom{\Obj A^2_0}{\Obj v_1, \Obj v_2}}[s].
+\]
+Perhatikan bahwa kita harus melibatkan penugasan variabel di sini: kita tidak
+dapat sekadar mengatakan ``$Rab$ jika dan hanya jika
+$\Sat{M}{\Atom{\Obj A^2_0}{a, b}}$'' karena $a$ dan $b$ bukan simbol bahasa
+kita; keduanya merupakan !!{element}s dari~$\Domain{M}$.
+
+Karena kita tidak hanya mempunyai !!{formula}s atomik, tetapi juga dapat
+menggabungkannya dengan penghubung logis dan kuantor, !!{formula}s yang lebih
+rumit dapat mendefinisikan relasi lain yang tidak dibangun langsung ke
+dalam~$\Struct M$. Kita tertarik pada cara melakukan hal tersebut dan,
+khususnya, pada relasi mana yang dapat kita definisikan dalam !!a{structure}.
+\end{explain}
+
+\begin{defn}
+Misalkan $!A(\Obj v_1,\dots, \Obj v_n)$ suatu !!a{formula} dari $\Lang L$
+yang hanya mempunyai $\Obj v_1$,\dots, $\Obj v_n$ sebagai variabel bebas,
+dan misalkan $\Struct M$ suatu !!a{structure} bagi~$\Lang L$.
+$!A(\Obj v_1,\dots, \Obj v_n)$ \emph{mengungkapkan relasi}~$R \subseteq
+\Domain M^n$ jika dan hanya jika
+\[
+Ra_1\dots a_n \text{\quad jika dan hanya jika\quad} \Sat{M}{\Atom{!A}{\Obj
+    v_1,\dots, \Obj v_n}}[s]
+\]
+bagi sebarang penugasan variabel~$s$ dengan $s(\Obj v_i) = a_i$ ($i = 1,
+\dots, n$).
+\end{defn}
+
+\begin{ex}
+Dalam model standar aritmetika~$\Struct N$, !!{formula} $\Obj v_1 < \Obj v_2
+\lor \eq[\Obj v_1][\Obj v_2]$ mengungkapkan relasi $\le$ pada~$\Nat$.
+!!^{formula} $\eq[\Obj v_2][\Obj v_1']$ mengungkapkan relasi penerus, yakni
+relasi $R \subseteq \Nat^2$ dengan $Rnm$ berlaku jika $m$ merupakan penerus
+dari~$n$. Formula $\eq[\Obj v_1][\Obj v_2']$ mengungkapkan relasi pendahulu.
+!!^{formula}s $\lexists[\Obj v_3][(\eq/[\Obj v_3][\Obj 0] \land
+  \eq[\Obj v_2][(\Obj v_1 + \Obj v_3)])]$ dan $\lexists[\Obj
+  v_3][\eq[(\Obj v_1 + {\Obj v_3}')][\Obj v_2]]$ keduanya mengungkapkan relasi
+$\Obj <$. Ini berarti bahwa simbol predikat~$<$ sebenarnya berlebihan dalam
+bahasa aritmetika; simbol itu dapat didefinisikan.
+\end{ex}
+
+\begin{explain}
+Gagasan ini tidak hanya menarik dalam !!{structure}s tertentu, tetapi juga
+secara umum setiap kali kita menggunakan suatu bahasa untuk menggambarkan satu
+atau beberapa model yang dimaksudkan, yakni ketika kita meninjau teori. Teori
+semacam itu sering kali hanya memuat sedikit !!{predicate}s sebagai simbol
+dasar, tetapi banyak relasi lain sering berperan penting dalam domain yang
+hendak dideskripsikan. Jika relasi-relasi lain tersebut dapat diungkapkan
+secara sistematis oleh relasi-relasi yang menafsirkan !!{predicate}s dasar
+bahasa itu, kita mengatakan bahwa relasi-relasi tersebut dapat
+\emph{didefinisikan} dalam bahasa tersebut.
+\end{explain}
+
+\begin{prob}
+Carilah !!{formula}s dalam $\Lang L_A$ yang mendefinisikan relasi-relasi
+berikut:
+\begin{enumerate}
+\item $n$ berada di antara $i$ dan $j$;
+\item $n$ membagi habis $m$ (yakni, $m$ merupakan kelipatan $n$);
+\item $n$ merupakan bilangan prima (yakni, tidak ada bilangan selain $1$ dan
+  $n$ yang membagi habis~$n$).
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Andaikan formula $!A(\Obj v_1, \Obj v_2)$ mengungkapkan relasi
+$R \subseteq \Domain M^2$ dalam !!a{structure}~$\Struct M$. Carilah formula
+yang mengungkapkan relasi-relasi berikut:
+\begin{enumerate}
+\item invers $R^{-1}$ dari $R$;
+\item hasil kali relatif $R \mid R$;
+\end{enumerate}
+Dapatkah Anda menemukan cara untuk mengungkapkan $R^+$, penutupan transitif
+dari~$R$?
+\end{prob}
+
+\begin{prob}
+Misalkan $\Lang{L}$ bahasa yang hanya memuat simbol predikat dua-tempat $<$
+(tanpa !!{constant}s, !!{function}s, atau !!{predicate}s lain---kecuali,
+tentu saja,~$\eq$). Misalkan $\Struct{N}$ struktur sedemikian sehingga
+$\Domain{N} = \Nat$ dan $\Assign{<}{N} = \Setabs{\tuple{n,m}}{n < m}$.
+Buktikan hal-hal berikut:
+\begin{enumerate}
+\item $\{ 0 \}$ dapat didefinisikan dalam $\Struct{N}$;
+\item $\{ 1 \}$ dapat didefinisikan dalam $\Struct{N}$;
+\item $\{ 2 \}$ dapat didefinisikan dalam $\Struct{N}$;
+\item bagi setiap $n \in \Nat$, himpunan $\{ n \}$ dapat didefinisikan
+  dalam $\Struct{N}$;
+\item setiap himpunan bagian hingga dari $\Domain{N}$ dapat didefinisikan
+  dalam $\Struct{N}$;
+\item setiap himpunan bagian kohingga dari $\Domain{N}$ dapat didefinisikan
+  dalam $\Struct{N}$ (dengan $X \subseteq \Nat$ disebut kohingga jika dan
+  hanya jika $\Nat \setminus X$ hingga).
+\end{enumerate}
+\end{prob}
+
+
+\end{document}

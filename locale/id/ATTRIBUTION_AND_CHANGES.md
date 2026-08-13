@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0166` (166/722 files). It is incomplete and must not be represented as the
+`OLP-0173` (173/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -84,6 +84,11 @@ Exact source corrections currently include:
   free-variable conditions. One Indonesian exclusive-alternative construction
   was corrected independently; two low-priority upstream clarification
   candidates remain explicitly preserved.
+- Theories and Their Models repairs a missing strict-order qualifier, one bare
+  object-language variable marker, two missing formula parentheses, and one
+  malformed prose clause. The Indonesian chapter title and pure-set
+  predication were independently clarified; valid uppercase token syntax was
+  preserved and the contrary audit findings explicitly retracted.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

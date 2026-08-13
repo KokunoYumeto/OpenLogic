@@ -1,0 +1,65 @@
+% Bagian: first-order-logic
+% Bab: models-theories
+% Subbagian: expressing-props-of-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{mat}{exs}
+
+\olsection{Mengungkapkan Sifat-Sifat \printtoken{P}{structure}}
+
+\begin{explain}
+Sering kali berguna dan penting untuk mengungkapkan syarat-syarat pada fungsi
+dan relasi, atau secara lebih umum, bahwa fungsi dan relasi dalam suatu
+struktur memenuhi syarat-syarat tersebut. Misalnya, kita ingin mempunyai cara
+untuk membedakan !!{structure}s bagi suatu bahasa yang ``menangkap'' makna
+yang kita kehendaki bagi !!{predicate}s dari struktur yang tidak demikian.
+Tentu saja kita sepenuhnya bebas menentukan !!{structure}s mana yang kita
+``maksudkan''; misalnya, kita dapat menentukan bahwa interpretasi
+!!{predicate}~$\le$ harus berupa suatu urutan, atau bahwa kita hanya tertarik
+pada interpretasi~$\Lang L$ yang domainnya terdiri atas himpunan dan yang
+menafsirkan $\Obj \in$ sebagai relasi ``merupakan !!a{element} dari.'' Namun,
+dapatkah kita melakukan ini dengan !!{sentence}s bahasa tersebut? Dengan kata
+lain, syarat-syarat mana pada !!a{structure}~$\Struct M$ yang dapat kita
+ungkapkan dengan !!a{sentence} (atau mungkin suatu himpunan !!{sentence}s)
+dalam bahasa~$\Struct M$? Ada beberapa syarat yang tidak akan dapat kita
+ungkapkan. Misalnya, tidak ada kalimat dari~$\Lang L_A$ yang hanya benar dalam
+!!a{structure}~$\Struct M$ jika $\Domain M = \Nat$. Kita tidak dapat
+menyatakan ``domain hanya memuat bilangan asli.'' Namun, mungkin ada
+``sifat-sifat struktural'' dari !!{structure}s yang dapat kita ungkapkan.
+Sifat-sifat !!{structure}s mana yang dapat kita ungkapkan dengan
+!!{sentence}s? Atau, dengan rumusan lain, kumpulan !!{structure}s mana yang
+dapat kita gambarkan sebagai semua struktur yang membuat !!a{sentence} (atau
+suatu himpunan !!{sentence}s) benar?
+\end{explain}
+
+\begin{defn}[Model suatu himpunan]
+Misalkan $\Gamma$ suatu himpunan !!{sentence}s dalam bahasa~$\Lang L$. Kita
+mengatakan bahwa !!a{structure}~$\Struct M$ \emph{merupakan model
+dari}~$\Gamma$ jika $\Sat{M}{!A}$ bagi semua $!A \in \Gamma$.
+\end{defn}
+
+\begin{ex}
+Kalimat $\lforall[x][x \le x]$ benar dalam~$\Struct M$ jika dan hanya jika
+$\Assign{\le}{M}$ merupakan relasi refleksif. Kalimat
+$\lforall[x][\lforall[y][((x \le y \land y \le x) \lif x = y)]]$ benar
+dalam~$\Struct M$ jika dan hanya jika $\Assign{\le}{M}$ antisimetris.
+Kalimat $\lforall[x][\lforall[y][\lforall[z][((x \le y \land y \le z)
+      \lif x \le z)]]]$ benar dalam~$\Struct M$ jika dan hanya jika
+$\Assign{\le}{M}$ transitif. Dengan demikian, model-model dari
+\begin{align*}
+\{\quad &\lforall[x][x \le x], \\
+   & \lforall[x][\lforall[y][((x \le y \land y \le
+    x) \lif x = y)]], \\
+   &\lforall[x][\lforall[y][\lforall[z][((x \le y
+      \land y \le z) \lif x \le z)]]] \quad \}
+\end{align*}
+tepat merupakan struktur-struktur yang di dalamnya~$\Assign{\le}{M}$
+refleksif, antisimetris, dan transitif, yakni suatu urutan parsial. Oleh karena
+itu, kita dapat mengambil kalimat-kalimat tersebut sebagai aksioma bagi
+\emph{teori orde pertama tentang urutan parsial}.
+\end{ex}
+
+\end{document}

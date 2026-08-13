@@ -1,0 +1,74 @@
+% Bagian: first-order-logic
+% Bab: models-theories
+% Subbagian: size-of-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{mat}{siz}
+
+\olsection{Mengungkapkan Ukuran \printtoken{P}{structure}}
+
+\begin{explain}
+Ada beberapa sifat struktur yang dapat kita ungkapkan bahkan tanpa
+menggunakan simbol nonlogis suatu bahasa. Misalnya, ada !!{sentence}s yang
+benar dalam !!a{structure} jika dan hanya jika !!{domain} dari !!{structure}
+tersebut mempunyai sekurang-kurangnya, sebanyak-banyaknya, atau tepat sejumlah
+tertentu~$n$ !!{element}s.
+\end{explain}
+
+\begin{prop}
+!!^{sentence}
+\begin{multline*}
+  !A_{\ge n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]]\\
+  \begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n])
+\end{aligned}
+\end{multline*}
+benar dalam !!a{structure}~$\Struct M$ jika dan hanya jika $\Domain M$
+mempunyai sekurang-kurangnya $n$ !!{element}s. Akibatnya,
+$\Sat{M}{\lnot !A_{\ge n+1}}$ jika dan hanya jika $\Domain M$ mempunyai
+sebanyak-banyaknya~$n$ !!{element}s.
+
+\end{prop}
+
+\begin{prop}
+!!^{sentence}
+\begin{multline*}
+!A_{= n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]] \\
+\begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n] \land {} \\
+\lforall[y][(\eq[y][x_1] \lor \dots \lor \eq[y][x_n]]))
+\end{aligned}
+\end{multline*}
+benar dalam !!a{structure}~$\Struct M$ jika dan hanya jika $\Domain M$
+mempunyai tepat $n$ !!{element}s.
+\end{prop}
+
+\begin{prop}
+Suatu !!{structure} tak hingga jika dan hanya jika struktur itu merupakan
+model dari
+\[
+\{!A_{\ge 1}, !A_{\ge 2}, !A_{\ge 3}, \dots \}.
+\]
+\end{prop}
+
+Tidak ada satu kalimat logis murni yang benar dalam~$\Struct M$ jika dan hanya
+jika $\Domain M$ tak hingga. Namun, orang dapat memberikan !!{sentence}s
+dengan !!{predicate}s nonlogis yang hanya mempunyai model-model tak hingga
+(meskipun tidak setiap !!{structure} tak hingga merupakan modelnya). Sifat
+sebagai struktur hingga dan sifat sebagai struktur !!{nonenumerable} bahkan
+tidak dapat diungkapkan dengan suatu himpunan !!{sentence}s tak hingga.
+Fakta-fakta ini mengikuti dari teorema kekompakan dan
+L\"owenheim--Skolem.
+
+\end{document}

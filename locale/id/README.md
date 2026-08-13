@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **166 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0166`; unit berikutnya ialah `OLP-0167`,
-`content/first-order-logic/models-theories/models-theories.tex`.
+Status saat ini: **173 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0173`; unit berikutnya ialah `OLP-0174`,
+`content/first-order-logic/beyond/beyond.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -189,6 +189,22 @@ Halaman baru dan berubah 30--49 telah dirender pada 144 dpi dan diperiksa;
 halaman 1--29 dipertahankan dari checkpoint yang telah diterima. Tidak
 ditemukan pemotongan, tumpang tindih, glif atau formula rusak, atau rujukan tak
 terselesaikan. Kursor global berikutnya adalah `OLP-0167`.
+
+Checkpoint terbaru menambahkan tujuh unit bab Teori dan Model-Modelnya
+(`OLP-0167`--`OLP-0173`). Replay deterministik lulus 218 pemeriksaan atas 299
+kerangka matematika dan lima koreksi sumber. Penggerak kumulatif berikut
+membangun bab 15--18:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-models-theories-id.tex
+```
+
+PDF 61 halaman itu berukuran 444.457 byte dengan SHA-256
+`2ea7a5cc666e43cbc2633653041ad66a1cc675f59872ee1ee9d424a4984a1f68`.
+Halaman bab baru 49--60 dan bibliografi halaman 61 telah diperiksa pada 144
+dpi; halaman 48 identik piksel dengan checkpoint sebelumnya. Tidak ditemukan
+pemotongan, tumpang tindih, glif atau formula rusak, atau rujukan tak
+terselesaikan. Kursor global berikutnya adalah `OLP-0174`.
 
 ## Syarat penerimaan tiap batch
 

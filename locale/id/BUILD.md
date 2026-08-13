@@ -991,3 +991,79 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 versus 69,303 across all 166 admitted files. The exact next cursor is
 `OLP-0167`, `content/first-order-logic/models-theories/models-theories.tex`;
 556 closure rows remain.
+
+## Theories and Their Models checkpoint — 2026-08-13
+
+### Source binding, deterministic replay, and independent review
+
+The gap-free boundary extends through `OLP-0173`. Every source hash equals its
+row in the frozen 722-file manifest and its Git object at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. Run from the repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_models_theories_batch_replay.ps1
+```
+
+The replay script is 30,676 bytes, SHA-256
+`a1ba04487be799c0f365e57aeb2637791c8ad0701955430989bb6f0cd33212a0`.
+Its final result is:
+
+```text
+STRUCTURAL_TOTALS commands=917 environments=94 semantic_tokens=109 labels=0 references=0 citations=0 assets=0 imports=6 tagged_items=0 tag_conditionals=0 math_skeletons=299 math_environments=13 localized_file_ids=6 chapter_ids=1 uppercase_tokens=7
+CORRECTION_TOTALS source_classes=5 source_occurrences=5 structural_normalizations=5 target_assertions=5 target_review_assertions=3 uppercase_false_findings_retracted=7
+BINDING_DIGESTS source_set_sha256=e333a41b16dd6412887baab269bae396b898ee7ce84af48885a1d3c15bde9a76 target_set_sha256=07b631a2f48c55683de6112c2b68039f507c41bb44334272af6f09c95fa4f3b3
+MODELS_THEORIES_BATCH_REPLAY_OK files=7 checks=218 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0167..OLP-0173
+```
+
+The independent review receipt is 8,902 bytes, SHA-256
+`1a4081e3587d2b66ee56ac4afd19a28956ee4f8d70c5f2138c2735b25597ec25`.
+It records five exact source corrections, three target wording assertions, the
+uppercase-token false-positive retractions, and no unresolved Indonesian
+semantic finding.
+
+### Clean cumulative build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-models-theories-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29. The driver is
+2,086 bytes, SHA-256
+`e72d11a207e67d8d621a9d92c78ee46e23b06b3db1181b03177fc6cf320614db`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-models-theories-id.tex` | `locale/id/first-order-logic-models-theories-id.pdf` | 61 | 444,457 | `2ea7a5cc666e43cbc2633653041ad66a1cc675f59872ee1ee9d424a4984a1f68` |
+
+The final log has zero fatal/LaTeX error, emergency stop, undefined control,
+undefined reference/citation, multiply-defined label, missing file/glyph, or
+underfull box. Thirty-three overfull hboxes remain, maximum 24.44377 pt overall
+and 21.16646 pt in the new chapter. Exact-page inspection found no visible
+clipping or margin loss. All 17 fonts are embedded; one inherited Type 3
+mathematical font lacks a ToUnicode map, while searchable extraction remains
+intact.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 147,820 bytes and 22,914
+whitespace-delimited words, SHA-256
+`aaf56690851e0783d9e7227ff03b68bd10173da05beb51d0187778a81dceaf00`.
+The new chapter extraction is 29,776 bytes and 4,494 words, SHA-256
+`20f803ad6b8eba75d24c0ca39a874937a656a5a326188bcc42c9446209e82e8b`.
+Searches found zero `??`, `Undefined`, U+FFFD, raw TeX command/environment,
+English environment heading, or English fallback phrase.
+
+Pages 49--60 were rendered at 144 dpi and inspected at original resolution;
+bibliography page 61 was also inspected. Page 48 is byte- and pixel-identical
+to its prior admitted render (SHA-256
+`c08e0e18d8f0c0e5b9d05dee227697af8d09c75a9c54b58af08353c775a2cb73`).
+No clipping, overlap, blank content page, cropped equation, broken glyph, black
+box, unreadable text, or margin/page-number defect was found.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+3,571 English-source and 3,168 Indonesian words for this batch, and 78,585
+versus 72,471 across all 173 admitted files. The exact next cursor is
+`OLP-0174`, `content/first-order-logic/beyond/beyond.tex`; 549 closure rows
+remain.

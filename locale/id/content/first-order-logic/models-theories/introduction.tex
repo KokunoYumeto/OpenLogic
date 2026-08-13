@@ -1,0 +1,103 @@
+% Bagian: first-order-logic
+% Bab: models-theories
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{mat}{int}
+\olsection{Pendahuluan}
+
+\begin{explain}
+Pengembangan metode aksiomatik merupakan pencapaian penting dalam sejarah
+ilmu pengetahuan, dan sangat penting khususnya dalam sejarah matematika.
+Pengembangan aksiomatik suatu bidang melibatkan penjernihan banyak pertanyaan:
+Apa yang dibahas oleh bidang itu? Apa konsep-konsepnya yang paling mendasar?
+Bagaimana konsep-konsep tersebut saling berkaitan? Dapatkah semua konsep dalam
+bidang itu didefinisikan berdasarkan konsep-konsep mendasar tersebut? Hukum apa
+yang dipatuhi, dan harus dipatuhi, oleh konsep-konsep ini?
+
+Metode aksiomatik dan logika sangat serasi. Logika formal menyediakan
+perangkat untuk merumuskan teori aksiomatik, untuk membuktikan teorema dari
+aksioma-aksioma teori dengan cara yang ditentukan secara saksama, dan untuk
+mengkaji secara sistematis sifat-sifat semua sistem yang memenuhi aksioma
+tersebut.
+\end{explain}
+
+\begin{defn}
+Suatu himpunan !!{sentence}s~$\Gamma$ disebut \emph{tertutup} jika dan hanya
+jika, setiap kali $\Gamma \Entails !A$, berlaku $!A \in \Gamma$.
+\emph{Penutupan} suatu himpunan !!{sentence}s~$\Gamma$ ialah
+$\Setabs{!A}{\Gamma \Entails !A}$.
+
+Kita mengatakan bahwa~$\Gamma$ \emph{diaksiomatisasi oleh} suatu himpunan
+kalimat~$\Delta$ jika $\Gamma$ merupakan penutupan dari~$\Delta$.
+\end{defn}
+
+\begin{explain}
+Kita dapat memandang suatu teori aksiomatik sebagai himpunan kalimat yang
+diaksiomatisasi oleh himpunan aksiomanya~$\Delta$. Dengan kata lain, apabila
+kita mempunyai bahasa orde pertama yang memuat simbol nonlogis bagi
+konsep-konsep primitif dari ilmu yang dikembangkan secara aksiomatik yang ingin
+kita kaji, beserta suatu himpunan !!{sentence}s yang mengungkapkan hukum-hukum
+mendasar ilmu tersebut, kita dapat memandang teori itu sebagai direpresentasikan
+oleh semua !!{sentence}s dalam bahasa ini yang diakibatkan oleh aksioma-aksioma
+tersebut. Contohnya berkisar dari teori sederhana dengan hanya satu konsep
+primitif dan aksioma sederhana, seperti teori urutan parsial, hingga teori
+rumit seperti mekanika Newton.
+
+Fakta-fakta logis penting yang membuat pendekatan formal terhadap metode
+aksiomatik ini begitu penting adalah sebagai berikut. Andaikan $\Gamma$ suatu
+sistem aksioma bagi sebuah teori, yaitu suatu himpunan kalimat.
+\begin{enumerate}
+\item Kita dapat menyatakan secara saksama kapan suatu sistem aksioma menangkap
+  kelas !!{structure}s yang dimaksudkan. Yakni, jika kita tertarik pada suatu
+  kelas !!{structure}s tertentu, kita berhasil menangkap kelas tersebut dengan
+  sistem aksioma~$\Gamma$ jika dan hanya jika !!{structure}s itu tepat
+  semua~$\Struct M$ sedemikian sehingga $\Sat{M}{\Gamma}$.
+\item Kita mungkin gagal dalam hal ini karena terdapat $\Struct M$ sedemikian
+  sehingga $\Sat{M}{\Gamma}$, tetapi $\Struct M$ bukan salah satu
+  !!{structure}s yang kita maksudkan. Hal ini dapat mendorong kita untuk
+  menambahkan aksioma yang tidak benar dalam~$\Struct M$.
+\item Jika kita berhasil setidaknya dalam arti bahwa $\Gamma$ benar dalam
+  semua !!{structure}s yang dimaksudkan, maka suatu kalimat~$!A$ benar dalam
+  semua !!{structure}s yang dimaksudkan setiap kali $\Gamma \Entails !A$.
+  Dengan demikian, kita dapat menggunakan perangkat logis (seperti metode
+  !!{derivation}) untuk menunjukkan bahwa kalimat-kalimat benar dalam semua
+  !!{structure}s yang dimaksudkan, cukup dengan menunjukkan bahwa kalimat itu
+  diakibatkan oleh aksioma-aksioma tersebut.
+\item Kadang-kadang kita tidak mempunyai !!{structure}s yang dimaksudkan dalam
+  pikiran, tetapi justru berangkat dari aksioma itu sendiri: kita mulai dengan
+  beberapa konsep primitif yang kita kehendaki mematuhi hukum tertentu, yang
+  kita kodifikasikan dalam suatu sistem aksioma. Salah satu hal yang ingin kita
+  verifikasi segera ialah bahwa aksioma-aksioma itu tidak saling bertentangan:
+  jika saling bertentangan, tidak mungkin ada konsep yang mematuhi hukum-hukum
+  tersebut, dan kita telah mencoba membangun teori yang tidak koheren. Kita
+  dapat memverifikasi bahwa hal ini tidak terjadi dengan menemukan suatu model
+  dari~$\Gamma$. Dan jika teori kita mempunyai model, kita dapat menggunakan
+  metode logis untuk menyelidikinya, serta untuk membangun model.
+\item Independensi aksioma juga merupakan pertanyaan penting. Salah satu
+  aksioma mungkin sebenarnya merupakan konsekuensi dari aksioma-aksioma lain,
+  sehingga aksioma itu berlebihan. Kita dapat membuktikan bahwa suatu aksioma
+  $!A$ dalam $\Gamma$ berlebihan dengan membuktikan $\Gamma \setminus
+  \{!A\} \Entails !A$. Kita juga dapat membuktikan bahwa suatu aksioma tidak
+  berlebihan dengan menunjukkan bahwa $(\Gamma \setminus \{!A\}) \cup
+  \{\lnot !A\}$ dapat dipenuhi. Misalnya, dengan cara inilah postulat sejajar
+  ditunjukkan independen dari aksioma-aksioma geometri lainnya.
+\item Pertanyaan penting lainnya ialah keterdefinisian konsep dalam suatu
+  teori: Pilihan bahasa menentukan apa saja yang membentuk model-model suatu
+  teori. Namun, tidak setiap aspek teori harus direpresentasikan secara
+  terpisah dalam modelnya. Misalnya, setiap urutan $\le$ menentukan urutan
+  ketat~$<$ yang bersesuaian---jika salah satunya diberikan, kita dapat
+  mendefinisikan yang lain. Jadi, model suatu teori yang melibatkan urutan
+  semacam itu tidak harus \emph{juga} memuat urutan ketat yang bersesuaian.
+  Secara umum, kapan suatu relasi dapat didefinisikan berdasarkan relasi-relasi
+  lain? Kapan mustahil mendefinisikan suatu relasi berdasarkan relasi-relasi
+  lain (sehingga relasi itu harus ditambahkan pada konsep-konsep primitif
+  bahasa)?
+\end{enumerate}
+\end{explain}
+
+
+\end{document}

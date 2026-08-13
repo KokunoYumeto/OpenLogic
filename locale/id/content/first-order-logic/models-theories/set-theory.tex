@@ -1,0 +1,187 @@
+% Bagian: first-order-logic
+% Bab: models-theories
+% Subbagian: set-theory
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{mat}{set}
+
+\olsection{Teori Himpunan}
+
+Hampir seluruh matematika dapat dikembangkan di dalam teori himpunan.
+Mengembangkan matematika dalam teori ini melibatkan sejumlah hal. Pertama,
+diperlukan suatu himpunan aksioma bagi relasi~$\in$. Sejumlah sistem aksioma
+yang berbeda telah dikembangkan, kadang dengan sifat-sifat~$\in$ yang saling
+bertentangan. Sistem aksioma yang dikenal sebagai $\Log{ZFC}$, yaitu teori
+himpunan Zermelo--Fraenkel dengan aksioma pilihan, merupakan yang paling
+menonjol: sistem itu sejauh ini paling luas digunakan dan dikaji karena
+ternyata aksioma-aksiomanya cukup untuk membuktikan hampir semua hal yang
+diharapkan dapat dibuktikan oleh matematikawan. Namun, sebelum hal itu dapat
+dipastikan, pertama-tama perlu dijernihkan bagaimana kita bahkan dapat
+\emph{mengungkapkan} semua hal yang ingin diungkapkan oleh matematikawan.
+Sebagai permulaan, bahasa tersebut tidak memuat !!{constant}s atau
+!!{function}s, sehingga sepintas tidak jelas bahwa kita dapat berbicara
+tentang himpunan tertentu (seperti $\emptyset$ atau $\Nat$), tentang operasi
+pada himpunan (seperti $X \cup Y$ dan $\Pow{X}$), apalagi tentang konstruksi
+lain yang melibatkan hal-hal selain himpunan, seperti relasi dan fungsi.
+
+Sebagai langkah awal, ``merupakan anggota dari'' bukan satu-satunya relasi
+yang kita minati: ``merupakan himpunan bagian dari'' tampak hampir sama
+pentingnya. Namun, kita dapat \emph{mendefinisikan} ``merupakan himpunan
+bagian dari'' berdasarkan ``merupakan anggota dari.'' Untuk melakukannya, kita
+harus menemukan !!a{formula}~$!A(x, y)$ dalam bahasa teori himpunan yang
+dipenuhi oleh suatu pasangan himpunan~$\tuple{X, Y}$ jika dan hanya jika
+$X \subseteq Y$. Namun, $X$ merupakan himpunan bagian dari $Y$ tepat jika
+semua !!{element}s dari~$X$ juga merupakan !!{element}s dari~$Y$. Jadi, kita
+dapat mendefinisikan $\subseteq$ dengan formula
+\[
+\lforall[z][(z \in x \lif z \in y)]
+\]
+Sekarang, setiap kali hendak menggunakan relasi~$\subseteq$ dalam suatu
+formula, kita dapat menggantinya dengan formula tersebut (dengan $x$ dan $y$
+diganti sebagaimana mestinya, dan variabel terikat~$z$ dinamai ulang jika
+perlu). Misalnya, ekstensionalitas himpunan berarti bahwa jika sebarang
+himpunan~$x$ dan $y$ termuat satu sama lain, maka $x$ dan $y$ harus merupakan
+himpunan yang sama. Hal ini dapat diungkapkan dengan
+$\lforall[x][\lforall[y][((x \subseteq y \land y \subseteq x) \lif x =
+y)]]$, atau, jika kita mengganti $\subseteq$ dengan definisi di atas, dengan
+\[
+\lforall[x][\lforall[y][((\lforall[z][(z \in x \lif z \in y)] \land
+    \lforall[z][(z \in y \lif z \in x)]) \lif x = y)]].
+\]
+Ini sebenarnya merupakan salah satu aksioma $\Log{ZFC}$, yakni ``aksioma
+ekstensionalitas.''
+
+Tidak ada !!{constant} bagi $\emptyset$, tetapi kita dapat mengungkapkan
+``$x$ kosong'' dengan $\lnot \lexists[y][y \in x]$. Kemudian
+``$\emptyset$ ada'' menjadi !!{sentence}~$\lexists[x][\lnot
+\lexists[y][y \in x]]$. Ini merupakan aksioma lain dari~$\Log{ZFC}$.
+(Perhatikan bahwa aksioma ekstensionalitas menyiratkan bahwa hanya ada satu
+himpunan kosong.) Setiap kali hendak berbicara tentang $\emptyset$ dalam
+bahasa teori himpunan, kita akan menuliskannya sebagai ``terdapat suatu
+himpunan yang kosong dan \dots'' Sebagai contoh, untuk mengungkapkan fakta
+bahwa $\emptyset$ merupakan himpunan bagian dari setiap himpunan, kita dapat
+menulis
+\[
+\lexists[x][(\lnot\lexists[y][y \in x] \land \lforall[z][x \subseteq
+    z])]
+\]
+yang, tentu saja, pada gilirannya mengharuskan $x \subseteq z$ diganti dengan
+definisinya.
+
+Untuk berbicara tentang operasi pada himpunan, seperti $X \cup Y$ dan
+$\Pow{X}$, kita harus menggunakan siasat serupa. Tidak ada simbol fungsi dalam
+bahasa teori himpunan, tetapi kita dapat mengungkapkan relasi fungsional
+$X \cup Y = Z$ dan $\Pow{X} = Y$ dengan
+\begin{align*}
+& \lforall[u][((u \in x \lor u \in y) \liff u \in z)]\\
+& \lforall[u][(u \subseteq x \liff u \in y )]
+\end{align*}
+karena !!{element}s dari $X \cup Y$ tepat merupakan himpunan-himpunan yang
+menjadi !!{element}s dari~$X$ atau !!{element}s dari~$Y$, dan !!{element}s
+dari $\Pow{X}$ tepat merupakan himpunan-himpunan bagian dari~$X$. Namun, hal
+ini tidak memungkinkan kita menggunakan $x \cup y$ atau $\Pow{x}$ seolah-olah
+keduanya merupakan suku: kita hanya dapat menggunakan keseluruhan !!{formula}s
+yang mendefinisikan relasi $X \cup Y = Z$ dan $\Pow{X} = Y$. Bahkan, kita
+belum mengetahui bahwa relasi-relasi ini pernah terpenuhi, yakni kita belum
+mengetahui bahwa gabungan dan himpunan kuasa selalu ada. Misalnya,
+!!{sentence} $\lforall[x][\lexists[y][\Pow{x} = y]]$ merupakan aksioma lain
+dari~$\Log{ZFC}$ (aksioma himpunan kuasa).
+
+Lalu bagaimana dengan pembicaraan mengenai pasangan terurut atau fungsi? Di
+sini kita harus menjelaskan bagaimana kita dapat memandang pasangan terurut
+dan fungsi sebagai jenis himpunan khusus. Salah satu cara mendefinisikan
+pasangan terurut $\tuple{x, y}$ ialah sebagai himpunan
+$\{\{x\}, \{x, y\}\}$. Namun, seperti sebelumnya, kita tidak dapat
+memperkenalkan !!a{function} yang menamai himpunan ini; kita hanya dapat
+mendefinisikan relasi $\tuple{x, y} = z$, yakni
+$\{\{x\}, \{x, y\}\} = z$:
+\[
+\lforall[u][(u \in z \liff (\lforall[v][(v \in u \liff v = x)] \lor
+  \lforall[v][(v \in u \liff (v = x \lor v = y))]))]
+\]
+Formula ini menyatakan bahwa !!{element}s~$u$ dari~$z$ tepat merupakan
+himpunan-himpunan yang mempunyai $x$ sebagai satu-satunya !!{element}, atau
+mempunyai $x$ dan~$y$ sebagai satu-satunya !!{element}s (dengan kata lain,
+himpunan yang identik dengan $\{x\}$ atau identik dengan $\{x, y\}$). Setelah
+mempunyai hal ini, kita dapat menyatakan hal-hal lebih lanjut, misalnya bahwa
+$X \times Y = Z$:
+\[
+\lforall[z][(z \in Z \liff \lexists[x][\lexists[y][(x \in
+        X \land y \in Y \land \tuple{x, y} = z)]])]
+\]
+
+Suatu fungsi $f \colon X \to Y$ dapat dipandang sebagai relasi $f(x) = y$,
+yakni sebagai himpunan pasangan~$\Setabs{\tuple{x,y}}{f(x) = y}$. Kemudian
+kita dapat mengatakan bahwa suatu himpunan~$f$ merupakan fungsi dari $X$ ke
+$Y$ jika (a) himpunan itu merupakan relasi $\subseteq X \times Y$, (b)
+himpunan itu total, yakni bagi semua $x \in X$ terdapat suatu $y \in Y$
+sedemikian sehingga $\tuple{x, y} \in f$, dan (c) himpunan itu fungsional,
+yakni setiap kali $\tuple{x, y}, \tuple{x, y'} \in f$, berlaku $y = y'$
+(karena nilai fungsi harus tunggal). Jadi, ``$f$ merupakan fungsi dari $X$ ke
+$Y$'' dapat ditulis sebagai:
+\begin{align*}
+ \lforall[u][(u \in f \lif {}] & \lexists[x][\lexists[y][(x \in X \land y \in
+      Y \land \tuple{x, y} = u)]]) \land {}\\
+ \lforall[x][(x \in X \lif {}] &
+      (\lexists[y][(y \in Y \land \mathrm{maps}(f, x, y))] \land {}\\
+& (\lforall[y][\lforall[y'][((\mathrm{maps}(f, x, y) \land
+    \mathrm{maps}(f, x, y')) \lif y = y')]])))
+\end{align*}
+dengan $\mathrm{maps}(f, x, y)$ menyingkat $\lexists[v][(v \in f \land
+  \tuple{x, y} = v)]$ (!!{formula} ini mengungkapkan ``$f(x) = y$'').
+
+Sekarang juga tidak sukar untuk mengungkapkan bahwa $f\colon X \to Y$
+bersifat !!{injective}, misalnya:
+\begin{multline*}
+ f \colon X \to Y \land \lforall[x][\lforall[x'][((x \in X \land x' \in
+     X \land {}]] \\
+ \lexists[y][(\mathrm{maps}(f, x, y) \land \mathrm{maps}(f,
+        x', y))]) \lif x = x')
+\end{multline*}
+Suatu fungsi~$f\colon X \to Y$ bersifat !!{injective} jika dan hanya jika,
+setiap kali $f$ memetakan $x, x' \in X$ ke satu~$y$, berlaku $x = x'$.
+Jika kita menyingkat formula ini sebagai $\mathrm{inj}(f, X, Y)$, kita sudah
+dapat menyatakan sesuatu yang tidak sepele seperti teorema Cantor dalam bahasa
+teori himpunan: tidak ada fungsi !!{injective} dari $\Pow{X}$ ke $X$:
+\[
+\lforall[X][\lforall[Y][(\Pow{X} = Y \lif
+    \lnot\lexists[f][\mathrm{inj}(f, Y, X)])]]
+\]
+
+Orang mungkin menduga bahwa teori himpunan memerlukan aksioma lain yang
+menjamin keberadaan suatu himpunan bagi setiap sifat pendefinisi. Jika $!A(x)$
+merupakan formula teori himpunan dengan variabel~$x$ bebas, kita dapat
+meninjau !!{sentence}
+\[
+\lexists[y][\lforall[x][(x \in y \liff !A(x))]].
+\]
+!!^{sentence} ini menyatakan bahwa terdapat suatu himpunan~$y$ yang
+!!{element}snya tepat semua $x$ yang memenuhi~$!A(x)$. Skema ini disebut
+``prinsip komprehensi.'' Prinsip ini tampak sangat berguna; sayangnya, prinsip
+ini tidak konsisten. Ambil $!A(x) \ident \lnot x \in x$, maka prinsip
+komprehensi menyatakan
+\[
+\lexists[y][\lforall[x][(x \in y \liff x \notin x)]],
+\]
+yakni prinsip itu menyatakan adanya himpunan semua himpunan yang bukan
+!!{element}s dari dirinya sendiri. Himpunan seperti itu tidak mungkin
+ada---inilah Paradoks Russell. $\Log{ZFC}$ sebenarnya memuat versi terbatas
+---dan konsisten---dari prinsip ini, yakni prinsip separasi:
+\[
+\lforall[z][\lexists[y][\lforall[x][(x \in y \liff (x \in z \land
+      !A(x)))]]].
+\]
+
+\begin{prob}
+Tunjukkan bahwa prinsip komprehensi tidak konsisten dengan memberikan
+!!a{derivation} yang menunjukkan
+\[
+\lexists[y][\lforall[x][(x \in y \liff x \notin x)]] \Proves \lfalse.
+\]
+Mungkin akan membantu jika Anda terlebih dahulu menunjukkan
+$(A \lif \lnot A) \land (\lnot A \lif A) \Proves \lfalse$.
+\end{prob}
+\end{document}

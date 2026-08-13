@@ -1,0 +1,145 @@
+% Bagian: first-order-logic
+% Bab: models-theories
+% Subbagian: theories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{mat}{the}
+
+\olsection{Contoh-Contoh Teori Orde Pertama}
+
+\begin{ex}
+Teori urutan linear ketat dalam bahasa~$\Lang L_<$ diaksiomatisasi oleh
+himpunan
+\begin{align*}
+\{\quad & \lforall[x][\lnot x < x], \\
+& \lforall[x][\lforall[y][((x < y \lor y <
+    x) \lor x = y)]], \\
+& \lforall[x][\lforall[y][\lforall[z][((x < y
+      \land y < z) \lif x < z)]]] \quad \}
+\end{align*}
+Himpunan ini sepenuhnya menangkap !!{structure}s yang dimaksudkan: setiap
+urutan linear ketat merupakan model sistem aksioma ini, dan sebaliknya, jika
+$R$ merupakan urutan linear ketat pada suatu himpunan $X$, maka struktur
+$\Struct M$ dengan $\Domain M = X$ dan $\Assign{<}{M} = R$ merupakan model
+teori ini.
+\end{ex}
+
+\begin{ex}
+Teori grup dalam bahasa dengan $\Obj 1$ (!!{constant}) dan $\cdot$
+(!!{function} dua-tempat) diaksiomatisasi oleh
+\begin{align*}
+& \lforall[x][\eq[(x \cdot \Obj 1)][x]]\\
+& \lforall[x][\lforall[y][\lforall[z][\eq[(x \cdot (y \cdot z))][((x
+          \cdot y) \cdot z)]]]]\\
+& \lforall[x][\lexists[y][\eq[(x \cdot y)][\Obj 1]]]
+\end{align*}
+\end{ex}
+
+\begin{ex}
+Teori aritmetika Peano diaksiomatisasi oleh kalimat-kalimat berikut dalam
+bahasa aritmetika~$\Lang L_A$.
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
+& \lforall[x][\eq/[\Obj 0][x']]\\
+& \lforall[x][\eq[(x + \Obj 0)][x]]\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y])]]]\\
+\intertext{ditambah semua kalimat berbentuk}
+& (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
+\end{align*}
+Karena terdapat tak terhingga banyak kalimat berbentuk seperti yang terakhir,
+sistem aksioma ini tak hingga. Bentuk terakhir tersebut disebut
+\emph{skema induksi}. (Sebenarnya, skema induksi sedikit lebih rumit daripada
+yang kita paparkan di sini.)
+
+Aksioma terakhir merupakan \emph{definisi eksplisit} dari~$<$.
+\end{ex}
+
+\begin{ex}
+Teori himpunan murni memegang peranan penting dalam dasar-dasar (dan dalam
+filsafat) matematika. Suatu himpunan disebut murni jika semua !!{element}snya juga
+merupakan himpunan murni. Oleh sebab itu, himpunan kosong tergolong murni,
+tetapi suatu himpunan yang mempunyai sesuatu yang bukan himpunan sebagai
+!!a{element} tidaklah murni. Jadi, himpunan murni ialah himpunan yang dibentuk
+hanya dari himpunan kosong dan tanpa ``urelemen,'' yaitu objek yang bukan
+merupakan himpunan.
+
+Berikut ini dapat dipandang sebagai suatu sistem aksioma bagi teori himpunan
+murni:
+\begin{align*}
+& \lexists[x][\lnot \lexists[y][y \in x]]\\
+& \lforall[x][\lforall[y][(\lforall[z](z \in x \liff z \in y) \lif
+\eq[x][y])]]\\
+& \lforall[x][\lforall[y][\lexists[z][\lforall[u][(u \in z \liff
+(\eq[u][x] \lor \eq[u][y]))]]]]\\
+& \lforall[x][\lexists[y][\lforall[z][(z \in y \liff \lexists[u][(z \in
+        u \land u \in x)])]]]\\
+\intertext{ditambah semua kalimat berbentuk} &
+\lexists[x][\lforall[y][(y \in x \liff !A(y))]]
+\end{align*}
+Aksioma pertama menyatakan bahwa terdapat suatu himpunan tanpa !!{element}s
+(yakni, $\emptyset$ ada); aksioma kedua menyatakan bahwa himpunan bersifat
+ekstensional; aksioma ketiga bahwa untuk setiap himpunan $X$ dan $Y$, himpunan
+$\{X, Y\}$ ada; dan aksioma keempat bahwa untuk setiap himpunan $X$, himpunan
+$\cup X$ ada, dengan $\cup X$ sebagai gabungan semua anggota~$X$.
+
+!!^{sentence}s yang disebutkan terakhir secara bersama-sama dinamakan
+\emph{skema komprehensi naif}. Pada dasarnya, skema itu menyatakan bahwa bagi
+setiap $!A(x)$, himpunan $\Setabs{x}{!A(x)}$ ada---yang sepintas tampak sebagai
+aksioma yang benar, berguna, dan bahkan mungkin diperlukan. Skema itu disebut
+``naif'' karena ternyata membuat teori ini tak dapat dipenuhi: jika kita
+mengambil $!A(y)$ sebagai $\lnot y \in y$, kita memperoleh !!{sentence}
+\[
+\lexists[x][\lforall[y][(y \in x \liff \lnot y \in y)]]
+\]
+dan !!{sentence} ini tidak terpenuhi dalam !!{structure} mana pun.
+\end{ex}
+
+\begin{ex}
+Dalam bidang \emph{mereologi}, relasi \emph{bagian-dari} merupakan relasi
+mendasar. Sama seperti teori himpunan, terdapat teori-teori bagian-dari yang
+mengaksiomatisasi beragam konsepsi (yang kadang saling bertentangan) tentang
+relasi ini.
+
+Bahasa mereologi memuat satu simbol predikat dua-tempat~$\Obj P$, dan
+$\Atom{\Obj P}{x, y}$ ``berarti'' bahwa $x$ merupakan bagian dari~$y$. Apabila
+kita mengacu pada interpretasi ini, !!a{structure} bagi bahasa tersebut
+disebut \emph{struktur bagian-dari}. Tentu saja, tidak setiap struktur bagi
+satu predikat dua-tempat benar-benar layak disebut demikian. Agar mungkin
+menangkap ``bagian-dari,'' $\Assign{\Obj P}{M}$ harus memenuhi beberapa syarat,
+yang dapat kita tetapkan sebagai aksioma bagi teori bagian-dari. Misalnya,
+bagian-dari merupakan urutan parsial pada objek: setiap objek merupakan bagian
+(meskipun bagian \emph{taksejati}) dari dirinya sendiri; tidak ada dua objek
+berbeda yang masing-masing merupakan bagian dari yang lain; dan bagian dari
+suatu bagian dari sebuah objek juga merupakan bagian dari objek tersebut.
+Perhatikan bahwa dalam pengertian ini ``merupakan bagian dari'' menyerupai
+``merupakan himpunan bagian dari,'' tetapi tidak menyerupai ``merupakan anggota
+dari,'' yang tidak refleksif maupun transitif.
+\begin{align*}
+& \lforall[x][\Atom{\Obj P}{x,x}] \\
+& \lforall[x][\lforall[y][((\Part{x}{y} \land \Part{y}{x})
+      \lif \eq[x][y])]] \\
+& \lforall[x][\lforall[y][\lforall[z][((\Part{x}{y} \land
+        \Part{y}{z}) \lif \Part{x}{z})]]]\\
+\intertext{Selain itu, setiap dua objek mempunyai suatu jumlah mereologis
+  (sebuah objek yang mempunyai kedua objek itu sebagai bagian dan minimal
+  dalam hal ini).}  &
+\lforall[x][\lforall[y][\lexists[z][\lforall[u][(\Part{z}{u} \liff
+        (\Part{x}{u} \land \Part{y}{u}))]]]]
+\end{align*}
+Ini hanyalah sebagian dari prinsip-prinsip dasar bagian-dari yang dibahas para
+metafisikawan. Namun, prinsip-prinsip lanjutan dengan cepat menjadi sukar
+dirumuskan atau dituliskan tanpa terlebih dahulu memperkenalkan sejumlah
+relasi terdefinisi. Misalnya, kebanyakan metafisikawan yang tertarik pada
+mereologi juga memandang prinsip berikut sebagai sahih: setiap kali suatu
+objek~$x$ mempunyai bagian sejati~$y$, objek itu juga mempunyai suatu
+bagian~$z$ yang tidak mempunyai bagian bersama dengan~$y$, dan sedemikian
+sehingga fusi $y$ dan $z$ adalah~$x$.
+\end{ex}
+
+\end{document}
