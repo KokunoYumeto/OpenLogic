@@ -1,0 +1,132 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: enumerations-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{enm-alt}
+
+\olsection{Numaralandırmalar ve \usetoken{S}{enumerable} Kümeler}
+
+\begin{editorial}
+  Bu kesim, küme teorisinde yapıldığı gibi numaralandırmaları $\Nat$'ın
+  (başlangıç parçalarıyla) bire bir örten eşlemeler olarak tanımlar. Bu
+  nedenle \olref[enm]{sec}'teki tanımlarla biraz çatışır ve oradaki bütün
+  örnekleri yineler. Ayrıca o kesimden biraz daha kısadır.
+\end{editorial}
+
+Sonlu bir kümeyi yalnızca !!{element}larını numaralandırarak belirtebiliriz.
+Şöyle bir küme tanımladığımızda bunu yaparız:
+\[
+  A = \{a_1, a_2, \ldots, a_n\}.
+\]
+$a_1$, \dots, $a_n$ !!{element}larının birbirinden farklı olduğunu
+varsayarsak bu, $A$ ile ilk $n$ doğal sayı $0$, \dots, $n-1$ arasında bir
+!!{bijection} verir. Tersine, her sonlu kümenin yalnızca sonlu sayıda
+!!{element}ı olduğundan her sonlu küme böyle bir eşleme içine sokulabilir.
+Başka bir deyişle $A$ sonluysa $A$ ile $\{0,\dots,n-1\}$ arasında bir
+!!{bijection} vardır; burada $n$, $A$'nın !!{element}larının sayısıdır.
+
+Belirli türde sonsuz kümelere izin verirsek bazı sonsuz kümelerin de
+numaralandırılmasına izin veririz. Sonsuz bir kümenin, kendisiyle $\Nat$'ın
+tamamı arasındaki bir !!{bijection} ile numaralandırıldığını söyleyerek bunu
+kesinleştirebiliriz.
+
+\begin{defn}[Numaralandırma, küme kuramsal]
+Bir $A$ kümesinin \emph{numaralandırması}, görüntü kümesi $A$, tanım kümesi
+  ise doğal sayıların bir başlangıç parçası $\{0,1,\ldots,n\}$ ya da doğal
+sayılar kümesinin tamamı $\Nat$ olan bir !!{bijection}dur.
+\end{defn}
+
+\begin{explain}
+\emph{Numaralandırma} sözcüğünün bu kullanımının sezgisel bir temeli vardır.
+Bir $A$ kümesini numaralandırdığımızı söylemek, $A$ kümesinin elemanlarını
+saymamızı sağlayan bir !!{bijection} $f$ bulunduğunu söylemektir. $0$'ıncı
+eleman $f(0)$, $1$'inci $f(1)$, \ldots, $n$'inci $f(n)$,\ldots{} olur.
+\footnote{Evet, $0$'dan sayıyoruz. Elbette~$1$'den de başlayabilirdik. Bunun
+önemli bir farkı olmazdı; yalnızca~$\Nat$ yerine~$\PosInt$ kullanmamız
+gerekirdi.} Bunun gerekçesi şu eklemeyle daha da açık hâle getirilebilir:
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Bir $A$ kümesi, ancak ve ancak $A=\emptyset$ ise ya da $A$'nın bir
+  numaralandırması varsa !!{enumerable}dir. $A$ !!{enumerable} değilse
+  !!{nonenumerable} olduğunu söyleriz.
+\end{defn}
+
+\begin{explain}
+Öyleyse bir küme, ancak ve ancak boşsa ya da !!{element}ları bir
+numaralandırmayla sayılabiliyorsa !!{enumerable}dir.
+\end{explain}
+
+\begin{ex}
+Doğal sayıların bir numaralandırması, $\Id{\Nat}(n)=n$ ile verilen özdeşlik
+fonksiyonu $\Id{\Nat}\colon\Nat\to\Nat$'tır. \emph{Pozitif} doğal sayılar
+kümesi $\Nat^+=\Nat\setminus\{0\}$'ın bir numaralandırması ise $g(n)=n+1$,
+yani ardıl fonksiyonudur.
+\end{ex}
+
+\begin{prob}
+Bir $A$ kümesinin !!{enumerable} olmasının, ya $A=\emptyset$ olmasına ya da
+bir !!{surjection} $f\colon\Nat\to A$ bulunmasına eşdeğer olduğunu gösterin.
+$A$'nın !!{enumerable} olmasının bir !!{injection} $g\colon A\to\Nat$
+bulunmasına eşdeğer olduğunu gösterin.
+\end{prob}
+
+\begin{ex}
+\begin{align*}
+  f(n) & = 2n \text{ ve}\\
+  g(n) & = 2n+1
+\end{align*}
+ile verilen $f\colon\Nat\to\Nat$ ve $g\colon\Nat\to\Nat$ fonksiyonları
+sırasıyla çift doğal sayıları ve tek doğal sayıları numaralandırır. Fakat
+hiçbiri !!{surjective} değildir; dolayısıyla hiçbiri $\Nat$'ın bir
+numaralandırması değildir.
+\end{ex}
+
+\begin{prob}
+$1$, $4$, $9$, $16$, \dots{} kare sayılarının bir numaralandırmasını
+tanımlayın.
+\end{prob}
+
+\begin{ex}
+$\lceil x\rceil$, $x$'i en yakın üst tam sayıya yuvarlayan \emph{tavan}
+fonksiyonu olsun. O zaman
+\[
+  f(n) = (-1)^{n} \left\lceil\tfrac{n}{2}\right\rceil
+\]
+ile verilen $f\colon\Nat\to\Int$ fonksiyonu tam sayılar kümesi $\Int$'i
+şöyle numaralandırır:
+\[
+\begin{array}{c c c c c c c c}
+f(0) & f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & \dots \\ \\
+\big\lceil \tfrac{0}{2} \big\rceil & -\big\lceil \tfrac{1}{2}\big\rceil &  \big\lceil \tfrac{2}{2} \big\rceil & -\big\lceil \tfrac{3}{2} \big\rceil & \big\lceil \tfrac{4}{2} \big\rceil  & -\big\lceil \tfrac{5}{2}\big\rceil & \big\lceil \tfrac{6}{2} \big\rceil & \dots \\ \\
+0 & -1 & 1 & -2 & 2 & -3 & 3& \dots
+\end{array}
+\]
+$f$'nin pozitif ve negatif tam sayılar arasında ileri geri ``sıçrayarak''
+$\Int$ değerlerini nasıl ürettiğine dikkat edin. $f$'yi durumlara göre şöyle
+tanımlanmış olarak da düşünebilirsiniz:
+\[
+f(n) = \begin{cases}
+  \frac{n}{2} & \text{$n$ çift ise}\\
+  -\frac{n+1}{2} & \text{$n$ tek ise.}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+$A$ ve $B$ !!{enumerable} ise $A\cup B$'nin de !!{enumerable} olduğunu
+gösterin.
+\end{prob}
+
+\begin{prob}
+$A_1$, $A_2$, \dots, $A_n$ kümelerinin hepsi !!{enumerable} ise
+$A_1\cup\dots\cup A_n$'nin de !!{enumerable} olduğunu $n$ üzerinde
+tümevarımla gösterin.
+\end{prob}
+
+\end{document}

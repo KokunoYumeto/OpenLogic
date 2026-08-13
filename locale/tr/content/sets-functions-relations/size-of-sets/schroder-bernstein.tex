@@ -1,0 +1,46 @@
+% Part:sets-functions-relations
+% Chapter: sets
+% Section: schroder-bernstein
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{sb}
+
+\olsection{Büyüklük Kavramı ve Schr\"oder--Bernstein}
+
+\begin{explain}
+Şöyle sezgisel bir düşünce vardır: $A$, $B$'den daha büyük değilse ve $B$ de
+$A$'dan daha büyük değilse $A$ ile $B$ eş güçlüdür. Açıkçası bu düşünce
+\emph{yanlış} olsaydı, tanımladığımız eş güçlülük kavramının kümeler
+arasındaki ``büyüklük'' karşılaştırmalarıyla bir ilgisi olduğunu savunmakta
+çok zorlanırdık!{} Neyse ki sezgisel düşünce doğrudur. Bunu
+Schr\"oder--Bernstein Teoremi temellendirir.
+\end{explain}
+
+\begin{thm}[Schr\"oder--Bernstein]
+	\ollabel{thm:schroder-bernstein}
+	$\cardle{A}{B}$ ve $\cardle{B}{A}$ ise $\cardeq{A}{B}$.
+\end{thm}
+
+\begin{explain}
+Başka bir deyişle $A$'dan $B$'ye ve $B$'den $A$'ya birer !!{injection}
+varsa $A$'dan $B$'ye bir !!{bijection} vardır.
+
+Ne var ki bu sonucu ispatlamak gerçekten oldukça \emph{zordur}. Gerçekten
+sonucu Cantor ifade etmiş, başkaları ispatlamıştır.\footnote{Tarihçesi için
+örneğin \citet[pp.~165--6]{Potter2004}'e bakın.}
+\oliflabeldef{sfr:cardinals:card-sb:sec}{Schr\"oder--Bernstein'ı ancak
+\olref[sfr][cardinals][card-sb]{sec}'te \emph{ispatlayabilecek} durumda
+olacağız.}{}%
+Şimdilik ona güvenebilirsiniz (ve güvenmeniz gerekir).
+
+Neyse ki Schr\"oder--Bernstein \emph{doğrudur} ve tanımladığımız
+$\cardeq{A}{B}$ ile $\cardle{A}{B}$ bağıntılarının ``büyüklük''le ilgili
+olduğu düşüncemizi doğrular. Dahası Schr\"oder--Bernstein çok
+\emph{yararlıdır}. Eş güçlü iki küme arasında bir !!{bijection} bulmak zor
+olabilir. Schr\"oder--Bernstein Teoremi karşılaştırmayı iki yöne bölmemizi;
+yalnızca birinciden ikinciye ve tersine birer !!{injection} düşünmemizi sağlar.
+\end{explain}
+\end{document}

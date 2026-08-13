@@ -1,0 +1,110 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: pairing-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{pai-alt}
+
+\olsection{Alternatif Bir İkileme Fonksiyonu}
+
+\begin{explain}
+$\Nat^2$'nin, terslerini bulmayı kolaylaştıran başka numaralandırmaları da
+vardır. İşte bunlardan biri. Numaralandırmayı bir dizi içinde canlandırmak
+yerine, başlangıçta boş konumlarla ilişkilendirilmiş pozitif tam sayılar
+listesiyle başlayın. Bu konumları sırayla $\tuple{n,m}$ ikilileriyle şöyle
+doldurduğunuzu düşünün. İlk bileşeninde~$0$ bulunan ikililerden (yani
+$\tuple{0,m}$ ikililerinden) başlayarak ilkini (yani $\tuple{0,0}$'ı) ilk
+boş konuma yerleştirin; ardından bir boş konumu atlayın, ikincisini (yani
+$\tuple{0,1}$'i) sonraki boş konuma yerleştirin; yine bir boş konumu atlayın
+ve böyle sürdürün. Numaralandırmamızın (eksik) başlangıcı şimdi şöyledir:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} &  & \tuple{0,1} &  & \tuple{0,2} &  & \tuple{0,3} & & \tuple{0,4} &  & \dots \\
+\end{array}
+\]
+Hâlâ boş kalan konumlar için bunu $\tuple{1,m}$ ikilileriyle, yine her iki
+boş konumdan birini atlayarak tekrarlayın:
+\[\small
+\begin{array}{@{}c c c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} &  & \tuple{0,2} & \tuple{1,1} &
+\tuple{0,3} & & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+$\tuple{2,m}$, $\tuple{3,m}$ vb. ikilileri de aynı biçimde yerleştirin.
+Tamamlanmış numaralandırmamız böylece şöyle başlar:
+\[\small
+\begin{array}{@{}cc c c c c c c c c c@{}}
+\mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \mathbf 6 & \mathbf 7 & \mathbf 8 & \mathbf 9 & \mathbf{10} & \dots \\ \\
+\tuple{0,0} & \tuple{1,0} & \tuple{0,1} & \tuple{2,0}  & \tuple{0,2} &
+\tuple{1,1} & \tuple{0,3} & \tuple{3,0}  & \tuple{0,4} &  \tuple{1,2} & \dots \\
+\end{array}
+\]
+Yukarıdaki dizinin hücrelerini bu numaralandırmaya göre numaralarsak düzgün
+bir zikzak çizgisi değil, şu düzenlemeyi buluruz:
+\[
+\begin{array}{ c | c | c | c | c | c | c | c }
+& \mathbf 0 & \mathbf 1 & \mathbf 2 & \mathbf 3 & \mathbf 4 & \mathbf 5 & \dots \\
+\hline
+\mathbf 0 & 1 & 3 & 5 & 7 & 9 & 11 & \dots \\
+\hline
+\mathbf 1 & 2 & 6 & 10 & 14 & 18 & \dots & \dots \\
+\hline
+\mathbf 2 & 4 & 12 & 20 & 28 & \dots & \dots & \dots \\
+\hline
+\mathbf 3 & 8 & 24 & 40 & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 4 & 16 & 48 & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\mathbf 5 & 32 & \dots & \dots & \dots & \dots & \dots & \dots \\
+\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array}
+\]
+$0$'ıncı satırdaki ikililerin numaralandırmamızın tek numaralı konumlarında
+bulunduğunu görebiliriz; yani $\tuple{0,m}$ ikilisi $2m+1$ konumundadır.
+İkinci satırdaki $\tuple{1,m}$ ikilileri, bir tek sayının iki katı olan,
+özellikle $2\cdot(2m+1)$ biçimindeki numaralara sahip konumlardadır. Üçüncü
+satırdaki $\tuple{2,m}$ ikilileri bir tek sayının dört katı olan
+$4\cdot(2m+1)$ konumlarındadır ve bu böyle sürer. Her satır için $(2m+1)$'in
+$1$, $2$, $4$, $8$, \dots{} çarpanları tam olarak~$2$'nin kuvvetleridir:
+$1=2^0$, $2=2^1$, $4=2^2$, $8=2^3$, \dots\@ Gerçekte ilgili üs her zaman
+söz konusu ikilinin ilk bileşenidir. Dolayısıyla $\tuple{n,m}$ ikilisi için
+çarpan $2^n$'dir. Böylece genel formülü elde ederiz: $2^n\cdot(2m+1)$.
+Ancak bu, ikilileri \emph{pozitif} tam sayılara eşler; yani $\tuple{0,0}$'ın
+konumu~$1$'dir. Konum~$0$'dan başlamak istiyorsak sonuçtan~$1$ çıkarmalıyız.
+Böylece:
+\end{explain}
+
+\begin{ex}
+\[
+h(n,m) = 2^n (2m+1) - 1
+\]
+ile verilen $h\colon \Nat^2\to\Nat$ fonksiyonu, doğal sayı ikilileri kümesi
+$\Nat^2$ için bir ikileme fonksiyonudur.
+\end{ex}
+
+\begin{explain}
+Buna göre $\Nat^2$'nin ikinci numaralandırmasında $\tuple{0,0}$ ikilisinin
+kodu $h(0,0)=2^0(2\cdot0+1)-1=0$; $\tuple{1,2}$ ikilisinin kodu
+$2^{1}\cdot(2\cdot2+1)-1=2\cdot5-1=9$; $\tuple{2,6}$ ikilisinin kodu da
+$2^{2}\cdot(2\cdot6+1)-1=51$'dir.
+\end{explain}
+
+Bazen doğal sayı ikililerini~$\Nat^2$, kodlamanın örten olmasını
+gerektirmeden kodlamak yeterlidir. Böyle kodlamaların tersleri yalnızca
+kısmi fonksiyonlardır.
+
+\begin{ex}
+\[
+j(n,m) = 2^n3^m
+\]
+ile verilen $j\colon \Nat^2\to\Nat^+$ fonksiyonu bir !!{injective}
+$\Nat^2\to\Nat$ fonksiyonudur.
+\end{ex}
+
+\end{document}

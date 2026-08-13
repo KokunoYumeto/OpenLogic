@@ -1,0 +1,120 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: pairing
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{pai}
+\olsection{İkileme Fonksiyonları ve Kodlar}
+
+\begin{explain}
+Cantor'un zikzak yöntemi $\Nat^n$'nin sayılabilirliğini görsel olarak açık
+hâle getirir. Fakat $\Nat^2$'yi betimleyen dizimize odaklanalım. Dizideki
+zikzak çizgisini izleyip konumları sayarak $\tuple{1,2}$'nin $7$ sayısıyla
+ilişkili olduğunu denetleyebiliriz. Yine de bunu daha doğrudan hesaplamak iyi
+olurdu. Başka bir deyişle, zikzak numaralandırmasının
+\emph{tersi}ni, yani
+\[
+g(\tuple{0,0}) = 0, \;
+g(\tuple{0,1}) = 1, \;
+g(\tuple{1,0}) = 2, \; \dots,
+g(\tuple{1,2}) = 7, \; \dots
+\]
+olacak biçimde bir $g\colon \Nat^2 \to \Nat$ fonksiyonunu elimizin altında
+bulundurmak iyi olurdu. Bu, $\tuple{n,m}$'nin numaralandırmamızda tam olarak
+nerede yer alacağını hesaplamamızı sağlardı.
+
+Aslında iki gözlem yaparak $g$'yi doğrudan tanımlayabiliriz. Birincisi,
+$n$'inci satır ile $m$'inci sütun $v$ değerini içeriyorsa $(n+1)$'inci satır
+ile $(m-1)$'inci sütun $v+1$ değerini içerir. İkincisi,
+numaralandırmamızın ilk satırı $0$, $1$, $3$, $6$ vb. ile başlayan üçgensel
+sayılardan oluşur. $k$'inci üçgensel sayı, $k$'dan büyük olmayan doğal
+sayıların toplamıdır ve $k(k+1)/2$ olarak hesaplanabilir. Bu iki gözlemi birleştirip şu
+fonksiyonu düşünün:
+\[
+  g(n,m) = \frac{(n+m+1)(n+m)}{2} + n.
+\]
+Göze daha kolay geldiği için çoğu zaman $g(\tuple{n,m})$ yerine yalnızca
+$g(n,m)$ yazarız. Bu formül önce $(n+m)$'inci üçgensel sayıyı belirlemenizi,
+sonra buna $n$'yi eklemenizi söyler. Diziyi tam istediğimiz biçimde doldurur.
+Özellikle $\tuple{1,2}$ ikilisi $\frac{4 \times 3}{2}+1=7$'ye gönderilir.
+
+Bu $g$ fonksiyonu, bir ikililer kümesinin numaralandırmasının
+\emph{tersi}dir. Böyle fonksiyonlara \emph{ikileme fonksiyonları} denir.
+\end{explain}
+
+\begin{defn}[İkileme fonksiyonu]
+  Bir $f\colon A \times B \to \Nat$ fonksiyonu bire bir ise aritmetik bir
+  \emph{ikileme fonksiyonu}dur. Ayrıca $f$'nin $A \times B$'yi
+  \emph{kodladığını}, $f(x,y)$'nin de $\tuple{x,y}$'nin \emph{kodu}
+  olduğunu söyleriz.
+\end{defn}
+
+\begin{explain}
+İkileme fonksiyonlarını örneğin doğal sayı ikililerini kodlamak için
+kullanabiliriz; başka bir deyişle her eleman \emph{ikilisini} \emph{tek} bir
+sayıyla temsil edebiliriz. İkileme fonksiyonunun tersini kullanarak sayının
+\emph{kodunu çözebilir}, yani hangi ikiliyi temsil ettiğini bulabiliriz.
+\end{explain}
+
+\begin{prob}
+Negatif olmayan bütün rasyonel sayıların bir numaralandırmasını verin.
+\end{prob}
+
+\begin{prob}
+$\Rat$'ın !!{enumerable} olduğunu gösterin. Her rasyonel sayının $z\in\Int$
+ve $m\in\Nat^+$ olmak üzere $z/m$ kesri biçiminde yazılabileceğini hatırlayın.
+\end{prob}
+
+\begin{prob}
+$\Bin^*$'ın bir numaralandırmasını tanımlayın.
+\end{prob}
+
+\begin{prob}
+Giriş mantık dersinizden, her olası doğruluk tablosunun bir doğruluk
+fonksiyonunu ifade ettiğini hatırlayın. Başka bir deyişle doğruluk
+fonksiyonları, bazı $k$'lar için $\Bin^k \to \Bin$ biçimindeki bütün
+fonksiyonlardır. Bütün doğruluk fonksiyonları kümesinin sayılabilir olduğunu
+ispatlayın.
+\end{prob}
+
+\begin{prob}
+Herhangi bir sonsuz !!{enumerable} kümenin bütün sonlu alt kümelerinden
+oluşan kümenin !!{enumerable} olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+$\Nat$'ın bir alt kümesinin \emph{tümleyeni sonlu} olması, $\Nat$ içindeki
+tümleyeninin sonlu olması demektir; yani $A\subseteq\Nat$ için bu koşul
+$\Nat\setminus A$'nın sonlu olmasıdır. Bir $I$ kümesinin !!{element}ları tam
+olarak $\Nat$'ın sonlu ve tümleyeni sonlu alt kümeleri olsun. $I$'nın !!{enumerable}
+olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+!!{enumerable} kümelerin !!{enumerable} birleşiminin !!{enumerable} olduğunu
+gösterin. Yani $A_1$, $A_2$, \dots{} kümelerinin her biri !!{enumerable}
+olduğunda bunların tümünün birleşimi $\bigcup_{i=1}^\infty A_i$'nın da
+!!{enumerable} olduğunu gösterin. [Not: Bu zordur!]
+\end{prob}
+
+\begin{editorial}
+Bu sonuç, numaralandırmalar yalnızca varlık önermeleri olarak verildiğinde,
+sayılabilir bir seçim ilkesine dayanır. Her $A_i$ için belirli bir
+numaralandırma veri olarak sağlanmışsa ek bir seçim adımı gerekmez.
+\end{editorial}
+
+\begin{prob}
+$f\colon A\times B\to\Nat$ herhangi bir ikileme fonksiyonu olsun.
+$A\times B=\emptyset$ ise tanım gereği !!{enumerable}dir. $A\times B\neq
+\emptyset$ ise $f$'nin görüntü kümesinin bir numaralandırmasını $f$'nin
+tersiyle bileştirmenin $A\times B$'nin bir numaralandırmasını verdiğini gösterin.
+\end{prob}
+
+\begin{prob}
+$\Nat^3$'ü kodlayan bir fonksiyon belirtin.
+\end{prob}
+
+\end{document}

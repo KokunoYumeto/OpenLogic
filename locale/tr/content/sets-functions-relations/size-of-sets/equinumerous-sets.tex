@@ -1,0 +1,105 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: equinumerous-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{equ}
+
+\olsection{Eş Güçlülük}
+
+Sonlu kümeler için iyi işleyen sezgisel bir küme ``büyüklüğü'' kavramımız
+var. Peki sonsuz kümeler ne olacak? \emph{Herhangi} bir büyüklükteki iki
+kümenin büyüklüğünü biçimsel olarak karşılaştırmak istiyorsak işe kümelerin
+ne zaman aynı büyüklükte olduğunu tanımlayarak başlamak iyi bir fikirdir.
+Frege bunu şöyle anlatır:
+\begin{quote}
+  Bir garson masaya tabaklarla tam olarak aynı sayıda bıçak koyduğundan emin
+  olmak isterse hiçbirini saymasına gerek yoktur; yeter ki her tabağın sağına
+  bir bıçak koysun ve masadaki her bıçak bir tabağın sağında bulunsun. Böylece
+  tabaklar ile bıçaklar, üstelik aynı uzamsal ilişki aracılığıyla, birbirleriyle
+  biricik biçimde ilişkilendirilmiş olur. \citep[\S70]{Frege1884}
+\end{quote}
+Bu parçadaki fikir biçimsel bir tanımla açığa çıkarılabilir:
+
+\begin{defn}\ollabel{comparisondef}
+  $A$, ancak ve ancak bir !!{bijection} $f\colon A\to B$ varsa $B$ ile
+  \emph{eş güçlüdür}; bunu $\cardeq{A}{B}$ ile yazarız.
+\end{defn}
+
+\begin{prop}\ollabel{equinumerosityisequi}
+Eş güçlülük bir denklik bağıntısıdır.
+\end{prop}
+
+\begin{proof}
+Eş güçlülüğün yansımalı, simetrik ve geçişli olduğunu göstermeliyiz. $A$,
+$B$ ve $C$ kümeler olsun.
+
+\emph{Yansıma.} Bütün $x\in A$ için $\Id{A}(x)=x$ olan özdeşlik eşlemesi
+$\Id{A}\colon A\to A$ bir !!{bijection}dur. Dolayısıyla $\cardeq{A}{A}$.
+
+\emph{Simetri.} $\cardeq{A}{B}$ olduğunu, yani bir !!{bijection}
+$f\colon A\to B$ bulunduğunu varsayın. $f$ !!{bijective} olduğu için tersi
+$f^{-1}$ vardır ve o da !!{bijective}dir. Dolayısıyla $f^{-1}\colon B\to A$
+bir !!{bijection}dur; öyleyse $\cardeq{B}{A}$.
+
+\emph{Geçişlilik.} $\cardeq{A}{B}$ ve $\cardeq{B}{C}$ olduğunu, yani
+!!{bijection} $f\colon A\to B$ ile $g\colon B\to C$ bulunduğunu varsayın.
+O zaman bileşke $\comp{f}{g}\colon A\to C$ !!{bijective}dir; dolayısıyla
+$\cardeq{A}{C}$.
+\end{proof}
+
+\begin{prop}
+$\cardeq{A}{B}$ ise $A$, ancak ve ancak $B$ !!{enumerable} ise
+!!{enumerable}dir.
+\end{prop}
+
+\begin{editorial}
+  Aşağıdaki ispat \olref[enm]{defn:enumerable}'i, \olref[enm]{sec}
+  içeriliyorsa; aksi hâlde \olref[enm-alt]{defn:enumerable}'i kullanır.
+\end{editorial}
+
+\begin{proof}
+$\cardeq{A}{B}$ olduğunu, dolayısıyla bir !!{bijection} $f\colon A\to B$
+bulunduğunu; ayrıca $A$'nın !!{enumerable} olduğunu varsayın.
+\oliflabeldef{sfr:siz:enm:defn:enumerable}{
+  O zaman ya $A=\emptyset$ ya da bir !!{surjective} $g\colon\PosInt\to A$
+  fonksiyonu vardır. $A=\emptyset$ ise $B=\emptyset$ de olmalıdır (aksi
+  hâlde bir $y\in B$ bulunur, fakat $f(x)=y$ olacak hiçbir $x\in A$
+  bulunmazdı). Öte yandan $g\colon\PosInt\to A$ !!{surjective} ise
+  $\comp{g}{f}\colon\PosInt\to B$ de !!{surjective}dir. Bunu görmek için
+  $y\in B$ olsun. $f$ !!{surjective} olduğundan $f(x)=y$ olacak biçimde bir
+  $x\in A$ vardır. $g$ !!{surjective} olduğundan da $g(n)=x$ olacak biçimde
+  bir $n\in\PosInt$ vardır. Böylece
+\[
+(\comp{g}{f})(n)=f(g(n))=f(x)=y
+\]
+  ve dolayısıyla $\comp{g}{f}$ !!{surjective} olur. $\comp{g}{f}$, $B$'nin
+  bir numaralandırmasıdır; öyleyse $B$ !!{enumerable}dir.}
+{
+  O zaman ya $A=\emptyset$ ya da görüntü kümesi $A$, tanım kümesi ise
+  $\Nat$ veya doğal sayıların bir başlangıç parçası olan bir !!{bijection}
+  $g$ vardır. $A=\emptyset$ ise $B=\emptyset$ de olmalıdır (aksi hâlde bir
+  $y\in B$ bulunur, fakat $f(x)=y$ olacak hiçbir $x\in A$ bulunmazdı).
+  Öyleyse söz konusu !!{bijection} $g$'nin bulunduğunu varsayalım. Bu durumda
+  $\comp{g}{f}$, görüntü kümesi $B$, tanım kümesi de $g$'ninkiyle aynı (yani
+  $\Nat$ ya da onun bir başlangıç parçası) olan bir !!{bijection}dur;
+  dolayısıyla $B$ !!{enumerable}dir.}
+
+$B$ !!{enumerable} ise aynı argümanı $f$ yerine !!{bijection}
+$f^{-1}\colon B\to A$ ile tekrarlayarak $A$'nın !!{enumerable} olduğunu
+elde ederiz.
+\end{proof}
+
+\begin{prob}
+$\cardeq{A}{C}$ ve $\cardeq{B}{D}$, ayrıca $A\cap B=C\cap D=\emptyset$ ise
+$\cardeq{A\cup B}{C\cup D}$ olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+$A$ sonsuz ve !!{enumerable} ise $\cardeq{A}{\Nat}$ olduğunu gösterin.
+\end{prob}
+
+\end{document}

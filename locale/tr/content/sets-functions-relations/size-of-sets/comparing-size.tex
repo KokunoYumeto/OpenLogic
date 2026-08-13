@@ -1,0 +1,147 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: comparing-sizes
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{car}
+
+\olsection{Farklı Büyüklükte Kümeler ve Cantor Teoremi}
+
+\begin{explain}
+İki kümenin aynı büyüklükte olduğu fikrini kesin bir biçimde ifade ettik.
+Bir kümenin diğerinden daha küçük olduğu fikrini de kesin olarak ifade
+edebiliriz. ``Daha küçük (ya da eş güçlü)'' tanımımız, kümeler arasında bir
+!!{bijection} yerine ilk kümeden ikinciye bir !!{injection} gerektirecektir.
+Böyle bir fonksiyon varsa ilk kümenin büyüklüğü ikinci kümeninkinden küçük ya
+da ona eşittir. Sezgisel olarak bir kümeden diğerine giden bir !!{injection},
+tanım kümesinin iki ayrı !!{element}ı görüntü kümesinin aynı !!{element}ına
+eşlenmediği için fonksiyonun görüntü kümesinin en az tanım kümesi kadar
+!!{element}a sahip olduğunu güvence altına alır.
+\end{explain}
+
+\begin{defn}
+$A$, ancak ve ancak bir !!{injection} $f\colon A\to B$ varsa $B$'den
+\emph{daha büyük değildir}; bunu $\cardle{A}{B}$ ile yazarız.
+\end{defn}
+
+Bunun yansımalı ve geçişli, fakat simetrik olmayan bir bağıntı olduğu açıktır
+(bu bir alıştırma olarak bırakılmıştır). Ayrıca bir kümenin diğerinden
+(kesin olarak) daha küçük olduğunu belirten bir kavram da tanımlayabiliriz.
+
+\begin{defn}
+$A$, ancak ve ancak bir !!{injection} $f\colon A\to B$ bulunmasına karşın
+hiçbir !!{bijection} $g\colon A\to B$ yoksa $B$'den \emph{daha küçüktür};
+bunu $\cardless{A}{B}$ ile yazarız. Başka bir deyişle
+$\cardle{A}{B}$ ve $\cardneq{A}{B}$.
+\end{defn}
+
+Bu bağıntının yansımasız ve geçişli olduğu açıktır. (Bu bir alıştırma olarak
+bırakılmıştır.) Bu gösterimle $A$ kümesinin !!{enumerable} olmasını
+$\cardle{A}{\Nat}$ ile ifade edebiliriz. $A$'nın !!{nonenumerable} olmasıyla
+$\cardless{\Nat}{A}$ eşdeğerliği ise kümelerin ilgili büyüklüklerinin
+karşılaştırılabilirliği ve kullanılan küme teorisindeki seçim ilkeleri
+altında okunmalıdır. Bu gösterim,
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{%
+\olref[sfr][siz][nen-alt]{thm:nonenum-pownat}'ı
+$\cardless{\Nat}{\Pow{\Nat}}$ gözlemi olarak}{%
+\olref[sfr][siz][nen]{thm:nonenum-pownat}'ı
+$\cardless{\PosInt}{\Pow{\PosInt}}$ gözlemi olarak} yeniden ifade etmemizi
+sağlar. Gerçekte \citet{Cantor1892}, bu son noktanın \emph{tümüyle genel}
+olduğunu ispatlamıştır:
+
+\begin{thm}[Cantor]\ollabel{thm:cantor}
+Her $A$ kümesi için $\cardless{A}{\Pow{A}}$.
+\end{thm}
+
+\begin{proof}
+$x\neq y$ ise kaplamsallık gereği $\{x\}\neq\{y\}$ ve dolayısıyla
+$f(x)\neq f(y)$ olduğundan, $f(x)=\{x\}$ eşlemesi bir !!{injection}
+$f\colon A\to\Pow{A}$'dır. Öyleyse $\cardle{A}{\Pow{A}}$.
+
+\begin{editorial}
+\olref[nen]{sec} varsa ayrıntılı ispatı; yoksa
+\olref[nen-alt]{sec}'e koşut daha kısa ispatı sunuyoruz.
+\end{editorial}
+
+\oliflabeldef{sfr:siz:nen:sec}{%
+  Şimdi bir !!{surjective} $g\colon A\to\Pow{A}$ fonksiyonunun, hele de
+  !!{bijective} bir fonksiyonun var olamayacağını ve dolayısıyla
+  $\cardneq{A}{\Pow{A}}$ olduğunu göstereceğiz. Bir
+  $g\colon A\to\Pow{A}$ verildiğini varsayın. $g$ tümel olduğundan her
+  $x\in A$, $g(x)\subseteq A$ alt kümesine eşlenir. $g$'nin örten
+  olamayacağını gösterebiliriz. Bunun için tanımı gereği $g$'nin görüntü
+  kümesinde bulunamayacak bir $\overline{A}\subseteq A$ alt kümesi tanımlayın:
+  \[
+  \overline{A}=\Setabs{x\in A}{x\notin g(x)}.
+  \]
+  $g(x)$ bütün $x\in A$ için tanımlı olduğundan $\overline{A}$ açıkça iyi
+  tanımlı bir $A$ alt kümesidir. Ancak $g$'nin görüntü kümesinde bulunamaz.
+  $x\in A$ gelişigüzel olsun; $\overline{A}\neq g(x)$ olduğunu göstereceğiz.
+  $x\in g(x)$ ise $x\notin g(x)$ koşulunu sağlamaz ve $\overline{A}$'nın
+  tanımı gereği $x\notin\overline{A}$ olur. $x\in\overline{A}$ ise
+  $\overline{A}$'nın tanımlayıcı özelliğini sağlamalıdır; yani $x\in A$ ve
+  $x\notin g(x)$ olur. $x$ gelişigüzel olduğundan her $x\in A$ için
+  $x\in g(x)$ ancak ve ancak $x\notin\overline{A}$ olur ve dolayısıyla
+  $g(x)\neq\overline{A}$. Başka bir deyişle $\overline{A}$, $g$'nin
+  görüntü kümesinde bulunamaz; bu da $g$'nin örten olduğu varsayımıyla
+  çelişir.}{Geriye $\cardneq{A}{\Pow{A}}$ olduğunu göstermek kalır. Tersini
+  varsayarak $\cardeq{A}{\Pow{A}}$ olduğunu, yani bir !!{bijection}
+  $g\colon A\to\Pow{A}$ bulunduğunu varsayın. Şimdi
+  \[
+    D=\Setabs{x\in A}{x\notin g(x)}
+  \]
+  kümesini düşünün. $D\subseteq A$, dolayısıyla $D\in\Pow{A}$ olduğuna
+  dikkat edin. $g$ bir !!{bijection} olduğundan $g(y)=D$ olacak biçimde bir
+  $y\in A$ vardır. Fakat şimdi
+  \[
+    y\in g(y) \text{ ancak ve ancak } y\in D
+    \text{ ancak ve ancak } y\notin g(y)
+  \]
+  olur. Bu bir çelişkidir; dolayısıyla $\cardneq{A}{\Pow{A}}$.}{}
+\end{proof}
+
+\begin{explain}
+\oliflabeldef{sfr:siz:nen:thm:nonenum-pownat}{\olref{thm:cantor}'ın ispatını
+  \olref[nen]{thm:nonenum-pownat}'ın ispatıyla karşılaştırmak öğreticidir.
+  Orada $\PosInt$ alt kümelerinin herhangi bir $Z_1$, $Z_2$, \dots{}
+  listesinden, listede bulunmadığı güvence altında olan bir sayı kümesi
+  $\overline{Z}$ kurulabileceğini gösterdik. Bu kümenin listede bulunmaması,
+  her $n\in\PosInt$ için $n\in Z_n$ ancak ve ancak
+  $n\notin\overline{Z}$ olmasından kaynaklanıyordu. Böylece $Z_n$ ile
+  $\overline{Z}$'den birinin !!a{element}ı olup diğerinin olmayan bir sayı
+  her zaman vardır. Burada da aynı fikri izleriz; yalnız indisler artık
+  $\PosInt$ yerine $A$'nın !!{element}larıdır. $\overline{A}$, her $x\in A$
+  için $g(x)$'ten farklı olacak biçimde tanımlanır; çünkü $x\in g(x)$ ancak
+  ve ancak $x\notin\overline{A}$'dır. Yine her zaman $g(x)$ ile
+  $\overline{A}$'dan birinin !!a{element}ı olup diğerinin olmayan bir $A$
+  elemanı vardır. $\overline{Z}$ nasıl $Z_1$, $Z_2$, \dots{} listesinde
+  bulunamazsa $\overline{A}$ da $g$'nin görüntü kümesinde bulunamaz.}{}
+
+\oliflabeldef{sfr:siz:nen-alt:thm:nonenum-pownat}{\olref{thm:cantor}'ın
+  ispatını \olref[nen-alt]{thm:nonenum-pownat}'ın ispatıyla karşılaştırmak
+  öğreticidir. Orada $\Nat$ alt kümelerinin herhangi bir $N_0$, $N_1$,
+  $N_2$, \dots{} listesinden, listede bulunmadığı güvence altında olan bir
+  sayı kümesi $D$ kurabildiğimizi gösterdik. Her $n\in\Nat$ için $n\in N_n$
+  ancak ve ancak $n\notin D$ olduğundan bu kümenin listede bulunmadığı
+  güvence altındaydı. Burada da aynı fikri izleriz; yalnız indisler artık
+  $\Nat$ yerine $A$'nın !!{element}larıdır. $D$, her $x\in A$ için
+  $g(x)$'ten farklı olacak biçimde tanımlanır; çünkü $x\in g(x)$ ancak ve
+  ancak $x\notin D$'dir.}{}
+
+Bu ispatı Russell Paradoksu'nun ispatı
+\olref[sfr][set][rus]{thm:russells-paradox} ile karşılaştırmak da yararlıdır.
+Gerçekten Cantor Teoremi, Russell'ın kendi paradoksuna esin vermiştir.
+\end{explain}
+
+\begin{prob}
+  Herhangi bir $A$ kümesi için bir !!{injection} $g\colon\Pow{A}\to A$
+  olamayacağını gösterin. İpucu: $g\colon\Pow{A}\to A$'nın !!{injective}
+  olduğunu varsayın. $D=\Setabs{g(B)}{B\subseteq A \text{ ve }g(B)\notin B}$
+  kümesini düşünün. $x=g(D)$ olsun. Bir çelişki türetmek için $g$'nin
+  !!{injective} olmasını kullanın.
+\end{prob}
+
+\end{document}

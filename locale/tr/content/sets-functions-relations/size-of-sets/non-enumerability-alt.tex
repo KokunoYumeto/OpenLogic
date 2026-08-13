@@ -1,0 +1,154 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: non-enumerability-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{nen-alt}
+
+\olsection{\printtoken{S}{nonenumerable} Kümeler}
+
+\begin{editorial}
+  Bu kesim, \olref[enm-alt]{sec}'teki tanımları, yani $\PosInt$'tan örten bir
+  fonksiyon yerine $\Nat$ ile bire bir örten bir eşleme gereğini kullanarak
+  $\Bin^\omega$ ve $\Pow{\Nat}$'ın sayılamazlığını ispatlar.
+\end{editorial}
+
+\begin{explain}
+Doğal sayılar kümesi $\Nat$ sonsuzdur. Ayrıca açıkça !!{enumerable}dir.
+Fakat dikkat çekici olgu, \emph{!!{nonenumerable}} kümelerin, yani
+!!{enumerable} olmayan kümelerin varlığıdır
+(bkz. \olref[sfr][siz][enm-alt]{defn:enumerable}).
+
+Bu şaşırtıcı olabilir. Sonuçta $A$'nın !!{nonenumerable} olduğunu söylemek,
+bir !!{bijection} $f\colon\Nat\to A$'nın \emph{bulunmadığını}; yani
+$\Nat$'ın sonsuz sayıdaki !!{element}ını $A$'ya eşleyen hiçbir fonksiyonun
+$A$'nın tamamını tüketmediğini söylemektir. Dolayısıyla $A$
+!!{nonenumerable} ise $A$'nın doğal sayılardan ``daha çok'' !!{element}ı
+vardır.
+
+Bir kümenin !!{nonenumerable} olduğunu ispatlamak için uygun bir
+!!{bijection}un var olamayacağını göstermelisiniz. Bunu yapmanın en iyi yolu,
+$A$'nın !!{element}larını numaralandırmaya yönelik her girişimin en az bir
+!!{element}ı dışarıda bırakması gerektiğini göstermektir; bu da hiçbir
+$f\colon\Nat\to A$ fonksiyonunun !!{surjective} olmadığını gösterir. Bunu
+kurmak için genel bir strateji Cantor'un \emph{köşegen yöntemi}ni
+kullanmaktır. $A$'nın !!{element}larından oluşan $x_1$, $x_2$, \dots{}
+biçiminde bir liste verildiğinde, kuruluşu gereği bu listede bulunamayacak başka bir $A$
+!!{element}ı kurarız.
+
+Fakat bütün bunlar en iyi bir örnekle anlaşılır. İlk örneğimiz, bütün sonsuz
+$0$ ve $1$ dizgilerinin kümesi $\Bin^\omega$'dır. (`$\Bin$', ikili anlamına
+gelir ve onu yalnızca iki elemanlı $\{0,1\}$ kümesi olarak düşünebiliriz.)
+\oliflabeldef{sfr:card-arithmetic:card-opps:sec}{\footnote{Daha kesin olarak
+$\Bin^\omega$'nın bütün $0$ ve $1$ $\omega$-dizilerinden oluşan, yani
+$\funfromto{\omega}{\{0,1\}}$ ile gösterilen küme olduğunu belirtmeliyiz. Fakat
+bunun anlamı ancak \olref[sfr][card-arithmetic][card-opps]{sec}'te açıklığa
+kavuşacaktır.}{} Şimdilik bu biraz gevşek ifade kafa karışıklığına neden
+olmamalıdır.}
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-bin-omega}
+$\Bin^\omega$ !!{nonenumerable}dır.
+\end{thm}
+
+\begin{proof}
+$\Bin^\omega$'nın !!{element}larından oluşan herhangi bir sonsuz listeyi düşünün.
+Her $s_n$'nin sonsuz bir $0$ ve $1$ dizgisi olduğu $s_0$, $s_1$, $s_2$,
+\dots{} listemiz olsun. $s_n(m)$, bu listedeki $n$'inci dizginin $m$'inci
+basamağı olsun. Böylece listemizi, $s_n(m)$'nin $n$'inci satır ile $m$'inci
+sütuna yerleştirildiği bir dizi olarak düşünebiliriz:
+\[
+\begin{array}{c|c|c|c|c|c}
+& 0 & 1 & 2 & 3 & \dots \\\hline
+0 & \mathbf{s_{0}(0)} & s_{0}(1) & s_{0}(2) & s_0(3) & \dots \\\hline
+1 & s_{1}(0)& \mathbf{s_{1}(1)} & s_1(2) & s_1(3) & \dots \\\hline
+2 & s_{2}(0)& s_{2}(1) & \mathbf{s_2(2)} & s_2(3) & \dots \\\hline
+3 & s_{3}(0)& s_{3}(1) & s_3(2) & \mathbf{s_3(3)} & \dots \\\hline
+\vdots & \vdots & \vdots & \vdots & \vdots & \mathbf{\ddots}
+\end{array}
+\]
+Şimdi bu listede bulunmayan sonsuz bir $0$ ve $1$ dizgisi $d$ kuracağız.
+Bunu her girdisini, yani bütün $n\in\Nat$ için $d(n)$'yi belirleyerek
+yapacağız. Sezgisel olarak yukarıdaki dizinin köşegeni boyunca aşağı doğru
+okur (``köşegen yöntemi'' adı buradan gelir), sonra her $1$'i $0$ ve her
+$0$'ı~$1$ yaparız. Daha soyut olarak, köşegenin $n$'inci !!{element}ı
+$s_n(n)$'nin $1$ ya da $0$ oluşuna göre $d(n)$'yi $0$ ya da $1$ tanımlarız:
+\[
+d(n) =
+\begin{cases}
+1 & \text{$s_{n}(n) = 0$ ise}\\
+0 & \text{$s_{n}(n) = 1$ ise.}
+\end{cases}
+\]
+$d$ sonsuz bir $0$ ve $1$ dizgisi olduğundan açıkça $d\in\Bin^\omega$'dır.
+Fakat $d$'yi her $n\in\Nat$ için $d(n)\neq s_n(n)$ olacak biçimde kurduk.
+Yani $d$, $n$'inci girdisinde $s_n$'den farklıdır. Öyleyse her
+$n\in\Nat$ için $d\neq s_n$ ve $d$, $s_0$, $s_1$, $s_2$, \dots{} listesinde
+bulunamaz.
+
+$\Bin^\omega$'nın !!{element}larından oluşan gelişigüzel bir sonsuz liste
+verildiğinde, listenin $\Bin^\omega$'nın bazı !!{element}larını
+dışarıda bırakacağını gösterdik. Dolayısıyla $\Bin^\omega$ kümesinin bir
+numaralandırması yoktur; yani $\Bin^\omega$ !!{nonenumerable}dır.
+\end{proof}
+
+\begin{explain}
+Bu ispat yöntemine ``köşegenleştirme'' denir; çünkü $d$'yi tanımlamak için
+dizinin köşegenini kullanır. Ancak köşegenleştirme bir dizinin varlığını
+gerektirmez. Gerçek bir dizi ve köşegen söz konusu olmadığında bile benzer bir
+fikirle bazı kümelerin !!{nonenumerable} olduğunu gösterebiliriz. Aşağıdaki
+sonuç bunun nasıl yapılacağını gösterir.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:nonenum-pownat}
+$\Pow{\Nat}$ !!{enumerable} değildir.
+\end{thm}
+
+\begin{proof}
+Aynı biçimde ilerleyerek $\Nat$ alt kümelerinden oluşan her listenin bir
+$\Nat$ alt kümesini dışarıda bıraktığını gösteririz. $\Nat$ alt kümelerinin
+$N_0$, $N_1$, $N_2$, \ldots{} biçiminde bir listesi olduğunu varsayın. $D$
+kümesini $n\in D$ ancak ve ancak $n\notin N_n$ olacak biçimde tanımlayın:
+\[
+D = \Setabs{n \in \Nat}{n \notin N_n}.
+\]
+Açıkça $D\subseteq\Nat$'tır. Ancak $D$ listede bulunamaz. Gerçekten kuruluşu
+gereği $n\in D$ ancak ve ancak $n\notin N_n$ olduğundan her $n\in\Nat$ için
+$D\neq N_n$'dir.
+\end{proof}
+
+\begin{explain}
+Önceki ispat köşegenden söz etmedi. Yine de onu şöyle canlandırırsanız bir
+köşegen içerdiğini düşünebilirsiniz: $N_0$, $N_1$, \dots{} kümelerinin bir
+dizide yazıldığını; $N_n$'yi $n$'inci satıra, $m$'yi ancak ve ancak $m\in N_n$
+ise $m$'inci sütuna yazarak yerleştirdiğimizi düşünün. Örneğin listedeki
+ilk dört kümenin $\{0,1,2,\dots\}$, $\{1,3,5,\dots\}$, $\{0,1,4\}$ ve
+$\{2,3,4,\dots\}$ olduğunu varsayın; o zaman dizimiz şöyle başlar:
+\[
+\begin{array}{r@{}rrrrrrr}
+  N_0 = \{ & \mathbf{0}, & 1, & 2, & & & & \dots\}\\
+  N_1 = \{ &  & \mathbf{1}, &  & 3, &  & 5, & \dots\}\\
+  N_2 = \{ & 0, & 1, &  &  & 4\phantom{,} &  & \}\\
+  N_3 = \{ &  &  & 2, & \mathbf{3}, & 4, & & \dots\}\\
+  &\vdots & & & & & & \ddots\phantom{\}}
+  \end{array}
+\]
+O zaman $D$, köşegen boyunca aşağı inip $n$ ancak ve ancak köşegende
+\emph{yoksa} $n\in D$ alınarak elde edilen kümedir. Dolayısıyla yukarıdaki
+durumda $0$ ile $1$'i dışarıda bırakır, $2$'yi içeri alır, $3$'ü dışarıda
+bırakır vb.'yiz.
+\end{explain}
+
+\begin{prob}
+Bütün $f\colon\Nat\to\Nat$ fonksiyonları kümesinin açık bir köşegen
+argümanıyla !!{nonenumerable} olduğunu gösterin. Yani $f_1$, $f_2$, \dots{}
+bir fonksiyonlar listesi ve her $f_i\colon\Nat\to\Nat$ olduğunda bu listede
+bulunmayan bir $g\colon\Nat\to\Nat$ fonksiyonunun var olduğunu gösterin.
+\end{prob}
+
+\end{document}

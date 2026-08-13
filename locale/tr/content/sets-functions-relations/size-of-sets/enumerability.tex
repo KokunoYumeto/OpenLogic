@@ -1,0 +1,277 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: enumerations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{enm}
+
+\olsection{Numaralandırmalar ve \usetoken{S}{enumerable} Kümeler}
+
+\begin{editorial}
+  Bu kesim, kümelerin numaralandırmalarını $\PosInt$'tan örten fonksiyonlar
+  olarak tanımlayarak ele alır. Matematik altyapısı sınırlı okurlar için
+  konuyu adım adım işler. Numaralandırmaları farklı biçimde, $\Nat$ (ya da
+  onun bir başlangıç parçası) ile bire bir örten eşlemeler olarak tanımlayan
+  daha kısa bir alternatif sürüm \olref[enm-alt]{sec}'te verilmiştir.
+\end{editorial}
+
+\begin{explain}
+Daha önce kümeleri, !!{element}larını listeleyerek örneklemiştik. Şimdi bir
+kümenin, sonsuz olsa bile, !!{element}larını nasıl ve ne zaman
+listeleyebileceğimizi daha genel terimlerle ele alalım.
+\end{explain}
+
+\begin{defn}[Numaralandırma, sezgisel tanım]
+Sezgisel olarak bir $A$ kümesinin \emph{numaralandırması}, $A$'nın
+!!{element}larından oluşan, sonlu ya da sonsuz ve $A$'nın her !!{element}ını
+sonlu bir konumda içeren bir listedir. $A$'nın bir numaralandırması varsa
+$A$'ya \emph{!!{enumerable}} denir.
+\end{defn}
+
+\begin{explain}
+Numaralandırmalarla ilgili birkaç nokta:
+\begin{enumerate}
+\item Yalnızca bir başlangıcı olan ve ilk !!{element} dışındaki her
+  !!{element}ın hemen önünde tek bir !!{element} bulunan listeleri
+  numaralandırma sayarız. Başka bir deyişle, listenin ilk !!{element}ı ile
+  başka herhangi bir !!{element}ı arasında yalnızca sonlu sayıda eleman
+  vardır. Bu özellikle, bir numaralandırmanın her !!{element}ının sonlu bir
+  konumu olduğu anlamına gelir: ilk !!{element}ın konumu~$1$, ikincininki~$2$
+  vb.'dir.
+\item Aynı $A$ kümesinin, !!{element}ların görünme sırasına göre farklılaşan
+  numaralandırmaları olabilir: $4$, $1$, $25$, $16$,~$9$ listesi de $1$,
+  $4$, $9$, $16$,~$25$ listesi de ilk beş kare sayının kümesini numaralandırır.
+\item Tekrarlı numaralandırmalar da numaralandırmadır: $1$, $1$, $2$, $2$,
+  $3$, $3$,~\dots{} listesi $1$, $2$, $3$,~\dots{} ile aynı kümeyi
+  numaralandırır.
+\item Bir numaralandırmayı belirtirken sıra ve tekrar \emph{önemlidir}:
+  pozitif tam sayıları $1$, $2$, $3$, $1$, \dots{} ile başlayan biçimde
+  numaralandırabiliriz; ancak standart $1$, $2$, $3$, $4$,~\dots{}
+  numaralandırmasında örüntüyü görmek daha kolaydır.
+\item Numaralandırmaların bir başlangıcı olmalıdır: \dots, $3$, $2$, $1$
+  pozitif tam sayıların bir numaralandırması değildir, çünkü ilk
+  !!{element}ı yoktur. Bunun sezgisel tanımdan nasıl çıktığını görmek için
+  kendinize ``76 sayısı listede hangi konumda yer alır?'' diye sorun.
+\item Şu liste pozitif tam sayıların bir numaralandırması değildir: $1$, $3$,
+  $5$, \dots, $2$, $4$, $6$, \dots\@ Sorun, çift sayıların sonlu konumlarda
+  değil $\infty + 1$, $\infty + 2$, $\infty + 3$ konumlarında yer almasıdır.
+\item Boş küme sayılabilirdir: boş liste onu numaralandırır!{}
+\end{enumerate}
+\end{explain}
+
+\begin{prop}
+  $A$'nın bir numaralandırması varsa tekrarsız bir numaralandırması da vardır.
+\end{prop}
+
+\begin{proof}
+  $A$'nın, her $x_i$'nin $A$'nın bir !!{element}ı olduğu $x_1$, $x_2$,
+  \dots{} numaralandırmasına sahip olduğunu varsayalım. Tekrarlanan
+  !!{element}ları çıkararak bir numaralandırmadaki tekrarları kaldırabiliriz.
+  Örneğin numaralandırmayı, $x_i$ eğer $x_1$, \dots, $x_{i-1}$ arasında
+  bulunmayan bir $A$ !!a{element}ı ise onu listelediğimiz, zaten $x_1$,
+  \dots,~$x_{i-1}$ arasında yer alıyorsa da listeden çıkardığımız yeni bir
+  numaralandırmaya dönüştürebiliriz.
+\end{proof}
+
+Son argüman, numaralandırmaları ve !!{enumerable} kümeleri iyi kavrayıp
+bunlara ilişkin sonuçları ispatlamak için daha kesin bir tanıma ihtiyacımız
+olduğunu gösterir. Aşağıdaki tanım bunu sağlar.
+
+\begin{defn}[Numaralandırma, biçimsel tanım]
+Boş olmayan, yani $A\neq\emptyset$ olan bir $A$ kümesinin bir
+\emph{numaralandırması}, herhangi bir
+!!{surjective} $f \colon \PosInt \to A$ fonksiyonudur.
+\end{defn}
+
+\begin{explain}
+Biçimsel tanımla, sonlu ya da sonsuz olabilen bir listeyi kullanan sezgisel
+tanımın eşdeğer olduğuna kendimizi ikna edelim. Önce, $\PosInt$'tan bir $A$
+kümesine giden her !!{surjective} fonksiyon $A$'yı numaralandırır. Böyle bir
+fonksiyon, yukarıda sezgisel olarak tanımlanan şu numaralandırmayı belirler:
+$f(1)$, $f(2)$, $f(3)$, \dots. $f$ !!{surjective} olduğundan $A$'nın her
+!!{element}ının bazı $n \in \PosInt$ için $f(n)$'nin değeri olması güvence
+altındadır. Dolayısıyla $A$'nın her !!{element}ı listenin sonlu bir konumunda
+yer alır. Fonksiyon !!{injective} olmayabileceği için liste tekrarlı olabilir;
+ama yukarıda belirtildiği üzere buna izin verilir.
+
+Öte yandan, $A$'nın bütün !!{element}larını numaralandıran bir liste
+verildiğinde, $f(n)$'yi listenin $n$'inci !!{element}ı, $n$'inci bir
+!!{element} yoksa da listenin son !!{element}ı alarak bir !!{surjective}
+$f\colon \PosInt \to A$ fonksiyonu tanımlayabiliriz. Bunun !!{surjective} bir
+fonksiyon üretmediği tek durum $A$'nın ve dolayısıyla listenin boş olmasıdır.
+Öyleyse boş olmayan her liste bir !!{surjective} $f\colon \PosInt \to A$
+fonksiyonu belirler.
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:enumerable}
+  Bir $A$ kümesi, ancak ve ancak boşsa ya da bir numaralandırması varsa
+  !!{enumerable}dir.
+\end{defn}
+
+\begin{ex}
+Pozitif tam sayıların bir numaralandırması, $f(n)=n$ ile verilen özdeşlik
+fonksiyonudur. Doğal sayıların bir numaralandırması ise $g(n)=n-1$
+fonksiyonudur.
+\end{ex}
+
+\begin{ex}
+\begin{align*}
+f(n) & = 2n \text{ ve}\\
+g(n) & = 2n - 1
+\end{align*}
+ile verilen $f\colon \PosInt \to \PosInt$ ve $g \colon \PosInt \to
+\PosInt$ fonksiyonları sırasıyla pozitif çift tam sayıları ve pozitif tek tam
+sayıları numaralandırır. Ancak hiçbiri $\PosInt$'ın bir numaralandırması
+değildir; çünkü hiçbiri !!{surjective} değildir.
+\end{ex}
+
+\begin{prob}
+Pozitif kare sayıların $1$, $4$, $9$, $16$, \dots{} bir numaralandırmasını
+tanımlayın.
+\end{prob}
+
+\begin{ex}
+$f(n) = (-1)^{n} \lceil \frac{(n-1)}{2}\rceil$ fonksiyonu ($\lceil x
+\rceil$, $x$'i en yakın üst tam sayıya yuvarlayan \emph{tavan} fonksiyonunu
+gösterir) tam sayılar kümesini~$\Int$ numaralandırır. $f$'nin pozitif ve
+negatif tam sayılar arasında ileri geri ``sıçrayarak'' $\Int$ değerlerini
+nasıl ürettiğine dikkat edin:
+\[
+\begin{array}{c c c c c c c c}
+f(1) & f(2) & f(3) & f(4) & f(5) & f(6) & f(7) & \dots \\ \\
+- \lceil \tfrac{0}{2} \rceil & \lceil \tfrac{1}{2}\rceil & - \lceil \tfrac{2}{2} \rceil & \lceil \tfrac{3}{2} \rceil & - \lceil \tfrac{4}{2} \rceil  & \lceil \tfrac{5}{2}
+\rceil & - \lceil \tfrac{6}{2} \rceil & \dots \\ \\
+0 & 1 & -1 & 2 & -2 & 3 & \dots
+\end{array}
+\]
+$f$'yi durumlara göre şöyle tanımlanmış olarak da düşünebilirsiniz:
+\[
+f(n) = \begin{cases}
+  0 & \text{$n = 1$ ise}\\
+  n/2 & \text{$n$ çift ise}\\
+  -(n-1)/2 & \text{$n$ tek ve $>1$ ise.}
+  \end{cases}
+\]
+\end{ex}
+
+\begin{prob}
+  $A$ ve $B$ !!{enumerable} ise $A \cup B$'nin de !!{enumerable} olduğunu
+  gösterin. Bunun için !!{surjective} $f\colon \PosInt \to A$ ve $g\colon
+  \PosInt \to B$ fonksiyonlarının bulunduğunu varsayın; bir !!{surjective}
+  $h\colon \PosInt \to A \cup B$ fonksiyonu tanımlayıp !!{surjective}
+  olduğunu ispatlayın. $A$ ya da $B$'nin $\emptyset$ olduğu durumları da ele
+  alın.
+\end{prob}
+
+\begin{prob}
+  $B \subseteq A$ ve $A$ !!{enumerable} ise $B$'nin de !!{enumerable}
+  olduğunu gösterin. Bunun için bir !!{surjective} $f\colon \PosInt \to A$
+  fonksiyonunun bulunduğunu varsayın. Bir !!{surjective} $g\colon \PosInt
+  \to B$ fonksiyonu tanımlayıp !!{surjective} olduğunu ispatlayın. $B =
+  \emptyset$ ise ne olur?
+\end{prob}
+
+\begin{prob}
+  $A_1$, $A_2$, \dots, $A_n$ kümelerinin hepsi !!{enumerable} ise $A_1 \cup
+  \dots \cup A_n$'nin de !!{enumerable} olduğunu $n$ üzerinde tümevarımla
+  gösterin. İki $A$ ve $B$ kümesi !!{enumerable} ise $A \cup B$'nin de
+  !!{enumerable} olduğu olgusunu varsayabilirsiniz.
+\end{prob}
+
+Bir kümenin !!{element}larını listelerken saymaya ilk !!{element}dan başlamak
+belki daha doğal olsa da matematikçiler nesneleri saymak için doğal
+sayıları~$\Nat$ kullanmayı sever. Bir listenin $0$'ıncı, $1$'inci, $2$'nci
+vb. !!{element}larından söz ederler. Buna uygun olarak bir numaralandırmayı
+$\Nat$'tan $A$'ya giden bir !!{surjective} fonksiyon diye tanımlayabiliriz.
+Elbette iki tanım eşdeğerdir.
+
+\begin{prop}\ollabel{prop:enum-shift}
+  Bir !!{surjection} $f\colon \PosInt \to A$ ancak ve ancak bir
+  !!{surjection} $g\colon \Nat \to A$ varsa vardır.
+\end{prop}
+
+\begin{proof}
+  Bir !!{surjection} $f\colon \PosInt \to A$ verildiğinde bütün $n \in
+  \Nat$ için $g(n)=f(n+1)$ tanımını yapabiliriz. $g\colon \Nat \to A$'nın
+  !!{surjective} olduğu kolayca görülür. Tersine, bir !!{surjection}
+  $g\colon \Nat \to A$ verildiğinde $f(n)=g(n-1)$ olarak tanımlayın.
+\end{proof}
+
+Bu bize şu sonucu verir:
+
+\begin{cor}\ollabel{cor:enum-nat}
+Bir $A$ kümesi, ancak ve ancak boşsa ya da bir !!{surjective} $f\colon \Nat
+\to A$ fonksiyonu varsa !!{enumerable}dir.
+\end{cor}
+
+Yukarıda $A$ kümesinin !!{element}larından oluşan bir listenin tekrarsız bir listeye
+dönüştürülebileceğini ele aldık. Bu, numaralandırmalar için de doğrudur; ama
+titizlikle ifade ve ispat edilmesi biraz daha zordur. Her $f\colon \PosInt
+\to A$ fonksiyonu bütün $n \in \PosInt$ için tanımlı olmalıdır. $A$'da
+yalnızca sonlu sayıda !!{element} varsa $\PosInt$'ın sonsuz sayıdaki
+!!{element}ı üzerinde tanımlı, değerleri arasında $A$'nın bütün
+!!{element}ları bulunan ama aynı değeri iki kez almayan bir fonksiyonumuz
+açıkça olamaz. Bu durumda, yani tekrarsız listenin sonlu olduğu durumda,
+$f$ için yalnızca sonlu sayıda !!{element}ı olan farklı bir tanım kümesi
+seçmeliyiz. Tekrarın bulunmaması $f$'nin !!{injective} olmasını gerektirir.
+Aynı zamanda !!{surjective} de olduğundan, bazı sonlu $\{1, \dots, n\}$
+kümeleri ya da $\PosInt$ ile $A$ arasında bir !!{bijection} arıyoruz.
+
+\begin{prop}\ollabel{prop:enum-bij}
+$f\colon \PosInt \to A$ !!{surjective} ise (yani $A$'nın bir
+numaralandırmasıysa) ya $\PosInt$ olan ya da bazı $n \in \PosInt$ için
+$\{1, \dots, n\}$ olan bir $Z$ kümesinden $A$'ya bir !!{bijection}
+$g\colon Z \to A$ vardır.
+\end{prop}
+
+\begin{proof}
+  $g$ fonksiyonunu özyinelemeli olarak tanımlarız: $g(1)=f(1)$ olsun. $g(i)$
+  daha önce tanımlanmışsa, varsa $f(1)$, $f(2)$, \dots{} değerleri arasında
+  henüz $g(1)$, \dots, $g(i)$ arasında bulunmayan ilk değeri $g(i+1)$ olarak alalım.
+  $A$'nın yalnızca $n$ !!{element}ı varsa $g(1)$, \dots, $g(n)$'nin hepsi
+  tanımlanır ve böylece $g\colon \{1, \dots, n\} \to A$ fonksiyonunu
+  tanımlamış oluruz. $A$'nın sonsuz sayıda !!{element}ı varsa, herhangi bir
+  $i$ için $f(1)$, $f(2)$, \dots{} numaralandırmasında henüz $g(1)$, \dots,
+  $g(i)$ arasında bulunmayan bir $A$ !!a{element}ı olmalıdır. Bu durumda bir
+  $g\colon \PosInt \to A$ fonksiyonu tanımlamış oluruz.
+
+  $A$'nın her elemanı $f(1)$, $f(2)$, \dots{} arasında bulunduğu ($f$
+  !!{surjective} olduğu) ve dolayısıyla sonunda bazı $i$ için $g(i)$'nin bir
+  değeri olacağı için $g$ !!{surjective}dir. $g$ aynı zamanda
+  !!{injective}dir; çünkü $g(j)=g(i)$ olacak biçimde bir $j<i$ bulunsaydı
+  $g(i)$ zaten $g(1)$, \dots, $g(i-1)$ arasında olurdu; bu da $g$'yi
+  tanımlama biçimimize aykırıdır.
+\end{proof}
+
+\begin{cor}\ollabel{cor:enum-nat-bij}
+Bir $A$ kümesi, ancak ve ancak boşsa ya da $N=\Nat$ veya bazı $n\in\Nat$
+için $N=\{0, \dots, n\}$ olacak biçimde bir !!{bijection} $f\colon N\to A$
+varsa !!{enumerable}dir.
+\end{cor}
+
+\begin{proof}
+$A$, ancak ve ancak boşsa ya da bir !!{surjective} $f\colon \PosInt \to A$
+varsa !!{enumerable}dir. \olref{prop:enum-bij}'e göre ikinci koşul, $Z=
+\PosInt$ ya da bazı $n\in\PosInt$ için $Z=\{1, \dots, n\}$ olacak biçimde
+bir !!{bijective} $f\colon Z\to A$ fonksiyonunun bulunmasına eşdeğerdir.
+\olref{prop:enum-shift}'in ispatındaki aynı argümana göre bu da $N=\Nat$ ya
+da $N=\{0, \dots, n-1\}$ olacak biçimde bir !!{bijection} $g\colon N\to A$
+bulunmasına eşdeğerdir.
+\end{proof}
+
+\begin{prob}
+  \olref[sfr][siz][enm]{defn:enumerable}'e göre bir $A$ kümesi, ancak ve
+  ancak $A=\emptyset$ ise ya da bir !!{surjective} $f\colon \PosInt \to A$
+  varsa sayılabilirdir. ``!!{enumerable} küme''yi kesin olarak şöyle de
+  tanımlayabiliriz: bir küme, ancak ve ancak bir !!{injective} $g\colon A
+  \to \PosInt$ fonksiyonu varsa sayılabilirdir. Tanımların eşdeğer olduğunu,
+  yani bir !!{injective} $g\colon A\to\PosInt$ fonksiyonunun ancak ve ancak
+  ya $A=\emptyset$ ise ya da bir !!{surjective} $f\colon \PosInt\to A$
+  varsa bulunduğunu gösterin.
+\end{prob}
+
+\end{document}

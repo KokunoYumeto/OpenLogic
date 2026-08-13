@@ -24,3 +24,17 @@ e633eb0f54f48d340aac8c295c499e9d4789c15360f011029b7eae2a2f9b31e6  locale/tr/cont
 92f874b697c6003c29fa0826ccb19b282135657d416bd7161e21f498ab9dfb54  locale/tr/content/sets-functions-relations/functions/inverses.tex
 98d2ea5f1a5aba70b678f92bae03b5c733b4925296ca93bdfbd21848ab38800f  locale/tr/content/sets-functions-relations/functions/composition.tex
 01320e6aa60054d71afb65dfcc94f16bccb8e54920b16b198509b5c43024b8d1  locale/tr/content/sets-functions-relations/functions/partial-functions.tex
+8ff3714b9b5c1e1964b718063e245f84a36becfaaaf6e8f5e1b0018af108dadf  locale/tr/content/sets-functions-relations/size-of-sets/size-of-sets-complete.tex
+4994b2241d689ac5b7455ce90118966985af9aa8e26871ca188c8eb75c9e2ce2  locale/tr/content/sets-functions-relations/size-of-sets/introduction.tex
+32959a5ffd4c8b46d284a5a850d766f705907269df12042e6e6a7eb95a00d685  locale/tr/content/sets-functions-relations/size-of-sets/enumerability.tex
+3571af1e593c4d580139660c3648cd262448b5e0ed6c42c9cd73835b31cca447  locale/tr/content/sets-functions-relations/size-of-sets/zig-zag.tex
+2e5f11956f1b2e4f06dc15dfc6f80ec805d982197b28cd54c645e7b6ce6fcd7d  locale/tr/content/sets-functions-relations/size-of-sets/pairing.tex
+53f7765b199b45776200f7e8e93f8f4baf31d77a148ac60f28b14ce71dbe0e55  locale/tr/content/sets-functions-relations/size-of-sets/pairing-alt.tex
+18f5f18115605ab9951718a83fe9b7e61c128fca79dd181fa9b18bbb897b6433  locale/tr/content/sets-functions-relations/size-of-sets/non-enumerability.tex
+df87db2bdce9b65b5793cb2f253214013d2c3d798196c1232506dc2268256603  locale/tr/content/sets-functions-relations/size-of-sets/reduction.tex
+2839f3ebc0104c0e9ba409784b628ed72df1a00c643af4a5ee2c0728dc826b33  locale/tr/content/sets-functions-relations/size-of-sets/equinumerous-sets.tex
+143cb2d831db3e05878199834800e58ecd011a77ff684d642fac0136ae7be107  locale/tr/content/sets-functions-relations/size-of-sets/comparing-size.tex
+3adfcf74534dbb95c3805504a1457b1d08f538c5501fa6c877b8426139a82ad6  locale/tr/content/sets-functions-relations/size-of-sets/schroder-bernstein.tex
+add005892561e05dc562a17c551c364bb1ad2f3ff3fb2305fbc3966d6347521d  locale/tr/content/sets-functions-relations/size-of-sets/enumerability-alt.tex
+3a794b81e3021f104c4d3695afa75dc8765d35e4635b3a1cf67bd353716e2de0  locale/tr/content/sets-functions-relations/size-of-sets/non-enumerability-alt.tex
+185ba0c0c5cd7870a973872b6798981e2a23927a4d2ffad00c0f10dadd85a638  locale/tr/content/sets-functions-relations/size-of-sets/reduction-alt.tex

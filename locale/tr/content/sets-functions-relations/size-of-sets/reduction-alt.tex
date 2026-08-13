@@ -1,0 +1,139 @@
+% Part:sets-functions-relations
+% Chapter: size-of-sets
+% Section: reduction-alt
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{siz}{red-alt}
+
+\olsection{İndirgeme}
+
+\begin{editorial}
+  Bu kesim, \olref[nen-alt]{sec}'teki sonuçlara koşut olarak indirgeme yoluyla
+  sayılamazlığı ispatlar. \olref[nen]{sec}'teki sonuçlara koşut, biraz daha
+  ayrıntılı bir alternatif sürüm \olref[red]{sec}'te verilmiştir.
+\end{editorial}
+
+Bir köşegenleştirme argümanıyla $\Bin^\omega$'nın !!{nonenumerable}
+olduğunu ispatladık. Benzer bir köşegenleştirme argümanını $\Pow{\Nat}$'ın
+!!{nonenumerable} olduğunu göstermek için kullandık. Fakat $\Pow{\Nat}$'ın
+!!{nonenumerable} olduğunu şöyle başka bir yolla da ispatlayabiliriz:
+\emph{$\Pow{\Nat}$ !!{enumerable} ise $\Bin^\omega$'nın da !!{enumerable}
+olduğunu} gösterin. $\Bin^\omega$'nın !!{nonenumerable} olduğunu bildiğimiz
+için $\Pow{\Nat}$'ın da öyle olduğu sonucu çıkar.
+
+Buna bir problemi diğerine \emph{indirgemek} denir. Bu durumda
+$\Bin^\omega$'yı numaralandırma problemini $\Pow{\Nat}$'ı numaralandırma
+problemine indirgiyoruz. İkincisinin bir çözümü, yani $\Pow{\Nat}$'ın bir
+numaralandırması, birincisinin de bir çözümünü, yani $\Bin^\omega$'nın bir
+numaralandırmasını verirdi.
+
+Bir $B$ kümesini numaralandırma problemini bir $A$ kümesini numaralandırma
+problemine indirgemek için $A$'nın bir numaralandırmasını $B$'nin bir
+numaralandırmasına dönüştürmenin yolunu sağlarız. Bunu yapmanın en kolay yolu
+bir !!{surjection} $f\colon A\to B$ tanımlamaktır. $x_1$, $x_2$, \dots{}
+$A$'yı numaralandırıyorsa $f(x_1)$, $f(x_2)$, \dots{} da $B$'yi
+numaralandırır. Bizim durumumuzda bir !!{surjection}
+$f\colon\Pow{\Nat}\to\Bin^\omega$ arıyoruz.
+
+\begin{prob}
+Bir !!{injective} $g\colon B\to A$ fonksiyonu varsa ve $B$
+!!{nonenumerable} ise $A$'nın da !!{nonenumerable} olduğunu gösterin. Bunu,
+$A$'nın bir numaralandırmasını $B$'nin bir numaralandırmasına dönüştürmek
+için $g$'yi nasıl kullanabileceğinizi göstererek yapın.
+\end{prob}
+
+\begin{proof}[{\olref[nen-alt]{thm:nonenum-pownat}}'ın indirgemeyle ispatı]
+Bir indirgeme için $\Pow{\Nat}$'ın !!{enumerable} olduğunu ve dolayısıyla
+$N_1$, $N_2$, $N_3$, \dots{} biçiminde bir numaralandırmasının bulunduğunu
+varsayın.
+
+$f\colon\Pow{\Nat}\to\Bin^\omega$ fonksiyonunu, $f(N)$ bütün
+$n\in\Nat$ için $s(n)=1$ ancak ve ancak $n\in N$, aksi hâlde $s(n)=0$ olacak
+biçimdeki $s$ dizgisi olsun diyerek tanımlayın.
+
+Bu açıkça bir fonksiyon tanımlar; çünkü $N\subseteq\Nat$ olduğunda herhangi
+bir $n\in\Nat$ ya $N$'nin bir !!a{element}ıdır ya da değildir. Örneğin çift
+doğal sayılar kümesi $2\Nat=\Setabs{2n}{n\in\Nat}=\{0,2,4,6,\dots\}$,
+$1010101\dots$ dizgisine; $\emptyset$, $0000\dots$ dizgisine; $\Nat$ da
+$1111\dots$ dizgisine eşlenir.
+
+Fonksiyon aynı zamanda !!{surjective}dir: her $0$ ve $1$ dizgisi bir doğal
+sayılar kümesine, yani üyeleri dizgide $1$ bulunan konumlara karşılık gelen
+doğal sayılardan oluşan kümeye karşılık gelir. Daha kesin olarak
+$s\in\Bin^\omega$ ise $N\subseteq\Nat$'ı şöyle tanımlayın:
+\[
+N = \Setabs{n \in \Nat}{s(n) = 1}.
+\]
+O zaman $f$'nin tanımına başvurularak doğrulanabileceği üzere $f(N)=s$ olur.
+
+Şimdi şu listeyi düşünün:
+\[
+f(N_1), f(N_2), f(N_3), \dots
+\]
+$f$ !!{surjective} olduğundan $\Bin^\omega$'nın her üyesi uygun bir argümanda
+$f$'nin bir değeri ve dolayısıyla listede yer alan bir eleman olmalıdır.
+Öyleyse bu liste $\Bin^\omega$'nın tamamını numaralandırmalıdır.
+
+Dolayısıyla $\Pow{\Nat}$ !!{enumerable} olsaydı $\Bin^\omega$ da
+!!{enumerable} olurdu. Ancak $\Bin^\omega$ !!{nonenumerable}dır
+(\olref[nen-alt]{thm:nonenum-bin-omega}). O hâlde $\Pow{\Nat}$ da
+!!{nonenumerable}dır.
+\end{proof}
+
+% Aşağıdaki açıklama kaynakta yorum satırları içinde tutulmuştur.
+%\begin{explain}
+%İndirgemenin hangi yönde yapıldığı konusunda kafa karışıklığı yaşamak
+%kolaydır. Örneğin bir !!{surjective} $g\colon\Bin^\omega\to X$ fonksiyonu
+%$X$'in !!{nonenumerable} olduğunu \emph{göstermez}. (Bir $0$ ve $1$
+%dizgisini ilk !!{element}ına götüren $g(s)=s(1)$ ile tanımlı
+%$g\colon\Bin^\omega\to\Bin$ fonksiyonunu düşünün. Bazı dizgiler $0$,
+%bazıları $1$ ile başladığı için örten olsa da $\Bin$ sonludur.) Ayrıca $f$
+%örten olmalıdır; aksi hâlde argüman işlemez: $f(x_1)$, $f(x_2)$, \dots{}
+%listesinin $Y$'nin bütün !!{element}larını içereceği güvence altında olmaz.
+%Örneğin $h\colon\Nat\to\Bin^\omega$,
+%\[
+%h(n)=\underbrace{00\dots0}_{\text{$n$ tane $0$}}111\dots
+%\]
+%ile tanımlanan bir fonksiyondur; fakat $\Nat$ !!{enumerable}dir.
+%\end{explain}
+
+\begin{prob}\label{sfr:siz:red-alt:prob:nat-nat}
+  Bütün $f\colon\Nat\to\Nat$ fonksiyonlarının kümesi $X$'in bir indirgeme
+  argümanıyla !!{nonenumerable} olduğunu gösterin. (İpucu: $X$'ten
+  $\Bin^\omega$'ya örten bir fonksiyon verin.)
+\end{prob}
+
+\begin{prob}
+Doğal sayı ikililerinin bütün \emph{kümelerinden} oluşan
+$\Pow{\Nat\times\Nat}$ kümesinin bir indirgeme argümanıyla !!{nonenumerable}
+olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+Doğal sayıların sonsuz dizileri kümesi $\Nat^\omega$'nın bir indirgeme
+argümanıyla !!{nonenumerable} olduğunu gösterin.
+\end{prob}
+
+% Aşağıdaki problem kaynakta yorum satırları içinde tutulmuştur.
+%\begin{prob}
+%$P$, $\Nat$'tan $\{0\}$'a giden fonksiyonlar kümesi; $Q$ da pozitif tam
+%sayılardan $\{0\}$'a giden \emph{kısmi} fonksiyonlar kümesi olsun. $P$'nin
+%!!{enumerable}, $Q$'nun ise öyle olmadığını gösterin. (İpucu:
+%$\Bin^\omega$'yı numaralandırma problemini $Q$'yu numaralandırma problemine
+%indirgeyin.)
+%\end{prob}
+
+\begin{prob}
+$S$, $\Nat$'tan $\{0,1\}$ kümesine giden bütün !!{surjection}ların kümesi
+olsun; yani $S$, bütün !!{surjection} $f\colon\Nat\to\Bin$ fonksiyonlarından
+oluşsun. $S$'nin !!{nonenumerable} olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+Bütün gerçel sayılar kümesi $\Real$'in !!{nonenumerable} olduğunu gösterin.
+\end{prob}
+
+\end{document}

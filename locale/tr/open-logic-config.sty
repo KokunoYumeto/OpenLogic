@@ -6,6 +6,15 @@
 \settexttoken{formula}*{formül}{formüller}
 \settexttoken{language}*{dil}{diller}
 \settexttoken{derivation}*{türetim}{türetimler}
+\settexttoken{enumerable}{sayılabilir}{sayılabilir}[Sayılabilir][Sayılabilir]
+\settexttoken{nonenumerable}{sayılamaz}{sayılamaz}[Sayılamaz][Sayılamaz]
+\settexttoken{denumerable}{sayılabilir sonsuz}{sayılabilir sonsuz}[Sayılabilir sonsuz][Sayılabilir sonsuz]
+\settexttoken{injective}{bire bir}{bire bir}[Bire bir][Bire bir]
+\settexttoken{injection}{bire bir fonksiyon}{bire bir fonksiyonlar}[Bire bir fonksiyon][Bire bir fonksiyonlar]
+\settexttoken{surjective}{örten}{örten}[Örten][Örten]
+\settexttoken{surjection}{örten fonksiyon}{örten fonksiyonlar}[Örten fonksiyon][Örten fonksiyonlar]
+\settexttoken{bijective}{bire bir örten}{bire bir örten}[Bire bir örten][Bire bir örten]
+\settexttoken{bijection}{bire bir örten fonksiyon}{bire bir örten fonksiyonlar}[Bire bir örten fonksiyon][Bire bir örten fonksiyonlar]
 
 % Turkish has no indefinite article. Keep upstream token calls structurally
 % intact while suppressing English a/an output for admitted tokens.
@@ -17,3 +26,21 @@
 \definetoken{A}{language}{}
 \definetoken{a}{derivation}{}
 \definetoken{A}{derivation}{}
+\definetoken{a}{enumerable}{}
+\definetoken{A}{enumerable}{}
+\definetoken{a}{nonenumerable}{}
+\definetoken{A}{nonenumerable}{}
+\definetoken{a}{denumerable}{}
+\definetoken{A}{denumerable}{}
+\definetoken{a}{injective}{}
+\definetoken{A}{injective}{}
+\definetoken{a}{injection}{}
+\definetoken{A}{injection}{}
+\definetoken{a}{surjective}{}
+\definetoken{A}{surjective}{}
+\definetoken{a}{surjection}{}
+\definetoken{A}{surjection}{}
+\definetoken{a}{bijective}{}
+\definetoken{A}{bijective}{}
+\definetoken{a}{bijection}{}
+\definetoken{A}{bijection}{}

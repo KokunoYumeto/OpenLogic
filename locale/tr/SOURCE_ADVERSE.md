@@ -1,11 +1,12 @@
-# Source-adverse ledger through OLP-0026
+# Source-adverse ledger through OLP-0040
 
 Date: 2026-08-13
 Authority commit: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
 
 The upstream checkout remains byte-untouched. The Turkish reader contains
-transparent, source-audited emendations for eight defects in the frozen English
-source. Exact source and target states remain separately hash-bound.
+transparent, source-audited emendations and foundational qualifications for
+defects in the frozen English source. Exact source and target states remain
+separately hash-bound.
 
 ## OLP-0012 — undefined identity symbol
 
@@ -55,3 +56,13 @@ retained in full.
 
 These corrections preserve the intended mathematics while preventing an
 unqualified literal-source claim. They do not extend translated coverage.
+
+## OLP-0031--OLP-0040 — size-of-sets chapter
+
+The chapter-level disclosure is preserved in `SOURCE_ADVERSE_0040.md`. It
+records triangular-number prose, two pairing-enumeration defects, explicit
+countable-choice and comparability qualifications, pairing-table typos,
+undefined sequence variables, a finite-string/infinite-sequence mismatch, an
+incorrect function name in an empty-set argument, a diagonal quantifier error,
+two diagonal indexing/bit-flip errors, and a duplicate raw LaTeX label. Each
+Turkish emendation is tied to the exact frozen source hash.

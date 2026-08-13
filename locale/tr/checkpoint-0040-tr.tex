@@ -1,0 +1,78 @@
+% Turkish source-bound cumulative checkpoint through OLP-0040.
+% This is not the complete Turkish Open Logic edition.
+\documentclass[openany]{memoir}
+\PassOptionsToPackage{english}{babel}
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{tr}
+\newcommand*{\ollanguage}{english}
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setlength{\emergencystretch}{1.5em}
+\usepackage{gitinfo2}
+\input{\olpath/sty/open-logic.sty}
+\babelprovide[import]{turkish}
+\AtBeginDocument{\selectlanguage{turkish}}
+\input{\olpath/sty/open-logic-defer.sty}
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{titlingpage}
+\begin{raggedleft}
+\HUGE\selectfont\bfseries\sffamily AÇIK MANTIK METNİ
+\vskip 3ex
+\normalfont\huge Türkçe kümülatif yayın kontrol noktası
+\vskip 2ex
+\Large OLP-0001--OLP-0040
+\vskip 4ex
+\large Open Logic Project kaynak revizyonu
+\par\vskip 1ex
+\normalsize\texttt{9620cc73f9c8e0ad003c514a5d3748f29611c4c0}
+\end{raggedleft}
+\vfill
+\noindent\textbf{Kapsam uyarısı.}
+Bu belge, 722 dosyalık Türkçe baskının kaynak-bağlı kümülatif yayın
+kontrol noktasıdır; tam baskı değildir. Kırk kaynak modülü işlenmiş,
+yapısal olarak karşılaştırılmış ve bağımsız yapay zekâ/model kaynak ve dil
+denetiminden geçirilmiştir. Kaynaktaki kusurlara yönelik saydam düzeltmeler
+kontrol kaydında belirtilmiştir.
+
+\vskip 2ex
+\noindent Kaynak: The Open Logic Project, CC BY 4.0. Türkçe çeviri ve
+değişiklikler de uygun atıfla bu lisans kapsamında sunulur. Bu bağımsız
+uyarlama Open Logic Project tarafından onaylanmış değildir.
+\end{titlingpage}
+
+\input{content/open-logic-about}
+\tableofcontents*
+\clearpage
+
+% Execute translated routing modules while suppressing imports beyond this
+% bounded checkpoint. This preserves their reader-visible editorial matter
+% without admitting missing or English fallback files.
+\begingroup
+\RenewDocumentCommand \olimport { s o m o } {}
+\subfile{content/content}
+\endgroup
+
+\begingroup
+\RenewDocumentCommand \olimport { s o m o } {}
+\subfile{content/sets-functions-relations/sets-functions-relations-complete}
+\endgroup
+
+\olimport*[sets-functions-relations/sets]{sets}
+\olimport*[sets-functions-relations/relations]{relations-complete}
+\olimport*[sets-functions-relations/functions]{functions}
+\olimport*[sets-functions-relations/size-of-sets]{size-of-sets-complete}
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}
