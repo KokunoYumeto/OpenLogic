@@ -1,0 +1,208 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: unique-readability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{unq}
+
+\olsection{Keterbacaan Unik}
+
+\begin{explain}
+Cara kita mendefinisikan !!{formula}s menjamin bahwa setiap !!{formula}
+memiliki \emph{pembacaan unik}, yakni pada dasarnya hanya ada satu cara
+untuk membangunnya menurut aturan pembentukan !!{formula}s dan hanya satu
+cara untuk ``menafsirkannya.'' Jika tidak demikian, kita akan mempunyai
+!!{formula}s ambigu, yakni !!{formula}s yang memiliki lebih dari satu
+pembacaan atau penafsiran---dan hal ini jelas ingin kita hindari. Lebih
+penting lagi, tanpa sifat ini, sebagian besar definisi dan bukti yang akan
+kita berikan tidak akan berhasil.
+
+Barangkali cara terbaik untuk memperjelas hal ini ialah melihat apa yang
+akan terjadi jika kita memberikan aturan pembentukan !!{formula}s yang buruk
+dan tidak menjamin keterbacaan unik. Misalnya, kita dapat saja melupakan
+tanda kurung dalam aturan pembentukan untuk penghubung; sebagai contoh,
+kita mungkin mengizinkan aturan berikut:
+\begin{quote}
+Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $!A \lif !B$ juga
+merupakan !!a{formula}.
+\end{quote}
+Berawal dari formula atomik $!D$, aturan ini memungkinkan kita membentuk
+$!D \lif !D$. Dari formula tersebut bersama $!D$, kita akan memperoleh
+$!D \lif !D \lif !D$. Namun, ada dua cara untuk melakukannya:
+\begin{enumerate}
+\item Kita mengambil $!D$ sebagai $!A$ dan $!D \lif !D$ sebagai $!B$.
+\item Kita mengambil $!A$ sebagai $!D \lif !D$ dan $!B$ sebagai~$!D$.
+\end{enumerate}
+Sejalan dengan itu, ada dua cara untuk ``membaca'' !!{formula}~$!D \lif !D
+\lif !D$. Formula tersebut berbentuk $!B \lif !C$ dengan $!B$ ialah $!D$
+dan $!C$ ialah $!D \lif !D$, tetapi formula itu \emph{juga} berbentuk $!B
+\lif !C$ dengan $!B$ ialah $!D \lif !D$ dan $!C$ ialah~$!D$.
+
+Jika hal ini terjadi, definisi kita tidak selalu berhasil. Misalnya, ketika
+kita mendefinisikan !!{main operator} suatu formula, kita mengatakan: dalam
+formula yang berbentuk $!B \lif !C$, !!{main operator} adalah kemunculan
+$\lif$ yang ditunjukkan. Namun, jika formula $!D \lif !D \lif !D$ dapat
+dicocokkan dengan $!B \lif !C$ melalui dua cara berbeda yang disebutkan di
+atas, dalam kasus pertama kita memperoleh kemunculan pertama $\lif$ sebagai
+!!{main operator}, sedangkan dalam kasus kedua kita memperoleh kemunculan
+kedua. Padahal, kita bermaksud menjadikan !!{main operator} sebagai suatu
+\emph{fungsi} dari !!{formula}; dengan kata lain, setiap !!{formula} harus
+memiliki tepat satu kemunculan !!{main operator}.
+\end{explain}
+
+\begin{lem}
+Banyaknya tanda kurung kiri dan tanda kurung kanan dalam
+!!a{formula}~$!A$ adalah sama.
+\end{lem}
+
+\begin{proof}
+Kita membuktikannya melalui induksi pada cara $!A$ dibangun. Hal ini
+memerlukan dua langkah: (a) Mula-mula kita harus membuktikan bahwa semua
+formula atomik memiliki sifat yang dimaksud (basis induksi). (b) Kemudian
+kita harus membuktikan bahwa ketika kita membangun formula baru dari formula
+yang diberikan, formula baru itu memiliki sifat tersebut asalkan formula
+lama memilikinya.
+
+Misalkan $l(!A)$ menyatakan banyaknya tanda kurung kiri dan $r(!A)$
+banyaknya tanda kurung kanan dalam~$!A$; demikian pula, $l(t)$ dan $r(t)$
+masing-masing menyatakan banyaknya tanda kurung kiri dan kanan dalam suatu
+suku~$t$.
+
+\begin{prob}
+    Buktikan bahwa untuk setiap suku~$t$, $l(t) = r(t)$.
+\end{prob}
+
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\indfrm$ memiliki $0$ tanda
+    kurung kiri dan $0$ tanda kurung kanan.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\indfrm$ memiliki $0$ tanda
+    kurung kiri dan $0$ tanda kurung kanan.}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1,\dots,t_n}}{$l(\indfrm) = 1 + l(t_1) +
+  \dots + l(t_n) = 1 + r(t_1) + \dots + r(t_n) = r(\indfrm)$. Di sini kita
+  menggunakan fakta, yang diserahkan sebagai latihan, bahwa $l(t) = r(t)$
+  untuk setiap suku~$t$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$l(\indfrm) = l(t_1) + l(t_2) =
+  r(t_1) + r(t_2) = r(\indfrm)$.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{Menurut hipotesis induksi,
+    $l(!B) = r(!B)$. Jadi, $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{Menurut hipotesis induksi, $l(!B) =
+  r(!B)$ dan $l(!C) = r(!C)$. Jadi, $l(\indfrm) = 1 + l(!B) + l(!C) =
+  1 + r(!B) + r(!C) = r(\indfrm)$.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{Menurut hipotesis
+    induksi, $l(!B) = r(!B)$. Jadi, $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$.}}{}
+
+% Cetak kasus \lexists jika prvEx dan bukan prvAll
+\tagitem{prvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Menurut hipotesis
+    induksi, $l(!B) = r(!B)$. Jadi, $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$.}}
+
+% Cukup katakan serupa jika prvEx dan prvAll
+\tagitem{notprvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Serupa.}}
+\end{enumerate}
+\end{proof}
+
+\begin{defn}[Prefiks sejati]
+Suatu untai simbol $!B$ merupakan \emph{prefiks sejati} dari suatu untai
+simbol~$!A$ jika konkatenasi $!B$ dengan suatu untai simbol takkosong
+menghasilkan~$!A$.
+\end{defn}
+
+\begin{lem}\ollabel{lem:no-prefix}
+Jika $!A$ merupakan !!a{formula} dan $!B$ merupakan prefiks sejati dari
+$!A$, maka $!B$ bukan !!a{formula}.
+\end{lem}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][unq]{lem:no-prefix}.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:unique-atomic}
+Jika $!A$ merupakan !!{formula} atomik, maka formula tersebut memenuhi tepat
+satu dari kondisi-kondisi berikut.
+\begin{enumerate}
+\tagitem{prvFalse}{$!A \ident \lfalse$.}{}
+\tagitem{prvTrue}{$!A \ident \ltrue$.}{}
+\item $!A \ident \Atom{R}{t_1,\dots,t_n}$, dengan $R$ merupakan
+  !!{predicate} $n$-tempat, $t_1$, \dots, $t_n$ merupakan suku, dan
+  masing-masing dari $R$, $t_1$, \dots, $t_n$ ditentukan secara unik.
+\item $!A \ident \eq[t_1][t_2]$, dengan $t_1$ dan $t_2$ merupakan suku
+  yang ditentukan secara unik.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][unq]{prop:unique-atomic} (Petunjuk: Rumuskan dan
+buktikan versi \olref[fol][syn][unq]{lem:no-prefix} untuk suku.)
+\end{prob}
+
+\begin{prop}[Keterbacaan Unik]
+Setiap !!{formula} memenuhi tepat satu dari kondisi-kondisi berikut.
+\begin{enumerate}
+\item $!A$ bersifat atomik.
+
+\tagitem{prvNot}{$!A$ berbentuk $\lnot !B$.}{}
+
+\tagitem{prvAnd}{$!A$ berbentuk $(!B \land !C)$.}{}
+
+\tagitem{prvOr}{$!A$ berbentuk $(!B \lor !C)$.}{}
+
+\tagitem{prvIf}{$!A$ berbentuk $(!B \lif !C)$.}{}
+
+\tagitem{prvIff}{$!A$ berbentuk $(!B \liff !C)$.}{}
+
+\tagitem{prvAll}{$!A$ berbentuk $\lforall[x][!B]$.}{}
+
+\tagitem{prvEx}{$!A$ berbentuk $\lexists[x][!B]$.}{}
+\end{enumerate}
+Selain itu, dalam setiap kasus, $!B$, atau $!B$ dan $!C$, ditentukan secara
+unik. Artinya, misalnya, tidak ada pasangan berbeda $!B$, $!C$ dan $!B'$,
+$!C'$ sedemikian sehingga $!A$ sekaligus berbentuk
+\iftag{prvIf}{$(!B \lif !C)$ dan $(!B' \lif !C')$.}{
+    \iftag{prvOr}{$(!B \lor !C)$ dan $(!B' \lor !C')$.}{
+      \iftag{prvAnd}{$(!B \land !C)$ dan $(!B' \land !C')$.}{}}}
+\end{prop}
+
+\begin{proof}
+Aturan pembentukan mensyaratkan bahwa jika !!a{formula} tidak atomik,
+formula itu harus diawali oleh tanda kurung buka~(,
+\iftag{prvNot}{$\lnot$,}{} atau suatu kuantor. Di sisi lain, setiap
+!!{formula} yang diawali oleh salah satu simbol berikut harus bersifat
+atomik: !!a{predicate}, !!a{function},
+!!a{constant}\iftag{prvFalse}{, $\lfalse$}{}\iftag{prvTrue}{, $\ltrue$}{}.
+
+Jadi, kita hanya perlu menunjukkan bahwa jika $!A$ berbentuk $(!B \ast
+!C)$ dan juga berbentuk $(!B' \mathbin{\ast'} !C')$, maka $!B \ident !B'$,
+$!C \ident !C'$, dan $\ast = {\ast'}$.
+
+Andaikan $!A \ident (!B \ast !C)$ dan $!A \ident (!B'
+\mathbin{\ast'} !C')$ keduanya berlaku. Maka $!B \ident !B'$ atau tidak.
+Jika berlaku, jelaslah bahwa $\ast = {\ast'}$ dan $!C \ident !C'$, karena
+keduanya kemudian merupakan subuntai $!A$ yang dimulai pada posisi yang sama
+dan memiliki panjang yang sama. Kasus lainnya ialah $!B \not\ident !B'$.
+Karena $!B$ dan $!B'$ sama-sama merupakan subuntai $!A$ yang dimulai pada
+posisi yang sama, salah satunya harus menjadi prefiks sejati dari yang lain.
+Namun, hal ini mustahil menurut \olref{lem:no-prefix}.
+\end{proof}
+
+
+\end{document}

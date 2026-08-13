@@ -1,0 +1,103 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: main-operator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{mai}
+
+\olsection{\printtoken{S}{main operator} Formula}
+
+\begin{explain}
+Sering kali berguna untuk membicarakan operator terakhir yang digunakan
+dalam membangun !!a{formula}~$!A$. Operator ini disebut \emph{!!{main
+  operator}} dari~$!A$. Secara intuitif, operator tersebut merupakan
+operator ``terluar'' dari $!A$. Misalnya, !!{main operator} dari $\lnot !A$
+ialah $\lnot$, !!{main operator} dari $(!A \lor !B)$ ialah $\lor$, dan
+seterusnya.
+\end{explain}
+
+
+\begin{defn}[!!^{main operator}]
+\ollabel{def:main-op}
+\emph{!!{main operator}} suatu !!{formula}~$!A$ didefinisikan sebagai
+berikut:
+\begin{enumerate}
+\item \indcase*{!A}{!A}{$\indfrm$ tidak memiliki !!{main operator}.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{!!{main operator} dari $\indfrm$
+  ialah~$\lnot$.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{!!{main operator} dari
+  $\indfrm$ ialah~$\land$.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{!!{main operator} dari
+  $\indfrm$ ialah~$\lor$.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{!!{main operator} dari
+  $\indfrm$ ialah~$\lif$.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{!!{main operator} dari
+  $\indfrm$ ialah~$\liff$.}}{}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{!!{main operator} dari
+  $\indfrm$ ialah~$\lforall$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{!!{main operator} dari
+  $\indfrm$ ialah~$\lexists$.}}{}
+\end{enumerate}
+\end{defn}
+
+Dalam setiap kasus, yang kita maksud ialah \emph{kemunculan} tertentu dari
+!!{main operator} yang ditunjukkan dalam formula. Misalnya, karena formula
+$((!D \lif !E) \lif (!E \lif !D))$ berbentuk $(!B \lif !C)$ dengan $!B$
+ialah $(!D \lif !E)$ dan $!C$ ialah $(!E \lif !D)$, kemunculan kedua
+$\lif$ merupakan !!{main operator}.
+
+\begin{explain}
+Ini merupakan definisi \emph{rekursif} suatu fungsi yang memetakan semua
+!!{formula}s nonatomik ke kemunculan !!{main operator}-nya. Karena cara
+!!{formula}s didefinisikan secara induktif, setiap !!{formula}~$!A$
+memenuhi salah satu kasus dalam \olref{def:main-op}. Hal ini menjamin bahwa
+untuk setiap !!{formula} nonatomik~$!A$, terdapat suatu !!{main operator}.
+Karena setiap !!{formula} hanya memenuhi satu dari kondisi-kondisi tersebut,
+dan karena !!{formula}s yang lebih kecil yang digunakan untuk membangun
+$!A$ ditentukan secara unik dalam setiap kasus, kemunculan !!{main
+  operator} dari~$!A$ juga unik. Dengan demikian, kita telah mendefinisikan
+suatu fungsi.
+\end{explain}
+
+Kita menamai !!{formula}s menurut \olref{tab:main-op}, bergantung pada simbol
+yang menjadi !!{main operator}-nya.
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+{ Namun, ingatlah bahwa operator terdefinisi secara resmi tidak muncul dalam
+!!{formula}s. Operator tersebut hanyalah singkatan, sehingga secara resmi
+tidak dapat menjadi operator utama suatu formula. Oleh karena itu, dalam
+bukti tentang semua !!{formula}s, operator tersebut tidak perlu ditangani
+secara tersendiri.}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c | c | c}
+!!^{main operator} & Jenis !!{formula} & Contoh\\
+\hline
+tidak ada & atomik (!!{formula}) &
+\iftag{prvFalse}{$\lfalse$,}{}
+\iftag{prvTrue}{$\ltrue$,}{}
+$\Atom{R}{t_1, \dots, t_n}$,
+$\eq[t_1][t_2]$\\
+$\lnot$ & negasi & $\lnot !A$ \\
+$\land$ & konjungsi & $(!A \land !B)$ \\
+$\lor$ & disjungsi & $(!A \lor !B)$ \\
+$\lif$ & !!{conditional} & $(!A \lif !B)$ \\
+$\liff$ & !!{biconditional} & $(!A \liff !B)$ \\
+$\lforall[][]$ & !!^{formula} universal & $\lforall[x][!A]$ \\
+$\lexists[][]$ & !!^{formula} eksistensial & $\lexists[x][!A]$
+\end{tabular}
+\caption{Operator utama dan nama !!{formula}s}
+\ollabel{tab:main-op}
+\end{table}
+
+\end{document}

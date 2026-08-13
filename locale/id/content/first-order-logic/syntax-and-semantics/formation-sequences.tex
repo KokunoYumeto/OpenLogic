@@ -1,0 +1,275 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{fseq}
+
+\olsection{Barisan Pembentukan}
+
+Mendefinisikan !!{formula}s melalui suatu definisi induktif, beserta teknik
+pelengkap berupa pembuktian sifat-sifat !!{formula}s melalui induksi,
+merupakan pendekatan yang anggun dan efisien. Namun, pendekatan dari bawah
+ke atas dan langkah demi langkah terhadap pembangunan !!{formula}s juga
+dapat berguna. Di sini kita melakukannya dengan menggunakan gagasan
+\emph{barisan pembentukan}.
+%
+Untuk menunjukkan bagaimana suku dan !!{formula}s dapat diperkenalkan dengan
+cara ini tanpa perlu merujuk kepada definisi induktifnya, mula-mula kita
+memperkenalkan gagasan untai simbol sembarang yang diambil dari suatu
+bahasa~$\Lang L$.
+
+\begin{defn}[Untai]
+\ollabel{defn:string}
+Andaikan $\Lang L$ merupakan suatu bahasa orde pertama. Suatu
+\emph{untai-$\Lang L$} adalah barisan berhingga simbol-simbol dari~$\Lang L$.
+Jika bahasa~$\Lang L$ jelas ditetapkan oleh konteks, kita akan sering
+menyebut untai-$\Lang L$ cukup sebagai \emph{untai}.
+\end{defn}
+
+\begin{ex}
+Untuk setiap bahasa orde pertama $\Lang L$, semua
+!!{formula}s-$\Lang L$ merupakan untai-$\Lang L$, tetapi tidak sebaliknya.
+Sebagai contoh, 
+\[)(\Obj v_0\lif\lexists\]
+merupakan untai-$\Lang L$, tetapi bukan !!{formula}-$\Lang L$.
+\end{ex}
+
+\begin{defn}[Barisan pembentukan untuk suku]
+\ollabel{defn:fseq-trm}
+Suatu barisan berhingga untai-$\Lang L$, yaitu
+$\tuple{t_0,\dotsc,t_n}$, merupakan \emph{barisan pembentukan} untuk suatu
+suku $t$ jika $t \ident t_n$ dan, untuk setiap $i \leq n$, $t_i$ merupakan
+!!a{variable} atau !!a{constant}, atau $\Lang L$ memuat suatu !!{function}
+$k$-tempat~$f$ dan terdapat $m_1,\dotsc,m_k < i$ sedemikian sehingga
+$t_i \ident f(t_{m_1},\dotsc,t_{m_k})$. Jika perlu dibedakan, barisan
+pembentukan untuk suku akan kita sebut \emph{barisan pembentukan suku}.
+\end{defn}
+
+\begin{ex}
+Barisan
+\[
+    \tuple{\Obj c_0, \Obj v_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}
+\]
+merupakan barisan pembentukan untuk suku $\Atom{\Obj f^1_0}{\Atom{\Obj
+f^2_0}{\Obj c_0, \Obj v_0}}$, demikian pula
+\[
+    \tuple{\Obj v_0, \Obj c_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}.
+\]
+\end{ex}
+
+\begin{defn}[Barisan pembentukan untuk formula]
+\ollabel{defn:fseq-frm}
+Suatu barisan berhingga untai-$\Lang L$, yaitu
+$\tuple{!A_0,\dotsc,!A_n}$, merupakan \emph{barisan pembentukan} untuk~$!A$
+jika $!A \ident !A_n$ dan, untuk setiap $i \leq n$, $!A_i$ merupakan
+!!{formula} atomik atau terdapat $j,k < i$ serta !!a{variable}~$x$
+sedemikian sehingga salah satu dari hal berikut berlaku:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A_i \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A_i \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+Jika perlu dibedakan, barisan pembentukan untuk formula akan kita sebut
+\emph{barisan pembentukan formula}.
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}
+\]
+merupakan barisan pembentukan untuk $\lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj
+c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]$, demikian pula
+\begin{multline*}
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \Atom{\Obj A^1_1}{\Obj c_1},\\
+    \lforall[\Obj v_1][\Atom{\Obj A^1_0}{\Obj v_0}],
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}.
+\end{multline*}
+%
+Sebagaimana tampak dari contoh kedua, barisan pembentukan dapat memuat
+``sampah'': !!{formula}s yang mubazir atau tidak turut membangun hasil
+akhirnya.
+\end{ex}
+
+\begin{prop}\ollabel{prop:formed}
+Setiap !!{formula}~$!A$ dalam~$\Frm[L]$ memiliki barisan pembentukan.
+\end{prop}
+
+\begin{proof}
+Andaikan $!A$ atomik. Maka barisan $\tuple{!A}$ merupakan barisan
+pembentukan untuk~$!A$.
+%
+Sekarang andaikan $!B$ dan~$!C$ masing-masing memiliki barisan pembentukan
+$\tuple{!B_0,\dotsc,!B_n}$ dan $\tuple{!C_0,\dotsc,!C_m}$.
+%
+\begin{enumerate}
+  \tagitem{prvNot}{Jika $!A \ident \lnot !B$,
+      maka $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvAnd}{Jika $!A \ident (!B \land !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvOr}{Jika $!A \ident (!B \lor !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvIf}{Jika $!A \ident (!B \lif !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvIff}{Jika $!A \ident (!B \liff !C)$,
+      maka $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvAll}{Jika $!A \ident \lforall[x][!B]$,
+      maka $\tuple{!B_0,\dotsc,!B_n,\lforall[x][!B_n]}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+  \tagitem{prvEx}{Jika $!A \ident \lexists[x][!B]$,
+      maka $\tuple{!B_0,\dotsc,!B_n,\lexists[x][!B_n]}$
+      merupakan barisan pembentukan untuk~$!A$.}{}
+\end{enumerate}
+Menurut prinsip induksi pada !!{formula}s, setiap !!{formula} memiliki
+barisan pembentukan.
+\end{proof}
+
+Kita juga dapat membuktikan arah sebaliknya. Hal ini penting karena
+menunjukkan bahwa kedua cara kita mendefinisikan formula adalah ekuivalen:
+keduanya memberikan hasil yang sama. Hal ini juga berarti bahwa kita dapat
+membuktikan teorema tentang formula dengan menggunakan induksi biasa pada
+panjang barisan pembentukan.
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+Andaikan $\tuple{!A_0,\dotsc,!A_n}$ merupakan barisan pembentukan
+untuk~$!A_n$, dan $k \leq n$. Maka $\tuple{!A_0,\dotsc,!A_k}$ merupakan
+barisan pembentukan untuk~$!A_k$.
+\end{lem}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][fseq]{lem:fseq-init}.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L]$ merupakan himpunan semua untai-$\Lang L$~$!A$ sedemikian sehingga
+terdapat suatu barisan pembentukan formula untuk~$!A$.
+\end{thm}
+
+\begin{proof}
+Misalkan $F$ ialah himpunan semua untai simbol dalam bahasa~$\Lang L$ yang
+memiliki barisan pembentukan. Kita telah melihat dalam
+\olref[fol][syn][fseq]{prop:formed} bahwa $\Frm[L] \subseteq F$, sehingga
+sekarang kita membuktikan arah sebaliknya.
+
+Andaikan $!A$ memiliki barisan pembentukan $\tuple{!A_0,\dotsc,!A_n}$. Kita
+membuktikan bahwa $!A \in \Frm[L]$ melalui induksi kuat pada~$n$, yaitu
+indeks terakhir barisan tersebut. Hipotesis induksi kita menyatakan bahwa
+setiap untai simbol dengan barisan pembentukan berindeks terakhir $m < n$
+berada dalam~$\Frm[L]$. Menurut definisi barisan pembentukan, identitas
+$!A \ident !A_n$ berlaku dengan ruas kanannya atomik, atau harus terdapat
+$j,k < n$ sedemikian sehingga salah satu dari hal berikut berlaku:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+Sekarang kita bernalar menurut kasus. Jika $!A$ atomik, maka
+$!A_n \in \Frm[L]$. Sebaliknya, andaikan $!A \ident
+(!A_j \land !A_k)$. Menurut \olref[fol][syn][fseq]{lem:fseq-init},
+$\tuple{!A_0,\dotsc,!A_j}$ dan $\tuple{!A_0,\dotsc,!A_k}$ masing-masing
+merupakan barisan pembentukan untuk $!A_j$ dan~$!A_k$. Karena keduanya
+merupakan subbarisan awal sejati dari barisan pembentukan untuk~$!A$, indeks
+terakhir keduanya lebih kecil daripada~$n$. Oleh karena itu, menurut
+hipotesis induksi, $!A_j$ dan~$!A_k$ berada dalam~$\Frm[L]$, sehingga
+menurut definisi !!a{formula}, $(!A_j \land !A_k)$ juga berada di dalamnya.
+Kasus-kasus lain mengikuti penalaran yang sejajar.
+\end{proof}
+
+Barisan pembentukan untuk suku memiliki sifat-sifat yang serupa dengan
+barisan pembentukan untuk !!{formula}s.
+
+\begin{prop}
+\ollabel{prop:fseq-trm-equiv}
+$\Trm[L]$ merupakan himpunan semua untai-$\Lang L$~$t$ sedemikian sehingga
+terdapat suatu barisan pembentukan suku untuk~$t$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][fseq]{prop:fseq-trm-equiv}.
+Petunjuk: gunakan strategi yang serupa dengan strategi dalam bukti
+\olref[fol][syn][fseq]{thm:fseq-frm-equiv}.
+\end{prob}
+
+Ada dua jenis ``sampah'' yang dapat muncul dalam barisan pembentukan: unsur
+yang berulang dan unsur yang tidak relevan bagi pembangunan formula atau
+suku. Kita dapat menghilangkan keduanya dengan meninjau barisan pembentukan
+minimal.
+
+\begin{defn}[Barisan pembentukan minimal]
+\ollabel{defn:minimal-fseq}
+Suatu barisan pembentukan $\tuple{!A_0, \ldots, !A_n}$ untuk suatu
+formula~$!A$ merupakan \emph{barisan pembentukan minimal} untuk~$!A$ jika,
+untuk setiap barisan pembentukan lain~$s$ untuk~$!A$, panjang~$s$ lebih
+besar daripada atau sama dengan~$n+1$.
+
+Demikian pula, suatu barisan pembentukan $\tuple{t_0, \ldots, t_n}$ untuk
+suatu suku~$t$ merupakan \emph{barisan pembentukan minimal} untuk~$t$ jika,
+untuk setiap barisan pembentukan lain~$s$ untuk~$t$, panjang~$s$ lebih besar
+daripada atau sama dengan~$n+1$.
+\end{defn}
+
+Perhatikan bahwa suatu formula atau suku dapat memiliki lebih dari satu
+barisan pembentukan minimal, tetapi barisan-barisan tersebut akan memuat
+tepat untai-untai yang sama.
+
+\begin{prop}
+\ollabel{prop:subformula-equivs}
+Pernyataan-pernyataan berikut ekuivalen:
+\begin{enumerate}
+    \item $!B$ merupakan !!{subformula} dari~$!A$.
+    \item $!B$ muncul dalam setiap barisan pembentukan untuk~$!A$.
+    \item $!B$ muncul dalam suatu barisan pembentukan minimal untuk~$!A$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[fol][syn][fseq]{prop:subformula-equivs}.
+\end{prob}
+
+\begin{history}
+Barisan pembentukan diperkenalkan oleh Raymond Smullyan dalam buku teksnya,
+\emph{First-Order Logic} \citep{Smullyan1968}. Sifat-sifat tambahan barisan
+pembentukan ditetapkan oleh \citet{Zuckerman1973}.
+\end{history}
+
+\end{document}

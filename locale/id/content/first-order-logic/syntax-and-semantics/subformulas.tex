@@ -1,0 +1,114 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: subformulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{sbf}
+
+\olsection{\printtoken{P}{subformula}}
+
+\begin{explain}
+Sering kali berguna untuk membicarakan !!{formula}s yang ``menyusun'' suatu
+!!{formula} tertentu. Kita menyebutnya \emph{!!{subformula}s} dari formula
+tersebut. Setiap !!{formula} merupakan !!a{subformula} dari dirinya sendiri;
+subformula dari $!A$ selain $!A$ itu sendiri disebut \emph{!!{subformula}
+sejati}.
+\end{explain}
+
+\begin{defn}[!!^{subformula} langsung]
+Jika $!A$ merupakan !!a{formula}, \emph{!!{subformula}s langsung} dari
+$!A$ didefinisikan secara induktif sebagai berikut:
+\begin{enumerate}
+\item !!^{formula}s atomik tidak memiliki !!{subformula} langsung.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{Satu-satunya !!{subformula}
+    langsung dari $\indfrm$ ialah~$!B$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{!!^{subformula}s langsung dari
+  $\indfrm$ ialah $!B$ dan $!C$ ($\ast$ merupakan salah satu penghubung
+  dua-tempat).}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{Satu-satunya
+    !!{subformula} langsung dari $\indfrm$ ialah~$!B$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{Satu-satunya
+    !!{subformula} langsung dari $\indfrm$ ialah~$!B$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!^{subformula} sejati]
+Jika $!A$ merupakan !!a{formula}, \emph{!!{subformula}s sejati} dari
+$!A$ didefinisikan secara rekursif sebagai berikut:
+\begin{enumerate}
+\item !!^{formula}s atomik tidak memiliki !!{subformula} sejati.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{!!^{subformula}s sejati dari
+    $\indfrm$ ialah~$!B$ bersama semua !!{subformula}s sejati
+    dari~$!B$.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{!!^{subformula}s sejati dari
+  $\indfrm$ ialah $!B$ dan $!C$, bersama semua !!{subformula}s sejati
+  dari $!B$ dan semua !!{subformula}s sejati dari~$!C$.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{!!^{subformula}s sejati
+    dari $\indfrm$ ialah~$!B$ bersama semua !!{subformula}s sejati
+    dari~$!B$.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{!!^{subformula}s sejati
+    dari $\indfrm$ ialah~$!B$ bersama semua !!{subformula}s sejati
+    dari~$!B$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!^{subformula}]
+!!^{subformula}s dari $!A$ ialah $!A$ itu sendiri bersama semua
+!!{subformula}s sejatinya.
+\end{defn}
+
+\begin{explain}
+Perhatikan perbedaan halus antara cara kita mendefinisikan !!{subformula}s
+langsung dan !!{subformula}s sejati. Dalam kasus pertama, kita secara
+langsung mendefinisikan !!{subformula}s langsung suatu formula~$!A$ untuk
+setiap bentuk yang mungkin dari~$!A$. Definisi tersebut merupakan definisi
+eksplisit menurut kasus, dan kasus-kasusnya mencerminkan definisi induktif
+himpunan !!{formula}s. Dalam kasus kedua, kita juga mencerminkan cara
+himpunan semua !!{formula}s didefinisikan, tetapi dalam setiap kasus kita
+turut menyertakan !!{subformula}s sejati dari !!{formula}s yang lebih kecil,
+yaitu $!B$ dan $!C$, selain !!{formula}s tersebut sendiri. Hal ini membuat
+definisi itu \emph{rekursif}. Secara umum, definisi suatu fungsi pada
+himpunan yang didefinisikan secara induktif (dalam kasus kita,
+!!{formula}s) bersifat rekursif jika kasus-kasus dalam definisi fungsi itu
+menggunakan fungsi tersebut sendiri. Namun, agar terdefinisi dengan baik,
+kita harus memastikan bahwa kita hanya menggunakan nilai fungsi pada
+argumen yang muncul ``sebelum'' argumen yang sedang kita definisikan---dalam
+kasus kita, ketika mendefinisikan ``!!{subformula} sejati'' untuk $(!B
+\ast !C)$, kita hanya menggunakan !!{subformula}s sejati dari
+!!{formula}s yang ``lebih dahulu,'' yaitu $!B$ dan $!C$.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:subfrm-trans}
+Andaikan $!B$ merupakan subformula dari $!A$ dan $!C$ merupakan subformula
+dari $!B$. Maka $!C$ merupakan subformula dari $!A$. Dengan kata lain,
+relasi subformula bersifat transitif.
+\end{prop}
+
+\begin{prob}
+Buktikan \olref[fol][syn][sbf]{prop:subfrm-trans}.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:count-subfrms}
+Andaikan $!A$ merupakan formula dengan $n$ penghubung dan kuantor. Maka
+$!A$ memiliki paling banyak $2n+1$ subformula.
+\end{prop}
+
+\begin{prob}
+Buktikan \olref[fol][syn][sbf]{prop:count-subfrms}.
+\end{prob}
+
+\end{document}
+

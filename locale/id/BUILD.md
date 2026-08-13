@@ -842,3 +842,76 @@ Searches found zero unresolved marker or English environment/reference label.
 TeXcount reports 4,433 English-source and 4,070 Indonesian words for the batch,
 and 64,565 versus 59,535 across 148 admitted files. The exact next cursor is
 `OLP-0149`; 574 closure rows remain.
+
+## First-Order Logic syntax checkpoint — 2026-08-13
+
+### Source binding, deterministic replay, and independent review
+
+The gap-free boundary extends through `OLP-0158`. Every source hash equals its
+row in the frozen 722-file manifest and its Git object at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. Run from the repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_fol_syntax_batch_replay.ps1
+```
+
+The replay script is 31,338 bytes, SHA-256
+`80cd54f89f97be67be928703b0f8e2b7fec2d3058d85b9caf6db0dd1c71a3a81`.
+Its final result is:
+
+```text
+STRUCTURAL_TOTALS commands=1430 environments=226 semantic_tokens=256 labels=20 references=16 citations=2 assets=0 imports=9 tagged_items=90 tag_conditionals=47 math_skeletons=793 math_environments=1 localized_file_ids=9 chapter_ids=1
+CORRECTION_TOTALS classes=10 source_occurrences=12 target_assertions=10 target_review_assertions=4
+BINDING_DIGESTS source_set_sha256=99908dd2f6e32d8cb2f018dd47c943123219cc93805a03015f3a8753941c0598 target_set_sha256=660c13dfbe7a039f2c4190c4eb857eedeb7a14f941bf80bf47e7ab96676439e9
+FOL_SYNTAX_BATCH_REPLAY_OK files=10 checks=293 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0149..OLP-0158
+```
+
+The independent review receipt is 8,959 bytes, SHA-256
+`928e1d63632cf638618d66d12ab01632d9fddc326d547bdfe9a03ba1ca98eee6`.
+It records the ten exact correction classes, four final localization assertions,
+and no unresolved Indonesian semantic finding.
+
+### Clean cumulative build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-syntax-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29. The driver is
+1,891 bytes, SHA-256
+`ae270afc1d645076dded09a7c238edc242af2bdbc567999ca7bb4e6167923697`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-syntax-id.tex` | `locale/id/first-order-logic-syntax-id.pdf` | 31 | 294,747 | `6b3247acfe2159b4e4c0b442ae9f0636e2a1de8bcbfc28569fc8bf4cf0c717f7` |
+
+The final log has zero fatal condition, undefined reference/citation, missing
+file, or missing glyph. Fourteen overfull boxes remain: four inherited from the
+introduction and ten in the syntax chapter. The overall maximum is 13.60612 pt;
+the syntax-only maximum is 11.24406 pt. Exact-resolution inspection found no
+visible loss. All fonts are embedded; one inherited Type 3 mathematical font
+lacks a ToUnicode map, while searchable extraction remains intact.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 72,599 bytes and 10,946 whitespace-delimited
+words, SHA-256
+`02ddfbb7f9ea14b7f265e626dd8b63a4bf4827ae5929a23c847de25561a9fc4c`.
+Searches found zero `??`, `Undefined`, English environment/reference label,
+raw `free for`, `is atomic`, `exercise.`, or `sub-formula`. Positive anchors
+include `subformula`, `atomik`, `latihan`, and `bebas disubstitusikan bagi`.
+The only English `proposition` substring is inside the preserved bibliography
+title “Formation sequences for propositional formulas.”
+
+All 31 pages were rendered at 144 dpi and inspected at original render
+resolution. Page 26 was rebuilt, rerendered, and reinspected after the final
+token correction. No clipping, overlap, blank content page, broken glyph, lost
+formula, damaged table, unresolved citation, or margin loss was found.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+5,535 English-source and 5,068 Indonesian words for this batch, and 70,100
+versus 64,603 across all 158 admitted files. The exact next cursor is
+`OLP-0159`, `content/first-order-logic/syntax-and-semantics/semantics.tex`;
+564 closure rows remain.

@@ -1,0 +1,132 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{sub}
+
+\olsection{Substitusi}
+
+\begin{defn}[Substitusi dalam suatu suku]
+Kita mendefinisikan $\Subst{s}{t}{x}$, yaitu hasil
+\emph{menyubstitusikan} $t$ untuk setiap kemunculan~$x$ dalam $s$, secara
+rekursif:
+\begin{enumerate}
+\item \indcase{s}{c}{$\Subst{\indfrm}{t}{x}$ tidak lain ialah $s$.}
+
+\item \indcase{s}{y}{$\Subst{\indfrm}{t}{x}$ juga tidak lain ialah~$s$,
+  asalkan $y$ merupakan variabel dan $y \not\ident x$.}
+
+\item \indcase{s}{x}{$\Subst{\indfrm}{t}{x}$ ialah~$t$.}
+
+\item\indcase{s}{\Atom{f}{t_1, \dots, t_n}}{$\Subst{\indfrmp}{t}{x}$ ialah
+  $\Atom{f}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$.}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Suatu suku~$t$ \emph{!!{free for}} $x$ dalam $!A$ jika tidak satu pun
+kemunculan bebas $x$ dalam $!A$ berada dalam lingkup suatu kuantor yang
+mengikat variabel dalam~$t$.
+\end{defn}
+
+\begin{ex} ~
+\begin{enumerate}
+\item $\Obj v_8$ !!{free for} $\Obj v_1$ dalam $\lexists[\Obj
+  v_3]\Atom{\Obj A^2_4}{\Obj v_3,\Obj v_1}$.
+
+\item $\Obj f^2_1(\Obj v_1, \Obj v_2)$ \emph{tidak} !!{free for} $\Obj
+  v_0$ dalam $\lforall[\Obj v_2]\Atom{\Obj A^2_4}{\Obj v_0,\Obj v_2}$.
+\end{enumerate}
+\end{ex}
+
+\begin{defn}[Substitusi dalam !!a{formula}]
+Jika $!A$ merupakan !!a{formula}, $x$~merupakan !!a{variable}, dan
+$t$~merupakan suku yang !!{free for}~$x$ dalam~$!A$, maka
+$\Subst{!A}{t}{x}$ merupakan hasil menyubstitusikan $t$ untuk semua
+kemunculan bebas~$x$ dalam~$!A$.
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\Subst{\indfrm}{t}{x}$ ialah
+    $\lfalse$.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\Subst{\indfrm}{t}{x}$ ialah
+    $\ltrue$.}}{}
+
+\item \indcase{!A}{\Atom{P}{t_1,\dots,
+    t_n}}{$\Subst{\indfrm}{t}{x}$ ialah $\Atom{P}{\Subst{t_1}{t}{x},
+    \dots, \Subst{t_n}{t}{x}}$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Subst{\indfrmp}{t}{x}$ ialah
+  $\Subst{t_1}{t}{x} = \Subst{t_2}{t}{x}$.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\Subst{\indfrmp}{t}{x}$ ialah
+    $\lnot \Subst{!B}{t}{x}$.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land
+    !C)}{$\Subst{\indfrmp}{t}{x}$ ialah $(\Subst{!B}{t}{x} \land
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor
+    !C)}{$\Subst{\indfrmp}{t}{x}$ ialah $(\Subst{!B}{t}{x} \lor
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif
+    !C)}{$\Subst{\indfrmp}{t}{x}$ ialah $(\Subst{!B}{t}{x} \lif
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff
+    !C)}{$\Subst{\indfrmp}{t}{x}$ ialah $(\Subst{!B}{t}{x} \liff
+    \Subst{!C}{t}{x})$.}}{}
+
+\tagitem{prvAll}{
+\indcase{!A}{\lforall[y][!B]}{$\Subst{\indfrmp}{t}{x}$ ialah
+    $\lforall[y][\Subst{!B}{t}{x}]$, asalkan $y$ merupakan variabel
+    selain $x$; jika tidak, $\Subst{\indfrmp}{t}{x}$ tidak lain ialah
+    $\indfrm$.}}{}
+
+\tagitem{prvEx}{
+\indcase{!A}{\lexists[y][!B]}{$\Subst{\indfrmp}{t}{x}$ ialah
+    $\lexists[y][\Subst{!B}{t}{x}]$, asalkan $y$ merupakan variabel
+    selain $x$; jika tidak, $\Subst{\indfrmp}{t}{x}$ tidak lain ialah
+    $\indfrm$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Perhatikan bahwa substitusi dapat bersifat hampa: Jika $x$ sama sekali tidak
+muncul dalam $!A$, maka $\Subst{!A}{t}{x}$ tidak lain ialah~$!A$.
+
+Pembatasan bahwa $t$ harus !!{free for}~$x$ dalam~$!A$ diperlukan untuk
+mengecualikan kasus seperti berikut. Jika $!A \ident \lexists[y][x < y]$
+dan $t \ident y$, maka $\Subst{!A}{t}{x}$ akan menjadi $\lexists[y][y <
+  y]$. Dalam kasus ini, variabel bebas $y$ ``tertangkap'' oleh kuantor
+$\lexists[y]$ ketika substitusi dilakukan, dan hal ini tidak diinginkan.
+Misalnya, kita menghendaki agar setiap kali $\lforall[x][!B]$ berlaku,
+$\Subst{!B}{t}{x}$ juga berlaku. Namun, perhatikan
+$\lforall[x][\lexists[y][x < y]]$ (di sini $!B$ ialah $\lexists[y][x <
+  y]$). Formula itu merupakan kalimat yang benar, misalnya, tentang bilangan
+asli: untuk setiap bilangan~$x$, terdapat bilangan~$y$ yang lebih besar
+daripadanya. Jika kita mengizinkan $y$ sebagai substitusi yang mungkin
+untuk~$x$, kita akan memperoleh $\Subst{!B}{y}{x} \ident
+\lexists[y][y < y]$, yang salah. Kita mencegah hal ini dengan mensyaratkan
+bahwa tidak satu pun variabel bebas dalam~$t$ akan menjadi terikat oleh
+suatu kuantor dalam~$!A$.
+\end{explain}
+
+Kita sering menggunakan konvensi berikut untuk menghindari notasi yang
+rumit: Jika $!A$ merupakan !!a{formula} yang mungkin memuat
+!!{variable}~$x$ secara bebas, kita juga menulis~$!A(x)$ untuk menunjukkan
+hal tersebut. Jika $!A$ dan~$x$ yang dimaksud sudah jelas, dan $t$
+merupakan suatu suku (yang diasumsikan !!{free for} $x$ dalam $!A(x)$),
+kita menulis $!A(t)$ sebagai singkatan untuk $\Subst{!A}{t}{x}$. Jadi,
+misalnya, kita dapat mengatakan, ``kita menyebut $!A(t)$ suatu instans
+dari~$\lforall[x][!A(x)]$.'' Maksudnya, jika $!A$ merupakan sebarang
+!!{formula}, $x$ merupakan !!a{variable}, dan $t$ merupakan suatu suku yang
+!!{free for}~$x$ dalam~$!A$, maka $\Subst{!A}{t}{x}$ merupakan suatu instans
+dari~$\lforall[x][!A]$.
+
+\end{document}
+

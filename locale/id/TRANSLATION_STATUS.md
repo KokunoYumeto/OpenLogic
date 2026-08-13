@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 137/722 and the exact remainder is 585 files.
+Current target-file coverage is 158/722 and the exact remainder is 564 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -489,4 +489,37 @@ is present; its absence is not an admission blocker.
 Next global ordered cursor: `OLP-0149`,
 `content/first-order-logic/syntax-and-semantics/syntax.tex`.
 The remaining closure is 574 source files after the 148 target files currently
+present and admitted.
+
+### Contiguous First-Order Logic syntax batch
+
+The complete Syntax of First-Order Logic chapter adds `OLP-0149`--`OLP-0158`.
+All ten frozen source hashes match the 722-file manifest. Deterministic replay
+binds the final commands, environments, semantic tokens, labels, references,
+imports, tag logic, mathematical skeletons, and localized IDs; exact aggregate
+counts and correction dispositions are recorded in
+`..\..\..\_control\OPENLOGIC_FOL_SYNTAX_INDEPENDENT_REVIEW_20260813.md`.
+
+The cumulative bounded driver builds to 31 pages and 294,747 bytes, SHA-256
+`6b3247acfe2159b4e4c0b442ae9f0636e2a1de8bcbfc28569fc8bf4cf0c717f7`.
+The final log contains zero undefined reference/citation, missing glyph, or
+fatal condition. Fourteen overfull boxes remain: four inherited from the
+introduction and ten in the syntax chapter; the overall maximum is 13.60612 pt
+and the syntax-only maximum is 11.24406 pt. All 31 pages were rendered at 144
+dpi and inspected at original render resolution. No clipping, overlap, blank
+content page, broken glyph, lost formula, damaged table, or margin loss was
+found. The final extracted text is 72,599 bytes / 10,946 whitespace-delimited
+words, SHA-256
+`02ddfbb7f9ea14b7f265e626dd8b63a4bf4827ae5929a23c847de25561a9fc4c`;
+it contains zero unresolved marker, English environment label, raw `free for`,
+or `sub-formula`, and positively contains `subformula`, `atomik`, `latihan`, and
+`bebas disubstitusikan bagi`.
+
+TeXcount reports 5,535 English-source and 5,068 Indonesian words for this
+batch, and 70,100 versus 64,603 cumulatively. No native/human review metadata
+is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0159`,
+`content/first-order-logic/syntax-and-semantics/semantics.tex`.
+The remaining closure is 564 source files after the 158 target files currently
 present and admitted.

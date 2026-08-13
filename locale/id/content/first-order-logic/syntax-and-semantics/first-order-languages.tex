@@ -1,0 +1,159 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: first-order-languages
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{fol}
+
+\olsection{Bahasa Orde Pertama}
+
+
+Ungkapan logika orde pertama dibangun dari kosakata dasar yang memuat
+\emph{!!{variable}s}, \emph{!!{constant}s}, \emph{!!{predicate}s}, dan
+kadang-kadang \emph{!!{function}s}. Dari semuanya itu, bersama penghubung
+logis, kuantor, dan tanda baca seperti tanda kurung dan koma, dibentuk
+\emph{suku} dan \emph{!!{formula}s}.
+
+\begin{explain}
+Secara informal, !!{predicate}s merupakan nama sifat dan relasi,
+!!{constant}s merupakan nama objek individual, dan !!{function}s merupakan
+nama pemetaan. Semua ini, kecuali !!{identity}~$\eq$, adalah
+\emph{simbol nonlogis} dan secara bersama-sama membentuk suatu bahasa.
+Setiap bahasa orde pertama~$\Lang L$ ditentukan oleh simbol-simbol
+nonlogisnya. Dalam kasus yang paling umum, $\Lang L$ memuat tak hingga
+banyaknya simbol dari setiap jenis.
+\end{explain}
+
+Dalam kasus umum, kita menggunakan simbol-simbol berikut dalam logika orde
+pertama:
+
+\begin{enumerate}
+\item Simbol logis
+\begin{enumerate}
+\item Penghubung logis:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{prvAll}{\ycomma $\lforall$ (kuantor universal)}{}%
+  \iftag{prvEx}{\ycomma $\lexists$ (kuantor eksistensial)}{}.
+\tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+\tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+\item !!{identity} dua-tempat~$\eq$.
+\item Suatu himpunan !!{denumerable} dari !!{variable}s: $\Obj v_0$, $\Obj v_1$, $\Obj
+  v_2$, \dots
+\end{enumerate}
+\item Simbol nonlogis yang membentuk \emph{bahasa standar} logika orde
+  pertama
+\begin{enumerate}
+\item Suatu himpunan !!{denumerable} dari !!{predicate}s $n$-tempat untuk
+  setiap $n>0$: $\Obj A^n_0$, $\Obj A^n_1$, $\Obj A^n_2$, \dots
+\item Suatu himpunan !!{denumerable} dari !!{constant}s: $\Obj c_0$, $\Obj c_1$, $\Obj
+  c_2$, \dots.
+\item Suatu himpunan !!{denumerable} dari !!{function}s $n$-tempat untuk
+  setiap $n>0$: $\Obj f^n_0$, $\Obj f^n_1$, $\Obj f^n_2$, \dots
+\end{enumerate}
+\item Tanda baca: (, ), dan koma.
+\end{enumerate}
+
+Sebagian besar definisi dan hasil kita akan dirumuskan untuk keseluruhan
+bahasa standar logika orde pertama. Namun, bergantung pada penerapannya, kita juga
+dapat membatasi bahasa itu hanya pada beberapa !!{predicate}s,
+!!{constant}s, dan !!{function}s.
+
+\begin{ex}
+Bahasa aritmetika~$\Lang L_A$ memuat satu !!{predicate} dua-tempat~$<$,
+satu !!{constant}~$\Obj 0$, satu !!{function} satu-tempat~$\prime$, serta dua
+!!{function}s dua-tempat, yaitu~$+$ dan~$\times$.
+\end{ex}
+
+\begin{ex}
+Bahasa teori himpunan~$\Lang L_Z$ hanya memuat satu !!{predicate}
+dua-tempat~$\in$.
+\end{ex}
+
+\begin{ex}
+Bahasa relasi urutan~$\Lang L_\le$ hanya memuat satu !!{predicate}
+dua-tempat~$\le$.
+\end{ex}
+
+Sekali lagi, semua ini merupakan konvensi: secara resmi, semuanya hanyalah
+alias. Misalnya, $<$, $\in$, dan $\le$ merupakan alias untuk $\Obj A^2_0$,
+$\Obj 0$ untuk $\Obj c_0$, $\prime$ untuk $\Obj f^1_0$, $+$ untuk $\Obj f^2_0$,
+dan $\times$ untuk $\Obj f^2_1$.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Selain penghubung primitif dan
+\iftag{notprvEx,notprvAll}{kuantor}{kuantor-kuantor} yang diperkenalkan di
+atas, kita juga menggunakan simbol-simbol \emph{terdefinisi} berikut:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defAll}{\ycomma $\lforall$ (kuantor universal)}{}%
+  \iftag{defEx}{\ycomma $\lexists$ (kuantor eksistensial)}{}%
+  \iftag{defFalse}{\ycomma !!{falsity}~$\lfalse$}{}%
+  \iftag{defTrue}{\ycomma !!{truth}~$\ltrue$}{}.}{}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+Suatu simbol terdefinisi secara resmi bukan bagian dari bahasa, tetapi
+diperkenalkan sebagai singkatan informal: simbol itu memungkinkan kita
+menyingkat formula yang akan menjadi cukup panjang jika kita hanya memakai
+simbol primitif. Hal ini jelas merupakan suatu keuntungan. Namun, keuntungan
+yang lebih besar ialah bahwa bukti menjadi lebih singkat. Jika suatu simbol
+bersifat primitif, simbol itu harus ditangani secara tersendiri dalam bukti.
+Oleh karena itu, semakin banyak simbol primitif, semakin panjang bukti kita.
+\end{explain}
+\end{tagblock}
+
+% Simbol alternatif
+
+\begin{intro}
+Anda mungkin lebih mengenal istilah dan simbol yang berbeda dari yang kita
+gunakan di atas. Teks-teks logika (dan para pengajar) lazim menggunakan
+$\sim$, $\neg$, atau~!\ untuk ``negasi'', serta $\wedge$, $\cdot$, atau $\&$
+untuk ``konjungsi''. Simbol yang lazim digunakan untuk ``implikasi'' ialah
+$\rightarrow$, $\Rightarrow$, dan $\supset$.
+\iftag{prvIff,defIff}{Simbol untuk ``biimplikasi'', ``implikasi dua arah'',
+  atau ``ekuivalensi (material)'' ialah $\leftrightarrow$,
+  $\Leftrightarrow$, dan $\equiv$.}{}
+\iftag{prvFalse,defFalse}{Simbol $\lfalse$ disebut dengan berbagai nama,
+  antara lain ``kepalsuan'', ``falsum'', ``absurditas'', atau ``bawah''.}{}
+\iftag{prvTrue,defTrue}{Simbol $\ltrue$ disebut dengan berbagai nama,
+  antara lain ``kebenaran'', ``verum'', atau ``atas''.}{}
+
+Secara konvensional, huruf kecil (misalnya, $a$, $b$, $c$) dari awal alfabet
+Latin digunakan untuk !!{constant}s (kadang-kadang disebut nama), sedangkan
+huruf kecil dari akhir alfabet (misalnya, $x$, $y$, $z$) digunakan untuk
+!!{variable}s. Kuantor digabungkan dengan !!{variable}s, misalnya $x$;
+variasi notasinya mencakup $\forall x$, $(\forall x)$, $(x)$, $\Pi x$,
+$\bigwedge_x$ untuk kuantor universal dan $\exists x$, $(\exists x)$,
+$(Ex)$, $\Sigma x$, $\bigvee_x$ untuk kuantor eksistensial.
+\end{intro}
+
+\begin{explain}
+Kita dapat memperlakukan semua operator proposisional dan kedua kuantor
+sebagai simbol primitif bahasa. Sebagai gantinya, kita dapat memilih
+persediaan simbol primitif yang lebih kecil dan memperlakukan !!{operator}s
+lain sebagai simbol terdefinisi. Himpunan operator Boolean yang ``lengkap
+secara fungsional-kebenaran'' mencakup $\{ \lnot, \lor \}$, $\{ \lnot,
+\land \}$, dan $\{ \lnot, \lif\}$---masing-masing dapat digabungkan dengan
+salah satu kuantor untuk menghasilkan bahasa orde pertama yang lengkap
+secara ekspresif.
+
+Anda mungkin mengenal dua !!{operator}s lain: garis Sheffer~$|$ (dinamai
+menurut Henry Sheffer) dan panah Peirce~$\downarrow$, yang juga dikenal
+sebagai belati Quine. Dengan pembacaan lazimnya masing-masing sebagai
+``nand'' dan ``nor'', kedua operator ini secara sendiri-sendiri lengkap
+secara fungsional-kebenaran.
+\end{explain}
+
+\end{document}

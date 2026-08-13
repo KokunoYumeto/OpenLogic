@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **137 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0137`; unit berikutnya ialah `OLP-0138`,
-`content/first-order-logic/first-order-logic.tex`.
+Status saat ini: **158 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0158`; unit berikutnya ialah `OLP-0159`,
+`content/first-order-logic/syntax-and-semantics/semantics.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -156,6 +156,22 @@ PDF itu berukuran 164.450 byte dengan SHA-256
 Replay deterministik lulus 302 pemeriksaan dan 333 segmen matematika; semua 12
 halaman telah dirender pada 144 dpi dan diperiksa. Kursor global berikutnya
 adalah `OLP-0149`.
+
+Checkpoint terbaru menambahkan sepuluh unit Sintaksis Logika Orde Pertama
+(`OLP-0149`--`OLP-0158`) dan melokalkan token `subformula`, syarat substitusi
+`bebas disubstitusikan bagi`, serta label kasus induksi `atomik` dan `latihan`.
+Penggerak kumulatif berikut membangun bab pengantar dan sintaksis tanpa fallback
+bahasa Inggris:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-syntax-id.tex
+```
+
+PDF itu berukuran 294.747 byte dengan SHA-256
+`6b3247acfe2159b4e4c0b442ae9f0636e2a1de8bcbfc28569fc8bf4cf0c717f7`.
+Semua 31 halaman telah dirender pada 144 dpi dan diperiksa; tidak ditemukan
+pemotongan, tumpang tindih, glif atau formula rusak, atau rujukan tak
+terselesaikan. Kursor global berikutnya adalah `OLP-0159`.
 
 ## Syarat penerimaan tiap batch
 
