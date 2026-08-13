@@ -1,0 +1,241 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: unary-numbers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{una}
+\olsection{Representasi Uner Bilangan}
+
+\begin{explain}
+Mesin Turing bekerja pada barisan simbol yang tertulis pada pita. Bergantung
+pada alfabet yang digunakan suatu mesin Turing, barisan simbol ini dapat
+merepresentasikan beragam masukan dan keluaran. Tentu saja, yang paling
+menarik ialah mesin Turing yang menghitung fungsi-fungsi \emph{aritmetis},
+yakni fungsi bilangan asli. Cara sederhana merepresentasikan bilangan asli
+ialah mengodekannya sebagai barisan satu simbol saja, yakni
+$\TMstroke$. Jika $n \in \Nat$, misalkan $\TMstroke^n$ adalah barisan kosong
+jika $n = 0$, dan selain itu merupakan barisan yang tepat terdiri atas $n$
+simbol~$\TMstroke$.
+\end{explain}
+
+\begin{defn}[Komputasi]
+Suatu mesin Turing~$M$ \emph{menghitung} fungsi $f\colon \Nat^k \to \Nat$ jika
+dan hanya jika $M$~berhenti pada masukan
+\[
+\TMstroke^{n_1} \TMblank \TMstroke^{n_2} \TMblank \dots \TMblank \TMstroke^{n_k}
+\]
+dengan keluaran $\TMstroke^{f(n_1, \dots, n_k)}$.
+\end{defn}
+
+\begin{prob}
+  Berikan definisi kapan suatu mesin Turing~$M$ menghitung fungsi
+  $f\colon \Nat^k \to \Nat^m$.
+\end{prob}
+
+\begin{ex}\ollabel{ex:adder}
+\emph{Penjumlahan:}
+Marilah kita membangun mesin yang menghitung fungsi $f(n,m) = n + m$.
+Untuk itu diperlukan mesin yang bermula dengan dua blok simbol~$\TMstroke$
+sepanjang $n$ dan~$m$ pada pita, lalu berhenti dengan satu blok yang terdiri
+atas $n+m$ simbol~$\TMstroke$. Kedua blok masukan simbol~$\TMstroke$
+dipisahkan oleh sebuah~$\TMblank$, sehingga salah satu caranya ialah menulis
+sebuah goresan pada petak yang memuat~$\TMblank$, lalu menghapus simbol
+$\TMstroke$ terakhir.
+\begin{figure}\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+           edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge [loop above] node {\TMtrans{\TMstroke}{\TMblank}{\TMstay}} (C);
+\end{tikzpicture}
+\]\caption{Mesin yang menghitung $f(x,y) = x+y$}
+\ollabel{fig:adder}
+\end{figure}
+\end{ex}
+
+\begin{prob}
+Telusuri konfigurasi-konfigurasi mesin pada
+\olref[tur][mac][una]{ex:adder} untuk masukan~$\tuple{3,2}$. Apa yang terjadi
+jika mesin menghitung $0+0$?
+\end{prob}
+
+\begin{explain}
+Pada \olref[rep]{ex:doubler}, kita memberikan contoh mesin Turing yang
+menerima masukan berupa barisan simbol~$\TMstroke$ dan berhenti dengan barisan
+yang berisi dua kali lebih banyak simbol~$\TMstroke$ pada pita---mesin
+pengganda. Namun, karena keluarannya memuat simbol-simbol~$\TMblank$ di sebelah
+kiri blok simbol~$\TMstroke$ yang telah digandakan, mesin itu sebenarnya tidak
+menghitung fungsi $f(x) = 2x$, berlawanan dengan dugaan yang mungkin timbul.
+Kita akan menguraikan dua cara untuk memperbaikinya.
+\end{explain}
+
+\begin{ex}
+Mesin pada \olref{fig:doubler-disc} menghitung fungsi $f(x) = 2x$. Alih-alih
+menghapus masukan dan menulis dua simbol~$\TMstroke$ di ujung kanan untuk
+setiap simbol~$\TMstroke$ pada masukan seperti yang dilakukan mesin dari
+\olref[rep]{ex:doubler}, mesin ini menambahkan satu simbol~$\TMstroke$ di
+sebelah kanan untuk setiap simbol~$\TMstroke$ pada masukan. Mesin perlu
+melacak tempat berakhirnya masukan, sehingga dibiarkannya sebuah~$\TMblank$ di
+antara masukan dan goresan-goresan tambahan; pada bagian paling akhir, petak
+itu diisinya dengan~$\TMstroke$. Kita juga harus ``mengingat'' posisi kita
+dalam masukan, sehingga sebuah~$\TMstroke$ dalam blok masukan diganti sementara
+dengan~$\TMblank$.
+  \begin{figure}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (0)              {$q_0$};
+  \node[state]         (1) [above of=0] {$q_1$};
+  \node[state]         (2) [above of=1] {$q_2$};
+  \node[state]         (3) [right of=2] {$q_3$};
+  \node[state]         (4) [below of=3] {$q_4$};
+  \node[state]         (5) [below of=4] {$q_5$};
+  \node[state]         (6) [above right of=4] {$q_6$};
+  \node[state]         (7) [below of=6] {$q_7$};
+  \node[state]         (8) [below of=7] {$q_8$};
+
+  \path (0) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMright}} (1)
+%    (0) edge node {\TMtrans{\TMblank}{\TMblank}{\TMstay}} (h)
+    (1) edge [loop left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (1)
+      edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (2)
+    (2) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (2)
+        edge node {\TMtrans{\TMblank}{\TMstroke}{\TMleft}} (3)
+    (3) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (3)
+        edge node[left] {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (4)
+    (4) edge        node[left] {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+    (5) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+        edge              node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (0)
+    (4) edge      node[sloped] {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (6)
+    (6) edge              node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (7)
+    (7) edge [loop right] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (7)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (8)
+    (8) edge [loop right] node {\TMtrans{\TMstroke}{\TMblank}{\TMstay}} (8);
+    \end{tikzpicture}
+\]
+\caption{Mesin yang menghitung $f(x) = 2x$}
+\ollabel{fig:doubler-disc}
+\end{figure}
+\end{ex}
+
+\begin{ex}\ollabel{ex:mover}
+Kemungkinan kedua untuk menghitung $f(x) = 2x$ ialah mempertahankan mesin
+pengganda semula, tetapi menambahkan keadaan dan instruksi pada bagian akhirnya
+untuk memindahkan blok goresan yang telah digandakan ke ujung kiri pita. Mesin
+pada \olref{fig:mover} menjalankan tepat bagian terakhir ini: jika dijalankan
+pada pita yang terdiri atas sebuah blok simbol~$\TMblank$, diikuti sebuah blok
+simbol~$\TMstroke$ (dengan kepala berada di posisi mana pun dalam blok
+$\TMblank$), mesin menghapus simbol-simbol~$\TMstroke$ satu demi satu dan
+menuliskannya di awal pita. Agar dapat mengetahui kapan tugasnya selesai,
+mesin terlebih dahulu menandai akhir blok simbol~$\TMstroke$ dengan simbol
+$\TMendtape$, yang dihapus pada akhirnya. Kita memulai penomoran keadaan
+dari~$q_6$ agar semua keadaan itu dapat ditambahkan ke mesin pengganda. Yang
+masih diperlukan hanyalah instruksi tambahan $\delta(q_0,
+\TMblank) = \tuple{q_6,\TMblank,\TMstay}$, yakni panah dari~$q_0$ ke~$q_6$
+berlabel~$\TMtrans{\TMblank}{\TMblank}{\TMstay}$. (Ada satu masalah halus:
+mesin yang dihasilkan tidak bekerja untuk masukan~$x=0$. Kita serahkan masalah
+ini sebagai latihan.)
+\begin{figure}
+  \[
+  \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                      semithick]
+    \tikzstyle{every state}=[fill=none,draw=black,text=black]
+    \node[initial,state] (6)              {$q_6$};
+    \node[state]         (7) [right of=6] {$q_7$};
+    \node[state]         (8) [right of=7] {$q_8$};
+    \node[state]         (9) [below of=8] {$q_9$};
+    \node[state]         (10) [left of=9] {$q_{10}$};
+    \node[state]         (11) [left of=10]  {$q_{11}$};
+    \node[state]         (12) [below of=11]  {$q_{12}$};
+    \node[state]         (13) [right of=12] {$q_{13}$};
+    \node[state]         (14) [right of=13] {$q_{14}$};
+    \path
+    (6)  edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (7)
+    (7)  edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (7)
+         edge node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (8)
+    (8)  edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (8)
+         edge node {\TMtrans{\TMblank}{\TMendtape}{\TMleft}} (9)
+    (9)  edge [loop right] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (9)
+         edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (10)
+    (10) edge node[above] {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (11)
+    (11) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (11)
+         edge node[left] {\begin{tabular}{@{}l@{}}
+          \TMtrans{\TMendtape}{\TMendtape}{\TMright}\\
+          \TMtrans{\TMstroke}{\TMstroke}{\TMright}
+         \end{tabular}} (12)
+    (12) edge node[] {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (13)
+    (13) edge [loop below] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (13)
+         edge node[sloped] {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (11)
+    (13) edge node {\TMtrans{\TMendtape}{\TMblank}{\TMstay}} (14);
+  \end{tikzpicture}
+  \]
+  \caption{Memindahkan sebuah blok simbol~$\TMstroke$ ke kiri}
+  \ollabel{fig:mover}
+\end{figure}
+\end{ex}
+
+\begin{prob}
+Dalam \olref[tur][mac][una]{ex:mover}, kita menguraikan sebuah mesin yang
+terdiri atas gabungan mesin pengganda dari
+\olref[tur][mac][una]{fig:doubler-disc} dan mesin pemindah dari
+\olref[tur][mac][una]{fig:mover}. Apa yang terjadi jika mesin gabungan ini
+dijalankan pada masukan~$x=0$, yakni pada pita kosong? Bagaimana Anda akan
+memperbaiki mesin tersebut agar dalam hal ini mesin berhenti dengan
+keluaran~$2x=0$? (Anda seharusnya dapat melakukannya dengan menambahkan satu
+keadaan dan satu transisi.)
+\end{prob}
+
+\begin{prob}
+\emph{Pengurangan:} Rancang mesin Turing yang, ketika diberi masukan berupa dua
+untai goresan tak-kosong sepanjang $n$ dan~$m$, dengan $n > m$, menghitung
+fungsi $f(n,m) = n - m$.
+\end{prob}
+
+\begin{prob}
+\emph{Kesamaan:} Rancang mesin Turing untuk menghitung fungsi berikut:
+\[
+\fn{equality}(n,m) =
+\begin{cases}
+  \text{1} & \text{jika~$n = m$} \\
+  \text{0} & \text{jika~$n \neq m$}
+\end{cases}
+\]
+dengan~$n$ dan~$m \in \PosInt$.
+\end{prob}
+
+\begin{prob}
+Rancang mesin Turing untuk menghitung fungsi $\min(x,y)$, dengan $x$ dan $y$
+bilangan bulat positif yang direpresentasikan pada pita oleh untai-untai
+simbol~$\TMstroke$ yang dipisahkan oleh sebuah~$\TMblank$. Anda boleh
+menggunakan simbol tambahan dalam alfabet mesin.
+
+Fungsi $\min$ memilih nilai terkecil di antara argumen-argumennya, sehingga
+$\min(3,5)=3$, $\min(20,16)=16$, dan $\min(4,4)=4$, dan seterusnya.
+\end{prob}
+
+\begin{defn}
+  Suatu mesin Turing~$M$ menghitung fungsi parsial $f\colon \Nat^k
+  \pto \Nat$ jika dan hanya jika
+  \begin{enumerate}
+    \item $M$ berhenti pada masukan $\TMstroke^{n_1}\concat\TMblank\concat
+    \dots \concat\TMblank\concat\TMstroke^{n_k}$ dengan keluaran
+    $\TMstroke^{m}$ jika $f(n_1, \dots, n_k) = m$,
+    \item $M$ sama sekali tidak berhenti, atau berhenti dengan keluaran yang
+    bukan satu blok tunggal simbol~$\TMstroke$, jika $f(n_1, \dots, n_k)$ tidak
+    terdefinisi.
+  \end{enumerate}
+\end{defn}
+
+\end{document}

@@ -1,0 +1,209 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: representing-tms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{rep}
+\olsection{Merepresentasikan Mesin Turing}
+
+\begin{explain}
+Untuk merepresentasikan mesin Turing dan perilakunya dengan !!a{sentence}
+logika orde pertama, kita harus mendefinisikan bahasa yang sesuai. Bahasa itu
+terdiri atas dua bagian: !!{predicate} untuk mendeskripsikan konfigurasi mesin,
+serta ungkapan untuk memberi nomor pada langkah eksekusi (``saat'') dan posisi
+pada pita.
+
+Kita memperkenalkan dua jenis !!{predicate}, keduanya beraritas~2: untuk setiap
+keadaan~$q$, !!a{predicate}~$\Obj Q_q$, dan untuk setiap simbol pita~$\sigma$,
+!!a{predicate}~$\Obj S_\sigma$. Yang pertama memungkinkan kita mendeskripsikan
+keadaan~$M$ dan posisi kepala pitanya; yang kedua memungkinkan kita
+mendeskripsikan isi pita.
+
+Untuk menyatakan posisi kepala pita dan banyaknya langkah yang telah
+dijalankan, kita memerlukan cara untuk menyatakan bilangan. Hal ini dilakukan
+dengan !!a{constant}~$\Obj 0$ dan fungsi beraritas~$1$, yaitu fungsi
+penerus~$\prime$. Berdasarkan konvensi, fungsi itu dituliskan \emph{setelah}
+argumennya (dan tanda kurungnya kita hilangkan).
+
+Untuk setiap bilangan $n$ terdapat suku kanonik~$\num{n}$, yaitu
+\emph{numeral} bagi~$n$, yang merepresentasikannya dalam~$\Lang L_M$.
+$\num{0}$ adalah $\Obj 0$, $\num{1}$ adalah $\Obj 0'$, $\num{2}$ adalah
+$\Obj 0''$, dan seterusnya. Secara lebih formal:
+\begin{align*}
+\num{0} & = \Obj 0 \\
+\num{n+1} &= \num{n}'
+\end{align*}
+Suku $\num{0}$, yakni $\Obj 0$, menamai posisi paling kiri pada pita sekaligus
+saat sebelum langkah eksekusi pertama (konfigurasi awal). Suku $\num{1}$,
+yakni $\Obj 0'$, menamai petak di sebelah kanan petak paling kiri sekaligus
+saat setelah langkah eksekusi pertama, dan seterusnya.
+
+Kita juga memperkenalkan !!a{predicate}~$<$ untuk menyatakan baik urutan posisi
+pita (ketika artinya ``di sebelah kiri'') maupun urutan langkah eksekusi
+(ketika artinya ``sebelum'').
+
+Setelah bahasanya tersedia, kita mendaftarkan ``aksioma-aksioma'' $!T(M,w)$,
+yakni !!{sentence} yang secara bersama-sama mendeskripsikan perilaku~$M$ ketika
+dijalankan pada masukan~$w$. Akan ada !!{sentence} yang menetapkan syarat pada
+$\Obj 0$, $\prime$, dan $<$; !!{sentence} yang mendeskripsikan konfigurasi
+masukan; serta !!{sentence} yang mendeskripsikan konfigurasi $M$ setelah mesin
+menjalankan instruksi tertentu.
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:tm-descr}
+Diberikan mesin Turing $M = \tuple{Q, \Sigma, q_0, \delta}$, bahasa~$\Lang L_M$
+terdiri atas:
+\begin{enumerate}
+\item !!^a{predicate} beraritas~2, $\Obj Q_q(x, y)$, untuk setiap keadaan
+  $q \in Q$. Secara intuitif, $\Obj Q_q(\num{m}, \num{n})$ menyatakan
+  ``setelah $n$ langkah, $M$ berada dalam keadaan~$q$ dan memindai petak
+  ke-$m$.''
+\item !!^a{predicate} beraritas~2, $\Obj S_\sigma(x, y)$, untuk setiap simbol
+  $\sigma\in \Sigma$. Secara intuitif, $\Obj S_\sigma(\num{m}, \num{n})$
+  menyatakan ``setelah $n$ langkah, petak ke-$m$ memuat simbol~$\sigma$.''
+\item !!^a{constant} $\Obj 0$
+\item !!^a{function} beraritas~1, $\prime$
+\item !!^a{predicate} beraritas~2, $<$
+\end{enumerate}
+\end{defn}
+
+!!^{sentence}s yang mendeskripsikan operasi mesin Turing~$M$ pada masukan
+$w = \sigma_{i_1}\dots\sigma_{i_k}$ adalah sebagai berikut:
+\begin{enumerate}
+\item Aksioma yang mendeskripsikan bilangan dan~$<$:
+\begin{enumerate}
+\item !!^a{sentence} yang menyatakan bahwa setiap bilangan lebih kecil daripada
+penerusnya:
+\[
+\lforall[x][x < x']
+\]
+\item !!^a{sentence} yang memastikan bahwa $<$ bersifat transitif:
+\[
+\lforall[x][\lforall[y][\lforall[z][
+      ((x < y \land y < z) \lif x < z)]]]
+\]
+\end{enumerate}
+\item Aksioma yang mendeskripsikan konfigurasi masukan:
+\begin{enumerate}
+\item Setelah $0$ langkah---sebelum mesin mulai---$M$ berada dalam keadaan
+  awal~$q_0$ dan memindai petak~$1$:
+\[
+\Obj Q_{q_0}(\num{1}, \num{0})
+\]
+\item $k+1$ petak pertama memuat simbol $\TMendtape$,
+  $\sigma_{i_1}$, \dots, $\sigma_{i_k}$:
+\[
+\Obj S_\TMendtape(\num{0}, \num{0}) \land
+\Obj S_{\sigma_{i_1}}(\num{1}, \num{0}) \land
+\dots \land
+\Obj S_{\sigma_{i_k}}(\num{k}, \num{0})
+\]
+\item Selain itu, pita kosong:
+\[
+\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{0}))]
+\]
+\end{enumerate}
+\item Aksioma yang mendeskripsikan transisi dari satu konfigurasi ke
+  konfigurasi berikutnya:
+
+Untuk uraian berikut, misalkan $!A(x, y)$ adalah konjungsi semua !!{formula}
+berbentuk
+\[
+\lforall[z][
+  (((z < x \lor x < z) \land \Obj S_\sigma(z, y))
+  \lif \Obj S_\sigma(z, y'))]
+\]
+dengan $\sigma \in \Sigma$. Kita menggunakan $!A(\num{m},\num{n})$ untuk
+menyatakan ``selain pada petak~$m$, pita setelah $n+1$ langkah sama dengan pita
+setelah $n$ langkah.''
+\begin{enumerate}
+\item \ollabel{rep-right} Untuk setiap instruksi $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMright}$, !!{sentence} tersebut adalah:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y)))
+\end{align*}
+Artinya, jika setelah~$y$ langkah mesin berada dalam keadaan~$q_i$ dan
+memindai petak~$x$ yang memuat simbol~$\sigma$, maka setelah $y+1$ langkah
+mesin memindai petak~$x+1$, berada dalam keadaan~$q_j$, petak~$x$ kini memuat
+$\sigma'$, dan setiap petak selain~$x$ memuat simbol yang sama seperti setelah
+$y$ langkah.
+
+\item \ollabel{rep-left} Untuk setiap instruksi $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMleft}$, !!{sentence} tersebut adalah:
+\begin{align*}
+& \lforall[x][\lforall[y][
+    ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
+!A(x', y))) \land {}\\
+& \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
+  y') \land !A(\num{0}, y)))
+\end{align*}
+Luangkan waktu sejenak untuk memahami cara kerjanya. Sekarang kita tidak mulai
+dengan ``jika mesin memindai petak~$x$ \dots'', melainkan ``jika mesin memindai
+petak $x+1$ \dots''. Gerakan ke kiri berarti bahwa pada langkah berikutnya
+mesin memindai petak~$x$. Akan tetapi, petak yang ditulisi adalah~$x+1$.
+Kita melakukannya dengan cara ini karena kita tidak memiliki pengurangan atau
+fungsi pendahulu.
+
+Perhatikan bahwa bilangan berbentuk $x+1$ adalah $1$, $2$, \dots. Jadi, hal ini
+tidak mencakup kasus ketika mesin memindai petak~$0$ dan harus bergerak ke kiri
+(yang tentu saja tidak dapat dilakukannya---mesin hanya diam di tempat).
+Kasus khusus itu dicakup oleh konjungsi kedua: jika setelah $y$ langkah mesin
+memindai petak~$0$ dalam keadaan $q_i$ dan petak~$0$ memuat simbol~$\sigma$,
+maka setelah $y+1$ langkah mesin masih memindai petak~$0$, kini berada dalam
+keadaan~$q_j$, simbol pada petak~$0$ adalah $\sigma'$, dan petak selain
+petak~$0$ memuat simbol yang sama seperti setelah $y$ langkah.
+\item \ollabel{rep-stay} Untuk setiap instruksi $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMstay}$, !!{sentence} tersebut adalah:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y)))
+\end{align*}
+\end{enumerate}
+\end{enumerate}
+Misalkan $!T(M, w)$ adalah konjungsi semua !!{sentence} di atas bagi mesin
+Turing~$M$ dan masukan~$w$.
+
+Untuk menyatakan bahwa~$M$ pada akhirnya berhenti, kita harus menemukan
+!!a{sentence} yang menyatakan ``setelah sejumlah langkah, fungsi transisi tidak
+terdefinisi.'' Misalkan $X$ adalah himpunan semua pasangan
+$\tuple{q, \sigma}$ sedemikian sehingga~$\delta(q, \sigma)$ tidak terdefinisi.
+Misalkan $!E(M, w)$ adalah !!{sentence}
+\[
+\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
+\]
+
+Jika kita menggunakan mesin Turing dengan keadaan penghentian khusus~$h$,
+caranya bahkan lebih mudah: !!{sentence}~$!E(M, w)$
+\[
+\lexists[x][\lexists[y][\Obj Q_h(x, y)]]
+\]
+menyatakan bahwa mesin pada akhirnya berhenti.
+
+\begin{prop}
+\ollabel{prop:mlessk}
+Jika $m < k$, maka $!T(M, w) \Entails \num{m} < \num{k}$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[tur][und][rep]{prop:mlessk}.
+(Petunjuk: gunakan induksi pada $k-m$.)
+\end{prob}
+
+\end{document}

@@ -1,0 +1,152 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: enumerating-tms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{enu}
+\olsection{Mengenumerasi Mesin Turing}
+
+\begin{explain}
+Kita dapat menunjukkan bahwa himpunan semua mesin Turing bersifat
+!!{enumerable}. Hal ini mengikuti kenyataan bahwa setiap mesin Turing dapat
+dideskripsikan secara berhingga. Himpunan keadaan dan kosakata pita merupakan
+himpunan berhingga. Fungsi transisi merupakan fungsi parsial dari $Q \times
+\Sigma$ ke $Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$, sehingga
+fungsi tersebut juga dapat ditentukan dengan mencantumkan nilainya bagi
+sejumlah berhingga pasangan argumen tempat fungsi itu terdefinisi.
+
+Pernyataan ini benar sejauh yang telah dikemukakan, tetapi ada suatu perbedaan
+halus. Definisi mesin Turing tidak membatasi !!{element}s apa saja yang dapat
+dimiliki himpunan keadaan dan alfabet pita. Jadi, misalnya, untuk setiap
+bilangan real secara teknis ada sebuah mesin Turing yang menggunakan bilangan
+tersebut sebagai suatu keadaan. Akan tetapi, \emph{perilaku} mesin Turing tidak
+bergantung pada objek mana yang berperan sebagai keadaan dan kosakata.
+Perhatikan dua mesin Turing dalam \olref{fig:variants}.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}\\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+  semithick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\node[initial,state]         (A)              {$s$};
+\node[state]         (B) [right of=A] {$h$};
+
+\path (A) edge [bend left] node {\TMtrans{A}{A}{\TMright}} (B)
+(B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+edge [bend left] node {\TMtrans{A}{A}{\TMright}} (A);
+\end{tikzpicture}
+\end{center}
+\caption{Varian mesin \emph{Genap}}
+\ollabel{fig:variants}
+\end{figure}
+Kedua diagram ini bersesuaian dengan dua mesin: $M$ dengan alfabet pita
+$\Sigma = \{\TMendtape,\TMblank,\TMstroke\}$ dan himpunan keadaan
+$\{q_0,q_1\}$, serta $M'$ dengan alfabet $\Sigma' =
+\{\TMendtape,\TMblank,A\}$ dan keadaan $\{s,h\}$. Akan tetapi, instruksi
+keduanya selain itu sama: $M$ akan berhenti pada suatu urutan yang terdiri atas
+$n$ simbol~$\TMstroke$ jika dan hanya jika $n$ genap, dan $M'$ akan berhenti
+pada suatu urutan yang terdiri atas $n$ simbol~$A$ jika dan hanya jika $n$
+genap. Yang kita lakukan hanyalah mengganti nama $\TMstroke$ menjadi~$A$,
+$q_0$ menjadi~$s$, dan $q_1$ menjadi~$h$. Contoh ini dapat diperumum: kita
+dapat menganggap dua mesin Turing sama selama salah satunya diperoleh dari
+yang lain melalui penggantian nama simbol dan keadaan semacam itu. Bahkan,
+kita dapat memandang simbol dan keadaan suatu mesin Turing sebagai bilangan
+bulat positif: sebagai ganti $\sigma_0$, pikirkan~$1$; sebagai ganti
+$\sigma_1$, pikirkan~$2$; dan seterusnya; $\TMendtape$ adalah~$1$,
+$\TMblank$ adalah~$2$, dan seterusnya. Dengan cara ini, mesin \emph{Genap}
+menjadi mesin yang digambarkan dalam \olref{fig:standard-even}.
+\begin{figure}
+\[\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+  semithick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\node[initial,state]         (A)              {$1$};
+\node[state]         (B) [right of=A] {$2$};
+
+\path (A) edge [bend left] node {\TMtrans{3}{3}{\TMright}} (B)
+(B) edge [loop above] node {\TMtrans{2}{2}{\TMright}} (B)
+edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
+\end{tikzpicture}
+\]
+\caption{Mesin \emph{Genap} standar}
+\ollabel{fig:standard-even}
+\end{figure}
+Kita dapat menyebut mesin Turing yang keadaan dan simbolnya berupa bilangan
+bulat positif sebagai mesin \emph{standar}, lalu mulai sekarang hanya
+mempertimbangkan mesin standar.\footnote{Istilah ``mesin standar'' bukan
+istilah baku.}
+
+Kita ingin menunjukkan bahwa himpunan mesin Turing bersifat !!{enumerable},
+dan dengan mempertimbangkan hal-hal di atas, cukup ditunjukkan bahwa himpunan
+mesin Turing standar bersifat !!{enumerable}. Andaikan kita diberi mesin
+Turing standar $M = \tuple{Q, \Sigma, q_0, \delta}$. Bagaimana kita dapat
+mendeskripsikannya dengan menggunakan suatu untaian berhingga bilangan bulat
+positif? Mula-mula kita cantumkan banyaknya keadaan, keadaan-keadaan itu
+sendiri, banyaknya simbol, simbol-simbol itu sendiri, dan keadaan awal.
+(Ingatlah bahwa semuanya merupakan bilangan bulat positif karena $M$ adalah
+mesin standar.) Bagaimana dengan~$\delta$? Himpunan argumen yang mungkin,
+yakni pasangan $\tuple{q,\sigma}$, berhingga karena $Q$ dan~$\Sigma$
+berhingga. Jadi, informasi dalam~$\delta$ hanyalah daftar berhingga semua
+5-tupel $\tuple{q, \sigma, q', \sigma', d}$ dengan
+$\delta(q,\sigma) = \tuple{q', \sigma', D}$, dan $d$ merupakan bilangan yang
+mengodekan arah~$D$ (misalnya, $1$ untuk~$\TMleft$, $2$ untuk~$\TMright$,
+dan $3$ untuk~$\TMstay$).
+
+Dengan cara ini, setiap mesin Turing standar dapat dideskripsikan oleh suatu
+daftar berhingga bilangan bulat positif, yakni sebagai suatu urutan $s_M \in
+(\PosInt)^*$. Misalnya, mesin \emph{Genap} standar dikodekan oleh urutan
+\[
+2, \underbrace{1, 2}_Q, 3, \overbrace{1, 2, 3}^\Sigma, 1, \underbrace{1, 3, 2, 3, 2}_{\delta(1,3) = \tuple{2,3,R}},
+\overbrace{2, 2, 2, 2, 2}^{\delta(2,2) = \tuple{2,2,R}},
+\underbrace{2, 3, 1, 3, 2}_{\delta(2,3) = \tuple{1,3,R}}.
+\]
+\end{explain}
+
+\begin{thm}
+Ada fungsi dari $\Nat$ ke~$\Nat$ yang tidak dapat dihitung oleh mesin Turing.
+\end{thm}
+
+\begin{proof}
+Kita mengetahui bahwa himpunan urutan berhingga bilangan bulat
+positif~$(\PosInt)^*$ bersifat !!{enumerable}
+(\cref{sfr:siz:zigzag:prob:posint-star}). Dari sini diperoleh bahwa himpunan
+deskripsi mesin Turing standar, sebagai suatu subhimpunan dari~$(\PosInt)^*$,
+juga terhitung. Setiap fungsi dari $\Nat$ ke~$\Nat$ yang dapat dihitung oleh
+mesin Turing dihitung oleh suatu (bahkan banyak) mesin Turing. Dengan mengganti
+nama keadaan dan simbolnya menjadi bilangan bulat positif (khususnya,
+$\TMendtape$ menjadi~$1$, $\TMblank$ menjadi~$2$, dan $\TMstroke$ menjadi~$3$),
+kita melihat bahwa setiap fungsi yang dapat dihitung oleh mesin Turing juga
+dihitung oleh suatu mesin Turing standar. Ini berarti bahwa himpunan semua
+fungsi dari $\Nat$ ke~$\Nat$ yang dapat dihitung oleh mesin Turing juga
+terhitung.
+
+Di pihak lain, himpunan semua fungsi dari $\Nat$ ke~$\Nat$ tidak bersifat
+!!{enumerable} (\cref{sfr:siz:red:prob:nat-nat}). Seandainya semua fungsi dapat
+dihitung oleh suatu mesin Turing, kita dapat mengenumerasi himpunan semua
+fungsi dengan mencantumkan semua deskripsi mesin Turing yang menghitungnya.
+Jadi, ada fungsi yang tidak dapat dihitung oleh mesin Turing.
+\end{proof}
+
+\begin{prob}
+  Dapatkah Anda memikirkan suatu cara mendeskripsikan mesin Turing yang tidak
+  mengharuskan keadaan dan simbol alfabet dicantumkan secara eksplisit? Anda
+  boleh mendefinisikan sendiri gagasan mesin ``standar'', tetapi jelaskan
+  mengapa setiap mesin Turing dapat disimulasikan oleh suatu mesin ``standar''
+  dalam pengertian baru Anda.
+\end{prob}
+
+\end{document}

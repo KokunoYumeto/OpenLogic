@@ -1,0 +1,82 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: variants
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{var}
+\olsection{Varian Mesin Turing}
+
+Sesungguhnya ada banyak cara yang mungkin untuk mendefinisikan mesin Turing;
+definisi kita hanyalah salah satunya. Dalam beberapa hal, definisi kita lebih
+longgar daripada definisi lain. Kita mengizinkan alfabet berhingga sebarang,
+sedangkan definisi yang lebih terbatas mungkin hanya mengizinkan dua simbol
+pita, $\TMstroke$ dan~$\TMblank$. Kita mengizinkan mesin menuliskan simbol pada
+pita sekaligus bergerak, sedangkan definisi lain hanya mengizinkan penulisan
+atau pergerakan pada satu waktu. Kita mengizinkan penulisan tanpa menggerakkan
+kepala pita, sedangkan definisi lain tidak memiliki ``instruksi''~$\TMstay$.
+Dalam hal lain, definisi kita justru lebih membatasi. Kita mengandaikan bahwa
+pita hanya tak berhingga dalam satu arah, sedangkan definisi lain mengizinkan
+pita tak berhingga ke kiri maupun ke kanan. Bahkan, orang dapat mengizinkan
+sebarang banyak pita terpisah, atau kisi petak yang tak berhingga. Kita
+merepresentasikan himpunan instruksi mesin Turing dengan fungsi transisi;
+definisi lain menggunakan relasi transisi sehingga mesin memiliki lebih dari
+satu kemungkinan instruksi dalam suatu keadaan tertentu.
+
+Pelonggaran definisi yang terakhir ini sangat menarik. Dalam definisi kita,
+ketika mesin berada dalam keadaan~$q$ dan membaca simbol~$\sigma$,
+$\delta(q, \sigma)$ menentukan simbol baru, keadaan baru, dan posisi kepala
+pita yang baru. Namun, jika kita mengizinkan himpunan instruksi berupa relasi
+antara pasangan keadaan-simbol saat ini $\tuple{q, \sigma}$ dan tripel
+keadaan-simbol-arah yang baru $\tuple{q', \sigma', D}$, tindakan mesin Turing
+mungkin tidak ditentukan secara tunggal---relasi instruksi itu mungkin memuat
+baik $\tuple{q, \sigma, q', \sigma', D}$ maupun
+$\tuple{q, \sigma, q'', \sigma'', D'}$. Dalam kasus ini kita memperoleh mesin
+Turing \emph{nondeterministik}. Mesin seperti ini berperan penting dalam teori
+kompleksitas komputasi.
+
+Ada pula konvensi yang berbeda mengenai kapan mesin Turing berhenti. Menurut
+kita, mesin berhenti ketika fungsi transisinya tidak terdefinisi; definisi lain
+mengharuskan mesin berada dalam keadaan penghentian khusus. Dalam
+\olref[hal]{sec} telah kita jelaskan mengapa persyaratan adanya keadaan
+penghentian khusus bukan pembatasan yang memengaruhi apa yang dapat dihitung
+oleh mesin Turing. Karena pita mesin Turing kita hanya tak berhingga dalam
+satu arah, terdapat kasus ketika mesin Turing tidak dapat menjalankan
+instruksi dengan semestinya: ketika mesin membaca petak paling kiri dan harus
+bergerak ke kiri. Menurut definisi kita, mesin hanya tetap di tempat alih-alih
+``jatuh dari pita'', tetapi kita juga dapat mendefinisikan bahwa mesin berhenti
+ketika hal itu terjadi. Definisi ini pun ekuivalen: perilaku mesin Turing yang
+berhenti ketika mencoba bergerak ke kiri dari petak~$0$ dapat kita simulasikan
+dengan menghapus setiap transisi $\delta(q,\TMendtape) =
+\tuple{q',\sigma,\TMleft}$---dengan demikian, alih-alih mencoba bergerak ke
+kiri ketika membaca~$\TMendtape$, mesin berhenti.\footnote{Cara ini tidak
+\emph{sepenuhnya} berhasil karena tidak ada yang mencegah kita menulis dan
+membaca $\TMendtape$ pada petak selain petak~$0$ (lihat
+\olref[una]{ex:mover}). Kita dapat mengatasinya dengan menambahkan simbol
+kedua~$\TMendtape'$ untuk digunakan bagi keperluan tersebut.}
+
+Ada pula cara yang berbeda untuk merepresentasikan bilangan (dan dengan
+demikian fungsi masukan-keluaran yang dihitung mesin Turing). Kita menggunakan
+representasi uner, tetapi representasi biner juga dapat digunakan. Hal ini
+memerlukan dua simbol selain $\TMblank$ dan~$\TMendtape$.
+
+Sekarang perhatikan fakta menarik berikut: tidak satu pun dari variasi ini
+memengaruhi fungsi mana yang dapat dihitung oleh mesin Turing. \emph{Jika suatu
+fungsi dapat dihitung oleh mesin Turing menurut salah satu definisi, fungsi itu
+dapat dihitung oleh mesin Turing menurut semuanya.}
+
+Kita tidak akan membahas perincian pembuktiannya. Berikut hanya satu contoh:
+pita yang tak berhingga dalam kedua arah atau penggunaan beberapa pita tidak
+memberikan daya komputasi tambahan. Secara garis besar, alasannya ialah bahwa
+mesin Turing dengan satu pita yang tak berhingga ke satu arah dapat
+menyimulasikan beberapa pita atau pita yang tak berhingga ke dua arah.
+Misalnya, dengan keadaan dan instruksi tambahan, kita dapat ``menerjemahkan''
+program bagi mesin dengan beberapa pita atau pita yang tak berhingga ke dua
+arah menjadi program bagi mesin dengan satu pita yang tak berhingga ke satu
+arah. Mesin hasil terjemahan dapat menggunakan petak genap untuk petak-petak
+pita~$1$ (atau petak ``positif'' pada pita yang tak berhingga ke dua arah) dan
+petak ganjil untuk petak-petak pita~$2$ (atau petak ``negatif'').
+
+\end{document}

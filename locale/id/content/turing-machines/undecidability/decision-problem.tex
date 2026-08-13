@@ -1,0 +1,53 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: decision-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{dec}
+\olsection{Masalah Keputusan}
+
+Kita mengatakan bahwa logika orde pertama \emph{dapat diputuskan} jika dan
+hanya jika terdapat metode efektif untuk menentukan apakah suatu
+!!{sentence} yang diberikan valid. Ternyata tidak ada metode semacam itu:
+masalah untuk memutuskan validitas kalimat-kalimat orde pertama tidak dapat
+diselesaikan.
+
+Untuk menetapkan hasil negatif yang penting ini, kita membuktikan bahwa
+masalah keputusan tidak dapat diselesaikan oleh mesin Turing. Artinya, kita
+menunjukkan bahwa tidak ada mesin Turing yang, setiap kali dijalankan dengan
+pita yang memuat suatu !!{sentence} orde pertama, pada akhirnya berhenti dan
+menghasilkan $1$ atau~$0$ bergantung pada apakah !!{sentence} tersebut valid.
+Menurut tesis Church--Turing, setiap fungsi yang dapat dihitung dapat dihitung
+oleh mesin Turing. Jadi, jika ``fungsi validitas'' ini dapat dihitung secara
+efektif, fungsi itu dapat dihitung oleh mesin Turing. Jika fungsi itu tidak
+dapat dihitung oleh mesin Turing, fungsi itu juga tidak dapat dihitung secara
+efektif.
+
+Strategi kita untuk membuktikan bahwa masalah keputusan tidak dapat
+diselesaikan ialah mereduksi masalah penghentian kepadanya. Maksudnya sebagai
+berikut. Kita telah membuktikan bahwa fungsi~$h(e,w)$ yang berhenti dengan
+keluaran~$1$ jika mesin Turing yang dideskripsikan oleh~$e$ berhenti pada
+masukan~$w$, dan menghasilkan~$0$ jika tidak, tidak dapat dihitung oleh mesin
+Turing. Kita akan menunjukkan bahwa jika ada mesin Turing yang memutuskan
+validitas kalimat orde pertama, maka ada pula mesin Turing yang menghitung
+$h$. Karena $h$ tidak dapat dihitung oleh mesin Turing, tidak mungkin ada
+mesin Turing yang memutuskan validitas.
+
+Langkah pertama dalam strategi ini ialah menunjukkan bahwa untuk setiap
+masukan~$w$ dan mesin Turing~$M$, kita dapat mendeskripsikan secara efektif
+!!a{sentence} $!T(M, w)$ yang merepresentasikan himpunan instruksi~$M$ dan
+masukan~$w$, serta !!a{sentence}~$!E(M, w)$ yang menyatakan ``$M$ pada akhirnya
+berhenti'', sedemikian sehingga:
+\begin{quote}
+  $\Entails !T(M, w) \lif !E(M,w)$ jika dan hanya jika $M$ berhenti pada
+  masukan~$w$.
+\end{quote}
+Bagian terbesar bukti kita akan terdiri atas deskripsi kalimat-kalimat
+$!T(M, w)$ dan~$!E(M, w)$ tersebut serta verifikasi bahwa
+$!T(M, w) \lif !E(M, w)$ valid jika dan hanya jika $M$ berhenti pada
+masukan~$w$.
+
+\end{document}

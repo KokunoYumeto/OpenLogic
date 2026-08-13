@@ -1,0 +1,95 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: disciplined-machines
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{dis}
+\olsection{Mesin Disiplin}
+
+\begin{explain}
+Dalam bagian \olref[hal]{sec}, kita membahas mesin Turing yang memiliki satu
+keadaan penghentian khusus~$h$---jika mesin seperti itu berhenti, mesin
+dipastikan berhenti dalam keadaan~$h$. Dengan demikian, mesin yang hanya
+memiliki satu keadaan penghentian lebih ``disiplin'' daripada mesin Turing
+pada umumnya yang kita izinkan. Ada pembatasan lain yang dapat kita kenakan
+pada perilaku mesin Turing. Misalnya, kita juga belum melarang mesin Turing
+menghapus penanda ujung pita pada petak~$0$, ataupun mencoba bergerak ke kiri
+dari petak~$0$. (Definisi kita menyatakan bahwa dalam kasus ini kepala hanya
+diam di petak~$0$; definisi lain membuat mesin berhenti.) Kadang-kadang kita
+juga perlu dapat mengandaikan bahwa jika suatu mesin Turing berhenti, mesin
+itu berhenti di petak~$1$.
+\end{explain}
+
+\begin{defn}\ollabel{defn:disciplined}
+Suatu mesin Turing~$M$ disebut \emph{disiplin} jika dan hanya jika
+\begin{enumerate}
+    \item mesin memiliki tepat satu keadaan penghentian khusus~$h$,
+    \item jika mesin berhenti, mesin berhenti ketika memindai petak~$1$,
+    \item mesin tidak pernah menghapus simbol~$\TMendtape$ pada petak~$0$, dan
+    \item mesin tidak pernah mencoba bergerak ke kiri dari petak~$0$.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Kita telah membahas bahwa setiap mesin Turing dapat diubah menjadi mesin
+dengan perilaku yang sama tetapi memiliki keadaan penghentian khusus. Caranya
+hanyalah dengan menambahkan keadaan baru~$h$, lalu menambahkan instruksi
+$\delta(q, \sigma) = \tuple{h, \sigma, N}$ untuk setiap pasangan
+$\tuple{q,\sigma}$ tempat $\delta$ semula tidak terdefinisi. Meskipun
+pembuktiannya menjemukan, benar bahwa setiap mesin Turing~$M$ dapat diubah
+menjadi mesin Turing disiplin~$M'$ yang berhenti pada masukan yang sama dan
+menghasilkan keluaran yang sama. Misalnya, jika mesin Turing berhenti tetapi
+tidak berada di petak~$1$, kita dapat menambahkan beberapa instruksi agar
+kepalanya bergerak ke kiri sampai menemukan penanda ujung pita, lalu bergerak
+satu petak ke kanan, kemudian berhenti. Kita serahkan kepada Anda untuk
+memikirkan cara menangani syarat-syarat yang lain.
+\end{explain}
+
+\begin{ex}
+    Dalam \olref{fig:adder-disc}, mesin penjumlahan dari
+    \olref[una]{ex:adder} kita ubah menjadi mesin disiplin.
+    \begin{figure}\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (H) [left of=D] {$h$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+           edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A)
+        (B) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+        edge node {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (H);
+\end{tikzpicture}
+\]\caption{Mesin penjumlahan disiplin}
+\ollabel{fig:adder-disc}
+\end{figure}
+\end{ex}
+
+\begin{prop}\ollabel{prop:disciplined} Untuk setiap mesin Turing~$M$,
+terdapat mesin Turing disiplin~$M'$ yang berhenti dengan keluaran~$O$ jika
+$M$ berhenti dengan keluaran~$O$, dan tidak berhenti jika $M$ tidak berhenti.
+Secara khusus, setiap fungsi $f\colon\Nat^n \to \Nat$ yang dapat dihitung oleh
+mesin Turing juga dapat dihitung oleh mesin Turing disiplin.
+\end{prop}
+
+\begin{prob}\label{tur:mac:dis:prob:disc-succ}
+Berikan suatu mesin disiplin yang menghitung $f(x) = x+1$.
+\end{prob}
+
+
+\begin{prob}\label{tur:mac:dis:prob:copier}
+Carilah mesin disiplin yang, ketika dijalankan pada masukan $\TMstroke^n$,
+menghasilkan keluaran $\TMstroke^n \concat \TMblank \concat \TMstroke^n$.
+\end{prob}
+
+\end{document}

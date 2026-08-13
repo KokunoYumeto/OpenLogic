@@ -1,0 +1,80 @@
+% Penggerak mandiri kumulatif untuk Logika Orde Pertama, Teori Model,
+% Fungsi Rekursif, Teori Komputabilitas, dan Mesin Turing dalam pelokalan
+% Bahasa Indonesia.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Rujukan bacaan lanjutan menunjuk ke bab yang belum termasuk dalam pembaca
+% kumulatif ini. Label sintetis mempertahankan nomor kanonik tanpa menampilkan
+% penanda rujukan yang belum terpecahkan.
+\makeatletter
+\hypertarget{ol-id-forward-inductive-definitions}{}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:idf:sec}{{74.4}{0}{Definisi Induktif}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:idf:sec@cref}{{[section][4][74]74.4}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:sti:sec}{{74.5}{0}{Induksi Struktural}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:sti:sec@cref}{{[section][5][74]74.5}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{inc:req:min:lem:less-zero}{{eksternal}{0}{Representabilitas dalam Q}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{inc:req:min:lem:less-zero@cref}{{[lem][0][]eksternal}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{inc:req:min:lem:less-nsucc}{{eksternal}{0}{Representabilitas dalam Q}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{inc:req:min:lem:less-nsucc@cref}{{[lem][0][]eksternal}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:com:cth:thm:completeness}{{18.9}{0}{Kelengkapan}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:com:cth:thm:completeness@cref}{{[thm][9][18]18.{9}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:com:com:thm:compactness}{{18.10}{0}{Kekompakan}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:com:com:thm:compactness@cref}{{[thm][10][18]18.{10}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:com:dls:thm:downward-ls}{{18.11}{0}{Löwenheim--Skolem ke Bawah}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:com:dls:thm:downward-ls@cref}{{[thm][11][18]18.{11}}{[1][0][]0}{}{}{}}}
+\hypertarget{ol-id-forward-size-of-sets}{}
+\protected@write\@auxout{}{\string\newlabel{sfr:siz:zigzag:prob:posint-star}{{4.7}{0}{Ukuran Himpunan}{ol-id-forward-size-of-sets}{}}}
+\protected@write\@auxout{}{\string\newlabel{sfr:siz:zigzag:prob:posint-star@cref}{{[probd][7][]4.7}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{sfr:siz:red:prob:nat-nat}{{4.21}{0}{Ukuran Himpunan}{ol-id-forward-size-of-sets}{}}}
+\protected@write\@auxout{}{\string\newlabel{sfr:siz:red:prob:nat-nat@cref}{{[probd][21][]4.21}{[1][0][]0}{}{}{}}}
+\makeatother
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+% Pertahankan penomoran bab pembaca lengkap: Logika Orde Pertama 15--19,
+% Teori Model 20--23, Komputabilitas 24--25, dan Mesin Turing 26--27.
+\setcounter{chapter}{14}
+
+\olimport*[first-order-logic/introduction]{introduction}
+\olimport*[first-order-logic/syntax-and-semantics]{syntax}
+\olimport*[first-order-logic/syntax-and-semantics]{semantics}
+\olimport*[first-order-logic/models-theories]{models-theories}
+\olimport*[first-order-logic/beyond]{beyond}
+\olimport*[model-theory/basics]{basics}
+\olimport*[model-theory/models-of-arithmetic]{models-of-arithmetic}
+\olimport*[model-theory/interpolation]{interpolation}
+\olimport*[model-theory/lindstrom]{lindstrom}
+\olimport*[computability/recursive-functions]{recursive-functions}
+\olimport*[computability/computability-theory]{computability-theory}
+\olimport*[turing-machines/machines-computations]{machines-computations}
+\olimport*[turing-machines/undecidability]{undecidability}
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}

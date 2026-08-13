@@ -1,0 +1,99 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{int}
+\olsection{Pendahuluan}
+
+Barangkali tampak jelas bahwa tidak setiap fungsi, bahkan tidak setiap fungsi
+aritmetis, dapat dihitung. Jumlah fungsi terlalu banyak dan perilakunya terlalu
+rumit. Misalnya, fungsi yang didefinisikan berdasarkan peluruhan partikel
+radioaktif, atau berdasarkan perilaku kacau atau acak lainnya. Andaikan kita
+mulai menghitung selang satu detik sejak suatu waktu tertentu, lalu
+mendefinisikan fungsi $f(n)$ sebagai banyaknya partikel di alam semesta yang
+meluruh dalam selang satu detik ke-$n$ setelah saat awal itu. Fungsi ini tampak
+sebagai calon fungsi yang tidak mungkin dapat kita hitung.
+
+Namun, tidak dapat membayangkan cara menghitung fungsi semacam itu merupakan
+satu hal, sedangkan benar-benar membuktikan bahwa fungsi tersebut tidak dapat
+dihitung merupakan hal lain. Bahkan fungsi yang tampaknya teramat rumit pun
+mungkin, dalam arti abstrak, dapat dihitung. Misalnya, andaikan alam semesta
+berhingga dalam waktu---pada suatu hari, jauh di masa depan, alam semesta akan
+mengerut menjadi satu titik, sebagaimana diprediksi oleh beberapa teori
+kosmologi. Dalam hal itu, hanya ada sejumlah berhingga (walaupun luar biasa
+besar) detik sejak saat awal tersebut yang membuat $f(n)$ terdefinisi. Setiap
+fungsi yang hanya terdefinisi untuk sejumlah berhingga masukan dapat dihitung:
+kita dapat mencantumkan semua keluarannya dalam satu tabel besar atau
+mengodekannya dalam satu diagram transisi keadaan mesin Turing yang sangat
+besar.
+
+Kita sering tertarik pada kasus khusus fungsi yang nilainya memberikan jawaban
+atas pertanyaan ya/tidak. Misalnya, pertanyaan ``apakah $n$ bilangan prima?''
+dikaitkan dengan fungsi
+\[
+\fn{isprime}(n) = \begin{cases}
+  1 & \text{jika $n$ prima}\\
+  0 & \text{selain itu.}
+  \end{cases}
+\]
+Kita mengatakan bahwa suatu pertanyaan ya/tidak dapat \emph{diputuskan secara
+efektif} jika fungsi terkait yang bernilai $1/0$ dapat dihitung secara efektif.
+
+Untuk membuktikan secara matematis bahwa ada fungsi yang tidak dapat dihitung
+secara efektif atau masalah yang tidak dapat diputuskan secara efektif, kita
+harus menetapkan suatu model komputasi tertentu, lalu menunjukkan bahwa ada
+fungsi yang tidak dapat dihitung atau masalah yang tidak dapat diputuskan oleh
+model tersebut. Misalnya, kita dapat menunjukkan bahwa tidak setiap fungsi
+dapat dihitung oleh mesin Turing dan tidak setiap masalah dapat diputuskan oleh
+mesin Turing. Kemudian kita dapat menggunakan tesis Church--Turing untuk
+menyimpulkan bahwa bukan hanya mesin Turing yang tidak cukup kuat untuk
+menghitung setiap fungsi: tidak ada prosedur efektif yang dapat melakukannya.
+
+Kunci untuk membuktikan hasil-hasil negatif semacam itu adalah kenyataan bahwa
+kita dapat memasangkan bilangan dengan mesin Turing itu sendiri. Cara termudah
+untuk melakukannya ialah dengan mengenumerasinya, mungkin dengan menetapkan
+suatu cara khusus untuk menuliskan mesin Turing beserta programnya, lalu
+mencantumkannya secara sistematis. Setelah kita melihat bahwa hal ini dapat
+dilakukan, keberadaan fungsi yang tidak dapat dihitung oleh mesin Turing
+mengikuti dari pertimbangan kardinalitas sederhana: himpunan fungsi dari
+$\Nat$ ke~$\Nat$ (bahkan hanya dari $\Nat$ ke $\{0, 1\}$) bersifat
+!!{nonenumerable}, tetapi karena kita dapat mengenumerasi semua mesin Turing,
+himpunan fungsi yang dapat dihitung oleh mesin Turing hanya bersifat
+!!{denumerable}.
+
+Kita juga dapat mendefinisikan fungsi dan masalah \emph{tertentu} yang dapat
+kita buktikan masing-masing tidak dapat dihitung dan tidak dapat diputuskan.
+Salah satu masalah tersebut ialah apa yang disebut \emph{Masalah Penghentian}.
+Mesin Turing dapat dideskripsikan secara berhingga dengan mencantumkan
+instruksi-instruksinya. Deskripsi suatu mesin Turing, yakni program mesin
+Turing, tentu saja dapat digunakan sebagai masukan bagi mesin Turing lain.
+Karena itu, kita dapat mempertimbangkan mesin Turing yang memutuskan pertanyaan
+tentang mesin Turing lain. Salah satu pertanyaan yang sangat menarik ialah:
+``Apakah mesin Turing yang diberikan akhirnya berhenti ketika dijalankan pada
+masukan~$n$?'' Akan berguna seandainya ada mesin Turing yang dapat memutuskan
+pertanyaan ini: bayangkan mesin itu sebagai mesin Turing pengendali mutu yang
+memastikan bahwa mesin Turing tidak terjebak dalam kalang tak berhingga dan
+sebagainya. Fakta menarik yang dibuktikan Turing ialah bahwa mesin Turing
+semacam itu tidak mungkin ada. Tidak mungkin ada satu mesin Turing yang, ketika
+dijalankan pada masukan berupa deskripsi mesin Turing~$M$ dan suatu
+bilangan~$n$, selalu berhenti dengan keluaran $1$ atau $0$ menurut apakah~$M$
+akan berhenti ketika dijalankan pada masukan~$n$ atau tidak.
+
+Setelah mempunyai contoh masalah tertentu yang tidak dapat diputuskan, kita
+dapat menggunakannya untuk menunjukkan bahwa masalah lain juga tidak dapat
+diputuskan. Misalnya, salah satu masalah terkenal yang tidak dapat diputuskan
+ialah pertanyaan, ``Apakah !!{formula} orde pertama~$!A$ valid?''. Tidak ada
+mesin Turing yang, apabila diberi !!{formula} orde pertama~$!A$ sebagai
+masukan, dijamin berhenti dengan keluaran $1$ atau $0$ menurut apakah $!A$
+valid atau tidak. Secara historis, pertanyaan untuk menemukan prosedur yang
+secara efektif menyelesaikan masalah ini disebut semata-mata ``masalah
+keputusan''; karena itu, kita mengatakan bahwa masalah keputusan tidak dapat
+diselesaikan. Turing dan Church membuktikan hasil ini secara independen pada
+waktu yang hampir bersamaan, sehingga hasil tersebut juga disebut Teorema
+Church--Turing.
+
+\end{document}

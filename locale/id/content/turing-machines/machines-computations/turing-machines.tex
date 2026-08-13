@@ -1,0 +1,59 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: turing-machines
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{tur}
+\olsection{Mesin Turing}
+
+\begin{explain}
+Definisi formal mengenai apa yang membentuk suatu mesin Turing tampak
+abstrak, tetapi sebenarnya sederhana: definisi itu hanya mengemas ke dalam satu
+struktur matematis seluruh informasi yang diperlukan untuk menentukan cara
+kerja mesin Turing. Informasi ini meliputi (1) keadaan-keadaan yang dapat
+ditempati mesin, (2) simbol-simbol yang boleh berada pada pita, (3) keadaan
+tempat mesin harus bermula, dan (4) himpunan instruksi mesin.
+\end{explain}
+
+\begin{defn}[Mesin Turing]
+Sebuah \emph{mesin Turing} $M$ adalah tuple $\langle Q, \Sigma, q_0,
+\delta\rangle$ yang terdiri atas
+\begin{enumerate}
+\item suatu himpunan berhingga \emph{keadaan}~$Q$,
+\item suatu \emph{alfabet} berhingga $\Sigma$ yang mencakup $\TMendtape$ dan
+  $\TMblank$,
+\item suatu \emph{keadaan awal}~$q_0 \in Q$,
+\item suatu \emph{himpunan instruksi} berhingga~$\delta\colon Q \times \Sigma
+  \pto Q \times \Sigma \times \{\TMleft, \TMright, \TMstay\}$.
+\end{enumerate}
+Fungsi parsial~$\delta$ juga disebut \emph{fungsi transisi} dari~$M$.
+\end{defn}
+
+\begin{explain}
+Kita mengasumsikan bahwa pita tak hingga ke satu arah saja. Karena itu,
+berguna untuk menetapkan simbol khusus~$\TMendtape$ sebagai penanda ujung kiri
+pita. Penanda ini memudahkan program mesin Turing mengetahui kapan mesin
+``terancam'' keluar dari pita. Kita dapat mengasumsikan bahwa simbol ini tidak
+pernah ditimpa, yakni bahwa $\delta(q,\TMendtape) = \tuple{q', \TMendtape, x}$
+jika $\delta(q,\TMendtape)$ terdefinisi. Sebagian buku teks menggunakan
+asumsi ini; kita tidak. Anda cukup berhati-hati ketika menyusun mesin Turing
+agar mesin itu tidak pernah menimpa~$\TMendtape$. Selain itu, ada keadaan
+ketika mengizinkan penimpaan tersebut memberikan keluwesan yang berguna.
+\end{explain}
+
+\begin{ex}
+\emph{Mesin Genap:} Secara formal, mesin genap adalah kuadruple
+$\tuple{Q, \Sigma, q_0, \delta}$ dengan
+\begin{align*}
+Q & = \{ q_0, q_1 \} \\
+\Sigma & = \{ \TMendtape, \TMblank, \TMstroke \}, \\
+\delta(q_0, \TMstroke) & = \tuple{q_1, \TMstroke, \TMright},\\
+\delta(q_1, \TMstroke) & = \tuple{q_0, \TMstroke, \TMright},\\
+\delta(q_1, \TMblank)  & = \tuple{q_1, \TMblank, \TMright}.
+\end{align*}
+\end{ex}
+
+\end{document}

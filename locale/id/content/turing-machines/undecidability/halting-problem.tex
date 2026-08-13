@@ -1,0 +1,151 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: halting-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{hal}
+\olsection{Masalah Penghentian}
+
+\begin{explain}
+Andaikan kita telah menetapkan suatu enumerasi deskripsi mesin Turing. Dengan
+demikian, setiap mesin Turing memperoleh suatu \emph{indeks}: tempatnya dalam
+enumerasi $M_1$, $M_2$, $M_3$, \dots{} dari deskripsi mesin Turing.
+
+Kita mengetahui bahwa pasti ada fungsi yang tidak dapat dihitung oleh mesin
+Turing: himpunan deskripsi mesin Turing---dan karenanya himpunan mesin
+Turing---bersifat !!{enumerable}, tetapi himpunan semua fungsi dari $\Nat$ ke
+$\Nat$ tidak demikian. Namun, kita juga dapat menemukan contoh tertentu dari
+fungsi yang tidak dapat dihitung. Salah satunya ialah fungsi penghentian.
+\end{explain}
+
+\begin{defn}[Fungsi penghentian]
+ \emph{Fungsi penghentian}~$h$ didefinisikan sebagai
+\[
+h(e,n) =
+\begin{cases}
+  \text{0} & \text{jika mesin~$M_e$ tidak berhenti pada masukan $n$} \\
+  \text{1} & \text{jika mesin~$M_e$ berhenti pada masukan $n$}
+\end{cases}
+\]
+\end{defn}
+
+\begin{defn}[Masalah penghentian]
+\emph{Masalah Penghentian} adalah masalah menentukan (untuk setiap $e$, $n$)
+apakah mesin Turing~$M_e$ berhenti pada masukan berupa $n$ simbol~$\TMstroke$.
+\end{defn}
+
+\begin{explain}
+Kita menunjukkan bahwa~$h$ tidak dapat dihitung oleh mesin Turing dengan
+menunjukkan bahwa fungsi terkait,~$s$, tidak dapat dihitung oleh mesin Turing.
+Bukti ini bergantung pada kenyataan bahwa apa pun yang dapat dihitung oleh
+mesin Turing dapat dihitung oleh mesin Turing disiplin
+(\olref[mac][dis]{sec}), dan kenyataan bahwa dua mesin Turing dapat dirangkai
+untuk membuat satu mesin (\olref[mac][cmb]{sec}).
+\end{explain}
+
+\begin{defn} Fungsi~$s$ didefinisikan sebagai
+\[
+s(e) =
+\begin{cases}
+  \text{0} & \text{jika mesin~$M_e$ tidak berhenti pada masukan $e$} \\
+  \text{1} & \text{jika mesin~$M_e$ berhenti pada masukan $e$}
+\end{cases}
+\]
+\end{defn}
+
+\begin{lem}
+Fungsi~$s$ tidak dapat dihitung oleh mesin Turing.
+\end{lem}
+
+\begin{proof}
+Andaikan, demi memperoleh kontradiksi, bahwa fungsi~$s$ dapat dihitung oleh
+mesin Turing. Dengan demikian, akan ada mesin Turing~$S$ yang menghitung~$s$.
+Tanpa mengurangi keumuman, kita dapat mengandaikan bahwa ketika $S$ berhenti,
+mesin itu berhenti sambil memindai petak pertama (yakni, bahwa mesin itu
+terdisiplin). Mesin ini dapat ``dirangkai'' dengan mesin lain~$J$, yang
+berhenti jika dijalankan pada masukan~$0$ (yakni, jika mesin membaca
+$\TMblank$ dalam keadaan awal ketika memindai petak di sebelah kanan simbol
+ujung pita), dan selain itu bergerak terus ke kanan tanpa pernah berhenti.
+$S \concat J$, yaitu mesin yang dibuat dengan merangkai $S$ dengan~$J$,
+merupakan mesin Turing; jadi, mesin itu adalah $M_e$ untuk suatu~$e$ (yakni,
+mesin tersebut muncul di suatu tempat dalam enumerasi). Jalankan $M_e$ pada
+masukan berupa $e$ simbol~$\TMstroke$. Ada dua kemungkinan: $M_e$ berhenti
+atau tidak berhenti.
+\begin{enumerate}
+\item Andaikan $M_e$ berhenti pada masukan berupa $e$ simbol~$\TMstroke$.
+  Maka $s(e) = 1$. Jadi, ketika dijalankan pada~$e$, $S$ berhenti dengan satu
+  simbol~$\TMstroke$ sebagai keluaran pada pita. Kemudian $J$ mulai bekerja
+  dengan satu simbol~$\TMstroke$ pada pita. Dalam hal itu, $J$ tidak berhenti.
+  Namun, $M_e$ adalah mesin $S \concat J$, sehingga seharusnya mesin itu
+  melakukan persis apa yang dilakukan $S$ dan kemudian $J$ (yakni, dalam hal
+  ini, bergerak terus ke kanan dan tidak pernah berhenti). Jadi, $M_e$ tidak
+  mungkin berhenti pada masukan berupa $e$ simbol~$\TMstroke$.
+
+\item Sekarang andaikan $M_e$ tidak berhenti pada masukan berupa $e$
+  simbol~$\TMstroke$. Maka $s(e) = 0$, dan ketika dijalankan pada masukan~$e$,
+  $S$ berhenti dengan pita kosong. Ketika dijalankan pada pita kosong, $J$
+  langsung berhenti. Sekali lagi, $M_e$ melakukan apa yang dilakukan $S$ dan
+  kemudian~$J$, sehingga $M_e$ harus berhenti pada masukan berupa $e$
+  simbol~$\TMstroke$.
+\end{enumerate}
+Dalam kedua kasus, kita memperoleh kontradiksi dengan pengandaian kita. Ini
+menunjukkan bahwa mesin Turing~$S$ semacam itu tidak mungkin ada: $s$ tidak
+dapat dihitung oleh mesin Turing.
+\end{proof}
+
+\begin{thm}[Ketakterputusan Masalah Penghentian]
+\ollabel{thm:halting-problem} Masalah penghentian tidak dapat diselesaikan;
+yakni, fungsi~$h$ tidak dapat dihitung oleh mesin Turing.
+\end{thm}
+
+\begin{proof}
+Andaikan $h$ dapat dihitung oleh mesin Turing, misalnya oleh mesin Turing~$H$.
+Kita dapat menggunakan $H$ untuk membangun suatu mesin Turing yang
+menghitung~$s$: pertama, buat salinan masukan (yang dipisahkan oleh satu
+simbol~$\TMblank$). Kemudian bergerak kembali ke awal dan jalankan~$H$. Jelas
+kita dapat membuat mesin yang melakukan langkah pertama tersebut (lihat
+\cref{tur:mac:dis:prob:copier}), dan seandainya $H$ ada, kita dapat
+``merangkainya'' dengan mesin penyalin semacam itu untuk memperoleh mesin baru
+yang menentukan apakah $M_e$ berhenti pada masukan~$e$, yakni menghitung~$s$.
+Namun, kita telah menunjukkan bahwa mesin semacam itu tidak mungkin ada.
+Karena itu, $h$ juga tidak dapat dihitung oleh mesin Turing.
+\end{proof}
+
+\begin{prob}
+Masalah Tiga-Penghentian (3-Halt) adalah masalah memberikan suatu prosedur
+keputusan untuk menentukan apakah mesin Turing yang dipilih secara sembarang
+berhenti pada masukan berupa tiga simbol~$\TMstroke$ pada pita yang selain itu
+kosong. Buktikan bahwa masalah 3-Halt tidak dapat diselesaikan.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa jika masalah penghentian dapat diselesaikan bagi pasangan mesin
+Turing dan masukan $M_e$ dan~$n$ dengan $e \neq n$, maka masalah itu juga dapat
+diselesaikan bagi kasus $e = n$.
+\end{prob}
+
+\begin{prob}
+Kita telah membuktikan bahwa masalah penghentian tidak dapat diselesaikan jika
+masukannya berupa bilangan~$e$, yang mengidentifikasi mesin Turing~$M_e$
+melalui suatu enumerasi semua mesin Turing. Bagaimana jika kita secara langsung
+mengizinkan deskripsi mesin Turing dari \olref[tur][und][enu]{sec} sebagai
+masukan? Dapatkah ada mesin Turing yang memutuskan masalah penghentian tetapi
+menerima deskripsi mesin Turing sebagai masukan, bukan indeks? Jelaskan mengapa
+dapat atau mengapa tidak.
+\end{prob}
+
+\begin{prob} Tunjukkan bahwa fungsi \emph{parsial}~$s'$ yang didefinisikan oleh
+  \[
+  s'(e) =
+  \begin{cases}
+    \text{1} & \text{jika mesin~$M_e$ berhenti pada masukan $e$}\\
+    \text{tidak terdefinisi} & \text{jika mesin~$M_e$ tidak berhenti pada masukan $e$}
+  \end{cases}
+  \]
+  \emph{dapat} dihitung oleh mesin Turing.
+\end{prob}
+
+\end{document}

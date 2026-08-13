@@ -1,0 +1,132 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: universal-tm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{uni}
+\olsection{Mesin Turing Universal}
+
+Dalam \olref[enu]{sec} kita membahas bagaimana setiap mesin Turing dapat
+dideskripsikan oleh suatu urutan berhingga bilangan bulat. Urutan ini
+mengodekan keadaan, alfabet, keadaan awal, dan instruksi mesin Turing. Kita
+juga menunjukkan bahwa himpunan semua deskripsi tersebut bersifat
+!!{enumerable}. Karena himpunan deskripsi semacam itu bersifat !!{denumerable},
+terdapat fungsi yang !!a{surjective} dari~$\Nat$ ke himpunan deskripsi
+tersebut. Fungsi yang !!a{surjective} semacam itu dapat diperoleh, misalnya,
+dengan metode zig-zag Cantor. Fungsi tersebut memberi kita cara untuk
+mengenumerasi semua (deskripsi) mesin Turing. Jika kita menetapkan salah satu
+enumerasi semacam itu, masuk akal untuk berbicara tentang mesin Turing ke-$1$,
+ke-$2$, \dots, dan ke-$e$. Bilangan-bilangan ini disebut \emph{indeks}.
+
+\begin{defn}
+Jika $M$ merupakan mesin Turing ke-$e$ (dalam enumerasi yang telah kita
+tetapkan), kita mengatakan bahwa $e$ merupakan suatu \emph{indeks} dari~$M$.
+Kita menulis $M_e$ untuk mesin Turing ke-$e$.
+\end{defn}
+
+Sebuah mesin mungkin memiliki lebih dari satu indeks. Misalnya, dua deskripsi
+dari~$M$ mungkin berbeda dalam urutan pencantuman instruksinya, dan deskripsi
+yang berbeda itu akan mempunyai indeks yang berbeda.
+
+Yang penting, enumerasi deskripsi mesin Turing dapat diberikan sedemikian rupa
+sehingga kita dapat menghitung deskripsi~$M$ secara efektif dari indeksnya dan
+menghitung suatu indeks mesin~$M$ secara efektif dari deskripsinya. Berdasarkan
+tesis Church--Turing, kemudian dimungkinkan untuk menemukan sebuah mesin
+Turing yang memperoleh kembali deskripsi mesin Turing berindeks~$e$ dan
+menuliskan deskripsi terkait pada pitanya sebagai keluaran. Deskripsi tersebut
+berupa urutan blok simbol~$\TMstroke$ (yang merepresentasikan bilangan bulat
+positif dalam urutan yang mendeskripsikan~$M_e$).
+
+Dengan demikian, wajar untuk bertanya: fungsi mana dari indeks mesin Turing
+yang dapat dihitung oleh mesin Turing? Sifat mana dari indeks mesin Turing yang
+dapat diputuskan oleh mesin Turing? Sebagai contoh, fungsi yang memetakan
+indeks~$e$ ke banyaknya keadaan yang dimiliki mesin Turing berindeks~$e$ dapat
+dihitung oleh mesin Turing. Berikut yang akan dilakukan mesin Turing semacam
+itu: ketika dijalankan pada pita yang memuat satu blok berisi $e$
+simbol~$\TMstroke$, mula-mula mesin itu akan mendekodekan $e$ menjadi
+deskripsinya. Deskripsi tersebut kini direpresentasikan oleh suatu urutan blok
+simbol~$\TMstroke$ pada pita. Karena !!{element} pertama dalam urutan ini
+merupakan banyaknya keadaan, mesin hanya perlu menghapus segala sesuatu selain
+blok pertama simbol~$\TMstroke$, lalu berhenti.
+
+Salah satu hasil yang menakjubkan adalah sebagai berikut:
+
+\begin{thm}\ollabel{thm:universal-tm} Ada suatu \emph{mesin Turing
+  universal}~$U$ yang, ketika dijalankan pada masukan $\tuple{e,n}$,
+  \begin{enumerate}
+    \item berhenti jika dan hanya jika $M_e$ berhenti pada masukan~$n$, dan
+    \item jika $M_e$ berhenti dengan keluaran $m$, maka~$U$ juga demikian.
+  \end{enumerate}
+  Dengan demikian, $U$ menghitung fungsi $f\colon \Nat \times \Nat \pto
+  \Nat$ yang diberikan oleh $f(e,n) = m$ jika $M_e$, ketika dijalankan pada
+  masukan~$n$, berhenti dengan keluaran~$m$, dan tidak terdefinisi selain itu.
+\end{thm}
+
+\begin{proof}
+  Membuat~$U$ secara nyata pada dasarnya mustahil karena mesin itu luar biasa
+  rumit. Namun, kita dapat menguraikan secara garis besar cara kerjanya, lalu
+  menggunakan tesis Church--Turing. Ketika mulai bekerja, pita~$U$ memuat satu
+  blok berisi $e$ simbol~$\TMstroke$, diikuti satu blok berisi $n$
+  simbol~$\TMstroke$. Mula-mula mesin itu ``mendekodekan'' indeks~$e$ di
+  sebelah kanan masukan~$n$. Proses ini menghasilkan suatu daftar bilangan
+  (yakni blok-blok simbol~$\TMstroke$ yang dipisahkan oleh~$\TMblank$) yang
+  mendeskripsikan instruksi mesin~$M_e$. Kemudian $U$ menuliskan bilangan bagi
+  keadaan awal~$M_e$ dan bilangan~$1$ pada pita di sebelah kanan deskripsi
+  $M_e$. (Sekali lagi, bilangan-bilangan ini direpresentasikan secara uner,
+  sebagai blok simbol~$\TMstroke$.) Selanjutnya, mesin menyalin masukan (blok
+  berisi $n$ simbol~$\TMstroke$) ke sebelah kanan---tetapi setiap
+  simbol~$\TMstroke$ diganti dengan blok berisi tiga simbol~$\TMstroke$
+  (ingat, nomor simbol~$\TMstroke$ adalah~$3$, sedangkan $1$ merupakan nomor
+  simbol~$\TMendtape$ dan $2$ nomor simbol~$\TMblank$). Pada ujung kiri urutan
+  blok ini (yang dipisahkan oleh simbol~$\TMblank$ pada pita~$U$), mesin
+  menuliskan satu simbol~$\TMstroke$, yaitu kode bagi~$\TMendtape$.
+
+  Kini pita~$U$ memuat: indeks~$e$, bilangan~$n$, nomor keadaan awal
+  (``keadaan sekarang''), bilangan bagi posisi awal kepala~$1$ (``posisi kepala
+  sekarang''), dan isi awal ``pita'' (suatu urutan blok simbol~$\TMstroke$ yang
+  merepresentasikan nomor kode simbol-simbol~$M_e$---``simbol-simbol''
+  tersebut---dan dipisahkan oleh~$\TMblank$).
+
+  Selanjutnya, $U$ menyimulasikan apa yang akan dilakukan $M_e$ jika
+  dijalankan pada masukan~$n$, dengan melakukan hal-hal berikut:
+  \begin{enumerate}
+    \item Temukan bilangan~$k$ bagi ``posisi kepala sekarang'' (pada awalnya
+    bilangan itu adalah~$1$).
+    \item Bergerak ke blok ke-$k$ pada ``pita'' untuk melihat ``simbol'' yang
+    ada di sana.
+    \item\ollabel{find-inst}%
+    Temukan instruksi yang cocok dengan ``keadaan'' dan ``simbol'' sekarang.
+    \item Kembali ke blok ke-$k$ pada ``pita'', lalu ganti ``simbol'' di sana
+    dengan nomor kode simbol yang akan ditulis $M_e$.
+    \item Gerakkan kepala ke tempat pencatatan ``keadaan'' sekarang, lalu
+    ganti bilangan di sana dengan nomor keadaan baru.
+    \item Bergerak ke tempat pencatatan ``posisi pita'', lalu hapus satu
+    simbol~$\TMstroke$ atau tambahkan satu simbol~$\TMstroke$ (masing-masing
+    jika instruksi menyuruh bergerak ke kiri atau ke kanan).
+    \item Ulangi.\footnote{Di sini kita mengabaikan beberapa kesulitan halus.
+    Misalnya, $U$ mungkin memerlukan ruang tambahan ketika menaikkan pencacah
+    tempat ``posisi kepala sekarang'' dicatat---dalam hal itu, mesin harus
+    menggeser seluruh ``pita'' ke kanan.}
+  \end{enumerate}
+  Jika $M_e$ yang dijalankan pada masukan~$n$ tidak pernah berhenti, maka $U$
+  juga tidak pernah berhenti, sehingga keluarannya tidak terdefinisi.
+
+  Jika pada langkah~\olref{find-inst} ternyata deskripsi~$M_e$ tidak memuat
+  instruksi bagi pasangan ``keadaan''/``simbol'' sekarang, maka $M_e$ akan
+  berhenti. Jika ini terjadi, $U$ menghapus bagian pitanya di sebelah kiri
+  ``pita''. Untuk setiap blok berisi tiga simbol~$\TMstroke$ (yang
+  merepresentasikan satu simbol~$\TMstroke$ pada pita~$M_e$), mesin menuliskan
+  satu simbol~$\TMstroke$ pada ujung kiri pitanya sendiri dan secara berurutan
+  menghapus ``pita''. Setelah proses ini selesai, pita~$U$ memuat satu blok
+  simbol~$\TMstroke$ yang panjangnya~$m$.
+
+  Jika $U$ menjumpai sesuatu selain blok berisi tiga simbol~$\TMstroke$ pada
+  ``pita'', mesin langsung berhenti. Karena dalam hal ini pita~$U$ tidak memuat
+  satu blok tunggal simbol~$\TMstroke$, keluarannya bukan bilangan asli; yakni,
+  $f(e,n)$ tidak terdefinisi dalam hal ini.
+\end{proof}
+
+\end{document}

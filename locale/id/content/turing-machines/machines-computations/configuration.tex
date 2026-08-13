@@ -1,0 +1,104 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: configuration
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{tur}{con}
+\olsection{Konfigurasi dan Komputasi}
+
+\begin{explain}
+Ingatlah penelusuran konfigurasi-konfigurasi mesin genap sebelumnya.
+Mekanisme khayalan yang terdiri atas pita, kepala baca-tulis, dan program mesin
+Turing sebenarnya hanyalah cara intuitif untuk membayangkan komputasi mesin
+Turing. Secara formal, kita dapat mendefinisikan komputasi suatu mesin Turing
+pada masukan tertentu sebagai barisan \emph{konfigurasi}---dan pada gilirannya
+suatu konfigurasi adalah barisan simbol (yang bersesuaian dengan isi pita pada
+saat tertentu dalam komputasi), suatu bilangan yang menunjukkan posisi kepala
+baca-tulis, dan suatu keadaan. Dengan menggunakan semua ini, kita dapat
+mendefinisikan apa yang dihitung mesin Turing~$M$ pada masukan tertentu.
+\end{explain}
+
+\begin{defn}[Konfigurasi]
+Suatu \emph{konfigurasi} mesin Turing $M = \tuple{Q, \Sigma, q_0,
+\delta}$ adalah tripel $\tuple{C, m, q}$ dengan
+\begin{enumerate}
+\item $C \in \Sigma^*$ merupakan barisan berhingga simbol-simbol dari $\Sigma$,
+\item $m \in \Nat$ merupakan bilangan $< \len{C}$, dan
+\item $q \in Q$.
+\end{enumerate}
+Secara intuitif, barisan~$C$ adalah isi pita (simbol-simbol pada semua petak
+mulai dari petak paling kiri hingga petak tak-kosong terakhir atau petak
+terakhir yang pernah dikunjungi), $m$~adalah nomor petak yang sedang dipindai
+kepala baca-tulis (dengan $0$ sebagai nomor petak paling kiri), dan $q$ adalah
+keadaan mesin saat ini.
+\end{defn}
+
+\begin{explain}
+Masukan yang mungkin bagi mesin Turing ialah suatu barisan simbol, biasanya
+barisan yang mengodekan bilangan dalam bentuk tertentu. Konfigurasi awal mesin
+Turing adalah konfigurasi tempat kita mulai menjalankan mesin Turing pada
+masukan tersebut: pita memuat penanda ujung pita yang langsung diikuti masukan
+yang tertulis pada petak-petak di sebelah kanan; kepala baca-tulis memindai
+petak masukan paling kiri (yakni, petak di sebelah kanan penanda ujung kiri);
+dan mekanisme berada dalam keadaan awal yang ditetapkan, yakni~$q_0$.
+\end{explain}
+
+\begin{defn}[Konfigurasi awal]
+\emph{Konfigurasi awal} $M$ untuk masukan $I \in \Sigma^*$ adalah
+\[
+\tuple{\TMendtape \frown I \frown \TMblank, 1, q_0}.
+\]
+\end{defn}
+
+\begin{explain}
+Simbol~$\frown$ menyatakan \emph{konkatenasi}---untai masukan bermula tepat di
+sebelah kanan penanda ujung kiri.
+\end{explain}
+
+\begin{defn}
+Kita mengatakan bahwa suatu konfigurasi $\tuple{C, m, q}$ \emph{menghasilkan
+konfigurasi $\tuple{C', m', q'}$ dalam satu langkah} (menurut~$M$) jika dan
+hanya jika
+\begin{enumerate}
+\item simbol ke-$m$ dari $C$ adalah $\sigma$,
+\item himpunan instruksi $M$ menentukan $\delta(q, \sigma) =
+  \tuple{q', \sigma', D}$,
+\item simbol ke-$m$ dari $C'$ adalah $\sigma'$, dan
+\item
+\begin{enumerate}
+\item $D = L$ dan $m' = m - 1$ jika $m>0$, sedangkan jika tidak, $m'=0$; atau
+\item $D = R$ dan $m' = m + 1$; atau
+\item $D = N$ dan $m' = m$,
+\end{enumerate}
+\item jika $m' = \len{C}$, maka $\len{C'} = \len{C} + 1$ dan simbol ke-$m'$
+  dari $C'$ adalah~$\TMblank$. Jika tidak, $\len{C'}=\len{C}$,
+\item untuk setiap $i$ sedemikian sehingga $i < \len{C}$ dan $i \neq m$,
+  berlaku $C'(i) = C(i)$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}\ollabel{defn:run-output}
+Suatu \emph{operasi $M$ pada masukan~$I$} adalah barisan berhingga atau tak
+berhingga konfigurasi $C_0,C_1,\dots$ dari~$M$, dengan $C_0$ sebagai
+konfigurasi awal $M$ bagi masukan~$I$, dan setiap $C_i$ menghasilkan
+$C_{i+1}$ dalam satu langkah setiap kali $C_{i+1}$ ada dalam barisan tersebut.
+
+Kita mengatakan bahwa $M$ \emph{berhenti pada masukan $I$ setelah $k$ langkah}
+jika $C_k = \tuple{C, m, q}$, simbol ke-$m$ dari~$C$ adalah~$\sigma$, dan
+$\delta(q, \sigma)$ tidak terdefinisi. Dalam hal itu, \emph{keluaran} $M$ bagi
+masukan~$I$ adalah~$O$, dengan $O$ suatu untai simbol yang tidak berakhir
+dengan~$\TMblank$ sedemikian sehingga
+$C = \TMendtape \concat O \concat \TMblank^j$ untuk suatu~$j \in \Nat$.
+($\TMblank^j$ adalah barisan yang terdiri atas $j$ simbol~$\TMblank$.)
+\end{defn}
+
+\begin{explain}
+Menurut definisi ini, keluaran~$O$ dari~$M$ selalu berakhir dengan simbol selain
+$\TMblank$; atau, jika pada saat~$k$ seluruh pita terisi~$\TMblank$ (kecuali
+simbol~$\TMendtape$ paling kiri), $O$~adalah untai kosong.
+\end{explain}
+
+\end{document}

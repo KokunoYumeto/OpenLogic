@@ -1,0 +1,77 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: halting-states
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{hal}
+\olsection{Keadaan Penghentian}
+
+\begin{explain}
+Meskipun kita telah mendefinisikan bahwa mesin hanya berhenti ketika tidak ada
+instruksi yang dapat dijalankan, representasi mesin Turing yang lazim memiliki
+suatu \emph{keadaan penghentian} khusus~$h$, dengan $h \in Q$.
+
+Gagasan di balik keadaan penghentian itu sederhana: ketika mesin telah selesai
+beroperasi (siap menerima masukan atau telah selesai menuliskan keluaran),
+mesin memasuki keadaan~$h$ dan berhenti di sana. Beberapa mesin memiliki dua
+keadaan penghentian, satu yang menerima masukan dan satu yang menolak masukan.
+\end{explain}
+
+\begin{ex}\emph{Keadaan Penghentian}.
+Untuk memperjelas konsep ini, mari kita mulai dengan memodifikasi mesin genap.
+Alih-alih membiarkan mesin berhenti dalam keadaan~$q_0$ ketika masukannya
+genap, kita dapat menambahkan instruksi yang mengirim mesin ke suatu keadaan
+penghentian.
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial, state]         (A)                     {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below of=A] {$h$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (B)
+  	    edge node {\TMtrans{\TMblank}{\TMblank}{N}} (C)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{R}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (A);
+\end{tikzpicture}
+\]
+
+Mari kita perluas contoh ini lebih lanjut. Ketika mesin menentukan bahwa
+masukannya ganjil, mesin tidak pernah berhenti. Kita dapat mengubah mesin agar
+memiliki keadaan \emph{penolakan} dengan mengganti instruksi yang membentuk
+kalang dengan instruksi untuk memasuki keadaan penolakan~$r$.
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)                     {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below of=A] {$h$};
+  \node[state]         (D) [below of=B] {$r$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (B)
+  	    edge node {\TMtrans{\TMblank}{\TMblank}{N}} (C)
+        (B) edge node {\TMtrans{\TMblank}{\TMblank}{N}} (D)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{R}} (A);
+\end{tikzpicture}
+\]
+\end{ex}
+
+\begin{explain}
+Penambahan keadaan penghentian khusus dapat bermanfaat dalam kasus seperti
+ini karena memperlihatkan secara eksplisit kapan mesin menerima atau menolak
+masukan tertentu. Namun, penting dicatat bahwa keadaan penghentian khusus
+tidak menambah daya komputasi. Demikian pula, pengertian penghentian yang tidak
+terlalu formal memiliki keunggulannya sendiri. Definisi penghentian yang
+digunakan sejauh ini dalam bab ini membuat bukti \emph{Masalah Penghentian}
+intuitif dan mudah diperagakan. Karena alasan itu, kita tetap menggunakan
+definisi semula.
+\end{explain}
+
+\end{document}

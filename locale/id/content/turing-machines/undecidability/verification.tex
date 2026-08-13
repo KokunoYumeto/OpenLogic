@@ -1,0 +1,330 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: verification
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{ver}
+\olsection{Memverifikasi Representasi}
+
+\begin{explain}
+Untuk memverifikasi bahwa representasi kita bekerja, kita harus membuktikan
+dua hal. Pertama, kita harus menunjukkan bahwa jika $M$ berhenti pada
+masukan~$w$, maka $!T(M, w) \lif !E(M, w)$ valid. Kemudian, kita harus
+menunjukkan arah sebaliknya, yakni bahwa jika $!T(M, w) \lif !E(M, w)$ valid,
+maka $M$ memang akhirnya berhenti ketika dijalankan pada masukan~$w$.
+
+Strategi untuk membuktikan kedua hal ini sangat berbeda. Untuk hasil pertama,
+kita harus menunjukkan bahwa !!a{sentence} logika orde pertama (yaitu
+$!T(M, w) \lif !E(M, w)$) valid. Cara termudah untuk melakukannya ialah
+memberikan !!a{derivation}. Namun, bukti kita harus berlaku bagi semua $M$
+dan~$w$, sehingga sebenarnya bukan hanya ada satu !!{sentence} yang perlu kita
+beri !!a{derivation}, melainkan tak berhingga banyaknya. Karena itu, yang dapat
+kita lakukan ialah membuktikan dengan induksi bahwa bagaimana pun bentuk $M$
+dan~$w$, dan berapa pun banyak langkah yang diperlukan $M$ untuk berhenti pada
+masukan~$w$, akan ada !!a{derivation} bagi $!T(M, w) \lif !E(M, w)$.
+
+Secara alami, induksi kita berjalan pada banyaknya langkah yang diambil $M$
+sebelum mencapai konfigurasi penghentian. Dalam bukti induktif, kita akan
+menetapkan bahwa untuk setiap langkah~$n$ dalam jalannya $M$ pada masukan~$w$,
+$!T(M, w) \Entails !C(M, w, n)$, dengan $!C(M, w, n)$ mendeskripsikan secara
+tepat konfigurasi $M$ yang dijalankan pada~$w$ setelah~$n$ langkah. Jika $M$
+berhenti pada masukan~$w$ setelah, katakanlah, $n$ langkah, maka $!C(M, w, n)$
+mendeskripsikan konfigurasi penghentian. Kita juga akan menunjukkan bahwa
+$!C(M, w, n) \Entails !E(M, w)$ setiap kali $!C(M, w, n)$ mendeskripsikan
+konfigurasi penghentian. Jadi, jika $M$ berhenti pada masukan~$w$, maka untuk
+suatu~$n$, $M$ berada dalam konfigurasi penghentian setelah $n$ langkah.
+Dengan demikian, $!T(M, w) \Entails !C(M, w, n)$, dengan $!C(M, w, n)$
+mendeskripsikan konfigurasi penghentian; dan karena dalam kasus itu
+$!C(M, w, n) \Entails !E(M, w)$, kita memperoleh
+$!T(M, w) \Entails !E(M, w)$, yakni $\Entails !T(M, w) \lif !E(M, w)$.
+
+Strategi untuk arah sebaliknya sangat berbeda. Di sini kita mengandaikan
+$\Entails !T(M, w) \lif !E(M, w)$ dan harus membuktikan bahwa $M$ berhenti
+pada masukan~$w$. Dari hipotesis diperoleh $!T(M, w) \Entails !E(M, w)$,
+yakni $!E(M, w)$ benar dalam setiap !!{structure} tempat $!T(M, w)$ benar.
+Karena itu, kita akan mendeskripsikan !!a{structure}~$\Struct{M}$ tempat
+$!T(M, w)$ benar: domainnya adalah $\Nat$, sedangkan interpretasi semua
+$\Obj Q_q$ dan $\Obj S_\sigma$ diberikan oleh konfigurasi-konfigurasi~$M$
+selama dijalankan pada masukan~$w$. Sebagai contoh,
+$\Sat{M}{\Obj Q_q(\num{m}, \num{n})}$ berlaku jika dan hanya jika $M$, ketika
+dijalankan pada masukan~$w$ selama $n$ langkah, berada dalam keadaan~$q$ dan
+memindai petak~$m$. Karena berdasarkan hipotesis
+$!T(M, w) \Entails !E(M, w)$, dan berdasarkan konstruksi
+$\Sat{M}{!T(M, w)}$, maka $\Sat{M}{!E(M, w)}$. Namun,
+$\Sat{M}{!E(M, w)}$ berlaku jika dan hanya jika terdapat suatu
+$n \in \Domain{M} = \Nat$ sehingga $M$, ketika dijalankan pada masukan~$w$,
+berada dalam konfigurasi penghentian setelah~$n$ langkah.
+\end{explain}
+
+\begin{defn}
+Misalkan $!C(M, w, n)$ adalah !!{sentence}
+\[
+\Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
+\land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land
+\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]
+\]
+di mana $q$ adalah keadaan $M$ pada saat~$n$, $M$ memindai petak~$m$ pada
+saat~$n$, petak~$i$ memuat simbol~$\sigma_i$ pada saat~$n$ untuk
+$0 \le i \le k$, dan $k$ adalah yang lebih besar di antara indeks petak
+tak-kosong paling kanan pada pita ketika saat~$0$ dan indeks petak paling kanan
+yang pernah dikunjungi kepala pita setelah $n$ langkah.
+\end{defn}
+
+\begin{lem}\ollabel{lem:halt-config-implies-halt}
+Jika $M$ yang dijalankan pada masukan~$w$ berada dalam konfigurasi penghentian
+setelah $n$ langkah, maka $!C(M, w, n) \Entails !E(M, w)$.
+\end{lem}
+
+\begin{proof}
+Andaikan $M$ berhenti pada masukan~$w$ setelah $n$ langkah. Terdapat suatu
+keadaan~$q$, petak~$m$, dan simbol~$\sigma$ sedemikian sehingga:
+\begin{enumerate}
+\item Setelah $n$ langkah, $M$ berada dalam keadaan~$q$ dan memindai
+  petak~$m$ yang memuat~$\sigma$.
+\item Fungsi transisi $\delta(q, \sigma)$ tidak terdefinisi.
+\end{enumerate}
+$!C(M, w, n)$ adalah deskripsi konfigurasi ini dan memuat klausa
+$\Obj Q_{q}(\num{m}, \num{n})$ serta
+$\Obj S_{\sigma}(\num{m}, \num{n})$. Kedua klausa ini bersama-sama
+menyiratkan $!E(M,w)$:
+\[
+\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
+\]
+sebab $\Obj Q_q(\num{m}, \num{n}) \land
+\Obj S_\sigma(\num{m}, \num{n}) \Entails
+\bigvee_{\tuple{q', \sigma'} \in X}
+(\Obj Q_{q'}(\num{m}, \num{n}) \land
+\Obj S_{\sigma'}(\num{m}, \num{n}))$, karena
+$\tuple{q,\sigma} \in X$.
+\end{proof}
+
+\begin{explain}
+Jadi, jika $M$ berhenti pada masukan~$w$, terdapat suatu~$n$ sedemikian sehingga
+$!C(M, w, n) \Entails !E(M,w)$. Sekarang akan kita tunjukkan bahwa untuk
+setiap saat~$n$, $!T(M, w) \Entails !C(M, w, n)$.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:config}
+Untuk setiap $n$ sedemikian sehingga jalannya $M$ pada masukan~$w$ memiliki
+konfigurasi setelah $n$ langkah, $!T(M, w) \Entails !C(M, w, n)$.
+\end{lem}
+
+\begin{proof}
+Basis induksi: Jika $n = 0$, maka konjungsi-konjungsi $!C(M, w, 0)$ juga
+merupakan konjungsi-konjungsi $!T(M, w)$, sehingga diperikutkan olehnya.
+
+Hipotesis induksi: jika jalannya mesin telah mencapai konfigurasi setelah
+langkah ke-$n$, maka $!T(M,w) \Entails !C(M, w, n)$. Kita harus menunjukkan
+bahwa, kecuali $!C(M, w, n)$ mendeskripsikan konfigurasi penghentian,
+$!T(M, w) \Entails !C(M, w, n+1)$.
+
+Andaikan setelah $n$ langkah, $M$ yang dijalankan pada~$w$ berada dalam
+keadaan~$q$ dan memindai petak~$m$. Karena $M$ tidak berhenti setelah~$n$
+langkah, program~$M$ pasti memuat instruksi dalam salah satu dari tiga bentuk
+berikut:
+
+\begin{enumerate}
+\item \ollabel{right} $\delta(q, \sigma) = \tuple{q', \sigma', \TMright}$
+
+\item \ollabel{left} $\delta(q, \sigma) = \tuple{q', \sigma', \TMleft}$
+
+\item \ollabel{stay} $\delta(q, \sigma) = \tuple{q', \sigma', \TMstay}$
+\end{enumerate}
+
+Ketiga kasus ini akan kita bahas satu per satu.
+
+\begin{enumerate}
+\item Andaikan terdapat instruksi dalam bentuk~\olref{right}.
+  Menurut \olref[rep]{defn:tm-descr}\olref[rep]{rep-right}, ini berarti
+\begin{align*}
+& \lforall[x][\lforall[y][((\Obj Q_{q}(x,
+  y) \land \Obj S_\sigma(x, y)) \lif {}]]\\
+& \qquad (\Obj Q_{q'}(x',
+  y') \land \Obj S_{\sigma'}(x, y') \land !A(x, y)))
+\intertext{merupakan konjungsi $!T(M,w)$. Ini memperikutkan !!{sentence}
+  berikut (instansiasi universal, $\num{m}$ untuk~$x$ dan
+  $\num{n}$ untuk~$y$):}
+& (\Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
+\num{n})) \lif {}\\
+& \qquad (\Obj Q_{q'}(\num{m}', \num{n}') \land
+\Obj S_{\sigma'}(\num{m}, \num{n}') \land !A(\num{m}, \num{n})).
+\intertext{Menurut hipotesis induksi, $!T(M, w) \Entails !C(M, w, n)$,
+  yakni}
+& \Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
+\land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land \\
+& \qquad\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]\\
+\intertext{Karena setelah $n$ langkah petak pita~$m$ memuat~$\sigma$,
+  konjungsi yang bersesuaian adalah~$\Obj S_\sigma(\num{m}, \num{n})$,
+  sehingga ini memperikutkan:}
+& \Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
+   \num{n}).
+\intertext{Sekarang kita memperoleh}
+& \Obj Q_{q'}(\num{m}', \num{n}') \land \Obj S_{\sigma'}(\num{m},
+  \num{n}') \land {}\\
+& \qquad \bigwedge_{\substack{0\le i\le k\\i\ne m}}
+  \Obj S_{\sigma_i}(\num{i}, \num{n}') \land {}\\
+& \qquad \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}'))].
+\end{align*}
+Baris pertama diperoleh langsung dari konsekuen implikasi sebelumnya melalui
+modus ponens. Setiap konjungsi di baris tengah---yang tidak mencakup
+$\Obj S_{\sigma_m}(\num{m},\num{n}')$---diperoleh dari konjungsi yang
+bersesuaian dalam~$!C(M, w, n)$ bersama dengan
+$!A(\num{m},\num{n})$.
+
+Jika $m < k$, maka $!T(M,w) \Proves \num{m} < \num{k}$
+(\olref[rep]{prop:mlessk}); berdasarkan transitivitas~$<$, kita memperoleh
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$. Jika $m = k$, maka
+$\lforall[x][(\num{k} < x \lif \num{m} < x)]$ berdasarkan logika saja.
+Baris terakhir kemudian diperoleh dari konjungsi terakhir dalam
+$!C(M,w,n)$, implikasi tersebut, dan $!A(\num{m},\num{n})$.
+Jika $m<k$, hasil ini sudah merupakan $!C(M, w, n+1)$.
+
+Sekarang andaikan $m=k$. Dalam kasus ini, setelah $n+1$ langkah kepala pita
+juga telah mengunjungi petak~$k+1$, yang kini merupakan petak paling kanan
+yang pernah dikunjungi. Karena itu, $!C(M, w, n+1)$ memiliki konjungsi baru
+$\Obj S_\TMblank(\num{k}',\num{n}')$, dan konjungsi terakhirnya adalah
+$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$.
+Kita harus memverifikasi bahwa kedua !!{sentence} ini juga diperikutkan.
+
+Kita sudah memiliki $\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x,
+\num{n}'))]$. Secara khusus, ini memberi kita
+$\num{k} < \num{k}' \lif \Obj S_\TMblank(\num{k}', \num{n}')$.
+Dari aksioma $\lforall[x][x < x']$ diperoleh $\num{k} < \num{k}'$.
+Melalui modus ponens, diperoleh $\Obj S_\TMblank(\num{k}',\num{n}')$.
+
+Selain itu, karena $!T(M,w) \Proves \num{k} < \num{k}'$, aksioma
+transitivitas~$<$ bersama dengan konjungsi pita-kosong di atas memberi kita
+$\lforall[x][(\num{k}' < x \lif \Obj S_\TMblank(x, \num{n}'))]$.
+(Verifikasinya kita serahkan sebagai latihan.)
+
+\item Andaikan terdapat instruksi dalam bentuk~\olref{left}.
+  Menurut \olref[rep]{defn:tm-descr}\olref[rep]{rep-left},
+\begin{align*}
+& \lforall[x][\lforall[y][((\Obj Q_{q}(x', y) \land \Obj
+    S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad (\Obj Q_{q'}(x, y') \land \Obj
+  S_{\sigma'}(x', y') \land !A(x', y))) \land {}\\
+& \lforall[y][((\Obj Q_q(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q'}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0}, y')
+  \land !A(\num{0}, y)))
+\intertext{merupakan konjungsi $!T(M,w)$. Jika $m>0$, misalkan $l=m-1$
+  (yakni $m=l+1$). Konjungsi pertama !!{sentence} di atas memperikutkan:}
+& (\Obj Q_{q}(\num{l}', \num{n}) \land \Obj S_{\sigma}(\num{l}', \num{n}))
+\lif {} \\
+& \qquad (\Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{l}',
+\num{n}') \land !A(\num{l}', \num{n})).
+\intertext{Jika tidak, misalkan $l=m=0$ dan perhatikan !!{sentence} berikut
+  yang diperikutkan oleh konjungsi kedua:}
+& ((\Obj Q_q(\num{0}, \num{n}) \land \Obj S_{\sigma}(\num{0}, \num{n})) \lif {}\\
+& \qquad (\Obj Q_{q'}(\num{0}, \num{n}') \land \Obj S_{\sigma'}(\num{0}, \num{n}') \land
+!A(\num{0}, \num{n}))).
+\intertext{Kedua kalimat itu memperikutkan}
+& \Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{m},
+  \num{n}') \land {}\\
+&\qquad \bigwedge_{\substack{0\le i\le k\\i\ne m}}
+  \Obj S_{\sigma_i}(\num{i}, \num{n}') \land {} \\
+& \qquad \lforall[x][(\num{k} < x
+  \lif \Obj S_\TMblank(x, \num{n}'))].
+\end{align*}
+seperti sebelumnya. (Perhatikan bahwa dalam kasus pertama,
+$\num{l}' \ident \num{l+1} \ident \num{m}$, dan dalam kasus kedua
+$\num{l} \ident \num{0}$.) Namun, hasil ini tepat merupakan
+$!C(M, w, n+1)$.
+
+\item Kasus \olref{stay} diserahkan sebagai latihan.
+\end{enumerate}
+Kita telah menunjukkan bahwa bagi setiap~$n$ yang dicapai oleh jalannya mesin,
+$!T(M, w) \Entails !C(M, w, n)$.
+\end{proof}
+
+\begin{prob}
+Lengkapilah kasus~\olref[tur][und][ver]{stay} dalam bukti
+\olref[tur][und][ver]{lem:config}.
+\end{prob}
+
+\begin{prob}
+Berikan !!a{derivation} bagi $\Obj S_{\sigma_i}(\num{i}, \num{n}')$ dari
+$\Obj S_{\sigma_i}(\num{i}, \num{n})$ dan
+$!A(\num{m}, \num{n})$ (dengan mengandaikan $i \neq m$, yakni $i < m$ atau
+$m < i$).
+\end{prob}
+
+\begin{prob}
+Berikan !!a{derivation} bagi $\lforall[x][(\num{k}' < x \lif \Obj
+  S_\TMblank(x, \num{n}'))]$ dari $\lforall[x][(\num{k} < x \lif \Obj
+  S_\TMblank(x, \num{n}'))]$, $\lforall[x][x < x']$, dan
+$\lforall[x][\lforall[y][\lforall[z][ ((x < y \land y < z) \lif x <
+      z)]]]$.
+\end{prob}
+
+
+\begin{lem}
+\ollabel{lem:valid-if-halt}
+Jika $M$ berhenti pada masukan~$w$, maka $!T(M, w) \lif
+!E(M, w)$ valid.
+\end{lem}
+
+\begin{proof}
+Menurut \olref{lem:config}, bagi setiap saat~$n$ yang dicapai oleh jalannya
+mesin, deskripsi~$!C(M, w, n)$ atas konfigurasi $M$ pada saat~$n$
+diperikutkan oleh~$!T(M, w)$. Andaikan $M$ berhenti setelah $k$ langkah.
+Pada saat itu mesin memindai suatu petak~$m$, dengan $m \in \Nat$.
+Maka $!C(M, w, k)$ mendeskripsikan konfigurasi penghentian~$M$, yakni memuat
+sebagai konjungsi baik $\Obj Q_q(\num{m}, \num{k})$ maupun
+$\Obj S_\sigma(\num{m}, \num{k})$, dengan $\delta(q,\sigma)$ tidak
+terdefinisi. Jadi, menurut \olref{lem:halt-config-implies-halt},
+$!C(M, w, k) \Entails !E(M,w)$. Namun, karena
+$!T(M, w) \Entails !C(M, w, k)$, kita memperoleh
+$!T(M, w) \Entails !E(M, w)$; dengan demikian,
+$!T(M, w) \lif !E(M, w)$ valid.
+\end{proof}
+
+
+\begin{explain}
+Untuk menuntaskan verifikasi klaim kita, kita juga harus menetapkan arah
+sebaliknya: jika $!T(M, w) \lif !E(M, w)$ valid, maka $M$ memang berhenti
+ketika dijalankan pada masukan~$w$.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:halt-if-valid}
+Jika $\Entails !T(M, w) \lif !E(M, w)$, maka $M$ berhenti pada masukan~$w$.
+\end{lem}
+
+\begin{proof}
+Perhatikan $\Lang L_M$-!!{structure}~$\Struct M$ dengan domain~$\Nat$ yang
+menafsirkan $\Obj 0$ sebagai~$0$, $\prime$ sebagai fungsi penerus, dan $<$
+sebagai relasi lebih-kecil-daripada, serta menafsirkan predikat $\Obj Q_q$
+dan~$\Obj S_\sigma$ sebagai berikut:
+\begin{align*}
+  \Assign{\Obj Q_q}{M} & =
+\Setabs{\tuple{m, n}}{\begin{array}{ll}\text{setelah dijalankan pada~$w$ selama~$n$ langkah,}\\ \text{$M$ berada dalam keadaan $q$
+  dan memindai petak~$m$}\end{array}} \\
+\Assign{\Obj S_\sigma}{M} & = \Setabs{\tuple{m, n}}{\begin{array}{ll}
+\text{setelah dijalankan pada~$w$ selama $n$ langkah,}\\ \text{petak~$m$ pada $M$ memuat
+  simbol~$\sigma$}\end{array}}.
+\end{align*}
+Dengan kata lain, kita mengonstruksi !!{structure}~$\Struct{M}$ agar
+mendeskripsikan, langkah demi langkah, apa yang sebenarnya dilakukan $M$
+ketika dijalankan pada masukan~$w$. Jelas bahwa $\Sat{M}{!T(M, w)}$.
+Jika $\Entails !T(M, w) \lif !E(M, w)$, maka $\Sat{M}{!E(M, w)}$ pula, yakni
+\[
+\Sat{M}{\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]}.
+\]
+Karena $\Domain{M} = \Nat$, pasti terdapat $m,n \in \Nat$ sehingga
+$\Sat{M}{\Obj Q_q(\num{m}, \num{n}) \land \Obj S_\sigma(\num{m},
+\num{n})}$ bagi suatu~$q$ dan~$\sigma$ dengan $\delta(q, \sigma)$ tidak
+terdefinisi. Berdasarkan definisi~$\Struct M$, ini berarti bahwa setelah
+dijalankan pada masukan~$w$ selama~$n$ langkah, $M$ berada dalam keadaan~$q$
+dan membaca simbol~$\sigma$, sedangkan fungsi transisinya tidak terdefinisi;
+yakni, $M$ telah berhenti.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,120 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{int}
+\olsection{Pendahuluan}
+
+Apa artinya suatu fungsi, misalnya dari $\Nat$ ke $\Nat$, bersifat
+\emph{dapat dihitung}? Salah satu jawaban pertama, sekaligus yang paling
+terkenal, ialah bahwa suatu fungsi dapat dihitung jika fungsi itu dapat
+dihitung oleh mesin Turing. Gagasan ini dikemukakan oleh Alan Turing pada
+1936. Mesin Turing merupakan salah satu contoh \emph{model komputasi}---cara
+yang tepat secara matematis untuk mendefinisikan gagasan ``prosedur
+komputasi.'' Makna tepat ungkapan itu masih diperdebatkan, tetapi mesin Turing
+secara luas disepakati sebagai salah satu cara menentukan prosedur komputasi.
+Walaupun istilah ``mesin Turing'' membangkitkan gambaran sebuah mesin fisik
+dengan bagian-bagian bergerak, secara ketat mesin Turing merupakan konstruksi
+matematis murni dan, karena itu, mengidealkan gagasan prosedur komputasi.
+Misalnya, kita tidak membatasi kebutuhan waktu ataupun memori suatu mesin
+Turing: mesin Turing dapat menghitung sesuatu sekalipun komputasinya memerlukan
+ruang penyimpanan atau jumlah langkah yang melebihi jumlah atom di alam
+semesta.
+
+\begin{explain}
+Barangkali cara terbaik memandang mesin Turing ialah sebagai program bagi
+suatu mekanisme khayalan yang khusus. Mekanisme ini terdiri atas sebuah
+\emph{pita} dan sebuah \emph{kepala baca-tulis}. Dalam versi mesin Turing yang
+kita gunakan, pita itu tak hingga ke satu arah (ke kanan), dan terbagi menjadi
+\emph{petak-petak}; setiap petak dapat memuat sebuah simbol dari suatu
+\emph{alfabet} berhingga. Alfabet semacam itu dapat memuat berapa pun banyaknya
+simbol yang berlainan, tetapi pada umumnya kita cukup menggunakan tiga simbol:
+$\TMendtape$, $\TMblank$, dan $\TMstroke$. Ketika mekanisme dijalankan, pita
+berada dalam keadaan kosong (yakni, setiap petak memuat simbol $\TMblank$),
+kecuali petak paling kiri yang memuat $\TMendtape$ dan sejumlah berhingga petak
+yang memuat \emph{masukan}. Pada setiap saat, mekanisme berada dalam salah satu
+dari sejumlah berhingga \emph{keadaan}. Pada awalnya, kepala memindai petak
+paling kiri dan mekanisme berada dalam suatu \emph{keadaan awal} yang telah
+ditentukan. Pada setiap langkah operasi mekanisme, isi petak yang sedang
+dipindai, bersama dengan keadaan mekanisme dan program mesin Turing,
+menentukan apa yang terjadi selanjutnya. Program mesin Turing diberikan oleh
+suatu fungsi parsial yang menerima keadaan~$q$ dan simbol~$\sigma$ sebagai
+masukan serta menghasilkan tripel~$\tuple{q', \sigma', D}$. Setiap kali
+mekanisme berada dalam keadaan~$q$ dan membaca simbol~$\sigma$, mekanisme
+mengganti simbol pada petak yang sedang dipindai dengan~$\sigma'$; kepala
+bergerak ke kiri, ke kanan, atau tetap di tempat menurut apakah $D$ bernilai
+$\TMleft$, $\TMright$, atau $\TMstay$; dan mekanisme berpindah ke keadaan~$q'$.
+
+Sebagai contoh, perhatikan situasi pada \olref{fig:tm}.
+\begin{figure}
+  \olasset{\olpath/assets/diagrams/turing-machine.tikz}
+  \caption{Mesin Turing sedang menjalankan programnya.}
+  \ollabel{fig:tm}
+\end{figure}
+Bagian pita mesin Turing yang tampak memuat simbol ujung pita $\TMendtape$ pada
+petak paling kiri, diikuti tiga angka~$1$, sebuah angka~$0$, dan empat angka~$1$
+lagi. Kepala sedang membaca petak ketiga dari kiri, yang memuat~$1$, dan berada
+dalam keadaan~$q_1$---kita mengatakan ``mesin membaca $1$ dalam keadaan~$q_1$.''
+Jika, untuk masukan $\tuple{q_1, 1}$, program mesin Turing menghasilkan tripel
+$\tuple{q_2, 0, \TMstay}$, mesin itu selanjutnya mengganti~$1$ pada petak ketiga
+dengan~$0$, membiarkan kepala baca-tulis tetap di tempatnya, dan berpindah ke
+keadaan~$q_2$. Jika kemudian program menghasilkan $\tuple{q_3, 0, \TMright}$
+untuk masukan $\tuple{q_2, 0}$, mesin menimpa~$0$ dengan~$0$ yang lain (sehingga
+secara efektif membiarkan isi pita di bawah kepala baca-tulis tidak berubah),
+bergerak satu petak ke kanan, dan memasuki keadaan~$q_3$. Demikian seterusnya.
+
+Kita mengatakan bahwa mesin \emph{berhenti} ketika menjumpai suatu keadaan
+$q_n$ dan simbol~$\sigma$ yang tidak mempunyai instruksi bagi
+$\tuple{q_n, \sigma}$, yakni ketika fungsi transisi tidak terdefinisi pada
+masukan $\tuple{q_n,\sigma}$. Dengan kata lain, mesin tidak mempunyai instruksi
+untuk dijalankan dan pada saat itu berhenti beroperasi. Penghentian kadang-kadang
+direpresentasikan oleh suatu keadaan henti khusus~$h$. Hal ini akan diperagakan
+secara lebih terperinci nanti.
+\end{explain}
+
+\begin{digress}
+Keindahan makalah Turing, ``On computable numbers,'' terletak pada kenyataan
+bahwa ia tidak hanya menyajikan definisi formal, tetapi juga argumen bahwa
+definisi tersebut menangkap gagasan intuitif tentang komputabilitas. Dari
+definisi itu, semestinya jelas bahwa setiap fungsi yang dapat dihitung oleh
+mesin Turing dapat dihitung dalam arti intuitif. Turing menawarkan tiga jenis
+argumen untuk menunjukkan bahwa kebalikannya benar, yakni bahwa setiap fungsi
+yang secara wajar kita anggap dapat dihitung dapat dihitung oleh mesin semacam
+itu. Ketiganya (menurut kata-kata Turing) adalah:
+\begin{enumerate}
+\item Seruan langsung kepada intuisi.
+\item Bukti kesetaraan dua definisi (apabila definisi baru lebih menarik secara
+  intuitif).
+\item Pemberian contoh kelas-kelas besar bilangan yang dapat dihitung.
+\end{enumerate}
+Tujuan kita ialah mencoba mendefinisikan gagasan komputabilitas ``secara
+prinsip,'' yakni tanpa memperhitungkan keterbatasan praktis ruang dan waktu.
+Tentu saja, setelah definisi komputabilitas yang paling luas tersedia, kita
+dapat melanjutkan dengan membahas komputasi yang sumber dayanya dibatasi; hal
+ini merupakan inti bidang yang dikenal sebagai ``kompleksitas komputasional.''
+\end{digress}
+
+\begin{history}
+Alan Turing menemukan mesin Turing pada 1936. Walaupun minatnya ketika itu
+adalah keterputusan logika orde pertama, makalah tersebut telah digambarkan
+sebagai makalah yang menentukan mengenai landasan perancangan komputer. Dalam
+makalah itu, Turing berfokus pada bilangan real yang dapat dihitung, yakni
+bilangan real yang ekspansi desimalnya dapat dihitung; tetapi ia mencatat bahwa
+gagasannya tidak sulit disesuaikan untuk fungsi dapat dihitung pada bilangan
+asli, dan seterusnya. Perhatikan bahwa hal ini terjadi lima tahun penuh sebelum
+komputer serbaguna pertama yang berfungsi dibangun pada 1941 (oleh Konrad Zuse
+dari Jerman di ruang duduk rumah orang tuanya), tujuh tahun sebelum Turing dan
+rekan-rekannya di Bletchley Park membangun mesin pemecah sandi Colossus (1943),
+sembilan tahun sebelum ENIAC buatan Amerika Serikat (1945), dua belas tahun
+sebelum komputer serbaguna Inggris pertama---Manchester Small-Scale
+Experimental Machine---dibangun di Manchester (1948), dan tiga belas tahun
+sebelum orang Amerika pertama kali menguji BINAC (1949). Manchester SSEM
+menyandang kehormatan sebagai komputer pertama yang menyimpan program---mesin
+sebelumnya harus dirangkai ulang dengan tangan untuk setiap tugas baru.
+\end{history}
+
+\end{document}

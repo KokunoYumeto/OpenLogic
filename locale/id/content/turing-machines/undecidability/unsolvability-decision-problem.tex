@@ -1,0 +1,95 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: unsolvability-decision-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{uns}
+\olsection{Masalah Keputusan Tidak Dapat Diselesaikan}
+
+\begin{thm}
+\ollabel{thm:decision-prob}
+Masalah keputusan tidak dapat diselesaikan: tidak ada mesin Turing~$D$ yang,
+ketika dijalankan dengan pita yang memuat !!a{sentence} logika orde pertama
+$!B$ sebagai masukan, pada akhirnya berhenti dan menghasilkan~$1$ jika dan
+hanya jika $!B$ valid, serta menghasilkan~$0$ jika tidak.
+\end{thm}
+
+\begin{proof}
+Andaikan masalah keputusan dapat diselesaikan, yakni andaikan terdapat mesin
+Turing~$D$. Maka kita dapat menyelesaikan masalah penghentian sebagai berikut.
+Kita mengonstruksi mesin Turing~$E$ yang, ketika diberi nomor~$e$ dari mesin
+Turing~$M_e$ dan masukan~$w$, menghitung !!{sentence} yang bersesuaian
+$!T(M_e, w) \lif !E(M_e, w)$, lalu berhenti sambil memindai petak paling kiri
+pada pita. Mesin $E \concat D$, ketika diberi masukan $e$ dan~$w$, mula-mula
+akan menghitung $!T(M_e, w) \lif !E(M_e, w)$ lalu menjalankan mesin masalah
+keputusan~$D$ pada masukan tersebut. $D$ berhenti dengan keluaran~$1$ jika dan
+hanya jika $!T(M_e, w) \lif !E(M_e, w)$ valid, serta menghasilkan~$0$ jika
+tidak. Menurut \olref[ver]{lem:halt-if-valid} dan
+\olref[ver]{lem:valid-if-halt}, $!T(M_e, w) \lif !E(M_e, w)$ valid jika dan
+hanya jika $M_e$ berhenti pada masukan~$w$. Jadi, ketika diberi masukan $e$
+dan~$w$, $E\concat D$ berhenti dengan keluaran~$1$ jika dan hanya jika $M_e$
+berhenti pada masukan~$w$, serta berhenti dengan keluaran~$0$ jika tidak.
+Dengan kata lain, $E \concat D$ akan menyelesaikan masalah penghentian.
+Namun, menurut \olref[hal]{thm:halting-problem}, kita mengetahui bahwa mesin
+Turing semacam itu tidak mungkin ada.
+\end{proof}
+
+\begin{cor}\ollabel{cor:undecidable-sat}%
+Tidak dapat diputuskan apakah suatu !!{sentence} sebarang logika orde pertama
+dapat dipenuhi.
+\end{cor}
+
+\begin{proof}
+  Andaikan keterpenuhan dapat diputuskan oleh mesin Turing~$S$. Maka masalah
+  keputusan dapat kita selesaikan sebagai berikut. Jika diberi
+  !!a{sentence}~$B$ sebagai masukan, pindahkan $!B$ satu petak ke kanan.
+  Kembalilah ke petak~$1$ lalu tuliskan simbol~$\lnot$.
+
+  Sekarang jalankan mesin Turing~$S$. Mesin itu pada akhirnya berhenti dengan
+  keluaran $1$ (jika $\lnot !B$ dapat dipenuhi) atau~$0$ (jika $\lnot !B$
+  tidak dapat dipenuhi) pada pita. Jika terdapat~$\TMstroke$ pada petak~$1$,
+  hapuslah; jika petak~$1$ kosong, tuliskan~$\TMstroke$, kemudian berhenti.
+
+  Mesin Turing ini selalu berhenti, dan keluarannya adalah~$1$ jika dan hanya
+  jika $\lnot !B$ tidak dapat dipenuhi, serta~$0$ jika tidak. Karena $!B$
+  valid jika dan hanya jika $\lnot !B$ tidak dapat dipenuhi, mesin itu
+  menghasilkan~$1$ jika dan hanya jika $!B$ valid, serta~$0$ jika tidak;
+  yakni, mesin tersebut akan menyelesaikan masalah keputusan.
+\end{proof}
+
+\begin{explain}
+Jadi, tidak ada mesin Turing yang selalu memberikan jawaban ``ya'' atau
+``tidak'' yang benar atas pertanyaan ``Apakah $!B$ merupakan !!{sentence}
+logika orde pertama yang valid?'' Akan tetapi, memang \emph{ada} mesin Turing
+yang selalu memberikan jawaban ``ya'' yang benar---tetapi tidak berhenti jika
+jawabannya ``tidak.'' Hal ini mengikuti teorema kesahihan dan kelengkapan
+logika orde pertama serta fakta bahwa !!{derivation} dapat dienumerasi secara
+efektif.
+\end{explain}
+
+\begin{thm}
+  \ollabel{thm:valid-ce}%
+  Validitas !!{sentence} orde pertama bersifat semidapat diputuskan: terdapat
+  mesin Turing~$E$ yang, ketika dijalankan dengan pita yang memuat
+  !!a{sentence} logika orde pertama~$!B$ sebagai masukan, pada akhirnya
+  berhenti dan menghasilkan~$1$ jika dan hanya jika $!B$ valid, tetapi tidak
+  berhenti jika tidak.
+\end{thm}
+
+\begin{proof}
+  Semua !!{derivation} yang mungkin dalam logika orde pertama dapat dihasilkan
+  satu demi satu oleh algoritma efektif. Mesin~$E$ melakukan hal ini, lalu
+  berhenti dengan keluaran~$1$ ketika menemukan !!a{derivation} yang
+  menunjukkan bahwa $\Proves !B$. Menurut teorema kesahihan, jika $E$
+  berhenti dengan keluaran~$1$, penyebabnya ialah~$\Entails !B$. Menurut
+  teorema kelengkapan, jika $\Entails !B$, terdapat !!a{derivation} yang
+  menunjukkan bahwa~$\Proves !B$. Karena $E$ menghasilkan secara sistematis
+  semua !!{derivation} yang mungkin, pada akhirnya mesin itu akan menemukan
+  satu yang menunjukkan~$\Proves !B$, sehingga pada akhirnya berhenti dengan
+  keluaran~$1$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,274 @@
+% Bagian: turing-machines
+% Bab: undecidability
+% Subbagian: trakhtenbrot
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{und}{tra}
+\olsection{Teorema Trakhtenbrot}
+
+\begin{explain}
+  Dalam \olref[rep]{sec}, kita mendefinisikan !!{sentence}
+  $!T(M,w)$ dan~$!E(M,w)$ untuk mesin Turing~$M$ dan untai masukan~$w$.
+  Kemudian dalam \olref[ver]{lem:valid-if-halt} dan
+  \olref[ver]{lem:halt-if-valid}, kita menunjukkan bahwa
+  $!T(M,w) \lif !E(M,w)$ valid jika dan hanya jika $M$, ketika dijalankan
+  pada masukan~$w$, akhirnya berhenti. Karena Masalah Penghentian tidak dapat
+  diputuskan, ini menyiratkan bahwa validitas dan keterpenuhan !!{sentence}
+  logika orde pertama tidak dapat diputuskan
+  (\cref{tur:und:uns:thm:decision-prob,tur:und:uns:cor:undecidable-sat}).
+
+  Akan tetapi, validitas dan keterpenuhan kalimat didefinisikan terhadap
+  !!{structure} sebarang, baik berhingga maupun tak berhingga. Anda mungkin
+  menduga bahwa lebih mudah memutuskan apakah !!a{sentence} dapat dipenuhi
+  dalam !!a{structure} berhingga (atau valid dalam semua !!{structure}
+  berhingga). Kita dapat mengadaptasi bukti ketakterputusan masalah keputusan
+  untuk menunjukkan bahwa dugaan itu tidak benar.
+
+  Pertama, jika Anda kembali ke bukti \olref[ver]{lem:halt-if-valid}, Anda akan
+  melihat bahwa di sana kita menghasilkan model~$\Struct M$ dari~$!T(M,w)$
+  yang mendeskripsikan secara tepat apa yang dilakukan mesin~$M$ ketika
+  dijalankan pada masukan~$w$. Domain model itu adalah~$\Nat$, jadi tak
+  berhingga. Namun, jika $M$ benar-benar berhenti pada masukan~$w$, kita dapat
+  membangun model berhingga~$\Struct M'$ dengan cara serupa. Andaikan $M$ yang
+  dijalankan pada masukan~$w$ berhenti setelah~$k$ langkah. Ambil sebagai
+  domain~$\Domain{M'}$ himpunan $\{0, \dots, n\}$, dengan
+  $n = \max(k+1,\len{w})$, lalu tetapkan
+  \[
+    \Assign{\prime}{M'}(x) =
+    \begin{cases}
+      x + 1 &\text{jika $x < n$}\\
+      n &\text{jika tidak,}
+    \end{cases}
+  \]
+  dan $\tuple{x,y} \in \Assign{<}{M'}$ jika dan hanya jika $x < y$ atau
+  $x = y = n$. Selain itu, $\Struct{M'}$ didefinisikan sama seperti
+  $\Struct{M}$. Berdasarkan definisi~$\Struct{M'}$, sebagaimana dalam bukti
+  \olref[ver]{lem:halt-if-valid}, $\Sat{M'}{!T(M,w)}$. Karena kita
+  mengandaikan bahwa $M$ berhenti pada masukan~$w$,
+  $\Sat{M'}{!E(M,w)}$. Jadi, $\Struct{M'}$ adalah model berhingga dari
+  $!T(M,w) \land !E(M,w)$ (perhatikan bahwa kita mengganti $\lif$
+  dengan~$\land$).
+
+  Kita sudah menempuh separuh bukti: telah kita tunjukkan bahwa jika $M$
+  berhenti pada masukan~$w$, maka $!T(M,w) \land !E(M,w)$ memiliki model
+  berhingga. Sayangnya, arah sebaliknya tidak berlaku. Artinya, terdapat mesin
+  Turing yang tidak berhenti pada suatu masukan~$w$, tetapi
+  $!T(M,w) \land !E(M,w)$ tetap memiliki model berhingga. Sebagai contoh,
+  perhatikan mesin~$M$ dengan satu-satunya keadaan $q_0$ dan instruksi
+  $\delta(q_0,\TMblank) = \tuple{q_0,\TMblank,\TMstay}$. Ketika dijalankan
+  pada masukan kosong~$w = \emptyseq$, mesin ini tidak pernah berhenti: mesin
+  berada dalam kalang tak berhingga, tetapi tidak mengubah pita maupun
+  menggerakkan kepala. Semua konfigurasinya sama (keadaan, posisi kepala, dan
+  isi pita sama). Kita dapat mendefinisikan !!a{structure} berhingga
+  $\Struct{M''}$ yang memenuhi $!T(M,\emptyseq) \land !E(M,\emptyseq)$
+  (latihan). Akan tetapi, kita dapat mengubah~$!T(M,w)$ dengan cara yang sesuai
+  sehingga !!{structure} semacam itu tersingkir.
+
+  \begin{prob}
+    Misalkan $M$ adalah mesin Turing dengan satu-satunya keadaan $q_0$ dan
+    satu-satunya instruksi
+    $\delta(q_0,\TMblank) = \tuple{q_0,\TMblank,\TMstay}$.
+    Misalkan $\Domain{M''} = \{0, 1, 2\}$,
+    $\Assign{\prime}{M''}(0) = \Assign{\prime}{M''}(1) = 1$ dan
+    $\Assign{\prime}{M''}(2) = 2$, serta
+    $\Assign{<}{M''} = \{\tuple{0,1}, \tuple{1,1}, \tuple{2,2}\}$.
+    Definisikan $\Assign{\Obj Q_{q_0}}{M''}$,
+    $\Assign{\Obj S_{\TMblank}}{M''}$, dan
+    $\Assign{\Obj S_{\TMendtape}}{M''}$ sedemikian sehingga
+    $!T(M,\emptyseq)$ dan $!E(M,\emptyseq)$ menjadi benar, lalu jelaskan
+    alasannya. Petunjuk: perhatikan bahwa $\delta(q_0, \TMendtape)$ tidak
+    terdefinisi. Pastikan bahwa
+    \begin{align*}
+    & \Obj Q_{q_0}(\num{1}, \num{n}) \land \Obj S_{\TMendtape}(\num{0}, \num{n})
+      \land
+      \lforall[x][(\num{0} < x \lif \Obj S_\TMblank(x, \num{n}))]
+      \text{\quad untuk semua $n \in \Nat$}\\
+    & \lexists[y][(\Obj Q_{q_0}(\num{0}, y) \land \Obj S_{\TMendtape}(\num{0}, y))]
+    \end{align*}
+    keduanya benar dalam~$\Struct{M''}$.
+  \end{prob}
+\end{explain}
+
+Perhatikan !!{sentence} yang mendeskripsikan operasi mesin Turing~$M$ pada
+masukan $w = \sigma_{i_1}\dots\sigma_{i_k}$:
+\begin{enumerate}
+\item Aksioma yang mendeskripsikan bilangan dan~$<$ (sama seperti dalam
+definisi~$!T(M,w)$ di \olref[rep]{sec}).
+\item Aksioma yang mendeskripsikan konfigurasi masukan: sama seperti dalam
+definisi~$!T(M,w)$.
+\item Aksioma yang mendeskripsikan transisi dari satu konfigurasi ke
+  konfigurasi berikutnya:
+
+Untuk uraian berikut, misalkan $!A(x, y)$ seperti sebelumnya, dan misalkan
+\[
+  !B(y) \ident \lforall[x][(x < y \lif \eq/[x][y])].
+\]
+\begin{enumerate}
+\item \ollabel{rep-right} Untuk setiap instruksi $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMright}$, !!{sentence} tersebut adalah:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y) \land !B(y')))
+\end{align*}
+\item \ollabel{rep-left} Untuk setiap instruksi $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMleft}$, !!{sentence} tersebut adalah
+\begin{align*}
+& \lforall[x][\lforall[y][
+    ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
+!A(x', y) \land !B(y'))) \land {}\\
+& \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
+  y') \land !A(\num{0}, y) \land !B(y')))
+\end{align*}
+\item \ollabel{rep-stay} Untuk setiap instruksi $\delta(q_i, \sigma) =
+  \tuple{q_j, \sigma', \TMstay}$, !!{sentence} tersebut adalah:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y) \land !B(y')))
+\end{align*}
+\end{enumerate}
+Seperti yang dapat Anda lihat, !!{sentence} yang mendeskripsikan transisi~$M$
+sama dengan !!{sentence} yang bersesuaian dalam~$!T(M,w)$, kecuali bahwa kita
+menambahkan $!B(y')$ pada bagian akhir. $!B(y')$ memastikan bahwa bilangan
+$y'$ bagi konfigurasi ``berikutnya'' berbeda dari semua bilangan sebelumnya
+$\Obj 0$, $\Obj 0'$, \dots.
+% \item Sentences that express consistency conditions:
+% \begin{enumerate}
+%   \item\ollabel{rep-con-symb}%
+%   !!^a{sentence} that says that no square can have more than one
+%   symbol on it at any given time:
+%   \[\lforall[x][\lforall[y][(\Obj S_{\sigma}(x, y) \lif \lnot \Obj
+%   S_{\sigma'}(x, y))]],\]
+%   for every pair $\sigma \neq \sigma'$ of tape symbols of~$T$.
+%   \item\ollabel{rep-con-state}%
+%   !!^a{sentence} that says that $M$ cannot be in more than one state
+%   at any given time:
+%   \[\lforall[x][\lforall[y][(\Obj Q_{q}(x, y) \lif
+%   \lforall[z][\lnot \Obj
+%   Q_{q'}(z, y))]],\]
+%   for every pair $q \neq q'$ of states of~$T$.
+%   \item\ollabel{rep-con-tape}%
+%   !!^a{sentence} that says that $M$ cannot be on more than one tape
+%   square at any given time:
+%   \[\lforall[x][\lforall[y][(\Obj Q_{q}(x, y) \lif
+%   \lforall[z][\eq/[z][y]\lif \lnot \Obj
+%   Q_{q'}(z, y))]],\]
+%   for every pair $q$, $q'$ of states of~$T$.
+% \end{enumerate}
+\end{enumerate}
+Misalkan $!T'(M, w)$ adalah konjungsi semua !!{sentence} di atas bagi mesin
+Turing~$M$ dan masukan~$w$.
+
+\begin{lem}\ollabel{lem:halts-sat}
+  Jika $M$ yang dijalankan pada masukan~$w$ berhenti, maka
+  $!T'(M,w) \land !E(M,w)$ memiliki model berhingga.
+\end{lem}
+
+\begin{proof}
+  Misalkan $\Struct{M'}$ seperti dalam bukti
+  \olref[ver]{lem:halt-if-valid}, kecuali
+  \begin{align*}
+    \Domain{M'} & = \{0, \dots, n\},\\
+    \Assign{\prime}{M'}(x) & =
+    \begin{cases}
+      x + 1 &\text{jika $x < n$}\\
+      n &\text{jika tidak,}
+    \end{cases} \\
+    \tuple{x,y} \in \Assign{<}{M'} &\text{ jika dan hanya jika
+      $x < y$ atau $x = y = n$,}
+  \end{align*}
+  dengan $n = \max(k+1,\len{w})$ dan $k$ adalah bilangan terkecil sedemikian
+  sehingga $M$ yang dijalankan pada masukan~$w$ telah berhenti setelah~$k$
+  langkah. Verifikasi bahwa $\Sat{M'}{!T'(M,w) \land !E(M,w)}$ kita serahkan
+  sebagai latihan.
+\end{proof}
+
+\begin{prob}
+  Lengkapilah bukti \olref[tur][und][tra]{lem:halts-sat} dengan membuktikan
+  bahwa $\Sat{M'}{!T'(M,w) \land !E(M,w)}$.
+\end{prob}
+
+\begin{lem}\ollabel{lem:sat-halts}
+  Jika $!T'(M,w) \land !E(M,w)$ memiliki model berhingga, maka $M$ yang
+  dijalankan pada masukan~$w$ berhenti.
+\end{lem}
+
+\begin{proof}
+  Kita menunjukkan kontraposisinya. Andaikan $M$ yang dijalankan pada~$w$
+  tidak berhenti. Jika $!T'(M,w) \land !E(M,w)$ sama sekali tidak memiliki
+  model, kita selesai. Jadi, andaikan $\Struct{M}$ adalah model dari
+  $!T'(M,w) \land !E(M,w)$. Kita harus menunjukkan bahwa model itu tidak dapat
+  berhingga.
+
+  Kita dapat membuktikan, sama seperti dalam \olref[ver]{lem:config}, bahwa
+  jika~$M$, ketika dijalankan pada masukan~$w$, belum berhenti setelah~$n$
+  langkah, maka
+  $!T'(M,w) \Entails !C(M, w, n) \land !B(\num{n})$. Karena $M$ yang
+  dijalankan pada masukan~$w$ tidak berhenti,
+  $!T'(M,w) \Entails !C(M, w, n) \land !B(\num{n})$ untuk semua
+  $n \in \Nat$. Perhatikan bahwa menurut \olref[rep]{prop:mlessk},
+  $!T'(M,w) \Entails \num{k} < \num{n}$ untuk semua~$k < n$. Selain itu,
+  $!B(\num{n}) \Entails \num{k} < \num{n} \lif
+  \eq/[\num{k}][\num{n}]$. Jadi,
+  $\Sat{M}{\eq/[\num{k}][\num{n}]}$ untuk semua~$k < n$; yakni, tak berhingga
+  banyaknya suku~$\num{k}$ harus memiliki nilai yang semuanya berbeda dalam
+  $\Struct{M}$. Namun, hal ini mengharuskan $\Domain{M}$ tak berhingga, sehingga
+  $\Struct{M}$ tidak dapat menjadi model berhingga dari
+  $!T'(M,w) \land !E(M,w)$.
+\end{proof}
+
+\begin{prob}
+  Lengkapilah bukti \olref[tur][und][tra]{lem:sat-halts} dengan membuktikan
+  bahwa jika~$M$, ketika dijalankan pada masukan~$w$, belum berhenti setelah
+  $n$ langkah, maka $!T'(M,w) \Entails !B(\num{n})$.
+\end{prob}
+
+\begin{thm}[Teorema Trakhtenbrot]
+  \ollabel{thm:trakhtenbrodt}
+  Tidak dapat diputuskan apakah suatu !!{sentence} sebarang logika orde
+  pertama memiliki model berhingga (yakni dapat dipenuhi secara berhingga).
+\end{thm}
+
+\begin{proof}
+  Andaikan terdapat mesin Turing~$F$ yang memutuskan masalah keterpenuhan
+  berhingga. Maka, jika diberikan mesin Turing~$M$ dan masukan~$w$, kita dapat
+  menghitung kalimat~$!T'(M,w) \land !E(M,w)$ lalu menggunakan~$F$ untuk
+  memutuskan apakah kalimat itu memiliki model berhingga. Menurut
+  \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts}, kalimat itu
+  memiliki model berhingga jika dan hanya jika $M$ yang dijalankan pada
+  masukan~$w$ berhenti. Jadi, $F$ dapat kita gunakan untuk menyelesaikan
+  masalah penghentian, yang kita ketahui tidak dapat diselesaikan.
+\end{proof}
+
+\begin{cor}\ollabel{cor:fproof-incomp}%
+  Tidak mungkin ada sistem !!{derivation} yang sahih dan lengkap bagi
+  validitas \emph{berhingga}, yakni sistem !!a{derivation} yang memenuhi
+  $\Proves !B$ jika dan hanya jika $\Sat{M}{!B}$ untuk setiap
+  !!{structure} berhingga~$\Struct{M}$.
+\end{cor}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[tur][und][tra]{cor:fproof-incomp}. Perhatikan bahwa $!B$
+  dipenuhi dalam setiap !!{structure} berhingga jika dan hanya jika
+  $\lnot !B$ tidak dapat dipenuhi secara berhingga. Jelaskan mengapa
+  keterpenuhan berhingga bersifat semidapat diputuskan dalam pengertian
+  \olref[tur][und][uns]{thm:valid-ce}. Gunakan hal ini untuk menunjukkan bahwa
+  jika terdapat sistem !!a{derivation} bagi validitas berhingga, maka
+  keterpenuhan berhingga dapat diputuskan.
+\end{prob}
+
+
+\end{document}

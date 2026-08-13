@@ -1,0 +1,44 @@
+% Bagian: turing-machines
+% Bab: machines-computations
+% Subbagian: church-turing-thesis
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{tur}{mac}{ctt}
+\olsection{Tesis Church--Turing}
+
+Mesin Turing dimaksudkan sebagai pengganti yang presisi bagi konsep prosedur
+efektif. Turing berpendapat bahwa siapa pun yang memahami baik konsep prosedur
+efektif maupun konsep mesin Turing akan memiliki intuisi bahwa apa pun yang
+dapat dilakukan melalui prosedur efektif juga dapat dilakukan oleh mesin
+Turing. Klaim ini didukung oleh fakta bahwa semua pengganti presisi lain yang
+diusulkan bagi konsep prosedur efektif ternyata ekuivalen secara ekstensional
+dengan konsep mesin Turing---yakni semuanya dapat menghitung tepat himpunan
+fungsi yang sama. Klaim ini disebut \emph{tesis Church--Turing}.
+
+\begin{defn}[Tesis Church--Turing]
+\emph{Tesis Church--Turing} menyatakan bahwa apa pun yang dapat dihitung
+melalui prosedur efektif dapat dihitung oleh mesin Turing.
+\end{defn}
+
+Tesis Church--Turing digunakan dalam dua cara. Jenis penggunaan pertama
+merupakan alasan untuk bermalas-malasan. Andaikan kita memiliki deskripsi
+prosedur efektif untuk menghitung sesuatu, misalnya dalam ``kode semu''.
+Kita lalu dapat menggunakan tesis Church--Turing untuk membenarkan klaim bahwa
+fungsi yang sama dihitung oleh suatu mesin Turing, sekalipun kita belum
+benar-benar membangun mesin tersebut.
+
+Penggunaan lain tesis Church--Turing lebih menarik secara filosofis. Dapat
+dibuktikan bahwa ada fungsi-fungsi yang tidak dapat dihitung oleh mesin Turing.
+Dari fakta ini dan tesis Church--Turing, dapat disimpulkan bahwa fungsi-fungsi
+tersebut tidak dapat dihitung secara efektif dengan prosedur apa pun. Sebab,
+jika prosedur semacam itu ada, tesis Church--Turing menyiratkan adanya mesin
+Turing untuk prosedur tersebut. Jadi, jika kita dapat membuktikan bahwa tidak
+ada mesin Turing yang menghitungnya, tidak mungkin pula ada prosedur efektif.
+Secara khusus, tesis Church--Turing digunakan untuk menyatakan bahwa apa yang
+disebut masalah penghentian bukan hanya tidak dapat diselesaikan oleh mesin
+Turing, melainkan sama sekali tidak dapat diselesaikan secara efektif.
+
+\end{document}
