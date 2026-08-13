@@ -1,0 +1,112 @@
+% Bagian: first-order-logic
+% Bab: natural-deduction
+% Bagian: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{ntd}{qrl}
+
+\olsection{Aturan Kuantor}
+
+\subsection{Aturan untuk $\lforall$}
+
+\begin{defish}
+\AxiomC{$!A(a)$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][\Atom{!A}{x}]$}
+\DisplayProof
+\hfill
+\AxiomC{$\lforall[x][\Atom{!A}{x}]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(t)$}
+\DisplayProof
+\end{defish}
+
+Dalam aturan untuk~$\lforall$, $t$ adalah suku tertutup (suku yang tidak
+memuat variabel), dan $a$~adalah !!a{constant} yang tidak muncul dalam
+kesimpulan~$\lforall[x][!A(x)]$, ataupun dalam asumsi mana pun yang
+!!{undischarged} dalam !!{derivation} yang berakhir dengan premis~$!A(a)$.
+Kita menyebut $a$ sebagai \emph{variabel eigen} dari inferensi
+\Intro{\lforall}.\footnote{Kita menggunakan istilah ``variabel eigen''
+meskipun $a$ dalam aturan di atas adalah !!a{constant}. Alasannya
+bersifat historis.}
+
+\subsection{Aturan untuk $\lexists$}
+
+\begin{defish}
+\AxiomC{$\Atom{!A}{t}$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][\Atom{!A}{x}]$}
+\DisplayProof
+\hfill
+\AxiomC{$\lexists[x][\Atom{!A}{x}]$}
+\AxiomC{[$\Atom{!A}{a}$]$^n$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{n}
+\BinaryInfC{$!C$}
+\DisplayProof
+\end{defish}
+
+Sekali lagi, $t$ adalah suku tertutup, dan $a$ adalah !!a{constant}
+yang tidak muncul dalam premis $\lexists[x][!A(x)]$, dalam
+kesimpulan~$!C$, ataupun dalam asumsi mana pun yang !!{undischarged}
+dalam !!{derivation}s yang berakhir dengan kedua premis tersebut
+(selain asumsi $!A(a)$). Kita menyebut $a$ sebagai \emph{variabel
+eigen} dari inferensi \Elim{\lexists}.
+
+Pembatasan atas kemunculan variabel eigen dalam inferensi
+\Intro{\lforall} atau \Elim{\lexists} yang baru saja dinyatakan disebut
+\emph{syarat variabel eigen}.
+
+\begin{explain}
+Ingat kembali konvensi bahwa ketika $!A$ adalah !!a{formula} dengan
+!!{variable}~$x$ bebas, kita menandainya dengan menulis~$!A(x)$. Dalam
+konteks yang sama, $!A(t)$ adalah singkatan dari~$\Subst{!A}{t}{x}$.
+Jadi, aturan $\Intro\lexists$ juga dapat kita tulis sebagai:
+\begin{prooftree}
+\AxiomC{$\Subst{!A}{t}{x}$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A]$}
+\end{prooftree}
+Perhatikan bahwa $t$ mungkin sudah muncul dalam~$!A$; misalnya, $!A$
+mungkin berupa~$\Atom{\Obj P}{t,x}$. Jadi, menyimpulkan
+$\lexists[x][\Atom{\Obj P}{t,x}]$ dari~$\Atom{\Obj P}{t,t}$ merupakan
+penerapan $\Intro\lexists$ yang benar---kita boleh ``mengganti'' satu
+atau lebih, dan tidak harus semua, kemunculan~$t$ dalam premis dengan
+!!{variable}~$x$ yang terikat. Akan tetapi, syarat variabel eigen dalam
+$\Intro\lforall$ dan~$\Elim\lexists$ mengharuskan !!{constant}~$a$
+tidak muncul dalam~$!A$. Karena itu, kita tidak dapat menyimpulkan
+$\lforall[x][\Atom{\Obj P}{a,x}]$ secara benar dari
+$\Atom{\Obj P}{a,a}$ dengan menggunakan~$\Intro\lforall$.
+\end{explain}
+
+\begin{explain}
+Dalam \Intro{\lexists} dan \Elim{\lforall} tidak ada pembatasan variabel
+eigen, dan suku~$t$ dapat berupa sebarang suku tertutup, sehingga tidak
+ada syarat semacam itu yang perlu dikhawatirkan. Sebaliknya, dalam aturan
+\Elim{\lexists} dan \Intro{\lforall}, syarat variabel eigen mengharuskan
+!!{constant}~$a$ tidak muncul di mana pun dalam kesimpulan atau dalam
+asumsi yang !!{undischarged}. Syarat ini diperlukan untuk memastikan
+bahwa sistem tersebut sahih, yakni hanya !!{derive} !!{sentence}s dari
+asumsi-asumsi !!{undischarged} yang mengakibatkannya. Tanpa syarat ini,
+hal berikut akan diizinkan:
+\begin{prooftree}
+  \AxiomC{$\lexists[x][!A(x)]$}
+  \AxiomC{$\Discharge{!A(a)}{1}$}
+  \RightLabel{*\Intro{\lforall}}
+  \UnaryInfC{$\lforall[x][!A(x)]$}
+  \RightLabel{\Elim{\lexists}}
+  \BinaryInfC{$\lforall[x][!A(x)]$}
+\end{prooftree}
+Padahal, $\lexists[x][!A(x)] \Entails/ \lforall[x][!A(x)]$.
+
+Karena aturan-aturan eliminasi kuantor hanya mengizinkan suku tertutup untuk
+menggantikan !!{variable}s, setiap !!{formula} yang dapat diturunkan
+dari suatu himpunan !!{sentence}s dengan sendirinya merupakan
+!!a{sentence}.
+\end{explain}
+
+
+\end{document}

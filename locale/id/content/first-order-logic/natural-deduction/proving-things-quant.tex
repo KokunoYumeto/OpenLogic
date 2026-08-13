@@ -1,0 +1,257 @@
+% Bagian: first-order-logic
+% Bab: natural-deduction
+% Bagian: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{ntd}{prq}
+
+\olsection{\usetoken{P}{derivation} dengan Kuantor}
+
+\begin{ex}
+Ketika menangani kuantor, kita harus memastikan bahwa syarat variabel
+eigen tidak dilanggar, dan kadang-kadang hal ini mengharuskan kita
+mengubah urutan pelaksanaan inferensi tertentu. Secara umum, sebaiknya
+kita mencoba menangani terlebih dahulu aturan-aturan yang tunduk pada
+syarat variabel eigen (aturan-aturan tersebut akan berada lebih bawah
+dalam pembuktian akhir).
+
+Mari kita lihat cara memberikan !!a{derivation} atas !!{formula}
+$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$.
+Seperti biasa, kita mulai dengan menulis
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Kita mulai dengan menuliskan apa yang diperlukan untuk membenarkan
+langkah terakhir itu menggunakan aturan \Intro{\lif}.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Karena tidak ada aturan yang jelas untuk diterapkan pada $\lnot
+\lforall[x][!A(x)]$, kita akan menyiapkan !!{derivation} agar dapat
+menggunakan aturan \Elim{\lexists}. Di sini kita harus memperhatikan
+syarat variabel eigen dan memilih simbol konstanta yang tidak muncul
+dalam premis eksistensial $\lexists[x][\lnot !A(x)]$, kesimpulan, ataupun
+asumsi yang belum dilepaskan dan menjadi sandarannya. (Namun, karena tidak
+ada !!{constant}s yang muncul, pilihan apa pun dapat digunakan.)
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Untuk menurunkan $\lnot \lforall[x][!A(x)]$, kita akan mencoba
+menggunakan aturan \Intro{\lnot}: aturan ini mengharuskan kita
+menurunkan suatu kontradiksi, mungkin dengan menggunakan
+$\lforall[x][!A(x)]$ sebagai asumsi tambahan. Tentu saja, kontradiksi
+ini boleh melibatkan asumsi $\lnot !A(a)$ yang akan dilepaskan oleh
+inferensi \Elim{\lexists}. Kita dapat menyiapkannya sebagai berikut:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}, \Discharge{\lforall[x][!A(x)]}{3}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Tampaknya kita hampir memperoleh kontradiksi. Aturan yang paling mudah
+diterapkan adalah \Elim{\lforall}, yang tidak memiliki syarat variabel
+eigen. Karena kita dapat menggunakan sebarang suku tertutup untuk
+menggantikan $x$ yang terikat kuantor universal, paling masuk akal jika
+kita terus menggunakan~$a$ agar dapat mencapai kontradiksi.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{3}$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(a)$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+
+Terutama ketika menangani kuantor, pada tahap ini penting untuk
+memeriksa kembali bahwa syarat variabel eigen tidak dilanggar. Karena
+satu-satunya aturan yang kita terapkan dan tunduk pada syarat variabel
+eigen adalah \Elim{\lexists}, sedangkan variabel eigen~$a$ tidak muncul
+dalam premis eksistensial, kesimpulan inferensi, atau asumsi yang belum
+dilepaskan, ini merupakan !!a{derivation} yang benar.
+\end{ex}
+
+\begin{ex}
+Kadang-kadang kita dapat menurunkan !!a{formula} dari !!{formula}s lain.
+Dalam kasus seperti ini, mungkin terdapat asumsi yang belum dilepaskan.
+Penting untuk tetap mencatat asumsi-asumsi kita selain sasaran akhirnya.
+
+Mari kita lihat cara memberikan !!a{derivation} atas !!{formula}
+$\lexists[x][!C(x,b)]$ dari asumsi-asumsi $\lexists[x][(!A(x)
+\land !B(x))]$ dan $\lforall[x][(!B(x) \lif !C(x,b))]$.
+Seperti biasa, kita mulai dengan menuliskan kesimpulan di bagian bawah.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+Kita memiliki dua asumsi untuk digunakan. Untuk menggunakan yang
+pertama, yakni mencoba menemukan !!a{derivation} atas
+$\lexists[x][!C(x, b)]$ dari $\lexists[x][(!A(x) \land !B(x))]$, kita
+akan memakai aturan \Elim{\lexists}. Karena aturan ini memiliki syarat
+variabel eigen, kita akan menerapkannya terlebih dahulu. Kita memperoleh:
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\Discharge{!A(a) \land !B(a)}{1}$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Kedua asumsi yang kita gunakan sama-sama melibatkan~$!B$. Pada tahap
+ini, mungkin berguna untuk menerapkan \Elim{\land} guna memisahkan
+$!B(a)$.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x)])$}
+\AxiomC{$\Discharge{!A(a)
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+Asumsi kedua yang dapat kita gunakan ialah~$\lforall[x][(!B(x) \lif
+!C(x,b))]$. Karena tidak ada syarat variabel eigen, kita dapat
+menginstansiasi $x$ dengan !!{constant}~$a$ menggunakan
+\Elim{\lforall} untuk memperoleh $!B(a) \lif !C(a, b)$. Sekarang kita
+memiliki $!B(a) \lif !C(a,b)$ dan $!B(a)$. Langkah selanjutnya adalah
+penerapan langsung aturan \Elim{\lif}.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a)
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Kita sudah sangat dekat!{} Dengan satu penerapan \Intro{\lexists},
+kita mencapai sasaran.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a)
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Karena pada setiap langkah kita memastikan bahwa syarat variabel eigen
+tidak dilanggar, kita dapat yakin bahwa ini merupakan !!a{derivation}
+yang benar.
+\end{ex}
+
+\begin{ex}
+Berikan !!a{derivation} atas !!{formula} $\lnot\lforall[x][!A(x)]$ dari
+asumsi-asumsi $\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ dan
+$\lnot\lexists[y][!B(y)]$.
+Seperti biasa, kita menuliskan !!{formula} sasaran di bagian bawah.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Baris terakhir !!{derivation} merupakan negasi, sehingga mari kita coba
+menggunakan \Intro{\lnot}. Ini mengharuskan kita menentukan cara
+!!{derive} suatu kontradiksi.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Sejauh ini semuanya berjalan baik. Kita dapat menggunakan
+\Elim{\lforall}, tetapi belum jelas apakah itu akan membantu mencapai
+sasaran. Sebagai gantinya, mari kita gunakan salah satu asumsi.
+$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ bersama dengan
+$\lforall[x][!A(x)]$ memungkinkan kita menggunakan aturan \Elim{\lif}.
+\begin{prooftree}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Kini tinggal satu asumsi lagi untuk digunakan, dan tampaknya asumsi ini
+akan membantu kita mencapai kontradiksi dengan menggunakan
+\Elim{\lnot}.
+\begin{prooftree}
+\AxiomC{$\lnot\lexists[y][!B(y)]$}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Berikan !!{derivation}s yang menunjukkan hal-hal berikut:
+\begin{enumerate}
+\item $\Proves (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Proves (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Proves \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Proves \lnot\lexists[x][!A(x)]$.
+\item $\Proves \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Proves \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Berikan !!{derivation}s yang menunjukkan hal-hal berikut:
+\begin{enumerate}
+\item $\Proves \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Proves \lexists[y][(!A(y) \lif !B)]$.
+\item $\Proves \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(Semua ini memerlukan aturan~$\FalseCl$.)
+\end{prob}
+
+\end{document}

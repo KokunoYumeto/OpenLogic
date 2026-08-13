@@ -1,0 +1,54 @@
+% Bagian: first-order-logic
+% Bab: natural-deduction
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter[id]{fol}{ntd}{Deduksi Alami}}
+      {\olchapter[id]{pl}{ntd}{Deduksi Alami}}
+
+\begin{editorial}
+Bab ini menyajikan sistem deduksi alami bergaya Gentzen/Prawitz.
+
+Untuk menyertakan atau mengecualikan materi yang relevan dengan deduksi
+alami sebagai sistem pembuktian, gunakan tag ``prfND''.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

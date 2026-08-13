@@ -1,0 +1,166 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{ntd}{ptn}}
+      {\olfileid[id]{pl}{ntd}{ptn}}
+
+\olsection{Gagasan Teori-Bukti}
+
+\begin{editorial}
+Bagian ini menghimpun definisi relasi keterderivasian dan konsistensi
+untuk deduksi alami.
+\end{editorial}
+
+\begin{explain}
+Sebagaimana kita telah mendefinisikan sejumlah gagasan semantik penting
+(validitas, perikutan, keterpenuhan), kini kita mendefinisikan
+\emph{gagasan teori-bukti} yang bersesuaian. Gagasan-gagasan ini tidak
+didefinisikan dengan mengacu pada terpenuhinya !!{sentence} di dalam
+\iftag{FOL}{!!{structure}}{!!{valuation}}, melainkan dengan mengacu pada
+!!{derivability} atau !!{nonderivability} !!{sentence} tertentu dari
+yang lainnya. Penemuan penting menunjukkan bahwa gagasan-gagasan
+teori-bukti tersebut berimpit dengan padanan semantiknya. Keberimpitan itu
+adalah isi \emph{teorema kesahihan} dan \emph{teorema kelengkapan}.
+\end{explain}
+
+
+\begin{defn}[Teorema]
+!!^a{sentence}~$!A$ adalah sebuah \emph{teorema} jika terdapat
+!!a{derivation} untuk~$!A$ dalam deduksi alami yang semua asumsinya
+!!{discharged}. Kita menulis $\Proves !A$ jika $!A$ merupakan teorema dan
+$\Proves/ !A$ jika bukan.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+Kita mengatakan bahwa !!a{sentence} $!A$ \emph{!!{derivable} dari} suatu
+himpunan !!{sentence}~$\Gamma$, dan menulis $\Gamma \Proves !A$, jika
+terdapat !!a{derivation} dengan kesimpulan~$!A$ yang setiap asumsinya
+entah !!{discharged} atau berada dalam~$\Gamma$. Jika $!A$ tidak
+!!{derivable} dari $\Gamma$, kita menulis $\Gamma \Proves/ !A$.
+\end{defn}
+
+\begin{defn}[Konsistensi]
+Suatu himpunan !!{sentence}~$\Gamma$ \emph{tak konsisten} jika dan hanya
+jika $\Gamma \Proves \lfalse$. Jika $\Gamma$ tidak tak konsisten, yakni
+jika $\Gamma \Proves/ \lfalse$, kita menyebutnya \emph{konsisten}.
+\end{defn}
+
+\begin{prop}[Refleksivitas]
+\ollabel{prop:reflexivity}
+Jika $!A \in \Gamma$, maka $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+Asumsi $!A$ sendiri merupakan !!a{derivation} untuk~$!A$; semua asumsi
+yang !!{undischarged} di dalamnya (yakni $!A$) berada dalam~$\Gamma$.
+\end{proof}
+
+
+\begin{prop}[Monotonisitas]
+\ollabel{prop:monotonicity}
+Jika $\Gamma \subseteq \Delta$ dan $\Gamma \Proves !A$, maka $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Setiap !!{derivation} untuk $!A$ dari $\Gamma$ juga merupakan
+!!a{derivation} untuk $!A$ dari~$\Delta$.
+\end{proof}
+
+\begin{prop}[Transitivitas]
+\ollabel{prop:transitivity}
+Jika $\Gamma \Proves !A$ dan $\{!A\} \cup \Delta \Proves
+!B$, maka $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+Jika $\Gamma \Proves !A$, terdapat !!a{derivation}~$\delta_0$ untuk~$!A$
+yang semua asumsi yang !!{undischarged} di dalamnya berada dalam~$\Gamma$.
+Jika
+$\{!A\} \cup \Delta \Proves !B$, maka terdapat
+!!a{derivation}~$\delta_1$ untuk~$!B$ yang semua asumsi yang
+!!{undischarged} di dalamnya berada dalam~$\{!A\} \cup \Delta$. Sekarang
+perhatikan:
+\begin{prooftree}
+  \AxiomC{$\Delta, \Discharge{!A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lif}}
+  \BinaryInfC{$!B$}
+\end{prooftree}
+Semua asumsi !!{undischarged} kini berada dalam $\Gamma \cup \Delta$,
+sehingga hal ini menunjukkan $\Gamma \cup \Delta \Proves !B$.
+\end{proof}
+
+Jika $\Gamma = \{!A_1, !A_2, \ldots, !A_k\}$ merupakan himpunan
+berhingga, kita dapat menggunakan notasi sederhana
+$!A_1,!A_2,\ldots,!A_k \Proves !B$ untuk $\Gamma \Proves !B$; khususnya,
+$!A \Proves !B$ berarti bahwa $\{!A\} \Proves !B$.
+
+Perhatikan bahwa jika $\Gamma \Proves !A$ dan $!A \Proves !B$, maka
+$\Gamma \Proves !B$. Diperoleh pula bahwa jika $!A_1, \dots, !A_n
+\Proves !B$ dan $\Gamma \Proves !A_i$ untuk setiap~$i$, maka
+$\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+Hal-hal berikut ekuivalen.
+    \begin{enumerate}
+      \item \( \Gamma \) tak konsisten.
+      \item \( \Gamma \Proves {!A} \) untuk setiap !!{sentence}~\( {!A} \).
+      \item \( \Gamma \Proves {!A} \) dan \( \Gamma \Proves \lnot {!A} \) untuk suatu !!{sentence}~\( {!A} \).
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][ntd][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Buktikan \olref[pl][ntd][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Kekompakan]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Jika $\Gamma \Proves !A$, maka terdapat himpunan bagian berhingga
+    $\Gamma_0 \subseteq \Gamma$ sedemikian sehingga $\Gamma_0 \Proves !A$.
+  \item Jika setiap himpunan bagian berhingga dari~$\Gamma$ konsisten,
+    maka $\Gamma$ konsisten.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Jika $\Gamma \Proves !A$, maka terdapat
+      !!a{derivation}~$\delta$ untuk~$!A$ dari~$\Gamma$. Misalkan
+      $\Gamma_0$ adalah himpunan asumsi !!{undischarged} dari~$\delta$.
+      Karena setiap !!{derivation} berhingga, $\Gamma_0$ hanya dapat
+      memuat berhingga banyak !!{sentence}. Jadi, $\delta$ merupakan
+      !!a{derivation} untuk~$!A$ dari suatu $\Gamma_0 \subseteq \Gamma$
+      yang berhingga.
+    \item Ini adalah kontraposisi dari (1) untuk kasus khusus
+      $!A \ident \lfalse$.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

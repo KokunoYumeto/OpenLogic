@@ -1,0 +1,54 @@
+% Bagian: first-order-logic
+% Bab: natural-deduction
+% Bagian: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{ntd}{rul}}
+      {\olfileid[id]{pl}{ntd}{rul}}
+
+\olsection{Aturan dan \usetoken{P}{derivation}}
+
+\begin{explain}
+Sistem deduksi alami dimaksudkan untuk sangat menyerupai penalaran
+informal yang digunakan dalam pembuktian matematis (karena itu sistem
+ini agak ``alami''). Pembuktian deduksi alami dimulai dengan
+asumsi-asumsi. Kemudian aturan-aturan inferensi diterapkan. Asumsi
+``!!{discharged}'' oleh aturan inferensi \Intro{\lnot}, \Intro{\lif},
+\iftag{FOL}{\Elim{\lor}, dan \Elim{\lexists}}{dan \Elim{\lor}}. Agar
+jelas, label asumsi yang !!{discharged} ditempatkan di samping
+inferensinya.
+\end{explain}
+
+\begin{defn}[Asumsi]
+Sebuah \emph{asumsi} adalah !!{sentence} apa pun yang berada pada
+posisi teratas suatu cabang.
+\end{defn}
+
+!!^{derivation}s dalam deduksi alami merupakan pohon-pohon tertentu
+yang terdiri atas !!{sentence}s; !!{sentence}s paling atas merupakan
+asumsi, dan jika !!a{sentence} berada di bawah satu, dua, atau tiga
+!!{sentence} lain, kalimat itu harus mengikuti dengan benar berdasarkan
+suatu aturan inferensi. !!^{sentence}s di bagian atas inferensi disebut
+\emph{premis}, sedangkan !!{sentence} di bawahnya disebut
+\emph{kesimpulan} inferensi. Aturan-aturan tersebut hadir berpasangan,
+yaitu aturan introduksi dan aturan eliminasi untuk setiap
+!!{operator}. Aturan introduksi memperkenalkan !!a{operator} dalam
+kesimpulan, sedangkan aturan eliminasi menghilangkan !!a{operator} dari
+suatu premis aturan. Beberapa aturan memungkinkan asumsi jenis tertentu
+untuk \emph{!!{discharged}}. Untuk menunjukkan asumsi mana yang
+!!{discharged} oleh inferensi mana, kita juga memberi label pada asumsi
+dan inferensinya. Hal ini ditunjukkan dengan menulis asumsi sebagai
+``$\Discharge{!A}{n}$.''
+
+% Sertakan kalimat ini hanya jika salah satu dari \land, lor, lif, atau lnot didefinisikan.
+
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}%
+	{Merupakan kebiasaan untuk mempertimbangkan aturan bagi semua !!{operator}s $\land$, $\lor$, $\lif$, $\lnot$, dan $\lfalse$, meskipun beberapa di antaranya didefinisikan.}
+
+
+
+\end{document}

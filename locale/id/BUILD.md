@@ -530,3 +530,78 @@ TeXcount 3.1.1 reports 5,455 English-source and 4,912 Indonesian words for this
 batch, and 37,187 versus 33,962 across all eighty-three admitted files. The
 exact next cursor is `OLP-0084`,
 `content/first-order-logic/natural-deduction/natural-deduction.tex`.
+
+## Natural Deduction checkpoint — 2026-08-13
+
+### Source binding, replay, and semantic review
+
+The gap-free boundary extends through `OLP-0097`. Every source hash equals its
+row in the frozen 722-file closure manifest. The durable replay command is:
+
+```powershell
+& 'locale\id\qa_natural_deduction_batch_replay.ps1'
+```
+
+Its final result is:
+
+```text
+NATURAL_DEDUCTION_BATCH_REPLAY_OK files=14 checks=225 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 next=OLP-0098
+```
+
+The replay binds 3,082 commands, 362 environment markers, 268 localization
+tokens, 21 labels, 12 references, 13 imports, 967 mathematical skeletons, and
+63 proof/derivation blocks. Exact path-scoped source corrections remain hard-
+bound in the replay; unrelated structural drift fails. Independent read-only
+semantic replay of all fourteen final live targets found no remaining
+translation-origin omission, reader-facing English, polarity, quantifier,
+scope, exercise, formula, or proof-tree defect. Full dispositions and hashes
+are in
+`..\_control\OPENLOGIC_NATURAL_DEDUCTION_INDEPENDENT_REVIEW_20260813.md`.
+
+### Clean bounded build
+
+Run from `locale\id`:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error natural-deduction-id.tex
+```
+
+Result: exit 0 using Latexmk 4.88 and MiKTeX pdfTeX 1.40.29.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `natural-deduction-id.tex` | `locale/id/natural-deduction-id.pdf` | 27 | 209,663 | `c2ee4b9d2662b986780b2f1580ea4c1c4effe05fb39e4feda54f061370e81704` |
+
+The final log has zero fatal error, undefined control sequence/reference/
+citation, multiply defined label, or missing glyph. Two inherited package-name
+warnings, eight overfull boxes (maximum 24.25922 pt), and one underfull vbox
+remain. Exact-resolution render inspection found no visible loss. `pdfinfo`
+confirms 27 letter-size pages, no encryption, and no forms. All fonts are
+embedded; the one Type 3 mathematical font lacks a Unicode map but renders
+correctly and did not prevent successful text extraction.
+
+### Extraction, render review, and counts
+
+`pdftotext -layout` produced 61,952 bytes, SHA-256
+`b1f5ebffc5a9a8039c00bcce9093f02aee7ec6e3b59d797a489d69d9d99d0952`,
+and 7,220 whitespace-delimited words. Searches found zero `??`, `Undefined`,
+English environment/reference heading, raw localization token, named English
+technical fallback, or reader-facing English residue.
+
+All 27 pages were rendered at 144 dpi and inspected at original render
+resolution. A post-layout-fix render differed only on pages 25--27, which were
+reinspected and passed. The final semantic edits changed only pages 4, 8, 9,
+and 19 relative to that inspected render; all four were inspected again at
+original resolution. No clipping, overlap, blank content page, broken glyph,
+lost formula, cutoff proof tree, merged problem heading, damaged hyperlink, or
+margin loss was found.
+
+After final source-whitespace cleanup, the PDF was rebuilt and all 27 pages
+were rendered once more. Every page PNG was byte-identical to the already
+inspected final render; the updated PDF hash above binds those final source
+bytes.
+
+TeXcount 3.1.1 reports 5,270 English-source and 4,847 Indonesian words for this
+batch, and 42,457 versus 38,809 across all ninety-seven admitted files. The
+exact next cursor is `OLP-0098`,
+`content/first-order-logic/tableaux/tableaux.tex`.

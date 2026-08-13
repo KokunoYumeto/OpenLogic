@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 83/722 and the exact remainder is 639 files.
+Current target-file coverage is 97/722 and the exact remainder is 625 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -336,6 +336,10 @@ heading, or localization-token fallback. Exact hashes and dispositions are in
 - The bounded Sequent Calculus build contains seven small overfull boxes,
   maximum 5.95644 pt. All 26 pages, including every proof-tree-heavy page, were
   inspected at original render resolution with no visible clipping or loss.
+- The bounded Natural Deduction build contains eight overfull boxes, maximum
+  24.25922 pt, and one underfull vbox. All 27 pages were rendered and inspected;
+  every page changed after the final semantic corrections was inspected again
+  at original render resolution, with no visible clipping, overlap, or loss.
 - No claim is made that the whole 722-file corpus, a complete downstream
   textbook, or public release is complete.
 
@@ -350,7 +354,21 @@ Indonesian words for this batch, and 37,187 versus 33,962 cumulatively. Exact
 hashes and dispositions are recorded in
 `..\_control\OPENLOGIC_SEQUENT_CALCULUS_INDEPENDENT_REVIEW_20260813.md`.
 
-Next global ordered cursor: `OLP-0084`,
-`content/first-order-logic/natural-deduction/natural-deduction.tex`.
-The remaining closure is 639 source files after the 83 target files currently
+### Contiguous Natural Deduction batch
+
+The complete Natural Deduction chapter adds `OLP-0084`--`OLP-0097`. Its
+fourteen-file replay passes 225 checks, 967 mathematical skeletons, and 63
+proof/derivation blocks. Independent read-only semantic replay passes all
+fourteen live targets after exact correction dispositions. The bounded driver
+builds to 27 pages; all pages were rendered at 144 dpi and inspected, with the
+four final-delta pages additionally inspected at original resolution.
+
+TeXcount reports 5,270 English-source and 4,847 Indonesian words for this
+batch, and 42,457 versus 38,809 cumulatively. Exact hashes and dispositions are
+recorded in
+`..\_control\OPENLOGIC_NATURAL_DEDUCTION_INDEPENDENT_REVIEW_20260813.md`.
+
+Next global ordered cursor: `OLP-0098`,
+`content/first-order-logic/tableaux/tableaux.tex`.
+The remaining closure is 625 source files after the 97 target files currently
 present and admitted.

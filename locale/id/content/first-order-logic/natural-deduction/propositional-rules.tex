@@ -1,0 +1,121 @@
+% Bagian: first-order-logic
+% Bab: natural-deduction
+% Bagian: propositional-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{ntd}{prl}}
+      {\olfileid[id]{pl}{ntd}{prl}}
+
+\olsection{Aturan Proposisional}
+
+
+\subsection{Aturan untuk $\land$}
+
+\begin{defish}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\DisplayProof
+\hfill
+\begin{tabular}{r}
+\AxiomC{$!A \land !B$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$!A \land !B$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B$}
+\DisplayProof
+\end{tabular}
+\end{defish}
+
+\subsection{Aturan untuk $\lor$}
+
+\begin{defish}
+\begin{tabular}{r}
+\AxiomC{$!A$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$!B$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DisplayProof
+\end{tabular}
+\hfill
+\AxiomC{$!A \lor !B$}
+\AxiomC{$\Discharge{!A}{n}$}
+\DeduceC{$!C$}
+\AxiomC{$\Discharge{!B}{n}$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lor}}{n}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan untuk $\lif$}
+
+\begin{defish}
+\AxiomC{$\Discharge{!A}{n}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{n}
+\UnaryInfC{$!A \lif !B$}
+\DisplayProof
+\hfill
+\AxiomC{$!A \lif !B$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan untuk $\lnot$}
+
+\begin{defish}
+\AxiomC{$\Discharge{!A}{n}$}
+\noLine
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{n}
+\UnaryInfC{$\lnot !A$}
+\DisplayProof
+\hfill
+\AxiomC{$\lnot !A$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan untuk $\lfalse$}
+
+\begin{defish}
+\AxiomC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!A$}
+\DisplayProof
+\hfill
+\AxiomC{$\Discharge{\lnot !A}{n}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\FalseCl}{n}
+\UnaryInfC{$!A$}
+\DisplayProof
+\end{defish}
+
+Perhatikan bahwa $\Intro{\lnot}$ dan $\FalseCl$ sangat mirip:
+perbedaannya ialah $\Intro{\lnot}$ menurunkan !!{sentence} ternegasi
+$\lnot !A$, sedangkan $\FalseCl$ menurunkan !!{sentence} positif~$!A$.
+
+Setiap kali suatu aturan menunjukkan bahwa sebuah asumsi boleh
+dilepaskan, kita menganggapnya sebagai izin, bukan kewajiban. Sebagai
+contoh, dalam aturan $\Intro{\lif}$, kita boleh melepaskan sebarang
+banyak asumsi berbentuk~$!A$ dalam !!{derivation} premis~$!B$, termasuk
+tidak satu pun.
+
+\end{document}

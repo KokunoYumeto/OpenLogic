@@ -1,0 +1,326 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{ntd}{sou}}
+      {\olfileid[id]{pl}{ntd}{sou}}
+
+\olsection{Kesahihan}
+
+\begin{explain}
+Sebuah sistem !!{derivation}, seperti deduksi alami, disebut \emph{sahih} jika
+sistem tersebut tidak dapat !!{derive} kesimpulan yang sebenarnya tidak
+mengikuti premis-premisnya. Dengan demikian, kesahihan merupakan sejenis sifat keselamatan
+yang dijamin bagi sistem !!{derivation}. Bergantung pada sifat teori-bukti
+yang sedang dibahas, kita ingin mengetahui, misalnya, bahwa
+\begin{enumerate}
+\item setiap !!{sentence} yang !!{derivable} bersifat
+  \iftag{FOL}{valid}{tautologis};
+\item jika !!a{sentence} !!{derivable} dari beberapa kalimat lain,
+  kalimat itu juga merupakan konsekuensi dari kalimat-kalimat tersebut;
+\item jika suatu himpunan !!{sentence} tak konsisten, himpunan itu tak
+  dapat dipenuhi.
+\end{enumerate}
+Ini adalah sifat-sifat penting dari suatu sistem !!{derivation}. Jika salah
+satunya tidak berlaku, sistem !!{derivation} tersebut cacat---sistem itu
+akan !!{derive} terlalu banyak. Oleh karena itu, membuktikan kesahihan
+suatu sistem !!{derivation} sangatlah penting.
+\end{explain}
+
+\begin{thm}[Kesahihan]
+\ollabel{thm:soundness}
+Jika $!A$ !!{derivable} dari asumsi !!{undischarged}~$\Gamma$, maka
+$\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+Misalkan $\delta$ adalah !!a{derivation} untuk $!A$. Kita menggunakan
+induksi pada banyaknya inferensi dalam~$\delta$.
+
+Untuk basis induksi, kita menunjukkan klaim tersebut jika banyaknya
+inferensi adalah~$0$. Dalam kasus ini, $\delta$ hanya terdiri atas satu
+!!{sentence}~$!A$, yakni sebuah asumsi. Asumsi itu !!{undischarged}, sebab
+asumsi hanya dapat !!{discharged} oleh inferensi, sedangkan tidak terdapat
+inferensi. Jadi, setiap
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+yang memenuhi semua asumsi !!{undischarged} dalam pembuktian tersebut
+juga memenuhi~$!A$.
+
+Sekarang untuk langkah induksi. Andaikan $\delta$ memuat~$n$ inferensi.
+Premis-premis inferensi paling bawah kita !!{derive} melalui
+sub-!!{derivation} yang masing-masing memuat kurang dari~$n$ inferensi.
+Kita mengandaikan hipotesis induksi:
+premis-premis inferensi paling bawah merupakan konsekuensi dari asumsi
+!!{undischarged} dalam sub-!!{derivation} yang berakhir pada
+premis-premis tersebut. Kita harus menunjukkan bahwa kesimpulan~$!A$
+merupakan konsekuensi dari asumsi !!{undischarged} dalam seluruh
+pembuktian.
+
+Kita membedakan kasus menurut jenis inferensi paling bawah. Pertama, kita
+membahas inferensi-inferensi yang mungkin dengan hanya satu premis.
+
+\begin{enumerate}
+\item Andaikan inferensi terakhir adalah \Intro{\lnot}:
+  !!^{derivation} tersebut berbentuk
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \DischargeRule{\Intro{\lnot}}{n}
+    \UnaryInfC{$\lnot !A$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $\lfalse$ merupakan konsekuensi dari asumsi
+  !!{undischarged} $\Gamma \cup \{!A\}$ dalam~$\delta_1$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Kita harus menunjukkan bahwa jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$. Untuk memperoleh
+  kontradiksi, andaikan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, tetapi
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$, yakni
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Ini berarti bahwa
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma \cup \{!A\}}$, bertentangan
+  dengan hipotesis induksi. Jadi,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$.
+
+\item Inferensi terakhir adalah \Elim{\land}. Ada dua varian: $!A$ atau
+  $!B$ dapat diinferensikan dari premis $!A \land !B$. Perhatikan kasus
+  pertama. !!^{derivation}~$\delta$ berbentuk sebagai berikut:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \land !B$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $!A \land !B$ merupakan konsekuensi dari
+  asumsi !!{undischarged}~$\Gamma$ dalam~$\delta_1$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Kita harus menunjukkan bahwa jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Menurut hipotesis induksi
+  ($\Gamma \Entails !A \land !B$), kita mengetahui bahwa
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$. Menurut definisi,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ jika dan hanya jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. (Kasus ketika $!B$
+  diinferensikan dari $!A \land !B$ ditangani dengan cara yang sama.)
+
+\item Inferensi terakhir adalah \Intro{\lor}. Ada dua varian: $!A \lor
+  !B$ dapat diinferensikan dari premis~$!A$ atau premis~$!B$. Perhatikan
+  kasus pertama. !!^{derivation} tersebut berbentuk
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \RightLabel{\Intro{\lor}}
+    \UnaryInfC{$!A \lor !B$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $!A$ merupakan konsekuensi dari asumsi
+  !!{undischarged}~$\Gamma$ dalam~$\delta_1$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Kita harus menunjukkan bahwa jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$; maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ karena $\Gamma \Entails !A$
+  (hipotesis induksi). Jadi, harus pula berlaku bahwa
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$. (Kasus ketika
+  $!A \lor !B$ diinferensikan dari~$!B$ ditangani dengan cara yang sama.)
+
+\item Inferensi terakhir adalah \Intro{\lif}. $!A \lif !B$
+  diinferensikan dari subpembuktian dengan asumsi~$!A$ dan
+  kesimpulan~$!B$, yakni
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!B$}
+    \DischargeRule{\Intro{\lif}}{n}
+    \UnaryInfC{$!A \lif !B$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $!B$ merupakan konsekuensi dari asumsi
+  !!{undischarged} dalam~$\delta_1$, yakni $\Gamma \cup \{!A\} \Entails
+  !B$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Asumsi !!{undischarged} dalam~$\delta$ hanyalah $\Gamma$, sebab $!A$
+  dilepaskan pada inferensi terakhir. Jadi, kita harus menunjukkan bahwa
+  $\Gamma \Entails !A \lif !B$. Untuk memperoleh kontradiksi, andaikan
+  bahwa untuk suatu
+  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+  berlaku $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ tetapi
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$. Jadi,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ dan
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. Namun, menurut hipotesis, $!B$
+  merupakan konsekuensi dari $\Gamma \cup \{!A\}$, yakni
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, suatu kontradiksi. Jadi,
+  $\Gamma \Entails !A \lif !B$.
+
+\item Inferensi terakhir adalah \FalseInt. Di sini, $\delta$ berakhir
+  dengan
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \RightLabel{\FalseInt}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $\Gamma \Entails \lfalse$. Kita harus
+  menunjukkan bahwa $\Gamma \Entails !A$. Andaikan tidak; maka untuk
+  suatu~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ berlaku
+    $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ dan
+    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$. Namun, selalu berlaku
+    $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$, sehingga ini berarti
+    bahwa $\Gamma \Entails/ \lfalse$, bertentangan dengan hipotesis
+    induksi.
+
+\item Inferensi terakhir adalah \FalseCl: Latihan.
+
+\iftag{FOL}{
+\item Inferensi terakhir adalah \Intro{\lforall}. Maka $\delta$ berbentuk
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+  \end{prooftree}
+  Menurut hipotesis induksi, premis $!A(a)$ merupakan konsekuensi dari
+  asumsi !!{undischarged}~$\Gamma$. Perhatikan suatu
+  struktur~$\Struct{M}$ sebarang sedemikian sehingga $\Sat{M}{\Gamma}$. Kita harus
+  menunjukkan bahwa $\Sat{M}{\lforall[x][!A(x)]}$. Karena
+  $\lforall[x][!A(x)]$ adalah !!a{sentence}, ini berarti bahwa untuk setiap
+  penugasan variabel~$s$, kita harus menunjukkan $\Sat{M}{!A(x)}[s]$
+  (\olref[syn][ass]{prop:sat-quant}). Karena $\Gamma$ seluruhnya terdiri
+  atas kalimat, $\Sat{M}{!B}[s]$ untuk semua $!B \in \Gamma$ menurut
+  \olref[syn][sat]{defn:satisfaction}. Misalkan $\Struct{M'}$ sama dengan
+  $\Struct{M}$ kecuali $\Assign{a}{M'} = s(x)$. Karena $a$ tidak muncul
+  dalam~$\Gamma$, $\Sat{M'}{\Gamma}$ menurut
+  \olref[syn][ext]{cor:extensionality-sent}. Karena $\Gamma \Entails
+  !A(a)$, maka $\Sat{M'}{!A(a)}$. Karena $!A(a)$ adalah !!a{sentence},
+  $\Sat{M'}{!A(a)}[s]$ menurut
+  \olref[syn][ass]{prop:sentence-sat-true}. $\Sat{M'}{!A(x)}[s]$ jika dan
+  hanya jika $\Sat{M'}{!A(a)}$ menurut
+  \olref[syn][ext]{prop:ext-formulas} (ingat bahwa $!A(a)$ hanyalah
+  $\Subst{!A(x)}{a}{x}$). Jadi, $\Sat{M'}{!A(x)}[s]$. Karena $a$ tidak
+  muncul dalam~$!A(x)$, menurut \olref[syn][ext]{prop:extensionality},
+  $\Sat{M}{!A(x)}[s]$. Namun, $s$ adalah penugasan variabel sebarang,
+  sehingga $\Sat{M}{\lforall[x][!A(x)]}$.
+
+\item Inferensi terakhir adalah \Intro{\lexists}: Latihan.
+
+\item Inferensi terakhir adalah \Elim{\lforall}: Latihan.
+}{}
+\end{enumerate}
+
+Sekarang mari kita bahas inferensi-inferensi yang mungkin dengan beberapa
+premis: \Elim{\lor}, \Intro{\land}, \Elim{\lnot},
+\iftag{FOL}{\Elim{\lif}, dan \Elim{\lexists}}{dan \Elim{\lif}}.
+\begin{enumerate}
+
+\item Inferensi terakhir adalah \Intro{\land}. $!A \land !B$
+  diinferensikan dari premis $!A$ dan $!B$, dan $\delta$ berbentuk
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+    \RightLabel{\Intro{\land}}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $!A$ merupakan konsekuensi dari asumsi
+  !!{undischarged}~$\Gamma_1$ dalam~$\delta_1$, dan $!B$ merupakan
+  konsekuensi dari asumsi !!{undischarged}~$\Gamma_2$ dalam~$\delta_2$.
+  Asumsi !!{undischarged} dalam~$\delta$ adalah $\Gamma_1 \cup
+  \Gamma_2$, sehingga kita harus menunjukkan bahwa $\Gamma_1 \cup
+  \Gamma_2 \Entails !A \land !B$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  dengan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$.
+  Karena $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$, harus berlaku
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ karena $\Gamma_1 \Entails !A$;
+  dan karena $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$, berlaku
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ karena $\Gamma_2 \Entails !B$.
+  Bersama-sama, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$.
+
+\item Inferensi terakhir adalah \Elim{\lor}: Latihan.
+
+\item Inferensi terakhir adalah \Elim{\lif}. $!B$ diinferensikan dari
+  premis $!A \lif !B$ dan~$!A$. !!^{derivation}~$\delta$ berbentuk
+  sebagai berikut:
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \lif !B$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lif}}
+    \BinaryInfC{$!B$}
+  \end{prooftree}
+  Menurut hipotesis induksi, $!A \lif !B$ merupakan konsekuensi dari
+  asumsi !!{undischarged}~$\Gamma_1$ dalam~$\delta_1$, dan $!A$
+  merupakan konsekuensi dari asumsi !!{undischarged}~$\Gamma_2$
+  dalam~$\delta_2$. Perhatikan
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}.
+  Kita harus menunjukkan bahwa jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$, maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$. Karena
+  $\Gamma_1 \Entails !A \lif !B$, maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$. Karena
+  $\Gamma_2 \Entails !A$, kita memperoleh
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Ini berarti bahwa
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. (Sebab, jika
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, karena
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, akan berlaku
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$, bertentangan dengan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$.)
+
+\item Inferensi terakhir adalah \Elim{\lnot}: Latihan.
+
+\tagitem{FOL}{Inferensi terakhir adalah \Elim{\lexists}: Latihan.}{}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Lengkapi pembuktian \olref[fol][ntd][sou]{thm:soundness}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Lengkapi pembuktian \olref[pl][ntd][sou]{thm:soundness}.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Jika $\Proves !A$, maka $!A$ \iftag{FOL}{valid}{merupakan tautologi}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Jika $\Gamma$ dapat dipenuhi, maka himpunan tersebut konsisten.
+\end{cor}
+
+\begin{proof}
+Kita membuktikan kontraposisinya. Andaikan $\Gamma$ tidak konsisten.
+Maka $\Gamma \Proves \lfalse$, yakni terdapat !!a{derivation} untuk
+$\lfalse$ dari asumsi !!{undischarged} dalam~$\Gamma$. Menurut
+\olref{thm:soundness}, setiap
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+yang memenuhi $\Gamma$ harus memenuhi $\lfalse$. Karena
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ untuk setiap
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+tidak ada \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} yang dapat memenuhi
+$\Gamma$; yakni, $\Gamma$ tidak dapat dipenuhi.
+\end{proof}
+
+\end{document}

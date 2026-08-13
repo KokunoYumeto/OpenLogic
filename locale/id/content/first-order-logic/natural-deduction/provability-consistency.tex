@@ -1,0 +1,134 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{ntd}{prv}}
+      {\olfileid[id]{pl}{ntd}{prv}}
+
+\olsection{\usetoken{S}{derivability} dan Konsistensi}
+
+Sekarang kita akan membuktikan sejumlah sifat relasi !!{derivability}.
+Sifat-sifat tersebut menarik secara mandiri, tetapi masing-masing akan
+berperan dalam pembuktian teorema kelengkapan.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Jika $\Gamma \Proves !A$ dan $\Gamma \cup \{!A\}$ tak konsisten,
+  maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+Misalkan !!{derivation} untuk~$!A$ dari~$\Gamma$ adalah~$\delta_1$ dan
+!!{derivation} untuk~$\lfalse$ dari $\Gamma \cup \{!A\}$
+adalah~$\delta_2$. Kita kemudian dapat !!{derive}:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\AxiomC{$\Gamma$}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+Dalam !!{derivation} baru ini, asumsi~$!A$ !!{discharged}, sehingga ini
+merupakan !!a{derivation} dari~$\Gamma$.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ jika dan hanya jika $\Gamma \cup \{\lnot !A\}$
+tak konsisten.
+\end{prop}
+
+\begin{proof}
+Pertama, andaikan $\Gamma \Proves !A$, yakni terdapat
+!!a{derivation}~$\delta_0$ untuk~$!A$ yang semua asumsi yang
+!!{undischarged} di dalamnya berada dalam~$\Gamma$. Kita memperoleh
+!!a{derivation} untuk
+$\lfalse$ dari $\Gamma \cup \{\lnot !A\}$ sebagai berikut:
+\begin{prooftree}
+  \AxiomC{$\lnot !A$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+\end{prooftree}
+
+Sekarang andaikan $\Gamma \cup \{\lnot !A\}$ tak konsisten, dan misalkan
+$\delta_1$ adalah !!{derivation} terkait untuk~$\lfalse$ dari asumsi
+!!{undischarged} dalam~$\Gamma \cup \{\lnot !A\}$. Kita memperoleh
+!!a{derivation} untuk~$!A$ dari~$\Gamma$ saja dengan menggunakan
+~$\FalseCl$:
+\begin{prooftree}
+  \AxiomC{$\Gamma, \Discharge{\lnot !A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A$}
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+Buktikan bahwa $\Gamma \Proves \lnot !A$ jika dan hanya jika
+$\Gamma \cup \{!A\}$ tak konsisten.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Jika $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$, maka $\Gamma$
+  tak konsisten.
+\end{prop}
+
+\begin{proof}
+  Andaikan $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$. Maka terdapat
+  !!a{derivation}~$\delta$ untuk~$!A$ dari~$\Gamma$. Perhatikan penerapan
+  sederhana aturan $\Elim{\lnot}$ berikut:
+  \begin{prooftree}
+    \AxiomC{$\lnot !A$}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lnot}}
+    \BinaryInfC{$\lfalse$}
+  \end{prooftree}
+  Karena $\lnot !A \in \Gamma$, semua asumsi yang !!{undischarged}
+  berada dalam~$\Gamma$; hal ini menunjukkan bahwa
+  $\Gamma \Proves \lfalse$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Jika $\Gamma \cup \{!A\}$ dan $\Gamma \cup \{\lnot !A\}$ keduanya
+  tak konsisten, maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+Terdapat !!{derivation} $\delta_1$ dan $\delta_2$, masing-masing untuk
+~$\lfalse$ dari $\Gamma \cup \{ !A \}$ dan untuk $\lfalse$ dari
+$\Gamma \cup \{ \lnot !A \}$. Kita kemudian dapat !!{derive}
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{\lnot !A}{2}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{2}
+\UnaryInfC{$\lnot \lnot !A$}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_1$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+Karena asumsi $!A$ dan $\lnot !A$ !!{discharged}, ini merupakan
+!!a{derivation} untuk~$\lfalse$ dari~$\Gamma$ saja. Jadi, $\Gamma$ tak
+konsisten.
+\end{proof}
+
+\end{document}

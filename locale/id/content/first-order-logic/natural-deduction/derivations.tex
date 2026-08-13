@@ -1,0 +1,111 @@
+% Bagian: first-order-logic
+% Bab: natural-deduction
+% Bagian: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{ntd}{der}}
+      {\olfileid[id]{pl}{ntd}{der}}
+
+\olsection{\usetoken{P}{derivation}}
+
+\begin{explain}
+Kita telah menjelaskan apa itu asumsi dan memberikan aturan-aturan
+inferensi. !!^{derivation}s dalam deduksi alami dibangkitkan secara
+induktif dari keduanya: setiap !!{derivation} merupakan sebuah asumsi
+itu sendiri, atau terdiri atas satu, dua, atau tiga !!{derivation}s yang
+diikuti oleh suatu inferensi yang benar.
+\end{explain}
+
+\begin{defn}[!!^{derivation}]
+\Article{derivation} \emph{!!{derivation}} atas !!a{sentence}~$!A$ dari
+asumsi-asumsi~$\Gamma$ adalah pohon berhingga yang terdiri atas
+!!{sentence}s dan memenuhi syarat berikut:
+\begin{enumerate}
+\item !!^{sentence}s paling atas pada pohon itu berada dalam $\Gamma$
+  atau !!{discharged} oleh suatu inferensi pada pohon tersebut.
+\item !!^{sentence} paling bawah pada pohon itu adalah~$!A$.
+\item Setiap !!{sentence} pada pohon itu selain kalimat~$!A$ di bagian
+  paling bawah merupakan premis dari penerapan aturan inferensi yang
+  benar, dan kesimpulan aturan tersebut berada tepat di bawah
+  !!{sentence} itu pada pohon.
+\end{enumerate}
+Kita lalu mengatakan bahwa $!A$ adalah \emph{kesimpulan} dari
+!!{derivation} tersebut dan $\Gamma$ adalah asumsi-asumsinya yang
+!!{undischarged}.
+
+Jika terdapat !!a{derivation} atas $!A$ dari~$\Gamma$, kita mengatakan
+bahwa $!A$ \emph{!!{derivable}} dari~$\Gamma$, atau dalam simbol:
+$\Gamma \Proves !A$. Jika terdapat !!a{derivation} atas~$!A$ yang
+semua asumsinya !!{discharged}, kita menulis~$\Proves !A$.
+\end{defn}
+
+\begin{ex}
+Setiap asumsi itu sendiri merupakan !!a{derivation}. Jadi, misalnya,
+$!A$ sendiri merupakan !!a{derivation}, demikian pula $!B$ sendiri.
+Kita dapat memperoleh !!a{derivation} baru dari keduanya dengan
+menerapkan, misalnya, aturan $\Intro{\land}$,
+\begin{prooftree}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\end{prooftree}
+Aturan-aturan ini dimaksudkan untuk berlaku umum: kita dapat mengganti
+$!A$ dan~$!B$ di dalamnya dengan sebarang !!{sentence}s, misalnya
+dengan $!C$ dan~$!D$. Kesimpulannya lalu menjadi $!C \land !D$, sehingga
+\begin{prooftree}
+\AxiomC{$!C$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\end{prooftree}
+merupakan !!a{derivation} yang benar. Tentu saja, kita juga dapat
+menukar asumsi-asumsinya sehingga $!D$ memainkan peran~$!A$ dan $!C$
+memainkan peran~$!B$. Jadi,
+\begin{prooftree}
+\AxiomC{$!D$}
+\AxiomC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!D \land !C$}
+\end{prooftree}
+juga merupakan !!a{derivation} yang benar.
+
+Sekarang kita dapat menerapkan aturan lain, misalnya $\Intro{\lif}$,
+yang memungkinkan kita menyimpulkan suatu implikasi dan !!{discharge}
+asumsi apa pun yang identik dengan anteseden implikasi tersebut. Jadi,
+kedua contoh berikut merupakan !!{derivation}s yang benar:
+\begin{prooftree}
+\AxiomC{$\Discharge{!C}{1}$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!C \lif (!C \land !D)$}
+\DisplayProof\bottomAlignProof
+\AxiomC{$!C$}
+\AxiomC{$\Discharge{!D}{1}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!D \lif (!C \land !D)$}
+\end{prooftree}
+Keduanya masing-masing menunjukkan bahwa $!D \Proves !C \lif (!C
+\land !D)$ dan $!C \Proves !D \lif (!C \land !D)$.
+
+Ingatlah bahwa pelepasan asumsi merupakan izin, bukan kewajiban: kita
+tidak harus melepaskan asumsi-asumsi tersebut. Secara khusus, kita dapat
+menerapkan suatu aturan sekalipun asumsi yang dimaksud tidak terdapat
+dalam !!{derivation}. Sebagai contoh, berikut ini diperbolehkan meskipun
+tidak ada asumsi~$!A$ untuk !!{discharged}:
+\begin{prooftree}
+  \AxiomC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+\end{prooftree}
+\end{ex}
+
+\end{document}

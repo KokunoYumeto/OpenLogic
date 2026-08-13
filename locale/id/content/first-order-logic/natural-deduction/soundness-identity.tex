@@ -1,0 +1,55 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{ntd}{sid}
+
+\olsection{Kesahihan dengan \usetoken{S}{identity}}
+
+\begin{prop}
+Deduksi alami dengan aturan untuk $\eq$ bersifat sahih.
+\end{prop}
+
+\begin{proof}
+Kita memperluas pembuktian induktif teorema kesahihan dengan memeriksa
+kasus-kasus untuk dua aturan baru.
+
+Setiap !!{formula} berbentuk $\eq[t][t]$ valid, sebab untuk setiap
+!!{structure}~$\Struct M$, berlaku $\Sat{M}{\eq[t][t]}$. (Perhatikan
+bahwa kita mengandaikan suku $t$ tertutup, yakni tidak memuat variabel,
+sehingga penugasan variabel tidak relevan.)
+
+Untuk varian pertama, andaikan inferensi terakhir dalam !!a{derivation}
+adalah \Elim{\eq}. Dengan demikian, !!{derivation} tersebut berbentuk
+sebagai berikut:
+\begin{prooftree}
+  \AxiomC{$\Gamma_1$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\eq[t_1][t_2]$}
+  \AxiomC{$\Gamma_2$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A(t_1)$}
+  \RightLabel{\Elim{\eq}}
+  \BinaryInfC{$!A(t_2)$}
+\end{prooftree}
+Kedua premis $\eq[t_1][t_2]$ dan $!A(t_1)$ masing-masing dapat kita
+!!{derive} dari asumsi !!{undischarged}~$\Gamma_1$ dan $\Gamma_2$. Kita
+hendak menunjukkan bahwa
+$!A(t_2)$ merupakan konsekuensi dari $\Gamma_1 \cup \Gamma_2$. Perhatikan
+!!a{structure}~$\Struct{M}$ dengan $\Sat{M}{\Gamma_1 \cup \Gamma_2}$.
+Menurut hipotesis induksi, $\Sat{M}{!A(t_1)}$ dan
+$\Sat{M}{\eq[t_1][t_2]}$. Oleh karena itu,
+$\Value{t_1}{M} = \Value{t_2}{M}$. Misalkan $s$ adalah sebarang penugasan
+variabel dan $m = \Value{t_1}{M} = \Value{t_2}{M}$. Menurut
+\olref[fol][syn][ext]{prop:ext-formulas}, $\Sat{M}{!A(t_1)}[s]$ jika dan
+hanya jika $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ jika dan hanya jika
+$\Sat{M}{!A(t_2)}[s]$. Karena $\Sat{M}{!A(t_1)}$, kita memperoleh
+$\Sat{M}{!A(t_2)}$. Varian kedua, dengan arah substitusi sebaliknya,
+ditangani dengan cara yang sama.
+\end{proof}
+
+\end{document}
