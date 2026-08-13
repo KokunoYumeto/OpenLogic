@@ -1,0 +1,57 @@
+% Penggerak mandiri untuk bab Tableau dalam pelokalan Bahasa Indonesia.
+% Penggerak ini membatasi build pada OLP-0098--OLP-0111.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Pisahkan judul soal berturut-turut setelah daftar atau tableau yang panjang.
+\BeforeBeginEnvironment{probdeferred}{\par\medskip}
+\BeforeBeginEnvironment{probdeferredtag}{\par\medskip}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+% OLP-0109 dan OLP-0111 merujuk hasil dari bab sintaks dan semantik orde
+% pertama yang belum berada dalam checkpoint berurutan ini. Entri berikut
+% mempertahankan identitas rujukan frozen reader tanpa mengimpor prosa Inggris.
+\makeatletter
+\hypertarget{ol-id-forward-fol-syntax}{}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sentence-sat-true}{{16.{18}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sentence-sat-true@cref}{{[prop][18][16]16.{18}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sat-quant}{{16.{19}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ass:prop:sat-quant@cref}{{[prop][19][16]16.{19}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:extensionality}{{16.{20}}{0}{Ekstensionalitas}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:extensionality@cref}{{[prop][20][16]16.{20}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:cor:extensionality-sent}{{16.{21}}{0}{Ekstensionalitas untuk Kalimat}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:cor:extensionality-sent@cref}{{[cor][21][16]16.{21}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:ext-formulas}{{16.{23}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:ext:prop:ext-formulas@cref}{{[prop][23][16]16.{23}}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sem:prop:quant-terms}{{16.{31}}{0}{}{ol-id-forward-fol-syntax}{}}}
+\protected@write\@auxout{}{\string\newlabel{fol:syn:sem:prop:quant-terms@cref}{{[prop][31][16]16.{31}}{[1][0][]0}{}{}{}}}
+\makeatother
+
+\olimport*[first-order-logic/tableaux]{tableaux}
+
+\end{document}

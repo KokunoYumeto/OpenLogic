@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **97 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0097`; unit berikutnya ialah `OLP-0098`,
-`content/first-order-logic/tableaux/tableaux.tex`.
+Status saat ini: **111 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0111`; unit berikutnya ialah `OLP-0112`,
+`content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -82,7 +82,7 @@ PDF itu memiliki SHA-256
 seluruh 26 halamannya telah dirender pada 144 dpi dan diperiksa pada resolusi
 render asli.
 
-Checkpoint terbaru menambahkan seluruh empat belas unit Deduksi Alami
+Checkpoint sebelumnya menambahkan seluruh empat belas unit Deduksi Alami
 (`OLP-0084`--`OLP-0097`). Penggerak bounded berikut menghasilkan PDF 27
 halaman tanpa fallback bahasa Inggris:
 
@@ -94,6 +94,20 @@ PDF itu memiliki SHA-256
 `c2ee4b9d2662b986780b2f1580ea4c1c4effe05fb39e4feda54f061370e81704`;
 seluruh 27 halamannya telah dirender pada 144 dpi dan diperiksa, termasuk
 inspeksi resolusi asli atas setiap halaman yang berubah setelah koreksi akhir.
+
+Checkpoint terbaru menambahkan seluruh empat belas unit Tableau
+(`OLP-0098`--`OLP-0111`). Penggerak bounded berikut menghasilkan PDF 28
+halaman tanpa fallback bahasa Inggris:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error tableaux-id.tex
+```
+
+PDF itu memiliki SHA-256
+`c1be0a95411b67ae928146bb812e9b4cfdaeb417e9d192d885d28790fc077bcc`;
+seluruh 28 halamannya telah dirender pada 144 dpi dan diperiksa pada resolusi
+render asli. Replay semantik independen lulus untuk keempat belas berkas tanpa
+masalah yang belum terselesaikan.
 
 ## Syarat penerimaan tiap batch
 

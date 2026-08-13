@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0097` (97/722 files). It is incomplete and must not be represented as the
+`OLP-0111` (111/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -54,6 +54,12 @@ Exact source corrections currently include:
 - Natural Deduction repairs quantifier-rule scope and eigenvariable wording,
   several proof-rule labels and side conditions, valuation-versus-structure
   scope, an omitted negation-elimination case, and malformed identity syntax.
+- Tableaux repairs the chapter's editorial scope; distinguishes first-order
+  structures from propositional valuations; makes the closed-term condition
+  explicit; repairs malformed signed-formula, tableau-branch, compactness,
+  consistency, quantifier-soundness, and identity-rule expressions; and
+  corrects exact line references, indices, polarity signs, and metavariable
+  drift where the frozen source conflicts with its own rules or proof context.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

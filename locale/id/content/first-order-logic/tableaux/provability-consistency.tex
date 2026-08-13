@@ -1,0 +1,156 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{tab}{prv}}
+      {\olfileid[id]{pl}{tab}{prv}}
+
+\olsection{\usetoken{S}{derivability} dan Konsistensi}
+
+Sekarang kita akan membuktikan sejumlah sifat relasi !!{derivability}.
+Sifat-sifat tersebut menarik secara mandiri, tetapi masing-masing akan
+berperan dalam pembuktian teorema kelengkapan.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  Jika $\Gamma \Proves !A$ dan $\Gamma \cup \{!A\}$ tak konsisten,
+  maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+Terdapat himpunan berhingga $\Gamma_0 = \{!B_1, \dots, !B_n\}$ dan
+$\Gamma_1 =\{!C_1, \dots, !C_m\} \subseteq \Gamma$ sedemikian sehingga
+  \begin{align*}
+    \{\sFmla{\False}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \\
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  memiliki !!{tableau} tertutup. Dengan menggunakan aturan \Cut{} pada
+  $!A$, kita dapat menggabungkannya menjadi satu !!{tableau} tertutup
+  yang menunjukkan bahwa $\Gamma_0 \cup \Gamma_1$ tak konsisten. Karena
+  $\Gamma_0 \subseteq \Gamma$ dan $\Gamma_1 \subseteq \Gamma$, maka
+  $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$; jadi, $\Gamma$ tak
+  konsisten.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ jika dan hanya jika $\Gamma \cup \{\lnot !A\}$
+tak konsisten.
+\end{prop}
+
+\begin{proof}
+Pertama, andaikan $\Gamma \Proves !A$, yakni terdapat !!{tableau}
+tertutup untuk
+\[
+\{\sFmla{\False}{!A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+\]
+Dengan menggunakan aturan $\TRule{\True}{\lnot}$, hasil ini dapat diubah
+menjadi !!{tableau} tertutup untuk
+\[
+\{\sFmla{\True}{\lnot !A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+
+Sebaliknya, jika terdapat !!{tableau} tertutup untuk himpunan kedua,
+kita dapat mengubahnya menjadi !!{tableau} tertutup untuk himpunan
+pertama dengan menghapus setiap formula yang dihasilkan dari penerapan
+\TRule{\True}{\lnot} pada asumsi pertama
+$\sFmla{\True}{\lnot !A}$ beserta asumsi tersebut, lalu menambahkan
+asumsi $\sFmla{\False}{!A}$. Jika sebelumnya suatu cabang tertutup karena
+memuat kesimpulan penerapan \TRule{\True}{\lnot} pada
+$\sFmla{\True}{\lnot !A}$, yakni $\sFmla{\False}{!A}$, cabang yang
+bersesuaian dalam !!{tableau} baru juga tertutup. Jika suatu cabang dalam
+tableau lama tertutup karena memuat asumsi
+$\sFmla{\True}{\lnot !A}$ serta $\sFmla{\False}{\lnot !A}$, kita dapat
+mengubahnya menjadi cabang tertutup dengan menerapkan
+$\TRule{\False}{\lnot}$ pada $\sFmla{\False}{\lnot !A}$ untuk memperoleh
+$\sFmla{\True}{!A}$. Cabang tersebut tertutup karena kita telah
+menambahkan $\sFmla{\False}{!A}$ sebagai asumsi.
+\end{proof}
+
+\begin{prob}
+Buktikan bahwa $\Gamma \Proves \lnot !A$ jika dan hanya jika
+$\Gamma \cup \{!A\}$ tak konsisten.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  Jika $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$, maka $\Gamma$
+  tak konsisten.
+\end{prop}
+
+\begin{proof}
+  Andaikan $\Gamma \Proves !A$ dan $\lnot !A \in \Gamma$. Maka terdapat
+  $!B_1$, \dots, $!B_n \in \Gamma$ sedemikian sehingga \ 
+  \[
+  \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}\}
+  \]
+  memiliki tableau tertutup. Ganti asumsi \sFmla{\False}{!A} dengan
+  \sFmla{\True}{\lnot !A}, lalu sisipkan kesimpulan penerapan
+  \TRule{\True}{\lnot} pada \sFmla{\True}{\lnot !A} setelah semua
+  asumsi. Setiap !!{sentence} dalam !!{tableau} yang sebelumnya
+  dijustifikasi dengan mengacu pada baris~$1$ dalam !!{tableau} lama kini
+  dijustifikasi dengan mengacu pada baris~$n+2$. Jadi, jika !!{tableau}
+  lama tertutup, tableau baru pun tertutup. Hal ini menunjukkan bahwa
+  $\Gamma$ tak konsisten, karena semua asumsinya
+  berada dalam~$\Gamma$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  Jika $\Gamma \cup \{!A\}$ dan $\Gamma \cup \{\lnot !A\}$ keduanya
+  tak konsisten, maka $\Gamma$ tak konsisten.
+\end{prop}
+
+\begin{proof}
+  Jika terdapat $!B_1$, \dots, $!B_n \in \Gamma$ dan $!C_1$, \dots,
+  $!C_m \in \Gamma$ sedemikian sehingga
+  \begin{align*}
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \text{ dan}\\
+    \{\sFmla{\True}{\lnot !A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  keduanya memiliki !!{tableau} tertutup, kita dapat membangun satu
+  !!{tableau} gabungan yang menunjukkan bahwa $\Gamma$ tak konsisten.
+  Gunakan $\sFmla{\True}{!B_1}$, \dots, $\sFmla{\True}{!B_n}$ bersama
+  $\sFmla{\True}{!C_1}$, \dots, $\sFmla{\True}{!C_m}$ sebagai asumsi,
+  lalu terapkan aturan \Cut{}. Penerapan ini menghasilkan dua cabang:
+  yang satu dimulai dengan $\sFmla{\True}{!A}$, sedangkan yang lain
+  dengan $\sFmla{\False}{!A}$.
+
+  Pada sisi kiri, tambahkan bagian !!{tableau} pertama yang berada di
+  bawah asumsi-asumsinya. Di sini, setiap penerapan aturan tetap benar
+  karena semua asumsi !!{tableau} pertama, termasuk
+  $\sFmla{\True}{!A}$, tersedia. Jadi, setiap cabang di bawah
+  $\sFmla{\True}{!A}$ tertutup.
+
+  Pada sisi kanan, tambahkan bagian !!{tableau} kedua yang berada di
+  bawah asumsi-asumsinya, dengan menghapus hasil setiap penerapan
+  $\TRule{\True}{\lnot}$ pada $\sFmla{\True}{\lnot !A}$. Kesimpulan
+  penerapan $\TRule{\True}{\lnot}$ pada $\sFmla{\True}{\lnot !A}$ ialah
+  $\sFmla{\False}{!A}$, yang tetap tersedia sebagai kesimpulan aturan
+  \Cut{} pada sisi kanan !!{tableau} gabungan.
+
+  Jika suatu cabang dalam tableau kedua tertutup karena memuat asumsi
+  $\sFmla{\True}{\lnot !A}$ (yang tidak lagi muncul sebagai asumsi dalam
+  !!{tableau} gabungan) serta $\sFmla{\False}{\lnot !A}$, kita dapat
+  menerapkan $\TRule{\False}{\lnot}$ pada
+  $\sFmla{\False}{\lnot !A}$ untuk memperoleh $\sFmla{\True}{!A}$.
+  Sekarang cabang yang bersesuaian dalam !!{tableau} gabungan juga
+  tertutup karena memuat kesimpulan sisi kanan aturan \Cut{}, yakni
+  $\sFmla{\False}{!A}$. Jika suatu cabang dalam !!{tableau} kedua
+  tertutup karena alasan lain, cabang yang bersesuaian dalam !!{tableau}
+  gabungan juga tertutup, sebab setiap !!{signed formula} selain
+  $\sFmla{\True}{\lnot !A}$ yang muncul pada cabang dalam !!{tableau}
+  kedua yang lama juga muncul pada cabang yang bersesuaian dalam
+  !!{tableau} gabungan.
+\end{proof}
+
+\end{document}

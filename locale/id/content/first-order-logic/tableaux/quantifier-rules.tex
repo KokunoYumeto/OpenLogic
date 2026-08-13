@@ -1,0 +1,112 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{tab}{qrl}
+
+\olsection{Aturan Kuantor}
+
+\subsection{Aturan untuk $\lforall$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\lforall}}
+\UnaryInfC{\sFmla{\True}{!A(t)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lforall}}
+\UnaryInfC{\sFmla{\False}{!A(a)}}
+\DisplayProof
+\end{defish}
+
+Dalam \TRule{\True}{\lforall}, $t$ adalah suku tertutup (yaitu suku
+tanpa variabel). Dalam \TRule{\False}{\lforall}, $a$ adalah
+!!a{constant} yang tidak boleh muncul di mana pun pada cabang di atas
+aturan \TRule{\False}{\lforall}. Kita menyebut $a$ sebagai
+\emph{variabel eigen} dari inferensi
+\TRule{\False}{\lforall}.
+\footnote{Kita menggunakan istilah ``variabel eigen'' meskipun $a$
+dalam aturan di atas adalah !!a{constant}. Alasannya bersifat historis.}
+
+\subsection{Aturan untuk $\lexists$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\lexists}}
+\UnaryInfC{\sFmla{\True}{!A(a)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lexists}}
+\UnaryInfC{\sFmla{\False}{!A(t)}}
+\DisplayProof
+\end{defish}
+
+Sekali lagi, $t$ adalah suku tertutup, sedangkan $a$ adalah
+!!a{constant} yang tidak muncul pada cabang di atas aturan
+\TRule{\True}{\lexists}. Kita menyebut $a$ sebagai \emph{variabel
+eigen} dari inferensi \TRule{\True}{\lexists}.
+
+Syarat bahwa variabel eigen tidak muncul pada cabang di atas inferensi
+\TRule{\False}{\lforall} atau \TRule{\True}{\lexists} disebut
+\emph{syarat variabel eigen}.
+
+\begin{explain}
+Ingatlah konvensi bahwa ketika $!A$ adalah !!a{formula} dengan
+!!{variable}~$x$ bebas, kita menandainya dengan menulis~$!A(x)$. Dalam
+konteks yang sama, $!A(t)$ kemudian merupakan singkatan
+untuk~$\Subst{!A}{t}{x}$. Jadi, kita juga dapat menuliskan aturan
+\TRule{\False}{\lexists} sebagai:
+\begin{prooftree}
+  \AxiomC{\sFmla{\False}{\lexists[x][!A]}}
+  \RightLabel{\TRule{\False}{\lexists}}
+  \UnaryInfC{\sFmla{\False}{\Subst{!A}{t}{x}}}
+\end{prooftree}
+Perhatikan bahwa $t$ mungkin sudah muncul dalam~$!A$; misalnya, $!A$
+mungkin berupa~$\Atom{\Obj P}{t,x}$. Dengan demikian, menyimpulkan
+$\sFmla{\False}{\Atom{\Obj P}{t,t}}$ dari
+$\sFmla{\False}{\lexists[x][\Atom{\Obj P}{t,x}]}$ merupakan penerapan
+yang benar dari~\TRule{\False}{\lexists}. Akan tetapi, syarat variabel
+eigen dalam \TRule{\False}{\lforall} dan~\TRule{\True}{\lexists}
+mengharuskan agar !!{constant}~$a$ tidak muncul dalam~$!A$. Jadi, kita
+tidak dapat menyimpulkan $\sFmla{\False}{\Atom{\Obj P}{a,a}}$ dengan
+benar dari $\sFmla{\False}{\lforall[x][\Atom{\Obj P}{a,x}]}$ dengan
+menggunakan~$\TRule{\False}{\lforall}$.
+\end{explain}
+
+\begin{explain}
+Dalam \TRule{\True}{\lforall} dan \TRule{\False}{\lexists}, suku~$t$
+boleh berupa sebarang suku tertutup. Sebaliknya, dalam aturan
+\TRule{\True}{\lexists} dan \TRule{\False}{\lforall}, syarat variabel
+eigen mengharuskan agar !!{constant}~$a$ tidak muncul di mana pun pada
+cabang di atas inferensi yang bersangkutan. Syarat ini diperlukan untuk
+memastikan bahwa sistem tersebut sahih. Tanpa syarat ini, berikut akan
+menjadi !!{tableau} tertutup untuk
+$\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$:
+\begin{center}
+\begin{tableau}{}
+  [\sFmla{\False}{\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\lforall[x][\formula{A}(x)]},
+        just={\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}(a)},
+          just={\TRule{\True}{\lexists}[2]}
+          [\sFmla{\False}{\formula{A}(a)},
+            just={\TRule{\False}{\lforall}[3]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{tableau}
+\end{center}
+Namun, $\lexists[x][\formula{A}(x)] \lif
+\lforall[x][\formula{A}(x)]$ tidak valid.
+\end{explain}
+
+\end{document}

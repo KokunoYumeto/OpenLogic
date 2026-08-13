@@ -1,0 +1,48 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{tab}{sid}
+
+\olsection{Kesahihan dengan \usetoken{S}{identity}}
+
+\begin{prop}
+!!^{tableau}s dengan aturan-aturan untuk identitas bersifat sahih: tidak
+ada !!{tableau} tertutup yang dapat dipenuhi.
+\end{prop}
+
+\begin{proof}
+Seperti sebelumnya, kita hanya perlu menunjukkan bahwa jika !!a{tableau}
+memiliki cabang yang dapat dipenuhi, cabang yang dihasilkan dengan
+menerapkan salah satu aturan untuk~$\eq$ juga dapat dipenuhi. Misalkan
+$\Gamma$ adalah himpunan !!{signed formula} pada cabang tersebut, dan
+misalkan $\Struct{M}$ adalah !!a{structure} yang memenuhi~$\Gamma$.
+
+Andaikan cabang tersebut diperluas dengan menggunakan~$\eq$, yakni
+dengan menambahkan !!{signed formula}~$\sFmla{\True}{\eq[t][t]}$.
+Secara trivial, $\Sat{M}{\eq[t][t]}$; jadi, $\Struct{M}$ juga memenuhi
+$\Gamma \cup \{\sFmla{\True}{\eq[t][t]}\}$.
+
+Jika cabang tersebut diperluas dengan menggunakan
+$\TRule{\True}{\eq}$, kita menambahkan !!{signed formula}
+$\sFmla{\True}{!A(t_2)}$, sedangkan $\Gamma$ memuat
+$\sFmla{\True}{\eq[t_1][t_2]}$ dan $\sFmla{\True}{!A(t_1)}$ sekaligus.
+Jadi, berlaku $\Sat{M}{\eq[t_1][t_2]}$ dan
+$\Sat{M}{!A(t_1)}$. Misalkan $s$ adalah suatu penugasan variabel dengan
+$s(x) = \Value{t_1}{M}$. Menurut
+\olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t_1)}[s]$. Karena
+$\varAssign{s}{s}{x}$, menurut \olref[syn][ext]{prop:ext-formulas},
+$\Sat{M}{!A(x)}[s]$. Karena $\Sat{M}{\eq[t_1][t_2]}$, kita memperoleh
+$\Value{t_1}{M} = \Value{t_2}{M}$, sehingga
+$s(x) = \Value{t_2}{M}$. Dengan menerapkan
+\olref[syn][ext]{prop:ext-formulas} sekali lagi, kita juga memperoleh
+$\Sat{M}{!A(t_2)}[s]$. Menurut
+\olref[syn][ass]{prop:sentence-sat-true}, $\Sat{M}{!A(t_2)}$. Kasus
+$\TRule{\False}{\eq}$ ditangani dengan cara yang sama.
+\end{proof}
+
+\end{document}

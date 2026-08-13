@@ -1,0 +1,108 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{tab}{ide}
+
+\olsection{\usetoken{P}{tableau} dengan \usetoken{S}{identity}}
+
+!!^{tableau}s dengan !!{identity} memerlukan aturan inferensi tambahan.
+Aturan-aturan untuk $\eq$ adalah sebagai berikut ($t$, $t_1$, dan $t_2$
+merupakan suku tertutup):
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{$\eq$}
+\UnaryInfC{\sFmla{\True}{\eq[t][t]}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\True}{!A(t_1)}}
+\RightLabel{$\TRule{\True}{\eq}$}
+\UnaryInfC{\sFmla{\True}{!A(t_2)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!A(t_1)}}
+\RightLabel{$\TRule{\False}{\eq}$}
+\UnaryInfC{\sFmla{\False}{!A(t_2)}}
+\DisplayProof
+\end{defish}
+Perhatikan bahwa, berbeda dari semua aturan lainnya,
+$\TRule{\True}{\eq}$ dan $\TRule{\False}{\eq}$ mengharuskan
+\emph{dua} !!{formula} bertanda telah muncul pada cabang tersebut, yakni
+$\sFmla{\True}{\eq[t_1][t_2]}$ dan $\sFmla{S}{!A(t_1)}$.
+
+\begin{ex}
+Jika $s$ dan $t$ merupakan suku tertutup, maka
+$\eq[s][t], !A(s) \Proves !A(t)$:
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+    [\sFmla{\True}{\eq[s][t]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(s)}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just={\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Hal ini mungkin telah dikenal sebagai prinsip substitutabilitas hal-hal
+yang identik, atau Hukum Leibniz.
+
+!!^{tableau}s juga membuktikan bahwa $\eq$ bersifat simetris, yakni
+$\eq[s_1][s_2] \Proves \eq[s_2][s_1]$:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_2][s_1]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_1][s_1]}, just = {$\eq$}
+        [\sFmla{\True}{\eq[s_2][s_1]}, just = {\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Di sini, baris~$2$ merupakan !!{formula} prasyarat pertama
+$\sFmla{\True}{\eq[s_1][s_2]}$ untuk $\TRule{\True}{\eq}$. Baris~$3$
+merupakan prasyarat kedua, yang berbentuk
+$\sFmla{\True}{!A(s_1)}$---anggap $!A(x)$ sebagai $\eq[x][s_1]$; dengan
+demikian, $!A(s_1)$ adalah $\eq[s_1][s_1]$ dan $!A(s_2)$ adalah
+$\eq[s_2][s_1]$.
+
+Tableau juga membuktikan bahwa $\eq$ bersifat transitif, yakni
+$\eq[s_1][s_2], \eq[s_2][s_3] \Proves \eq[s_1][s_3]$:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_1][s_3]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_2][s_3]}, just = \TAss
+        [\sFmla{\True}{\eq[s_1][s_3]}, just = {\TRule{\True}{\eq}[3, 2]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Dalam !!{tableau} ini, !!{formula} prasyarat pertama untuk
+$\TRule{\True}{\eq}$ adalah baris~$3$,
+$\sFmla{\True}{\eq[s_2][s_3]}$ ($s_2$ berperan sebagai~$t_1$ dan $s_3$
+sebagai~$t_2$). Prasyarat kedua, yang berbentuk
+$\sFmla{\True}{!A(s_2)}$, adalah baris~$2$. Di sini, anggap $!A(x)$
+sebagai $\eq[s_1][x]$; dengan demikian, $!A(s_2)$ adalah
+$\eq[s_1][s_2]$ (yakni baris~$2$) dan $!A(s_3)$ adalah
+!!{formula}~$\eq[s_1][s_3]$ dalam kesimpulan.
+\end{ex}
+
+\begin{prob}
+Berikan !!{tableau} tertutup untuk hal-hal berikut:
+\begin{enumerate}
+\item $\sFmla{\False}{\lforall[x][\lforall[y][((x = y \land !A(x))
+      \lif !A(y))]]}$
+\item $\sFmla{\False}{\lexists[x][(!A(x) \land
+    \lforall[y][(!A(y) \lif y = x)])]}$,\\
+  $\sFmla{\True}{\lexists[x][!A(x)] \land
+    \lforall[y][\lforall[z][((!A(y) \land !A(z)) \lif y = z)]]}$
+\end{enumerate}
+\end{prob}
+
+\end{document}

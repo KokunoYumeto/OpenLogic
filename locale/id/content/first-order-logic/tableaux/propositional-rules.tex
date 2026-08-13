@@ -1,0 +1,94 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: propositional-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+{\olfileid[id]{fol}{tab}{prl}}
+{\olfileid[id]{pl}{tab}{prl}}
+
+\olsection{Aturan Proposisional}
+
+\subsection{Aturan untuk $\lnot$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lnot !A}}
+\RightLabel{\TRule{\True}{\lnot}}
+\UnaryInfC{\sFmla{\False}{!A}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lnot !A}}
+\RightLabel{\TRule{\False}{\lnot}}
+\UnaryInfC{\sFmla{\True}{!A}}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan untuk $\land$}
+
+\begin{defish}\noindent
+\AxiomC{\sFmla{\True}{!A \land !B}}
+\RightLabel{\TRule{\True}{\land}}
+\UnaryInfC{\sFmla{\True}{!A}}
+\noLine
+\UnaryInfC{\sFmla{\True}{!B}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{!A \land !B}}
+\RightLabel{\TRule{\False}{\land}}
+\UnaryInfC{$\sFmla{\False}{!A} \quad \mid \quad \sFmla{\False}{!B}$}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan untuk $\lor$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{!A \lor !B}}
+\RightLabel{\TRule{\True}{\lor}}
+\UnaryInfC{$\sFmla{\True}{!A} \quad \mid \quad \sFmla{\True}{!B}$}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{!A \lor !B}}
+\RightLabel{\TRule{\False}{\lor}}
+\UnaryInfC{\sFmla{\False}{!A}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!B}}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan untuk $\lif$}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{!A \lif !B}}
+\RightLabel{\TRule{\True}{\lif}}
+\UnaryInfC{$\sFmla{\False}{!A} \quad \mid \quad \sFmla{\True}{!B}$}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{!A \lif !B}}
+\RightLabel{\TRule{\False}{\lif}}
+\UnaryInfC{\sFmla{\True}{!A}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!B}}
+\DisplayProof
+\end{defish}
+
+\subsection{Aturan Potong}
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{\Cut}
+\UnaryInfC{$\sFmla{\True}{!A} \quad \mid \quad \sFmla{\False}{!A}$}
+\DisplayProof
+\end{defish}
+
+Aturan \Cut{} tidak diterapkan ``pada'' !!{signed formula} sebelumnya;
+alih-alih, aturan ini memungkinkan setiap cabang dalam !!a{tableau}
+dipecah menjadi dua, dengan satu cabang memuat $\sFmla{\True}{!A}$ dan
+cabang lainnya memuat~$\sFmla{\False}{!A}$. Aturan ini tidak diperlukan
+---setiap himpunan !!{signed formula}s yang memiliki !!{tableau} tertutup
+juga memiliki tableau tertutup yang tidak menggunakan \Cut---tetapi
+aturan ini memungkinkan kita menggabungkan !!{tableau}s dengan mudah.
+
+\end{document}

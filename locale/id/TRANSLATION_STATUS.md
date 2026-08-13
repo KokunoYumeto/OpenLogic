@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 97/722 and the exact remainder is 625 files.
+Current target-file coverage is 111/722 and the exact remainder is 611 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -340,6 +340,12 @@ heading, or localization-token fallback. Exact hashes and dispositions are in
   24.25922 pt, and one underfull vbox. All 27 pages were rendered and inspected;
   every page changed after the final semantic corrections was inspected again
   at original render resolution, with no visible clipping, overlap, or loss.
+- The bounded Tableaux build contains eleven overfull boxes, maximum 31.60602
+  pt, and four underfull vboxes. All 28 pages were rendered at 144 dpi and
+  inspected at original render resolution. The warnings are visually benign:
+  no clipping, overlap, broken glyph, lost formula, cutoff tableau, or margin
+  loss was found. All fonts are embedded; one rendered Type 3 mathematical
+  face remains and did not prevent searchable-text extraction.
 - No claim is made that the whole 722-file corpus, a complete downstream
   textbook, or public release is complete.
 
@@ -368,7 +374,21 @@ batch, and 42,457 versus 38,809 cumulatively. Exact hashes and dispositions are
 recorded in
 `..\_control\OPENLOGIC_NATURAL_DEDUCTION_INDEPENDENT_REVIEW_20260813.md`.
 
-Next global ordered cursor: `OLP-0098`,
-`content/first-order-logic/tableaux/tableaux.tex`.
-The remaining closure is 625 source files after the 97 target files currently
+### Contiguous Tableaux batch
+
+The complete Tableaux chapter adds `OLP-0098`--`OLP-0111`. Independent
+read-only semantic replay passes all fourteen final live targets after exact
+source-correction dispositions, with no unresolved omission, reader-facing
+English, polarity, quantifier, scope, mathematical, proof-tree, or material-
+register defect. The bounded driver builds to 28 pages; all pages were rendered
+at 144 dpi and inspected at original resolution.
+
+TeXcount reports 6,062 English-source and 5,616 Indonesian words for this
+batch, and 48,519 versus 44,425 cumulatively. Exact hashes and dispositions are
+recorded in
+`..\_control\OPENLOGIC_TABLEAUX_INDEPENDENT_REVIEW_20260813.md`.
+
+Next global ordered cursor: `OLP-0112`,
+`content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
+The remaining closure is 611 source files after the 111 target files currently
 present and admitted.

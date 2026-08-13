@@ -1,0 +1,54 @@
+% Part: first-order-logic
+% Chapter: tableaux
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+{\olchapter[id]{fol}{tab}{Tableau}}
+{\olchapter[id]{pl}{tab}{Tableau}}
+
+\begin{editorial}
+Bab ini menyajikan suatu sistem tableau analitik bertanda.
+
+Untuk menyertakan atau mengecualikan materi yang berkaitan dengan
+tableau sebagai sistem pembuktian, gunakan tag ``prfTab''.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

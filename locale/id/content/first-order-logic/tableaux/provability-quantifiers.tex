@@ -1,0 +1,92 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{tab}{qpr}
+\olsection{\usetoken{S}{derivability} dan Kuantor}
+
+\begin{explain}
+  Teorema kelengkapan juga memerlukan agar aturan-aturan tableau
+  menghasilkan fakta-fakta tentang~$\Proves$ yang dibuktikan dalam
+  bagian ini.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} Jika $c$ adalah simbol konstanta yang
+tidak muncul dalam $\Gamma$ ataupun $!A(x)$ dan $\Gamma \Proves !A(c)$,
+maka $\Gamma \Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Andaikan $\Gamma \Proves !A(c)$, yakni terdapat $!B_1$, \dots, $!B_n
+\in \Gamma$ dan !!{tableau} tertutup untuk
+\begin{align*}
+\{ \sFmla{\False}{!A(c)}, &
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n} \}.
+\intertext{Kita harus menunjukkan bahwa terdapat pula !!{tableau}
+  tertutup untuk}
+\{ \sFmla{\False}{\lforall[x][!A(x)]}, &
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n} \}.
+\end{align*}
+Ambil !!{tableau} tertutup tersebut dan ganti asumsi pertamanya dengan
+$\sFmla{\False}{\lforall[x][!A(x)]}$, lalu sisipkan
+$\sFmla{\False}{!A(c)}$ setelah semua asumsi.
+\begin{center}
+\begin{tableau}{not line numbering}
+  [\sFmla{\False}{\formula{A}(c)}
+    [\sFmla{\True}{\formula{B}_1}
+      [\vdots
+      [\sFmla{\True}{\formula{B}_n},
+        [][][]]]]]
+\end{tableau}\qquad
+\begin{tableau}{not line numbering}
+  [\sFmla{\False}{\lforall[x][\formula{A}(x)]}
+    [\sFmla{\True}{\formula{B}_1}
+      [\vdots
+        [\sFmla{\True}{\formula{B}_n},
+          [\sFmla{\False}{\formula{A}(c)}
+        [][][]]]]]]
+\end{tableau}
+\end{center}
+Tableau tersebut tetap tertutup karena semua !!{sentence} yang sebelumnya
+tersedia sebagai asumsi masih tersedia di bagian atas !!{tableau}. Baris
+yang disisipkan merupakan hasil penerapan yang benar dari
+$\TRule{\False}{\lforall}$, sebab !!{constant}~$c$ tidak muncul dalam
+$!B_1$, \dots, $!B_n$ ataupun $\lforall[x][!A(x)]$; dengan kata lain,
+simbol itu tidak muncul di atas baris yang disisipkan dalam !!{tableau}
+baru.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Berikut ini !!{tableau} tertutup untuk
+  $\sFmla{\False}{\lexists[x][!A(x)]}, \sFmla{\True}{!A(t)}$:
+  \begin{oltableau}
+    [\sFmla{\False}{\lexists[x][\formula{A}(x)]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(t)}, just = \TAss
+        [\sFmla{\False}{\formula{A}(t)}, just = {\TRule{\False}{\lexists}[1]}, close]]]
+    \end{oltableau}}{}
+\tagitem{prvAll}{Berikut ini !!{tableau} tertutup untuk
+  $\sFmla{\False}{\formula{A}(t)},
+  \sFmla{\True}{\lforall[x][!A(x)]}$:
+  \begin{oltableau}
+    [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+      [\sFmla{\True}{\lforall[x][\formula{A}(x)]}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just = {\TRule{\True}{\lforall}[2]}, close]]]
+    \end{oltableau}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

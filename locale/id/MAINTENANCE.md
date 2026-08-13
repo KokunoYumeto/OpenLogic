@@ -39,11 +39,11 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0097`.
-- Next row: `OLP-0098`.
+- Admitted ordered boundary: `OLP-0111`.
+- Next row: `OLP-0112`.
 - Next source:
-  `content/first-order-logic/tableaux/tableaux.tex`.
-- Current coverage: 97/722; exact remainder: 625.
+  `content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.
+- Current coverage: 111/722; exact remainder: 611.
 
 After the final row, run a clean complete Indonesian reader build, full
 extraction/search replay, page-level visual QA, full hash inventory, and a

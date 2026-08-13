@@ -1,0 +1,201 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{tab}{ptn}}
+      {\olfileid[id]{pl}{tab}{ptn}}
+
+\olsection{Gagasan Teori-Bukti}
+
+\begin{editorial}
+Bagian ini menghimpun definisi relasi keterderivasian dan konsistensi
+untuk tableau.
+\end{editorial}
+
+\begin{explain}
+Sebagaimana kita telah mendefinisikan sejumlah gagasan semantik penting
+(validitas, perikutan, keterpenuhan), kini kita mendefinisikan
+\emph{gagasan teori-bukti} yang bersesuaian. Gagasan-gagasan ini tidak
+didefinisikan dengan mengacu pada terpenuhinya !!{sentence} di dalam
+\iftag{FOL}{!!{structure}}{!!{valuation}}, melainkan dengan mengacu pada keberadaan !!{tableau}s
+tertutup tertentu. Penemuan penting menunjukkan bahwa gagasan-gagasan
+ini berimpit. Keberimpitan itu adalah isi \emph{teorema kesahihan} dan
+\emph{teorema kelengkapan}.
+\end{explain}
+
+
+\begin{defn}[Teorema]
+!!^a{sentence}~$!A$ adalah sebuah \emph{teorema} jika terdapat
+!!{tableau} tertutup untuk~$\sFmla{\False}{!A}$. Kita menulis
+$\Proves !A$ jika $!A$ merupakan teorema dan $\Proves/ !A$ jika bukan.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence} $!A$ \emph{!!{derivable} dari} suatu himpunan
+!!{sentence}~$\Gamma$, $\Gamma \Proves !A$, jika dan hanya jika terdapat
+himpunan berhingga $\{!B_1, \dots, !B_n\} \subseteq \Gamma$ dan
+!!{tableau} tertutup untuk himpunan
+\[
+\{
+  \sFmla{\False}{!A},
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}
+  \}.
+\]
+Jika $!A$ tidak !!{derivable} dari $\Gamma$, kita menulis
+$\Gamma \Proves/ !A$.
+\end{defn}
+
+\begin{defn}[Konsistensi]
+Suatu himpunan !!{sentence}~$\Gamma$ \emph{tak konsisten} jika dan hanya
+jika terdapat himpunan berhingga $\{!B_1, \dots, !B_n\} \subseteq
+\Gamma$ dan !!{tableau} tertutup untuk himpunan
+\[
+\{
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}
+  \}.
+\]
+Jika $\Gamma$ tidak tak konsisten, kita menyebutnya \emph{konsisten}.
+\end{defn}
+
+\begin{prop}[Refleksivitas]
+\ollabel{prop:reflexivity}
+Jika $!A \in \Gamma$, maka $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+Jika $!A \in \Gamma$, maka $\{!A\}$ merupakan himpunan bagian berhingga
+dari~$\Gamma$, dan !!{tableau}
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A}}, just = \TAss,close]
+  ]
+\end{oltableau}
+tertutup.
+\end{proof}
+
+
+\begin{prop}[Monotonisitas]
+\ollabel{prop:monotonicity}
+Jika $\Gamma \subseteq \Delta$ dan $\Gamma \Proves !A$, maka $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+Setiap himpunan bagian berhingga dari~$\Gamma$ juga merupakan himpunan
+bagian berhingga dari~$\Delta$.
+\end{proof}
+
+\begin{prop}[Transitivitas]
+\ollabel{prop:transitivity}
+Jika $\Gamma \Proves !A$ dan $\{!A\} \cup
+\Delta \Proves !B$, maka $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+Jika $\{!A\} \cup \Delta \Proves !B$, maka terdapat himpunan bagian
+berhingga $\Delta_0 = \{!C_1, \dots, !C_n\} \subseteq \Delta$
+sedemikian sehingga
+\begin{align*}
+\{\sFmla{\False}{!B}, & \sFmla{\True}{!A}, \sFmla{\True}{!C_1},
+\dots, \sFmla{\True}{!C_n}\}
+\intertext{memiliki !!{tableau} tertutup. Jika $\Gamma \Proves !A$,
+  maka terdapat $\{!D_1, \dots, !D_m\} \subseteq \Gamma$ sedemikian
+  sehingga}
+\{\sFmla{\False}{!A}, & \sFmla{\True}{!D_1},
+\dots, \sFmla{\True}{!D_m}\}
+\end{align*}
+memiliki !!{tableau} tertutup.
+
+Sekarang perhatikan !!{tableau} dengan asumsi-asumsi
+\[
+\sFmla{\False}{!B},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n},
+\sFmla{\True}{!D_1}, \dots, \sFmla{\True}{!D_m}.
+\]
+Terapkan aturan \Cut{} pada~$!A$. Penerapan ini menghasilkan dua cabang:
+yang satu memuat $\sFmla{\True}{!A}$, sedangkan yang lain memuat
+$\sFmla{\False}{!A}$. Jadi, pada cabang pertama, semua anggota
+\[
+\{\sFmla{\False}{!B}, \sFmla{\True}{!A},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n}\}
+\]
+tersedia. Karena terdapat !!{tableau} tertutup untuk asumsi-asumsi ini,
+kita dapat menempelkannya pada cabang tersebut; setiap cabang yang
+melewati $\sFmla{\True}{!A}$ tertutup. Pada cabang lainnya, semua anggota
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!D_1}, \dots,
+\sFmla{\True}{!D_m}\}
+\]
+tersedia, sehingga kita juga dapat melengkapi sisi lainnya untuk
+memperoleh !!{tableau} tertutup. Hal ini menunjukkan
+$\Gamma \cup \Delta \Proves !B$.
+\end{proof}
+
+Perhatikan bahwa, khususnya, ini berarti bahwa jika $\Gamma \Proves !A$
+dan $!A \Proves !B$, maka $\Gamma \Proves !B$. Diperoleh pula bahwa jika
+$!A_1, \dots, !A_n \Proves !B$ dan $\Gamma \Proves !A_i$ untuk
+setiap~$i$, maka $\Gamma \Proves !B$.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ tak konsisten jika dan hanya jika $\Gamma \Proves !A$ untuk
+setiap !!{sentence}~$!A$.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Buktikan \olref[fol][tab][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Buktikan \olref[pl][tab][ptn]{prop:incons}.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Kekompakan]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item Jika $\Gamma \Proves !A$, maka terdapat himpunan bagian berhingga
+    $\Gamma_0 \subseteq \Gamma$ sedemikian sehingga
+    $\Gamma_0 \Proves !A$.
+  \item Jika setiap himpunan bagian berhingga dari~$\Gamma$ konsisten,
+    maka $\Gamma$ konsisten.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Jika $\Gamma \Proves !A$, maka terdapat himpunan bagian
+      berhingga $\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$
+      dan !!{tableau}
+      tertutup untuk
+      \[
+      \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
+      \sFmla{\True}{!B_n}\}
+      \]
+      !!^{tableau} ini juga menunjukkan $\Gamma_0 \Proves !A$.
+    \item Jika $\Gamma$ tak konsisten, maka untuk suatu himpunan bagian
+      berhingga $\Gamma_0 = \{!B_1, \dots, !B_n\}$ terdapat
+      !!{tableau} tertutup untuk
+      \[
+      \{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      !!^{tableau} tertutup ini menunjukkan bahwa $\Gamma_0$ tak
+      konsisten.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

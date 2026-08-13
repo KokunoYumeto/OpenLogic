@@ -1,0 +1,256 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: soundness.tex
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{tab}{sou}}
+      {\olfileid[id]{pl}{tab}{sou}}
+
+\olsection{Kesahihan}
+
+\begin{explain}
+Sebuah sistem !!{derivation}, seperti tableau, disebut \emph{sahih} jika
+sistem tersebut tidak dapat !!{derive} kesimpulan yang sebenarnya tidak
+mengikuti premis-premisnya. Dengan demikian, kesahihan merupakan sejenis
+sifat keselamatan yang dijamin bagi sistem !!{derivation}. Bergantung
+pada sifat teori-bukti yang sedang dibahas, kita ingin mengetahui,
+misalnya, bahwa
+\begin{enumerate}
+\item setiap~$!A$ yang !!{derivable} bersifat
+  \iftag{FOL}{valid}{tautologis};
+\item jika !!a{sentence} !!{derivable} dari beberapa kalimat lain,
+  kalimat itu juga merupakan konsekuensi dari kalimat-kalimat tersebut;
+\item jika suatu himpunan !!{sentence} tak konsisten, himpunan itu tidak
+  dapat dipenuhi.
+\end{enumerate}
+Ini adalah sifat-sifat penting dari suatu sistem !!{derivation}. Jika
+salah satunya tidak berlaku, sistem !!{derivation} tersebut cacat---
+sistem itu akan !!{derive} terlalu banyak. Oleh karena itu, membuktikan
+kesahihan suatu sistem !!{derivation} sangatlah penting.
+
+Karena semua sifat teori-bukti ini didefinisikan melalui !!{tableau}
+tertutup dari suatu jenis, pembuktian (1)--(3) di atas mengharuskan kita
+membuktikan sesuatu tentang sifat semantik !!{tableau} tertutup. Pertama,
+kita akan mendefinisikan apa artinya !!a{signed formula} dipenuhi oleh
+objek semantik yang sesuai, lalu menunjukkan bahwa jika !!a{tableau}
+tertutup, tidak ada objek semantik yang memenuhi semua asumsinya.
+Selanjutnya, (1)--(3)
+diperoleh sebagai akibat dari hasil ini.
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}}{!!^a{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+\emph{memenuhi} !!a{signed formula} $\sFmla{\True}{!A}$ jika dan hanya
+jika $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$, dan memenuhi
+$\sFmla{\False}{!A}$ jika dan hanya jika
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$.
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi suatu himpunan
+!!{signed formula}~$\Gamma$ jika dan hanya jika ia memenuhi setiap
+$\sFmla{S}{!A} \in \Gamma$. Himpunan $\Gamma$ \emph{dapat dipenuhi}
+jika terdapat \iftag{FOL}{!!a{structure}}{!!a{valuation}} yang
+memenuhinya, dan \emph{tidak dapat dipenuhi} jika tidak demikian.
+\end{defn}
+
+\begin{thm}[Kesahihan]
+  \ollabel{thm:tableau-soundness}
+  Jika $\Gamma$ memiliki !!{tableau} tertutup, maka $\Gamma$ tidak dapat
+  dipenuhi.
+\end{thm}
+
+\begin{proof}
+Kita menyebut suatu cabang !!a{tableau} dapat dipenuhi jika dan hanya
+jika himpunan !!{signed formula} pada cabang itu dapat dipenuhi, dan kita
+menyebut !!a{tableau} dapat dipenuhi jika tableau tersebut memuat
+sekurang-kurangnya satu cabang yang dapat dipenuhi.
+
+Kita menunjukkan hal berikut: memperluas !!a{tableau} yang dapat dipenuhi
+dengan salah satu aturan inferensi selalu menghasilkan !!a{tableau} yang
+dapat dipenuhi. Hal ini akan membuktikan teorema tersebut: setiap
+!!{tableau} tertutup dihasilkan dengan menerapkan aturan-aturan inferensi
+pada !!{tableau} yang hanya terdiri atas asumsi-asumsi dari~$\Gamma$.
+Jadi, jika $\Gamma$ dapat dipenuhi, setiap !!{tableau} untuknya juga
+dapat dipenuhi. Namun, !!a{tableau} tertutup jelas tidak dapat dipenuhi:
+setiap cabang memuat $\sFmla{\True}{!A}$ dan $\sFmla{\False}{!A}$
+sekaligus, sedangkan tidak ada objek semantik yang dapat memenuhi
+sekaligus tidak memenuhi~$!A$.
+
+Andaikan kita memiliki !!a{tableau} yang dapat dipenuhi, yakni
+!!a{tableau} dengan sekurang-kurangnya satu cabang yang dapat dipenuhi.
+Penerapan suatu aturan inferensi entah menambahkan !!{signed formula}
+pada suatu cabang atau membelah suatu cabang menjadi dua. Jika
+!!{tableau} tersebut memiliki cabang yang dapat dipenuhi dan tidak
+diperluas oleh penerapan aturan yang sedang dibahas, cabang itu tetap
+merupakan cabang yang dapat dipenuhi dalam !!{tableau} yang telah
+diperluas; jadi, tableau yang telah diperluas dapat dipenuhi. Karena
+itu, kita hanya perlu membahas kasus ketika suatu aturan diterapkan pada
+cabang yang dapat dipenuhi.
+
+Misalkan $\Gamma$ adalah himpunan !!{signed formula} pada cabang tersebut,
+dan misalkan $\sFmla{S}{!A} \in \Gamma$ adalah !!{signed formula} yang
+dikenai aturan. Jika aturan tersebut tidak membelah cabang, kita harus
+menunjukkan bahwa cabang yang telah diperluas, yakni $\Gamma$ bersama
+kesimpulan-kesimpulan aturan tersebut, masih dapat dipenuhi. Jika aturan
+tersebut membelah cabang, kita harus menunjukkan bahwa sekurang-kurangnya
+satu dari kedua cabang yang dihasilkan dapat dipenuhi.
+
+Pertama, kita membahas inferensi-inferensi yang tidak membelah cabang.
+\begin{enumerate}
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lnot}$ pada
+  $\sFmla{\True}{\lnot !B} \in \Gamma$. Cabang yang diperluas kemudian
+  memuat !!{signed formula} dalam $\Gamma \cup
+  \{\sFmla{\False}{!B}\}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$. Khususnya,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$. Jadi,
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$; dengan kata lain,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi
+  $\sFmla{\False}{!B}$.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lnot}$ pada
+  $\sFmla{\False}{\lnot !B} \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\land}$ pada
+  $\sFmla{\True}{!B \land !C} \in \Gamma$, yang menghasilkan dua
+  !!{signed formula} baru pada cabang tersebut: $\sFmla{\True}{!B}$ dan
+  $\sFmla{\True}{!C}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, khususnya
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B \land !C}$. Maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ dan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Ini berarti bahwa
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi
+  $\sFmla{\True}{!B}$ dan $\sFmla{\True}{!C}$ sekaligus.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lor}$ pada
+  $\sFmla{\False}{!B \lor !C} \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lif}$ pada
+  $\sFmla{\False}{!B \lif !C} \in \Gamma$. Penerapan ini menghasilkan
+  dua !!{signed formula} baru pada cabang tersebut:
+  $\sFmla{\True}{!B}$ dan $\sFmla{\False}{!C}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, khususnya
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \lif !C}$. Maka
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ dan
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Ini berarti bahwa
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi
+  $\sFmla{\True}{!B}$ dan $\sFmla{\False}{!C}$ sekaligus.
+
+\iftag{FOL}{%
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lforall}$ pada
+  $\sFmla{\True}{\lforall[x][!A(x)]} \in \Gamma$. Penerapan ini
+  menghasilkan !!{signed formula} baru~$\sFmla{\True}{!A(t)}$ pada
+  cabang tersebut. Andaikan $\Sat{M}{\Gamma}$, khususnya
+  $\Sat{M}{\lforall[x][!A(x)]}$. Menurut
+  \olref[syn][sem]{prop:quant-terms}, $\Sat{M}{!A(t)}$. Akibatnya,
+  $\Struct{M}$ memenuhi $\sFmla{\True}{!A(t)}$.
+
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lforall}$ pada
+  $\sFmla{\False}{\lforall[x][!A(x)]} \in \Gamma$. Penerapan ini
+  menghasilkan !!{signed formula} baru~$\sFmla{\False}{!A(a)}$, dengan
+  $a$ sebuah !!{constant} yang tidak muncul dalam~$\Gamma$. Karena
+  $\Gamma$ dapat dipenuhi, terdapat $\Struct{M}$ sedemikian sehingga
+  $\Sat{M}{\Gamma}$, khususnya
+  $\Sat/{M}{\lforall[x][!A(x)]}$. Kita harus menunjukkan bahwa
+  $\Gamma \cup \{\sFmla{\False}{!A(a)}\}$ dapat dipenuhi. Untuk itu,
+  kita mendefinisikan struktur~$\Struct{M'}$ yang sesuai sebagai berikut.
+
+  Menurut \olref[syn][ass]{prop:sat-quant},
+  $\Sat/{M}{\lforall[x][!A(x)]}$ jika dan hanya jika untuk suatu $s$,
+  $\Sat/{M}{!A(x)}[s]$. Sekarang misalkan $\Struct{M'}$ sama dengan
+  $\Struct{M}$, kecuali $\Assign{a}{M'} = s(x)$. Menurut
+  \olref[syn][ext]{cor:extensionality-sent}, untuk setiap
+  $\sFmla{\True}{!C} \in \Gamma$, berlaku $\Sat{M'}{!C}$, dan untuk
+  setiap $\sFmla{\False}{!C} \in \Gamma$, berlaku $\Sat/{M'}{!C}$,
+  sebab $a$ tidak muncul dalam~$\Gamma$.
+
+  Menurut \olref[syn][ext]{prop:extensionality},
+  $\Sat/{M'}{!A(x)}[s]$. Menurut
+  \olref[syn][ext]{prop:ext-formulas}, $\Sat/{M'}{!A(a)}[s]$. Karena
+  $!A(a)$ merupakan !!a{sentence}, menurut
+  \olref[syn][ass]{prop:sentence-sat-true}, $\Sat/{M'}{!A(a)}$; dengan
+  kata lain, $\Struct{M'}$ memenuhi $\sFmla{\False}{!A(a)}$.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lexists}$ pada
+  $\sFmla{\True}{\lexists[x][!B(x)]} \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lexists}$ pada
+  $\sFmla{\False}{\lexists[x][!B(x)]} \in \Gamma$: Latihan.}{}
+\end{enumerate}
+Sekarang mari kita bahas inferensi-inferensi yang membelah cabang.
+\begin{enumerate}
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\land}$ pada
+  $\sFmla{\False}{!B \land !C} \in \Gamma$, yang menghasilkan dua
+  cabang: cabang kiri berlanjut melalui $\sFmla{\False}{!B}$ dan cabang
+  kanan melalui $\sFmla{\False}{!C}$. Andaikan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, khususnya
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \land !C}$. Maka
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ atau
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Dalam kasus pertama,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi
+  $\sFmla{\False}{!B}$; dengan kata lain,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi formula-formula pada
+  cabang kiri. Dalam kasus kedua,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi
+  $\sFmla{\False}{!C}$; dengan kata lain,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi formula-formula pada
+  cabang kanan.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lor}$ pada
+  $\sFmla{\True}{!B \lor !C} \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lif}$ pada
+  $\sFmla{\True}{!B \lif !C} \in \Gamma$: Latihan.
+\item Cabang diperluas dengan \Cut. Penerapan ini menghasilkan dua
+  cabang: yang satu memuat $\sFmla{\True}{!B}$ dan yang lain memuat
+  $\sFmla{\False}{!B}$. Karena
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ dan berlaku salah satu dari
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ atau
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, maka
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ memenuhi cabang kiri atau
+  cabang kanan.
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Lengkapi pembuktian \olref[fol][tab][sou]{thm:tableau-soundness}.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Lengkapi pembuktian \olref[pl][tab][sou]{thm:tableau-soundness}.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Jika $\Proves !A$, maka $!A$ \iftag{FOL}{valid}{merupakan tautologi}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+Jika $\Gamma \Proves !A$, maka $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+  Jika $\Gamma \Proves !A$, maka untuk suatu $!B_1$, \dots, $!B_n \in
+  \Gamma$, himpunan $\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1},
+  \dots, \sFmla{\True}{!B_n}\}$ memiliki !!{tableau} tertutup. Menurut
+  \olref{thm:tableau-soundness}, setiap
+  \iftag{FOL}{!!{structure}}{!!{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  entah membuat suatu $!B_i$ salah atau membuat $!A$ benar. Jadi, jika
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, maka berlaku pula
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+Jika $\Gamma$ dapat dipenuhi, maka himpunan tersebut konsisten.
+\end{cor}
+
+\begin{proof}
+Kita membuktikan kontraposisinya. Andaikan $\Gamma$ tidak konsisten.
+Maka terdapat $!B_1$, \dots, $!B_n \in \Gamma$ dan !!{tableau}
+tertutup untuk $\{\sFmla{\True}{!B_1}, \dots,
+\sFmla{\True}{!B_n}\}$. Menurut \olref{thm:tableau-soundness}, tidak
+terdapat $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ sedemikian sehingga
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B_i}$ untuk semua $i=1$, \dots,~$n$.
+Namun, ini berarti bahwa $\Gamma$ tidak dapat dipenuhi.
+\end{proof}
+
+\end{document}

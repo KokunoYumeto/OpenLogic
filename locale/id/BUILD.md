@@ -605,3 +605,36 @@ TeXcount 3.1.1 reports 5,270 English-source and 4,847 Indonesian words for this
 batch, and 42,457 versus 38,809 across all ninety-seven admitted files. The
 exact next cursor is `OLP-0098`,
 `content/first-order-logic/tableaux/tableaux.tex`.
+
+## Tableaux checkpoint — 2026-08-13
+
+The gap-free boundary extends through `OLP-0111`. Frozen source authority is
+commit `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`; all fourteen source and target
+hashes are bound by `qa_tableaux_batch_replay.ps1`.
+
+```text
+STRUCTURAL_TOTALS environments=346 labels=22 references=16 citations=0 assets=0 imports=13 math=587 formal_blocks=51 correction_assertions=24
+TABLEAUX_BATCH_REPLAY_OK files=14 checks=238 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 next=OLP-0112
+```
+
+Independent semantic replay passes all fourteen final live files with no
+unresolved finding. Exact dispositions and hashes are in
+`..\_control\OPENLOGIC_TABLEAUX_INDEPENDENT_REVIEW_20260813.md`.
+
+`latexmk -pdf -interaction=nonstopmode -halt-on-error tableaux-id.tex` exited
+0. `tableaux-id.pdf` is 28 pages and 229,826 bytes, SHA-256
+`c1be0a95411b67ae928146bb812e9b4cfdaeb417e9d192d885d28790fc077bcc`.
+The log has zero fatal error, undefined control sequence/reference/citation,
+multiply defined label, or missing glyph. Eleven overfull boxes (maximum
+31.60602 pt) and four underfull vboxes are visually benign. All fonts are
+embedded; one rendered Type 3 mathematical face remains.
+
+`pdftotext -layout` produced 59,155 bytes, SHA-256
+`094d583be968913a4da76b5e98efb26328eccc9d977b08b4533ddff4a9ab4fbe`.
+All 28 pages were rendered at 144 dpi and inspected at original resolution.
+No clipping, overlap, blank content page, broken glyph, lost formula, cutoff
+tableau, damaged hyperlink, or margin loss was found.
+
+TeXcount reports 6,062 English-source and 5,616 Indonesian words for the batch,
+and 48,519 versus 44,425 cumulatively. The next cursor is `OLP-0112`,
+`content/first-order-logic/axiomatic-deduction/axiomatic-deduction.tex`.

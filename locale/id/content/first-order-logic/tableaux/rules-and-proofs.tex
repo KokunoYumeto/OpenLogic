@@ -1,0 +1,64 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+{\olfileid[id]{fol}{tab}{rul}}
+{\olfileid[id]{pl}{tab}{rul}}
+
+\olsection{Aturan dan \usetoken{P}{tableau}}
+
+!!^a{tableau} merupakan penelusuran sistematis atas berbagai cara yang
+mungkin bagi !!a{sentence} untuk bernilai benar atau salah dalam
+\iftag{FOL}{!!a{structure}}{!!a{valuation}}. Unsur-unsur pembangun
+tableau adalah !!{signed formula}s:
+!!{sentence}s yang dilengkapi sebuah ``tanda'' nilai kebenaran, yaitu
+$\True$ atau~$\False$. Masing-masing !!{formula} bertanda ini disusun
+dalam sebuah pohon (yang tumbuh ke bawah).
+
+\begin{defn}
+  Sebuah \emph{!!{signed formula}} adalah pasangan yang terdiri atas
+  suatu nilai kebenaran dan !!a{sentence}, yaitu salah satu dari:
+  \[
+  \sFmla{\True}{!A} \text{ atau } \sFmla{\False}{!A}.
+  \]
+\end{defn}
+
+Secara intuitif, kita dapat membaca $\sFmla{\True}{!A}$ sebagai
+``$!A$ mungkin benar'' dan $\sFmla{\False}{!A}$ sebagai ``$!A$ mungkin
+salah'' (dalam \iftag{FOL}{suatu !!{structure}}{suatu !!{valuation}}).
+
+Setiap !!{signed formula} dalam pohon merupakan suatu \emph{asumsi}
+(yang dicantumkan di bagian paling atas pohon), atau diperoleh dari
+!!a{signed formula} di atasnya melalui salah satu di antara sejumlah
+aturan inferensi. Terdapat dua aturan untuk setiap !!{main operator}
+yang mungkin dari !!{formula} sebelumnya: satu untuk tanda~$\True$ dan
+satu untuk tanda~$\False$. Beberapa aturan memungkinkan pohon bercabang,
+sedangkan aturan lain hanya menambahkan !!{signed formula}s pada cabang.
+Suatu aturan boleh (dan sering kali harus) diterapkan bukan pada
+!!{signed formula} yang tepat mendahuluinya, melainkan pada sebarang
+!!{signed formula} di cabang dari akar hingga tempat aturan itu
+diterapkan.
+
+Suatu cabang \emph{tertutup} apabila memuat $\sFmla{\True}{!A}$ dan
+$\sFmla{\False}{!A}$. Suatu !!{tableau} tertutup adalah tableau yang setiap
+cabangnya tertutup. Menurut penafsiran intuitif tersebut, setiap cabang
+menggambarkan suatu kemungkinan bersama, tetapi $\sFmla{\True}{!A}$ dan
+$\sFmla{\False}{!A}$ tidak mungkin berlaku bersama. Dengan kata lain,
+jika suatu cabang tertutup, kemungkinan yang digambarkannya telah
+disingkirkan. Secara khusus, ini berarti bahwa suatu !!{tableau} tertutup
+menyingkirkan semua kemungkinan untuk sekaligus membuat setiap asumsi
+berbentuk $\sFmla{\True}{!A}$ benar dan setiap asumsi berbentuk
+$\sFmla{\False}{!A}$ salah.
+
+Suatu !!{tableau} tertutup \emph{untuk $!A$} adalah !!{tableau} tertutup
+dengan akar~$\sFmla{\False}{!A}$. Jika !!{tableau} tertutup semacam itu
+ada, semua kemungkinan bahwa~$!A$ salah telah disingkirkan; dengan kata
+lain, $!A$ harus benar dalam setiap
+\iftag{FOL}{!!{structure}}{!!{valuation}}.
+
+\end{document}
