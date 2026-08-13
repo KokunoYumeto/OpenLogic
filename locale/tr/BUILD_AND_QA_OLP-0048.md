@@ -27,8 +27,12 @@ Authority commit: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
   Turkish-language review: CLEAN; blocker 0, major 0, minor 0.
 - Source-adverse disclosure: `SOURCE_ADVERSE_0048.md` records deterministic
   emendations and unresolved upstream construction/proof gaps.
-- Planned publication tag: `tr-olp-0048-20260813`. This pre-publication
-  receipt does not claim that the tag or release is already public.
+- Publication tag: `tr-olp-0048-20260813`; tagged translation/content commit
+  `ca856f8d4e2c2ff93e4be11281c658e975ab1a7a`.
+- Public release:
+  `https://github.com/KokunoYumeto/OpenLogic/releases/tag/tr-olp-0048-20260813`.
+- Public readback: the released asset is 586,665 bytes and rehashes to the
+  exact PDF SHA-256 above; the release is non-draft and non-prerelease.
 
-Once published, this checkpoint supersedes `tr-olp-0040-20260813`. It is not
-the complete 722-module Turkish edition.
+This checkpoint supersedes `tr-olp-0040-20260813`. It is not the complete
+722-module Turkish edition.
