@@ -143,6 +143,20 @@ Arsitektur DOI/discoverability yang bertahan disimpan di
 Tidak ada DOI edisi Open Logic Indonesia yang boleh dicetak sebelum draf
 lengkap mencapai 722/722 dan lulus build serta QA kumulatif.
 
+Checkpoint terbaru juga mengakui sebelas unit Bagian Logika Orde Pertama dan
+bab pengantarnya (`OLP-0138`--`OLP-0148`). Penggerak terbatas berikut
+menghasilkan pembaca 12 halaman dengan bibliografi resmi proyek:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-introduction-id.tex
+```
+
+PDF itu berukuran 164.450 byte dengan SHA-256
+`327829be2dba42640f17c585213fb718290befec4a8f4437e5dbf27176df1f92`.
+Replay deterministik lulus 302 pemeriksaan dan 333 segmen matematika; semua 12
+halaman telah dirender pada 144 dpi dan diperiksa. Kursor global berikutnya
+adalah `OLP-0149`.
+
 ## Syarat penerimaan tiap batch
 
 Setiap batch harus mengikat hash sumber, mempertahankan perintah LaTeX,

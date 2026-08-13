@@ -1,0 +1,55 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: syntax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{syn}
+
+\olsection{Sintaksis}
+
+Pertama-tama kita harus menetapkan secara tepat untai simbol mana yang
+tergolong !!{sentence}s logika orde pertama. Kita akan melakukannya nanti;
+untuk sekarang, kita cukup melanjutkan melalui contoh. Unsur-unsur dasar---
+kosakata---logika orde pertama terbagi menjadi dua bagian. Bagian pertama
+terdiri atas simbol-simbol yang kita gunakan untuk mengatakan sesuatu yang
+tertentu atau untuk menunjuk sesuatu yang tertentu. Kita menunjuk sesuatu
+dengan menggunakan !!{constant}s, dan kita mengatakan sesuatu mengenai objek
+yang kita tunjuk dengan menggunakan !!{predicate}s. Misalnya, kita dapat
+menggunakan $\Obj a$ sebagai !!a{constant} untuk menunjuk satu objek, lalu
+mengatakan sesuatu mengenainya dengan menggunakan !!{sentence}~$\Atom{\Obj
+P}{\Obj a}$. Jika Anda membayangkan makna bagi ``$\Obj a$'' dan ``$\Obj P$'',
+Anda dapat membaca $\Atom{\Obj P}{\Obj a}$ sebagai suatu kalimat bahasa Inggris
+(dan Anda mungkin pernah melakukannya ketika pertama kali mempelajari logika
+formal). Setelah memiliki !!{sentence}s logika orde pertama yang sederhana
+semacam itu, Anda dapat membangun kalimat-kalimat yang lebih kompleks dengan
+menggunakan bagian kedua kosakata tersebut: simbol logis (penghubung dan
+kuantor). Jadi, misalnya, kita dapat membentuk ungkapan seperti
+$(\Atom{\Obj P}{\Obj a} \land \Atom{\Obj Q}{\Obj b})$ atau~$\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]$.
+
+Untuk memberikan definisi semantik yang tepat dan aturan-aturan sistem
+!!{derivation} kita yang diperlukan bagi kajian metalogis yang ketat,
+pertama-tama kita harus memberikan definisi yang tepat tentang apa yang
+tergolong !!a{sentence} logika orde pertama. Gagasan dasarnya cukup mudah
+dipahami: ada beberapa !!{sentence}s sederhana yang dapat kita bentuk hanya
+dari !!{predicate}s dan !!{constant}s, seperti~$\Atom{\Obj P}{\Obj a}$. Lalu,
+dari kalimat-kalimat ini kita membentuk kalimat yang lebih kompleks dengan
+menggunakan penghubung dan kuantor. Namun, persis aturan apa yang mengizinkan
+kita membentuk !!{sentence}s yang lebih kompleks? Aturan-aturan itu harus
+ditetapkan; jika tidak, kita belum mendefinisikan ``!!{sentence} logika orde
+pertama'' dengan cukup tepat. Ada beberapa persoalan. Persoalan pertama ialah
+menentukan untai yang tepat agar tergolong !!{sentence}s. Persoalan kedua
+ialah melakukannya sedemikian rupa sehingga kita dapat memberikan bukti
+matematis mengenai \emph{semua} !!{sentence}s. Terakhir, kita juga harus
+memberikan definisi yang tepat bagi sejumlah operasi dasar atas !!{sentence}s,
+seperti ``ganti setiap $\Obj x$ dalam~$!A$ dengan~$\Obj b$.'' Kesulitannya,
+kuantor dan !!{variable}s dalam logika orde pertama membuat cara melakukannya
+tidak sepenuhnya jelas. Misalnya, apakah $\lexists[\Obj x][\Atom{\Obj P}{\Obj
+a}]$ tergolong !!a{sentence}? Bagaimana dengan $\lexists[\Obj x][\lexists[\Obj
+x][\Atom{\Obj P}{\Obj x}]]$? Apa hasil dari ``ganti $\Obj x$ dengan~$\Obj b$
+dalam $(\Atom{\Obj P}{\Obj x} \land \lexists[\Obj x][\Atom{\Obj P}{\Obj
+x}])$''?
+
+\end{document}

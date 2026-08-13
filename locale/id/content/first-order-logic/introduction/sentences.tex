@@ -1,0 +1,59 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: sentences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{snt}
+
+\olsection{\usetoken{P}{sentence}}
+
+Baik, sekarang kita mempunyai (sketsa) definisi keterpenuhan (``benar
+dalam'') bagi !!{structure}s dan !!{formula}s. Namun, definisi itu memerlukan
+unsur tambahan ini---penugasan untuk !!a{variable}---sedangkan yang kita
+inginkan ialah definisi !!{sentence}s. Bagaimana kita menyingkirkan penugasan,
+dan apa itu !!{sentence}s?
+
+Anda mungkin ingat pembahasan dalam pengantar pertama Anda tentang logika
+formal mengenai hubungan antara !!{variable}s dan kuantor. Kuantor selalu
+diikuti oleh !!a{variable}, lalu dalam bagian !!{sentence} yang dikenai
+kuantor tersebut (``cakupan'' kuantor itu), kita memahami bahwa !!{variable}
+tersebut ``terikat'' oleh kuantor itu. Dalam !!{formula}s, tidak diharuskan
+bahwa setiap !!{variable} mempunyai kuantor yang bersesuaian, dan
+!!{variable}s tanpa kuantor yang bersesuaian disebut ``bebas'' atau ``tak
+terikat.'' Kita akan menganggap !!{sentence}s sebagai semua !!{formula}s yang
+tidak mempunyai !!{variable}s bebas.
+
+Sekali lagi, gagasan intuitif mengenai kapan suatu kemunculan !!a{variable}
+dalam !!a{formula}~$!A$ terikat, kuantor mana yang mengikatnya, dan kapan
+kemunculan itu bebas, tidaklah sulit dipahami. Anda mungkin telah mempelajari
+suatu metode untuk mengujinya, barangkali dengan menghitung tanda kurung. Kita
+harus menuntut suatu definisi yang tepat---dan karena kita telah
+mendefinisikan !!{formula}s melalui induksi, kita juga dapat memberikan
+definisi mengenai kemunculan bebas dan terikat suatu !!a{variable}~$x$ dalam
+!!a{formula}~$!A$ melalui induksi. Misalnya, bagi bahasa kita yang
+disederhanakan, definisi tersebut dapat berbentuk seperti berikut:
+\begin{enumerate}
+  \item Jika $!A$ atomik, semua kemunculan $x$ di dalamnya bebas (yakni,
+  kemunculan $x$ dalam~$\Atom{\Obj P}{x}$ bebas).
+  \item Jika $!A$ berbentuk $\lnot !B$, suatu kemunculan~$x$ dalam~$\lnot
+  !B$ bebas jika dan hanya jika kemunculan~$x$ yang bersesuaian bebas
+  dalam~$!B$ (yakni, kemunculan bebas variabel dalam~$!B$ tepat sama dengan
+  kemunculan yang bersesuaian dalam~$\lnot !B$).
+  \item Jika $!A$ berbentuk $(!B \land !C)$, suatu kemunculan~$x$
+  dalam~$(!B \land !C)$ bebas jika dan hanya jika kemunculan~$x$ yang
+  bersesuaian bebas dalam~$!B$ atau dalam~$!C$.
+  \item Jika $!A$ berbentuk $\lexists[x][!B]$, tidak ada kemunculan $x$
+  dalam~$!A$ yang bebas; jika formula tersebut berbentuk $\lexists[y][!B]$
+  dengan $y$ suatu !!{variable} yang berbeda dari~$x$, suatu kemunculan~$x$ dalam
+  $\lexists[y][!B]$ bebas jika dan hanya jika kemunculan~$x$ yang
+  bersesuaian bebas dalam~$!B$.
+\end{enumerate}
+
+Setelah kita mempunyai definisi yang tepat mengenai kemunculan bebas dan
+terikat variabel, kita cukup mengatakan: !!a{sentence} ialah setiap
+!!{formula} tanpa kemunculan bebas !!{variable}s.
+
+\end{document}

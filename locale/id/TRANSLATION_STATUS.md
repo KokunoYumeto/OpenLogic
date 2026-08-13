@@ -457,3 +457,36 @@ It does not change the translation cursor. No Indonesian Open Logic DOI has
 been minted, and none may be minted before a complete-draft 722/722 closure
 with a cumulative reader build, source package, provenance package, QA
 receipts, and checksums.
+
+### Contiguous First-Order Logic introduction batch
+
+The First-Order Logic part wrapper and complete introductory chapter add
+`OLP-0138`--`OLP-0148`. Exact frozen-source and target replay passes 302
+checks across all eleven files, including 333 mathematical skeletons, one
+mathematical environment, 219 semantic tokens, and seven path-scoped source
+correction classes over nine exact source occurrences. Independent semantic
+review passes the final target bytes and preserves seven upstream exposition
+risks for the eventual concise maintainer issue. Exact bindings and
+dispositions are in
+`..\..\..\_control\OPENLOGIC_FOL_INTRODUCTION_INDEPENDENT_REVIEW_20260813.md`
+(SHA-256
+`e63ba97fd0ee3f4101543bb609f6591fe4e9a96863bf1d712647db5edaab5537`).
+
+The bounded driver builds to 12 pages and 164,450 bytes, SHA-256
+`327829be2dba42640f17c585213fb718290befec4a8f4437e5dbf27176df1f92`.
+The canonical project bibliography resolves the single citation. The final
+log contains zero undefined reference/citation, missing glyph, or fatal
+condition. Four overfull boxes remain, maximum 13.60612 pt; inspection found
+them visually contained. All 12 pages were rendered at 144 dpi and inspected
+with no clipping, overlap, damaged glyph, lost formula, or margin loss.
+Extracted text is 31,345 bytes / 4,616 whitespace-delimited words, SHA-256
+`cb251711317998a3e9fa69880bcf103d51c51d40fc0be791b78d18c785b1617f`.
+
+TeXcount reports 4,433 English-source and 4,070 Indonesian words for this
+batch, and 64,565 versus 59,535 cumulatively. No native/human review metadata
+is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0149`,
+`content/first-order-logic/syntax-and-semantics/syntax.tex`.
+The remaining closure is 574 source files after the 148 target files currently
+present and admitted.

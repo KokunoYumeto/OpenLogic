@@ -1,0 +1,52 @@
+% Penggerak mandiri untuk bab Pengantar Logika Orde Pertama dalam
+% pelokalan Bahasa Indonesia. Penggerak ini membatasi build pada
+% OLP-0139--OLP-0148; pembungkus bagian OLP-0138 tetap diperiksa secara
+% struktural dan baru dapat dibangun penuh setelah empat bab berikutnya ada.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Dua rujukan bacaan lanjutan menunjuk ke bab 74 pembaca Inggris beku.
+% Label sintetis mempertahankan nomor kanonik tanpa mengimpor bab tersebut.
+\makeatletter
+\hypertarget{ol-id-forward-inductive-definitions}{}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:idf:sec}{{74.4}{0}{Definisi Induktif}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:idf:sec@cref}{{[section][4][74]74.4}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:sti:sec}{{74.5}{0}{Induksi Struktural}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:sti:sec@cref}{{[section][5][74]74.5}{[1][0][]0}{}{}{}}}
+\makeatother
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+% Pertahankan nomor bab pembaca lengkap (bab 15) pada build terbatas ini.
+\setcounter{chapter}{14}
+
+\olimport*[first-order-logic/introduction]{introduction}
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}

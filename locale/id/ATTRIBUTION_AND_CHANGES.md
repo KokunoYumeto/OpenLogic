@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0137` (137/722 files). It is incomplete and must not be represented as the
+`OLP-0148` (148/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -70,6 +70,10 @@ Exact source corrections currently include:
   edge cases, and the expanded-language carrier used in downward
   Löwenheim--Skolem. Two upstream proof-scope/statement-precision risks remain
   expressly preserved rather than silently altered.
+- The First-Order Logic introduction repairs malformed quantifier scopes and
+  brackets, predicate-versus-constant arity, an out-of-domain assignment
+  example, and an `\Atom` delimiter. Seven broader exposition risks remain
+  preserved verbatim for the eventual concise upstream report.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

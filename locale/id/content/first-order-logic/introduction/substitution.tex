@@ -1,0 +1,49 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{sub}
+
+\olsection{Substitusi}
+
+Kita akan membahas sebuah contoh untuk menggambarkan bagaimana berbagai hal
+saling berkaitan, dan bagaimana pengembangan sintaksis serta semantik
+meletakkan dasar bagi penyelidikan kita yang lebih lanjut. Sistem
+!!{derivation} kita seharusnya memungkinkan kita !!{derive}
+$\Atom{\Obj P}{\Obj a}$ dari $\lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$.
+Kita bahkan mungkin ingin menyatakan hal ini sebagai suatu aturan inferensi.
+Namun, untuk melakukannya, kita harus dapat menyatakannya dalam istilah yang
+paling umum: bukan hanya bagi $\Obj P$, $\Obj a$, dan $\Obj v_0$, melainkan
+bagi setiap !!{formula}~$!A$, suku~$t$, dan !!{variable}~$x$. (Ingat bahwa
+!!{constant}s merupakan suku, tetapi kita juga akan mempertimbangkan suku yang
+lebih rumit yang dibangun dari !!{constant}s dan !!{function}s.) Jadi, kita
+ingin dapat mengatakan sesuatu seperti, ``setiap kali Anda telah !!{derive}
+$\lforall[x][!A(x)]$, Anda dibenarkan untuk menyimpulkan~$!A(t)$---hasil dari
+menghapus $\lforall[x]$ dan mengganti~$x$ dengan~$t$.'' Namun, apa persisnya
+arti ``mengganti $x$ dengan~$t$''? Apa hubungan antara $!A(x)$ dan~$!A(t)$?
+Apakah hal ini selalu berhasil?
+
+Untuk menyatakannya secara tepat, kita mendefinisikan operasi
+\emph{substitusi}. Substitusi sebenarnya rumit, karena kita tidak dapat begitu
+saja mengganti semua~$x$ dalam~$!A$ dengan~$t$, dan tidak setiap~$t$ dapat
+disubstitusikan bagi setiap~$x$. Sekali lagi, kita akan menangani hal ini
+dengan menggunakan definisi induktif. Namun, setelah hal ini dilakukan,
+penetapan suatu aturan inferensi sebagai ``simpulkan $!A(t)$ dari
+$\lforall[x][!A(x)]$'' menjadi suatu definisi yang tepat. Selain itu, kita
+akan dapat menunjukkan bahwa aturan inferensi ini baik dalam arti bahwa
+$\lforall[x][!A(x)]$ mengakibatkan~$!A(t)$. Akan tetapi, untuk membuktikannya,
+kita sekali lagi harus membuktikan sesuatu yang pada pandangan pertama mungkin
+membuat Anda bertanya, ``mengapa kita melakukan ini?'' Fakta bahwa
+$\lforall[x][!A(x)]$ mengakibatkan~$!A(t)$ bergantung pada fakta bahwa berlaku
+atau tidaknya $\Sat{M}{!A(t)}$ hanya bergantung pada nilai suku~$t$, yakni,
+jika kita menetapkan $m$ sebagai !!{element} apa pun dari~$\Domain{M}$ yang
+ditunjuk oleh~$t$, maka $\Sat{M}{!A(t)}[s]$ berlaku jika dan hanya jika
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$. Hal ini berlaku bahkan ketika $t$ memuat
+!!{variable}s, tetapi kita harus berhati-hati dalam merumuskan hasilnya secara
+tepat.
+
+\end{document}

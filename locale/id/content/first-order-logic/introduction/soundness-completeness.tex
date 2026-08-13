@@ -1,0 +1,69 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: soundness-completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{scp}
+
+\olsection{Kesahihan dan Kelengkapan}
+
+Kita juga akan memperkenalkan sistem !!{derivation} bagi logika orde pertama.
+Ada banyak sistem !!{derivation} yang telah dikembangkan oleh para ahli
+logika, tetapi semuanya mendefinisikan relasi !!{derivability} yang sama di
+antara !!{sentence}s. Kita mengatakan bahwa $\Gamma$ \emph{!!{derive}s}~$!A$,
+$\Gamma \Proves !A$, jika terdapat !!a{derivation} dari jenis tertentu yang
+didefinisikan secara tepat. !!^{derivation}s selalu merupakan susunan simbol
+yang berhingga---mungkin berupa daftar !!{sentence}s, atau suatu struktur yang
+lebih rumit. Tujuan sistem !!{derivation} ialah menyediakan alat untuk
+menentukan apakah suatu !!a{sentence} diakibatkan oleh suatu himpunan~$\Gamma$.
+Untuk mencapai tujuan tersebut, harus berlaku bahwa $\Gamma
+\Entails !A$ jika, dan hanya jika, $\Gamma \Proves !A$.
+
+Jika $\Gamma \Proves !A$ tetapi tidak berlaku bahwa $\Gamma \Entails !A$,
+sistem !!{derivation} kita terlalu kuat: sistem itu membuktikan terlalu
+banyak. Sifat bahwa jika $\Gamma \Proves !A$ maka $\Gamma \Entails !A$
+disebut \emph{kesahihan}, dan merupakan persyaratan minimal bagi setiap sistem
+!!{derivation} yang baik. Sebaliknya, jika $\Gamma \Entails !A$ tetapi tidak
+berlaku bahwa $\Gamma \Proves !A$, sistem !!{derivation} kita terlalu lemah:
+sistem itu tidak membuktikan cukup banyak. Sifat bahwa jika $\Gamma \Entails
+!A$ maka $\Gamma \Proves !A$ disebut \emph{kelengkapan}. Kesahihan biasanya
+relatif mudah dibuktikan (melalui induksi pada struktur !!{derivation}s, yang
+didefinisikan secara induktif). Kelengkapan lebih sulit dibuktikan.
+
+Kesahihan dan kelengkapan mempunyai sejumlah konsekuensi penting. Jika suatu
+himpunan !!{sentence}s~$\Gamma$ !!{derive}s suatu kontradiksi (seperti $!A
+\land \lnot !A$), himpunan itu disebut \emph{tak konsisten}. $\Gamma$ yang
+tak konsisten tidak dapat mempunyai model apa pun; himpunan itu tidak dapat
+dipenuhi. Dari kelengkapan diperoleh arah sebaliknya: setiap $\Gamma$ yang
+bukan merupakan himpunan tak konsisten---atau, sebagaimana akan kita katakan,
+\emph{konsisten}---
+mempunyai suatu model. Bahkan, pernyataan ini ekuivalen dengan kelengkapan,
+dan merupakan bentuk kelengkapan yang benar-benar akan kita buktikan. Ini
+merupakan hasil yang mendalam dan mungkin mengejutkan: fakta bahwa Anda tidak
+dapat membuktikan $!A \land \lnot !A$ dari $\Gamma$ menjamin adanya
+!!a{structure} yang sesuai dengan deskripsi~$\Gamma$. Jadi, kelengkapan
+memberikan jawaban bagi pertanyaan: himpunan !!{sentence}s mana yang mempunyai
+model? Jawabannya: semua dan hanya himpunan yang konsisten.
+
+Teorema kesahihan dan kelengkapan mempunyai dua konsekuensi penting: teorema
+kekompakan dan teorema L\"owenheim--Skolem. Keduanya merupakan hasil penting
+dalam teori model, dan dapat digunakan untuk menetapkan banyak hasil yang
+menarik. Kita sudah menyebutkan dua di antaranya: logika orde pertama tidak
+dapat menyatakan bahwa !!{domain} suatu !!a{structure} bersifat hingga atau
+bahwa domain tersebut !!{nonenumerable}.
+
+Secara historis, semua hal ini---cara mendefinisikan sintaksis dan semantik
+logika orde pertama, cara mendefinisikan sistem !!{derivation} yang baik, cara
+membuktikan bahwa sistem tersebut sahih dan lengkap, serta memahami dengan
+jelas apa yang dapat dan tidak dapat diungkapkan dalam bahasa orde pertama---
+memerlukan waktu yang lama untuk ditemukan dan dirumuskan dengan benar. Kini
+kita mengetahui cara melakukannya, tetapi menelusuri semua perinciannya masih
+dapat membingungkan dan menjemukan. Namun, hal itu juga penting, karena metode
+yang dikembangkan di sini bagi bahasa formal logika orde pertama diterapkan
+di berbagai bidang dalam logika, ilmu komputer, dan linguistik. Jadi,
+mempelajari perinciannya akan bermanfaat dalam jangka panjang.
+
+\end{document}

@@ -1,0 +1,72 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: models-theories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{mod}
+
+\olsection{Model dan Teori}
+
+Setelah mendefinisikan sintaksis dan semantik logika orde pertama, kita dapat
+mulai menyelidiki sifat-sifat !!{structure}s dan gagasan-gagasan semantis.
+Kita juga dapat mendefinisikan sistem !!{derivation} dan menyelidikinya. Bagi
+suatu himpunan !!{sentence}s, kita dapat bertanya: !!{structure}s mana yang
+membuat semua !!{sentence}s dalam himpunan tersebut benar? Jika diberikan
+suatu himpunan !!{sentence}s~$\Gamma$, !!a{structure}~$\Struct{M}$ yang
+memenuhi semuanya disebut \emph{model dari~$\Gamma$}. Kita mungkin mulai
+dari~$\Gamma$ dan mencoba menemukan model-modelnya---seperti apa model-model
+itu? Seberapa besar atau kecil model-model tersebut? Namun, kita juga dapat
+memulai dari satu !!{structure} atau sekumpulan !!{structure}s dan bertanya:
+!!{sentence}s apa yang benar di dalamnya? Adakah !!{sentence}s yang
+\emph{mencirikan} !!{structure}s tersebut dalam arti bahwa kalimat-kalimat
+itu benar tepat di dalam struktur-struktur tersebut? Pertanyaan semacam ini
+merupakan ranah \emph{teori model}. Pertanyaan-pertanyaan tersebut juga
+mendasari \emph{metode aksiomatik}: mendeskripsikan sekumpulan !!{structure}s
+dengan suatu himpunan !!{sentence}s, yakni aksioma-aksioma suatu teori. Hal
+ini dimungkinkan oleh pengamatan bahwa tepat !!{sentence}s yang diakibatkan
+dalam logika orde pertama oleh aksioma-aksioma itulah yang benar dalam semua
+model aksioma tersebut.
+
+Sebagai contoh yang sangat sederhana, perhatikan praorder. Suatu praorder
+ialah relasi~$R$ pada suatu himpunan~$A$ yang bersifat refleksif sekaligus
+transitif. Suatu himpunan~$A$ dengan relasi dua-tempat $R \subseteq A \times
+A$ di atasnya tepat merupakan apa yang kita perlukan untuk memberikan
+!!a{structure} bagi bahasa orde pertama dengan satu simbol relasi dua-tempat~$\Obj P$:
+kita menetapkan $\Domain{M} = A$ dan $\Assign{\Obj P}{M} = R$.
+Karena $R$ merupakan praorder, relasi tersebut bersifat refleksif dan
+transitif, dan kita dapat menemukan suatu himpunan~$\Gamma$ dari
+!!{sentence}s logika orde pertama yang menyatakan hal ini:
+\begin{align*}
+  & \lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0,\Obj v_0}]\\
+  & \lforall[\Obj v_0][\lforall[\Obj v_1][\lforall[\Obj v_2][((\Atom{\Obj P}{\Obj v_0,\Obj v_1} \land \Atom{\Obj P}{\Obj v_1,\Obj v_2}) \lif \Atom{\Obj P}{\Obj v_0,\Obj v_2})]]]
+\end{align*}
+Kedua !!{sentence}s ini hanyalah penyimbolan dari ``untuk setiap~$x$, $Rxx$''
+($R$ bersifat refleksif) dan ``setiap kali $Rxy$ dan $Ryz$, berlaku pula
+$Rxz$'' ($R$ bersifat transitif). Kita melihat bahwa
+!!a{structure}~$\Struct{M}$ merupakan model dari kedua !!{sentence}s dalam~$\Gamma$
+ini jika dan hanya jika $R$ (yakni, $\Assign{\Obj P}{M}$)
+merupakan praorder pada~$A$ (yakni, $\Domain{M}$). Dengan kata lain,
+model-model $\Gamma$ tepat merupakan semua praorder. Setiap sifat semua
+praorder yang dapat diungkapkan dalam bahasa orde pertama dengan hanya~$\Obj P$
+sebagai !!{predicate} (seperti refleksivitas dan transitivitas di
+atas) diakibatkan oleh kedua !!{sentence}s dalam~$\Gamma$, dan sebaliknya.
+Jadi, apa pun yang dapat kita buktikan mengenai model-model~$\Gamma$ telah
+kita buktikan mengenai semua praorder.
+
+Bagi setiap teori dan kelas model tertentu (seperti $\Gamma$ dan semua
+praorder), akan ada pertanyaan menarik mengenai apa yang dapat dan tidak dapat
+diungkapkan dalam bahasa orde pertama yang bersesuaian. Ada beberapa sifat
+!!{structure}s yang menarik bagi semua bahasa dan kelas model, yakni sifat
+yang menyangkut ukuran !!{domain}. Misalnya, kita selalu dapat menyatakan
+bahwa !!{domain} memuat tepat $n$~!!{element}s, bagi setiap~$n \in \PosInt$.
+Dengan menggunakan suatu himpunan yang memuat tak hingga banyaknya
+!!{sentence}s, kita juga dapat menyatakan bahwa !!{domain} bersifat tak
+hingga. Namun, kita tidak dapat menyatakan bahwa domain bersifat hingga, atau
+bahwa domain tersebut !!{nonenumerable}. Hasil-hasil mengenai keterbatasan
+bahasa orde pertama ini merupakan konsekuensi teorema kekompakan dan teorema
+L\"owenheim--Skolem.
+
+\end{document}

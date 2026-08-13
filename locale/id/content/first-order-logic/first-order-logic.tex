@@ -1,0 +1,58 @@
+% Bagian: first-order logic
+
+\documentclass[../../include/open-logic-part]{subfiles}
+
+\begin{document}
+
+\olpart{fol}{Logika Orde Pertama}
+
+\begin{editorial}
+  Bagian ini membahas metateori logika orde pertama hingga teorema
+  kelengkapan. Saat ini pembahasannya tidak bergantung pada pembahasan
+  terpisah mengenai logika proposisi; semuanya dibuktikan. Berkas sumber akan
+  mengecualikan materi mengenai kuantor (serta mengganti ``!!{structure}''
+  dengan ``!!{valuation}'', $\Struct{M}$ dengan $\pAssign{v}$, dan
+  seterusnya) jika tag ``FOL'' bernilai salah. Bahkan, sebagian besar materi
+  dalam bagian mengenai logika proposisi hanyalah materi orde pertama dengan
+  tag ``FOL'' dinonaktifkan.
+
+  Jika bagian mengenai logika proposisi disertakan, hal ini menimbulkan
+  banyak pengulangan. Namun, direncanakan agar bagian ini dapat memperhitungkan
+  materi mengenai logika proposisi (dan mengecualikan materi yang sudah
+  dibahas, sekaligus mempersingkat bukti dengan merujuk ke bagian-bagian yang
+  bersesuaian dalam bagian proposisi).
+\end{editorial}
+
+\olimport[introduction]{introduction}
+
+\olimport[syntax-and-semantics]{syntax}
+
+\olimport[syntax-and-semantics]{semantics}
+
+\olimport[models-theories]{models-theories}
+
+\olimport[proof-systems]{proof-systems}
+
+\iftag{prfSC}{%
+  \olimport[sequent-calculus]{sequent-calculus}
+}{}
+
+\iftag{prfND}{%
+  \olimport[natural-deduction]{natural-deduction}
+}{}
+
+\iftag{prfTab}{%
+  \olimport[tableaux]{tableaux}
+}{}
+
+\iftag{prfAX}{%
+  \olimport[axiomatic-deduction]{axiomatic-deduction}
+}{}
+
+\olimport[completeness]{completeness}
+
+\olimport[beyond]{beyond}
+
+\OLEndPartHook
+
+\end{document}

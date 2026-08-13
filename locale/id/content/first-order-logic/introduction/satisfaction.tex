@@ -1,0 +1,118 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{sat}
+
+\olsection{Keterpenuhan}
+
+Setelah mengetahui apa itu !!{formula}s, kita sudah dapat melompat ke depan,
+yakni ke semantik logika orde pertama: di sini, definisi dasarnya ialah
+definisi !!a{structure}. Bagi bahasa sederhana kita, !!a{structure}~$\Struct
+M$ hanya mempunyai tiga komponen: suatu himpunan tak kosong $\Domain{M}$ yang
+disebut \emph{!!{domain}}, objek yang ditunjuk oleh $\Obj a$ dalam~$\Struct
+M$, dan objek-objek yang baginya $\Obj P$ benar dalam~$\Struct M$. Objek yang
+ditunjuk oleh~$\Obj a$ dilambangkan dengan~$\Assign{\Obj a}{M}$, sedangkan
+himpunan objek yang baginya $\Obj P$ benar dilambangkan dengan~$\Assign{\Obj
+P}{M}$. !!^a{structure}~$\Struct{M}$ hanya terdiri atas tiga hal ini:
+$\Domain{M}$, $\Assign{\Obj a}{M} \in \Domain{M}$, dan $\Assign{\Obj P}{M}
+\subseteq \Domain{M}$. Kasus umum akan lebih rumit karena akan ada banyak
+!!{predicate}s dan !!{constant}s, !!{predicate}s dapat memiliki lebih dari
+satu tempat, dan juga akan ada !!{function}s.
+
+Hal ini sudah cukup untuk memberikan definisi keterpenuhan bagi !!{formula}s
+yang tidak memuat !!{variable}s. Gagasannya ialah memberikan suatu definisi
+induktif yang mencerminkan cara kita mendefinisikan !!{formula}s. Kita
+menetapkan kapan suatu formula atomik terpenuhi dalam~$\Struct{M}$, lalu
+kapan, misalnya, $\lnot !A$ terpenuhi dalam~$\Struct{M}$ berdasarkan apakah
+$!A$ terpenuhi atau tidak dalam~$\Struct{M}$. Misalnya, kita dapat
+mendefinisikan:
+\begin{enumerate}
+  \item $\Atom{\Obj P}{\Obj a}$ terpenuhi dalam~$\Struct{M}$ jika dan hanya
+  jika $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
+  \item $\lnot !A$ terpenuhi dalam~$\Struct{M}$ jika dan hanya jika $!A$
+  tidak terpenuhi dalam~$\Struct{M}$.
+  \item $(!A \land !B)$ terpenuhi dalam~$\Struct{M}$ jika dan hanya jika
+  $!A$ terpenuhi dalam~$\Struct{M}$ dan $!B$ juga terpenuhi
+  dalam~$\Struct{M}$.
+\end{enumerate}
+Misalkan $\Domain{M} = \{0, 1, 2\}$, $\Assign{\Obj a}{M} = 1$, dan
+$\Assign{\Obj P}{M} = \{1, 2\}$. Definisi ini memberi tahu kita bahwa
+$\Atom{\Obj P}{\Obj a}$ terpenuhi dalam~$\Struct{M}$ (karena $\Assign{\Obj
+a}{M} = 1 \in \{1,2\} = \Assign{\Obj P}{M}$). Lebih lanjut, definisi itu
+memberi tahu kita bahwa $\lnot \Atom{\Obj P}{\Obj a}$ tidak terpenuhi
+dalam~$\Struct{M}$, dan pada gilirannya bahwa $\lnot\lnot \Atom{\Obj P}{\Obj
+a}$ terpenuhi sedangkan $(\lnot \Atom{\Obj P}{\Obj a} \land \Atom{\Obj
+P}{\Obj a})$ tidak terpenuhi, dan demikian seterusnya.
+
+Kesulitan timbul ketika kita hendak memberikan definisi bagi kuantor: kita
+ingin mengatakan sesuatu seperti, ``$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
+v_0}]$ terpenuhi jika dan hanya jika $\Atom{\Obj P}{\Obj v_0}$ terpenuhi.''
+Namun, !!{structure}~$\Struct{M}$ tidak memberi tahu kita apa yang harus
+dilakukan dengan !!{variable}s. Yang sebenarnya ingin kita katakan ialah
+bahwa $\Atom{\Obj P}{\Obj v_0}$ terpenuhi \emph{untuk suatu nilai dari~$\Obj
+v_0$}. Untuk menyatakannya secara tepat, kita memerlukan suatu cara untuk
+menetapkan !!{element}s dari~$\Domain{M}$ bukan hanya kepada $\Obj a$ tetapi
+juga kepada~$\Obj v_0$. Untuk tujuan ini, kita memperkenalkan
+\emph{penugasan} !!{variable}. Penugasan !!^a{variable} hanyalah suatu
+fungsi~$s$ yang memetakan !!{variable}s ke !!{element}s dari~$\Domain{M}$
+(dalam contoh kita, ke salah satu dari $0$, $1$, atau~$2$). Karena kita tidak
+mengetahui sebelumnya !!{variable}s mana yang mungkin muncul dalam suatu
+!!a{formula}, kita tidak dapat membatasi !!{variable}s mana yang diberi nilai
+oleh~$s$. Solusi sederhana ialah mengharuskan $s$ memberikan nilai kepada
+\emph{semua} !!{variable}s~$\Obj v_0$, $\Obj v_1$, \dots\@ Kita hanya akan
+menggunakan variabel-variabel yang kita perlukan.
+
+Alih-alih mendefinisikan keterpenuhan !!{formula}s hanya relatif terhadap
+!!a{structure}, kita akan mendefinisikannya relatif terhadap
+!!a{structure}~$\Struct{M}$ \emph{dan} penugasan~$s$ untuk !!a{variable},
+serta menulis $\Sat{M}{!A}[s]$ sebagai singkatan. Definisi kita kini akan
+memuat satu kasus tambahan untuk menangani !!{formula}s atomik yang memuat
+!!{variable}s:
+\begin{enumerate}
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj a}}[s]$ jika dan hanya jika
+  $\Assign{\Obj a}{M} \in \Assign{\Obj P}{M}$.
+  \item $\Sat{M}{\Atom{\Obj P}{\Obj v_i}}[s]$ jika dan hanya jika
+  $s(\Obj v_i) \in \Assign{\Obj P}{M}$.
+  \item $\Sat{M}{\lnot !A}[s]$ jika dan hanya jika tidak berlaku bahwa
+  $\Sat{M}{!A}[s]$.
+  \item $\Sat{M}{(!A \land !B)}[s]$ jika dan hanya jika $\Sat{M}{!A}[s]$
+  dan $\Sat{M}{!B}[s]$.
+\end{enumerate}
+Baik, hal ini menyelesaikan satu persoalan: sekarang kita dapat mengatakan
+kapan $\Struct{M}$ memenuhi $\Atom{\Obj P}{\Obj v_0}$ bagi nilai~$s(\Obj
+v_0)$. Agar definisi bagi $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$
+tepat, kita harus melakukan satu hal lagi: kita ingin
+$\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ berlaku jika dan
+hanya jika $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s']$ berlaku untuk \emph{suatu}
+cara~$s'$ menetapkan nilai kepada~$\Obj v_0$. Namun, nilai yang ditetapkan
+kepada~$\Obj v_0$ tidak harus merupakan nilai yang ditunjuk oleh~$s(\Obj
+v_0)$. Kita akan memperkenalkan notasi untuk itu: jika $m \in \Domain{M}$,
+kita tetapkan $\Subst{s}{m}{\Obj v_0}$ sebagai penugasan yang sama dengan~$s$
+(untuk semua !!{variable}s selain~$\Obj v_0$), kecuali bahwa kepada $\Obj v_0$
+penugasan itu menetapkan~$m$. Kini definisi kita dapat berbentuk:
+\begin{enumerate}\setcounter{enumi}{4}
+  \item $\Sat{M}{\lexists[\Obj v_i][!A]}[s]$ jika dan hanya jika
+  $\Sat{M}{!A}[\Subst{s}{m}{\Obj v_i}]$ untuk suatu~$m \in \Domain{M}$.
+\end{enumerate}
+Apakah definisi ini berhasil? Misalkan kita tetapkan $s(\Obj v_i) = 0$ untuk
+semua~$i \in \Nat$. $\Sat{M}{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
+v_0}]}[s]$ berlaku jika dan hanya jika ada $m \in \Domain{M}$ sedemikian
+sehingga $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{m}{\Obj v_0}]$. Dan
+memang ada: kita dapat memilih $m = 1$ atau $m = 2$. Perhatikan bahwa hal ini
+benar sekalipun nilai~$s(\Obj v_0)$ yang ditetapkan kepada~$\Obj v_0$ oleh
+$s$ sendiri---dalam kasus ini, $0$---tidak memenuhi keperluan tersebut. Kita
+mempunyai $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{1}{\Obj v_0}]$, tetapi
+tidak mempunyai $\Sat{M}{\Atom{\Obj P}{\Obj v_0}}[s]$.
+
+Jika hal ini tampak membingungkan dan berbelit-belit: memang demikian. Namun,
+kerumitan tambahan itu diperlukan untuk memberikan definisi keterpenuhan yang
+tepat dan induktif bagi semua !!{formula}s, dan kita memerlukan sesuatu
+seperti ini untuk mendefinisikan gagasan-gagasan semantis secara tepat. Ada
+cara lain untuk melakukannya, tetapi semua cara itu sama (tidak) anggunnya.
+
+\end{document}

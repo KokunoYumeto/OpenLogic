@@ -1,0 +1,94 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{fml}
+
+\section{\usetoken{P}{formula}}
+
+Berikut adalah pendekatan yang akan kita gunakan untuk menetapkan secara
+ketat !!{sentence}s logika orde pertama dan menangani persoalan yang timbul
+dari penggunaan !!{variable}s. Mula-mula kita mendefinisikan suatu himpunan
+ungkapan yang \emph{berbeda}: !!{formula}s. Setelah itu dilakukan, kita dapat
+mempertimbangkan peran !!{variable}s di dalamnya---dan berdasarkan beberapa
+gagasan lain, yakni !!{variable}s ``bebas'' dan ``terikat,'' kita dapat
+mendefinisikan apa itu !!a{sentence} (yakni, !!a{formula} tanpa
+!!{variable}s bebas). Kita melakukan ini bukan hanya karena cara tersebut
+membuat definisi ``!!{sentence}'' lebih mudah ditangani, melainkan juga karena
+hal ini sangat penting bagi cara kita mendefinisikan gagasan semantis
+keterpenuhan.
+
+Mari kita definisikan ``!!{formula}'' bagi suatu bahasa orde pertama
+sederhana, yang hanya memuat satu !!{predicate}~$\Obj P$ dan satu
+!!{constant}~$\Obj a$, serta hanya simbol logis $\lnot$, $\land$,
+dan~$\lexists$. Definisi lengkap kita akan jauh lebih umum: kita akan
+mengizinkan tak hingga banyaknya !!{predicate}s dan !!{constant}s. Bahkan,
+kita juga akan mempertimbangkan !!{function}s yang dapat digabungkan dengan
+!!{constant}s dan !!{variable}s untuk membentuk ``suku.'' Untuk sekarang,
+$\Obj a$ dan variabel-variabel akan menjadi satu-satunya suku kita. Kita
+memang memerlukan tak hingga banyaknya !!{variable}s. Secara resmi, kita akan
+menggunakan simbol $\Obj v_0$, $\Obj v_1$, \dots, sebagai variabel.
+
+\begin{defn}
+Himpunan \emph{!!{formula}s}~$\Frm$ didefinisikan sebagai berikut:
+\begin{enumerate}
+\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ dan $\Atom{\Obj
+  P}{\Obj v_i}$ merupakan !!{formula}s ($i \in \Nat$).
+
+\tagitem{prvNot}{\ollabel{fmls-not}Jika $!A$ merupakan !!a{formula}, maka
+  $\lnot !A$ merupakan !!{formula}.}{}
+
+\tagitem{prvAnd}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \land
+  !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvEx}{\ollabel{fmls-ex}Jika $!A$ merupakan !!a{formula} dan $x$
+  merupakan !!a{variable}, maka $\lexists[x][!A]$ merupakan
+  !!a{formula}.}{}
+
+\tagitem{limitClause}{\ollabel{fmls-limit}Tidak ada ungkapan lain yang
+  merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+\olref{fmls-atom} memberi tahu kita bahwa $\Atom{\Obj P}{\Obj a}$ dan
+$\Atom{\Obj P}{\Obj v_i}$ merupakan !!{formula}s untuk setiap $i \in
+\Nat$. Semua ini disebut !!{formula}s \emph{atomik}. Formula-formula tersebut
+memberi kita titik awal. Kasus-kasus lain memberi kita cara untuk membentuk
+!!{formula}s baru dari formula yang telah kita bentuk. Jadi, misalnya,
+berdasarkan \olref{fmls-not}, kita memperoleh bahwa $\lnot \Atom{\Obj P}{\Obj
+v_2}$ merupakan !!a{formula}, karena $\Atom{\Obj P}{\Obj v_2}$ sudah
+merupakan !!a{formula} berdasarkan \olref{fmls-atom}. Lalu, berdasarkan
+\olref{fmls-ex}, kita memperoleh bahwa $\lexists[\Obj v_2][\lnot
+\Atom{\Obj P}{\Obj v_2}]$ merupakan !!{formula} lain, dan demikian
+seterusnya. \olref{fmls-limit} memberi tahu kita bahwa \emph{hanya} untai
+yang dapat kita bentuk dengan cara inilah yang tergolong !!{formula}s. Secara
+khusus, $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]$ dan $\lexists[\Obj
+v_0][\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]]$ \emph{memang} tergolong
+!!{formula}s, sedangkan $(\lnot \Atom{\Obj P}{\Obj a})$ tidak, karena adanya
+pasangan tanda kurung luar yang tidak perlu.
+
+Cara mendefinisikan !!{formula}s ini disebut \emph{definisi induktif}, dan
+cara ini memungkinkan kita membuktikan berbagai hal mengenai !!{formula}s
+dengan menggunakan suatu versi bukti melalui induksi yang disebut
+\emph{induksi struktural}. Hal-hal ini dibahas secara umum dalam
+\olref[mth][ind][idf]{sec} dan \olref[mth][ind][sti]{sec}, yang sebaiknya Anda
+tinjau sebelum mendalami bukti-bukti selanjutnya. Pada dasarnya, gagasannya
+ialah bahwa jika Anda hendak membuktikan bahwa sesuatu benar bagi semua
+!!{formula}s, pertama-tama Anda menunjukkan bahwa hal itu benar bagi
+!!{formula}s atomik, lalu menunjukkan bahwa \emph{jika} hal itu benar bagi
+sebarang !!{formula}~$!A$ (dan~$!B$), hal itu \emph{juga} benar bagi $\lnot
+!A$, $(!A \land !B)$, dan $\lexists[x][!A]$. Misalnya, cara ini membuktikan
+bahwa hal tersebut benar bagi $\lexists[\Obj v_2][\lnot \Atom{\Obj P}{\Obj
+v_2}]$: dari bagian pertama Anda mengetahui bahwa hal tersebut benar bagi
+!!{formula} atomik~$\Atom{\Obj P}{\Obj v_2}$. Kemudian, dari bagian kedua
+Anda memperoleh bahwa hal tersebut benar bagi $\lnot \Atom{\Obj P}{\Obj
+v_2}$, lalu sekali lagi bahwa hal tersebut benar bagi $\lexists[\Obj
+v_2][\lnot \Atom{\Obj P}{\Obj v_2}]$ itu sendiri. Karena semua !!{formula}s
+dibangkitkan secara induktif dari !!{formula}s atomik, cara ini berlaku bagi
+formula mana pun.
+
+\end{document}

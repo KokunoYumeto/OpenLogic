@@ -1,0 +1,50 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{sem}
+
+\olsection{Gagasan Semantis}
+
+Di atas kita menyebutkan bahwa ketika mempertimbangkan apakah
+$\Sat{M}{!A}[s]$ berlaku, kita (demi kemudahan) membiarkan $s$ menetapkan
+nilai kepada semua !!{variable}s, tetapi hanya nilai yang ditetapkannya kepada
+!!{variable}s dalam~$!A$ yang digunakan. Bahkan, hanya nilai
+variabel-variabel \emph{bebas} dalam~$!A$ yang berpengaruh. Tentu saja, karena
+kita teliti, kita akan membuktikan fakta ini. Karena !!{sentence}s tidak
+mempunyai variabel bebas, $s$ sama sekali tidak berpengaruh terhadap apakah
+kalimat-kalimat itu terpenuhi dalam !!a{structure}. Jadi, jika $!A$ merupakan
+!!a{sentence}, kita dapat mendefinisikan $\Sat{M}{!A}$ sebagai
+``$\Sat{M}{!A}[s]$ bagi semua~$s$,'' yang ternyata benar jika dan hanya jika
+$\Sat{M}{!A}[s]$ bagi setidaknya satu~$s$. Kita perlu memperkenalkan penugasan
+!!{variable} agar memperoleh definisi keterpenuhan yang berfungsi bagi
+!!{formula}s, tetapi bagi !!{sentence}s, keterpenuhan tidak bergantung pada
+penugasan !!{variable}.
+
+Setelah mempunyai definisi ``$\Sat{M}{!A}$,'' kita mengetahui arti ``kasus''
+dan ``benar dalam'' sejauh menyangkut !!{sentence}s logika orde pertama.
+Berdasarkan definisi $\Sat{M}{!A}$ bagi !!{sentence}s, kita kemudian dapat
+mendefinisikan gagasan semantis dasar berupa validitas, perikutan, dan
+keterpenuhan. Suatu kalimat valid, $\Entails !A$, jika setiap !!{structure}
+memenuhinya. Kalimat itu diakibatkan oleh suatu himpunan !!{sentence}s,
+$\Gamma \Entails !A$, jika setiap !!{structure} yang memenuhi semua
+!!{sentence}s dalam~$\Gamma$ juga memenuhi~$!A$. Dan suatu himpunan
+!!{sentence}s dapat dipenuhi jika ada suatu !!{structure} yang memenuhi semua
+!!{sentence}s di dalamnya sekaligus.
+
+Karena !!{formula}s didefinisikan secara induktif, dan keterpenuhan pada
+gilirannya didefinisikan melalui induksi pada struktur !!{formula}s, kita
+dapat menggunakan induksi untuk membuktikan sifat-sifat semantik kita dan
+menghubungkan gagasan-gagasan semantis yang telah didefinisikan. Kita akan
+mengumpulkan dan membuktikan beberapa sifat ini, sebagian karena masing-masing
+sifat itu menarik, tetapi terutama karena banyak di antaranya akan berguna
+ketika kita melanjutkan dengan menyelidiki hubungan antara semantik dan sistem
+!!{derivation}. Untuk melakukannya, kita juga harus mendefinisikan (secara
+tepat, yakni melalui induksi) beberapa gagasan dan operasi sintaktis yang
+belum kita sebutkan.
+
+\end{document}

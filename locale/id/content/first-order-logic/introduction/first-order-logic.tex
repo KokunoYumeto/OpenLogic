@@ -1,0 +1,87 @@
+% Bagian: first-order-logic
+% Bab: introduction
+% Subbagian: first-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{int}{fol}
+
+\olsection{Logika Orde Pertama}
+
+Anda mungkin sudah mengenal logika orde pertama dari pengantar pertama Anda
+tentang logika formal.\footnote{Bahkan, kurang lebih kami menganggap Anda
+sudah mengenalnya!{} Jika belum, Anda dapat meninjau buku teks yang lebih
+elementer, seperti \emph{forall x} \citep{Magnus2021}.} Anda mungkin
+mengenalnya sebagai ``logika kuantifikasional'' atau ``logika predikat.''
+Pertama-tama, logika orde pertama merupakan suatu bahasa formal. Artinya,
+bahasa ini mempunyai kosakata tertentu, dan ungkapan-ungkapannya merupakan
+untai yang tersusun dari kosakata tersebut. Namun, tidak setiap untai
+diperbolehkan. Ada beberapa jenis ungkapan yang diperbolehkan: suku,
+!!{formula}s, dan !!{sentence}s. Kita terutama berminat pada !!{sentence}s
+logika orde pertama: kalimat-kalimat tersebut memberi kita padanan formal
+bagi kalimat bahasa Inggris, dan mengenainya kita dapat mengajukan
+pertanyaan-pertanyaan yang lazim diminati ahli logika. Misalnya:
+\begin{itemize}
+    \item Apakah $!B$ mengikuti secara logis dari~$!A$?
+    \item Apakah $!A$ benar secara logis, salah secara logis, atau
+kontingen?
+    \item Apakah $!A$ dan $!B$ ekuivalen?
+\end{itemize}
+
+Pertanyaan-pertanyaan ini terutama menyangkut ``makna'' !!{sentence}s logika
+orde pertama. Misalnya, seorang filsuf akan menganalisis pertanyaan apakah
+$!B$ mengikuti secara logis dari~$!A$ dengan bertanya: adakah suatu kasus
+ketika $!A$ benar tetapi~$!B$ salah ($!B$ tidak mengikuti dari~$!A$), atau
+apakah setiap kasus yang membuat $!A$ benar juga membuat~$!B$ benar ($!B$
+memang mengikuti dari~$!A$)? Namun, kita belum diberi tahu apa yang dimaksud
+dengan suatu ``kasus''---itulah tugas \emph{semantik}. Semantik logika orde
+pertama menyediakan model yang tepat secara matematis bagi gagasan intuitif
+filsuf tentang ``kasus,'' dan juga---ini penting---bagi apa artinya suatu
+!!a{sentence}~$!A$ \emph{benar dalam} suatu kasus. Model matematis yang tepat
+yang akan kita kembangkan disebut !!a{structure}. Relasi yang memperjelas
+makna ``benar dalam'' disebut relasi \emph{keterpenuhan}. Jadi, yang akan kita
+definisikan ialah ``$!A$ terpenuhi dalam~$\Struct{M}$'' (dalam simbol:
+$\Sat{M}{!A}$) untuk !!{sentence}s~$!A$ dan !!{structure}s~$\Struct{M}$.
+Setelah ini dilakukan, kita juga dapat memberikan definisi yang tepat bagi
+istilah-istilah semantis lain seperti ``mengikuti dari'' atau ``benar secara
+logis.'' Definisi-definisi tersebut memungkinkan kita menentukan, sekali
+lagi dengan ketepatan matematis, apakah, misalnya,
+$\lforall[x][(!A(x) \lif !B(x))],
+\lexists[x][!A(x)] \Entails \lexists[x][!B(x)]$. Tentu saja jawabannya
+``ya.'' Jika Anda sudah dilatih menyimbolkan kalimat bahasa Inggris dalam
+logika orde pertama, Anda akan mengenalinya sebagai, misalnya, penyimbolan
+``Semua semut adalah serangga; ada semut; maka ada serangga.'' Argumen itu
+jelas valid, sehingga model matematis kita bagi ``mengikuti dari'' dalam
+bahasa formal harus memberikan jawaban yang sama.
+
+Topik lain yang mungkin Anda ingat dari pengantar pertama tentang logika
+formal ialah adanya \emph{!!{derivation}s}. Jika Anda pernah mengikuti mata
+kuliah pengantar logika formal, pengajar Anda mungkin meminta Anda berlatih
+menemukan !!{derivation}s semacam itu, bahkan mungkin !!a{derivation} yang
+menunjukkan bahwa perikutan di atas berlaku. Ada banyak cara berbeda untuk
+memberikan !!{derivation}s: Anda mungkin pernah mengerjakan sesuatu yang
+disebut ``deduksi alami'' atau ``pohon kebenaran,'' tetapi masih banyak cara
+lain. Tujuan sistem !!{derivation} ialah menyediakan alat yang dapat digunakan
+untuk menjawab pertanyaan-pertanyaan ahli logika di atas: misalnya, suatu
+!!{derivation} deduksi alami dengan
+$\lforall[x][(!A(x) \lif !B(x))]$ dan $\lexists[x][!A(x)]$ sebagai premis,
+serta $\lexists[x][!B(x)]$ sebagai kesimpulan (baris terakhir),
+\emph{memverifikasi} bahwa $\lexists[x][!B(x)]$ mengikuti secara logis dari
+$\lforall[x][(!A(x) \lif !B(x))]$ dan $\lexists[x][!A(x)]$.
+
+Namun, mengapa demikian? Sepintas lalu, sistem !!{derivation} sama sekali
+tidak berkaitan dengan semantik: memberikan suatu !!{derivation} formal hanya
+melibatkan penyusunan simbol dengan cara tertentu yang diatur oleh aturan;
+sistem itu tidak menyebut ``kasus'' atau ``benar dalam'' sama sekali. Hubungan
+antara sistem !!{derivation} dan semantik harus ditetapkan melalui suatu
+penyelidikan metalogis. Yang diperlukan ialah bukti matematis, misalnya,
+bahwa suatu !!{derivation} formal atas $\lexists[x][!B(x)]$ dari premis
+$\lforall[x][(!A(x) \lif !B(x))]$ dan $\lexists[x][!A(x)]$ dimungkinkan jika,
+dan hanya jika, $\lforall[x][(!A(x) \lif !B(x))]$ dan
+$\lexists[x][!A(x)]$ bersama-sama mengakibatkan~$\lexists[x][!B(x)]$.
+Namun, sebelum hal ini dapat dilakukan, banyak pekerjaan yang teliti harus
+dilaksanakan agar definisi sintaksis dan semantik benar.
+
+\end{document}

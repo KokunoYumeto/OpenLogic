@@ -785,3 +785,60 @@ versus 55,465 across all 137 admitted files. No native/human review metadata
 is present; its absence is not an admission blocker. The exact next cursor is
 `OLP-0138`, `content/first-order-logic/first-order-logic.tex`; 585 closure rows
 remain.
+
+## First-Order Logic introduction checkpoint — 2026-08-13
+
+### Source binding, replay, and independent semantic review
+
+The gap-free boundary extends through `OLP-0148`. Run from the repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_fol_introduction_batch_replay.ps1
+```
+
+The replay script SHA-256 is
+`481b71fe273995c9f640119362d647efdc339caa81df23f999b8e9693eb8ff19`.
+Its final result is:
+
+```text
+STRUCTURAL_TOTALS commands=633 environments=40 semantic_tokens=219 labels=4 references=7 citations=1 assets=0 imports=20 tag_keys=8 math_skeletons=333 math_environments=1 localized_file_ids=9 chapter_ids=1
+CORRECTION_TOTALS classes=7 source_occurrences=9 target_assertions=7 target_review_assertions=16
+FOL_INTRODUCTION_BATCH_REPLAY_OK files=11 checks=302 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0138..OLP-0148
+```
+
+Source-set SHA-256 is
+`ef53444959f569edf49d2dc543b4e07b98ec3b96091b1ce35dde9542182ba67c`;
+target-set SHA-256 is
+`688f5678509d8de08b0cea2526d8408d77290273a95f618fa6e53348cf9076c4`.
+Independent semantic review passes every final live file. Its receipt has
+SHA-256 `e63ba97fd0ee3f4101543bb609f6591fe4e9a96863bf1d712647db5edaab5537`.
+
+### Clean bounded build and visual QA
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-introduction-id.tex
+```
+
+Result: exit 0. The driver is 1,907 bytes, SHA-256
+`c2ce7927c08e0fd8169b83df2c32f1484a205f2f8f58604c6c7dc37a2482552e`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-introduction-id.tex` | `locale/id/first-order-logic-introduction-id.pdf` | 12 | 164,450 | `327829be2dba42640f17c585213fb718290befec4a8f4437e5dbf27176df1f92` |
+
+The final log has zero fatal condition, undefined reference/citation, or
+missing glyph. Four overfull boxes remain, maximum 13.60612 pt. All 12 pages
+were rendered at 144 dpi and inspected at original render resolution; no
+clipping, overlap, broken glyph, lost formula, damaged citation, or margin
+loss was found. All fonts are embedded; one inherited Type 3 mathematical
+font lacks a ToUnicode map, while searchable-text extraction remains intact.
+
+`pdftotext -layout` produced 31,345 bytes and 4,616 whitespace-delimited
+words, SHA-256
+`cb251711317998a3e9fa69880bcf103d51c51d40fc0be791b78d18c785b1617f`.
+Searches found zero unresolved marker or English environment/reference label.
+TeXcount reports 4,433 English-source and 4,070 Indonesian words for the batch,
+and 64,565 versus 59,535 across 148 admitted files. The exact next cursor is
+`OLP-0149`; 574 closure rows remain.
