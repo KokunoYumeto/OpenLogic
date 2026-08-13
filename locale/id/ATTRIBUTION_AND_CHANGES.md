@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0190` (190/722 files). It is incomplete and must not be represented as the
+`OLP-0251` (251/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -105,6 +105,24 @@ Exact source corrections currently include:
   surfaces, three raw `-structure` fallbacks, and three token/adjective-order
   surfaces. The parameterized-definability and partial-function-definedness
   risks remain preserved; three false positives are explicitly retracted.
+- Models of Arithmetic corrects missing proof-code variables, false converses
+  about nonstandard elements, incomplete compactness/countability reasoning,
+  zero-predecessor and largest-block claims, an invalid transferred bijection,
+  and the scope of Tennenbaum's theorem. It preserves exact informal-typing
+  and stale-metadata risks for later upstream reporting.
+- Interpolation and Lindstr\"om correct primed-language constructions,
+  malformed language and satisfaction notation, wrong transported carriers,
+  sentence/formula mismatches, negated-satisfaction syntax, finite
+  representative selection, and the missing normal-logic hypothesis. The
+  retained minimal-union compatibility gap remains explicitly adverse.
+- Recursive Functions and Computability Theory correct projection and
+  recursion indices, sequence/tree boundary cases, diagonal and normal-form
+  variables, reduction directions, and partial-function equalities. The
+  Indonesian locale now renders `computably enumerable` as `terenumerasi
+  secara komputabel`; mathematical/program identifiers remain invariant.
+- Final render review corrected three duplicated synthetic cross-reference
+  labels and one missing paragraph boundary. These are adaptation/build
+  corrections, not upstream mathematical changes.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.

@@ -1,0 +1,68 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: non-comp-set
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{ncp}
+\olsection{Terdapat Himpunan yang Tidak Dapat Dihitung}
+
+
+Kita telah melihat di atas bahwa setiap himpunan dapat dihitung terenumerasi
+secara komputabel. Apakah kebalikannya benar? Hasil berikut menunjukkan bahwa
+secara umum jawabannya tidak.
+
+\begin{thm}\ollabel{thm:K-0}
+Misalkan $K_0$ adalah himpunan
+$\Setabs{\tuple{e, x}}{\cfind{e}(x) \fdefined}$. Maka $K_0$ terenumerasi
+secara komputabel, tetapi tidak dapat dihitung.
+\end{thm}
+
+\begin{proof}
+Untuk melihat bahwa $K_0$ terenumerasi secara komputabel, perhatikan bahwa
+himpunan itu merupakan domain fungsi~$f$ yang didefinisikan oleh
+\[
+f(z) = \umin{y}{(\len{z} = 2 \land T((z)_0, (z)_1, y))}.
+\]
+Sebab, jika $\cfind{e}(x)$ terdefinisi, $f(\tuple{e, x})$ menemukan suatu
+urutan komputasi yang berhenti; jika $\cfind{e}(x)$ tidak terdefinisi,
+$f(\tuple{e, x})$ juga tidak terdefinisi; dan jika $z$ bahkan tidak mengodekan
+suatu pasangan, $f(z)$ juga tidak terdefinisi.
+
+Fakta bahwa $K_0$ tidak dapat dihitung tidak lain adalah ketakterputusan
+masalah penghentian, \olref[hlt]{thm:halting-problem}.
+\end{proof}
+
+Himpunan $K_0$ adalah himpunan pasangan $\tuple{e,x}$ sedemikian sehingga
+$\cfind{e}(x) \fdefined$, yakni $\tuple{e,x} \in K_0$ jika dan hanya jika
+$\cfind{e}$ terdefinisi (berhenti) pada masukan~$x$. Karena itu, $K_0$ juga
+disebut ``himpunan penghentian.'' Himpunan
+$K = \Setabs{e}{\cfind{e}(e) \fdefined}$ adalah ``himpunan penghentian-diri.''
+Himpunan ini sering digunakan sebagai himpunan kanonik yang tidak dapat
+diputuskan.
+
+\begin{thm}\ollabel{thm:K}
+Himpunan penghentian-diri $K = \Setabs{e}{\cfind{e}(e) \fdefined}$ bersifat
+!!{c.e.}, tetapi tidak dapat diputuskan.
+\end{thm}
+
+\begin{proof}
+  Andaikan $K$ dapat diputuskan, yakni fungsi karakteristiknya $\Char{K}$
+  dapat dihitung. Misalkan
+  \[d(e) = \begin{cases}
+  1 & \text{jika\/ $\Char{K}(e) = 0$}\\
+  \fundefined & \text{selain itu.}
+  \end{cases}
+  \]
+  Misalkan $k$ indeks~$d$, yakni $d \simeq \cfind{k}$. Maka
+  $d(k) \simeq \cfind{k}(k)$. Hal ini bertentangan dengan fakta bahwa
+  $d(k) \fdefined$ jika dan hanya jika $\cfind{k}(k) \fundefined$, yang
+  mengikuti dari definisi~$d$.
+
+  $K$ merupakan domain $f(x) = \umin{y}{T(x,x,y)}$, sehingga bersifat !!{c.e.}
+\end{proof}
+
+\end{document}
+

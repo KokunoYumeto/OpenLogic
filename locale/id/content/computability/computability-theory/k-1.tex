@@ -1,0 +1,83 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: k-1
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{k1}
+\olsection{Contoh Redusibilitas}
+
+Mari kita tinjau suatu penerapan \olref[ppr]{prop:reduce}.
+
+\begin{prop}
+\ollabel{prop:k1}
+Misalkan
+\[
+K_1 = \Setabs{e}{\cfind{e}(0) \fdefined}.
+\]
+Maka $K_1$ terenumerasi secara komputabel, tetapi tidak dapat dihitung.
+\end{prop}
+
+\begin{proof}
+Karena $K_1 = \Setabs{e}{\lexists[s][T(e,0,s)]}$, $K_1$ terenumerasi
+secara komputabel menurut \olref[eqc]{thm:exists-char}.
+
+Untuk menunjukkan bahwa $K_1$ tidak dapat dihitung, mari kita tunjukkan bahwa
+$K_0$ tereduksi kepadanya.
+
+\begin{explain}
+Hal ini agak rumit karena dengan menggunakan $K_1$ kita hanya dapat mengajukan
+pertanyaan tentang komputasi yang dimulai dengan masukan tertentu, yaitu~$0$.
+Andaikan Anda mempunyai teman cerdas yang dapat menjawab pertanyaan semacam
+ini (teman seperti itu dikenal sebagai ``orakel''). Lalu, andaikan seseorang
+mendatangi Anda dan bertanya apakah $\tuple{e,x}$ berada dalam $K_0$, yakni
+apakah mesin~$e$ berhenti pada masukan~$x$. Salah satu hal yang dapat Anda
+lakukan ialah membangun mesin lain, $e_x$, yang untuk \emph{sembarang} masukan
+mengabaikan masukan tersebut dan sebagai gantinya menjalankan~$e$ pada
+masukan~$x$. Maka jelas bahwa pertanyaan apakah mesin~$e$ berhenti pada
+masukan~$x$ ekuivalen dengan pertanyaan apakah mesin~$e_x$ berhenti pada
+masukan~$0$ (atau masukan lain apa pun). Jadi, Anda bertanya kepada teman Anda
+apakah mesin baru~$e_x$ ini berhenti pada masukan~$0$; jawaban teman Anda atas
+pertanyaan yang diubah itu memberikan jawaban atas pertanyaan semula. Ini
+memberikan reduksi yang diinginkan dari $K_0$ ke~$K_1$.
+\end{explain}
+
+Dengan menggunakan fungsi dapat dihitung parsial universal, misalkan $f$
+fungsi berargumen~3 yang didefinisikan oleh
+\[
+f(x,y,z) \simeq \cfind{x}(y).
+\]
+Perhatikan bahwa $f$ sama sekali mengabaikan masukan ketiganya. Pilih suatu
+indeks $e$ sedemikian sehingga $f = \cfind{e}[3]$; jadi kita mempunyai
+\[
+\cfind{e}[3](x,y,z) \simeq \cfind{x}(y).
+\]
+Menurut teorema $s$-$m$-$n$, terdapat fungsi $s(e,x,y)$ sedemikian sehingga,
+bagi setiap $z$,
+\begin{align*}
+\cfind{s(e,x,y)}(z) & \simeq \cfind{e}[3](x,y,z) \\
+& \simeq \cfind{x}(y).
+\end{align*}
+
+\begin{explain}
+Dalam argumen informal di atas, $s(e,x,y)$ merupakan indeks bagi mesin yang,
+untuk sembarang masukan~$z$, mengabaikan masukan itu dan menghitung
+$\cfind{x}(y)$.
+\end{explain}
+
+Khususnya, kita mempunyai
+\[
+\cfind{s(e,x,y)}(0) \fdefined \quad \text{jika dan hanya jika} \quad
+\cfind{x}(y) \fdefined.
+\]
+Dengan kata lain, $\tuple{x,y} \in K_0$ jika dan hanya jika $s(e,x,y) \in
+K_1$. Jadi, fungsi $g$ yang didefinisikan oleh
+\[
+g(w) = s(e,(w)_0,(w)_1)
+\]
+merupakan reduksi dari $K_0$ ke~$K_1$.
+\end{proof}
+
+\end{document}

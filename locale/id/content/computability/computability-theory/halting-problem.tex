@@ -1,0 +1,102 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: halting-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{hlt}
+\olsection{Masalah Penghentian}
+
+Berdasarkan konstruksinya, fungsi dapat dihitung parsial universal
+$\fn{Un}(e,x)$ terdefinisi jika dan hanya jika komputasi fungsi yang dikodekan
+oleh~$e$ menghasilkan suatu nilai bagi masukan~$x$. Wajar untuk bertanya apakah
+kita dapat memutuskan apakah hal ini terjadi. Ternyata kita tidak dapat
+melakukannya. Dalam model komputasi mesin Turing, ini berarti pertanyaan apakah
+suatu mesin Turing yang diberikan berhenti pada suatu masukan yang diberikan
+tidak dapat diputuskan secara komputasional. Karena itu, teorema berikut dikenal
+sebagai ``ketakterputusan masalah penghentian.'' Kita akan memberikan dua bukti
+di bawah. Bukti pertama melanjutkan alur pembahasan sebelumnya, sedangkan bukti
+kedua lebih langsung.
+
+\begin{thm}
+\ollabel{thm:halting-problem}
+Misalkan
+\[
+h(e, x)  =
+\begin{cases}
+1 & \text{jika\/ $\fn{Un}(e, x)$ terdefinisi} \\
+0 & \text{selain itu.}
+\end{cases}
+\]
+Maka $h$ tidak dapat dihitung.
+\end{thm}
+
+\begin{proof}
+Andaikan $h$ dapat dihitung. Kita menunjukkan bahwa hal ini memungkinkan kita
+mendefinisikan fungsi dapat dihitung universal. Definisikan
+\[
+\fn{Un'}(e,x) =
+\begin{cases}
+\fn{Un}(e,x) & \text{jika $h(e,x) = 1$} \\
+0 & \text{selain itu.}
+\end{cases}
+\]
+Sekarang $\fn{Un'}(e, x)$ merupakan fungsi total dan dapat dihitung jika~$h$
+dapat dihitung. Sebagai contoh, kita dapat mendefinisikan $g$ dengan rekursi
+primitif sebagai berikut:
+\begin{align*}
+g(0, e, x) & \simeq 0 \\
+g(y+1, e, x) & \simeq \fn{Un}(e,x);
+\end{align*}
+kemudian
+\[
+\fn{Un'}(e,x) \simeq g(h(e,x),e,x).
+\]
+Karena $\fn{Un'}(e,x)$ sama dengan $\fn{Un}(e,x)$ di setiap tempat fungsi
+terakhir terdefinisi, $\fn{Un'}$ bersifat universal bagi fungsi-fungsi dapat
+dihitung parsial yang kebetulan total. Namun, hal ini bertentangan dengan
+\olref[nou]{thm:no-univ}.
+\end{proof}
+
+\begin{proof}
+Andaikan $h(e,x)$ dapat dihitung. Definisikan fungsi $g$ dengan
+\[
+g(x) =
+\begin{cases}
+  0                & \text{jika $h(x,x) = 0$} \\
+  \fundefined & \text{selain itu.}
+\end{cases}
+\]
+Fungsi $g$ dapat dihitung secara parsial. Sebagai contoh, kita dapat
+mendefinisikannya sebagai $\umin{y}{h(x,x) = 0}$. Jadi, untuk suatu~$e$,
+$g(x) \simeq \fn{Un}(e, x)$ bagi setiap~$x$. Apakah $g$ terdefinisi pada $e$?
+Jika ya, maka berdasarkan definisi~$g$, $h(e,e) = 0$ ($g$ hanya dapat mengambil
+nilai~$0$ jika terdefinisi). Berdasarkan definisi~$h$, ini berarti bahwa
+$\fn{Un}(e, e)$ tidak terdefinisi. Berdasarkan asumsi kita bahwa
+$g(x) \simeq \fn{Un}(e, x)$ untuk setiap~$x$, kita memperoleh bahwa $g(e)$
+tidak terdefinisi, suatu kontradiksi. Di lain pihak, jika $g(e)$ tidak
+terdefinisi, maka $h(e,e) \neq 0$, sehingga $h(e,e) = 1$. Akibatnya,
+$\fn{Un}(e, e)$ terdefinisi. Namun, karena $g(x) \simeq \fn{Un}(e, x)$, maka
+$g(e)$ juga terdefinisi. Sekali lagi, kita memperoleh kontradiksi.
+\end{proof}
+
+\begin{tagblock}{TMs}
+\begin{explain}
+Kita dapat menggambarkan argumen ini dalam bahasa mesin Turing. Andaikan
+terdapat suatu mesin Turing~$H$ yang menerima deskripsi mesin Turing~$E$ dan
+masukan~$x$, lalu memutuskan apakah $E$ berhenti pada masukan~$x$. Kita lalu
+dapat membangun mesin Turing lain~$G$ yang menerima satu masukan~$x$,
+menjalankan $H$ untuk memutuskan apakah mesin $M_x$ dengan indeks~$x$ berhenti
+pada masukan~$x$, dan melakukan hal sebaliknya. Dengan kata lain, jika $H$
+melaporkan bahwa $M_x$ berhenti pada masukan~$x$, $G$ memasuki kalang tak
+berhingga; jika $H$ melaporkan bahwa $M_x$ tidak berhenti pada masukan~$x$,
+maka $G$ langsung berhenti. Apakah $G$ berhenti ketika indeksnya sendiri
+diberikan sebagai masukan? Argumen di atas menunjukkan bahwa $G$ berhenti jika
+dan hanya jika tidak berhenti---suatu kontradiksi. Jadi, anggapan kita bahwa
+terdapat mesin Turing~$H$ semacam itu haruslah salah.
+\end{explain}
+\end{tagblock}
+
+\end{document}

@@ -1218,3 +1218,67 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 versus 80,136 across all 190 admitted files. The exact next cursor is
 `OLP-0191`, `content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`;
 532 closure rows remain.
+
+## One-third checkpoint through OLP-0251 — 2026-08-13
+
+### Frozen source, target, and semantic replay
+
+The gap-free boundary now extends through `OLP-0251`: 251/722 content files,
+with 471 remaining. The new bounded tranche contains 61 files,
+`OLP-0191`--`OLP-0251`. Every English source hash replays against frozen commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. The deterministic replay binds
+each source and target hash, ordered structural fields, semantic-token and
+mathematical skeletons, exact path-scoped source corrections, target render
+corrections, retractions, and preserved risks. The independent review receipt
+is `..\..\..\_control\OPENLOGIC_OLP0191_0251_INDEPENDENT_REVIEW_20260813.md`.
+No unresolved Indonesian target defect remains.
+
+### Clean cumulative build
+
+Run from `locale\id`:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error first-order-logic-model-theory-computability-id.tex
+```
+
+The final build exits 0. Driver:
+`first-order-logic-model-theory-computability-id.tex`, 3,871 bytes, SHA-256
+`3bcc23a429f4b7bec0d20441cdd129d55a42bc60cbb475ca6091055b6fd40f62`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-model-theory-computability-id.tex` | `locale/id/first-order-logic-model-theory-computability-id.pdf` | 175 | 965,687 | `887617dedd182e1693894f777d75ecd3952a8824da91cf04f7a8a931b37f89cf` |
+
+The final log is 123,487 bytes with SHA-256
+`1e6eb50b5ce0bea6fe10df7751fdb87b9eff62687d26afcae265fbd94da0c9e6`.
+It contains zero fatal error, LaTeX error, undefined control/reference/citation,
+or missing glyph. Ninety-two overfull hboxes remain, maximum 54.03867 pt, and
+six underfull vboxes remain; every affected rendered page is visually intact.
+All 19 fonts are embedded. Eighteen have ToUnicode maps; inherited Type 3 font
+F111 does not, while searchable extraction remains intact.
+
+### Extraction and exact-resolution page inspection
+
+Full ordinary extraction is 380,583 bytes / 54,135 alphabetic runs, SHA-256
+`8ca3c1dde03821946e61bea81ce2c8e32c927f8d7f93e08fda95fe37e0bf8a0e`.
+Full layout extraction is 424,798 bytes / 55,495 alphabetic runs, SHA-256
+`116ccc294df63172c9a54e1e824bd325dd0f7637f6177b8734f598f14575eed5`.
+Pages 88--175 extract to 186,330 bytes / 26,616 alphabetic runs, SHA-256
+`770af8824da0339b867ec1065d483817d2ea93afca4470e724aa065eacc9fe56`;
+their layout extraction is 210,948 bytes / 27,231 alphabetic runs, SHA-256
+`1a2018c0552934d3f2acd91e43804e9ffb5aa04e077ab5ced3ff885efb41cd6f`.
+
+The final PDF was rendered at 144 dpi. Raster hashes prove pages 1--87
+pixel-identical to the prior admitted reader. Every page 88--175 was inspected
+at original 1224x1584 render resolution. Review first exposed duplicated
+synthetic labels on pages 95, 107, and 110 and a missing paragraph boundary on
+page 156; those defects were corrected, rebuilt, re-rendered, and re-inspected.
+The final reader has no clipping, overlap, margin loss, cropped formula,
+broken glyph, unresolved reference, anomalous blank page, unintended English
+fallback, or visible page-number defect.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+24,131 English-source and 22,092 Indonesian words for this tranche, and
+111,061 versus 102,228 across all 251 admitted files. The exact next cursor is
+`OLP-0252`, `content/turing-machines/turing-machines.tex`; 471 closure rows
+remain.

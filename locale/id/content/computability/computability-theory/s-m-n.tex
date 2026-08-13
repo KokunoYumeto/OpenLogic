@@ -1,0 +1,43 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: s-m-n
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{smn}
+\olsection{Teorema $s$-$m$-$n$}
+
+\begin{explain}
+Teorema berikut dikenal sebagai ``teorema $s$-$m$-$n$,'' karena suatu alasan
+yang sebentar lagi akan jelas. Bagian yang sulit ialah memahami apa tepatnya
+yang dinyatakan teorema tersebut; setelah pernyataannya dipahami, teorema itu
+akan tampak cukup jelas.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:s-m-n}
+  Bagi setiap pasangan bilangan asli $n$ dan~$m$, terdapat suatu fungsi
+  rekursif primitif~$s^m_n$ sedemikian sehingga, bagi setiap barisan
+  $e$, $a_0$, \dots, $a_{m-1}$, $y_0$, \dots, $y_{n-1}$, berlaku
+  \[
+  \cfind{s^m_n(e, a_0, \dots, a_{m-1})}[n](y_0, \dots, y_{n-1}) \simeq
+  \cfind{e}[m+n](a_0, \dots, a_{m-1}, y_0, \dots, y_{n-1}).
+  \]
+\end{thm}
+
+\begin{explain}
+Akan membantu jika kita memandang $s^m_n$ sebagai fungsi yang bekerja pada
+\emph{program}. Artinya, $s^m_n$ menerima suatu program~$e$ untuk fungsi
+berargumen $(m+n)$, beserta masukan tetap $a_0$, \dots, $a_{m-1}$; lalu fungsi
+itu mengembalikan program $s^m_n(e, a_0, \dots, a_{m-1})$ untuk fungsi
+berargumen~$n$ dari argumen-argumen yang tersisa. \iftag{TMs}{Jika $e$
+dipandang sebagai deskripsi suatu mesin Turing, maka
+$s^m_n(e, a_0, \dots, a_{m-1})$ adalah mesin Turing yang, ketika menerima
+masukan $y_0$, \dots,~$y_{n-1}$, menambahkan $a_0$, \dots,~$a_{m-1}$ di depan
+untai masukan, lalu menjalankan~$e$. Dengan demikian, setiap $s^m_n$ hanyalah
+fungsi rekursif primitif yang menemukan kode mesin Turing yang sesuai.}{}
+\end{explain}
+
+\end{document}

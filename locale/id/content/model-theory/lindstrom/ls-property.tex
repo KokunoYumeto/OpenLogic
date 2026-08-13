@@ -1,0 +1,125 @@
+% Bagian: first-order-logic
+% Bab: lindstrom
+% Subbagian: ls-property
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{lin}{lsp}
+
+\olsection{Sifat Kekompakan dan L\"owenheim--Skolem}
+
+Sekarang kita memberikan perluasan langsung sifat kekompakan dan
+L\"owenheim--Skolem ke kasus logika abstrak.
+
+\begin{defn}
+Suatu logika abstrak $\tuple{L, \models_L}$ mempunyai \emph{Sifat
+  Kekompakan} jika setiap himpunan $\Gamma$ dari $L(\Lang{L})$-
+!!{sentence}s dapat dipenuhi setiap kali setiap $\Gamma_0 \subseteq \Gamma$
+yang hingga dapat dipenuhi.
+\end{defn}
+
+\begin{defn}
+$\tuple{L, \models_L}$ mempunyai \emph{sifat L\"owenheim--Skolem ke
+  Bawah} jika setiap $\Gamma$ yang dapat dipenuhi mempunyai model yang
+!!{enumerable}.
+\end{defn}
+
+
+Pengertian isomorfisme parsial dari \olref[bas][pis]{defn:partialisom}
+sepenuhnya bersifat ``aljabar'' (yakni, diberikan tanpa mengacu pada
+!!{sentence}s bahasa tersebut, melainkan hanya pada interpretasi simbol-simbol
+yang disediakan oleh !!{language}~$\Lang{L}$ bagi !!{structure}s itu), dan
+karena itu berlaku pula pada kasus logika abstrak. Dalam logika orde pertama,
+kita mengetahui dari \olref[bas][pis]{thm:p-isom2} bahwa jika dua
+!!{structure}s isomorfik secara parsial, maka keduanya ekuivalen secara
+elementer. Bukti tersebut tidak dapat langsung dipindahkan ke logika abstrak,
+karena induksi pada !!{formula}s belum tentu tersedia bagi sembarang $!E \in
+L(\Lang{L})$; meskipun demikian, teorema itu tetap benar asalkan sifat
+L\"owenheim--Skolem berlaku.
+
+\begin{thm}
+\ollabel{thm:abstract-p-isom}
+Andaikan $\tuple{L, \models_L}$ adalah logika normal dengan sifat
+L\"owenheim--Skolem. Maka sembarang dua !!{structure}s yang isomorfik secara
+parsial ekuivalen secara elementer dalam $\tuple{L, \models_L}$.
+\end{thm}
+
+\begin{proof}
+Andaikan $\Struct{M} \simeq_p \Struct{N}$, tetapi bagi suatu $!E$ berlaku
+$\Struct{M} \models_L !E$ sedangkan $\Struct{N} \not\models_L !E$. Menurut
+Sifat Isomorfisme, kita dapat mengandaikan bahwa $\Domain{M}$ dan
+$\Domain{N}$ saling lepas; menurut Sifat Ekspansi, kita dapat mengandaikan
+bahwa $!E \in L(\Lang{L})$ bagi suatu !!{language} hingga~$\Lang{L}$.
+Misalkan $\mathcal{I}$ suatu himpunan isomorfisme parsial antara
+$\Struct{M}$ dan $\Struct{N}$, dan tanpa mengurangi keumuman andaikan pula
+bahwa jika $p \in \mathcal{I}$ dan $q \subseteq p$, maka $q \in
+\mathcal{I}$.
+
+$\Domain{M}^{<\omega}$ adalah himpunan barisan hingga dari !!{element}s
+$\Domain{M}$. Misalkan $S$ relasi terner pada $\Domain{M}^{<\omega}$ yang
+merepresentasikan konkatenasi: jika $\mathbf{a}, \mathbf{b}, \mathbf{c} \in
+\Domain{M}^{<\omega}$, maka $S(\mathbf{a}, \mathbf{b}, \mathbf{c})$ berlaku
+jika dan hanya jika $\mathbf{c}$ adalah konkatenasi $\mathbf{a}$ dan
+$\mathbf{b}$. Misalkan pula $T$ relasi terner sedemikian sehingga
+$T(\mathbf{a}, b, \mathbf{c})$ berlaku bagi $b \in M$ dan $\mathbf{a},
+\mathbf{c} \in \Domain{M}^{<\omega}$ jika dan hanya jika $\mathbf{a} =
+\tuple{a_1, \dots, a_n}$ dan $\mathbf{c} = \tuple{a_1, \dots, a_n, b}$.
+Pilih !!{predicate}s baru beraritas~3, $P$ dan $Q$, lalu bentuk
+!!{structure} $\Struct{M}^*$ yang mempunyai semesta $\Domain{M} \cup
+\Domain{M}^{<\omega}$, memuat $\Struct{M}$ sebagai substruktur, dan
+menafsirkan $P$ dan $Q$ masing-masing dengan relasi $S$ dan $T$ (jadi
+$\Struct{M}^*$ berada dalam !!{language} $\Lang{L} \cup \{ P, Q\}$).
+
+Definisikan $\Domain{N}^{<\omega}$, $S'$, $T'$, $P'$, $Q'$, dan
+$\Struct{N}^*$ secara analog. Karena menurut hipotesis $\Struct{M}
+\simeq_p \Struct{N}$, terdapat relasi $I$ antara $\Domain{M}^{<\omega}$
+dan $\Domain{N}^{<\omega}$ sedemikian sehingga $I(\mathbf{a}, \mathbf{b})$
+berlaku jika dan hanya jika $\mathbf{a}$ dan $\mathbf{b}$ isomorfik dan
+memenuhi syarat bolak-balik dari \olref[bas][pis]{defn:partialisom}.
+Sekarang, misalkan $\Struct{U}$ adalah !!{structure} yang !!{domain}nya
+merupakan gabungan !!{domain}s dari $\Struct{M}^*$ dan $\Struct{N}^*$,
+memuat $\Struct{M}^*$ dan $\Struct{N}^*$ sebagai sub!!{structure}s, dalam
+!!{language} dengan satu !!{predicate} biner tambahan~$R$ yang ditafsirkan
+oleh relasi~$I$, serta !!{predicate}s yang menyatakan !!{domain}s
+$\Domain{M^*}$ dan~$\Domain{N^*}$.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[node distance=2cm, auto, thick, >=stealth']
+    \draw [rounded corners] (0,0) -- (8,0) -- (8,4) -- (0,4) --  cycle;
+    \draw (2,2) circle (0.5cm);
+    \draw (2,2) circle (1.25cm);
+    \draw (6,2) circle (0.5cm);
+    \draw (6,2) circle (1.25cm);
+    \path node at (0.75,3.5) {\large $\Struct{U}$};
+    \path node at (2,2) {\large $\Struct{M}$};
+    \path node at (6,2) {\large $\Struct{N}$};
+    \path node at (3.5,1) {\large $\Struct{M}^*$};
+    \path node at (7.5,1) {\large $\Struct{N}^*$};
+    \node (Idom) at (2.8,2) {};
+    \node (Irng) at (5.2,2) {};
+    \draw[<->, bend left] (Idom) to node {\large $I$} (Irng) ;
+  \end{tikzpicture}
+  \caption{!!^{structure}~$\Struct{U}$ dengan isomorfisme parsial internal}
+\end{figure}
+
+Pengamatan pentingnya ialah bahwa dalam !!{language} dari
+!!{structure}~$\Struct{U}$ terdapat !!a{sentence} $!D_1$ dari logika abstrak
+yang benar dalam $\Struct{U}$ dan menyatakan bahwa $\Struct{M} \models_L
+!E$ serta $\Struct{N} \not\models_L !E$ (hal ini memerlukan Sifat
+Relativisasi). Terdapat pula !!a{sentence} orde pertama $!D_2$ yang benar
+dalam $\Struct{U}$ dan menyatakan bahwa $\Struct{M} \simeq_p \Struct{N}$
+melalui isomorfisme parsial~$I$. Karena logika normal memuat logika orde
+pertama, keduanya dapat dipakai bersama dalam Sifat L\"owenheim--Skolem.
+Dengan sifat tersebut, $!D_1$ dan $!D_2$ benar bersama-sama dalam model
+$\Struct{U_0}$ yang !!{enumerable}, yang memuat substruktur $\Struct{M_0}$
+dan $\Struct{N}_0$ yang isomorfik secara parsial sedemikian sehingga
+$\Struct{M_0} \models_L !E$ dan $\Struct{N_0} \not\models_L !E$. Namun,
+!!{structure}s yang !!{enumerable} dan isomorfik secara parsial sebenarnya
+isomorfik menurut \olref[bas][pis]{thm:p-isom1}, bertentangan dengan Sifat
+Isomorfisme dari logika abstrak normal.
+\end{proof}
+
+\end{document}

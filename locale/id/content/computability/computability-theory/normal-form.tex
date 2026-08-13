@@ -1,0 +1,95 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: normal-form
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{nfm}
+\olsection{Teorema Bentuk Normal}
+
+Andaikan kita dapat mendeskripsikan definisi fungsi-fungsi dapat dihitung dan
+menguji apakah suatu deskripsi yang diduga sebagai rekaman lengkap komputasi
+fungsi tersebut pada suatu masukan memang benar. Maka, terlepas dari model
+komputasi yang digunakan, sewajarnya kita dapat menentukan nilai setiap fungsi
+dapat dihitung~$f$ pada setiap masukan~$x$ sebagai berikut:
+\begin{enumerate}
+  \item Telusuri semua deskripsi rekaman komputasi yang mungkin.
+  \item Uji apakah suatu rekaman tertentu merupakan rekaman komputasi~$f(x)$.
+  \item Jika rekaman yang benar telah ditemukan, ekstrak nilai~$f(x)$ darinya.
+\end{enumerate}
+Kebenaran prosedur ini merupakan isi teorema bentuk normal Kleene.
+
+\begin{thm}[Teorema Bentuk Normal Kleene]
+\ollabel{thm:normal-form}
+Terdapat suatu relasi rekursif primitif~$T(e, x, s)$ dan suatu fungsi rekursif
+primitif~$U(s)$ dengan sifat berikut: jika $f$ merupakan sembarang fungsi dapat
+dihitung parsial, maka bagi suatu~$e$,
+\[
+f(x) \simeq U(\umin{s}{T(e, x, s)})
+\]
+untuk setiap~$x$.
+\end{thm}
+
+\begin{proof}[Sketsa Bukti]
+Dalam setiap model komputasi, kita dapat secara ketat mendefinisikan suatu
+deskripsi fungsi dapat dihitung~$f$ dan mengodekan deskripsi tersebut dengan
+suatu bilangan asli~$e$. Kita juga dapat secara ketat mendefinisikan gagasan
+``urutan komputasi'' yang merekam proses komputasi fungsi berindeks~$e$
+untuk masukan~$x$. Urutan komputasi semacam itu juga dapat dikodekan sebagai
+suatu bilangan~$s$. Hal ini dapat dilakukan sedemikian rupa sehingga
+\begin{enumerate}
+  \item relasi $T(e, x, s)$, yang berlaku jika dan hanya jika bilangan~$s$
+  mengodekan urutan komputasi fungsi berindeks~$e$ pada masukan~$x$, dan
+  \item fungsi $U(s)$, yang memetakan urutan komputasi berkode~$s$ ke hasil
+  akhir komputasi tersebut,
+\end{enumerate}
+keduanya dapat dihitung. Bahkan, relasi~$T$ dan fungsi~$U$ bersifat rekursif
+primitif.
+\end{proof}
+
+\begin{explain}
+Untuk memberikan bukti ketat bagi Teorema Bentuk Normal, kita harus menetapkan
+suatu model komputasi, melaksanakan pengodean deskripsi fungsi dapat dihitung
+dan urutan komputasi secara terperinci, serta memverifikasi bahwa relasi~$T$
+dan fungsi~$U$ bersifat rekursif primitif. Untuk kebanyakan penerapan, cukup
+bahwa $T$ dan~$U$ dapat dihitung dan bahwa $U$~bersifat total.
+
+Cara terbaik untuk mengingat bukti teorema bentuk normal barangkali melalui
+slogan berikut: $\umin{s}{T(e, x, s)}$ mencari urutan komputasi fungsi
+berindeks~$e$ pada masukan~$x$, dan $U$ mengembalikan keluaran urutan komputasi
+tersebut jika urutan semacam itu dapat ditemukan.
+\end{explain}
+
+Jika model komputasinya berupa fungsi-fungsi rekursif parsial (seperti yang
+semula digunakan Kleene), teorema tersebut menunjukkan bahwa hanya diperlukan
+satu kali penggunaan pencarian tak berbatas, yakni satu operator
+$\umin{y}{f(\vec x, y)}$, untuk mendefinisikan sembarang fungsi. Dalam
+pengertian ini, teorema tersebut menunjukkan bahwa setiap fungsi rekursif
+parsial mempunyai bentuk normal.
+
+$T$ dan $U$ dapat digunakan untuk mendefinisikan enumerasi $\cfind{0}$,
+$\cfind{1}$, $\cfind{2}$, \dots. Mulai sekarang, kita mengandaikan bahwa kita
+telah menetapkan pilihan $T$ dan~$U$ yang sesuai, dan mengambil persamaan
+\[
+\cfind{e}(x) \simeq U(\umin{s}{T(e,x,s)})
+\]
+sebagai \emph{definisi} dari~$\cfind{e}$.
+
+Berikut fakta berguna lainnya:
+
+\begin{thm}
+Setiap fungsi dapat dihitung parsial mempunyai tak berhingga banyak indeks.
+\end{thm}
+
+Sekali lagi, hal ini jelas secara intuitif. Dari sembarang (deskripsi suatu)
+fungsi dapat dihitung, kita dapat membuat deskripsi lain yang menghitung fungsi
+yang sama (pasangan masukan-keluarannya sama), tetapi melakukannya, misalnya,
+dengan terlebih dahulu mengerjakan sesuatu yang tidak memengaruhi komputasi
+(katakanlah menguji apakah $0 = 0$, menghitung sampai~$5$, dan sebagainya).
+Indeks deskripsi yang diubah akan selalu berbeda dari indeks semula. Keduanya
+merupakan indeks fungsi yang sama, hanya saja fungsi tersebut dihitung dengan
+cara yang sedikit berbeda.
+
+\end{document}

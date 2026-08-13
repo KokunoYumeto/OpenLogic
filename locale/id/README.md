@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **190 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0190`; unit berikutnya ialah `OLP-0191`,
-`content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`.
+Status saat ini: **251 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0251`; unit berikutnya ialah `OLP-0252`,
+`content/turing-machines/turing-machines.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -240,6 +240,27 @@ Halaman 1--77 identik piksel dengan checkpoint sebelumnya; seluruh halaman
 ulang halaman 82 dan 87 setelah koreksi redaksi terakhir. Tidak ditemukan
 pemotongan, tumpang tindih, kerusakan glif atau formula, kehilangan margin,
 atau rujukan tak terselesaikan. Kursor global berikutnya adalah `OLP-0191`.
+
+Checkpoint satu-pertiga menambahkan 61 unit berurutan
+(`OLP-0191`--`OLP-0251`): Model Aritmetika, Interpolasi, teorema
+Lindstr\"om, Fungsi Rekursif, dan Teori Komputabilitas. Seluruh 61 berkas
+sumber terikat pada commit beku dan lulus replay struktural serta semantik
+independen tanpa temuan sasaran yang belum terselesaikan. Penggerak kumulatif
+berikut membangun bab 15--25:
+
+```powershell
+latexmk -pdf -interaction=nonstopmode -halt-on-error first-order-logic-model-theory-computability-id.tex
+```
+
+PDF 175 halaman itu berukuran 965.687 byte dengan SHA-256
+`887617dedd182e1693894f777d75ecd3952a8824da91cf04f7a8a931b37f89cf`.
+Halaman 1--87 identik piksel dengan checkpoint sebelumnya; seluruh halaman
+88--175 diperiksa pada render 144 dpi beresolusi asli. Tiga label rujukan
+sintetis yang semula berganda dan satu spasi antarkalimat yang hilang pada
+halaman 156 dikoreksi, dibangun ulang, dan diperiksa ulang. Tidak tersisa
+pemotongan, tumpang tindih, kerusakan glif atau formula, fallback prosa
+Inggris, atau rujukan tak terselesaikan. Kursor global berikutnya adalah
+`OLP-0252`.
 
 ## Syarat penerimaan tiap batch
 

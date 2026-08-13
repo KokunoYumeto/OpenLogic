@@ -1,0 +1,57 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: def-functions-self-reference
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{slf}
+\olsection{Mendefinisikan Fungsi dengan Acuan Diri}
+
+Secara umum, kemampuan mendefinisikan fungsi berdasarkan fungsi itu sendiri
+berguna. Sebagai contoh, diberikan fungsi dapat dihitung $k$, $l$, dan~$m$,
+lemma titik tetap mengatakan bahwa terdapat fungsi dapat dihitung
+parsial~$f$ yang memenuhi persamaan berikut bagi setiap~$y$:
+\[
+f(y) \simeq
+\begin{cases}
+k(y) & \text{jika $l(y) = 0$} \\
+f(m(y)) & \text{selain itu.}
+\end{cases}
+\]
+Secara lebih khusus, sekali lagi, $f$ diperoleh dengan menetapkan
+\[
+g(x,y) \simeq
+\begin{cases}
+k(y) & \text{jika $l(y) = 0$} \\
+\cfind{x}(m(y)) & \text{selain itu}
+\end{cases}
+\]
+lalu menggunakan lemma titik tetap untuk menemukan indeks~$e$ sedemikian
+sehingga $\cfind{e}(y)\simeq g(e,y)$.
+
+Sebagai contoh konkret, fungsi ``faktor persekutuan terbesar''
+$\fn{gcd}(u,v)$ dapat didefinisikan dengan
+\[
+\fn{gcd}(u,v) \simeq
+\begin{cases}
+v & \text{jika $u = 0$} \\
+\fn{gcd}(\fn{mod}(v, u), u) & \text{selain itu}
+\end{cases}
+\]
+dengan $\fn{mod}(v,u)$ menyatakan sisa pembagian $v$ oleh~$u$. Penerapan
+lemma titik tetap menunjukkan bahwa $\fn{gcd}$ dapat dihitung parsial.
+(Sebenarnya, ini dapat disajikan dalam bentuk di atas dengan membiarkan $y$
+mengodekan pasangan $\tuple{u,v}$.) Induksi berikutnya pada~$u$ lalu
+menunjukkan bahwa $\fn{gcd}$ sebenarnya total.
+
+Tentu saja, kita dapat menyusun definisi beracuan-diri yang jauh lebih rumit
+daripada contoh-contoh yang baru saja dibahas. Kebanyakan bahasa pemrograman
+mendukung definisi fungsi berdasarkan fungsi itu sendiri dengan satu atau
+lain cara. Perhatikan bahwa hal ini sedikit kurang dramatis daripada kemampuan
+mendefinisikan fungsi berdasarkan suatu \emph{indeks} bagi algoritma yang
+menghitung fungsi tersebut, dan kemampuan terakhir inilah yang diberikan
+teorema titik tetap dalam keumuman penuhnya.
+
+\end{document}

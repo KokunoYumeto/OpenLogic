@@ -1,0 +1,90 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{com}
+\olsection{Komposisi}
+
+Jika $f$ dan $g$ adalah dua fungsi bilangan asli berargumen satu, kita dapat
+mengomposisikannya: $h(x) = f(g(x))$. Fungsi baru~$h(x)$ kemudian
+didefinisikan dengan \emph{komposisi} dari fungsi $f$ dan~$g$. Kita ingin
+memperumum hal ini untuk fungsi dengan lebih dari satu argumen.
+
+Berikut salah satu caranya: andaikan $f$ merupakan fungsi berargumen~$k$ dan
+$g_0$, \dots, $g_{k-1}$ merupakan $k$ fungsi yang semuanya berargumen~$n$.
+Kita dapat mendefinisikan suatu fungsi baru berargumen~$n$, yaitu $h$, sebagai
+berikut:
+\[
+h(x_0, \dots, x_{n-1}) =
+f(g_0(x_0, \dots, x_{n-1}), \dots, g_{k-1}(x_0, \dots, x_{n-1}))
+\]
+Jika $f$ dan semua $g_i$ dapat dihitung, maka $h$ juga dapat dihitung. Untuk
+menghitung $h(x_0, \dots, x_{n-1})$, mula-mula hitung nilai
+$y_i = g_i(x_0, \dots, x_{n-1})$ untuk setiap $i = 0$, \dots,~$k-1$.
+Kemudian masukkan nilai-nilai tersebut ke dalam $f$ untuk menghitung
+$h(x_0, \dots, x_{n-1}) = f(y_0, \dots, y_{k-1})$.
+
+Pencirian ini mungkin tampak terlalu membatasi apa yang terjadi ketika kita
+menghitung fungsi baru dengan menggunakan beberapa fungsi yang sudah ada.
+Salah satu alasannya ialah kadang kita tidak menggunakan semua argumen suatu
+fungsi, seperti ketika kita mendefinisikan $g(x, y, z) = \Succ(z)$ untuk
+digunakan dalam definisi rekursif primitif bagi~$\Add$. Andaikan kita
+diperbolehkan menggunakan fungsi-fungsi berikut:
+\[
+\Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i
+\]
+Fungsi~$\Proj{n}{i}$ disebut fungsi \emph{proyeksi}: $\Proj{n}{i}$ merupakan
+fungsi berargumen~$n$. Dengan demikian, $g$ dapat didefinisikan oleh
+\[
+g(x, y, z) = \Succ(\Proj{3}{2}(x, y, z)).
+\]
+Di sini, peran $f$ dimainkan oleh fungsi $1$-tempat~$\Succ$, sehingga
+$k=1$. Kita mempunyai satu fungsi $3$-tempat $\Proj{3}{2}$ yang memainkan
+peran $g_0$. Hasilnya adalah fungsi $3$-tempat yang mengembalikan penerus
+argumen ketiga.
+
+Fungsi proyeksi juga memungkinkan kita mendefinisikan fungsi baru dengan
+mengurutkan kembali atau menyamakan argumen. Sebagai contoh, fungsi $h(x) =
+\Add(x, x)$ dapat didefinisikan oleh
+\[
+h(x_0) = \Add(\Proj{1}{0}(x_0),\Proj{1}{0}(x_0)).
+\]
+Di sini $k=2$, $n=1$, peran $f(y_0,y_1)$ dimainkan oleh $\Add$, dan peran
+$g_0(x_0)$ maupun $g_1(x_0)$ dimainkan oleh~$\Proj{1}{0}(x_0)$, yakni fungsi
+proyeksi berargumen satu (atau fungsi identitas).
+
+Jika $f(y_0, y_1)$ merupakan fungsi yang sudah kita miliki, kita dapat
+mendefinisikan fungsi $h(x_0, x_1) = f(x_1, x_0)$ dengan
+\[
+h(x_0, x_1) = f(\Proj{2}{1}(x_0, x_1),\Proj{2}{0}(x_0, x_1)).
+\]
+Di sini $k=2$, $n = 2$, dan peran $g_0$ serta $g_1$ masing-masing dimainkan
+oleh $\Proj{2}{1}$ dan~$\Proj{2}{0}$.
+
+Anda mungkin juga mengkhawatirkan keharusan agar $g_0$, \dots,~$g_{k-1}$
+semuanya mempunyai aritas yang sama, yaitu~$n$. (Ingat bahwa \emph{aritas}
+suatu fungsi adalah banyaknya argumen; fungsi berargumen~$n$ mempunyai
+aritas~$n$.) Namun, penambahan fungsi proyeksi memberikan keluwesan yang
+diinginkan. Sebagai contoh, andaikan $f$ dan~$g$ merupakan fungsi berargumen~$3$,
+sedangkan $h$ merupakan fungsi berargumen~$2$ yang didefinisikan oleh
+\[
+h(x,y) = f(x,g(x,x,y),y).
+\]
+Definisi~$h$ dapat ditulis ulang dengan fungsi proyeksi sebagai
+\[
+h(x,y) = f(\Proj{2}{0}(x,y), g(\Proj{2}{0}(x,y), \Proj{2}{0}(x,y),
+\Proj{2}{1}(x,y)), \Proj{2}{1}(x,y)).
+\]
+Dengan demikian, $h$ merupakan komposisi $f$ dengan $\Proj{2}{0}$, $l$, dan
+$\Proj{2}{1}$, dengan
+\[
+l(x,y) = g(\Proj{2}{0}(x,y),\Proj{2}{0}(x,y),\Proj{2}{1}(x,y)),
+\]
+yakni $l$ merupakan komposisi $g$ dengan $\Proj{2}{0}$, $\Proj{2}{0}$,
+dan~$\Proj{2}{1}$.
+
+\end{document}

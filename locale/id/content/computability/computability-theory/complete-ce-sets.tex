@@ -1,0 +1,64 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: complete-ce-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{cce}
+\olsection{Himpunan Terenumerasi Secara Komputabel Lengkap}
+
+\begin{defn}
+Suatu himpunan $A$ merupakan \emph{himpunan !!{computably enumerable}
+lengkap} (terhadap redusibilitas banyak-ke-satu) jika
+\begin{enumerate}
+\item $A$ terenumerasi secara komputabel, dan
+\item untuk setiap himpunan terenumerasi secara komputabel lainnya $B$,
+  $B \leq_m A$.
+\end{enumerate}
+\end{defn}
+
+Dengan kata lain, himpunan terenumerasi secara komputabel lengkap adalah
+himpunan terenumerasi secara komputabel yang ``paling sulit.'' Himpunan itu
+memungkinkan kita menjawab pertanyaan tentang \emph{setiap} himpunan
+terenumerasi secara komputabel.
+
+\begin{thm}
+$K$, $K_0$, dan $K_1$ semuanya merupakan himpunan terenumerasi secara
+komputabel lengkap.
+\end{thm}
+
+\begin{proof}
+Untuk melihat bahwa $K_0$ lengkap, misalkan $B$ sembarang himpunan yang
+terenumerasi secara komputabel. Maka untuk suatu indeks $e$,
+\[
+B = W_e = \Setabs{x}{\cfind{e}(x) \fdefined}.
+\]
+Misalkan $f$ fungsi $f(x) = \tuple{e, x}$. Maka untuk setiap bilangan asli
+$x$, $x \in B$ jika dan hanya jika $f(x) \in K_0$. Dengan kata lain, $f$
+mereduksi $B$ ke~$K_0$.
+
+Untuk melihat bahwa $K_1$ lengkap, perhatikan bahwa dalam bukti
+\olref[k1]{prop:k1} kita mereduksi $K_0$ kepadanya. Jadi, berdasarkan
+\olref[ppr]{prop:trans-red}, setiap himpunan terenumerasi secara komputabel juga
+dapat direduksi ke~$K_1$.
+
+Kelengkapan $K$ mengikuti dengan cara yang sama dari reduksi $K_0$ ke~$K$.
+\end{proof}
+
+\begin{prob}
+Berikan reduksi $K$ ke $K_0$.
+\end{prob}
+
+\begin{digress}
+Ternyata semua contoh himpunan terenumerasi secara komputabel yang telah kita
+tinjau sejauh ini dapat dihitung atau lengkap. Hal ini seharusnya terasa
+aneh!{} Adakah contoh himpunan terenumerasi secara komputabel yang tidak dapat
+dihitung sekaligus tidak lengkap? Jawabannya ya, tetapi fakta ini baru
+ditetapkan secara independen oleh Friedberg dan Muchnik pada pertengahan
+dekade 1950-an.
+\end{digress}
+
+\end{document}
+

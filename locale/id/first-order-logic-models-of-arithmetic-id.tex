@@ -1,0 +1,57 @@
+% Penggerak mandiri kumulatif untuk Logika Orde Pertama, Dasar-Dasar
+% Teori Model, dan Model-Model Aritmetika dalam pelokalan Bahasa Indonesia.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+% Dua rujukan bacaan lanjutan menunjuk ke bab 74 pembaca Inggris beku.
+% Label sintetis mempertahankan nomor kanonik tanpa mengimpor bab tersebut.
+\makeatletter
+\hypertarget{ol-id-forward-inductive-definitions}{}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:idf:sec}{{74.4}{0}{Definisi Induktif}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:idf:sec@cref}{{[section][4][74]74.4}{[1][0][]0}{}{}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:sti:sec}{{74.5}{0}{Induksi Struktural}{ol-id-forward-inductive-definitions}{}}}
+\protected@write\@auxout{}{\string\newlabel{mth:ind:sti:sec@cref}{{[section][5][74]74.5}{[1][0][]0}{}{}{}}}
+\makeatother
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+% Pertahankan nomor bab pembaca lengkap: lima bab Logika Orde Pertama adalah
+% bab 15--19; dua bab Teori Model berikutnya menjadi bab 20--21.
+\setcounter{chapter}{14}
+
+\olimport*[first-order-logic/introduction]{introduction}
+\olimport*[first-order-logic/syntax-and-semantics]{syntax}
+\olimport*[first-order-logic/syntax-and-semantics]{semantics}
+\olimport*[first-order-logic/models-theories]{models-theories}
+\olimport*[first-order-logic/beyond]{beyond}
+\olimport*[model-theory/basics]{basics}
+\olimport*[model-theory/models-of-arithmetic]{models-of-arithmetic}
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}

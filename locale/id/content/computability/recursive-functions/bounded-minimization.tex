@@ -1,0 +1,71 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: bounded-minimization
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{bmi}
+\olsection{Minimisasi Berbatas}
+
+\begin{explain}
+Sering kali berguna untuk mendefinisikan suatu fungsi sebagai bilangan terkecil
+yang memenuhi sifat atau relasi~$P$. Jika $P$ dapat diputuskan, kita dapat
+menghitung fungsi ini cukup dengan mencoba semua bilangan yang mungkin,
+$0$, $1$, $2$, \dots, hingga menemukan bilangan terkecil yang memenuhi~$P$.
+Pencarian tak berbatas semacam ini membawa kita keluar dari ranah fungsi
+rekursif primitif. Akan tetapi, jika kita hanya tertarik pada bilangan terkecil
+yang \emph{kurang dari suatu batas yang diberikan secara terpisah}, kita tetap
+berada dalam ranah rekursif primitif. Dengan kata lain, dan secara sedikit lebih
+umum, andaikan kita mempunyai relasi rekursif primitif~$R(x,z)$. Tinjau fungsi
+yang memetakan $x$ dan~$y$ ke $z < y$ terkecil sedemikian sehingga $R(x, z)$.
+Fungsi itu juga dapat dihitung dengan menguji $R(x, 0)$, $R(x, 1)$, \dots,
+$R(x, y-1)$. Namun, mengapa fungsi itu bersifat rekursif primitif?
+\end{explain}
+
+\begin{prop}
+Jika $R(\vec x, z)$ bersifat rekursif primitif, maka demikian pula fungsi
+$m_R(\vec{x}, y)$ yang mengembalikan~$z$ terkecil yang kurang dari~$y$
+sedemikian sehingga $R(\vec x, z)$ berlaku, jika ada, dan mengembalikan $y$
+selain itu. Kita akan menulis fungsi~$m_R$ sebagai
+\[
+\bmin{z < y}{R(\vec{x}, z)},
+\]
+\end{prop}
+
+\begin{proof}
+Tidak mungkin ada~$z < 0$ sedemikian sehingga $R(\vec{x}, z)$ karena memang
+tidak ada $z < 0$. Jadi, $m_R(\vec x, 0) = 0$.
+
+Jika batas berbentuk $y + 1$, terdapat tiga kasus:
+\begin{enumerate}
+\item Terdapat $z < y$ sedemikian sehingga $R(\vec{x}, z)$, dan dalam kasus
+ini $m_R(\vec{x}, y+1) = m_R(\vec{x}, y)$.
+\item Tidak terdapat~$z<y$ semacam itu, tetapi $R(\vec{x}, y)$ berlaku; dalam
+kasus ini $m_R(\vec{x}, y+1) = y$.
+\item Tidak terdapat $z < y+1$ sedemikian sehingga $R(\vec{x}, z)$; dalam
+kasus ini $m_R(\vec{x}, y+1) = y+1$.
+\end{enumerate}
+Jadi, kita dapat mendefinisikan $m_R(\vec x,y)$ dengan rekursi primitif sebagai berikut:
+\begin{align*}
+m_R(\vec{x}, 0) & = 0\\
+m_R(\vec{x}, y+1) & =
+\begin{cases}
+m_R(\vec{x}, y) & \text{jika $m_R(\vec x, y) \neq y$}\\
+y & \text{jika $m_R(\vec x, y) = y$ dan $R(\vec{x}, y)$}\\
+y+1 & \text{selain itu.}
+\end{cases}
+\end{align*}
+Perhatikan bahwa terdapat $z<y$ sedemikian sehingga $R(\vec x, z)$ jika dan
+hanya jika $m_R(\vec x, y) \neq y$.
+\end{proof}
+
+\begin{prob}
+Andaikan $R(\vec x, z)$ bersifat rekursif primitif. Definisikan fungsi
+$m'_R(\vec{x}, y)$ yang mengembalikan~$z$ terkecil yang kurang dari~$y$
+sedemikian sehingga $R(\vec{x}, z)$ berlaku, jika ada, dan mengembalikan $0$
+selain itu, dengan rekursi primitif dari~$\Char{R}$.
+\end{prob}
+
+\end{document}

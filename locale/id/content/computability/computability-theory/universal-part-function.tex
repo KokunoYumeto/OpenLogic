@@ -1,0 +1,45 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: universal-part-function
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{uni}
+\olsection{Fungsi Dapat Dihitung Parsial Universal}
+
+\begin{thm}
+\ollabel{thm:univ-comp}
+Terdapat suatu fungsi dapat dihitung parsial universal~$\fn{Un}(e,x)$. Dengan
+kata lain, terdapat suatu fungsi $\fn{Un}(e,x)$ sedemikian sehingga:
+\begin{enumerate}
+\item $\fn{Un}(e,x)$ dapat dihitung parsial.
+\item Jika $f(x)$ merupakan sembarang fungsi dapat dihitung parsial, maka
+  terdapat suatu bilangan asli $e$ sedemikian sehingga
+  $f(x) \simeq \fn{Un}(e,x)$ bagi setiap~$x$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Tetapkan $\fn{Un}(e,x) \simeq U(\umin{s}{T(e,x,s)})$, dengan $U$ dan $T$
+seperti dalam teorema bentuk normal Kleene
+(\olref[nfm]{thm:normal-form}).
+\end{proof}
+
+\begin{explain}
+Ini hanyalah cara yang tepat untuk mengatakan bahwa kita mempunyai enumerasi
+efektif atas fungsi-fungsi dapat dihitung parsial. Gagasannya ialah: jika kita
+menulis $f_e$ untuk fungsi yang didefinisikan oleh
+$f_e(x) = \fn{Un}(e,x)$, maka urutan $f_0$, $f_1$, $f_2$, \dots mencakup semua
+fungsi dapat dihitung parsial, dengan sifat bahwa $f_e(x)$ dapat dihitung
+``secara seragam'' dalam $e$ dan~$x$. Demi kesederhanaan, kita menggunakan
+fungsi biner yang universal bagi fungsi berargumen satu, tetapi dengan
+mengodekan barisan bilangan kita dapat dengan mudah memperumumnya untuk lebih
+banyak argumen. Misalnya, perhatikan bahwa jika $f(x,y,z)$ merupakan fungsi
+rekursif parsial berargumen~$3$, maka fungsi
+$g(x) \simeq f((x)_0, (x)_1, (x)_2)$ merupakan fungsi rekursif parsial
+berargumen satu.
+\end{explain}
+
+\end{document}

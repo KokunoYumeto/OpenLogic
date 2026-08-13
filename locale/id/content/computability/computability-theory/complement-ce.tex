@@ -1,0 +1,63 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: complement-ce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{cmp}
+\olsection{Himpunan Terenumerasi Secara Komputabel Tidak Tertutup terhadap Komplemen}
+
+Andaikan $A$ terenumerasi secara komputabel. Apakah komplemen~$A$,
+$\Complement{A} = \Nat \setminus A$, selalu terenumerasi secara komputabel
+juga? Teorema dan akibat berikut menunjukkan bahwa jawabannya adalah ``tidak.''
+
+\begin{thm}
+\ollabel{thm:ce-comp}
+Misalkan $A$ sembarang himpunan bilangan asli. Maka $A$ dapat dihitung jika dan
+hanya jika $A$ maupun $\Complement{A}$ terenumerasi secara komputabel.
+\end{thm}
+
+\begin{proof}
+Arah maju mudah: jika $A$ dapat dihitung, maka $\Complement{A}$ juga dapat
+dihitung ($\Char{A} = 1 \tsub \Char{\Complement{A}}$), sehingga keduanya
+terenumerasi secara komputabel.
+
+Untuk arah sebaliknya, andaikan $A$ dan~$\Complement{A}$ keduanya terenumerasi
+secara komputabel. Misalkan $A$ merupakan domain~$\cfind{d}$ dan
+$\Complement{A}$ merupakan domain~$\cfind{e}$. Definisikan $h$ dengan
+\[
+h(x) = \umin{s}{(T(d,x,s) \lor T(e,x,s))}.
+\]
+Dengan kata lain, pada masukan~$x$, $h$ mencari komputasi berhenti
+$\cfind{d}$ atau komputasi berhenti $\cfind{e}$. Jika $x \in A$, pencarian
+berhasil dalam kasus pertama; jika $x \in \Complement{A}$, pencarian berhasil
+dalam kasus kedua. Jadi, $h$ merupakan fungsi dapat dihitung total. Sekarang,
+untuk setiap~$x$, kita mempunyai $x \in A$ jika dan hanya jika
+$T(d, x, h(x))$, yakni jika $\cfind{d}$ yang terdefinisi. Karena
+$T(d, x, h(x))$ merupakan relasi dapat dihitung, $A$ dapat dihitung.
+\end{proof}
+
+\begin{explain}
+Lebih mudah memahami yang terjadi dalam istilah komputasional informal: untuk
+memutuskan $A$ pada masukan $x$, carilah komputasi berhenti $\cfind{d}$ dan
+$\cfind{e}$. Salah satunya pasti berhenti; jika yang berhenti adalah
+$\cfind{d}$, maka $x$ berada dalam~$A$, dan jika tidak, $x$ berada dalam
+$\Complement{A}$.
+\end{explain}
+
+\begin{cor}
+\ollabel{cor:comp-k}
+$\Complement{K_0}$ tidak terenumerasi secara komputabel.
+\end{cor}
+
+\begin{proof}
+Kita mengetahui bahwa $K_0$ terenumerasi secara komputabel, tetapi tidak dapat
+dihitung. Jika $\Complement{K_0}$ terenumerasi secara komputabel, maka $K_0$
+dapat dihitung menurut \olref{thm:ce-comp}, yang bertentangan dengan
+\olref[ncp]{thm:K-0}.
+\end{proof}
+
+\end{document}
+

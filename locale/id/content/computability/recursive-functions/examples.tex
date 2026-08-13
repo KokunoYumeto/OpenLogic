@@ -1,0 +1,197 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: examples
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{exa}
+\olsection{Contoh Fungsi Rekursif Primitif}
+
+
+Kita sudah mempunyai beberapa contoh fungsi rekursif primitif, yaitu fungsi
+penjumlahan dan perkalian~$\Add$ serta $\Mult$. Fungsi identitas
+$\fn{id}(x) = x$ bersifat rekursif primitif karena fungsi itu hanyalah
+$\Proj{1}{0}$. Fungsi konstan $\fn{const}_n(x) = n$ bersifat rekursif primitif
+karena dapat didefinisikan dari $\Zero$ dan $\Succ$ dengan komposisi
+berturut-turut. Hal ini berguna ketika kita hendak menggunakan konstanta dalam
+definisi rekursif primitif. Sebagai contoh, fungsi $f(x) = 2 \cdot x$ dapat
+diperoleh dengan komposisi dari $\fn{const}_2(x)$ dan perkalian sebagai
+$f(x) = \Mult(\fn{const}_2(x), \Proj{1}{0}(x))$. Mulai sekarang kita akan
+menggunakan siasat ini.
+
+\begin{prop}
+  Fungsi perpangkatan $\fn{exp}(x, y) = x^y$ bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Kita dapat mendefinisikan $\fn{exp}$ secara rekursif primitif sebagai
+  \begin{align*}
+    \fn{exp}(x, 0) & = 1\\
+    \fn{exp}(x, y+1) & = \Mult(x, \fn{exp}(x,y)).
+    \intertext{Secara ketat, ini bukan definisi rekursif dari fungsi-fungsi
+      rekursif primitif. Namun, bentuk resminya adalah:}
+    \fn{exp}(x, 0) & = f(x)\\
+    \fn{exp}(x, y+1) & = g(x, y, \fn{exp}(x,y)).
+    \intertext{dengan}
+    f(x) & = \Succ(\Zero(x)) = 1\\
+    g(x, y, z) & = \Mult(\Proj{3}{0}(x, y, z), \Proj{3}{2}(x, y, z)) = x \cdot z
+  \end{align*}
+  sehingga $f$ dan $g$ didefinisikan dari fungsi-fungsi rekursif primitif
+  dengan komposisi.
+\end{proof}
+
+\begin{prop}
+  Fungsi pendahulu $\fn{pred}(y)$ yang didefinisikan oleh
+  \[
+  \fn{pred}(y) = \begin{cases}
+    0 & \text{jika $y=0$}\\
+    y-1 & \text{selain itu}
+  \end{cases}
+  \]
+  bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+ Perhatikan bahwa
+ \begin{align*}
+   \fn{pred}(0) & = 0 \text{ dan}\\
+   \fn{pred}(y+1) & = y.
+ \end{align*}
+ Ini hampir merupakan definisi rekursif primitif. Secara ketat, definisi ini
+ tidak sesuai dengan pola definisi melalui rekursi primitif karena pola itu
+ mensyaratkan sekurang-kurangnya satu argumen tambahan~$x$. Definisi ini juga
+ ganjil karena sama sekali tidak menggunakan $\fn{pred}(y)$ dalam definisi
+ $\fn{pred}(y+1)$. Namun, mula-mula kita dapat mendefinisikan
+ $\fn{pred}'(x, y)$ dengan
+ \begin{align*}
+   \fn{pred}'(x, 0) & = \Zero(x) = 0,\\
+   \fn{pred}'(x, y+1) & = \Proj{3}{1}(x, y, \fn{pred'}(x, y)) = y.
+ \end{align*}
+kemudian mendefinisikan $\fn{pred}$ darinya dengan komposisi, misalnya sebagai
+$\fn{pred}(x) = \fn{pred}'(\Zero(x), \Proj{1}{0}(x))$.
+\end{proof}
+
+\begin{prop}
+  Fungsi faktorial $\fn{fac}(x) = \fact{x} = 1 \cdot 2 \cdot 3
+  \cdot \dots \cdot x$ bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Definisi rekursif primitif yang langsung adalah
+  \begin{align*}
+    \fn{fac}(0) &= 1\\
+    \fn{fac}(y+1) & = \fn{fac}(y) \cdot (y+1).
+    \intertext{Secara resmi, pertama-tama kita harus mendefinisikan fungsi
+      berargumen dua $h$}
+    h(x, 0) & = \fn{const}_1(x)\\
+    h(x, y+1) & = g(x, y, h(x, y))
+    \intertext{dengan $g(x, y, z) = \Mult(\Proj{3}{2}(x, y, z),
+      \Succ(\Proj{3}{1}(x, y, z)))$, lalu menetapkan}
+    \fn{fac}(y) & = h(\Proj{1}{0}(y), \Proj{1}{0}(y)) = h(y,y).
+  \end{align*}
+  Mulai sekarang kita akan sedikit lebih longgar dan tidak selalu memberikan
+  definisi resmi melalui komposisi dan rekursi primitif.
+\end{proof}
+
+\begin{prop}
+  Pengurangan terpangkas, $x \tsub y$, yang didefinisikan oleh
+  \[
+  x \tsub y = \begin{cases}
+    0 & \text{jika $x < y$}\\
+    x-y & \text{selain itu}
+  \end{cases}
+  \]
+  bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Kita mempunyai:
+  \begin{align*}
+    x \tsub 0 & = x\\
+    x \tsub (y+1) & = \fn{pred}(x \tsub y)
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+ Jarak antara $x$ dan $y$, yaitu $\left|x-y\right|$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Kita mempunyai $\left| x-y \right| = (x \tsub y) + (y \tsub x)$, sehingga
+  jarak dapat didefinisikan dengan komposisi dari $+$ dan $\tsub$, yang
+  keduanya bersifat rekursif primitif.
+\end{proof}
+
+\begin{prop}
+  Maksimum dari $x$ dan $y$, yaitu $\fn{max}(x,y)$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Kita dapat mendefinisikan $\fn{max}(x,y)$ dengan komposisi dari $+$ dan
+  $\tsub$ sebagai
+  \[
+  \fn{max}(x,y) \defis x + (y \tsub x).
+  \]
+  Jika $x$ merupakan maksimum, yakni $x \ge y$, maka $y \tsub x = 0$, sehingga
+  $x + (y \tsub x) = x + 0 = x$. Jika $y$ merupakan maksimum, maka
+  $y \tsub x = y - x$, sehingga $x + (y \tsub x) = x + (y - x) = y$.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:min-pr}
+  Minimum dari $x$ dan $y$, yaitu $\fn{min}(x,y)$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[cmp][rec][exa]{prop:min-pr}.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa \[
+f(x, y) =
+2^{(2^{\iddots^{2^{x}}})}\raisebox{1ex}{\bigg\rbrace}
+\raisebox{1ex}{\text {$y$ buah $2$}}\] bersifat rekursif primitif.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa pembagian bilangan bulat $d(x, y) = \lfloor x/y \rfloor$
+(yakni pembagian dengan mengabaikan seluruh bagian di belakang tanda desimal)
+bersifat rekursif primitif. Jika $y = 0$, kita menetapkan $d(x, y) = 0$.
+Berikan definisi eksplisit bagi~$d$ dengan rekursi primitif dan komposisi.
+\end{prob}
+
+\begin{prop}
+Himpunan fungsi rekursif primitif tertutup terhadap dua operasi berikut:
+\begin{enumerate}
+\item Jumlah berhingga: jika $f(\vec x, z)$ bersifat rekursif primitif, maka
+fungsi
+\[
+g(\vec x, y) \defis \sum_{z = 0}^y f(\vec x, z)
+\]
+juga bersifat rekursif primitif.
+\item Hasil kali berhingga: jika $f(\vec x, z)$ bersifat rekursif primitif,
+maka fungsi
+\[
+h(\vec x, y) \defis \prod_{z = 0}^y f(\vec x, z)
+\]
+juga bersifat rekursif primitif.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Sebagai contoh, jumlah berhingga didefinisikan secara rekursif oleh persamaan
+\begin{align*}
+  g(\vec x, 0) & = f(\vec x, 0)\\
+  g(\vec x, y+1) & = g(\vec x, y) + f(\vec x, y+1).
+\end{align*}
+\end{proof}
+
+
+\end{document}
+

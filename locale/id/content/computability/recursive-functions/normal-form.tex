@@ -1,0 +1,46 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: normal-form
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{nft}
+\olsection{Teorema Bentuk Normal}
+
+\begin{thm}[Teorema Bentuk Normal Kleene]
+\ollabel{thm:kleene-nf}
+Terdapat suatu relasi rekursif primitif $T(e,x,s)$ dan suatu fungsi rekursif
+primitif $U(s)$ dengan sifat berikut: jika $f$ merupakan sebarang fungsi
+rekursif parsial uner, maka bagi suatu~$e$,
+\[
+f(x) \simeq U(\umin{s}{T(e, x, s)})
+\]
+untuk setiap~$x$.
+\end{thm}
+
+\begin{explain}
+Bukti teorema bentuk normal cukup rumit, tetapi gagasan dasarnya sederhana.
+Setiap fungsi rekursif parsial mempunyai suatu \emph{indeks}~$e$, yang secara
+intuitif merupakan bilangan yang mengodekan program atau definisinya. Jika
+$f(x)\fdefined$, komputasi itu dapat dicatat secara sistematis dan dikodekan
+oleh suatu bilangan~$s$, dan fakta bahwa $s$ mengodekan komputasi~$f$ pada
+masukan~$x$ dapat diperiksa secara rekursif primitif hanya dengan menggunakan
+$x$ dan definisi~$e$. Oleh karena itu, relasi~$T$, ``fungsi berindeks~$e$
+mempunyai suatu komputasi bagi masukan~$x$, dan $s$ mengodekan komputasi
+tersebut,'' bersifat rekursif primitif. Dari catatan lengkap komputasi~$s$,
+``hasil akhir''~$s$, yaitu nilai~$f(x)$, juga dapat diperoleh dari~$s$ secara
+rekursif primitif.
+
+Teorema bentuk normal menunjukkan bahwa hanya satu pencarian tak berbatas yang
+diperlukan dalam definisi sebarang fungsi rekursif parsial. Pada dasarnya,
+kita dapat mencari di antara semua bilangan sampai menemukan bilangan yang
+mengodekan suatu komputasi dari fungsi berindeks~$e$ bagi masukan~$x$. Kita
+dapat menggunakan bilangan~$e$ sebagai ``nama'' fungsi rekursif parsial, dan
+menulis $\cfind{e}$ bagi fungsi~$f$ yang didefinisikan oleh persamaan dalam
+teorema. Perhatikan bahwa suatu fungsi rekursif parsial dapat mempunyai lebih
+dari satu indeks---bahkan, setiap fungsi rekursif parsial mempunyai tak hingga
+banyak indeks.
+\end{explain}
+\end{document}

@@ -1,0 +1,172 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: equiv-ce-defs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{eqc}
+
+\olsection[Definisi Himpunan C.E.]{Definisi Ekuivalen Himpunan
+  Terenumerasi Secara Komputabel}
+
+
+Pernyataan berikut memberikan sejumlah pencirian ekuivalen yang penting bagi
+makna terenumerasi secara komputabel.
+
+\begin{thm}
+\ollabel{thm:ce-equiv}
+Misalkan $S$ suatu himpunan bilangan asli. Maka pernyataan-pernyataan berikut
+ekuivalen:
+\begin{enumerate}
+\item\ollabel{case:ce} $S$ terenumerasi secara komputabel.
+\item\ollabel{case:ran-pc} $S$ merupakan daerah hasil suatu fungsi dapat
+  dihitung \emph{parsial}.
+\item\ollabel{case:ran-prim} $S$ kosong atau merupakan daerah hasil suatu
+  fungsi rekursif primitif.
+\item\ollabel{case:ce-domain} $S$ merupakan \emph{domain} suatu fungsi dapat
+  dihitung parsial.
+\end{enumerate}
+\end{thm}
+
+\begin{explain}
+Tiga klausa pertama menyatakan bahwa kita dapat secara ekuivalen menganggap
+setiap himpunan tak kosong yang terenumerasi secara komputabel dienumerasi oleh
+suatu fungsi dapat dihitung, fungsi dapat dihitung parsial, atau fungsi
+rekursif primitif. Klausa keempat memberi tahu kita bahwa jika $S$
+terenumerasi secara komputabel, maka untuk suatu indeks~$e$,
+\[
+S = \Setabs{x}{\cfind{e}(x) \fdefined}.
+\]
+Dengan kata lain, $S$ adalah himpunan masukan yang membuat komputasi
+$\cfind{e}$ berhenti. Karena alasan itu, himpunan terenumerasi secara komputabel
+kadang disebut \emph{semidapat diputuskan}: jika suatu bilangan berada dalam
+himpunan tersebut, pada akhirnya Anda memperoleh jawaban ``ya,'' tetapi jika
+tidak berada di dalamnya, Anda tidak pernah memperoleh jawaban ``tidak''!{}
+\end{explain}
+
+\begin{proof}
+Karena setiap fungsi rekursif primitif dapat dihitung dan setiap fungsi dapat
+dihitung juga dapat dihitung secara parsial, \olref{case:ran-prim}
+mengimplikasikan \olref{case:ce}, sedangkan \olref{case:ce}
+mengimplikasikan~\olref{case:ran-pc}. (Perhatikan bahwa jika $S$ kosong,
+$S$ merupakan daerah hasil fungsi dapat dihitung parsial yang tidak
+terdefinisi di mana pun.) Jika kita menunjukkan bahwa \olref{case:ran-pc}
+mengimplikasikan \olref{case:ran-prim}, kita telah menunjukkan bahwa tiga
+klausa pertama ekuivalen.
+
+Jadi, andaikan $S$ merupakan daerah hasil fungsi dapat dihitung parsial
+$\cfind{e}$. Jika $S$ kosong, kita selesai. Jika tidak, misalkan $a$ sembarang
+unsur~$S$. Berdasarkan teorema bentuk normal Kleene, kita dapat menulis
+\[
+\cfind{e}(x) \simeq U(\umin{s}{T(e, x, s)}).
+\]
+Khususnya, $\cfind{e}(x) \fdefined$ dan $= y$ jika dan hanya jika terdapat
+suatu $s$ sedemikian sehingga $T(e, x, s)$ dan $U(s) = y$. Definisikan $f(z)$
+dengan
+\[
+f(z) = \begin{cases}
+  U((z)_1) & \text{jika $T(e, (z)_0, (z)_1)$} \\
+  a        & \text{selain itu.}
+\end{cases}
+\]
+Maka $f$ bersifat rekursif primitif karena $T$ dan $U$ bersifat demikian.
+\iftag{TMs}{Dalam bahasa mesin Turing, jika $z$ mengodekan pasangan
+  $\tuple{(z)_0, (z)_1}$ sedemikian sehingga $(z)_1$ merupakan komputasi
+  berhenti mesin~$M_e$ pada masukan $(z)_0$, maka $f$ mengembalikan keluaran
+  komputasi itu; jika tidak, $f$ mengembalikan~$a$.}\par
+
+Kita harus menunjukkan bahwa $S$ merupakan daerah hasil~$f$, yakni bagi setiap
+bilangan asli~$y$, $y \in S$ jika dan hanya jika $y$ berada dalam daerah
+hasil~$f$. Untuk arah maju, andaikan $y \in S$. Maka $y$ berada dalam daerah
+hasil $\cfind{e}$, sehingga untuk suatu $x$ dan~$s$, berlaku $T(e,x,s)$ dan
+$U(s) = y$. Namun, dalam hal itu $y = f(\tuple{x,s})$. Sebaliknya, andaikan
+$y$ berada dalam daerah hasil~$f$. Maka $y = a$, atau untuk suatu~$z$ berlaku
+$T(e,(z)_0,(z)_1)$ dan $U((z)_1) = y$. Karena dalam kasus terakhir
+$\cfind{e}((z)_0) \fdefined = y$, dalam kedua kasus $y$ berada dalam~$S$.
+
+(Notasi $\cfind{e}(x) \fdefined = y$ berarti ``$\cfind{e}(x)$ terdefinisi dan
+sama dengan $y$.'' Kita juga dapat menggunakan $\cfind{e}(x) = y$, tetapi
+panah tambahan itu kadang membantu mengingatkan bahwa kita sedang berurusan
+dengan suatu fungsi parsial.)
+
+Untuk menyelesaikan bukti \olref{thm:ce-equiv}, cukup ditunjukkan bahwa
+\olref{case:ce} dan~\olref{case:ce-domain} ekuivalen. Pertama, mari kita
+tunjukkan bahwa \olref{case:ce} mengimplikasikan~\olref{case:ce-domain}.
+Andaikan $S$ merupakan daerah hasil suatu fungsi dapat dihitung~$f$, yakni
+\[
+S = \Setabs{y}{\text{untuk suatu $x$, } f(x) = y}.
+\]
+Misalkan
+\[
+g(y) = \umin{x}{(f(x) = y)}.
+\]
+Maka $g$ merupakan fungsi dapat dihitung parsial, dan $g(y)$ terdefinisi jika
+dan hanya jika, untuk suatu~$x$, $f(x) = y$. Dengan kata lain, domain~$g$
+merupakan daerah hasil~$f$. \iftag{TMs}{Dalam bahasa mesin Turing: jika
+diberikan mesin Turing~$F$ yang mengenumerasi unsur-unsur~$S$, misalkan $G$
+adalah mesin Turing yang memutuskan-sebagian $S$ dengan menelusuri keluaran~$F$
+untuk melihat apakah suatu unsur yang diberikan berada dalam himpunan itu; $G$
+berhenti jika unsur tersebut ditemukan dan terus mencari selamanya jika tidak
+ditemukan.}{}
+
+Terakhir, untuk menunjukkan bahwa \olref{case:ce-domain}
+mengimplikasikan~\olref{case:ce}, andaikan $S$ merupakan domain fungsi dapat
+dihitung parsial~$\cfind{e}$, yakni
+\[
+S = \Setabs{x}{\cfind{e}(x) \fdefined}.
+\]
+Jika $S$ kosong, kita selesai; jika tidak, misalkan $a$ sembarang unsur~$S$.
+Definisikan $f$ dengan
+\[
+f(z) = \begin{cases}
+(z)_0 & \text{jika $T(e,(z)_0,(z)_1)$} \\
+a & \text{selain itu.}
+\end{cases}
+\]
+Maka, seperti di atas, suatu bilangan $x$ berada dalam daerah hasil~$f$ jika
+dan hanya jika $\cfind{e}(x) \fdefined$, yakni jika dan hanya jika $x \in S$.
+\iftag{TMs}{Dalam bahasa mesin Turing: jika diberikan mesin $M_e$ yang
+memutuskan-sebagian $S$, enumerasilah unsur-unsur $S$ dengan menjalankan semua
+komputasi mesin Turing yang mungkin dan mengembalikan masukan-masukan yang
+bersesuaian dengan komputasi yang berhenti.}{}
+\end{proof}
+
+Klausa~\olref{case:ce-domain} dalam \olref{thm:ce-equiv} memberi kita cara yang
+mudah untuk mengenumerasi himpunan terenumerasi secara komputabel: untuk
+setiap~$e$, misalkan $W_e$ menyatakan domain $\cfind{e}$, yakni
+\[
+W_e = \Setabs{x}{\cfind{e}(x) \fdefined}.
+\]
+Maka jika $A$ merupakan sembarang himpunan terenumerasi secara komputabel,
+$A = W_e$ untuk suatu~$e$.
+
+Teorema berikut memberikan satu lagi pencirian himpunan terenumerasi secara
+komputabel.
+
+\begin{thm}
+\ollabel{thm:exists-char}
+Suatu himpunan $S$ terenumerasi secara komputabel jika dan hanya jika terdapat
+relasi dapat dihitung $R(x,y)$ sedemikian sehingga
+\[
+S = \Setabs{ x }{ \lexists[y][R(x,y)] }.
+\]
+\end{thm}
+
+\begin{proof}
+Untuk arah maju, andaikan $S$ terenumerasi secara komputabel. Maka untuk suatu
+$e$, $S = W_e$. Untuk nilai~$e$ ini kita dapat menulis $S$ sebagai
+\[
+S = \Setabs{ x }{ \lexists[y][T(e, x, y)] }.
+\]
+Untuk arah sebaliknya, andaikan $S = \Setabs{ x }{
+  \lexists[y][R(x, y)] }$. Definisikan $f$ dengan
+\[
+f(x) \simeq \umin{y}{R(x, y)}.
+\]
+Maka $f$ dapat dihitung secara parsial, dan $S$ merupakan domain~$f$.
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,126 @@
+% Bagian: first-order-logic
+% Bab: lindstrom
+% Subbagian: lindstrom-proof
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{lin}{prf}
+
+\olsection{Teorema Lindstr\"om}
+
+\begin{lem}
+\ollabel{lem:lindstrom}
+Andaikan $!E \in L(\Lang{L})$, dengan $\Lang{L}$ berhingga, dan andaikan pula
+terdapat $n \in \Nat$ sedemikian sehingga bagi sembarang dua !!{structure}
+$\Struct{M}$ dan~$\Struct{N}$, jika $\Struct{M} \elemequiv[n] \Struct{N}$
+dan $\Struct{M} \models_L !E$, maka $\Struct{N} \models_L !E$. Maka $!E$
+ekuivalen dengan !!a{sentence} orde pertama; yaitu, terdapat !!a{sentence}
+orde pertama $!D$ sedemikian sehingga $\Mod(L){!E} = \Mod(L){!D}$.
+\end{lem}
+
+\begin{proof}
+Ambil $n$ sedemikian sehingga sembarang dua !!{structure} yang ekuivalen
+hingga peringkat~$n$, $\Struct{M}$ dan $\Struct{N}$, memberikan nilai
+kebenaran yang sama kepada~$!E$. Ingat dari
+\olref[bas][pis]{prop:qr-finite}: dalam !!a{language} berhingga, hanya ada
+berhingga banyak kelas ekuivalensi logis !!{sentence}s orde pertama yang
+berperingkat kuantor tidak lebih dari~$n$. Sekarang, untuk setiap
+!!{structure} tetap~$\Struct{M}$, pilih satu wakil $!A$ dari setiap kelas
+tersebut yang benar dalam~$\Struct{M}$ dan memenuhi $\QuantRank{!A}\le n$,
+lalu jadikan $!D_{\Struct{M}}$ konjungsi semua wakil itu. Dengan demikian,
+$\Struct{N} \models !D_{\Struct{M}}$ jika dan hanya
+jika $\Struct{N} \elemequiv[n] \Struct{M}$. Selanjutnya, tetapkan
+$!D = \textstyle\bigvee \Setabs{!D_{\Struct{M}}}{\Struct{M} \models_L !E}$,
+dengan hanya satu wakil dipertahankan dari setiap kelas ekuivalensi logis
+yang muncul dalam himpunan pada ruas kanan; jadi disjungsi ini juga berhingga.
+
+Kesimpulan $\Mod(L){!E} = \Mod(L){!D}$ kini langsung diperoleh. Memang, jika
+$\Struct{N} \models !D$, maka untuk suatu $\Struct{M} \models_L !E$ kita
+mempunyai $\Struct{N} \models !D_{\Struct{M}}$, sehingga $\Struct{N}
+\models_L !E$ menurut hipotesis lemma. Sebaliknya, jika $\Struct{N}
+\models_L !E$, maka $!D_{\Struct{N}}$ merupakan salah satu disjung dalam
+$!D$; karena $\Struct{N} \models !D_{\Struct{N}}$, kita juga mempunyai
+$\Struct{N} \models !D$.
+\end{proof}
+
+\begin{thm}[Teorema Lindstr\"om]
+  \ollabel{thm:lindstrom} Andaikan $\tuple{L, \models_L}$ merupakan logika
+  normal yang mempunyai Sifat Kekompakan dan Sifat L\"owenheim--Skolem. Maka
+  $\tuple{L, \models_L} \leq \tuple{F, \models}$ (jadi
+  $\tuple{L, \models_L}$ ekuivalen dengan logika orde pertama).
+\end{thm}
+
+\begin{proof}
+Menurut \olref{lem:lindstrom}, cukup ditunjukkan bahwa bagi setiap $!E
+\in L(\Lang{L})$, dengan $\Lang{L}$ berhingga, terdapat $n \in \Nat$
+sedemikian sehingga untuk sembarang dua !!{structure} $\Struct{M}$
+dan~$\Struct{N}$ berlaku: jika $\Struct{M} \elemequiv[n] \Struct{N}$, maka
+$\Struct{M}$ dan $\Struct{N}$ memberikan nilai kebenaran yang sama
+kepada~$!E$. Dengan demikian $!E$ ekuivalen dengan !!a{sentence} orde pertama,
+dan dari sini $\tuple{L, \models_L} \leq \tuple{F, \models}$ diperoleh.
+Karena kita bekerja dalam !!a{language} relasional murni yang berhingga,
+menurut \olref[bas][pis]{thm:b-n-f} kita dapat mengganti pernyataan
+$\Struct{M} \elemequiv[n] \Struct{N}$ dengan pernyataan aljabar yang
+bersesuaian, yakni $I_n(\emptyset,\emptyset)$.
+
+Diberikan $!E$, andaikan demi kontradiksi bahwa untuk setiap $n$ terdapat
+!!{structure}s $\Struct{M}_n$ dan $\Struct{N}_n$ sedemikian sehingga
+$I_n(\emptyset, \emptyset)$, tetapi (katakanlah) $\Struct{M}_n \models_L !E$
+sedangkan $\Struct{N}_n \not\models_L !E$. Berdasarkan Sifat Isomorfisme, kita
+dapat mengandaikan bahwa semua $\Struct{M}_n$ menafsirkan konstanta-konstanta bahasa
+itu sebagai objek-objek yang sama. Selain itu, karena hanya ada berhingga
+banyak !!{sentence} atomik dalam bahasa tersebut, kita juga dapat
+mengandaikan bahwa semuanya memenuhi !!{sentence}s atomik yang sama
+(jika tidak, kita dapat mengambil suatu barisan bagian dari barisan
+$\Struct{M}_n$). Biarkan $\Struct{M}$ menjadi gabungan semua
+$\Struct{M}_n$, yaitu !!{structure} minimal tunggal yang memuat setiap
+$\Struct{M}_n$ sebagai substruktur. Seperti dalam bukti
+\olref[lsp]{thm:abstract-p-isom}, biarkan $\Struct{M^*}$ menjadi ekspansi
+$\Struct{M}$ dengan !!{domain} $\Domain{M} \cup \Domain{M}^{<\omega}$ dalam
+!!{language} diperluas yang memuat predikat-predikat konkatenasi $P$ dan~$Q$.
+
+Dengan cara yang sama, definisikan $\Struct{N}_n$, $\Struct{N}$, dan
+$\Struct{N^*}$. Sekarang, biarkan $\Struct{U}$ menjadi !!{structure} yang
+!!{domain}nya mencakup !!{domain}s dari $\Struct{M^*}$ dan $\Struct{N^*}$,
+serta bilangan-bilangan asli~$\Nat$ bersama urutan alaminya~$\le$, dalam
+!!{language} dengan predikat-predikat tambahan yang merepresentasikan
+!!{domain}s $\Domain{M}$, $\Domain{N}$, $\Domain{M}^{<\omega}$, dan
+$\Domain{N}^{<\omega}$, serta predikat-predikat yang menyandikan domain dari
+$\Struct{M}_n$ dan $\Struct{N}_n$ dalam arti bahwa:
+\begin{align*}
+  \Domain{M_n} & = \Setabs{a \in \Domain{M}}{R(a, n)}; &
+  \Domain{N_n} & = \Setabs{a \in \Domain{N}}{S(a,n)}; \\
+  \Domain{M}^{<\omega}_n & = \Setabs{a \in \Domain{M}^{<\omega}}{R(a,n)}; &
+  \Domain{N}^{<\omega}_n & = \Setabs{a \in \Domain{N}^{<\omega}}{S(a,n)}.
+\end{align*}
+!!{structure}~$\Struct{U}$ juga mempunyai relasi terner $J$ sedemikian
+sehingga $J(n, \mathbf{a}, \mathbf{b})$ berlaku jika dan hanya jika
+$I_n(\mathbf{a}, \mathbf{b})$.
+
+Sekarang terdapat !!a{sentence}~$!D$ dalam !!{language}~$\Lang{L}$ yang
+diperluas dengan $R$, $S$, $J$, dan seterusnya, yang menyatakan bahwa $\le$
+merupakan urutan linear diskret dengan unsur pertama tetapi tanpa unsur
+terakhir, bahwa $\Struct{M}_n \models_L !E$ dan $\Struct{N}_n \not\models_L !E$,
+serta bahwa bagi setiap $n$ dalam urutan tersebut, $J(n, \mathbf{a},
+\mathbf{b})$ berlaku jika dan hanya jika $I_n(\mathbf{a}, \mathbf{b})$.
+
+Dengan menggunakan Sifat Kekompakan, kita dapat menemukan model
+$\Struct{U^*}$ dari $!D$ yang urutannya memuat suatu unsur nonstandar~$n^*$.
+Secara khusus, $\Struct{U^*}$ memuat sub!!{structure}s
+$\Struct{M_{n^*}}$ dan
+$\Struct{N_{n^*}}$ sedemikian sehingga $\Struct{M_{n^*}} \models_L !E$ dan
+$\Struct{N_{n^*}} \not\models_L !E$. Namun, sekarang kita dapat mendefinisikan
+suatu himpunan $\mathcal{I}$ yang terdiri atas pasangan tupel-$k$ dari
+$\Domain{M_{n^*}}$ dan $\Domain{N_{n^*}}$ dengan menetapkan
+$\tuple{\mathbf{a}, \mathbf{b}} \in \mathcal{I}$ jika dan hanya jika
+$J(n^*-k, \mathbf{a}, \mathbf{b})$, dengan $k$ panjang $\mathbf{a}$ dan
+$\mathbf{b}$. Karena $n^*$ nonstandar, bagi setiap $k$ standar kita mempunyai
+$n^* - k > 0$, dan himpunan $\mathcal{I}$ menjadi saksi bahwa
+$\Struct{M_{n^*}} \simeq_p \Struct{N_{n^*}}$. Akan tetapi, menurut
+\olref[lsp]{thm:abstract-p-isom}, $\Struct{M_{n^*}}$ ekuivalen-$L$ dengan
+$\Struct{N_{n^*}}$, suatu kontradiksi.
+\end{proof}
+
+\end{document}

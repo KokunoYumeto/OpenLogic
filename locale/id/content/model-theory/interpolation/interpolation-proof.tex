@@ -1,0 +1,197 @@
+% Bagian: model-theory
+% Bab: interpolation
+% Subbagian: interpolation-proof
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{int}{prf}
+
+\olsection{Teorema Interpolasi Craig}
+
+\begin{thm}[Teorema Interpolasi Craig]
+\ollabel{thm:interpol}
+Jika $\Entails !A \lif !B$, maka terdapat !!a{sentence} $!C$ sedemikian
+sehingga $\Entails !A \lif !C$ dan $\Entails !C \lif !B$, dan setiap
+!!{constant}, !!{function}, serta !!{predicate} (selain $\eq$) dalam $!C$
+terdapat dalam $!A$ maupun~$!B$. !!^{sentence} $!C$ disebut
+\emph{interpolan} dari $!A$ dan~$!B$.
+\end{thm}
+
+\begin{proof}
+Andaikan $\Lang{L}_1$ adalah bahasa dari $!A$ dan $\Lang{L}_2$ adalah
+bahasa dari $!B$. Misalkan $\Lang{L}_0 = \Lang{L}_1 \cap \Lang{L}_2$.
+Bagi setiap $i \in \{0, 1, 2 \}$, misalkan $\Lang{L}'_i$ diperoleh dari
+$\Lang{L}_i$ dengan menambahkan tak hingga banyak !!{constant} baru
+$\Obj c_0, \Obj c_1, \Obj c_2, \dots$.
+
+Jika $!A$ tidak dapat dipenuhi, maka $\lexists[x][\eq/[x][x]]$ adalah suatu
+interpolan. Jika $\lnot !B$ tidak dapat dipenuhi (sehingga $!B$ valid), maka
+$\lexists[x][\eq[x][x]]$ adalah suatu interpolan. Karena itu, kita juga dapat
+mengandaikan bahwa $!A$ dan $\lnot !B$ keduanya dapat dipenuhi.
+
+Untuk membuktikan kontraposisi Teorema Interpolasi, andaikan tidak ada
+interpolan bagi $!A$ dan $!B$. Dengan kata lain, andaikan $\{!A\}$ dan
+$\{\lnot !B\}$ tidak terpisahkan dalam $\Lang{L}_0$.
+
+Tujuan kita ialah memperluas pasangan $(\{ !A \}, \{\lnot!B\})$ menjadi
+pasangan yang tidak terpisahkan secara maksimal $(\Gamma^*, \Delta^*)$.
+Misalkan $!A_0$, $!A_1$, $!A_2$, \dots mencacah !!{sentence}s dari
+$\Lang{L}'_1$, dan $!B_0$, $!B_1$, $!B_2$, \dots mencacah
+!!{sentence}s dari~$\Lang{L}'_2$. Kita mendefinisikan dua barisan naik
+himpunan !!{sentence}s $(\Gamma_n, \Delta_n)$, untuk $n \ge 0$, sebagai
+berikut. Tetapkan $\Gamma_0 = \{ !A\}$ dan $\Delta_0 = \{\lnot !B \}$.
+Dengan mengandaikan $(\Gamma_n, \Delta_n)$ telah didefinisikan, definisikan
+$\Gamma_{n+1}$ dan $\Delta_{n+1}$ sebagai berikut:
+\begin{enumerate}
+\item Jika $\Gamma_n \cup \{!A_n \}$ dan $\Delta_n$ tidak terpisahkan
+  dalam $\Lang{L}'_0$, masukkan $!A_n$ ke dalam $\Gamma_{n+1}$; jika
+  keduanya terpisahkan, tetapkan $\Gamma_{n+1}=\Gamma_n$. Dalam kasus pertama
+  tersebut, jika
+  $!A_n$ adalah !!{formula} eksistensial $\lexists[x][!S]$, pilih suatu
+  !!{constant} baru $c$ yang tidak terdapat dalam $\Gamma_n$, $\Delta_n$,
+  $!A_n$, ataupun $!B_n$, lalu masukkan $\Subst{!S}{c}{x}$ ke dalam
+  $\Gamma_{n+1}$.
+\item Jika $\Gamma_{n+1}$ dan $\Delta_n \cup \{!B_n \}$ tidak
+  terpisahkan dalam $\Lang{L}'_0$, masukkan $!B_n$ ke dalam
+  $\Delta_{n+1}$; jika keduanya terpisahkan, tetapkan
+  $\Delta_{n+1}=\Delta_n$. Dalam kasus pertama tersebut, jika $!B_n$ adalah
+  !!{formula}
+  eksistensial $\lexists[x][!S]$, pilih suatu !!{constant} baru $c$ yang
+  tidak terdapat dalam $\Gamma_{n+1}$, $\Delta_n$, $!A_n$, ataupun $!B_n$,
+  lalu masukkan $\Subst{!S}{c}{x}$ ke dalam $\Delta_{n+1}$.
+\end{enumerate}
+Terakhir, definisikan:
+\begin{align*}
+  \Gamma^* & = \bigcup_{n\ge 0} \Gamma_n, &
+  \Delta^* & = \bigcup_{n\ge 0} \Delta_n.
+\end{align*}
+Dengan induksi serentak pada $n$, kini kita dapat membuktikan:
+\begin{enumerate}
+\item\ollabel{part-a} $\Gamma_n$ dan $\Delta_n$ tidak terpisahkan dalam
+  $\Lang{L}'_0$;
+\item\ollabel{part-b} $\Gamma_{n+1}$ dan $\Delta_n$ tidak terpisahkan
+  dalam $\Lang{L}'_0$.
+\end{enumerate}
+Dasar bagi \olref{part-a} diberikan oleh \olref[sep]{lem:sep1}. Untuk bagian
+\olref{part-b}, kita perlu membedakan tiga kasus:
+\begin{enumerate}
+\item Jika $\Gamma_0 \cup \{!A_0 \}$ dan $\Delta_0$ terpisahkan, maka
+  $\Gamma_1 = \Gamma_0$ dan \olref{part-b} hanyalah \olref{part-a};
+\item Jika $\Gamma_1 = \Gamma_0 \cup\{ !A_0\}$, maka $\Gamma_1$ dan
+  $\Delta_0$ tidak terpisahkan berdasarkan konstruksi.
+\item Tersisa kasus ketika $!A_0$ eksistensial, sehingga $\Gamma_1 =
+  \Gamma_0 \cup \{ \lexists[x][!S], \Subst{!S}{c}{x} \}$. Berdasarkan
+  konstruksi, $\Gamma_0 \cup \{ \lexists[x][!S]\}$ dan $\Delta_0$ tidak
+  terpisahkan; maka, menurut \olref[sep]{lem:sep2}, $\Gamma_0 \cup \{
+  \lexists[x][!S], \Subst{!S}{c}{x} \}$ dan $\Delta_0$ juga tidak
+  terpisahkan.
+\end{enumerate}
+Ini menyelesaikan dasar induksi bagi \olref{part-a} dan \olref{part-b} di
+atas. Sekarang tinjau langkah induksi. Untuk \olref{part-a}, jika
+$\Delta_{n+1} = \Delta_n \cup \{ !B_n \}$, maka $\Gamma_{n+1}$ dan
+$\Delta_{n+1}$ tidak terpisahkan berdasarkan konstruksi (bahkan ketika
+$!B_n$ eksistensial, menurut \olref[sep]{lem:sep2}); jika $\Delta_{n+1} =
+\Delta_n$ (karena $\Gamma_{n+1}$ dan $\Delta_n \cup \{!B_n\}$
+terpisahkan), kita menggunakan hipotesis induksi pada \olref{part-b}. Untuk
+langkah induksi bagi \olref{part-b}, jika $\Gamma_{n+2} = \Gamma_{n+1}
+\cup \{!A_{n+1} \}$, maka $\Gamma_{n+2}$ dan $\Delta_{n+1}$ tidak
+terpisahkan berdasarkan konstruksi (bahkan ketika $!A_{n+1}$ eksistensial,
+menurut \olref[sep]{lem:sep2}); jika $\Gamma_{n+2} = \Gamma_{n+1}$, kita
+menggunakan kasus induksi bagi \olref{part-a} yang baru saja dibuktikan. Ini
+menyelesaikan induksi pada \olref{part-a} dan \olref{part-b}.
+
+Akibatnya, $\Gamma^*$ dan $\Delta^*$ tidak terpisahkan. Jika tidak, menurut
+kekompakan terdapat suatu kalimat pemisah dan suatu $n \ge 0$ sehingga
+kalimat itu memisahkan $\Gamma_n$ dan $\Delta_n$, bertentangan dengan
+\olref{part-a}. Khususnya, $\Gamma^*$ dan $\Delta^*$ konsisten: sebab jika
+yang pertama atau yang kedua tidak konsisten, keduanya masing-masing akan
+dipisahkan oleh $\lexists[x][\eq/[x][x]]$ atau
+$\lforall[x][\eq[x][x]]$.
+
+Sekarang kita tunjukkan bahwa $\Gamma^*$ konsisten maksimal dalam
+$\Lang{L}'_1$, dan demikian pula $\Delta^*$ dalam $\Lang{L}'_2$. Untuk
+yang pertama, andaikan $!A_n \notin \Gamma^*$ dan $\lnot !A_n \notin
+\Gamma^*$ bagi suatu $n \ge 0$. Jika $!A_n \notin \Gamma^*$, maka
+$\Gamma_n \cup \{!A_n \}$ terpisahkan dari $\Delta_n$, sehingga terdapat
+$!C \in \Lang{L}'_0$ sedemikian sehingga keduanya berlaku:
+\begin{align*}
+  \Gamma^* & \Entails !A_n \lif !C, &
+  \Delta^* & \Entails \lnot !C.
+\end{align*}
+Demikian pula, jika $\lnot !A_n \notin \Gamma^*$, terdapat $!C' \in
+\Lang{L}'_0$ sedemikian sehingga keduanya berlaku:
+\begin{align*}
+  \Gamma^* & \Entails \lnot !A_n \lif !C', &
+  \Delta^* & \Entails \lnot !C'.
+\end{align*}
+Menurut logika proposisional, $\Gamma^* \Entails !C \lor !C'$ dan
+$\Delta^* \Entails \lnot (!C \lor !C')$, sehingga $!C \lor !C'$
+memisahkan $\Gamma^*$ dan $\Delta^*$. Argumen serupa menetapkan bahwa
+$\Delta^*$ maksimal.
+
+Terakhir, kita tunjukkan bahwa $\Gamma^* \cap \Delta^*$ konsisten maksimal
+dalam $\Lang{L}'_0$. Himpunan ini jelas konsisten karena merupakan irisan
+himpunan-himpunan konsisten. Untuk menunjukkan kemaksimalannya, misalkan
+$!S \in \Lang{L}'_0$. Sekarang, $\Gamma^*$ maksimal dalam $\Lang{L}'_1
+\supseteq \Lang{L}'_0$, dan demikian pula $\Delta^*$ maksimal dalam
+$\Lang{L}'_2 \supseteq \Lang{L}'_0$. Akibatnya, $!S \in \Gamma^*$ atau
+$\lnot !S \in \Gamma^*$, dan $!S \in \Delta^*$ atau $\lnot !S \in
+\Delta^*$. Jika $!S \in \Gamma^*$ dan $\lnot !S \in \Delta^*$, maka
+$!S$ akan memisahkan $\Gamma^*$ dan $\Delta^*$; dan jika $\lnot !S \in
+\Gamma^*$ dan $!S \in \Delta^*$, maka $\Gamma^*$ dan $\Delta^*$ akan
+dipisahkan oleh $\lnot !S$. Karena itu, $!S \in \Gamma^* \cap \Delta^*$
+atau $\lnot !S \in \Gamma^* \cap \Delta^*$, dan $\Gamma^* \cap
+\Delta^*$ maksimal.
+
+Karena $\Gamma^*$ konsisten maksimal, himpunan ini mempunyai model
+$\Struct{M}'_1$ yang !!{domain}nya, $\Domain{M'_1}$, terdiri atas tepat
+semua unsur $\Assign{c}{M'_1}$ yang menafsirkan !!{constant}s---seperti
+dalam bukti teorema kelengkapan
+(\olref[fol][com][cth]{thm:completeness}). Demikian pula, $\Delta^*$
+mempunyai model $\Struct{M}'_2$ yang !!{domain}nya, $\Domain{M'_2}$,
+diberikan oleh interpretasi $\Assign{c}{M'_2}$ dari !!{constant}s.
+
+Misalkan $\Struct{M_1}$ diperoleh dari $\Struct{M'_1}$ dengan membuang
+interpretasi bagi !!{constant}s, !!{function}s, dan !!{predicate}s dalam
+$\Lang{L}'_1 \setminus \Lang{L}'_0$, dan lakukan hal serupa untuk
+$\Struct{M_2}$. Maka pemetaan $h \colon M_1 \to M_2$ yang didefinisikan
+oleh $h(\Assign{c}{M'_1}) = \Assign{c}{M'_2}$ merupakan isomorfisme dalam
+$\Lang{L}'_0$, karena $\Gamma^* \cap \Delta^*$ konsisten maksimal dalam
+$\Lang{L}'_0$, sebagaimana telah ditunjukkan. Hal ini mengikuti karena setiap
+$\Lang{L}'_0$-!!{sentence} termasuk dalam $\Gamma^*$ dan $\Delta^*$
+sekaligus, atau tidak termasuk dalam keduanya: sehingga
+$\Assign{c}{M'_1} \in \Assign{P}{M'_1}$ jika dan hanya jika
+$\Atom{P}{c} \in \Gamma^*$ jika dan hanya jika $\Atom{P}{c} \in
+\Delta^*$ jika dan hanya jika $\Assign{c}{M'_2} \in \Assign{P}{M'_2}$.
+Syarat-syarat isomorfisme lainnya dapat ditetapkan dengan cara serupa.
+
+Sekarang kita definisikan suatu model $\Struct{M}$ bagi !!{language}
+$\Lang{L}'_1 \cup \Lang{L}'_2$ sebagai berikut:
+\begin{enumerate}
+\item !!^{domain} $\Domain{M}$ tidak lain adalah $\Domain{M_2}$, yakni
+  himpunan semua unsur $\Assign{c}{M'_2}$;
+\item Jika !!a{predicate}~$P$ berada dalam $\Lang{L}'_2 \setminus
+  \Lang{L}'_1$, maka $\Assign{P}{M} = \Assign{P}{M'_2}$;
+\item Jika suatu predikat $P$ berada dalam $\Lang{L}'_1\setminus
+  \Lang{L}'_2$, maka $\Assign{P}{M} = h(\Assign{P}{M'_1})$, yakni
+  $\tuple{\Assign{c_1}{M'_2}, \dots, \Assign{c_n}{M'_2}} \in
+  \Assign{P}{M}$ jika dan hanya jika $\tuple{\Assign{c_1}{M'_1}, \dots,
+  \Assign{c_n}{M'_1}} \in \Assign{P}{M'_1}$.
+\item Jika !!a{predicate} $P$ berada dalam $\Lang{L}'_0$, maka
+  $\Assign{P}{M} = \Assign{P}{M'_2} = h(\Assign{P}{M'_1})$.
+\item !!^{function}s dari $\Lang{L}'_1 \cup \Lang{L}'_2$, termasuk
+  !!{constant}s, ditangani dengan cara serupa.
+\end{enumerate}
+
+Terakhir, dengan induksi pada !!{formula}s ditunjukkan bahwa $\Struct{M}$
+bersepakat dengan $\Struct{M'_1}$ pada semua !!{formula}s dari
+$\Lang{L}'_1$ dan dengan $\Struct{M'_2}$ pada semua !!{formula}s dari
+$\Lang{L}'_2$. Khususnya, $\Struct{M} \models \Gamma^* \cup \Delta^*$,
+sehingga $\Struct{M} \models !A$ dan $\Struct{M} \models \lnot!B$, dan
+$\not\Entails !A \lif !B$. Ini menyelesaikan bukti Teorema Interpolasi
+Craig.
+\end{proof}
+
+\end{document}

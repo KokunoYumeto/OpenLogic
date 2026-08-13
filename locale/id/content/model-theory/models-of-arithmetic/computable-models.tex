@@ -1,0 +1,123 @@
+% Bagian: model-theory
+% Bab: models-of-arithmetic
+% Subbagian: computable-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{mar}{cmp}
+\section{Model Aritmetika yang Dapat Dihitung}
+
+\begin{explain}
+Model standar~$\Struct{N}$ mempunyai dua sifat baik. Domainnya merupakan
+himpunan bilangan asli~$\Nat$, yakni unsur-unsurnya memang merupakan jenis
+objek yang ingin kita bicarakan dengan bahasa aritmetika, dan numeral standar~$\num{n}$
+benar-benar menunjuk~$n$. Sifat baik lainnya ialah bahwa semua interpretasi
+simbol nonlogis dari~$\Lang{L_A}$ \emph{dapat dihitung}. Fungsi penerus,
+penjumlahan, dan perkalian yang berperan sebagai $\Assign{\prime}{N}$,
+$\Assign{+}{N}$, dan $\Assign{\times}{N}$ merupakan fungsi bilangan yang dapat
+dihitung. (Misalnya, dapat dihitung oleh mesin Turing atau didefinisikan
+dengan rekursi primitif.) Relasi kurang-dari pada~$\Struct{N}$, yakni
+$\Assign{<}{N}$, juga dapat diputuskan.
+
+Model-model nonstandar dari teori aritmetika seperti $\Th{Q}$ dan $\Th{PA}$
+harus memuat unsur-unsur nonstandar. Karena itu, domainnya biasanya mencakup
+!!{element}s selain~$\Nat$. Namun, setiap !!{structure} terhitung dapat
+dibangun di atas sembarang himpunan !!{denumerable}, termasuk~$\Nat$. Jadi,
+terdapat pula model-model nonstandar dengan domain~$\Nat$. Dalam model
+semacam itu~$\Struct{M}$, tentu saja setidaknya satu bilangan tidak dapat
+memainkan peran yang biasanya dimainkannya, karena suatu~$k$ harus berbeda
+dari~$\Value{\num{n}}{M}$ bagi semua~$n \in \Nat$.
+\end{explain}
+
+\begin{defn}
+!!^a{structure}~$\Struct{M}$ bagi $\Lang{L_A}$ disebut \emph{dapat dihitung}
+jika dan hanya jika $\Domain{M} = \Nat$, $\Assign{\prime}{M}$,
+$\Assign{+}{M}$, dan $\Assign{\times}{M}$ merupakan fungsi-fungsi yang dapat
+dihitung, serta $\Assign{<}{M}$ merupakan relasi yang dapat diputuskan.
+\end{defn}
+
+\begin{ex}\ollabel{ex:comp-model-q}
+Ingat struktur $\Struct{K}$ dari \olref[mdq]{ex:model-K-of-Q}. Domainnya ialah
+$\Domain{K} = \Nat \cup \{a\}$ dan interpretasinya
+\begin{align*}
+  \Assign{\Obj{0}}{K} & = 0\\
+  \Assign{\prime}{K}(x) & =
+  \begin{cases}
+    x+1 & \text{jika $x\in \Nat$}\\
+    a & \text{jika $x = a$}
+  \end{cases}\\
+  \Assign{+}{K}(x, y) & =
+  \begin{cases}
+    x+y & \text{jika $x$, $y \in\Nat$}\\
+    a & \text{selain itu}
+  \end{cases}\\
+  \Assign{\times}{K}(x, y) & =
+  \begin{cases}
+    xy & \text{jika $x$, $y \in\Nat$}\\
+    0 & \text{jika $x=0$ atau $y=0$}\\
+    a & \text{selain itu}\\
+  \end{cases}\\
+  \Assign{<}{K} & =
+  \Setabs{\tuple{x,y}}{x, y \in \Nat \text{ dan } x<y} \cup
+  \Setabs{\tuple{x,a}}{x \in \Domain{K}}.
+\end{align*}
+Namun, $\Domain{K}$ !!{denumerable}, sehingga berkardinalitas sama
+dengan~$\Nat$. Misalnya, $g\colon \Nat \to \Domain{K}$ dengan
+$g(0) = a$ dan $g(n) = n-1$ bagi $n>0$ merupakan !!a{bijection}. Kita dapat
+mengubahnya menjadi suatu isomorfisme antara model baru~$\Struct{K'}$
+dari~$\Th{Q}$ dan $\Struct{K}$. Dalam $\Struct{K'}$, kita harus menetapkan
+fungsi dan relasi yang berbeda kepada simbol-simbol dari~$\Lang{L_A}$, karena
+!!{element}s yang berbeda dari~$\Nat$ memainkan peran bilangan standar dan
+nonstandar.
+
+Secara khusus, $0$ sekarang memainkan peran~$a$, bukan peran bilangan standar
+terkecil. Bilangan standar terkecil sekarang ialah~$1$. Jadi, kita menetapkan
+$\Assign{\Obj{0}}{K'} = 1$. Fungsi penerus juga kini berbeda: jika diberikan
+suatu bilangan standar, yakni $n > 0$, fungsi itu masih mengembalikan $n+1$.
+Namun, $0$ sekarang memainkan peran~$a$, yang merupakan penerus dirinya
+sendiri. Jadi, $\Assign{\prime}{K'}(0) = 0$. Untuk penjumlahan dan perkalian,
+kita juga mempunyai
+\begin{align*}
+\Assign{+}{K'}(x, y) & =
+  \begin{cases}
+    x+y-1 & \text{jika $x$, $y >0$}\\
+    0 & \text{selain itu}
+  \end{cases}\\
+  \Assign{\times}{K'}(x, y) & =
+  \begin{cases}
+    1 & \text{jika $x = 1$ atau $y = 1$}\\
+    xy - x - y + 2 & \text{jika $x$, $y > 1$}\\
+    0 & \text{selain itu}\\
+  \end{cases}.
+\end{align*}
+Selain itu, $\tuple{x, y} \in \Assign{<}{K'}$ jika dan hanya jika
+$x < y$ dan $x > 0$ serta $y > 0$, atau jika $y = 0$.
+
+Semua fungsi ini merupakan fungsi bilangan asli yang dapat dihitung dan
+$\Assign{<}{K'}$ merupakan relasi yang dapat diputuskan pada~$\Nat$---tetapi
+fungsi-fungsi tersebut bukan fungsi penerus, penjumlahan, dan perkalian yang
+sama pada~$\Nat$, dan $\Assign{<}{K'}$ bukan relasi yang sama dengan~$<$
+pada~$\Nat$.
+\end{ex}
+
+\begin{prob}
+Berikan !!a{structure}~$\Struct{L'}$ dengan $\Domain{L'} = \Nat$ yang
+isomorfik dengan~$\Struct{L}$ dari
+\olref[mod][mar][mdq]{ex:model-L-of-Q}.
+\end{prob}
+
+\begin{explain}
+\Olref{ex:comp-model-q} menunjukkan bahwa $\Th{Q}$ mempunyai model-model
+nonstandar yang dapat dihitung dengan domain~$\Nat$. Namun, hasil berikut
+menunjukkan bahwa hal itu tidak berlaku bagi model-model dari~$\Th{PA}$ (dan
+karena itu juga bagi model-model dari~$\Th{TA}$).
+\end{explain}
+
+\begin{thm}[Teorema Tennenbaum]
+Hingga isomorfisme, $\Struct{N}$ merupakan satu-satunya model dari~$\Th{PA}$
+yang dapat dihitung.
+\end{thm}
+
+\end{document}

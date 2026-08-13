@@ -1,0 +1,79 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: trees
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{tre}
+\olsection{Pohon}
+
+Kadang-kadang berguna untuk merepresentasikan pohon sebagai bilangan asli,
+seperti halnya kita dapat merepresentasikan barisan dengan bilangan serta
+merepresentasikan sifat dan operasi pada barisan melalui relasi dan fungsi
+rekursif primitif pada kode-kodenya. Kita akan menggunakan barisan dan
+kode-kodenya untuk melakukan hal ini. Suatu pohon dapat berupa satu simpul
+(mungkin dengan label), atau berupa suatu simpul (mungkin dengan label) yang
+terhubung dengan sejumlah subpohon. Simpul tersebut disebut \emph{akar} pohon,
+dan subpohon yang terhubung dengannya disebut \emph{subpohon langsung}nya.
+
+Kita mengodekan pohon secara rekursif sebagai barisan
+$\tuple{k,d_1,\dots,d_k}$, dengan $k$ banyaknya subpohon langsung dan
+$d_1$, \dots,~$d_k$ kode-kode subpohon langsung tersebut. Jika simpul-simpul
+mempunyai label, label dapat dicantumkan setelah subpohon langsung. Jadi,
+pohon yang hanya terdiri atas satu simpul dengan label~$l$ akan dikodekan oleh
+$\tuple{0,l}$, dan pohon yang terdiri atas suatu akar (berlabel~$l_1$) yang
+terhubung dengan dua simpul tunggal (berlabel $l_2$, $l_3$) akan dikodekan
+oleh $\tuple{2,\tuple{0,l_2},\tuple{0,l_3},l_1}$.
+
+\begin{prop}
+  \ollabel{prop:subtreeseq}
+  Fungsi $\fn{SubtreeSeq}(t)$, yang mengembalikan kode suatu barisan yang
+  elemen-elemennya merupakan kode semua subpohon dari pohon berkode~$t$,
+  bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Pertama, perhatikan bahwa
+  $\fn{ISubtrees}(t)=\fn{subseq}(t,1,(t)_0)$ bersifat rekursif primitif dan
+  mengembalikan kode-kode subpohon langsung dari suatu pohon~$t$. Sekarang
+  kita dapat mendefinisikan fungsi pembantu $\fn{hSubtreeSeq}(t,n)$ yang
+  menghitung barisan semua subpohon yang berjarak paling jauh $n$ simpul dari
+  akar. Barisan subpohon dari~$t$ yang berjarak paling jauh $0$ simpul dari
+  akar---dengan kata lain, yang dimulai pada akar~$t$---merupakan barisan yang
+  hanya terdiri atas~$t$. Untuk memperoleh barisan semua subpohon sampai
+  tingkat~$n+1$ dari~$t$, kita menggabungkan subpohon sampai tingkat~$n$
+  dengan barisan yang terdiri atas semua subpohon langsung dari subpohon
+  sampai tingkat~$n$. Untuk memperoleh daftar semua subpohon langsung ini,
+  perhatikan bahwa jika $f(x)$ merupakan fungsi rekursif primitif yang
+  mengembalikan kode barisan, maka
+  $g_f(s,k)=f((s)_0)\concat\dots\concat f((s)_{k-1})$ untuk $k>0$ juga
+    bersifat rekursif primitif:
+    \begin{align*}
+      g_f(s,0) & = 0\\
+      g_f(s,k+1) & = g_f(s,k) \concat f((s)_k).
+    \end{align*}
+    Sebagai contoh, jika $s$ merupakan barisan pohon, maka
+    $h(s)=g_{\fn{ISubtrees}}(s,\len{s})$ menghasilkan barisan semua subpohon
+    langsung dari elemen-elemen~$s$. Kita dapat menggunakannya untuk
+    mendefinisikan $\fn{hSubtreeSeq}$ dengan
+    \begin{align*}
+      \fn{hSubtreeSeq}(t, 0) & = \tuple{t} \\
+      \fn{hSubtreeSeq}(t, n+1) & = \fn{hSubtreeSeq}(t, n) \concat
+      h(\fn{hSubtreeSeq}(t, n)).
+    \end{align*}
+    Tingkat maksimum subpohon dalam pohon yang dikodekan oleh~$t$, yakni jarak
+    maksimum antara akar dan suatu simpul daun, dibatasi oleh kode~$t$. Jadi,
+    barisan kode semua subpohon dari pohon berkode~$t$ diberikan oleh
+    $\fn{hSubtreeSeq}(t,t)$.
+\end{proof}
+
+\begin{prob}
+  Definisi $\fn{hSubtreeSeq}$ dalam bukti
+  \olref[cmp][rec][tre]{prop:subtreeseq} pada umumnya memuat pengulangan.
+  Berikan definisi lain yang menjamin bahwa kode suatu subpohon hanya muncul
+  satu kali dalam daftar yang dihasilkan.
+\end{prob}
+
+\end{document}

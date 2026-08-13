@@ -1,0 +1,116 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{par}
+\olsection{Fungsi Rekursif Parsial}
+
+Untuk memotivasi definisi fungsi rekursif, perhatikan bahwa bukti kita tentang
+adanya fungsi yang dapat dihitung tetapi bukan rekursif primitif sebenarnya
+menunjukkan hal yang jauh lebih kuat. Argumennya sederhana: kita hanya
+menggunakan fakta bahwa fungsi-fungsi $f_0,f_1,\dots$ dapat dienumerasi
+sedemikian sehingga $f_x(y)$, sebagai fungsi dari $x$ dan~$y$, dapat dihitung.
+Jadi, argumen itu berlaku bagi \emph{setiap kelas fungsi yang dapat dienumerasi
+dengan cara semacam itu}. Ini menempatkan kita dalam kesulitan: kita ingin
+menguraikan fungsi-fungsi yang dapat dihitung secara eksplisit, tetapi setiap
+uraian eksplisit tentang suatu kumpulan fungsi yang dapat dihitung tidak mungkin
+mencakup semuanya!
+
+Jalan keluarnya ialah memperbolehkan \emph{fungsi parsial}. Kita akan melihat
+bahwa fungsi-fungsi parsial yang dapat dihitung \emph{memang} dapat dienumerasi.
+\iftag{TMs}{ Sebenarnya, kita hampir sudah mengetahui bahwa demikianlah
+  halnya, sebab mesin Turing dapat dienumerasi secara sistematis.}{} Kita akan
+kembali ke argumen diagonal kita nanti dan menyelidiki mengapa argumen itu
+tidak berhasil ketika fungsi parsial disertakan.
+
+Sekarang pertanyaannya ialah: apa yang perlu kita tambahkan pada fungsi
+rekursif primitif untuk memperoleh semua fungsi rekursif parsial? Kita perlu
+melakukan dua hal:
+\begin{enumerate}
+\item Mengubah definisi fungsi rekursif primitif agar juga memperbolehkan
+  fungsi parsial.
+\item \emph{Menambahkan} sesuatu pada definisi tersebut agar beberapa fungsi
+  parsial baru turut disertakan.
+\end{enumerate}
+
+Hal pertama mudah. Seperti sebelumnya, kita akan mulai dengan nol, penerus,
+dan proyeksi, lalu menutup himpunan itu terhadap komposisi dan rekursi
+primitif. Satu-satunya perbedaan ialah bahwa kita harus mengubah definisi
+komposisi dan rekursi primitif untuk memperbolehkan kemungkinan bahwa beberapa
+suku dalam definisi tidak terdefinisi. Jika $f$ dan $g$ merupakan fungsi
+parsial, kita akan menulis $f(x) \fdefined$ untuk menyatakan bahwa $f$
+terdefinisi pada~$x$, yakni $x$ berada dalam domain~$f$; dan $f(x)
+\fundefined$ untuk menyatakan kebalikannya, yakni $f$ tidak terdefinisi
+pada~$x$. Kita akan menggunakan $f(x)\simeq g(x)$ untuk menyatakan bahwa
+$f(x)$ dan $g(x)$ keduanya tidak terdefinisi, atau keduanya terdefinisi dan
+sama. Kita juga akan menggunakan notasi-notasi ini bagi suku yang lebih
+rumit. Kita menerapkan konvensi bahwa jika $h$ dan $g_0$, \dots,~$g_k$
+semuanya merupakan fungsi parsial, maka
+\[
+h(g_0(\vec x),\dots,g_k(\vec x))
+\]
+terdefinisi jika dan hanya jika setiap $g_i$ terdefinisi pada~$\vec x$ dan
+$h$ terdefinisi ketika diterapkan pada nilai-nilai
+$g_0(\vec x)$, \dots,~$g_k(\vec x)$. Dengan pengertian ini, definisi
+komposisi dan rekursi primitif bagi fungsi parsial sama seperti sebelumnya,
+kecuali bahwa kita harus mengganti ``$=$'' dengan ``$\simeq$''.
+
+Yang akan kita tambahkan pada definisi fungsi rekursif primitif untuk
+memperoleh fungsi parsial ialah \emph{operator pencarian tak berbatas}. Jika
+$f(x,\vec z)$ merupakan sebarang fungsi parsial pada bilangan asli, definisikan
+$\mu x\;f(x,\vec z)$ sebagai
+\begin{quote}
+  $x$ terkecil sedemikian sehingga $f(0,\vec z)$, $f(1,\vec z)$, \dots,
+  $f(x,\vec z)$ semuanya terdefinisi dan $f(x,\vec z)=0$, jika $x$ semacam itu
+  ada
+\end{quote}
+dengan pengertian bahwa $\mu x\;f(x,\vec z)$ tidak terdefinisi jika tidak ada.
+Ini mendefinisikan $\mu x\;f(x,\vec z)$ secara unik.
+
+\begin{explain}
+Perhatikan bahwa definisi kita tidak merujuk pada\iftag{TMs}{ mesin Turing,
+  atau}{} algoritme, ataupun model komputasi tertentu. Namun, seperti
+komposisi dan rekursi primitif, pencarian tak berbatas didasari intuisi
+operasional dan komputasional. Dalam komputabilitas fungsi parsial,
+argumen-argumen yang padanya fungsi itu tidak terdefinisi bersesuaian dengan
+masukan yang membuat
+komputasi tidak berhenti. Prosedur untuk menghitung $\mu x\;f(x,\vec z)$
+adalah sebagai berikut: hitung $f(0,\vec z)$, $f(1,\vec z)$,
+$f(2,\vec z)$, dan seterusnya sampai nilai~$0$ dikembalikan. Akan tetapi,
+jika salah satu komputasi perantara tidak berhenti, komputasi
+$\mu x\;f(x,\vec z)$ juga tidak berhenti.
+\end{explain}
+
+Jika $R(x,\vec z)$ merupakan sebarang relasi, $\mu x\;R(x,\vec z)$
+didefinisikan sebagai $\mu x\;(1\tsub\Char{R}(x,\vec z))$. Dengan kata lain,
+$\mu x\;R(x,\vec z)$ mengembalikan nilai terkecil $x$ sedemikian sehingga
+$R(x,\vec z)$ berlaku. Jadi, jika $f(x,\vec z)$ merupakan fungsi total,
+$\mu x\;f(x,\vec z)$ sama dengan $\mu x\;(f(x,\vec z)=0)$. Namun,
+perhatikan bahwa definisi asli kita lebih umum karena memperbolehkan
+kemungkinan bahwa $f(x,\vec z)$ tidak terdefinisi untuk sebagian masukan (sedangkan,
+sebaliknya, fungsi karakteristik suatu relasi selalu total).
+
+\begin{defn}
+Himpunan \emph{fungsi rekursif parsial} ialah himpunan terkecil fungsi parsial
+pada bilangan asli (dengan berbagai aritas) yang memuat nol, penerus, dan
+proyeksi, serta tertutup terhadap komposisi, rekursi primitif, dan pencarian
+tak berbatas.
+\end{defn}
+
+Tentu saja, beberapa fungsi rekursif parsial kebetulan bersifat total, yakni
+terdefinisi bagi setiap argumen.
+
+\begin{defn}
+\ollabel{defn:recursive-fn}
+Himpunan \emph{fungsi rekursif} ialah himpunan fungsi rekursif parsial yang
+bersifat total.
+\end{defn}
+
+Suatu fungsi rekursif kadang-kadang disebut ``rekursif total'' untuk
+menegaskan bahwa fungsi itu terdefinisi pada setiap masukan.
+
+\end{document}

@@ -1,0 +1,52 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: ce-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{ces}
+\olsection{Himpunan Terenumerasi Secara Komputabel}
+
+\begin{defn}
+Suatu himpunan \emph{terenumerasi secara komputabel} jika himpunan itu kosong
+atau merupakan daerah hasil suatu fungsi dapat dihitung.
+\end{defn}
+
+\begin{history}
+Himpunan terenumerasi secara komputabel juga disebut \emph{terenumerasi secara
+  rekursif}. Istilah terakhir merupakan istilah asli, dan saat ini keduanya
+lazim digunakan, begitu pula singkatan ``c.e.'' dan ``r.e.''
+\end{history}
+
+\begin{explain}
+Anda sebaiknya memikirkan arti definisi itu dan alasan istilah tersebut tepat.
+Gagasannya adalah bahwa jika $S$ merupakan daerah hasil fungsi dapat
+dihitung~$f$, maka
+\[
+S = \{ f(0), f(1), f(2), \dots \},
+\]
+sehingga $f$ dapat dipandang ``mengenumerasi'' unsur-unsur~$S$. Perhatikan
+bahwa berdasarkan definisi, $f$ tidak harus berupa fungsi naik; yakni,
+enumerasinya tidak harus berurutan menaik. Bahkan, $f$ tidak harus injektif;
+artinya, pengulangan dalam enumerasi $f(0)$, $f(1)$, $f(2)$, \dots{} atas~$S$
+diperbolehkan. Sebagai contoh, fungsi konstan $f(x) = 0$ mengenumerasi
+himpunan $\{ 0 \}$.
+\end{explain}
+
+Setiap himpunan dapat dihitung terenumerasi secara komputabel. Untuk melihat
+hal ini, andaikan $S$ dapat dihitung. Jika $S$ kosong, berdasarkan definisi
+himpunan itu terenumerasi secara komputabel. Jika tidak, misalkan $a$ sembarang
+unsur $S$. Definisikan $f$ dengan
+\[
+f(x) =
+\begin{cases}
+x & \text{jika $\Char{S}(x) = 1$} \\
+a & \text{selain itu.}
+\end{cases}
+\]
+Maka $f$ merupakan fungsi dapat dihitung dan $S$ merupakan daerah hasil~$f$.
+
+\end{document}
+

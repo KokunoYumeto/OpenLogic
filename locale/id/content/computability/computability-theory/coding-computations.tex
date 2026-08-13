@@ -1,0 +1,44 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: coding-computations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{cod}
+\olsection{Pengodean Komputasi}
+
+Dalam setiap model komputasi, hal-hal berikut dapat dilakukan:
+\begin{enumerate}
+\item Mendeskripsikan \emph{definisi} fungsi-fungsi dapat dihitung secara
+  sistematis. Misalnya, spesifikasi mesin Turing, definisi rekursif, atau
+  program dalam suatu bahasa pemrograman dapat dipandang sebagai pemberi
+  definisi tersebut.
+\item Mendeskripsikan rekaman lengkap komputasi suatu fungsi yang diberikan
+  oleh suatu definisi, untuk masukan tertentu. Misalnya, komputasi mesin Turing
+  dapat dideskripsikan oleh urutan konfigurasi (keadaan mesin dan isi pita)
+  pada setiap langkah komputasi.
+\item Menguji apakah suatu calon rekaman komputasi benar-benar merekam
+  komputasi suatu fungsi dapat dihitung dengan definisi tertentu pada masukan
+  tertentu (yang padanya fungsi itu terdefinisi, yakni komputasinya berhenti).
+\item Mengekstrak nilai fungsi untuk suatu masukan tertentu dari deskripsi
+  rekaman lengkap komputasi semacam itu. Misalnya, isi pita pada langkah
+  terakhir suatu komputasi mesin Turing yang berhenti merupakan nilai fungsi
+  tersebut.
+\end{enumerate}
+
+Melalui pengodean, setiap deskripsi fungsi dapat dihitung dapat diberi
+\emph{indeks} numerik sedemikian rupa sehingga instruksinya dapat diperoleh
+kembali dari indeks itu dengan cara yang dapat dihitung. Demikian pula,
+rekaman lengkap suatu komputasi dapat dikodekan dengan satu bilangan. Relasi
+aritmetis yang dihasilkan, yakni ``$s$~mengodekan rekaman komputasi fungsi
+berindeks~$e$ untuk masukan~$x$,'' dan fungsi ``keluaran urutan komputasi
+berkode~$s$,'' kemudian dapat dihitung; bahkan, keduanya bersifat rekursif
+primitif.
+
+Fakta mendasar ini sangat kuat dan memungkinkan kita membuktikan sejumlah
+hasil yang mencolok dan penting tentang komputabilitas, terlepas dari model
+komputasi yang dipilih.
+
+\end{document}

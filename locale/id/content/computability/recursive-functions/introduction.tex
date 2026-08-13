@@ -1,0 +1,56 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{int}
+\olsection{Pendahuluan}
+
+Untuk mengembangkan teori matematis tentang komputabilitas, pertama-tama kita
+harus mengembangkan suatu \emph{model} komputabilitas. Sekarang kita memandang
+komputabilitas sebagai jenis hal yang dilakukan oleh komputer, sedangkan
+komputer bekerja dengan simbol. Namun, pada awal perkembangan teori
+komputabilitas, contoh paradigmatik komputasi adalah komputasi
+\emph{numerik}. Para matematikawan sejak dahulu tertarik pada fungsi-fungsi
+teori bilangan, yakni fungsi $f\colon \Nat^n \to \Nat$ yang dapat dihitung.
+Karena itu, tidak mengherankan bahwa pada awal teori komputabilitas,
+fungsi-fungsi semacam itulah yang dipelajari. Contoh-contoh fungsi numerik
+dapat dihitung yang paling dikenal, seperti penjumlahan, perkalian, dan
+perpangkatan (bilangan asli), mempunyai suatu ciri yang menarik: semuanya
+dapat didefinisikan secara \emph{rekursif}. Oleh sebab itu, cukup wajar untuk
+mencoba memberikan definisi umum tentang \emph{fungsi dapat dihitung}
+berdasarkan definisi rekursif. Di antara banyak cara yang mungkin untuk
+mendefinisikan fungsi teori bilangan secara rekursif, satu pola definisi yang
+sangat sederhana menjadi pokok bahasan utama di sini, yaitu apa yang disebut
+\emph{rekursi primitif}.
+
+Selain fungsi dapat dihitung, kita mungkin tertarik pada himpunan dan relasi
+dapat dihitung. Suatu himpunan dapat dihitung jika kita dapat menghitung
+jawaban atas pertanyaan apakah suatu bilangan yang diberikan merupakan
+!!a{element} himpunan itu atau bukan, dan suatu relasi dapat dihitung jika dan
+hanya jika kita dapat menghitung apakah suatu tupel
+$\tuple{n_1, \dots, n_k}$ merupakan !!a{element} relasi itu atau bukan.
+Dengan meninjau \emph{fungsi karakteristik} suatu himpunan atau relasi,
+pembahasan himpunan dan relasi dapat dihitung dapat dicakup dalam pembahasan
+fungsi dapat dihitung. Dengan demikian, kita juga dapat mendefinisikan relasi
+rekursif primitif; misalnya, relasi ``$n$ membagi habis $m$'' merupakan relasi
+rekursif primitif.
+
+Namun, fungsi rekursif primitif---yakni fungsi yang dapat didefinisikan hanya
+dengan rekursi primitif---bukanlah satu-satunya fungsi teori bilangan yang
+dapat dihitung. Banyak perumuman rekursi primitif telah dipertimbangkan, tetapi
+cara tambahan yang paling kuat dan diterima luas untuk menghitung fungsi ialah
+pencarian tak berbatas. Cara ini menghasilkan definisi \emph{fungsi rekursif
+  parsial} dan definisi yang berkaitan untuk \emph{fungsi rekursif umum}.
+Fungsi rekursif umum dapat dihitung dan bersifat total, dan definisinya tepat
+mencirikan fungsi rekursif parsial yang kebetulan bersifat total. Fungsi
+rekursif dapat menyimulasikan setiap model komputasi lainnya (mesin Turing,
+kalkulus lambda, dan sebagainya), sehingga merupakan salah satu dari banyak
+model komputasi yang diterima.
+
+
+\end{document}
+

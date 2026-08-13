@@ -1,0 +1,45 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: pr-functions-computable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{cmp}
+\olsection{Fungsi Rekursif Primitif Dapat Dihitung}
+
+Andaikan suatu fungsi $h$ didefinisikan dengan rekursi primitif
+\begin{eqnarray*}
+h(\vec x, 0)     & = & f(\vec x) \\
+h(\vec x, y + 1) & = & g(\vec x, y, h(\vec x, y))
+\end{eqnarray*}
+dan andaikan fungsi $f$ serta $g$ dapat dihitung. (Kita menggunakan $\vec x$
+sebagai singkatan untuk $x_0$, \dots, $x_{k-1}$.) Maka $h(\vec x, 0)$ jelas
+dapat dihitung karena nilainya hanyalah $f(\vec x)$, yang kita andaikan dapat
+dihitung. Selanjutnya, $h(\vec x, 1)$ juga dapat dihitung karena $1 = 0 + 1$,
+sehingga $h(\vec x, 1)$ hanyalah
+\begin{align*}
+ h(\vec x, 1) & = g(\vec x, 0, h(\vec x, 0)) =  g(\vec x, 0, f(\vec x)).
+\intertext{Kita dapat melanjutkan dengan cara ini dan menghitung}
+h(\vec x, 2) & = g(\vec x, 1, h(\vec x, 1)) = g(\vec x, 1, g(\vec x, 0, f(\vec x)))\\
+h(\vec x, 3) & = g(\vec x, 2, h(\vec x, 2)) = g(\vec x, 2, g(\vec x, 1, g(\vec x, 0, f(\vec x))))\\
+h(\vec x, 4) & = g(\vec x, 3, h(\vec x, 3)) = g(\vec x, 3, g(\vec x, 2, g(\vec x, 1, g(\vec x, 0, f(\vec x)))))\\
+& \vdots
+\end{align*}
+Jadi, untuk menghitung $h(\vec x, y)$ secara umum, hitunglah secara
+berturut-turut $h(\vec x, 0)$, $h(\vec x, 1)$, \dots, hingga kita mencapai
+$h(\vec x, y)$.
+
+Dengan demikian, suatu definisi rekursif primitif menghasilkan fungsi dapat
+dihitung yang baru jika fungsi $f$ dan $g$ dapat dihitung. Komposisi fungsi
+juga menghasilkan fungsi dapat dihitung jika fungsi $f$ dan $g_i$ dapat
+dihitung.
+
+Karena fungsi dasar $\Zero$, $\Succ$, dan $\Proj{n}{i}$ dapat dihitung,
+sedangkan komposisi dan rekursi primitif menghasilkan fungsi dapat dihitung
+dari fungsi-fungsi dapat dihitung, setiap fungsi rekursif primitif dapat
+dihitung.
+
+\end{document}
+

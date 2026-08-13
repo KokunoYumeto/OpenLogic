@@ -1,0 +1,72 @@
+% Bagian: model-theory
+% Bab: models-of-arithmetic
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{mar}{int}
+\section{Pendahuluan}
+
+\emph{Model standar} aritmetika ialah !!{structure}~$\Struct{N}$ dengan
+$\Domain{N} = \Nat$, tempat $\Obj{0}$, $\prime$, $+$, $\times$, dan $<$
+ditafsirkan sebagaimana yang kita harapkan. Artinya, $\Obj{0}$ ialah $0$,
+$\prime$ ialah fungsi penerus, $+$ ditafsirkan sebagai penjumlahan, dan
+$\times$ sebagai perkalian bilangan-bilangan dalam~$\Nat$. Secara khusus,
+\begin{align*}
+  \Assign{\Obj{0}}{N} & = 0\\
+  \Assign{\prime}{N}(n) & = n + 1\\
+  \Assign{+}{N}(n, m) & = n + m\\
+  \Assign{\times}{N}(n, m) & = nm
+\end{align*}
+Tentu saja, terdapat struktur-struktur bagi $\Lang{L_A}$ yang domainnya
+bukan~$\Nat$. Misalnya, kita dapat mengambil $\Struct{M}$ dengan domain
+$\Domain{M} = \{a\}^*$ (barisan-barisan hingga dari simbol tunggal~$a$,
+yakni $\emptyset$, $a$, $aa$, $aaa$, \dots), dan interpretasi
+\begin{align*}
+  \Assign{\Obj{0}}{M} & = \emptyset\\
+  \Assign{\prime}{M}(s) & = s \concat a\\
+  \Assign{+}{M}(n, m) & = a^{n + m}\\
+  \Assign{\times}{M}(n, m) & = a^{nm}
+\end{align*}
+Kedua struktur ini ``pada hakikatnya sama'' dalam arti bahwa satu-satunya
+perbedaan terletak pada !!{element}s dari !!{domain}snya, bukan pada cara
+!!{element}s dari !!{domain}s tersebut saling berhubungan melalui fungsi-fungsi
+interpretasi. Kita mengatakan bahwa kedua !!{structure}s itu
+\emph{isomorfik}.
+
+Teorema kekompakan dengan mudah menyiratkan bahwa setiap teori yang benar
+dalam~$\Struct{N}$ juga mempunyai model-model yang tidak isomorfik dengan
+$\Struct{N}$. Struktur semacam itu disebut \emph{nonstandar}. Hal yang menarik
+tentangnya ialah bahwa sementara !!{element}s suatu model standar (yakni
+$\Struct{N}$, tetapi juga semua !!{structure}s yang isomorfik dengannya)
+seluruhnya tercakup oleh nilai numeral standar~$\num{n}$, yakni,
+\[
+\Domain{N} = \Setabs{\Value{\num{n}}{N}}{n \in \Nat}
+\]
+hal itu tidak berlaku dalam model nonstandar: jika $\Struct{M}$ nonstandar,
+maka, asalkan struktur itu merupakan model aritmetika Robinson Q (termasuk
+model aritmetika Peano atau aritmetika sejati), terdapat sekurang-kurangnya
+satu $x \in \Domain{M}$ sedemikian sehingga $x \neq
+\Value{\num{n}}{M}$ bagi semua~$n$. Untuk struktur sembarang dalam bahasa
+aritmetika, implikasi ini tidak berlaku tanpa syarat tersebut.
+
+Unsur-unsur nonstandar ini cukup menarik: unsur-unsur itu merupakan
+``bilangan asli tak hingga.'' Namun, keberadaannya juga menjelaskan, dalam
+suatu arti, gejala ketidaklengkapan. Tinjau, misalnya, pernyataan konsistensi
+bagi aritmetika Peano, $\OCon[\Th{PA}]$, yakni $\lnot
+\lexists[x][\OPrf[\Th{PA}](x, \gn{\lfalse})]$. Karena $\Th{PA}$ tidak
+membuktikan $\OCon[\Th{PA}]$ maupun $\lnot \OCon[\Th{PA}]$, masing-masing
+dapat ditambahkan secara konsisten ke $\Th{PA}$. Karena $\Th{PA}$
+konsisten, $\Sat{N}{\OCon[\Th{PA}]}$, dan akibatnya
+$\Sat/{N}{\lnot \OCon[\Th{PA}]}$. Jadi, $\Struct{N}$ \emph{bukan} model dari
+$\Th{PA} \cup \{\lnot \OCon[\Th{PA}]\}$, dan semua model teori itu harus
+nonstandar. Model-model dari $\Th{PA} \cup \{\lnot \OCon[\Th{PA}]\}$ harus
+memuat suatu !!{element} yang berperan sebagai saksi yang membuat
+$\lexists[x][\OPrf[\Th{PA}](x, \gn{\lfalse})]$ benar, yakni bilangan G\"odel
+dari !!a{derivation} kontradiksi dari~$\Th{PA}$. !!a{element} semacam itu
+tidak mungkin standar---karena $\Th{PA} \Proves \lnot
+\OPrf[\Th{PA}](\num{n}, \gn{\lfalse})$ bagi setiap~$n$.
+
+\end{document}

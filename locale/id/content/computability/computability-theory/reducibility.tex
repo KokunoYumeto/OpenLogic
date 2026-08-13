@@ -1,0 +1,77 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: reducibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{red}
+\olsection{Redusibilitas}
+
+\begin{explain}
+Sekarang kita mengetahui bahwa sekurang-kurangnya ada satu himpunan, yaitu
+$K_0$, yang terenumerasi secara komputabel tetapi tidak dapat dihitung. Jelas
+bahwa terdapat himpunan lain dengan sifat tersebut. Metode reduksi menyediakan
+cara yang ampuh untuk menunjukkan bahwa himpunan-himpunan lain mempunyai
+sifat-sifat ini tanpa harus terus-menerus kembali ke prinsip pertama.
+
+Secara umum, suatu ``reduksi'' himpunan $A$ ke himpunan~$B$ adalah metode untuk
+mengubah jawaban atas pertanyaan apakah !!{element}s berada dalam~$B$ menjadi
+jawaban atas pertanyaan apakah !!{element}s berada dalam~$A$. Kita akan
+berfokus pada gagasan yang disebut ``redusibilitas banyak-ke-satu,'' tetapi
+tersedia banyak gagasan redusibilitas lain dengan sifat yang beragam. Gagasan
+redusibilitas juga penting dalam kajian kompleksitas komputasional, yang turut
+mempertimbangkan efisiensi. Sebagai contoh, suatu himpunan disebut
+``NP-lengkap'' jika himpunan itu berada dalam NP dan setiap masalah NP dapat
+direduksi kepadanya dengan menggunakan gagasan reduksi yang serupa dengan yang
+dijelaskan di bawah, tetapi dengan syarat tambahan bahwa reduksi dapat dihitung
+dalam waktu polinomial.
+
+Kita sebenarnya sudah menggunakan gagasan reduksi secara tersirat. Definisikan
+himpunan~$K$ dengan
+\[
+K = \Setabs{x}{\cfind{x}(x) \fdefined},
+\]
+yakni $K = \Setabs{x}{x \in W_x}$. Bukti kita bahwa masalah penghentian tidak
+dapat diputuskan (\olref[hlt]{thm:halting-problem}) paling langsung menunjukkan
+bahwa $K$ tidak dapat dihitung. Ingat bahwa $K_0$ adalah himpunan
+\[
+K_0 = \Setabs{\tuple{e, x}}{\cfind{e}(x) \fdefined },
+\]
+yakni $K_0 = \Setabs{\tuple{e,x}}{x \in W_e}$. Mudah memperluas setiap bukti
+bahwa $K$ tidak dapat dihitung menjadi bukti bahwa $K_0$ tidak dapat dihitung:
+jika $K_0$ dapat dihitung, kita dapat memutuskan apakah !!a{element}~$x$
+berada dalam $K$ cukup dengan menanyakan apakah pasangan $\tuple{x, x}$ berada
+dalam $K_0$. Fungsi~$f$ yang memetakan $x$ ke $\tuple{x, x}$ merupakan contoh
+suatu \emph{reduksi} $K$ ke $K_0$.
+\end{explain}
+
+\begin{defn}
+Misalkan $A$ dan $B$ himpunan bilangan asli. Suatu fungsi dapat dihitung
+$f\colon \Nat \to \Nat$ merupakan \emph{reduksi banyak-ke-satu} dari $A$ ke
+$B$ jika dan hanya jika, untuk setiap bilangan asli~$x$,
+\[
+x \in A \quad \text{jika dan hanya jika} \quad f(x) \in B.
+\]
+Jika terdapat reduksi~$f$ semacam itu, kita mengatakan bahwa $A$
+\emph{tereduksi banyak-ke-satu} ke~$B$, yang ditulis $A \leq_m B$. Jika $A$
+tereduksi banyak-ke-satu ke $B$ dan sebaliknya, maka $A$ dan $B$ disebut
+\emph{ekuivalen banyak-ke-satu}, yang ditulis $A \equiv_m B$.
+\end{defn}
+
+Jika fungsi $f$ dalam definisi di atas kebetulan injektif, $A$ disebut
+\emph{tereduksi satu-ke-satu} ke~$B$. Sebagian besar reduksi yang dijelaskan di
+bawah memenuhi syarat yang lebih kuat ini, tetapi kita tidak akan menggunakan
+fakta tersebut.
+
+\begin{digress}
+Memang benar, meskipun sama sekali tidak jelas, bahwa redusibilitas
+satu-ke-satu benar-benar merupakan syarat yang lebih kuat daripada
+redusibilitas banyak-ke-satu. Dengan kata lain, terdapat himpunan tak berhingga
+$A$ dan~$B$ sedemikian sehingga $A$ tereduksi banyak-ke-satu ke~$B$, tetapi
+tidak tereduksi satu-ke-satu ke~$B$.
+\end{digress}
+
+\end{document}
+

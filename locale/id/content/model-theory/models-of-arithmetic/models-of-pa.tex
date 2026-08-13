@@ -1,0 +1,271 @@
+% Bagian: first-order-logic
+% Bab: models-of-arithmetic
+% Subbagian: models-of-pa
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{mar}{mpa}
+\section{Model-Model $\Th{PA}$}
+
+\begin{explain}
+Setiap model nonstandar dari~$\Th{TA}$ juga merupakan model nonstandar
+dari~$\Th{PA}$. Kita tahu bahwa model-model nonstandar dari~$\Th{TA}$, dan
+karena itu dari~$\Th{PA}$, memang ada. Kita juga tahu bahwa model-model
+nonstandar semacam itu memuat ``bilangan-bilangan'' nonstandar, yakni
+!!{element}s dari domain yang berada ``di luar'' semua ``bilangan'' standar.
+Namun, bagaimana unsur-unsur tersebut tersusun? Berapa banyak jumlahnya? Kita
+telah melihat bahwa model-model dari teori yang lebih lemah, yaitu~$\Th{Q}$,
+dapat memuat hanya satu bilangan nonstandar. Akan tetapi, !!{structure}s
+sederhana ini bukan model dari $\Th{PA}$ ataupun $\Th{TA}$.
+
+Kunci untuk memahami struktur model-model dari $\Th{PA}$ atau $\Th{TA}$
+ialah melihat fakta-fakta apa yang !!{derivable} dalam teori-teori tersebut.
+Misalnya, $\Th{PA}$ sudah membuktikan $\lforall[x][\eq/[x][x']]$ dan
+$\lforall[x][\lforall[y][\eq[(x+y)][(y+x)]]]$, sehingga hal ini
+mengesampingkan struktur-struktur sederhana (tempat !!{sentence}s tersebut
+salah) sebagai model dari~$\Th{PA}$.
+
+Andaikan~$\Struct{M}$ suatu model dari~$\Th{PA}$. Jika
+$\Th{PA} \Proves !A$, maka $\Sat{M}{!A}$. Sekali lagi, mari kita gunakan
+$\nszero$ bagi $\Assign{\Obj{0}}{M}$, $\nssucc$ bagi
+$\Assign{\prime}{M}$, $\nsplus$ bagi $\Assign{+}{M}$, $\nstimes$ bagi
+$\Assign{\times}{M}$, dan $\nsless$ bagi $\Assign{<}{M}$. Setiap
+!!{sentence}~$!A$ lalu menyatakan suatu syarat tentang $\nszero$, $\nssucc$,
+$\nsplus$, $\nstimes$, dan $\nsless$, dan jika $\Sat{M}{!A}$, syarat itu
+harus terpenuhi. Misalnya, jika $\Sat{M}{!Q_1}$, yakni
+$\Sat{M}{\lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]}$, maka
+$\nssucc$ harus !!{injective}.
+\end{explain}
+
+\begin{prop}
+Dalam $\Struct{M}$, $\nsless$ merupakan urutan linear ketat, yakni memenuhi:
+\begin{enumerate}
+\item Tidak berlaku $x \nsless x$ bagi sembarang~$x \in \Domain{M}$.
+\item Jika $x \nsless y$ dan $y \nsless z$, maka $x \nsless z$.
+\item Bagi sembarang $x \neq y$, berlaku $x \nsless y$ atau $y \nsless x$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$\Th{PA}$ membuktikan:
+\begin{enumerate}
+\item $\lforall[x][\lnot x < x]$;
+\item $\lforall[x][\lforall[y][\lforall[z][((x < y \land y < z) \lif x < z)]]]$;
+\item $\lforall[x][\lforall[y][((x < y \lor y < x) \lor \eq[x][y])]]$.
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:M-discrete} $\nszero$ merupakan !!{element} terkecil dari
+$\Domain{M}$ dalam urutan-$\nsless$. Bagi setiap $x$, berlaku
+$x \nsless x^\nssucc$, dan $x^\nssucc$ merupakan !!{element} terkecil
+menurut~$\nsless$ yang mempunyai sifat tersebut. Bagi setiap
+$x \neq \nszero$, terdapat tepat satu $y$ sedemikian sehingga
+$y^\nssucc = x$. (Kita menyebut $y$ ``pendahulu'' dari~$x$ dalam
+$\Struct{M}$ dan melambangkannya dengan~$^\nssucc x$.)
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Carilah !!{sentence}s dalam~$\Lang{L_A}$ yang !!{derivable} dalam~$\Th{PA}$
+(dan karenanya benar dalam~$\Struct{N}$) yang menjamin sifat-sifat
+$\nszero$, $\nssucc$, dan $\nsless$ dalam
+\olref[mod][mar][mpa]{prop:M-discrete}.
+\end{prob}
+
+\begin{prop}
+Semua !!{element}s standar dari~$\Struct{M}$ lebih kecil (menurut~$\nsless$)
+daripada semua !!{element}s nonstandar.
+\end{prop}
+
+\begin{proof}
+Kita akan menggunakan $n$ sebagai singkatan bagi $\Value{\num{n}}{M}$,
+suatu !!{element} standar dari~$\Struct{M}$. $\Th{Q}$ sudah membuktikan
+bahwa, bagi setiap~$n \in \Nat$,
+$\lforall[x][(x < \num{n}' \lif (\eq[x][\num{0}] \lor
+  \eq[x][\num{1}] \lor \dots \lor \eq[x][\num{n}]))]$. Tidak ada
+!!{element}s yang memenuhi $\nsless \nszero$. Jadi, jika $n$ standar dan $x$
+nonstandar, kita tidak mungkin mempunyai $x \nsless n$. Menurut definisi,
+unsur nonstandar ialah unsur yang bukan $\Value{\num{n}}{M}$ bagi setiap
+$n \in \Nat$, sehingga $x \neq n$ juga. Karena $\nsless$ merupakan urutan
+linear, haruslah $n \nsless x$.
+\end{proof}
+
+\begin{prop}
+Setiap !!{element} nonstandar~$x$ dari~$\Domain{M}$ merupakan anggota
+himpunan bagian
+\[
+\dots ^{\nssucc\nssucc\nssucc}x \nsless ^{\nssucc\nssucc}x \nsless
+^{\nssucc}x \nsless x \nsless x^{\nssucc} \nsless x^{\nssucc\nssucc}
+\nsless x^{\nssucc\nssucc\nssucc} \nsless \dots
+\]
+Kita menyebut himpunan bagian ini \emph{blok dari~$x$} dan menuliskannya
+sebagai $[x]$. Himpunan tersebut tidak mempunyai !!{element} terkecil maupun
+terbesar. Himpunan itu dapat dicirikan sebagai himpunan semua
+$y \in \Domain{M}$ sedemikian sehingga, bagi suatu $n$ standar,
+$x \nsplus n = y$ atau $y \nsplus n = x$.
+\end{prop}
+
+\begin{proof}
+Jelas bahwa himpunan~$[x]$ semacam itu selalu ada. Setiap !!{element}~$y$
+dalam $[x]$ nonstandar, dan karenanya bukan~$\nszero$; jadi $y$ mempunyai
+penerus unik~$y^\nssucc$ dan pendahulu unik~$^\nssucc y$. Bagi
+!!{element}s berurutan $y$, $y^\nssucc$, kita mempunyai
+$y \nsless y^\nssucc$, dan $y^\nssucc$ merupakan !!{element} terkecil dari
+$\Domain{M}$ menurut~$\nsless$ yang lebih besar daripada~$y$. Karena selalu
+$^\nssucc y \nsless y$ dan $y \nsless y^\nssucc$, $[x]$ tidak mempunyai
+!!{element} terkecil maupun terbesar. Jika $y \in [x]$, maka $x \in [y]$,
+sebab $y^{\nssucc\dots\nssucc} = x$ atau
+$x^{\nssucc\dots\nssucc} = y$. Jika $y^{\nssucc\dots\nssucc} = x$
+(dengan $n$ buah $\nssucc$), maka $y \nsplus n = x$, dan sebaliknya, karena
+$\Th{PA} \Proves \lforall[x][\eq[x^{\prime\dots\prime}][(x +
+    \num{n})]]$ (jika $n$ merupakan banyaknya~$\prime$).
+\end{proof}
+
+\begin{prop}
+Jika $[x] \neq [y]$ dan $x \nsless y$, maka bagi setiap $u \in [x]$ dan
+setiap $v \in [y]$, berlaku $u \nsless v$.
+\end{prop}
+
+\begin{proof}
+Perhatikan bahwa $\Th{PA} \Proves \lforall[x][\lforall[y][(x < y \lif
+(x' < y \lor x' = y))]]$. Jadi, jika $u \nsless v$, kita juga mempunyai
+$u \nsplus n^\nssucc \nsless v$ bagi setiap~$n$ apabila
+$[u] \neq [v]$.
+
+Setiap $u \in [x]$ memenuhi $\nsless y$: $x \nsless y$ menurut hipotesis.
+Jika $u \nsless x$, maka $u \nsless y$ menurut transitivitas. Jika
+$x \nsless u$ tetapi $u \in [x]$, maka
+$u = x\nsplus n^\nssucc$ bagi suatu~$n$, sehingga $u \nsless y$ menurut
+fakta yang baru saja dibuktikan.
+
+Sekarang andaikan $v \in [y]$ memenuhi $\nsless y$, yakni
+$v \nsplus m^\nssucc = y$ bagi suatu $m$ standar. Ini mengesampingkan
+$v \nsless x$, sebab jika tidak, $y = v \nsplus m^\nssucc \nsless x$.
+Jelas pula bahwa $x \neq v$, sebab jika tidak,
+$x \nsplus m^\nssucc = v \nsplus m^\nssucc = y$ dan kita akan mempunyai
+$[x] = [y]$. Jadi, $x \nsless v$. Namun, kemudian
+$x \nsplus n^\nssucc \nsless v$ juga bagi setiap~$n$. Oleh karena itu,
+jika $x \nsless u$ dan $u \in [x]$, kita memperoleh $u \nsless v$. Jika
+$u \nsless x$, maka $u \nsless v$ menurut transitivitas.
+
+Terakhir, jika $y \nsless v$, maka $u \nsless v$ karena, sebagaimana telah
+kita tunjukkan, $u \nsless y$ dan $y \nsless v$.
+\end{proof}
+
+\begin{cor}
+Jika $[x] \neq [y]$, maka $[x] \cap [y] = \emptyset$.
+\end{cor}
+
+\begin{proof}
+Andaikan $z \in [x]$ dan $x \nsless y$. Maka $z \nsless u$ bagi semua
+$u \in [y]$. Jika $z \in [y]$, kita akan mempunyai $z \nsless z$.
+Demikian pula jika $y \nsless x$.
+\end{proof}
+
+\begin{explain}
+Ini berarti bahwa blok-blok itu sendiri dapat diurutkan dengan cara yang
+menghormati~$\nsless$: bagi blok-blok berbeda, $[x] \nsless [y]$ jika dan
+hanya jika $x \nsless y$, atau, secara ekuivalen, jika
+$u \nsless v$ bagi setiap $u \in [x]$ dan $v \in [y]$. Jelas bahwa blok
+standar $[0]$ merupakan blok terkecil. Blok tersebut tidak beririsan dengan
+blok nonstandar mana pun, dan tidak ada dua blok nonstandar yang beririsan.
+Secara khusus, kita tidak dapat ``mencapai'' blok lain dengan mengambil
+penerus atau pendahulu berulang kali.
+\end{explain}
+
+\begin{prop}
+Jika $x$ dan $y$ nonstandar, maka $x \nsless x \nsplus y$ dan
+$x \nsplus y \notin [x]$.
+\end{prop}
+
+\begin{proof}
+Jika $y$ nonstandar, maka $y \neq \nszero$. $\Th{PA} \Proves
+\lforall[x][(y \neq \Obj{0} \lif x < (x+y))]$. Sekarang andaikan
+$x \nsplus y \in [x]$. Karena $x \nsless x \nsplus y$, kita akan mempunyai
+$x \nsplus n^\nssucc = x \nsplus y$. Namun,
+$\Th{PA} \Proves \lforall[x][\lforall[y][\lforall[z][(\eq[(x+y)][(x+z)]
+\lif y = z)]]]$ (hukum pembatalan bagi penjumlahan). Ini berarti
+$y = n^\nssucc$ bagi suatu $n$ standar; tetapi $y$ diasumsikan nonstandar.
+\end{proof}
+
+\begin{prop}
+Tidak ada blok nonstandar terkecil.
+\end{prop}
+
+\begin{proof}
+$\Th{PA} \Proves \lforall[x][\lexists[y][(\eq[(y+y)][x] \lor
+      \eq[(y+y)'][x])]]$, yakni setiap $x$ dapat dibagi dengan~$2$ (mungkin
+bersisa~$1$). Jika $x$ nonstandar, maka $y$ juga nonstandar. Menurut proposisi
+sebelumnya, $y \nsless y \nsplus y$ dan $y \nsplus y \notin [y]$.
+Kemudian berlaku juga $y \nsless (y \nsplus y)^\nssucc$ dan
+$(y \nsplus y)^\nssucc \notin [y]$. Namun,
+$x = y \nsplus y$ atau $x = (y \nsplus y)^\nssucc$, sehingga
+$y \nsless x$ dan $y \notin [x]$.
+\end{proof}
+
+\begin{prop}
+Dalam suatu model nonstandar dari~$\Th{PA}$, tidak ada blok terbesar.
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa dalam suatu model nonstandar dari~$\Th{PA}$, tidak ada blok
+terbesar.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:blocks-dense}
+Urutan blok-blok itu rapat. Artinya, jika $x \nsless y$ dan
+$[x] \neq [y]$, maka terdapat suatu blok $[z]$ yang berbeda dari keduanya dan
+berada di antara keduanya.
+\end{prop}
+
+\begin{proof}
+Andaikan $x \nsless y$. Seperti sebelumnya, $x \nsplus y$ dapat dibagi dua
+(mungkin bersisa): terdapat $z \in \Domain{M}$ sedemikian sehingga
+$x \nsplus y = z \nsplus z$ atau
+$x \nsplus y = (z \nsplus z)^\nssucc$. Unsur $z$ merupakan ``rata-rata''
+dari $x$ dan~$y$, dan $x \nsless z$ serta $z \nsless y$.
+\end{proof}
+
+\begin{prob}
+Tuliskan bukti terperinci dari
+\olref[mod][mar][mpa]{prop:blocks-dense}. !!{sentence} manakah yang harus
+!!{derive} oleh $\Th{PA}$ untuk menjamin keberadaan~$z$? Mengapa
+$x \nsless z$ dan $z \nsless y$, dan mengapa $[x] \neq [z]$ serta
+$[z] \neq [y]$?
+\end{prob}
+
+\begin{explain}
+Jika model yang sedang ditinjau terhitung, blok-blok nonstandarnya dengan
+demikian terurut seperti bilangan rasional: blok-blok itu membentuk urutan linear rapat tanpa
+titik ujung yang !!{denumerable}. Kita dapat menunjukkan bahwa sembarang dua
+urutan yang !!{denumerable} semacam itu isomorfik. Dari sini mengikuti bahwa
+bagi sembarang dua model nonstandar !!{enumerable} $\Struct{M}_1$ dan
+$\Struct{M}_2$ dari aritmetika sejati, reduknya ke bahasa yang hanya memuat
+$<$ dan $=$ saling isomorfik. Memang, suatu isomorfisme $h$ dapat didefinisikan
+sebagai berikut: bagian standar dari $\Struct{M}_1$ dan $\Struct{M}_2$
+isomorfik dengan model standar $\Struct{N}$, dan karenanya saling isomorfik.
+Blok-blok yang membentuk bagian nonstandar sendiri terurut seperti bilangan
+rasional dan oleh karena itu saling isomorfik; suatu isomorfisme antarblok
+dapat diperluas menjadi suatu isomorfisme \emph{di dalam} blok-blok dengan
+memasangkan unsur-unsur sembarang di masing-masing blok, lalu mengambil
+bayangan penerus $x$ dalam $\Struct{M}_1$ sebagai penerus bayangan $x$ dalam
+$\Struct{M}_2$. Perhatikan bahwa hal ini \emph{tidak} menyiratkan bahwa
+$\mathfrak{M}_1$ dan $\mathfrak{M}_2$ isomorfik dalam bahasa lengkap
+aritmetika (memang, isomorfisme selalu relatif terhadap !!a{language}), karena
+terdapat cara-cara yang tidak isomorfik untuk mendefinisikan penjumlahan dan
+perkalian pada $\Domain{M_1}$ dan $\Domain{M_2}$. (Hal ini juga mengikuti dari
+sebuah teorema terkenal oleh Vaught bahwa banyaknya model terhitung dari suatu
+teori lengkap tidak mungkin sama dengan~2.)
+\end{explain}
+\end{document}

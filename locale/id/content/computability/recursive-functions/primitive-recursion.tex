@@ -1,0 +1,131 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: primitive-recursion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{pre}
+\olsection{Rekursi Primitif}
+
+Salah satu ciri bilangan asli ialah bahwa setiap bilangan asli dapat dicapai
+dari~$0$ dengan menerapkan operasi penerus~$+1$ sebanyak berhingga kali---setiap
+bilangan asli adalah~$0$ atau penerus dari \dots{} penerus dari~$0$. Salah satu
+cara menentukan suatu fungsi~$h\colon\Nat \to \Nat$ yang memanfaatkan fakta
+ini adalah sebagai berikut: (a)~tentukan nilai $h$ untuk argumen~$0$, dan
+(b)~tentukan pula cara menghitung nilai $h(x+1)$ jika nilai $h(x)$ diberikan.
+Butir (a) memberi tahu kita secara langsung nilai $h(0)$, sehingga $h$
+terdefinisi untuk~$0$. Sekarang, dengan menggunakan petunjuk dalam (b) untuk
+$x=0$, kita dapat menghitung $h(1) = h(0+1)$ dari~$h(0)$. Dengan menggunakan
+petunjuk yang sama untuk $x=1$, kita menghitung $h(2) = h(1+1)$ dari~$h(1)$,
+dan seterusnya. Untuk setiap bilangan asli~$x$, pada akhirnya kita mencapai
+langkah yang mendefinisikan $h(x+1)$ dari $h(x)$, sehingga $h(x)$ terdefinisi
+untuk semua $x \in \Nat$.
+
+Sebagai contoh, andaikan kita menentukan $h\colon \Nat \to \Nat$ dengan dua
+persamaan berikut:
+\begin{align*}
+h(0) & =  1\\
+h(x+1) & =  2 \cdot h(x)
+\end{align*}
+Jika kita sudah mengetahui cara melakukan perkalian, persamaan-persamaan ini
+memberi kita informasi yang diperlukan untuk (a) dan~(b) di atas. Dengan
+menerapkan persamaan kedua secara berturut-turut, kita memperoleh
+\begin{align*}
+  h(1) & = 2\cdot h(0) = 2,\\
+  h(2) & = 2\cdot h(1) = 2\cdot 2,\\
+  h(3) & = 2 \cdot h(2) = 2\cdot 2 \cdot 2,\\
+  & \vdots
+\end{align*}
+Kita melihat bahwa fungsi~$h$ yang telah kita tentukan adalah $h(x) = 2^x$.
+
+Ciri bilangan asli tersebut menjamin bahwa hanya ada satu fungsi~$h$ yang
+memenuhi kedua kriteria ini. Sepasang persamaan semacam ini disebut
+\emph{definisi dengan rekursi primitif} untuk fungsi~$h$. Istilah itu digunakan
+karena kita mendefinisikan~$h$ secara ``rekursif,'' yakni definisinya, khususnya
+persamaan kedua, memuat $h$ sendiri di ruas kanan. Rekursi itu disebut
+``primitif'' karena dalam mendefinisikan $h(x+1)$ kita hanya menggunakan
+nilai~$h(x)$, yakni nilai yang tepat mendahuluinya. Inilah cara paling sederhana
+untuk mendefinisikan suatu fungsi pada~$\Nat$ secara rekursif.
+
+Kita bahkan dapat mendefinisikan fungsi yang lebih mendasar, seperti
+penjumlahan dan perkalian, dengan rekursi primitif. Akan tetapi, dalam
+kasus-kasus ini, fungsi yang dimaksud berargumen~$2$. Kita menetapkan salah satu
+tempat argumen dan menggunakan tempat lainnya untuk rekursi. Misalnya, untuk
+mendefinisikan $\Add(x, y)$, kita dapat menetapkan~$x$ dan mula-mula
+mendefinisikan nilainya untuk $y=0$, lalu untuk $y+1$ berdasarkan~$y$. Karena
+$x$ ditetapkan, variabel itu muncul di ruas kiri maupun ruas kanan persamaan
+pendefinisi.
+\begin{align*}
+\Add(x,0) & =  x\\
+\Add(x,y+1) & =  \Add(x,y)+1
+\end{align*}
+Persamaan-persamaan ini menentukan nilai $\Add$ untuk semua $x$
+\emph{dan}~$y$. Sebagai contoh, untuk mencari $\Add(2,3)$, kita menerapkan
+persamaan pendefinisi bagi $x = 2$: mula-mula menggunakan persamaan pertama
+untuk memperoleh $\Add(2,0) = 2$, kemudian menggunakan persamaan kedua secara
+berturut-turut untuk memperoleh $\Add(2,1) = 2 + 1 = 3$, $\Add(2, 2) = 3 + 1
+= 4$, dan $\Add(2, 3) = 4 + 1 = 5$.
+
+Dalam definisi $\Add$, kita menggunakan $+$ di ruas kanan persamaan kedua,
+tetapi hanya untuk menambahkan~$1$. Dengan kata lain, kita menggunakan fungsi
+penerus $\Succ(z) = z+1$ dan menerapkannya pada nilai sebelumnya
+$\Add(x,y)$ untuk mendefinisikan $\Add(x,y+1)$. Jadi, kita dapat memandang
+definisi rekursif itu sebagai definisi yang diberikan dalam bentuk satu fungsi
+yang diterapkan pada nilai sebelumnya. Namun, tidak ada masalah---dan kadang
+memang perlu---untuk memperbolehkan fungsi tersebut bergantung bukan hanya pada
+nilai sebelumnya, melainkan juga pada $x$ dan~$y$. Tinjau:
+\begin{align*}
+  \Mult(x,0) & =  0 \\
+  \Mult(x,y+1) & =  \Add(\Mult(x,y),x)
+\end{align*}
+Ini merupakan definisi rekursif primitif bagi fungsi $\Mult$, dengan
+menerapkan fungsi $\Add$ pada nilai sebelumnya $\Mult(x,y)$ dan argumen
+pertama~$x$. Definisi ini juga menentukan fungsi~$\Mult(x,y)$ untuk semua
+argumen $x$ dan~$y$. Sebagai contoh, $\Mult(2,3)$ ditentukan dengan menghitung
+$\Mult(2,0)$, $\Mult(2,1)$, $\Mult(2,2)$, dan~$\Mult(2,3)$ secara
+berturut-turut:
+\begin{align*}
+  \Mult(2,0) & = 0\\
+  \Mult(2,1) & = \Mult(2,0+1) =
+  \Add(\Mult(2,0), 2) = \Add(0, 2) = 2\\
+  \Mult(2,2) & = \Mult(2,1+1) =
+  \Add(\Mult(2,1), 2) = \Add(2, 2) = 4\\
+  \Mult(2,3) & = \Mult(2,2+1) =
+  \Add(\Mult(2,2), 2) = \Add(4, 2) = 6
+\end{align*}
+
+Pola umumnya adalah sebagai berikut: untuk memberikan definisi rekursif
+primitif bagi suatu fungsi~$h(x_0, \dots, x_{k-1}, y)$, kita menyediakan dua
+persamaan. Persamaan pertama mendefinisikan nilai
+$h(x_0, \dots, x_{k-1}, 0)$ tanpa mengacu pada~$h$. Persamaan kedua
+mendefinisikan nilai $h(x_0, \dots, x_{k-1}, y+1)$ berdasarkan
+$h(x_0, \dots, x_{k-1}, y)$, argumen-argumen lain $x_0$, \dots,~$x_{k-1}$,
+dan~$y$. Dalam persamaan kedua itu, hanya nilai~$h$ yang tepat mendahului yang
+boleh digunakan. Jika kita memandang operasi yang diberikan oleh ruas kanan
+kedua persamaan ini sebagai fungsi $f$ dan~$g$, pola umum untuk mendefinisikan
+fungsi baru~$h$ dengan rekursi primitif adalah:
+\begin{align*}
+  h(x_0, \dots, x_{k-1}, 0) & = f(x_0, \dots, x_{k-1})\\
+  h(x_0, \dots, x_{k-1}, y+1) & =
+  g(x_0, \dots, x_{k-1}, y, h(x_0, \dots, x_{k-1}, y))
+\end{align*}
+Dalam kasus $\Add$, kita mempunyai $k=1$ dan $f(x_0) = x_0$ (fungsi
+identitas), serta $g(x_0, y, z) = z + 1$ (fungsi berargumen~$3$ yang
+mengembalikan penerus argumen ketiganya):
+\begin{align*}
+  \Add(x_0, 0) & = f(x_0) = x_0\\
+  \Add(x_0, y+1) & = g(x_0, y, \Add(x_0, y)) =
+  \Succ(\Add(x_0, y))
+\end{align*}
+Dalam kasus $\Mult$, kita mempunyai $f(x_0) = 0$ (fungsi konstan yang selalu
+mengembalikan~$0$) dan $g(x_0, y, z) = \Add(z,x_0)$ (fungsi berargumen~$3$
+yang mengembalikan jumlah argumen terakhir dan pertamanya):
+\begin{align*}
+  \Mult(x_0,0) & =  f(x_0) = 0 \\
+  \Mult(x_0,y+1) & =  g(x_0, y, \Mult(x_0,y)) =
+  \Add(\Mult(x_0,y), x_0)
+\end{align*}
+
+\end{document}

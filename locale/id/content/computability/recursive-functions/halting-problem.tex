@@ -1,0 +1,89 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: halting-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{hlt}
+\olsection{Masalah Penghentian}
+
+Secara umum, \emph{masalah penghentian} ialah masalah memutuskan, apabila
+diberikan spesifikasi~$e$ (misalnya, program) dari suatu prosedur komputasi
+yang mungkin hanya mendefinisikan fungsi parsial dan suatu bilangan~$n$, apakah
+komputasi itu pada masukan~$n$ berhenti, yakni menghasilkan suatu keluaran.
+Alan Turing membuktikan hasil terkenal bahwa masalah ini sendiri tidak dapat
+diselesaikan oleh suatu prosedur yang dapat dihitung;
+dengan kata lain, fungsi
+\[
+h(e, n) =
+\begin{cases}
+1 & \text{jika komputasi $e$ berhenti pada masukan $n$}\\
+0 & \text{selain itu}
+\end{cases}
+\]
+tidak dapat dihitung.
+
+Dalam konteks fungsi rekursif parsial, peran spesifikasi program dapat
+dimainkan oleh indeks~$e$ yang diberikan dalam teorema bentuk normal Kleene.
+Jika $f$ merupakan fungsi rekursif parsial, setiap $e$ yang membuat persamaan
+dalam teorema bentuk normal berlaku merupakan suatu indeks dari~$f$. Jika
+diberikan suatu bilangan~$e$, teorema bentuk normal menyatakan bahwa
+\[
+\cfind{e}(x) \simeq U(\mu s \; T(e, x, s))
+\]
+bersifat rekursif parsial, dan bagi setiap fungsi rekursif parsial
+$f\colon\Nat\to\Nat$, terdapat suatu $e\in\Nat$ sedemikian sehingga
+$\cfind{e}(x)\simeq f(x)$ bagi semua~$x\in\Nat$. Bahkan, bagi setiap~$f$
+semacam itu, bukan hanya ada satu, melainkan tak hingga banyak~$e$. Fungsi
+\emph{penghentian}~$h$ didefinisikan oleh
+\[
+h(e, x) =
+\begin{cases}
+1 & \text{jika $\cfind{e}(x) \fdefined$}\\
+0 & \text{selain itu.}
+\end{cases}
+\]
+Perhatikan bahwa $h(e,x)=0$ jika dan hanya jika
+$\cfind{e}(x)\fundefined$.
+
+\begin{thm}
+\ollabel{thm:halting-problem}
+Fungsi penghentian~$h$ tidak bersifat rekursif parsial.
+\end{thm}
+
+\begin{proof}
+Andaikan $h$ bersifat rekursif parsial. Kita dapat mendefinisikan
+\[
+d(y) =
+\begin{cases}
+1 & \text{jika $h(y, y) = 0$}\\
+\umin{x}{x \neq x} & \text{selain itu.}
+\end{cases}
+\]
+Karena tidak ada bilangan $x$ yang memenuhi $x\neq x$, tidak ada
+$\umin{x}{x\neq x}$, sehingga $d(y)\fundefined$ jika dan hanya jika
+$h(y,y)\neq0$. Dari definisi ini diperoleh
+\begin{enumerate}
+\item $d(y)\fdefined$ jika dan hanya jika
+  $\cfind{y}(y)\fundefined$.
+\item $d(y)\fundefined$ jika dan hanya jika
+  $\cfind{y}(y)\fdefined$.
+\end{enumerate}
+Jika $h$ bersifat rekursif parsial, maka $d$ juga bersifat rekursif parsial.
+Jadi, menurut teorema bentuk normal Kleene, $d$ mempunyai suatu indeks~$e_d$.
+Tinjau nilai $h(e_d,e_d)$. Ada dua kemungkinan, yaitu $0$ dan~$1$.
+\begin{enumerate}
+\item Jika $h(e_d,e_d)=1$, maka $\cfind{e_d}(e_d)\fdefined$. Namun,
+  $\cfind{e_d}\simeq d$, sedangkan $d(e_d)$ terdefinisi jika dan hanya jika
+  $h(e_d,e_d)=0$. Ini suatu kontradiksi.
+\item Jika $h(e_d,e_d)=0$, maka $\cfind{e_d}(e_d)\fundefined$. Namun,
+  $\cfind{e_d}\simeq d$, sedangkan $d(e_d)$ terdefinisi jika dan hanya jika
+  $h(e_d,e_d)=0$. Ini juga suatu kontradiksi.
+\end{enumerate}
+Kedua kemungkinan menghasilkan kontradiksi. Maka, $h$ tidak mungkin bersifat
+rekursif parsial.
+\end{proof}
+
+\end{document}

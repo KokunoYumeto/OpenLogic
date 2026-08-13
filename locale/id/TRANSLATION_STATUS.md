@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 190/722 and the exact remainder is 532 files.
+Current target-file coverage is 251/722 and the exact remainder is 471 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -721,3 +721,52 @@ Next global ordered cursor: `OLP-0191`,
 `content/model-theory/models-of-arithmetic/models-of-arithmetic.tex`.
 The remaining closure is 532 source files after the 190 target files currently
 present and admitted.
+
+### Contiguous one-third checkpoint: arithmetic, interpolation, and computability
+
+The next 61 stable closure units, `OLP-0191`--`OLP-0251`, are translated and
+admitted. They complete the current Models of Arithmetic, Interpolation,
+Lindstr\"om, Recursive Functions, and Computability Theory drivers and units.
+Every frozen English source hash matches the 722-row closure manifest at
+commit `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`; every target path, byte count,
+SHA-256, structural exception, exact source correction, retraction, and
+preserved risk is bound by the bounded deterministic replay and independent
+review receipt.
+
+Independent source-bound semantic review reports no unresolved Indonesian
+target defect across the 61 files. Determinate upstream defects were corrected
+only path by path, including malformed variables and binders, false converse
+claims, missing hypotheses and proof cases, partial-function equalities, wrong
+reduction directions, and invalid or inconsistent model-theory notation.
+False-positive findings about project macros and legitimate code/string
+English are explicitly retracted rather than silently retained as adverse
+evidence.
+
+The cumulative driver
+`first-order-logic-model-theory-computability-id.tex` builds successfully to a
+175-page, 965,687-byte PDF with SHA-256
+`887617dedd182e1693894f777d75ecd3952a8824da91cf04f7a8a931b37f89cf`.
+The final log contains zero fatal error, undefined control/reference/citation,
+or missing file/glyph. It contains 92 overfull hboxes (maximum 54.03867 pt)
+and six underfull vboxes; exact-resolution inspection finds no visible loss.
+All 19 fonts are embedded; one inherited Type 3 mathematical font lacks a
+ToUnicode map while searchable extraction remains intact.
+
+Full extraction is 380,583 bytes, SHA-256
+`8ca3c1dde03821946e61bea81ce2c8e32c927f8d7f93e08fda95fe37e0bf8a0e`.
+Pages 88--175 extract to 186,330 bytes, SHA-256
+`770af8824da0339b867ec1065d483817d2ea93afca4470e724aa065eacc9fe56`.
+Residue scans find zero replacement glyph, undefined marker, raw locale token,
+English `computably enumerable` fallback, duplicated synthetic reference
+label, or missing-sentence-space pattern. Raster hashes prove pages 1--87
+pixel-identical to the prior admitted PDF. Every page 88--175 was inspected at
+144 dpi and original resolution; corrected pages 95, 107, 110, and 156 were
+re-rendered and re-inspected.
+
+TeXcount reports 24,131 English-source and 22,092 Indonesian words for this
+tranche, and 111,061 versus 102,228 cumulatively. No native/human review
+metadata is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0252`,
+`content/turing-machines/turing-machines.tex`. The exact remaining closure is
+471 source files after the 251 target files currently present and admitted.

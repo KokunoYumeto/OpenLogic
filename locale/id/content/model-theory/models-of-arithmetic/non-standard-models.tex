@@ -1,0 +1,125 @@
+% Bagian: model-theory
+% Bab: models-of-arithmetic
+% Subbagian: non-standard-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{mar}{nst}
+\section{Model Nonstandar}
+
+\begin{explain}
+Kita menyebut !!a{structure} bagi $\Lang{L_A}$ standar jika struktur tersebut
+isomorfik dengan~$\Struct{N}$. Jika !!a{structure} tidak isomorfik dengan
+$\Struct{N}$, struktur tersebut disebut nonstandar.
+\end{explain}
+
+\begin{defn}
+Suatu !!{structure}~$\Struct{M}$ bagi $\Lang{L_A}$ disebut
+\emph{nonstandar} jika tidak isomorfik dengan~$\Struct{N}$. !!{element}s
+$x \in \Domain{M}$ yang sama dengan $\Value{\num{n}}{M}$ bagi suatu
+$n \in \Nat$ disebut \emph{bilangan standar} (dari $\Struct{M}$), sedangkan
+yang tidak demikian disebut \emph{bilangan nonstandar}.
+\end{defn}
+
+\begin{explain}
+Menurut \olref[stm]{prop:standard-domain}, setiap !!{structure} standar
+bagi~$\Lang{L_A}$ hanya memuat !!{element}s standar. Bagi model dari~$\Th{Q}$
+(dan karenanya bagi model dari~$\Th{PA}$ atau~$\Th{TA}$),
+\olref[stm]{prop:thq-standard} juga menunjukkan bahwa suatu !!{structure}
+nonstandar harus memuat setidaknya satu unsur nonstandar. Secara umum,
+keberadaan suatu !!{element} nonstandar menjamin bahwa !!{structure} tersebut
+nonstandar. Namun, kebalikannya tidak berlaku bagi sembarang struktur dari
+$\Lang{L_A}$: suatu struktur nonstandar tidak harus memuat unsur nonstandar.
+\end{explain}
+
+\begin{prop}
+Jika !!a{structure}~$\Struct{M}$ bagi $\Lang{L_A}$ memuat suatu bilangan
+nonstandar, maka $\Struct{M}$ nonstandar.
+\end{prop}
+
+\begin{proof}
+Andaikan tidak; yakni, andaikan $\Struct{M}$ standar tetapi memuat suatu
+bilangan nonstandar~$x$. Misalkan $g\colon \Nat \to \Domain{M}$ suatu
+isomorfisme. Mudah dilihat (dengan induksi pada~$n$) bahwa
+$g(\Value{\num{n}}{N}) = \Value{\num{n}}{M}$. Dengan kata lain, $g$ memetakan
+bilangan-bilangan standar dari~$\Struct{N}$ ke bilangan-bilangan standar
+dari~$\Struct{M}$. Jika $\Struct{M}$ memuat suatu bilangan nonstandar, maka
+$g$ tidak mungkin !!{surjective}, bertentangan dengan hipotesis.
+\end{proof}
+
+\begin{prob}
+Ingat bahwa $\Th{Q}$ memuat aksioma-aksioma
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]] \tag{$!Q_1$}\\
+& \lforall[x][\eq/[\Obj 0][x']] \tag{$!Q_2$}\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])] \tag{$!Q_3$}.
+\end{align*}
+Berikan !!{structure}s~$\Struct{M_1}$, $\Struct{M_2}$, $\Struct{M_3}$
+sedemikian sehingga
+\begin{enumerate}
+\item $\Sat{M_1}{!Q_1}$, $\Sat{M_1}{!Q_2}$, $\Sat/{M_1}{!Q_3}$;
+\item $\Sat{M_2}{!Q_1}$, $\Sat/{M_2}{!Q_2}$, $\Sat{M_2}{!Q_3}$; dan
+\item $\Sat/{M_3}{!Q_1}$, $\Sat{M_3}{!Q_2}$, $\Sat{M_3}{!Q_3}$.
+\end{enumerate}
+Jelas bahwa bagi masing-masing struktur, Anda hanya perlu menentukan
+$\Assign{\Obj{0}}{M_i}$ dan $\Assign{\prime}{M_i}$.
+\end{prob}
+
+\begin{explain}
+Cukup mudah untuk menentukan !!{structure}s nonstandar bagi $\Lang{L_A}$.
+Misalnya, ambil struktur dengan !!{domain}~$\Int$ dan tafsirkan semua simbol
+nonlogis seperti biasa. Karena bilangan negatif bukan nilai $\num{n}$ bagi
+sembarang~$n$, struktur ini nonstandar. Tentu saja, struktur tersebut bukan
+suatu \emph{model} aritmetika dalam arti membuat kalimat-kalimat yang sama
+benar seperti~$\Struct{N}$. Misalnya,
+$\lforall[x][\eq/[x'][\Obj{0}]]$ salah. Namun, kita dapat dengan cukup mudah
+membuktikan keberadaan model-model aritmetika nonstandar dengan menggunakan
+teorema kekompakan.
+\end{explain}
+
+\begin{prop}
+Misalkan $\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$ teori dari~$\Struct{N}$.
+$\Th{TA}$ mempunyai model nonstandar yang !!{enumerable}.
+\end{prop}
+
+\begin{proof}
+Perluas $\Lang{L_A}$ dengan suatu !!{constant} baru~$c$ dan tinjau himpunan
+!!{sentence}s
+\[
+\Gamma = \Th{TA} \cup \{\eq/[c][\num{0}], \eq/[c][\num{1}],
+\eq/[c][\num{2}], \dots\}.
+\]
+Setiap model~$\Struct{M^c}$ dari~$\Gamma$ akan memuat !!a{element}
+$x = \Assign{c}{M^c}$ yang nonstandar, karena
+$x \neq \Value{\num{n}}{M^c}$ bagi semua $n \in \Nat$. Juga, jelas bahwa
+$\Sat{M^c}{\Th{TA}}$, karena $\Th{TA} \subseteq \Gamma$. Jika kita mengubah
+$\Struct{M^c}$ menjadi !!a{structure}~$\Struct{M}$ bagi $\Lang{L_A}$ hanya
+dengan melupakan~$c$, domainnya masih memuat $x$ yang nonstandar, dan juga
+$\Sat{M}{\Th{TA}}$. Hal terakhir ini terjamin karena $c$ tidak terdapat
+dalam~$\Th{TA}$. Jadi, cukup ditunjukkan bahwa $\Gamma$ mempunyai suatu
+model.
+
+Kita menggunakan teorema kekompakan untuk menunjukkan bahwa~$\Gamma$
+mempunyai suatu model. Jika setiap himpunan bagian hingga dari~$\Gamma$ dapat
+dipenuhi, maka~$\Gamma$ juga dapat dipenuhi. Tinjau sembarang himpunan bagian
+hingga $\Gamma_0 \subseteq \Gamma$. $\Gamma_0$ memuat beberapa !!{sentence}s
+dari~$\Th{TA}$ dan beberapa kalimat berbentuk~$\eq/[c][\num{n}]$, tetapi
+hanya berhingga banyak. Perluas~$\Struct{N}$ menjadi~$\Struct{N^c}$ sebagai
+berikut. Jika $\Gamma_0$ tidak memuat kalimat berbentuk
+$\eq/[c][\num{n}]$, tetapkan $\Assign{c}{N^c}=0$. Jika tidak, andaikan $k$
+bilangan terbesar sedemikian sehingga $\eq/[c][\num{k}] \in \Gamma_0$ dan
+tetapkan $\Assign{c}{N^c} = k+1$. Berlaku $\Sat{N^c}{\Gamma_0}$: jika
+$!A \in \Th{TA}$, maka $\Sat{N^c}{!A}$ karena $\Struct{N^c}$ sama saja
+dengan~$\Struct{N}$ dalam segala hal kecuali~$c$, dan $c$ tidak terdapat
+dalam~$!A$. Selain itu, dalam kasus kedua,
+$\Sat{N^c}{\eq/[c][\num{n}]}$, karena $n \le k$, dan
+$\Value{c}{N^c} = k+1$. Jadi, setiap himpunan bagian hingga dari~$\Gamma$
+dapat dipenuhi. Menurut teorema kekompakan, $\Gamma$ mempunyai suatu model.
+Karena $\Gamma$ ditulis dalam bahasa terhitung, teorema L\"owenheim--Skolem
+memberikan model terhitung; reduknya ke~$\Lang{L_A}$ merupakan model
+nonstandar terhitung dari~$\Th{TA}$.
+\end{proof}
+
+\end{document}

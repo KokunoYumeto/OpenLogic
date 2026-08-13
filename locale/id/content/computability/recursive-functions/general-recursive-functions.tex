@@ -1,0 +1,37 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: general-recursive-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{gen}
+\olsection{Fungsi Rekursif Umum}
+
+Ada cara lain untuk memperoleh suatu himpunan fungsi total. Suatu fungsi total
+$f(x,\vec z)$ disebut \emph{reguler} jika, bagi setiap barisan bilangan asli
+$\vec z$, terdapat suatu $x$ sedemikian sehingga $f(x,\vec z)=0$. Dengan kata
+lain, fungsi reguler tepat merupakan fungsi yang dapat dikenai pencarian tak
+berbatas dan menghasilkan fungsi total. Secara konservatif, kita dapat
+membatasi pencarian tak berbatas pada fungsi reguler:
+
+\begin{defn}
+\ollabel{defn:general-recursive}
+Himpunan \emph{fungsi rekursif umum} ialah himpunan terkecil fungsi pada
+bilangan asli (dengan berbagai aritas) yang memuat nol, penerus, dan proyeksi,
+serta tertutup terhadap komposisi, rekursi primitif, dan pencarian tak berbatas
+yang diterapkan pada fungsi \emph{reguler}.
+\end{defn}
+
+Jelas bahwa setiap fungsi rekursif umum bersifat total. Perbedaan antara
+\olref{defn:general-recursive} dan \olref[par]{defn:recursive-fn} ialah bahwa
+dalam definisi kedua, kita diperbolehkan menggunakan fungsi rekursif parsial
+selama proses; satu-satunya syarat ialah bahwa fungsi yang akhirnya diperoleh
+bersifat total. Jadi, kata ``umum'', suatu peninggalan historis, sebenarnya
+kurang tepat; sepintas, \olref{defn:general-recursive} justru \emph{kurang}
+umum daripada \olref[par]{defn:recursive-fn}. Namun, untungnya, perbedaan itu
+hanya semu; meskipun definisinya berbeda, himpunan fungsi rekursif umum dan
+himpunan fungsi rekursif sama persis.
+
+\end{document}

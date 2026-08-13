@@ -1,0 +1,132 @@
+% Bagian: model-theory
+% Bab: interpolation
+% Subbagian: definability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{int}{def}
+
+\olsection{Teorema Keterdefinisian}
+
+Salah satu penerapan penting teorema interpolasi adalah teorema
+keterdefinisian Beth. Untuk mendefinisikan relasi $n$-tempat~$R$, kita dapat
+memberikan !!a{formula}~$!C$ dengan $n$ !!{variable} bebas yang tidak
+melibatkan~$R$. Ini merupakan definisi \emph{eksplisit} atas~$R$ dalam
+kerangka~$!C$. Selanjutnya, kita juga dapat mengatakan bahwa suatu
+teori~$\Sigma(P)$ dalam !!{language} yang memuat !!{predicate}
+beraritas-$n$~$P$ mendefinisikan~$P$ secara eksplisit jika teori tersebut
+memuat (atau setidaknya mengakibatkan) suatu definisi eksplisit yang
+diformalkan, yakni
+\[
+\Sigma(P) \Entails \lforall[x_1][\dots
+  \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1, \dots,
+    x_n))]].
+\]
+Namun, definisi eksplisit hanyalah salah satu cara mendefinisikan---dalam arti
+menentukan sepenuhnya---suatu relasi. Suatu teori juga dapat bersifat
+sedemikian rupa sehingga interpretasi~$P$ ditetapkan oleh interpretasi bagian
+lain dari !!{language} dalam setiap model. Teorema keterdefinisian menyatakan
+bahwa setiap kali suatu teori menetapkan interpretasi~$P$ dengan cara
+ini---setiap kali teori itu \emph{mendefinisikan $P$ secara implisit}---teori
+tersebut juga mendefinisikannya secara eksplisit.
+
+\begin{defn}
+Andaikan $\Lang{L}$ adalah !!a{language} yang tidak memuat
+!!{predicate}~$P$. Suatu himpunan $\Sigma(P)$ dari !!{sentence}s dalam
+$\Lang{L} \cup \{P\}$ \emph{mendefinisikan $P$ secara eksplisit} jika dan
+hanya jika terdapat !!a{formula}~$!C(x_1, \dots, x_n)$ dari $\Lang{L}$
+sedemikian sehingga
+\[
+\Sigma(P) \Entails \lforall[x_1][\dots
+  \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1, \dots,
+    x_n))]].
+\]
+\end{defn}
+
+\begin{defn}
+Andaikan $\Lang{L}$ adalah !!a{language} yang tidak memuat
+!!{predicate}s~$P$ dan~$P'$. Suatu himpunan $\Sigma(P)$ dari !!{sentence}s
+dalam $\Lang{L} \cup \{P\}$ \emph{mendefinisikan $P$ secara implisit}
+jika dan hanya jika
+\[
+\Sigma(P) \cup \Sigma(P') \Entails \lforall[x_1][\dots
+  \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff \Atom{P'}{x_1,\dots,
+      x_n})]],
+\]
+dengan $\Sigma(P')$ sebagai hasil penggantian seragam $P$ oleh $P'$ dalam
+$\Sigma(P)$.
+\end{defn}
+
+Dengan kata lain, bagi setiap model $\Struct{M}$ dan $R, R' \subseteq
+\Domain{M}^n$, jika $\Expan{M}{R} \models \Sigma(P)$ dan
+$\Expan{M}{R'} \models \Sigma(P')$, maka $R=R'$; di sini
+$\Expan{M}{R}$ adalah !!{structure}~$\Struct{M'}$ bagi ekspansi
+$\Lang{L}$ menjadi $\Lang{L} \cup \{P\}$ sedemikian sehingga
+$\Assign{P}{M'} = R$, dan demikian pula bagi $\Expan{M}{R'}$.
+
+\begin{thm}[Teorema Keterdefinisian Beth] Suatu himpunan $\Sigma(P)$ dari
+  $\Lang{L} \cup\{P\}$-!!{sentence}s mendefinisikan $P$ secara implisit
+  jika dan hanya jika $\Sigma(P)$ mendefinisikan $P$ secara eksplisit.
+\end{thm}
+
+\begin{proof}
+Jika $\Sigma(P)$ mendefinisikan $P$ secara eksplisit, maka keduanya berlaku:
+\begin{align*}
+  \Sigma(P) & \Entails & \lforall[x_1][\dots \lforall[x_n]
+    [(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1,\dots,x_n))]]\\
+  \Sigma(P') & \Entails & \lforall[x_1][\dots \lforall[x_n]
+    [(\Atom{P'}{x_1,\dots, x_n} \liff !C(x_1,\dots,x_n))]]
+\end{align*}
+dan kesimpulannya mengikuti. Untuk arah sebaliknya, andaikan $\Sigma(P)$
+mendefinisikan $P$ secara implisit. Mula-mula, kita menambahkan !!{constant}s
+$c_1$, \dots,~$c_n$ ke $\Lang{L}$. Maka
+\[
+\Sigma(P) \cup \Sigma(P') \Entails
+\Atom{P}{c_1, \dots, c_n} \to  \Atom{P'}{c_1, \dots, c_n}.
+\]
+Menurut kekompakan, terdapat himpunan hingga $\Delta_0 \subseteq \Sigma(P)$
+dan $\Delta_1 \subseteq \Sigma(P')$ sedemikian sehingga
+\[
+\Delta_0 \cup \Delta_1 \Entails
+\Atom{P}{c_1, \dots, c_n} \to \Atom{P'}{c_1, \dots, c_n}.
+\]
+Misalkan $!D(P)$ adalah konjungsi semua !!{sentence}s $!A(P)$ sedemikian
+sehingga $!A(P) \in \Delta_0$ atau $!A(P') \in \Delta_1$, dan misalkan
+$!D(P')$ adalah konjungsi semua !!{sentence}s $!A(P')$ sedemikian sehingga
+$!A(P) \in \Delta_0$ atau $!A(P') \in \Delta_1$. Maka $!D(P) \land
+!D(P') \Entails \Atom{P}{c_1, \dots, c_n} \to
+\Atom{P'}{c_1,\dots,c_n}$. Kita dapat menyusun ulang ini sehingga setiap
+!!{predicate} terdapat pada satu sisi $\Entails$:
+\[
+!D(P) \land \Atom{P}{c_1, \dots, c_n} \Entails
+!D(P') \to \Atom{P'}{c_1, \dots, c_n}.
+\]
+Menurut Teorema Interpolasi Craig, terdapat !!a{sentence}
+$!C(c_1,\dots, c_n)$ yang tidak memuat $P$ ataupun $P'$ sedemikian sehingga:
+\begin{align*}
+  !D(P) \land \Atom{P}{c_1, \dots, c_n} & \Entails !C(c_1,\dots, c_n); \\
+  !C(c_1,\dots, c_n) & \Entails !D(P') \to \Atom{P'}{c_1, \dots, c_n}.
+\end{align*}
+Dari perikutan yang pertama, kita memperoleh $!D(P) \Entails
+\Atom{P}{c_1,\dots, c_n} \lif !C(c_1,\dots, c_n)$. Dari yang kedua,
+karena $\Expan{M}{R} \models !A(P)$ dalam bahasa $\Lang{L} \cup \{P\}$
+jika dan hanya jika $\Expan{M}{R} \models !A(P')$ dalam bahasa
+$\Lang{L} \cup \{P'\}$ yang bersesuaian, kita memperoleh
+$!C(c_1,\dots, c_n) \Entails !D(P) \lif \Atom{P}{c_1,\dots, c_n}$,
+dan dari sini:
+\[
+!D(P) \Entails !C(c_1,\dots,c_n) \to \Atom{P}{c_1,\dots, c_n}.
+\]
+Dengan menggabungkan keduanya, $!D(P) \Entails
+\Atom{P}{c_1,\dots, c_n} \liff !C(c_1, \dots, c_n)$, dan menurut
+monotonisitas serta generalisasi juga
+\[
+\Sigma(P) \Entails
+\lforall[x_1][\dots\lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff
+    !C(x_1,\dots, x_n))]].
+\]
+\end{proof}
+
+\end{document}

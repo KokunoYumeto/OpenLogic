@@ -1,0 +1,129 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: rice-theorem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{rce}
+\olsection{Teorema Rice}
+
+Jika dipikirkan, Anda akan melihat bahwa kekhususan $\fn{Tot}$ tidak berperan
+dalam bukti \olref[tot]{prop:total}. Kita merancang $h(x,y)$ agar berperilaku
+seperti fungsi konstan $j(y)=0$ tepat ketika $x$ berada dalam~$K$; tetapi dalam
+keadaan itu kita dapat juga membuatnya berperilaku seperti sembarang fungsi
+dapat dihitung parsial lainnya. Pengamatan ini memungkinkan kita menyatakan
+teorema yang lebih umum, yang secara kasar mengatakan bahwa tidak ada sifat
+nontrivial dari fungsi dapat dihitung yang dapat diputuskan.
+
+Ingatlah bahwa $\cfind{0}$, $\cfind{1}$, $\cfind{2}$,~\dots merupakan
+enumerasi standar kita atas fungsi-fungsi dapat dihitung parsial.
+
+\begin{thm}[Teorema Rice]
+  Misalkan $C$ sembarang himpunan fungsi dapat dihitung parsial dan misalkan
+  $A = \Setabs{n}{\cfind{n} \in C}$. Jika $A$ dapat dihitung, maka $C$ kosong
+  atau $C$ merupakan himpunan semua fungsi dapat dihitung parsial.
+\end{thm}
+
+Suatu \emph{himpunan indeks} adalah himpunan $A$ dengan sifat bahwa jika $n$
+dan $m$ merupakan indeks yang ``menghitung'' fungsi yang sama, maka $n$ dan
+$m$ keduanya berada dalam~$A$, atau keduanya tidak berada di dalamnya. Tidak
+sulit melihat bahwa himpunan~$A$ dalam teorema mempunyai sifat ini. Sebaliknya,
+jika $A$ merupakan himpunan indeks dan $C$ merupakan himpunan fungsi yang
+dihitung oleh indeks-indeks tersebut, maka
+$A = \Setabs{n}{\cfind{n} \in C}$.
+
+\begin{explain}
+Dengan terminologi ini, teorema Rice ekuivalen dengan pernyataan bahwa tidak
+ada himpunan indeks nontrivial yang dapat diputuskan. Untuk memahami isi
+teorema tersebut, akan membantu jika kita menekankan perbedaan antara
+\emph{program} (misalnya dalam bahasa pemrograman kesukaan Anda) dan fungsi
+yang dihitungnya. Tentu ada pertanyaan tentang program (indeks), yang
+merupakan objek sintaktis, yang dapat diputuskan secara komputasional: apakah
+program ini memuat lebih dari 150 simbol? Apakah program ini mempunyai lebih
+dari 22 baris? Apakah program ini mempunyai pernyataan ``while''? Apakah
+untai ``hello world'' pernah muncul sebagai argumen bagi pernyataan
+``print''? Teorema Rice mengatakan bahwa tidak ada pertanyaan nontrivial
+tentang \emph{perilaku} program yang dapat diputuskan secara komputasional.
+Ini mencakup pertanyaan seperti: apakah program berhenti pada masukan~$0$?
+Apakah program pernah berhenti? Apakah program pernah mengeluarkan bilangan
+genap?
+\end{explain}
+
+\begin{proof}[Bukti teorema Rice]
+Andaikan $C$ tidak kosong dan bukan pula himpunan semua fungsi dapat dihitung
+parsial, dan misalkan $A$ himpunan indeks fungsi-fungsi dalam~$C$. Kita akan
+menunjukkan bahwa jika $A$ dapat dihitung, kita dapat menyelesaikan masalah
+penghentian; jadi $A$ tidak dapat dihitung.
+
+Tanpa mengurangi keumuman, kita dapat mengandaikan bahwa fungsi $f$ yang tidak
+terdefinisi di mana pun tidak berada dalam~$C$ (jika tidak, tukarkan $C$
+dengan komplemennya dalam argumen di bawah). Misalkan $g$ sembarang fungsi
+dalam~$C$. Gagasannya ialah bahwa jika kita dapat memutuskan~$A$, kita dapat
+membedakan indeks yang menghitung~$f$ dari indeks yang menghitung~$g$; lalu
+kita dapat menggunakan kemampuan itu untuk menyelesaikan masalah penghentian.
+
+Caranya sebagai berikut. Dengan menggunakan fungsi dapat dihitung parsial
+universal, kita dapat mendefinisikan fungsi
+\[
+h(x,y) \simeq
+\begin{cases}
+\text{tidak terdefinisi} & \text{jika $\cfind{x}(x) \fundefined$} \\
+g(y) & \text{selain itu.}
+\end{cases}
+\]
+Untuk menghitung $h$, mula-mula kita mencoba menghitung $\cfind{x}(x)$; jika
+komputasi itu berhenti, kita melanjutkan dengan menghitung~$g(y)$; dan jika
+\emph{komputasi itu} berhenti, kita mengembalikan keluarannya. Secara lebih
+formal, kita dapat menulis
+\[
+h(x,y) \simeq \Proj{2}{0}(g(y),\fn{Un}(x,x)).
+\]
+Di sini $\Proj{2}{0}(z_0,z_1)=z_0$ adalah fungsi proyeksi berargumen~2 yang
+mengembalikan argumen ke-$0$, dan fungsi ini dapat dihitung.
+
+Dengan demikian, $h$ merupakan komposisi fungsi-fungsi dapat dihitung parsial,
+dan ruas kanan terdefinisi serta sama dengan~$g(y)$ tepat ketika
+$\fn{Un}(x,x)$ dan $g(y)$ keduanya terdefinisi.
+
+Perhatikan bahwa untuk $x$ tetap, jika $\cfind{x}(x)$ tidak terdefinisi, maka
+$h(x,y)$ tidak terdefinisi bagi setiap~$y$; dan jika $\cfind{x}(x)$
+terdefinisi, maka $h(x,y) \simeq g(y)$. Jadi, bagi setiap nilai tetap~$x$,
+$h(x,y)$ berperilaku tepat seperti $f$ atau tepat seperti $g$, dan memutuskan
+apakah $\cfind{x}(x)$ terdefinisi sama dengan memutuskan kasus mana yang
+berlaku. Namun, ini sama dengan memutuskan apakah $h_x(y) \simeq h(x,y)$
+berada dalam~$C$ atau tidak; jika $A$ dapat dihitung, kita dapat melakukan
+hal tersebut.
+
+Secara lebih formal, karena $h$ dapat dihitung parsial, $h$ sama dengan fungsi
+$\cfind{e}$ bagi suatu indeks~$e$. Menurut teorema $s$-$m$-$n$, terdapat
+fungsi rekursif primitif~$s$ sedemikian sehingga bagi setiap~$x$,
+$\cfind{s(e,x)}(y)\simeq h_x(y)$. Sekarang, bagi setiap $x$, jika
+$\cfind{x}(x) \fdefined$, maka $\cfind{s(e,x)}$ merupakan fungsi yang sama
+dengan~$g$, sehingga $s(e,x)$ berada dalam~$A$. Di lain pihak, jika
+$\cfind{x}(x) \uparrow$, maka $\cfind{s(e,x)}$ merupakan fungsi yang sama
+dengan~$f$, sehingga $s(e,x)$ tidak berada dalam~$A$. Dengan kata lain, bagi
+setiap~$x$, $x \in K$ jika dan hanya jika $s(e,x) \in A$. Jika $A$ dapat
+dihitung, $K$ juga dapat dihitung, yang merupakan suatu kontradiksi. Jadi,
+$A$ tidak dapat dihitung.
+\end{proof}
+
+Teorema Rice sangat kuat. Akibat langsung berikut menunjukkan beberapa
+contoh penerapannya.
+\begin{cor}
+Himpunan-himpunan berikut tidak dapat diputuskan.
+\begin{enumerate}
+\item $\Setabs{x}{\text{$17$ berada dalam daerah hasil $\cfind{x}$}}$
+\item $\Setabs{x}{\text{$\cfind{x}$ konstan}}$
+\item $\Setabs{x}{\text{$\cfind{x}$ total}}$
+\item $\Setabs{x}{\text{setiap kali $y < y'$, $\cfind{x}(y) \fdefined$, dan
+    jika $\cfind{x}(y') \fdefined$, maka $\cfind{x}(y) < \cfind{x}(y')$}}$
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+  Semuanya merupakan himpunan indeks nontrivial.
+\end{proof}
+
+\end{document}

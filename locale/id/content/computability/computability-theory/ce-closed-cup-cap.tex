@@ -1,0 +1,93 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: ce-closed-cup-cap
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{clo}
+
+\olsection[Gabungan dan Irisan Himpunan C.E.]{Himpunan Terenumerasi Secara
+  Komputabel Tertutup terhadap Gabungan dan Irisan}
+
+Teorema berikut memberikan beberapa sifat ketertutupan bagi himpunan-himpunan
+yang terenumerasi secara komputabel.
+
+\begin{thm}
+Andaikan $A$ dan $B$ terenumerasi secara komputabel. Maka demikian pula
+$A \cap B$ dan $A \cup B$.
+\end{thm}
+
+\begin{proof}
+\olref[eqc]{thm:ce-equiv} memungkinkan kita menggunakan berbagai pencirian
+himpunan terenumerasi secara komputabel. Sebagai ilustrasi, kita akan
+memberikan beberapa bukti yang berbeda.
+
+Untuk bukti pertama, andaikan $A$ dienumerasi oleh fungsi dapat dihitung~$f$,
+dan $B$ dienumerasi oleh fungsi dapat dihitung~$g$. Misalkan
+\begin{align*}
+h(x) & = \umin{y}{(f(y) = x \lor g(y) = x)} \text{ dan}\\
+j(x) & = \umin{y}{(f((y)_0) = x \land g((y)_1) = x)}.
+\end{align*}
+Maka $A \cup B$ merupakan domain $h$, sedangkan $A \cap B$ merupakan
+domain~$j$.
+
+\begin{explain}
+Dalam istilah komputasional, yang terjadi adalah sebagai berikut: jika
+diberikan prosedur yang mengenumerasi $A$ dan $B$, kita dapat memutuskan-sebagian
+apakah suatu unsur $x$ berada dalam $A \cup B$ dengan mencari $x$ dalam salah
+satu enumerasi; dan kita dapat memutuskan-sebagian apakah suatu unsur $x$
+berada dalam $A \cap B$ dengan mencari $x$ dalam kedua enumerasi secara
+bersamaan.
+\end{explain}
+
+Untuk bukti kedua, andaikan lagi bahwa $A$ dienumerasi oleh~$f$ dan $B$
+dienumerasi oleh~$g$. Misalkan
+\[
+k(x) = \begin{cases}
+f(x/2) & \text{jika $x$ genap} \\
+g((x-1)/2) & \text{jika $x$ ganjil.}
+\end{cases}
+\]
+Maka $k$ mengenumerasi $A \cup B$; gagasannya ialah $k$ sekadar berselang-seling
+antara enumerasi yang diberikan oleh $f$ dan~$g$. Mengenumerasi $A \cap B$
+lebih rumit. Jika $A \cap B$ kosong, himpunan itu secara trivial terenumerasi
+secara komputabel. Jika tidak, misalkan $c$ sembarang unsur $A \cap B$, dan
+definisikan $l$ dengan
+\[
+l(x) = \begin{cases}
+f((x)_0) & \text{jika $f((x)_0) = g((x)_1)$} \\
+c & \text{selain itu.}
+\end{cases}
+\]
+Dalam istilah komputasional, $l$ menelusuri pasangan unsur dalam enumerasi
+$f$ dan $g$, lalu mengeluarkan setiap kecocokan yang ditemukan; jika tidak
+menemukan kecocokan, $l$ mengulur waktu dengan mengeluarkan $c$.
+
+Untuk bukti terakhir, andaikan $A$ merupakan \emph{domain} fungsi parsial
+$m(x)$ dan $B$ merupakan domain fungsi parsial $n(x)$. Maka $A \cap B$
+merupakan domain fungsi parsial $m(x) + n(x)$.
+
+\begin{explain}
+Dalam istilah komputasional, jika $A$ merupakan himpunan nilai tempat $m$
+berhenti dan $B$ merupakan himpunan nilai tempat $n$ berhenti, maka $A \cap B$
+adalah himpunan nilai tempat kedua prosedur berhenti.
+\end{explain}
+
+Menyatakan $A \cup B$ sebagai himpunan nilai penghentian lebih sulit karena
+kita harus menyimulasikan $m$ dan $n$ secara paralel. Misalkan $d$ suatu indeks
+bagi $m$ dan $e$ suatu indeks bagi $n$; dengan kata lain, $m = \cfind{d}$ dan
+$n = \cfind{e}$. Maka $A \cup B$ merupakan domain fungsi
+\[
+p(x) = \umin{y}{(T(d,x,y) \lor T(e,x,y))}.
+\]
+\begin{explain}
+Dalam istilah komputasional, pada masukan $x$, $p$ mencari komputasi berhenti
+bagi $m$ atau komputasi berhenti bagi $n$, lalu berhenti jika menemukan salah
+satunya.
+\end{explain}
+\end{proof}
+
+\end{document}
+

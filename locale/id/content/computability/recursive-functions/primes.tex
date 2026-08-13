@@ -1,0 +1,84 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: primes
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{pri}
+\olsection{Bilangan Prima}
+
+Kuantifikasi berbatas dan minimisasi berbatas memberi kita banyak perangkat
+untuk menunjukkan bahwa fungsi dan relasi alami bersifat rekursif primitif.
+Sebagai contoh, tinjau relasi ``$x$ membagi $y$'', yang ditulis $x \mid y$.
+Relasi $x \mid y$ berlaku jika pembagian $y$ oleh~$x$ dapat dilakukan tanpa
+sisa, yakni jika $y$ merupakan kelipatan bulat dari~$x$. (Jika $x>0$ dan relasi
+itu tidak berlaku, yakni jika sisa pembagian $y$ oleh~$x$ ialah $>0$, kita menulis
+$x \nmid y$.) Dengan kata lain, $x \mid y$ jika dan hanya jika, bagi suatu
+$z$, $x \cdot z = y$. Jelas bahwa setiap $z$ semacam itu, jika ada, harus
+$\leq y$. Jadi, $x \mid y$ jika dan hanya jika, bagi suatu $z \le y$,
+$x \cdot z = y$. Kita dapat mendefinisikan relasi $x \mid y$ melalui
+kuantifikasi eksistensial berbatas dari $=$ dan perkalian dengan
+\[
+x \mid y \defiff \bexists{z \leq y}{(x \cdot z) = y}.
+\]
+Dengan demikian, kita telah menunjukkan bahwa $x \mid y$ bersifat rekursif
+primitif.
+
+Suatu bilangan asli~$x$ disebut \emph{prima} jika bukan $0$ maupun $1$ dan
+hanya dapat dibagi oleh $1$ dan dirinya sendiri. Dengan kata lain, bilangan
+prima sedemikian sehingga, setiap kali $y \mid x$, berlaku $y=1$ atau~$y=x$.
+Untuk menguji apakah $x$ prima, kita hanya perlu memeriksa apakah $y \mid x$
+bagi semua $y \le x$, sebab jika $y>x$, secara otomatis~$y \nmid x$. Jadi,
+relasi $\fn{Prime}(x)$, yang berlaku jika dan hanya jika $x$ prima, dapat
+didefinisikan oleh
+\[
+\fn{Prime}(x) \defiff x \geq 2 \land \bforall{y \leq x}{(y \mid x \lif y
+  = 1 \lor y = x)}
+\]
+dan dengan demikian bersifat rekursif primitif.
+
+Bilangan-bilangan prima ialah $2$, $3$, $5$, $7$, $11$, dan seterusnya.
+Tinjau fungsi $p(x)$ yang mengembalikan bilangan prima ke-$x$ dalam barisan
+tersebut, yakni $p(0)=2$, $p(1)=3$, $p(2)=5$, dan seterusnya. (Untuk
+kemudahan, kita akan sering menulis $p(x)$ sebagai $p_x$ ($p_0=2$, $p_1=3$,
+dan seterusnya).)
+
+Jika kita mempunyai fungsi $\fn{nextPrime(x)}$ yang mengembalikan bilangan
+prima pertama yang lebih besar daripada~$x$, $p$ dapat didefinisikan dengan
+mudah menggunakan rekursi primitif:
+\begin{align*}
+  p(0) & = 2\\
+  p(x+1) & = \fn{nextPrime}(p(x)).
+\end{align*}
+Karena $\fn{nextPrime}(x)$ merupakan $y$ terkecil sedemikian sehingga $y>x$
+dan $y$ prima, fungsi itu dapat dihitung dengan mudah melalui pencarian tak
+berbatas. Namun, berkat suatu hasil dari Euklides, fungsi itu juga dapat
+didefinisikan dengan minimisasi berbatas: selalu ada bilangan prima yang lebih
+besar daripada $x$ dan tidak lebih besar daripada $\fact{x}+1$.
+\[
+  \fn{nextPrime(x)} =
+  \bmin{y \leq \fact{x}+1}{(y > x \land \fn{Prime}(y))}.
+\]
+Ini menunjukkan bahwa $\fn{nextPrime}(x)$, dan karenanya $p(x)$, bukan hanya
+dapat dihitung, melainkan juga bersifat rekursif primitif.
+
+(Jika Anda ingin tahu, berikut bukti singkat teorema Euklides. Untuk $x=0$
+atau $x=1$, klaim tersebut langsung berlaku. Dalam kasus lain, andaikan $p_n$
+merupakan bilangan prima terbesar yang $\le x$ dan tinjau hasil kali
+$p=p_0\cdot p_1\cdot\dots\cdot p_n$ dari semua bilangan prima~$\le x$.
+Bilangan $p+1$ prima atau terdapat suatu bilangan prima di antara $x$
+dan~$p+1$. Mengapa? Andaikan $p+1$ tidak prima. Maka ada suatu bilangan prima
+$q \mid p+1$ dengan $q<p+1$. Tidak satu pun bilangan prima $\le x$ membagi
+$p+1$. (Menurut definisi~$p$, setiap bilangan prima $p_i\le x$ membagi~$p$,
+yakni dengan sisa~$0$. Jadi, setiap bilangan prima $p_i\le x$ membagi $p+1$
+dengan sisa~$1$, sehingga $p_i\nmid p+1$.) Oleh karena itu, $q$ merupakan
+bilangan prima $>x$ dan $<p+1$. Karena $p\le\fact{x}$, terdapat suatu bilangan
+prima $>x$ dan $\le\fact{x}+1$.)
+
+\begin{prob}
+Definisikan pembagian bulat $d(x,y)$ menggunakan minimisasi berbatas.
+\end{prob}
+
+\end{document}

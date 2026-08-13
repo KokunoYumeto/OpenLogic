@@ -1,0 +1,135 @@
+% Bagian: first-order-logic
+% Bab: lindstrom
+% Subbagian: abstract-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{lin}{alg}
+\olsection{Logika Abstrak}
+
+\begin{defn}
+Suatu \emph{logika abstrak} adalah pasangan $\tuple{L, \models_L}$, dengan
+$L$ sebagai fungsi yang memadankan setiap !!{language}~$\Lang{L}$ dengan
+himpunan $L(\Lang{L})$ dari !!{sentence}s, dan $\models_L$ sebagai relasi
+antara !!{structure}s bagi !!{language}~$\Lang{L}$ dan !!{element}s dari
+$L(\Lang{L})$. Khususnya, $\tuple{F, \models}$ adalah logika orde pertama
+biasa: $F$ adalah fungsi yang memadankan !!{language}~$\Lang{L}$ dengan
+himpunan !!{sentence}s orde pertama yang dibangun dari simbol-simbol dalam
+$\Lang{L}$, dan $\models$ adalah relasi kepuasan logika orde pertama.
+\end{defn}
+
+Perhatikan bahwa bagi suatu !!{language} tertentu kita masih menggunakan
+pengertian !!{structure} yang sama seperti dalam logika orde pertama, tetapi
+kita tidak mengandaikan bahwa !!{sentence}s dibangun dari simbol-simbol dasar
+dalam $\Lang{L}$ dengan cara biasa, ataupun bahwa relasi $\models_L$
+didefinisikan secara rekursif seperti dalam logika orde pertama. Jadi, karena
+sepenuhnya umum, definisi tersebut dimaksudkan mencakup, misalnya, kasus ketika
+!!{sentence}s dalam $\tuple{L,\models_L}$ memuat konjungsi atau disjungsi
+panjang-tak-hingga, kuantor selain $\lexists$ dan $\lforall$ (misalnya,
+``terdapat tak hingga banyak~$x$ sedemikian sehingga \dots''), atau bahkan
+awalan kuantor panjang-tak-hingga. Untuk menekankan bahwa ``!!{sentence}s''
+dalam $L(\Lang{L})$ tidak harus merupakan !!{sentence}s biasa dari logika
+orde pertama, dalam bab ini kita menggunakan !!{variable}s $!E$, $!F$,~\dots
+untuk menjangkaunya, dan mencadangkan $!A$, $!B$,~\dots bagi !!{formula}s
+orde pertama biasa.
+
+\begin{defn}
+Misalkan $\Mod(L){!E}$ menyatakan kelas
+$\Setabs{\Struct{M}}{\Struct{M} \models_L !E}$. Jika !!{language}nya perlu
+dinyatakan secara eksplisit, kita menulis $\Mod[L](L){!E}$. Dua !!{structure}s
+$\Struct{M}$ dan $\Struct{N}$ bagi $\Lang{L}$ \emph{ekuivalen secara
+elementer dalam} $\tuple{L, \models_L}$, ditulis $\Struct{M}
+\elemequiv[L] \Struct{N}$, jika !!{sentence}s yang sama dari $L(\Lang{L})$
+bernilai benar dalam keduanya.
+\end{defn}
+
+\begin{defn}
+Suatu logika abstrak $\tuple{L,\models_L}$ bagi !!{language} $\Lang{L}$
+bersifat \emph{normal} jika memenuhi sifat-sifat berikut:
+\begin{enumerate}
+\item (\emph{Monotonisitas-$L$}) Bagi !!{language}s $\Lang{L}$ dan
+  $\Lang{L'}$, jika $\Lang{L} \subseteq \Lang{L'}$, maka
+  $L(\Lang{L}) \subseteq L(\Lang{L'})$.
+\item (\emph{Sifat Ekspansi}) Bagi setiap $!E \in L(\Lang{L})$, terdapat
+  himpunan bagian \emph{hingga} $\Lang{L'}$ dari $\Lang{L}$ sedemikian
+  sehingga relasi $\Struct{M} \models_L !E$ hanya bergantung pada reduk
+  $\Struct{M}$ ke $\Lang{L'}$; yakni, jika $\Struct{M}$ dan $\Struct{N}$
+  mempunyai reduk yang sama ke $\Lang{L'}$, maka $\Struct{M} \models_L !E$
+  jika dan hanya jika $\Struct{N} \models_L !E$.
+\item (\emph{Sifat Isomorfisme}) Jika $\Struct{M} \models_L !E$ dan
+  $\Struct{M} \simeq \Struct{N}$, maka $\Struct{N} \models_L !E$ juga.
+\item (\emph{Sifat Penamaan Ulang}) Relasi $\models_L$ dipertahankan di
+  bawah penamaan ulang: jika !!{language} $\Lang{L}'$ diperoleh dari
+  $\Lang{L}$ dengan mengganti setiap simbol $P$ dengan simbol $P'$ yang
+  beraritas sama dan setiap konstanta $c$ dengan konstanta berbeda $c'$,
+  maka bagi setiap !!{structure}~$\Struct{M}$ dan !!{sentence}~$!E$,
+  $\Struct{M} \models_L !E$ jika dan hanya jika $\Struct{M}' \models_L
+  !E'$, dengan $\Struct{M}'$ sebagai $\Lang{L}'$-!!{structure} yang
+  bersesuaian dengan $\Struct{M}$ di bawah penamaan ulang tersebut dan
+  $!E' \in L(\Lang{L}')$.
+\item (\emph{Sifat Boolean}) Logika abstrak $\tuple{L, \models_L}$ tertutup
+  terhadap penghubung Boolean dalam arti bahwa bagi setiap $!E \in
+  L(\Lang{L})$ terdapat $!F \in L(\Lang{L})$ sedemikian sehingga
+  $\Struct{M} \models_L !F$ jika dan hanya jika $\Struct{M} \not\models_L
+  !E$, dan bagi setiap $!E$ dan $!F$ terdapat $!G$ sedemikian sehingga
+  $\Mod(L){!G} = \Mod(L){!E} \cap \Mod(L){!F}$. Demikian pula bagi
+  disjungsi dan penghubung lainnya.
+\item (\emph{Sifat Kuantor}) Bagi setiap konstanta $c$ dalam $\Lang{L}$ dan
+  $!E \in L(\Lang{L})$, terdapat $!F \in L(\Lang{L})$ sedemikian sehingga
+  \[
+  \Mod[L'](L){!F} = \Setabs{\Struct{M}}{\Expan{M}{a} \in
+  \Mod[L](L){!E} \text{ bagi suatu } a \in \Domain{M}},
+  \]
+  dengan $\Lang{L'} = \Lang{L} \setminus \{c\}$ dan $\Expan{M}{a}$
+  sebagai ekspansi $\Struct{M}$ ke $\Lang{L}$ yang menetapkan $a$
+  kepada~$c$.
+\item (\emph{Sifat Relativisasi}) Diberikan !!a{sentence} $!E \in
+  L(\Lang{L})$ dan simbol-simbol $R$, $c_1$, \dots, $c_n$ yang tidak
+  terdapat dalam $\Lang{L}$, terdapat !!a{sentence} $!F \in L(\Lang{L}
+  \cup \{R,c_1,\ldots,c_n\})$ yang disebut \emph{relativisasi} $!E$ ke
+  $\Atom{R}{x, c_1, \dots c_n}$, sedemikian sehingga bagi setiap
+  !!{structure}~$\Struct{M}$:
+  \[
+  \Expan{M}{X, b_1, \ldots, b_n} \models_L !F \text{ jika dan
+    hanya jika } \Struct{N} \models_L !E,
+  \]
+  dengan $\Struct{N}$ sebagai substruktur dari $\Struct{M}$ yang mempunyai
+  !!{domain} $\Domain{N} = \Setabs{a\in \Domain{M}}{\Assign{R}{M}(a, b_1,
+  \dots, b_n)}$ (lihat \olref[bas][sub]{rem:substructure}), dan
+  $\Expan{M}{X, b_1, \ldots, b_n}$ sebagai ekspansi $\Struct{M}$ yang
+  menafsirkan $R$, $c_1$, \dots, $c_n$ masing-masing dengan $X$, $b_1,$
+  \dots, $b_n$ (dengan $X \subseteq M^{n+1}$).
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Diberikan dua logika abstrak $\tuple{L_1, \models_{L_1}}$ dan
+$\tuple{L_2, \models_{L_2}}$, kita mengatakan bahwa yang kedua
+\emph{sekurang-kurangnya sama ekspresifnya} dengan yang pertama, ditulis
+$\tuple{L_1, \models_{L_1}} \leq \tuple{L_2, \models_{L_2}}$, jika bagi
+setiap !!{language} $\Lang{L}$ dan !!{sentence} $!E \in L_1(\Lang{L})$
+terdapat !!a{sentence} $!F \in L_2(\Lang{L})$ sedemikian sehingga
+$\Mod[L](L_1){!E} = \Mod[L](L_2){!F}$. Logika $\tuple{L_1,
+\models_{L_1}}$ dan $\tuple{L_2, \models_{L_2}}$ \emph{ekuivalen} jika
+$\tuple{L_1, \models_{L_1}} \leq \tuple{L_2, \models_{L_2}}$ dan
+$\tuple{L_2, \models_{L_2}} \leq \tuple{L_1, \models_{L_1}}$.
+\end{defn}
+
+\begin{rem}
+  Logika orde pertama, yakni logika abstrak $\tuple{F, \models}$, bersifat
+  normal. Sebenarnya, sifat-sifat di atas sebagian besar langsung berlaku
+  bagi logika orde pertama. Kita hanya mencatat bahwa sifat ekspansi merupakan
+  akibat ekstensionalitas, dan bahwa relativisasi !!a{sentence} $!E$ ke
+  $\Atom{R}{x, c_1, \dots, c_n}$ diperoleh dengan mengganti setiap
+  !!{subformula} $\lforall[x][!F]$ dengan
+  $\lforall[x][(\Atom{R}{x, c_1, \dots, c_n} \lif \ !F)]$. Selain itu,
+  jika $\tuple{L, \models_L}$ normal, maka $\tuple{F, \models} \leq
+  \tuple{L, \models_{L}}$, sebagaimana dapat ditunjukkan dengan induksi
+  pada !!{formula}s orde pertama. Karena itu, tanpa mengurangi keumuman, kita
+  dapat mengandaikan bahwa setiap !!{sentence} orde pertama termasuk dalam
+  setiap logika normal.
+\end{rem}
+
+\end{document}

@@ -1,0 +1,169 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: pr-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{prr}
+\olsection{Relasi Rekursif Primitif}
+
+
+\begin{defn}
+Suatu relasi $R(\vec x)$ disebut rekursif primitif jika fungsi
+karakteristiknya,
+\[
+\Char{R}(\vec x) = \left\{
+  \begin{array}{ll}
+  1 & \mbox{jika $R(\vec x)$} \\
+  0 & \mbox{selain itu}
+  \end{array}
+\right.
+\]
+bersifat rekursif primitif.
+\end{defn}
+
+Dengan kata lain, ketika kita berbicara tentang relasi rekursif primitif
+$R(\vec x)$, yang dimaksud ialah relasi berbentuk $\Char{R}(\vec x) = 1$,
+dengan $\Char{R}$ suatu fungsi rekursif primitif yang mengembalikan 1 atau
+0 untuk setiap masukan. Sebagai contoh, relasi $\fn{IsZero}(x)$, yang
+berlaku jika dan hanya jika $x = 0$, bersesuaian dengan fungsi
+$\Char{\fn{IsZero}}$ yang didefinisikan melalui rekursi primitif oleh
+\begin{align*}
+\Char{\fn{IsZero}}(0) & = 1,\\
+\Char{\fn{IsZero}}(x+1) & = 0.
+\end{align*}
+
+Jelas bahwa relasi dapat dikomposisikan dengan fungsi-fungsi rekursif primitif
+lainnya. Jadi, relasi-relasi berikut juga bersifat rekursif primitif:
+\begin{enumerate}
+\item Relasi kesamaan, $x = y$, yang didefinisikan oleh
+  $\fn{IsZero}(\left|x-y\right|)$.
+\item Relasi kurang-dari-atau-sama-dengan, $x \leq y$, yang didefinisikan oleh
+  $\fn{IsZero}(x \tsub y)$.
+\end{enumerate}
+
+
+\begin{prop}
+  Himpunan relasi rekursif primitif tertutup terhadap operasi Boolean. Artinya,
+  jika $P(\vec x)$ dan $Q(\vec x)$ bersifat rekursif primitif, maka demikian
+  pula
+  \begin{enumerate}
+  \item $\lnot P(\vec x)$
+  \item $P(\vec x) \land Q(\vec x)$
+  \item $P(\vec x) \lor Q(\vec x)$
+  \item $P(\vec x) \lif Q(\vec x)$
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Andaikan $P(\vec x)$ dan $Q(\vec x)$ bersifat rekursif primitif, yakni fungsi
+  karakteristiknya $\Char{P}$ dan $\Char{Q}$ bersifat demikian. Kita harus
+  menunjukkan bahwa fungsi karakteristik $\lnot P(\vec x)$, dan seterusnya,
+  juga bersifat rekursif primitif.
+  \[
+  \Char{\lnot P}(\vec x) = \begin{cases}
+    0 & \text{jika $\Char{P}(\vec x) = 1$}\\
+    1 & \text{selain itu}
+  \end{cases}
+  \]
+  Kita dapat mendefinisikan $\Char{\lnot P}(\vec x)$ sebagai
+  $1 \tsub \Char{P}(\vec x)$.
+  \[
+  \Char{P \land Q}(\vec x) = \begin{cases}
+    1 & \text{jika $\Char{P}(\vec x) = \Char{Q}(\vec x) = 1$}\\
+    0 & \text{selain itu}
+  \end{cases}
+  \]
+  Kita dapat mendefinisikan $\Char{P \land Q}(\vec x)$ sebagai
+  $\Char{P}(\vec x) \cdot \Char{Q}(\vec x)$ atau sebagai
+  $\fn{min}(\Char{P}(\vec x), \Char{Q}(\vec x))$. Demikian pula,
+  \begin{align*}
+    \Char{P \lor Q}(\vec x) & = \fn{max}(\Char{P}(\vec x), \Char{Q}(\vec x)) \text{ dan}\\
+    \Char{P \lif Q}(\vec x) & = \fn{max}(1 \tsub
+  \Char{P}(\vec x), \Char{Q}(\vec x)).
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+  Himpunan relasi rekursif primitif tertutup terhadap kuantifikasi berbatas.
+  Artinya, jika $R(\vec x, z)$ merupakan relasi rekursif primitif, maka
+  demikian pula relasi
+  \begin{align*}
+    & \bforall{z < y}{R(\vec x, z)} \text{ dan}\\
+    & \bexists{z < y}{R(\vec x, z)}.
+  \end{align*}
+  $\bforall{z < y}{R(\vec x, z)}$ berlaku bagi $\vec x$ dan $y$ jika dan hanya
+  jika $R(\vec x, z)$ berlaku untuk setiap~$z$ yang kurang dari~$y$, dan
+  demikian pula untuk $\bexists{z < y}{R(\vec x, z)}$.
+\end{prop}
+
+\begin{proof}
+  Berdasarkan konvensi, kita menetapkan $\bforall{z < 0}{R(\vec x, z)}$
+  bernilai benar (dengan alasan sepele bahwa tidak ada $z$ yang kurang
+  dari~$0$), sedangkan $\bexists{z < 0}{R(\vec x, z)}$ bernilai salah.
+  Kuantor universal berbatas bekerja persis seperti hasil kali berhingga atau
+  minimum berulang. Artinya, jika $P(\vec x, y) \defiff \bforall{z <
+  y}{R(\vec x, z)}$, maka $\Char{P}(\vec x, y)$ dapat didefinisikan oleh
+  \begin{align*}
+    \Char{P}(\vec x, 0) & = 1\\
+    \Char{P}(\vec x, y+1) & =
+    \fn{min}(\Char{P}(\vec x, y), \Char{R}(\vec x, y)).
+  \end{align*}
+  Kuantifikasi eksistensial berbatas juga dapat didefinisikan dengan
+  $\fn{max}$. Sebagai alternatif, kuantifikasi ini dapat didefinisikan dari
+  kuantifikasi universal berbatas dengan menggunakan ekuivalensi
+  $\bexists{z < y}{R(\vec x, z)} \liff \lnot \bforall{z < y}{\lnot R(\vec x, z)}$.
+  Perhatikan, misalnya, bahwa kuantor berbatas berbentuk
+  $\bexists{x \leq y}{\dots x\dots}$ ekuivalen dengan
+  $\bexists{x < y+1}{\dots x \dots}$.
+\end{proof}
+
+\begin{prob}
+  Tunjukkan bahwa relasi berargumen tiga $x \equiv y \mod n$ (kongruensi
+  modulo~$n$) bersifat rekursif primitif.
+\end{prob}
+
+Fungsi rekursif primitif lain yang berguna ialah fungsi bersyarat
+$\fn{cond}(x,y,z)$, yang didefinisikan oleh
+\begin{align*}
+  \fn{cond}(x,y,z) & = \begin{cases}
+  y & \text{jika $x = 0$} \\
+  z & \text{selain itu}.
+\end{cases}
+\intertext{Fungsi ini didefinisikan secara rekursif oleh}
+\fn{cond}(0,y,z) & = y,\\
+\fn{cond}(x+1,y,z) & = z.
+\end{align*}
+Kita dapat menggunakannya untuk membenarkan definisi fungsi rekursif primitif
+berdasarkan kasus dari relasi rekursif primitif:
+
+\begin{prop}
+Jika $g_0(\vec x)$, \dots,~$g_m(\vec x)$ merupakan fungsi rekursif primitif,
+dan $R_0(\vec x)$, \dots, $R_{m-1}(\vec x)$ merupakan relasi rekursif
+primitif, maka fungsi $f$ yang didefinisikan oleh
+\[
+f(\vec x) = \begin{cases}
+    g_0(\vec x) & \text{jika $R_0(\vec{x})$} \\
+    g_1(\vec x) & \text{jika $R_1(\vec{x})$ dan bukan $R_0(\vec{x})$} \\
+    \vdots & \\
+    g_{m-1}(\vec x) & \text{jika $R_{m-1}(\vec{x})$ dan tidak satu pun kasus
+      sebelumnya berlaku}
+    \\
+    g_m(\vec x) & \mbox{selain itu}
+\end{cases}
+\]
+juga bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Jika $m = 1$, fungsi ini hanyalah fungsi yang didefinisikan oleh
+  \[
+  f(\vec x) = \fn{cond}(\Char{\lnot R_0}(\vec x),g_0(\vec x),g_1(\vec
+  x)).
+  \]
+  Untuk $m$ yang lebih besar daripada $1$, kita cukup mengomposisikan
+  definisi-definisi berbentuk ini.
+\end{proof}
+\end{document}

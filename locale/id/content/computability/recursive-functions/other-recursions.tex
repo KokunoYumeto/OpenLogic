@@ -1,0 +1,67 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: other-recursions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{ore}
+\olsection{Bentuk Rekursi Lain}
+
+Dengan menggunakan pemasangan dan pengodean barisan, kita dapat membenarkan
+bentuk-bentuk rekursi primitif yang lebih eksotis (dan berguna). Sebagai
+contoh, sering kali berguna untuk mendefinisikan dua fungsi secara serentak,
+seperti dalam definisi berikut:
+\begin{align*}
+h_0(\vec x, 0) & = f_0(\vec x) \\
+h_1(\vec x, 0) & = f_1(\vec x) \\
+h_0(\vec x, y+1) & = g_0(\vec x, y, h_0(\vec x, y), h_1(\vec x, y)) \\
+h_1(\vec x, y+1) & = g_1(\vec x, y, h_0(\vec x, y), h_1(\vec x, y)).
+\end{align*}
+Ini merupakan contoh \emph{rekursi serentak}. Cara lain yang berguna untuk
+mendefinisikan fungsi ialah memberikan nilai $h(\vec x,y+1)$ berdasarkan
+\emph{semua} nilai $h(\vec x,0)$, \dots,~$h(\vec x,y)$, seperti dalam
+definisi berikut:
+\begin{align*}
+h(\vec x, 0) & = f(\vec x) \\
+h(\vec x, y+1) & = g(\vec x, y, \tuple{h(\vec x, 0), \dots, h(\vec x, y)}).
+\end{align*}
+Skema berikut menangkap gagasan ini dengan lebih ringkas:
+\[
+h(\vec x, y) = g(\vec x, y, \tuple{h(\vec x, 0), \dots, h(\vec x, y-1)})
+\]
+dengan pengertian bahwa argumen terakhir bagi $g$ hanyalah barisan kosong
+ketika $y=0$. Dalam kedua rumusan, gagasannya ialah bahwa saat menghitung
+``langkah penerus'', fungsi $h$ dapat menggunakan seluruh barisan nilai yang
+telah dihitung. Ini dikenal sebagai \emph{rekursi berdasarkan seluruh nilai
+sebelumnya}. Sebagai contoh khusus, rekursi ini dapat digunakan untuk
+membenarkan definisi berbentuk berikut:
+\begin{align*}
+h(\vec x, y) & = \begin{cases}
+  g(\vec x, y, h(\vec x, k(\vec x, y))) & \text{jika $k(\vec x, y) < y$} \\
+  f(\vec x) & \text{selain itu.}
+\end{cases}
+\end{align*}
+Dengan kata lain, nilai $h$ pada $y$ dapat dihitung berdasarkan nilai $h$ pada
+\emph{sebarang} nilai sebelumnya yang diberikan oleh~$k$.
+
+\begin{prob}
+  Definisikan fungsi sisa $r(x,y)$ melalui rekursi berdasarkan seluruh nilai
+  sebelumnya. (Jika $x$, $y$ bilangan asli dan $y>0$, $r(x,y)$ merupakan
+  bilangan yang lebih kecil daripada~$y$ sedemikian sehingga
+  $x=z\times y+r(x,y)$ bagi suatu~$z$. Agar pasti, kita tetapkan bahwa jika
+  $y=0$, maka $r(x,0)=0$.)
+\end{prob}
+
+Pikirkan bagaimana memperoleh fungsi-fungsi ini menggunakan rekursi primitif
+biasa. Satu bentuk terakhir rekursi primitif lebih lentur karena kita
+diperbolehkan mengubah \emph{parameter} (nilai tambahan) selama proses:
+\begin{align*}
+h(\vec x, 0) & = f(\vec x) \\
+h(\vec x, y+1) & = g(\vec x, y, h(k(\vec x), y)).
+\end{align*}
+Bentuk ini juga dapat disimulasikan dengan rekursi primitif biasa. (Melakukan
+hal itu tidak mudah. Sebagai petunjuk, coba uraikan komputasinya dengan tangan.)
+
+\end{document}

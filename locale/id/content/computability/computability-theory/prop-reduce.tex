@@ -1,0 +1,103 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: prop-reduce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{ppr}
+\olsection{Sifat Redusibilitas}
+
+Kita menulis $A \leq_m B$ jika $A$ tereduksi ke~$B$. Notasi ini menyarankan
+bahwa jika $A \leq_m B$, maka $A$ ``tidak lebih sulit daripada''~$B$ dan $B$
+``sama sulit atau lebih sulit daripada''~$A$, serta bahwa $\le_m$, seperti
+$\le$ biasa pada bilangan, mengurutkan himpunan (atau masalah keputusan)
+berdasarkan kompleksitasnya. Dua proposisi berikut mendukung intuisi ini.
+Proposisi pertama menyatakan bahwa $\le_m$ bersifat transitif.
+
+\begin{prop}
+\ollabel{prop:trans-red}
+Jika $A \leq_m B$ dan $B \leq_m C$, maka $A \leq_m C$.
+\end{prop}
+
+\begin{proof}
+Mengomposisikan suatu reduksi dari $A$ ke~$B$ dengan suatu reduksi dari $B$ ke
+$C$ menghasilkan suatu reduksi dari $A$ ke~$C$.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref{prop:trans-red} dengan menunjukkan bahwa jika $f$ dan~$g$
+masing-masing merupakan reduksi banyak-ke-satu dari $A$ ke~$B$ dan dari $B$
+ke~$C$, maka $\comp{f}{g}$ merupakan reduksi banyak-ke-satu dari $A$ ke~$C$.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:reduce}
+Misalkan $A$ dan $B$ sembarang himpunan, dan andaikan $A \leq_m B$.
+\begin{enumerate}
+\item Jika $B$ terenumerasi secara komputabel, maka demikian pula~$A$.
+\item Jika $B$ dapat dihitung, maka demikian pula~$A$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Misalkan $f$ suatu reduksi banyak-ke-satu dari $A$ ke~$B$. Untuk klaim
+pertama, cukup periksa bahwa jika $B$ merupakan domain fungsi parsial~$g$,
+maka $A$ merupakan domain~$\comp{f}{g}$:
+\begin{align*}
+x \in A & \text{ jika dan hanya jika } f(x) \in B \\
+& \text{ jika dan hanya jika }  g(f(x)) \fdefined.
+\end{align*}
+
+Untuk klaim kedua, ingat bahwa jika $B$ dapat dihitung, maka $B$
+dan~$\Complement{B}$ terenumerasi secara komputabel
+(\olref[cmp]{thm:ce-comp}). Mudah diperiksa bahwa $f$ juga merupakan reduksi
+banyak-ke-satu dari $\Complement{A}$ ke $\Complement{B}$. Jadi, berdasarkan
+bagian pertama bukti ini, $A$ dan~$\Complement{A}$ keduanya
+!!{computably enumerable}. Dengan demikian, $A$ juga dapat dihitung menurut
+\olref[cmp]{thm:ce-comp}. (Sebagai alternatif, Anda dapat memeriksa bahwa
+$\Char{A} = \comp{f}{\Char{B}}$; jadi jika $\Char{B}$ dapat dihitung, maka
+demikian pula~$\Char{A}$.)
+\end{proof}
+
+\begin{prob}
+Andaikan $f$ suatu reduksi banyak-ke-satu dari $A$ ke~$B$. Tunjukkan bahwa $f$
+juga merupakan reduksi banyak-ke-satu dari $\Complement{A}$ ke
+$\Complement{B}$.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa jika $f\colon A \to B$ merupakan reduksi banyak-ke-satu, maka
+$\Char{A} = \comp{f}{\Char{B}}$.
+\end{prob}
+
+\begin{digress}
+Gagasan redusibilitas yang lebih umum, yang disebut \emph{redusibilitas
+Turing}, berguna dalam konteks lain, khususnya untuk membuktikan hasil
+ketakterputusan. Perhatikan bahwa menurut \olref[cmp]{cor:comp-k}, komplemen
+$K_0$ tidak tereduksi ke~$K_0$ karena komplemen itu tidak terenumerasi secara
+komputabel. Akan tetapi, secara intuitif, jika Anda mengetahui jawaban atas
+pertanyaan tentang $K_0$, Anda juga mengetahui jawaban atas pertanyaan tentang
+komplemennya. Suatu himpunan $A$ disebut tereduksi secara Turing ke~$B$ jika
+jawaban atas pertanyaan tentang~$A$ dapat ditentukan dengan prosedur dapat
+dihitung yang boleh mengajukan pertanyaan tentang~$B$. Gagasan ini lebih
+longgar daripada redusibilitas banyak-ke-satu, yang hanya memperbolehkan Anda
+(1)~mengajukan satu pertanyaan tentang $B$, dan (2)~menerjemahkan jawaban ``ya''
+menjadi jawaban ``ya'' atas pertanyaan tentang $A$, dan demikian pula untuk
+``tidak.'' Tetap benar bahwa jika $A$ tereduksi secara Turing ke~$B$ dan $B$
+dapat dihitung, maka $A$ juga dapat dihitung (meskipun, seperti yang telah kita
+lihat, pernyataan analognya tidak berlaku bagi enumerabilitas komputabel).
+
+Anda sebaiknya memikirkan berbagai gagasan redusibilitas yang telah kita bahas
+dan memahami perbedaannya. Namun, dalam bab ini kita hanya akan membahas
+redusibilitas banyak-ke-satu. Kebetulan, kedua jenis redusibilitas yang dibahas
+dalam paragraf terakhir mempunyai analog dalam kompleksitas komputasional,
+dengan syarat tambahan bahwa mesin Turing berjalan dalam waktu polinomial:
+versi kompleksitas redusibilitas banyak-ke-satu dikenal sebagai
+\emph{redusibilitas Karp}, sedangkan versi kompleksitas redusibilitas Turing
+dikenal sebagai \emph{redusibilitas Cook}.
+\end{digress}
+
+\end{document}
+

@@ -1,0 +1,53 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: no-universal-function
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{nou}
+\olsection{Tidak Ada Fungsi Dapat Dihitung Universal}
+
+Meskipun terdapat suatu fungsi dapat dihitung parsial yang universal bagi
+fungsi-fungsi dapat dihitung parsial, tidak ada fungsi dapat dihitung total yang
+universal bagi fungsi-fungsi dapat dihitung total.
+
+\begin{thm}
+\ollabel{thm:no-univ}
+Tidak ada fungsi dapat dihitung universal. Dengan kata lain, setiap fungsi
+$\fn{Un}'(k, x)$ yang memenuhi sifat bahwa jika $f(x)$ merupakan fungsi dapat
+dihitung total, maka terdapat suatu bilangan asli~$k$ sedemikian sehingga
+$f(x) = \fn{Un}'(k,x)$ untuk setiap~$x$, bukanlah fungsi yang dapat dihitung.
+\end{thm}
+
+\begin{proof}
+Buktinya merupakan diagonalisasi sederhana: jika $\fn{Un}'(k,x)$ bersifat
+total dan dapat dihitung, maka
+\[
+d(x) = \fn{Un}'(x, x) + 1
+\]
+juga bersifat total dan dapat dihitung. Namun, berdasarkan definisi, $d(k)$
+tidak sama dengan $\fn{Un}'(k,k)$. Jadi, untuk setiap $k$, nilai $d(x)$ dan
+$\fn{Un}'(k, x)$ berbeda untuk sekurang-kurangnya satu~$x$, yaitu $x = k$.
+\end{proof}
+
+\begin{explain}
+\olref[uni]{thm:univ-comp} di atas menunjukkan bahwa kita dapat menghindari
+argumen diagonalisasi ini, tetapi hanya dengan mengizinkan fungsi universal
+bersifat parsial. Artinya, $\fn{Un}$ bersifat universal bagi fungsi-fungsi dapat
+dihitung total, hanya saja fungsi itu sendiri tidak total. Argumen
+diagonalisasi tidak berlaku dalam kasus parsial.
+\end{explain}
+
+\begin{prob}
+  Untuk memahami mengapa argumen diagonalisasi dalam bukti
+  \olref{thm:no-univ} tidak berlaku dalam kasus parsial, tinjau fungsi
+  $f(x) \simeq \fn{Un}(x,x)+1$. Apakah fungsi itu dapat dihitung secara
+  parsial? Jika demikian, fungsi itu mempunyai indeks~$e$, yakni
+  $f(x) \simeq \fn{Un}(e,x)$. Apa yang dapat Anda katakan tentang~$f(e)$?
+\end{prob}
+
+
+\end{document}
+

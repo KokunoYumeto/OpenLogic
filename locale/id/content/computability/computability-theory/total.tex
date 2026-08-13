@@ -1,0 +1,61 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: total
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{tot}
+\olsection{Totalitas Tidak Dapat Diputuskan}
+
+Mari kita tinjau satu contoh lagi tentang penggunaan teorema $s$-$m$-$n$
+untuk menunjukkan bahwa sesuatu tidak dapat dihitung. Misalkan $\fn{Tot}$
+himpunan indeks fungsi total yang dapat dihitung, yakni
+\[
+\fn{Tot} = \Setabs{x}{\text{bagi setiap $y$, $\cfind{x}(y)\fdefined$}}.
+\]
+
+\begin{prop}
+\ollabel{prop:total}
+$\fn{Tot}$ tidak dapat dihitung.
+\end{prop}
+
+\begin{proof}
+Untuk melihat bahwa $\fn{Tot}$ tidak dapat dihitung, cukup ditunjukkan bahwa
+$K$ tereduksi kepadanya. Definisikan $h(x,y)$ dengan
+\[
+h(x,y) \simeq
+\begin{cases}
+0 & \text{jika $x \in K$} \\
+\fundefined & \text{selain itu.}
+\end{cases}
+\]
+Perhatikan bahwa $h(x,y)$ sama sekali tidak bergantung pada~$y$. Tidak sulit
+untuk melihat bahwa $h$ dapat dihitung parsial: pada masukan $x,y$, kita
+menghitung~$h$ dengan mula-mula menyimulasikan fungsi~$\cfind{x}$ pada
+masukan~$x$; jika komputasi ini berhenti, $h(x,y)$ mengeluarkan~$0$ lalu
+berhenti. Jadi, $h(x,y)$ tidak lain adalah
+$\Zero(\umin{s}{T(x,x,s)})$, dengan $\Zero$ fungsi nol konstan.
+
+Menurut teorema $s$-$m$-$n$, terdapat fungsi rekursif primitif~$k(x)$
+sedemikian sehingga bagi setiap $x$ dan~$y$,
+\[
+\cfind{k(x)}(y) \simeq
+\begin{cases}
+0 & \text{jika $x \in K$} \\
+\fundefined & \text{selain itu.}
+\end{cases}
+\]
+Jadi, $\cfind{k(x)}$ total jika $x \in K$, dan tidak terdefinisi pada setiap
+masukan jika sebaliknya. Dengan demikian, $k$ merupakan reduksi dari $K$
+ke~$\fn{Tot}$.
+\end{proof}
+
+\begin{digress}
+Ternyata $\fn{Tot}$ bahkan tidak terenumerasi secara komputabel---kompleksitasnya
+berada lebih tinggi dalam ``hierarki aritmetis.'' Namun, kita tidak akan
+membahas penguatan ini di sini.
+\end{digress}
+
+\end{document}

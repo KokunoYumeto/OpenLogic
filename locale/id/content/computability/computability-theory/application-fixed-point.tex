@@ -1,0 +1,73 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: applications-fixed-point
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{apf}
+\olsection{Penerapan Teorema Titik Tetap}
+
+Teorema titik tetap pada dasarnya memungkinkan kita mendefinisikan fungsi
+dapat dihitung parsial berdasarkan indeksnya. Sebagai contoh, kita dapat
+menemukan indeks~$e$ sedemikian sehingga bagi setiap $y$,
+\[
+\cfind{e}(y) = e+y.
+\]
+Sebagai contoh lain, bukti teorema titik tetap dapat digunakan untuk merancang
+program dalam Java atau C++ yang mencetak dirinya sendiri.
+
+Ingat bahwa jika bagi setiap $e$ kita menetapkan $W_e$ sebagai domain
+$\cfind{e}$, maka barisan $W_0$, $W_1$, $W_2$,~\dots mengenumerasi
+himpunan-himpunan yang terenumerasi secara komputabel. Beberapa himpunan ini
+dapat dihitung. Kita dapat bertanya apakah terdapat algoritma yang menerima
+nilai~$x$ sebagai masukan dan, jika $W_x$ kebetulan dapat dihitung,
+mengembalikan indeks bagi fungsi karakteristiknya. Jawabannya ``tidak'';
+algoritma semacam itu tidak ada:
+
+\begin{thm}
+Tidak ada fungsi dapat dihitung parsial $f$ dengan sifat berikut: setiap kali
+$W_e$ dapat dihitung, $f(e)$ terdefinisi dan $\cfind{f(e)}$ merupakan fungsi
+karakteristiknya.
+\end{thm}
+
+\begin{proof}
+Andaikan, demi memperoleh kontradiksi, bahwa $f$ merupakan fungsi dapat
+dihitung parsial dengan sifat dalam pernyataan teorema. Dengan menggunakan
+pernyataan pertama teorema titik tetap pada fungsi~$g$ yang didefinisikan di
+bawah, kita dapat menemukan indeks~$e$ sedemikian sehingga
+\[
+\cfind{e}(y) \simeq
+\begin{cases}
+0 & \text{jika $y=0$ dan $\cfind{f(e)}(0) \fdefined = 0$} \\
+\text{tidak terdefinisi} & \text{selain itu.}
+\end{cases}
+\]
+Fungsi yang digunakan dalam penerapan teorema titik tetap tersebut ialah
+\[
+g(x,y) \simeq
+\begin{cases}
+0 & \text{jika $y=0$ dan $\cfind{f(x)}(0) \fdefined = 0$} \\
+\text{tidak terdefinisi} & \text{selain itu.}
+\end{cases}
+\]
+Secara informal, kita dapat melihat bahwa $g$ dapat dihitung parsial sebagai
+berikut: pada masukan $x$ dan $y$, algoritma mula-mula memeriksa apakah $y$
+sama dengan~$0$. Jika ya, algoritma menghitung $f(x)$, lalu menggunakan mesin
+universal untuk menghitung $\cfind{f(x)}(0)$. Jika komputasi terakhir ini
+berhenti dan mengembalikan~$0$, algoritma mengembalikan~$0$; jika tidak,
+algoritma tidak berhenti.
+
+Sekarang, perhatikan bahwa $W_e$ selalu sama dengan $\{0\}$ atau
+$\emptyset$, sehingga $W_e$ dapat dihitung. Sifat yang diandaikan bagi~$f$
+karena itu mengharuskan $f(e)$ terdefinisi dan $\cfind{f(e)}$ menjadi fungsi
+karakteristik~$W_e$. Namun, jika $\cfind{f(e)}(0)$ terdefinisi dan sama
+dengan~$0$, maka $\cfind{e}(y)$ terdefinisi tepat ketika $y=0$, sehingga
+$W_e=\{0\}$ dan $\cfind{f(e)}$ memberikan nilai yang salah pada~$0$. Jika
+$\cfind{f(e)}(0)$ tidak terdefinisi, atau terdefinisi tetapi tidak sama
+dengan~$0$, maka $W_e=\emptyset$ dan sekali lagi $\cfind{f(e)}$ bukan fungsi
+karakteristik~$W_e$. Kedua kemungkinan menghasilkan kontradiksi.
+\end{proof}
+
+\end{document}

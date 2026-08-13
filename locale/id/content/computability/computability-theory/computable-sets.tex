@@ -1,0 +1,43 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: computable-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{cps}
+\olsection{Himpunan Dapat Dihitung}
+
+Kita dapat memperluas gagasan komputabilitas dari fungsi dapat dihitung ke
+himpunan dapat dihitung:
+
+\begin{defn}
+  Misalkan $S$ suatu himpunan bilangan asli. Maka $S$ \emph{dapat dihitung}
+  jika dan hanya jika fungsi karakteristiknya~$\Char{S}$ dapat dihitung. Dengan
+  kata lain, $S$ dapat dihitung jika dan hanya jika fungsi
+\[
+\Char{S}(x) =
+\begin{cases}
+1 & \text{jika $x \in S$} \\
+0 & \text{selain itu}
+\end{cases}
+\]
+dapat dihitung. Demikian pula, suatu relasi $R(x_0, \dots, x_{k-1})$ dapat
+dihitung jika dan hanya jika fungsi karakteristiknya dapat dihitung.
+
+Himpunan dan relasi dapat dihitung juga disebut \emph{dapat diputuskan}.
+\end{defn}
+
+\begin{explain}
+Perhatikan bahwa sekarang kita mempunyai sejumlah gagasan komputabilitas:
+untuk fungsi parsial, fungsi, dan himpunan. Jangan mencampuradukkannya!{}
+\iftag{TMs}{Mesin Turing yang menghitung suatu fungsi parsial mengembalikan
+  keluaran fungsi itu untuk nilai-nilai masukan tempat fungsi tersebut
+  terdefinisi; mesin Turing yang menghitung suatu himpunan mengembalikan $1$
+  atau~$0$ setelah memutuskan apakah nilai masukan berada dalam himpunan itu
+  atau tidak.}{}
+\end{explain}
+
+\end{document}
+

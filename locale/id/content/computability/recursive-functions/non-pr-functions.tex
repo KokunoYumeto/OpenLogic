@@ -1,0 +1,100 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: non-pr-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{npr}
+\olsection{Fungsi yang Bukan Rekursif Primitif}
+
+Fungsi-fungsi rekursif primitif tidak mencakup seluruh fungsi yang secara
+intuitif dapat dihitung. Secara intuitif jelas bahwa kita dapat membuat daftar
+semua fungsi rekursif primitif uner, $f_0$, $f_1$, $f_2$,~\dots, sedemikian
+sehingga kita dapat menghitung secara efektif nilai $f_x$ pada masukan~$y$;
+dengan kata lain, fungsi $g(x,y)$ yang didefinisikan oleh
+\[
+g(x,y) = f_x(y)
+\]
+dapat dihitung. Namun, fungsi
+\begin{eqnarray*}
+h(x) & = & g(x,x) + 1 \\
+& = & f_x(x) +1
+\end{eqnarray*}
+juga dapat dihitung. Bagi setiap fungsi rekursif primitif $f_i$, nilai $h$ dan
+$f_i$ berbeda pada~$i$. Jadi, $h$ dapat dihitung tetapi bukan rekursif
+primitif; hal yang sama dapat dikatakan tentang~$g$. Ini merupakan versi
+``efektif'' dari argumen diagonalisasi Cantor.
+
+Kita dapat memberikan contoh yang lebih eksplisit tentang fungsi yang dapat
+dihitung tetapi bukan rekursif primitif. Misalnya, biarkan notasi $g^n(x)$
+menyatakan $g(g(\dots g(x)))$, dengan seluruhnya $n$ kemunculan~$g$; lalu
+definisikan barisan fungsi $g_0,g_1,\dots$ dengan
+\begin{eqnarray*}
+g_0(x) & = & x+1 \\
+g_{n + 1}(x) & = & g_n^x(x).
+\end{eqnarray*}
+Anda dapat memastikan bahwa setiap fungsi $g_n$ bersifat rekursif primitif.
+Setiap fungsi berikutnya tumbuh jauh lebih cepat daripada fungsi sebelumnya;
+$g_1(x)$ sama dengan $2x$, $g_2(x)$ sama dengan $2^x\cdot x$, dan $g_3(x)$
+tumbuh kira-kira seperti menara eksponen yang terdiri atas $x$ buah~$2$.
+Fungsi Ackermann--P\'eter pada dasarnya ialah fungsi $G(x)=g_x(x)$, dan dapat
+ditunjukkan bahwa fungsi ini tumbuh lebih cepat daripada setiap fungsi
+rekursif primitif.
+
+Mari kembali ke masalah mengenumerasi fungsi-fungsi rekursif primitif. Ingat
+bahwa kita telah menetapkan notasi simbolis bagi setiap fungsi rekursif
+primitif; jadi, cukup mengenumerasi notasi-notasi tersebut. Kita dapat
+menetapkan suatu bilangan asli $\#(F)$ bagi setiap notasi~$F$, secara rekursif,
+sebagai berikut:
+\begin{eqnarray*}
+\#(0) & = & \langle 0 \rangle \\
+\#(S) & = & \langle 1 \rangle \\
+\#(\Proj{n}{i}) & = & \langle 2, n, i \rangle \\
+\#(\fn{Comp}_{k,l}[H,G_0,\dots,G_{k-1}]) & = & \langle
+3,k,l,\#(H),\#(G_0),\dots,\#(G_{k-1}) \rangle \\
+\#(\fn{Rec}_l[G,H]) & = & \langle 4, l, \#(G), \#(H) \rangle.
+\end{eqnarray*}
+Di sini kita menggunakan fakta bahwa setiap barisan bilangan dapat dipandang
+sebagai bilangan asli dengan menggunakan kode-kode dari bagian sebelumnya.
+Hasilnya ialah bahwa setiap notasi diberi suatu bilangan asli. Tentu saja,
+beberapa barisan (dan karenanya beberapa bilangan) tidak bersesuaian dengan
+notasi; tetapi kita dapat menetapkan $f_i$ sebagai fungsi rekursif primitif
+uner yang notasinya dikodekan oleh~$i$ jika $i$ mengodekan notasi semacam itu,
+dan sebagai fungsi konstan~$0$ jika tidak. Hasil akhirnya ialah bahwa kita
+mempunyai cara eksplisit untuk mengenumerasi fungsi-fungsi rekursif primitif
+uner.
+
+(Sebenarnya, beberapa fungsi, seperti fungsi nol konstan, akan muncul lebih
+dari sekali dalam daftar. Ini bukan hanya akibat pengodean kita, tetapi juga
+akibat fakta bahwa fungsi nol konstan mempunyai lebih dari satu notasi. Kita
+akan melihat kemudian bahwa pengulangan ini tidak dapat dihindari secara
+dapat dihitung; misalnya, tidak ada fungsi yang dapat dihitung untuk memutuskan
+apakah suatu notasi tertentu merepresentasikan fungsi nol konstan.)
+
+Sekarang kita dapat mengambil fungsi $g(x,y)$ yang diberikan oleh~$f_x(y)$,
+dengan $f_x$ merujuk pada enumerasi yang baru saja dijelaskan. Bagaimana kita
+tahu bahwa $g(x,y)$ dapat dihitung? Secara intuitif, hal ini jelas: untuk
+menghitung $g(x,y)$, pertama-tama ``bongkar'' $x$ dan periksa apakah ia
+merupakan notasi bagi fungsi uner. Jika demikian, hitung nilai fungsi itu pada
+masukan~$y$.
+
+\begin{tagblock}{TMs}
+\begin{digress}
+Anda mungkin sudah yakin bahwa (dengan sedikit usaha!) kita dapat menulis
+program (misalnya, dalam Java atau C++) yang melakukan hal tersebut; lalu kita
+dapat menggunakan tesis Church--Turing, yang menyatakan bahwa segala sesuatu
+yang secara intuitif dapat dihitung dapat dihitung oleh mesin Turing.
+
+Tentu saja, cara yang lebih langsung untuk menunjukkan bahwa $g(x,y)$ dapat
+dihitung ialah menguraikan secara eksplisit suatu mesin Turing yang
+menghitungnya. Secara khusus, ini akan menghindari tesis Church--Turing dan
+daya tarik intuisi. Tidak lama lagi kita akan mempunyai cukup perangkat untuk
+menunjukkan bahwa $g(x,y)$ dapat dihitung dengan menggunakan suatu model
+komputasi yang dapat \emph{disimulasikan} pada mesin Turing, yakni fungsi
+rekursif.
+\end{digress}
+\end{tagblock}
+
+\end{document}

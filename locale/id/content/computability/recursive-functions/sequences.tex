@@ -1,0 +1,203 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{seq}
+\olsection{Barisan}
+
+Himpunan fungsi rekursif primitif sangat kukuh. Namun, kita akan mampu
+melakukan lebih banyak lagi setelah mengembangkan cara yang memadai untuk
+menangani \emph{barisan}. Kita akan mengidentifikasi barisan berhingga bilangan
+asli dengan bilangan asli sebagai berikut: barisan
+$\langle a_0,a_1,a_2,\dots,a_k\rangle$ bersesuaian dengan bilangan
+\[
+p_0^{a_0+1} \cdot p_1^{a_1+1} \cdot p_2^{a_2+1} \cdot \dots \cdot
+p_k^{a_k+1}.
+\]
+Kita menambahkan satu pada setiap eksponen untuk menjamin, misalnya, bahwa
+barisan $\langle 2,7,3\rangle$ dan $\langle 2,7,3,0,0\rangle$ mempunyai kode
+numerik yang berbeda. Kita dapat menggunakan $0$ maupun~$1$ untuk mengodekan
+barisan kosong; agar konkret, biarkan $\emptyseq$ menyatakan~$0$.
+
+Pengodean barisan ini berhasil karena apa yang disebut Teorema Dasar
+Aritmetika: setiap bilangan asli $n\ge2$ dapat ditulis dengan satu dan hanya
+satu cara dalam bentuk
+\[
+n = p_0^{a_0} \cdot p_1^{a_1} \cdot \dots \cdot p_k^{a_k}
+\]
+dengan $a_k\ge1$. Ini menjamin bahwa pemetaan $\tuple{}(a_0,\dots,a_k)
+=\tuple{a_0,\dots,a_k}$ bersifat injektif: barisan-barisan berbeda dipetakan
+ke bilangan-bilangan berbeda; paling banyak satu barisan bersesuaian dengan
+setiap bilangan.
+
+Sekarang kita akan menunjukkan bahwa operasi menentukan panjang suatu
+barisan, menentukan elemen ke-$i$, menambahkan suatu elemen di akhir barisan,
+dan menggabungkan dua barisan semuanya bersifat rekursif primitif.
+
+\begin{prop}
+  Fungsi $\len{s}$, yang mengembalikan panjang barisan~$s$, bersifat rekursif
+  primitif.
+\end{prop}
+
+\begin{proof}
+  Misalkan $R(i,s)$ relasi yang didefinisikan oleh
+  \[
+  R(i, s) \text{ jika dan hanya jika }
+  p_i \mid s \land p_{i+1} \nmid s.
+  \]
+  Jelas bahwa $R$ bersifat rekursif primitif. Setiap kali $s$ merupakan kode
+  barisan tak kosong, yakni,
+  \[
+  s = p_0^{a_0+1} \cdot \dots \cdot p_{k}^{a_{k}+1},
+  \]
+  $R(i,s)$ berlaku jika $p_i$ merupakan bilangan prima terbesar sedemikian
+  sehingga $p_i\mid s$, yakni jika $i=k$. Dengan demikian, panjang $s$ ialah
+  $i+1$ jika dan hanya jika $p_i$ merupakan bilangan prima terbesar yang
+  membagi~$s$, sehingga kita dapat menetapkan
+  \[
+  \len{s} =
+  \begin{cases}
+    0 & \text{jika $s = 0$ atau $s = 1$} \\
+    1 + \bmin{i < s}{R(i, s)} & \text{selain itu.}
+  \end{cases}
+  \]
+  Kita dapat menggunakan minimisasi berbatas di sini karena hanya ada satu
+  $i$ yang memenuhi $R(i,s)$ ketika $s$ merupakan kode suatu barisan, dan
+  jika $i$ itu ada, nilainya lebih kecil daripada~$s$ sendiri.
+\end{proof}
+
+\begin{prop}
+  Fungsi $\fn{append}(s,a)$, yang mengembalikan hasil penambahan $a$ di akhir
+  barisan~$s$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  $\fn{append}$ dapat didefinisikan oleh:
+  \[
+  \fn{append}(s,a) =
+  \begin{cases}
+    2^{a+1} & \text{jika $s = 0$ atau $s = 1$} \\
+    s \cdot p_{\len{s}}^{a+1} & \text{selain itu.}
+  \end{cases}
+  \]
+\end{proof}
+
+\begin{prop}
+  Fungsi $\fn{element}(s,i)$, yang mengembalikan elemen ke-$i$ dari~$s$
+  (dengan elemen awal disebut elemen ke-$0$), atau $0$ jika $i$ lebih besar
+  daripada atau sama dengan panjang~$s$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Perhatikan bahwa $a$ merupakan elemen ke-$i$ dari~$s$ jika dan hanya jika
+$p_i^{a+1}$ merupakan pangkat terbesar dari~$p_i$ yang membagi~$s$, yakni
+$p_i^{a+1}\mid s$ tetapi $p_i^{a+2}\nmid s$. Jadi:
+  \[
+  \fn{element}(s,i) =
+  \begin{cases}
+    0 & \mbox{jika $i \geq \len{s}$} \\
+    \bmin{a < s}{(p_i^{a+2} \nmid s)} & \text{selain itu.}
+  \end{cases}
+  \]
+\end{proof}
+
+Alih-alih menggunakan nama resmi fungsi-fungsi yang didefinisikan di atas,
+kita memperkenalkan notasi yang lebih ringkas. Kita akan menggunakan $(s)_i$
+sebagai pengganti $\fn{element}(s,i)$, dan $\tuple{s_0,\dots,s_k}$ sebagai
+singkatan bagi
+\[
+\fn{append}(\fn{append}(\dots \fn{append}(\emptyseq,s_0)
+\dots),s_k).
+\]
+Perhatikan bahwa jika $s$ mempunyai panjang~$k$, elemen-elemen $s$ ialah
+$(s)_0$, \dots,~$(s)_{k-1}$.
+
+\begin{prop}
+Fungsi $\fn{concat}(s,t)$, yang menggabungkan dua barisan, bersifat rekursif
+primitif.
+\end{prop}
+
+\begin{proof}
+  Kita menginginkan fungsi $\fn{concat}$ yang mempunyai sifat
+  \[
+    \fn{concat}(\tuple{a_0, \dots, a_k}, \tuple{b_0, \dots, b_l}) =
+    \tuple{a_0, \dots, a_k, b_0, \dots, b_l}.
+  \]
+  Kita akan menggunakan fungsi ``pembantu'' $\fn{hconcat}(s,t,n)$ yang
+  menggabungkan $n$ elemen pertama dari~$t$ ke~$s$. Fungsi ini dapat
+  didefinisikan dengan rekursi primitif sebagai berikut:
+  \begin{align*}
+    \fn{hconcat}(s,t,0) & = s\\
+    \fn{hconcat}(s,t,n+1) & = \fn{append}(\fn{hconcat}(s,t,n),(t)_n)
+    \intertext{Kemudian kita dapat mendefinisikan $\fn{concat}$ dengan}
+    \fn{concat}(s,t) & = \fn{hconcat}(s,t,\len{t}).
+  \end{align*}
+\end{proof}
+
+Kita akan menulis $s \concat t$ sebagai pengganti $\fn{concat}(s,t)$.
+
+Akan berguna jika kita dapat membatasi kode numerik suatu barisan berdasarkan
+panjang dan elemen terbesarnya. Andaikan $s$ merupakan barisan dengan
+panjang~$k$, yang setiap elemennya lebih kecil daripada atau sama dengan suatu
+bilangan~$x$. Maka $s$ mempunyai paling banyak $k$ faktor prima, yang
+masing-masing paling besar~$p_{k-1}$ dan, dalam faktorisasi prima~$s$,
+masing-masing dipangkatkan paling tinggi dengan $x+1$. Dengan kata lain, jika
+kita mendefinisikan
+\[
+\fn{sequenceBound}(x,k) = p_{k-1}^{k \cdot (x+1)},
+\]
+untuk $k>0$, dan tetapkan nilainya sebagai~$1$ ketika $k=0$. Maka kode numerik
+barisan~$s$ yang dijelaskan di atas paling besar
+$\fn{sequenceBound}(x,k)$. Ketentuan bagi $k=0$ mencakup barisan kosong dan
+menghindari indeks prima $p_{-1}$ yang tidak terdefinisi.
+
+Adanya batas bagi barisan semacam itu memberi kita cara untuk mendefinisikan
+fungsi-fungsi baru menggunakan pencarian berbatas. Sebagai contoh, kita dapat
+mendefinisikan $\fn{concat}$ menggunakan pencarian berbatas. Kita hanya perlu
+menuliskan \emph{spesifikasi} rekursif primitif bagi objek (bilangan yang
+mengodekan barisan gabungan) yang kita cari, serta batas sejauh mana kita
+harus mencari. Rumus berikut berfungsi:
+\begin{align*}
+  \fn{concat}(s,t) = {} & \bmin{v < \fn{sequenceBound}(s+t,\len{s} +
+    \len{t})}{} \\
+  & \quad(\len{v} = \len{s} + \len{t} \land {}\\
+    & \qquad \bforall{i < \len{s}}{((v)_i = (s)_i) \land {} \\
+      & \qquad \bforall{j < \len{t}}{((v)_{\len{s}+j} = (t)_j)})}.
+\end{align*}
+
+\begin{prob}
+Tunjukkan bahwa terdapat suatu fungsi rekursif primitif~$\fn{sconcat}(s)$
+dengan sifat
+\[
+\fn{sconcat}(\tuple{s_0, \dots, s_k}) = s_0 \concat \dots \concat s_k.
+\]
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa terdapat suatu fungsi rekursif primitif~$\fn{tail}(s)$
+dengan sifat
+\begin{align*}
+  \fn{tail}(\emptyseq) & = 0 \text{ dan}\\
+  \fn{tail}(\tuple{s_0, \dots, s_{k}}) & = \tuple{s_1, \dots, s_{k}}.
+\end{align*}
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:subseq}
+  Fungsi $\fn{subseq}(s,i,n)$, yang mengembalikan subbarisan dari~$s$ dengan
+  panjang~$n$ yang dimulai pada elemen ke-$i$, bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[cmp][rec][seq]{prop:subseq}.
+\end{prob}
+
+\end{document}

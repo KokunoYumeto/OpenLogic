@@ -1,0 +1,178 @@
+% Bagian: model-theory
+% Bab: models-of-arithmetic
+% Subbagian: standard-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{mar}{stm}
+\olsection{Model Standar Aritmetika}
+
+Bahasa aritmetika~$\Lang{L_A}$ jelas dimaksudkan untuk membicarakan bilangan,
+khususnya bilangan asli. Karena itu, model standar ``yang'' dimaksud,
+$\Struct{N}$, bersifat istimewa: inilah model yang ingin kita bicarakan.
+Namun, dalam logika, kita sering hanya berminat pada sifat-sifat struktural,
+dan sembarang dua !!{structure}s yang isomorfik mempunyai sifat-sifat yang
+sama. Jadi, kita dapat sedikit lebih longgar dan menganggap setiap
+!!{structure} yang isomorfik dengan~$\Struct{N}$ sebagai ``standar.''
+
+\begin{defn}
+Suatu !!{structure} bagi $\Lang{L_A}$ disebut \emph{standar} jika struktur
+tersebut isomorfik dengan~$\Struct{N}$.
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:standard-domain} Jika !!a{structure}~$\Struct{M}$ standar, maka
+domainnya merupakan himpunan nilai semua numeral standar, yakni,
+\[
+\Domain{M} = \Setabs{\Value{\num{n}}{M}}{n \in \Nat}.
+\]
+\end{prop}
+
+\begin{proof}
+Jelas bahwa setiap $\Value{\num{n}}{M} \in \Domain{M}$. Kita hanya perlu
+menunjukkan bahwa setiap $x \in \Domain{M}$ sama dengan
+$\Value{\num{n}}{M}$ bagi suatu~$n$. Karena $\Struct{M}$ standar, struktur
+tersebut isomorfik dengan~$\Struct{N}$. Andaikan $g\colon \Nat \to
+\Domain{M}$ suatu isomorfisme. Maka $g(n) = g(\Value{\num{n}}{N}) =
+\Value{\num{n}}{M}$. Akan tetapi, bagi setiap $x \in \Domain{M}$, terdapat
+$n \in \Nat$ sedemikian sehingga $g(n) = x$, karena $g$ !!{surjective}.
+\end{proof}
+
+\begin{explain}
+Jika suatu struktur~$\Struct{M}$ bagi $\Lang{L_A}$ standar, semua anggota
+!!{domain}nya dapat dinamai dengan numeral standar $\num{0}$, $\num{1}$,
+$\num{2}$, \dots, yakni suku-suku $\Obj{0}$, $\Obj{0}'$, $\Obj{0}''$, dan
+seterusnya. Tentu saja, hal ini tidak berarti bahwa !!{element}s dari
+$\Domain{M}$ \emph{adalah} bilangan; hal ini hanya berarti bahwa kita dapat
+menunjuknya dengan cara yang sama seperti kita dapat menunjuk bilangan-bilangan
+dalam~$\Domain{N}$.
+\end{explain}
+
+\begin{prob}
+Tunjukkan bahwa kebalikan dari
+\olref[mod][mar][stm]{prop:standard-domain} salah; yakni, berikan contoh
+!!a{structure}~$\Struct{M}$ dengan
+$\Domain{M} = \Setabs{\Value{\num{n}}{M}}{n \in \Nat}$ yang tidak isomorfik
+dengan~$\Struct{N}$.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:thq-standard}
+Jika $\Sat{M}{\Th{Q}}$, dan $\Domain{M} =
+\Setabs{\Value{\num{n}}{M}}{n \in \Nat}$, maka $\Struct{M}$ standar.
+\end{prop}
+
+\begin{proof}
+Kita harus menunjukkan bahwa $\Struct{M}$ isomorfik dengan~$\Struct{N}$.
+Tinjau fungsi $g\colon \Nat \to \Domain{M}$ yang didefinisikan oleh
+$g(n) = \Value{\num{n}}{M}$. Menurut hipotesis, $g$ !!{surjective}. Fungsi
+ini juga !!{injective}: $\Th{Q} \Proves \eq/[\num{n}][\num{m}]$ bilamana
+$n \neq m$. Jadi, karena $\Sat{M}{\Th{Q}}$,
+$\Sat{M}{\eq/[\num{n}][\num{m}]}$ bilamana $n \neq m$. Dengan demikian,
+jika $n \neq m$, maka $\Value{\num{n}}{M} \neq \Value{\num{m}}{M}$, yakni
+$g(n) \neq g(m)$.
+
+Kita juga harus memverifikasi bahwa $g$ merupakan suatu isomorfisme.
+\begin{enumerate}
+\item Kita mempunyai $g(\Assign{\Obj{0}}{N}) = g(0)$ karena
+  $\Assign{\Obj{0}}{N} = 0$. Menurut definisi~$g$, $g(0) =
+  \Value{\num{0}}{M}$. Namun, $\num{0}$ tidak lain daripada $\Obj{0}$, dan
+  nilai suatu suku yang kebetulan merupakan !!a{constant} diberikan oleh apa
+  yang ditetapkan oleh !!{structure} tersebut kepada !!{constant} itu, yakni
+  $\Value{\Obj{0}}{M} = \Assign{\Obj{0}}{M}$. Jadi, sebagaimana disyaratkan,
+  kita memperoleh $g(\Assign{\Obj{0}}{N}) = \Assign{\Obj{0}}{M}$.
+\item $g(\Assign{\prime}{N}(n)) = g(n+1)$, karena $\prime$ dalam
+  $\Struct{N}$ merupakan fungsi penerus pada~$\Nat$. Selanjutnya, menurut
+  definisi~$g$, $g(n+1) = \Value{\num{n+1}}{M}$. Namun, $\num{n+1}$ merupakan
+  suku yang sama dengan $\num{n}'$, sehingga $\Value{\num{n+1}}{M} =
+  \Value{\num{n}'}{M}$. Menurut definisi fungsi nilai, ini sama dengan
+  $\Assign{\prime}{M}(\Value{\num{n}}{M})$. Karena
+  $\Value{\num{n}}{M} = g(n)$, kita memperoleh
+  $g(\Assign{\prime}{N}(n)) = \Assign{\prime}{M}(g(n))$.
+\item $g(\Assign{+}{N}(n,m)) = g(n+m)$, karena $+$ dalam $\Struct{N}$
+  merupakan fungsi penjumlahan pada~$\Nat$. Selanjutnya, menurut definisi~$g$,
+  $g(n+m) = \Value{\num{n+m}}{M}$. Namun, $\Th{Q} \Proves
+  \num{n+m} = (\num{n} + \num{m})$, sehingga
+  $\Value{\num{n+m}}{M} = \Value{\num{n}+\num{m}}{M}$. Menurut definisi
+  fungsi nilai, ini sama dengan
+  $\Assign{+}{M}(\Value{\num{n}}{M},\Value{\num{m}}{M})$. Karena
+  $\Value{\num{n}}{M} = g(n)$ dan $\Value{\num{m}}{M} = g(m)$, kita
+  memperoleh $g(\Assign{+}{N}(n, m)) = \Assign{+}{M}(g(n), g(m))$.
+\item $g(\Assign{\times}{N}(n, m)) =
+  \Assign{\times}{M}(g(n), g(m))$: Latihan.
+\item $\tuple{n,m} \in \Assign{<}{N}$ jika dan hanya jika $n < m$. Jika
+  $n < m$, maka $\Th{Q} \Proves \num{n} < \num{m}$, dan juga
+  $\Sat{M}{\num{n} < \num{m}}$. Jadi,
+  $\tuple{\Value{\num{n}}{M}, \Value{\num{m}}{M}} \in \Assign{<}{M}$,
+  yakni $\tuple{g(n), g(m)} \in \Assign{<}{M}$. Jika $n \not< m$, maka
+  $\Th{Q} \Proves \lnot \num{n} < \num{m}$, dan akibatnya
+  $\Sat/{M}{\num{n} < \num{m}}$. Jadi, seperti sebelumnya,
+  $\tuple{g(n), g(m)} \notin \Assign{<}{M}$. Secara bersama-sama, kita
+  memperoleh: $\tuple{n,m} \in \Assign{<}{N}$ jika dan hanya jika
+  $\tuple{g(n), g(m)} \in \Assign{<}{M}$.
+\end{enumerate}
+\end{proof}
+
+\begin{explain}
+Fungsi~$g$ merupakan cara yang paling jelas untuk mendefinisikan suatu
+pemetaan dari $\Nat$ ke domain sembarang !!{structure}~$\Struct{M}$ lain bagi
+$\Lang{L_A}$, karena setiap $\Struct{M}$ semacam itu memuat !!{element}s yang
+dinamai oleh $\num{0}$, $\num{1}$, $\num{2}$, dan seterusnya. Jadi, tidaklah
+mengherankan bahwa jika $\Struct{M}$ membuat setidaknya beberapa pernyataan
+dasar tentang semua $\num{n}$ benar dengan cara yang sama seperti
+$\Struct{N}$, dan $g$ juga bijektif, maka $g$ menjadi suatu isomorfisme.
+Bahkan, jika $\Domain{M}$ tidak memuat !!{element}s selain yang dinamai oleh
+semua $\num{n}$, itulah satu-satunya isomorfisme.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:thq-unique-iso} Jika $\Struct{M}$ standar, maka $g$ dari bukti
+\olref{prop:thq-standard} merupakan satu-satunya isomorfisme dari $\Struct{N}$
+ke~$\Struct{M}$.
+\end{prop}
+
+\begin{proof}
+Andaikan $h\colon \Nat \to \Domain{M}$ suatu isomorfisme antara
+$\Struct{N}$ dan~$\Struct{M}$. Kita menunjukkan bahwa $g = h$ dengan induksi
+pada~$n$. Jika $n = 0$, maka $g(0) = \Assign{\Obj{0}}{M}$ menurut definisi
+$g$. Namun, karena $h$ suatu isomorfisme,
+$h(0) = h(\Assign{\Obj{0}}{N}) =\Assign{\Obj{0}}{M}$, sehingga
+$g(0) = h(0)$.
+
+Sekarang tinjau kasus $n+1$. Kita mempunyai
+\begin{align*}
+  g(n+1) & = \Value{\num{n+1}}{M} \text{ menurut definisi~$g$}\\
+  & = \Value{\num{n}'}{M} \text{ karena $\num{n+1}\ident \num{n}'$}\\
+  & = \Assign{\prime}{M}(\Value{\num{n}}{M})
+    \text{ menurut definisi $\Value{t'}{M}$}\\
+  & = \Assign{\prime}{M}(g(n))  \text{ menurut definisi~$g$}\\
+  & = \Assign{\prime}{M}(h(n)) \text{ menurut hipotesis induksi}\\
+  & = h(\Assign{\prime}{N}(n)) \text{ karena $h$ suatu isomorfisme}\\
+  & = h(n+1).
+\end{align*}
+\end{proof}
+
+\begin{explain}
+Bagi sembarang himpunan !!{denumerable}~$M$, terdapat !!a{bijection} antara
+$\Nat$ dan $M$, sehingga setiap himpunan~$M$ semacam itu berpotensi menjadi
+!!{domain} suatu model standar~$\Struct{M}$. Bahkan, setelah kita memilih
+suatu objek $z \in M$ dan suatu fungsi $s$ yang sesuai sebagai
+$\Assign{\Obj{0}}{M}$ dan $\Assign{\prime}{M}$, interpretasi $+$, $\times$,
+dan $<$ sudah tetap. Hanya fungsi-fungsi $s\colon M \to M \setminus \{z\}$
+yang sekaligus !!{injective} dan !!{surjective} yang sesuai sebagai
+$\Assign{\prime}{M}$ dalam suatu model standar. Daerah hasil $s$ tidak boleh
+memuat~$z$, sebab jika tidak, $\lforall[x][\eq/[\Obj 0][x']]$ akan salah.
+!!{sentence} itu benar dalam~$\Struct{N}$, sehingga $\Struct{M}$ juga harus
+membuatnya benar. Fungsi~$s$ harus !!{injective}, karena fungsi penerus
+$\Assign{\prime}{N}$ dalam~$\Struct{N}$ bersifat demikian, dan fakta bahwa
+$\Assign{\prime}{N}$ !!{injective} dinyatakan oleh !!a{sentence} yang benar
+dalam~$\Struct{N}$. Fungsi tersebut harus !!{surjective} karena jika tidak,
+akan terdapat suatu $x \in M \setminus \{z\}$ yang tidak berada dalam daerah
+hasil~$s$, yakni !!{sentence}
+$\lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[y'][x]])]$ akan salah
+dalam~$\Struct{M}$---padahal kalimat itu benar dalam~$\Struct{N}$.
+\end{explain}
+
+\end{document}

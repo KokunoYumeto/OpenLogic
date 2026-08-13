@@ -1,0 +1,161 @@
+% Bagian: computability
+% Bab: recursive-functions
+% Subbagian: pr-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{rec}{prf}
+\olsection{Fungsi Rekursif Primitif}
+
+Mari kita catat kembali bagaimana kita dapat mendefinisikan fungsi baru dari
+fungsi yang sudah ada dengan menggunakan rekursi primitif dan komposisi.
+
+\begin{defn}
+  \ollabel{defn:primitive-recursion} Andaikan $f$ merupakan fungsi berargumen
+  $k$ ($k\ge 1$) dan $g$ merupakan fungsi berargumen $(k+2)$. Fungsi yang
+  \emph{didefinisikan dengan rekursi primitif dari $f$ dan $g$} adalah fungsi
+  berargumen $(k+1)$, yaitu~$h$, yang didefinisikan oleh persamaan-persamaan
+  \begin{align*}
+    h(x_0,\dots,x_{k-1},0) & =  f(x_0,\dots,x_{k-1}) \\
+    h(x_0,\dots,x_{k-1},y+1) & = g(x_0,\dots,x_{k-1}, y, h(x_0,\dots,x_{k-1}, y))
+  \end{align*}
+\end{defn}
+
+\begin{defn}
+  \ollabel{defn:composition} Andaikan $f$ merupakan fungsi berargumen $k$,
+  dan $g_0$, \dots, $g_{k-1}$ merupakan $k$ fungsi yang semuanya berargumen
+  $n$. Fungsi yang \emph{didefinisikan dengan komposisi dari $f$ dan $g_0$,
+    \dots,~$g_{k-1}$} adalah fungsi berargumen $n$, yaitu~$h$, yang
+  didefinisikan oleh
+  \[
+  h(x_0, \dots, x_{n-1}) =
+  f(g_0(x_0, \dots, x_{n-1}), \dots, g_{k-1}(x_0, \dots, x_{n-1})).
+  \]
+\end{defn}
+
+Selain $\Succ$ dan fungsi proyeksi
+\[
+\Proj{n}{i}(x_0,\dots,x_{n-1}) = x_i,
+\]
+untuk setiap bilangan asli $n$ dan $i < n$, kita akan memasukkan fungsi
+$\Zero(x) = 0$ ke dalam golongan fungsi rekursif primitif.
+
+\begin{defn}
+  Himpunan fungsi rekursif primitif adalah himpunan fungsi dari $\Nat^n$ ke
+  $\Nat$ yang didefinisikan secara induktif oleh klausa-klausa berikut:
+  \begin{enumerate}
+  \item $\Zero$ bersifat rekursif primitif.
+  \item $\Succ$ bersifat rekursif primitif.
+  \item Setiap fungsi proyeksi $\Proj{n}{i}$ bersifat rekursif primitif.
+  \item Jika $f$ merupakan fungsi rekursif primitif berargumen $k$ dan $g_0$,
+    \dots,~$g_{k-1}$ merupakan fungsi rekursif primitif berargumen $n$, maka
+    komposisi $f$ dengan $g_0$, \dots,~$g_{k-1}$ bersifat rekursif primitif.
+  \item Jika $f$ merupakan fungsi rekursif primitif berargumen $k$ dan $g$
+    merupakan fungsi rekursif primitif berargumen $k+2$, maka fungsi yang
+    didefinisikan dengan rekursi primitif dari $f$ dan $g$ bersifat rekursif
+    primitif.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Secara lebih ringkas, himpunan fungsi rekursif primitif adalah himpunan
+terkecil yang memuat $\Zero$, $\Succ$, dan fungsi proyeksi~$\Proj{n}{j}$,
+serta tertutup terhadap komposisi dan rekursi primitif.
+
+Cara lain untuk menggambarkan himpunan fungsi rekursif primitif adalah dengan
+mendefinisikannya berdasarkan ``tahap.'' Misalkan $S_0$ menyatakan himpunan
+fungsi awal: $\Zero$, $\Succ$, dan proyeksi. Fungsi-fungsi ini adalah fungsi
+rekursif primitif tahap~$0$. Setelah tahap $S_i$ didefinisikan, misalkan
+$S_{i+1}$ adalah tahap sebelumnya bersama himpunan seluruh fungsi yang diperoleh dengan
+menerapkan satu komposisi atau satu rekursi primitif pada fungsi-fungsi yang
+sudah berada dalam~$S_i$. Maka
+\[
+S = \bigcup_{i \in \Nat} S_i
+\]
+adalah himpunan semua fungsi rekursif primitif.
+\end{explain}
+
+Mari kita pastikan bahwa $\Add$ merupakan fungsi rekursif primitif.
+
+\begin{prop}
+  Fungsi penjumlahan $\Add(x,y) = x+y$ bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+Kita sudah mempunyai definisi rekursif primitif bagi $\Add$ dalam bentuk dua
+fungsi $f$ dan~$g$ yang sesuai dengan pola
+\olref{defn:primitive-recursion}:
+\begin{align*}
+  \Add(x_0, 0) & = f(x_0) = x_0\\
+  \Add(x_0, y+1) & = g(x_0, y, \Add(x_0, y)) =
+  \Succ(\Add(x_0, y))
+\end{align*}
+Jadi, $\Add$ bersifat rekursif primitif asalkan $f$ dan $g$ juga demikian.
+$f(x_0) = x_0 = \Proj{1}{0}(x_0)$, dan fungsi proyeksi termasuk rekursif
+primitif, sehingga $f$ bersifat rekursif primitif. Fungsi $g$ adalah fungsi
+berargumen tiga, yaitu $g(x_0, y, z)$, yang didefinisikan oleh
+\[
+g(x_0, y, z) = \Succ(z).
+\]
+Hal ini belum menunjukkan bahwa $g$ bersifat rekursif primitif karena $g$ dan
+$\Succ$ bukan fungsi yang persis sama: $\Succ$ berargumen satu, sedangkan $g$
+harus berargumen tiga. Namun, kita dapat mendefinisikan $g$ secara ``resmi''
+dengan komposisi sebagai
+\[
+g(x_0, y, z) = \Succ(\Proj{3}{2}(x_0, y, z)).
+\]
+Karena $\Succ$ dan $\Proj{3}{2}$ termasuk fungsi rekursif primitif, $g$ juga
+bersifat rekursif primitif, sebab fungsi itu dapat didefinisikan dengan
+komposisi dari fungsi-fungsi rekursif primitif.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:mult-pr}
+  Fungsi perkalian $\Mult(x,y) = x \cdot y$ bersifat rekursif primitif.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[cmp][rec][prf]{prop:mult-pr} dengan menunjukkan bahwa
+  definisi rekursif primitif bagi $\Mult$ dapat ditulis dalam bentuk yang
+  disyaratkan oleh \olref[cmp][rec][prf]{defn:primitive-recursion}, dan bahwa
+  fungsi $f$ serta~$g$ yang bersesuaian bersifat rekursif primitif.
+\end{prob}
+
+\begin{ex}
+Berikut contoh pertama kita tentang definisi rekursif primitif:
+\begin{align*}
+h(0) & =  1 \\
+h(y+1) & =  2 \cdot h(y).
+\end{align*}
+Fungsi ini tidak dapat dimasukkan ke dalam bentuk yang disyaratkan oleh
+\olref{defn:primitive-recursion} karena $k=0$. Definisi tersebut juga memuat
+konstanta $1$ dan $2$. Untuk mengatasi masalah pertama, mari kita tambahkan
+argumen semu dan definisikan fungsi~$h'$:
+\begin{align*}
+h'(x_0, 0) & =  f(x_0) = 1 \\
+h'(x_0, y+1) & =  g(x_0, y, h'(x_0, y)) = 2 \cdot h'(x_0, y).
+\end{align*}
+Fungsi $f(x_0) = 1$ dapat didefinisikan dari $\Succ$ dan $\Zero$ dengan
+komposisi: $f(x_0) = \Succ(\Zero(x_0))$. Fungsi $g$ dapat didefinisikan dengan
+komposisi dari $g'(z) = 2 \cdot z$ dan proyeksi:
+\begin{align*}
+g(x_0, y, z) & = g'(\Proj{3}{2}(x_0, y, z))
+\intertext{dan selanjutnya $g'$ dapat didefinisikan dengan komposisi sebagai}
+g'(z) & = \Mult(g''(z), \Proj{1}{0}(z))
+\intertext{serta}
+g''(z) & = \Succ(f(z)),
+\end{align*}
+dengan $f$ seperti di atas: $f(z) = \Succ(\Zero(z))$. Setelah memperoleh~$h'$,
+kita dapat kembali menggunakan komposisi untuk menetapkan $h(y) =
+h'(\Proj{1}{0}(y),\Proj{1}{0}(y))$. Hal ini menunjukkan bahwa $h$ dapat
+didefinisikan dari fungsi-fungsi dasar dengan serangkaian komposisi dan rekursi
+primitif, sehingga $h$ bersifat rekursif primitif.
+\end{ex}
+
+\end{document}

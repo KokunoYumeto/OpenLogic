@@ -1,0 +1,70 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{int}
+\olsection{Pendahuluan}
+
+Cabang logika yang dikenal sebagai \emph{teori komputabilitas} membahas
+persoalan-persoalan yang berkaitan dengan komputabilitas, atau komputabilitas
+relatif, dari fungsi dan himpunan. Pengaruh Kleene tampak dari kenyataan bahwa
+bidang ini dahulu dikenal sebagai \emph{teori rekursi}; dewasa ini kedua nama
+tersebut sama-sama lazim digunakan.
+
+Marilah kita menyebut suatu fungsi~$f\colon \Nat \pto \Nat$ \emph{dapat
+  dihitung parsial} jika fungsi itu dapat dihitung dalam suatu model komputasi.
+Jika $f$ total, kita cukup mengatakan bahwa $f$~\emph{dapat dihitung}. Suatu
+relasi~$R$ yang fungsi karakteristiknya~$\Char{R}$ dapat dihitung juga disebut
+dapat dihitung. Jika $f$ dan~$g$ merupakan fungsi parsial, kita menulis
+$f(x) \fdefined$ untuk menyatakan bahwa $f$ terdefinisi pada~$x$, yakni bahwa
+$x$~berada dalam domain~$f$; dan $f(x) \fundefined$ untuk menyatakan
+kebalikannya, yakni bahwa $f$ tidak terdefinisi pada~$x$. Kita menggunakan
+$f(x) \simeq g(x)$ untuk menyatakan bahwa $f(x)$ dan $g(x)$ sama-sama tidak
+terdefinisi, atau keduanya terdefinisi dan bernilai sama.
+
+Teori komputabilitas dapat dipelajari tanpa harus mengacu pada suatu model
+komputasi tertentu. Untuk itu, kita menunjukkan bahwa terdapat fungsi dapat
+dihitung parsial universal~$\fn{Un}(k, x)$. Fungsi ini memungkinkan kita
+mengenumerasi fungsi-fungsi dapat dihitung parsial. Kita menggunakan
+notasi~$\cfind{k}$ untuk menyatakan fungsi dapat dihitung parsial ke-$k$ yang
+berargumen satu, yang didefinisikan oleh
+$\cfind{k}(x) \simeq \fn{Un}(k, x)$.
+(Kleene menggunakan $\{ k \}$ untuk tujuan ini, tetapi belakangan ini notasi
+tersebut tidak banyak digunakan.) Secara sedikit lebih umum, kita dapat secara
+seragam mengenumerasi fungsi-fungsi dapat dihitung parsial dengan aritas
+sembarang, dan kita menggunakan $\cfind{k}[n]$ untuk menyatakan fungsi rekursif
+parsial ke-$k$ yang berargumen~$n$.
+
+Jika $f(\vec x, y)$ merupakan fungsi total atau parsial, maka $\umin{y}{f
+(\vec x, y)}$ adalah fungsi dari~$\vec x$ yang mengembalikan~$y$ terkecil
+sedemikian sehingga $f(\vec x, y) = 0$, dengan syarat semua nilai
+$f(\vec x, 0)$, \dots, $f(\vec x, y-1)$ terdefinisi; jika tidak ada~$y$
+semacam itu, $\umin{y}{f (\vec x, y)}$ tidak terdefinisi. Jika
+$R(\vec x, y)$ merupakan suatu relasi, $\umin{y}{R(\vec x, y)}$ didefinisikan
+sebagai~$y$ terkecil sedemikian sehingga $R(\vec x, y)$ benar; dengan kata
+lain, sebagai~$y$ terkecil sedemikian sehingga
+$1 \tsub \Char{R}(\vec x, y) = 0$.
+
+Untuk menunjukkan bahwa suatu fungsi dapat dihitung, terdapat dua cara yang
+dapat ditempuh:
+\begin{enumerate}
+\item Secara ketat: deskripsikan secara eksplisit suatu mesin Turing atau
+  fungsi rekursif parsial, lalu tunjukkan bahwa mesin atau fungsi tersebut
+  menghitung fungsi yang dimaksud;
+\item Secara informal: deskripsikan suatu algoritma yang menghitung fungsi
+  tersebut, lalu gunakan tesis Church.
+\end{enumerate}
+Tidak ada batas tegas di antara kedua cara itu; deskripsi algoritma yang
+terperinci seharusnya memberikan informasi yang cukup sehingga relatif jelas
+bagaimana, setidaknya pada prinsipnya, kita dapat merancang mesin Turing atau
+rangkaian definisi rekursif parsial yang tepat. Definisi yang sepenuhnya ketat
+biasanya kurang memberi pemahaman, sehingga kita akan mencoba mengambil jalan
+tengah di antara kedua pendekatan tersebut. Singkatnya, kita akan mencari
+bukti yang intuitif tetapi tetap ketat, sedemikian sehingga definisi yang
+presisi dapat disusun darinya.
+
+\end{document}

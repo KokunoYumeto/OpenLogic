@@ -1,0 +1,247 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: fixed-point-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{fix}
+\olsection{Teorema Titik Tetap}
+
+Mari kita tinjau kembali masalah penghentian. Sebagai notasi sementara,
+tulislah $\gn{\cfind{x}(y)}$ untuk $\tuple{x,y}$; bayangkan notasi ini sebagai
+representasi suatu ``nama'' bagi nilai $\cfind{x}(y)$. Dengan notasi ini,
+kita dapat merumuskan ulang salah satu bukti bahwa masalah penghentian tidak
+dapat diputuskan.
+
+Pertanyaan: adakah fungsi dapat dihitung $h$ dengan sifat berikut? Bagi setiap
+$x$ dan $y$,
+\[
+h(\gn{\cfind{x}(y)}) =
+\begin{cases}
+1 & \text{jika $\cfind{x}(y) \fdefined$} \\
+0 & \text{selain itu.}
+\end{cases}
+\]
+
+Jawaban: Tidak; jika ada, fungsi parsial
+\[
+g(x) \simeq
+\begin{cases}
+0 & \text{jika $h(\gn{\cfind{x}(x)}) = 0$} \\
+\text{tidak terdefinisi} & \text{selain itu}
+\end{cases}
+\]
+akan dapat dihitung, sehingga mempunyai suatu indeks~$e$. Namun, kita lalu
+mempunyai
+\[
+\cfind{e}(e) \simeq
+\begin{cases}
+0 & \text{jika $h(\gn{\cfind{e}(e)}) = 0$} \\
+\text{tidak terdefinisi} & \text{selain itu,}
+\end{cases}
+\]
+dan dalam keadaan ini $\cfind{e}(e)$ terdefinisi jika dan hanya jika tidak
+terdefinisi, suatu kontradiksi.
+
+Sekarang, perhatikan persamaan yang memuat $\cfind{e}$. Dalam suatu arti,
+terdapat acuan diri di sana: kita telah mengatur agar nilai
+$\cfind{e}(e)$ bergantung pada $\gn{\cfind{e}(e)}$ dengan cara tertentu.
+Teorema titik tetap mengatakan bahwa secara umum kita \emph{dapat} melakukan
+hal ini---bukan hanya demi membuktikan kontradiksi.
+
+\olref{lem:fixed-equiv} memberikan dua cara ekuivalen untuk menyatakan teorema
+titik tetap. Secara logis, fakta bahwa kedua pernyataan itu ekuivalen
+mengikuti dari fakta bahwa keduanya benar; tetapi yang sebenarnya kita
+maksudkan ialah bahwa masing-masing mengikuti secara langsung dari yang lain,
+sehingga keduanya dapat dipandang sebagai pernyataan alternatif bagi teorema
+yang sama.
+
+\begin{lem}
+\ollabel{lem:fixed-equiv}
+Pernyataan-pernyataan berikut ekuivalen:
+\begin{enumerate}
+\item Bagi setiap fungsi dapat dihitung parsial $g(x,y)$, terdapat indeks~$e$
+  sedemikian sehingga bagi setiap~$y$,
+\[
+\cfind{e}(y) \simeq g(e,y).
+\]
+\item Bagi setiap fungsi dapat dihitung~$f(x)$, terdapat indeks~$e$ sedemikian
+  sehingga bagi setiap~$y$,
+\[
+\cfind{e}(y) \simeq \cfind{f(e)}(y).
+\]
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$(1) \Rightarrow (2)$: Diberikan $f$, definisikan $g$ dengan $g(x,y) \simeq
+\fn{Un}(f(x),y)$. Gunakan (1) untuk memperoleh indeks~$e$ sedemikian sehingga
+bagi setiap~$y$,
+\begin{align*}
+\cfind{e}(y) & \simeq \fn{Un}(f(e),y) \\
+& \simeq \cfind{f(e)}(y).
+\end{align*}
+
+$(2) \Rightarrow (1)$: Diberikan $g$, gunakan teorema $s$-$m$-$n$ untuk
+memperoleh $f$ sedemikian sehingga bagi setiap $x$ dan~$y$,
+$\cfind{f(x)}(y) \simeq g(x,y)$. Gunakan (2) untuk memperoleh indeks~$e$
+sedemikian sehingga
+\begin{align*}
+\cfind{e}(y) & \simeq \cfind{f(e)}(y) \\
+& \simeq g(e,y).
+\end{align*}
+Ini menyelesaikan bukti.
+\end{proof}
+
+\begin{explain}
+Sebelum menunjukkan bahwa pernyataan (1) benar (dan karena itu (2) juga),
+tinjau betapa ganjilnya pernyataan itu. Bayangkan $e$ sebagai program
+komputer; pernyataan (1) mengatakan bahwa, diberikan sembarang fungsi dapat
+dihitung parsial $g(x,y)$, Anda dapat menemukan program komputer~$e$ yang
+menghitung $g_e(y) \simeq g(e,y)$. Dengan kata lain, Anda dapat menemukan
+program komputer yang menghitung fungsi yang mengacu pada program itu sendiri.
+\end{explain}
+
+\begin{thm}
+Kedua pernyataan dalam \olref{lem:fixed-equiv} benar. Secara khusus, bagi
+setiap fungsi dapat dihitung parsial $g(x,y)$, terdapat indeks~$e$ sedemikian
+sehingga bagi setiap~$y$,
+\[
+\cfind{e}(y) \simeq g(e,y).
+\]
+\end{thm}
+
+\begin{proof}
+Bahan-bahannya sudah tersirat dalam pembahasan masalah penghentian di atas.
+Misalkan $\fn{diag}(x)$ fungsi dapat dihitung yang bagi setiap $x$
+mengembalikan indeks bagi fungsi $f_x(y) \simeq \cfind{x}(x,y)$, yakni
+\[
+\cfind{\fn{diag}(x)}(y) \simeq \cfind{x}(x,y).
+\]
+Bayangkan $\fn{diag}$ sebagai fungsi yang mengubah program bagi fungsi
+berargumen~2 menjadi program bagi fungsi berargumen~1, yang diperoleh dengan
+menetapkan program semula sebagai argumen pertamanya. Fungsi $\fn{diag}$
+dapat didefinisikan secara formal sebagai berikut: mula-mula definisikan $s$
+dengan
+\[
+s(x,y) \simeq \fn{Un}^2(x,x,y),
+\]
+dengan $\fn{Un}^2$ fungsi berargumen~3 yang universal bagi fungsi-fungsi
+dapat dihitung parsial berargumen~2. Kemudian, menurut teorema $s$-$m$-$n$,
+kita dapat menemukan fungsi rekursif primitif $\fn{diag}$ yang memenuhi
+\[
+\cfind{\fn{diag}(x)}(y) \simeq s(x,y).
+\]
+
+Sekarang, definisikan fungsi $l$ dengan
+\[
+l(x,y) \simeq g(\fn{diag}(x),y).
+\]
+Misalkan $\gn{l}$ suatu indeks bagi~$l$. Terakhir, misalkan
+$e=\fn{diag}(\gn{l})$. Maka bagi setiap $y$, kita mempunyai
+\begin{align*}
+\cfind{e}(y) & \simeq \cfind{\fn{diag}(\gn{l})}(y) \\
+& \simeq \cfind{\gn{l}}(\gn{l}, y) \\
+& \simeq l(\gn{l}, y) \\
+& \simeq g(\fn{diag}(\gn{l}),y) \\
+& \simeq g(e, y),
+\end{align*}
+sebagaimana diperlukan.
+\end{proof}
+
+\begin{explain}
+Apa yang sedang terjadi? Andaikan Anda diberi tugas menulis program komputer
+yang mencetak dirinya sendiri. Namun, andaikan pula bahwa Anda bekerja dengan
+bahasa pemrograman yang mempunyai pustaka fungsi untai yang kaya dan ganjil.
+Secara khusus, andaikan bahasa pemrograman Anda mempunyai fungsi $\fn{diag}$
+yang bekerja sebagai berikut: diberikan untai masukan~$s$, $\fn{diag}$
+menemukan setiap kemunculan simbol `x' dalam~$s$, lalu menggantinya dengan
+versi berpetik dari untai semula. Sebagai contoh, jika diberikan untai
+\begin{quote}
+\begin{verbatim}
+hello x world
+\end{verbatim}
+\end{quote}
+sebagai masukan, fungsi itu mengembalikan
+\begin{quote}
+\begin{verbatim}
+hello 'hello x world' world
+\end{verbatim}
+\end{quote}
+sebagai keluaran. Dalam hal ini, program yang diinginkan mudah ditulis; Anda
+dapat memeriksa bahwa
+\begin{quote}
+\begin{verbatim}
+print(diag('print(diag(x))'))
+\end{verbatim}
+\end{quote}
+berhasil melakukannya. Untuk bahasa pemrograman yang lebih umum seperti C++
+dan Java, gagasan yang sama tetap bekerja (dengan implementasi yang lebih
+rumit).
+
+Kita hanya tinggal beberapa langkah dari bukti teorema titik tetap. Andaikan
+suatu varian fungsi cetak, $\fn{print}(x,y)$, menerima untai~$x$ dan argumen
+numerik lain~$y$, lalu mencetak untai~$x$ sebanyak~$y$ kali.
+Maka ``program''
+\begin{quote}
+\begin{verbatim}
+getinput(y);
+print(diag('getinput(y); print(diag(x), y)'), y)
+\end{verbatim}
+\end{quote}
+mencetak dirinya sendiri sebanyak~$y$ kali ketika menerima masukan~$y$.
+Mengganti kerangka $\fn{getinput}$---$\fn{print}$---$\fn{diag}$ dengan fungsi
+sembarang $g(x,y)$ menghasilkan
+\begin{quote}
+\begin{verbatim}
+g(diag('g(diag(x), y)'), y)
+\end{verbatim}
+\end{quote}
+yang merupakan program yang, ketika menerima masukan~$y$, menjalankan $g$ pada
+program itu sendiri dan~$y$. Jika kita memahami ``pengutipan'' sebagai
+``penggunaan suatu indeks bagi,'' kita memperoleh bukti di atas.
+
+Untuk sekarang, tidak apa-apa jika Anda ingin memandang bukti tersebut
+sebagai siasat formal atau ilmu gaib. Namun, Anda harus mampu merekonstruksi
+rincian argumen yang diberikan di atas. Ketika kita membuktikan teorema
+ketaklengkapan (dan ``teorema titik tetap'' terkait), kita akan membahas
+cara lain untuk memahami mengapa argumen ini berhasil.
+\end{explain}
+
+\begin{tagblock}{lambda}
+\begin{digress}
+Gagasan yang sama dapat digunakan untuk memperoleh kombinator ``titik
+tetap.'' Andaikan Anda mempunyai suku lambda~$g$ dan menginginkan suku lain
+$k$ dengan sifat bahwa $k$ ekuivalen-$\beta$ dengan $gk$. Definisikan suku
+\[
+\fn{diag}(x) = xx
+\]
+dan
+\[
+l(x) = g(\fn{diag}(x))
+\]
+menurut konvensi notasi kita; dengan kata lain, $l$ adalah suku
+$\lambd[x][g(xx)]$. Misalkan $k$ suku~$ll$. Maka kita mempunyai
+\begin{align*}
+k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)]) \\
+& \red  g((\lambd[x][g(xx)])(\lambd[x][g(xx)])) \\
+& = gk.
+\end{align*}
+Jika kita mengambil
+\[
+Y = \lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
+\]
+maka $Yg$ dan $g(Yg)$ tereduksi ke suatu suku yang sama; jadi
+$Yg \equiv_\beta g(Yg)$. Ini dikenal sebagai ``kombinator Curry.'' Jika
+sebagai gantinya kita mengambil
+\[
+Y = (\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
+\]
+maka sebenarnya $Yg$ tereduksi ke $g(Yg)$, yang merupakan pernyataan lebih
+kuat. Versi $Y$ yang terakhir ini dikenal sebagai ``kombinator Turing.''
+\end{digress}
+\end{tagblock}
+
+\end{document}

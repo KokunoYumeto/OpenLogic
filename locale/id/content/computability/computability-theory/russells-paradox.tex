@@ -1,0 +1,76 @@
+% Bagian: computability
+% Bab: computability-theory
+% Subbagian: russells-paradox
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cmp}{thy}{rus}
+\olsection{Perbandingan dengan Paradoks Russell}
+
+Ada gunanya membandingkan dan membedakan argumen-argumen dalam bagian ini
+dengan paradoks Russell:
+\begin{enumerate}
+\item Paradoks Russell: misalkan $S = \Setabs{x}{x \notin x}$. Maka $S \in S$
+  jika dan hanya jika $S \notin S$, suatu kontradiksi.
+
+  \emph{Kesimpulan:} Tidak ada himpunan~$S$ semacam itu. Mengasumsikan
+  keberadaan suatu ``himpunan semua himpunan'' tidak konsisten dengan
+  aksioma-aksioma teori himpunan lainnya.
+
+\item Modifikasi paradoks Russell: misalkan $F$ merupakan ``fungsi'' dari
+  himpunan semua fungsi ke $\{ 0, 1 \}$ yang didefinisikan oleh
+  \[
+  F(f) =
+  \begin{cases}
+    1 & \text{jika $f$ berada dalam domain $f$, dan $f(f) = 0$} \\
+    0 & \text{selain itu}
+  \end{cases}
+  \]
+  Argumen serupa menunjukkan bahwa $F(F) = 0$ jika dan hanya jika $F(F) = 1$,
+  suatu kontradiksi.
+
+  \emph{Kesimpulan:} $F$ bukan suatu fungsi. ``Himpunan semua fungsi'' terlalu
+  besar untuk menjadi domain suatu fungsi.
+
+\item Argumen diagonalisasi: misalkan $f_0$, $f_1$, \dots merupakan enumerasi
+  fungsi dapat dihitung parsial, dan misalkan $G \colon \Nat \to \{ 0, 1 \}$
+  didefinisikan oleh
+  \[
+  G(x) =
+  \begin{cases}
+    1 & \text{jika $f_x(x)\downarrow = 0$} \\
+    0 & \text{selain itu}
+  \end{cases}
+  \]
+  Jika $G$ dapat dihitung, maka $G$ merupakan fungsi $f_k$ untuk suatu $k$.
+  Namun, dalam hal itu $G(k) = 1$ jika dan hanya jika $G(k) = 0$, suatu
+  kontradiksi.
+
+  \emph{Kesimpulan:} $G$ tidak dapat dihitung. Perhatikan bahwa berdasarkan
+  aksioma teori himpunan, $G$ tetap merupakan suatu fungsi; tidak ada paradoks
+  di sini, hanya suatu penjernihan.
+\end{enumerate}
+
+Pembicaraan tentang fungsi parsial, fungsi dapat dihitung, fungsi dapat
+dihitung parsial, dan seterusnya dapat membingungkan. Himpunan semua fungsi
+parsial dari $\Nat$ ke $\Nat$ merupakan koleksi objek yang besar. Sebagian di
+antaranya total, sebagian dapat dihitung, sebagian bersifat total sekaligus
+dapat dihitung, dan sebagian bukan keduanya. Ingatlah bahwa ketika kita
+mengatakan ``fungsi,'' secara bawaan yang kita maksud adalah fungsi total. Jadi,
+kita mempunyai:
+\begin{enumerate}
+\item fungsi dapat dihitung
+\item fungsi dapat dihitung parsial yang tidak total
+\item fungsi yang tidak dapat dihitung
+\item fungsi parsial yang tidak total maupun dapat dihitung
+\end{enumerate}
+Untuk memilahnya, mungkin berguna untuk menggambar suatu persegi besar yang
+mewakili semua fungsi parsial dari $\Nat$ ke $\Nat$, lalu menandai dua daerah
+yang saling tumpang tindih, yang masing-masing bersesuaian dengan fungsi total
+dan fungsi parsial dapat dihitung. Latihan yang baik ialah mencoba
+mendeskripsikan suatu objek di setiap daerah yang dihasilkan dalam diagram itu.
+
+\end{document}
+
