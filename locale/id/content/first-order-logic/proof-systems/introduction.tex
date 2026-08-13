@@ -1,0 +1,108 @@
+% Bagian: first-order-logic
+% Bab: proof-systems
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{prf}{int}}
+      {\olfileid[id]{pl}{prf}{int}}
+
+\olsection{Pendahuluan}
+
+Logika pada umumnya memiliki semantik sekaligus sistem !!a{derivation}.
+Semantik berkenaan dengan konsep-konsep seperti kebenaran,
+keterpenuhan, validitas, dan perikutan. Tujuan sistem !!{derivation}
+adalah menyediakan metode yang sepenuhnya sintaktis untuk menetapkan
+perikutan dan validitas. Sistem itu sepenuhnya sintaktis dalam arti
+bahwa suatu !!{derivation} di dalam sistem demikian merupakan objek
+sintaktis berhingga, biasanya berupa barisan (atau susunan berhingga
+lainnya) dari !!{sentence}s atau !!{formula}s. Sistem !!{derivation}
+yang baik memiliki sifat bahwa setiap barisan atau susunan tertentu
+dari !!{sentence}s atau !!{formula}s dapat diperiksa secara mekanis
+apakah ``benar.''
+
+Sistem !!{derivation} yang paling sederhana (dan secara historis
+pertama) bagi logika orde pertama bersifat \emph{aksiomatik}. Sebuah
+barisan !!{formula}s dianggap sebagai !!a{derivation} dalam sistem
+demikian apabila setiap !!{formula} di dalamnya merupakan salah satu
+dari sekumpulan tetap ``aksioma'' atau mengikuti dari !!{formula}s
+yang mendahuluinya dalam barisan melalui salah satu dari sejumlah
+tetap ``aturan inferensi''---dan dapat diperiksa secara mekanis apakah
+!!a{formula} merupakan aksioma serta apakah formula itu mengikuti
+secara tepat dari !!{formula}s lain melalui salah satu aturan
+inferensi. Sistem !!{derivation} aksiomatik mudah dideskripsikan---dan
+juga mudah ditangani secara metateoretis---tetapi !!{derivation}s di
+dalamnya sulit dibaca dan dipahami, serta juga sulit dihasilkan.
+
+Sistem !!{derivation} lain telah dikembangkan dengan tujuan agar
+!!{derivation}s lebih mudah disusun atau !!{derivation}s lebih mudah
+dipahami setelah
+selesai. Contohnya ialah deduksi alami, pohon kebenaran, yang juga
+dikenal sebagai pembuktian tableau, dan kalkulus sekuen. Sejumlah
+sistem !!{derivation} dirancang khusus dengan mempertimbangkan
+mekanisasi; misalnya, metode resolusi mudah diimplementasikan dalam
+perangkat lunak (tetapi !!{derivation}s di dalamnya pada dasarnya mustahil
+dipahami). Sebagian besar sistem !!{derivation} lain ini
+merepresentasikan !!{derivation}s sebagai pohon !!{formula}s, bukan
+sebagai barisan. Dengan demikian, lebih mudah dilihat bagian mana dari
+!!a{derivation} yang bergantung pada bagian lainnya.
+
+Jadi, untuk suatu logika, seperti logika orde pertama, berbagai sistem
+!!{derivation} akan memberikan eksplikasi yang berbeda mengenai apa
+artinya !!a{sentence} merupakan \emph{teorema} dan apa artinya
+!!a{sentence} !!{derivable} dari beberapa kalimat lain. Apa pun
+caranya (melalui !!{derivation}s aksiomatik, deduksi alami,
+!!{derivation}s sekuen, pohon kebenaran, atau refutasi resolusi), kita
+menginginkan agar relasi-relasi ini bersesuaian dengan gagasan
+semantis validitas dan perikutan. Kita tulis $\Proves !A$ untuk
+``$!A$~merupakan teorema'' dan ``$\Gamma \Proves !A$'' untuk
+``$!A$~!!{derivable} dari~$\Gamma$.'' Bagaimanapun $\Proves$~
+didefinisikan, kita menginginkannya bersesuaian dengan $\Entails$,
+yaitu:
+\begin{enumerate}
+\item $\Proves !A$ jika dan hanya jika $\Entails !A$
+\item $\Gamma \Proves !A$ jika dan hanya jika $\Gamma \Entails !A$
+\end{enumerate}
+Arah ``hanya jika'' di atas disebut \emph{kesahihan}.
+Suatu sistem !!{derivation} bersifat sahih jika !!{derivability} menjamin
+perikutan (atau validitas). Setiap sistem !!{derivation} yang layak
+harus bersifat sahih; sistem !!{derivation} yang tidak sahih sama
+sekali tidak berguna. Lagi pula, seluruh tujuan !!a{derivation} ialah
+memberikan jaminan sintaktis atas validitas atau perikutan. Kita akan
+membuktikan kesahihan bagi sistem-sistem !!{derivation} yang kita
+sajikan.
+
+Arah kebalikan, yakni arah ``jika,'' juga penting: arah ini disebut
+\emph{kelengkapan}. Sistem !!{derivation} yang lengkap cukup kuat
+untuk menunjukkan bahwa $!A$~merupakan teorema setiap kali $!A$~valid,
+dan bahwa $\Gamma \Proves !A$ setiap kali $\Gamma \Entails !A$.
+Kelengkapan lebih sulit dibuktikan, dan beberapa logika tidak memiliki
+sistem !!{derivation} yang lengkap. Logika orde pertama memilikinya.
+Kurt G\"odel adalah orang pertama yang membuktikan kelengkapan bagi
+sistem !!a{derivation} logika orde pertama dalam disertasinya pada
+tahun 1929.
+
+Konsep lain yang berkaitan dengan sistem !!{derivation} ialah
+\emph{konsistensi}. Himpunan !!{sentence}s disebut tidak konsisten jika
+apa pun dapat diturunkan darinya, dan disebut konsisten jika tidak
+demikian. Ketidakkonsistenan merupakan padanan sintaktis dari
+ketakterpenuhan: seperti himpunan yang tidak dapat dipenuhi, himpunan
+!!{sentence}s yang tidak konsisten tidak dapat menjadi teori yang
+baik; himpunan tersebut cacat secara mendasar. Himpunan !!{sentence}s
+yang konsisten belum tentu benar atau berguna, tetapi setidaknya
+memenuhi ambang minimal kegunaan logis tersebut. Untuk sistem
+!!{derivation} yang berbeda, definisi khusus konsistensi himpunan
+!!{sentence}s mungkin berbeda, tetapi seperti~$\Proves$, kita
+menginginkan agar konsistensi bertepatan dengan padanan semantisnya,
+yaitu keterpenuhan. Kita menginginkan agar selalu berlaku bahwa
+$\Gamma$ konsisten jika dan hanya jika ia dapat dipenuhi. Di sini,
+arah ``hanya jika'' sama artinya dengan kelengkapan (konsistensi
+menjamin keterpenuhan), sedangkan arah ``jika'' sama artinya dengan
+kesahihan (keterpenuhan menjamin konsistensi). Bahkan, untuk logika
+orde pertama klasik, kedua versi kesahihan dan kelengkapan itu
+ekuivalen.
+
+\end{document}

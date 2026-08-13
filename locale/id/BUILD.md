@@ -443,3 +443,26 @@ TeXcount 3.1.1 reports 2,853 English-source and 2,715 Indonesian words for this
 eight-file batch, and 29,001 versus 26,631 across all sixty-two admitted files.
 The exact next cursor is `OLP-0063`,
 `content/first-order-logic/proof-systems/proof-systems.tex`.
+
+## Proof Systems overview checkpoint — 2026-08-13
+
+`qa_proof_systems_overview_batch_replay.ps1` passes six files and 122 checks,
+including 359 ordered commands, 26 environment markers, 156 localization
+tokens, five imports, 137 mathematical skeletons, four proof/derivation blocks,
+ten localized file IDs, and exact assertions for every declared source repair.
+The batch contains 2,731 English-source and 2,419 Indonesian TeXcount words;
+cumulative counts through OLP-0068 are 31,732 and 29,050.
+
+`proof-systems-overview-id.tex` builds with `latexmk` exit 0 to an eight-page,
+118,822-byte PDF, SHA-256
+`c8e7475d52cd072d13c0e58467d04976f1bfef976d7e2a9a79b7905e26e94902`.
+The log has zero fatal error, undefined control sequence/reference/citation,
+multiply defined label, or missing glyph. Three overfull boxes remain (9.2365,
+0.67668, and 0.19641 pt); all are visually harmless.
+
+Extracted text is 20,256 bytes and contains zero unresolved marker, English
+environment/reference heading, named English proof-system fallback, hard-coded
+`Assumption`, or rejected `Sistem Suatu derivasi`. All eight pages were rendered
+at 144 dpi and inspected. No clipping, overlap, blank content page, broken
+glyph, lost formula, damaged proof tree, or margin loss was found. The exact
+next cursor is OLP-0069.

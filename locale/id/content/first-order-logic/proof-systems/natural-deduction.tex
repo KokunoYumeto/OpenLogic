@@ -1,0 +1,96 @@
+% Bagian: first-order-logic
+% Bab: proof-systems
+% Subbagian: natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{prf}{ntd}}
+      {\olfileid[id]{pl}{prf}{ntd}}
+
+\olsection{Deduksi Alami}
+
+Deduksi alami adalah sistem !!a{derivation} yang dimaksudkan untuk
+mencerminkan penalaran yang sesungguhnya (terutama jenis penalaran
+sistematis yang digunakan oleh matematikawan). Penalaran yang
+sesungguhnya berlangsung mengikuti sejumlah pola ``alami.'' Sebagai
+contoh, pembuktian per kasus memungkinkan kita menetapkan suatu
+kesimpulan berdasarkan premis disjungtif dengan menetapkan bahwa
+kesimpulan itu mengikuti dari masing-masing disjung. Pembuktian tak
+langsung memungkinkan kita menetapkan suatu kesimpulan dengan
+menunjukkan bahwa negasinya mengarah pada kontradiksi. Pembuktian
+bersyarat menetapkan klaim bersyarat ``jika \dots maka \dots'' dengan
+menunjukkan bahwa konsekuen mengikuti dari anteseden. Deduksi alami
+merupakan formalisasi dari beberapa inferensi alami ini. Setiap
+penghubung logis dan kuantor memiliki dua aturan, yaitu aturan
+introduksi dan aturan eliminasi, dan masing-masing bersesuaian dengan
+salah satu pola inferensi alami tersebut. Sebagai contoh,
+$\Intro{\lif}$ bersesuaian dengan pembuktian bersyarat, dan
+$\Elim{\lor}$ dengan pembuktian per kasus. Aturan yang sangat sederhana
+ialah $\Elim{\land}$, yang memungkinkan inferensi dari $!A \land !B$
+ke~$!A$ (atau $!B$).
+
+Salah satu ciri yang membedakan deduksi alami dari sistem
+!!{derivation} lain ialah penggunaan asumsi. !!^a{derivation} dalam
+deduksi alami merupakan pohon !!{formula}s. Sebuah !!{formula}
+tunggal berada di akar pohon !!{formula}s tersebut, sedangkan
+``daun-daun'' pohon itu adalah !!{formula}s yang darinya kesimpulan
+diturunkan. Dalam deduksi alami, beberapa !!{formula}s daun berperan
+di dalam !!{derivation}, tetapi sudah ``habis digunakan'' ketika
+!!{derivation} mencapai kesimpulan. Hal ini bersesuaian dengan praktik
+dalam penalaran yang sesungguhnya untuk memperkenalkan hipotesis yang
+hanya berlaku dalam waktu singkat. Sebagai contoh, dalam pembuktian
+per kasus kita mengasumsikan kebenaran masing-masing disjung; dalam
+pembuktian bersyarat kita mengasumsikan kebenaran anteseden; dalam
+pembuktian tak langsung kita mengasumsikan kebenaran negasi
+kesimpulan. Cara memperkenalkan asumsi hipotetis, lalu melepaskannya
+demi menetapkan suatu langkah perantara, merupakan ciri khas deduksi
+alami. Formula pada daun suatu !!{derivation} deduksi alami
+disebut asumsi, dan beberapa aturan inferensi dapat
+``!!{discharge}'' asumsi-asumsi tersebut. Sebagai contoh, jika kita
+memiliki !!a{derivation} untuk~$!B$ dari beberapa asumsi yang
+mencakup~$!A$, aturan $\Intro{\lif}$ memungkinkan kita
+menyimpulkan~$!A \lif !B$ dan melepaskan asumsi-asumsi berbentuk~$!A$
+yang dipilih serta diberi label untuk inferensi tersebut.
+(Untuk mencatat asumsi mana yang dilepaskan pada inferensi mana, kita
+memberi label berupa angka pada inferensi dan asumsi yang
+dilepaskannya.) Asumsi yang !!{undischarged} pada akhir
+!!{derivation} secara bersama-sama cukup bagi kebenaran kesimpulan;
+dengan demikian, !!a{derivation} menetapkan bahwa asumsi-asumsi yang
+!!{undischarged} dalam derivasi itu mengakibatkan kesimpulannya.
+
+Relasi $\Gamma \Proves !A$ berdasarkan deduksi alami berlaku jika dan
+hanya jika terdapat !!a{derivation} dengan $!A$~sebagai !!{sentence}
+terakhir dalam pohon, dan setiap daun yang !!{undischarged} berada
+dalam~$\Gamma$. $!A$~merupakan teorema dalam deduksi alami jika dan
+hanya jika terdapat !!a{derivation} dengan $!A$~sebagai !!{sentence}
+terakhir dan semua asumsi !!{discharged}. Sebagai contoh, berikut
+adalah !!a{derivation} yang menunjukkan bahwa $\Proves (!A
+\land !B) \lif !A$:
+\begin{prooftree}
+  \AxiomC{$\Discharge{!A \land !B}{1}$}
+  \RightLabel{\Elim{\land}}
+  \UnaryInfC{$!A$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$(!A \land !B) \lif !A$}
+\end{prooftree}
+Label~$1$ menunjukkan bahwa asumsi $!A \land !B$ !!{discharged} pada
+inferensi \Intro{\lif}.
+
+Himpunan~$\Gamma$ tidak konsisten jika dan hanya jika
+$\Gamma \Proves \lfalse$ dalam deduksi alami. Aturan \FalseInt{}
+memastikan bahwa setiap !!{sentence} dapat diturunkan dari himpunan
+yang tidak konsisten.
+
+Sistem deduksi alami dikembangkan oleh Gerhard Gentzen dan
+Stanis\l{}aw Ja\'skowski pada tahun 1930-an, lalu dikembangkan lebih
+lanjut oleh Dag Prawitz dan Frederic Fitch. Karena inferensinya
+mencerminkan metode pembuktian alami, sistem ini disukai oleh para
+filsuf. Versi yang dikembangkan oleh Fitch sering digunakan dalam
+buku teks pengantar logika. Dalam filsafat logika, aturan deduksi
+alami kadang-kadang dianggap memberikan makna operator logis
+(``semantik teori-bukti'').
+
+\end{document}

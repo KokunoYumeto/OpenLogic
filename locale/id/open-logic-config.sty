@@ -92,6 +92,17 @@
 \definetoken{a}{signed formula}{}
 \definetoken{A}{signed formula}{}
 
+% Apabila artikel tak tentu berkode `A` muncul pada awal kalimat, pengosongan
+% artikel Inggris akan menyisakan nomina berhuruf kecil. `Suatu` menjaga
+% kapitalisasi dan kelancaran kalimat tanpa mengubah token matematisnya.
+\definetoken{A}{derivation}{Suatu}
+\definetoken{A}{tableau}{Suatu}
+\definetoken{A}{signed formula}{Suatu}
+
+% Label justifikasi tableau ini ditulis langsung sebagai makro oleh sumber,
+% bukan melalui sistem token, sehingga harus dilokalkan secara eksplisit.
+\RenewDocumentCommand{\TAss}{}{Asumsi}
+
 % Kanon pembanding UIN KHAS membedakan "himpunan terhitung" dari
 % "himpunan takterhitung" dan mencatat "terbilang" untuk himpunan tak
 % hingga yang dapat dipasangkan satu-satu dengan bilangan asli. Bentuk ini

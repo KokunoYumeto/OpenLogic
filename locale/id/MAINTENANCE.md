@@ -39,11 +39,11 @@ hashes, dependency deltas, and an explicit migration receipt.
 
 ## Current continuation state
 
-- Admitted ordered boundary: `OLP-0062`.
-- Next row: `OLP-0063`.
+- Admitted ordered boundary: `OLP-0068`.
+- Next row: `OLP-0069`.
 - Next source:
-  `content/first-order-logic/proof-systems/proof-systems.tex`.
-- Current coverage: 62/722; exact remainder: 660.
+  `content/first-order-logic/sequent-calculus/sequent-calculus.tex`.
+- Current coverage: 68/722; exact remainder: 654.
 
 After the final row, run a clean complete Indonesian reader build, full
 extraction/search replay, page-level visual QA, full hash inventory, and a

@@ -1,0 +1,69 @@
+% Bagian: first-order-logic
+% Bab: proof-systems
+% Subbagian: seqeunt-calculus
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{prf}{seq}}
+      {\olfileid[id]{pl}{prf}{seq}}
+
+\olsection{Kalkulus Sekuen}
+
+Sementara banyak sistem !!{derivation} bekerja dengan susunan
+!!{sentence}s, kalkulus sekuen bekerja dengan \emph{sekuen}. Sekuen
+adalah ekspresi berbentuk
+\[
+!A_1, \dots, !A_m \Sequent !B_1, \dots, !B_n,
+\]
+yaitu sepasang barisan !!{sentence}s yang dipisahkan oleh simbol
+sekuen~$\Sequent$. Masing-masing barisan itu dapat kosong. !!^a{derivation}
+dalam kalkulus sekuen merupakan pohon sekuen; sekuen paling atas
+memiliki bentuk khusus (disebut ``sekuen awal'' atau ``aksioma''), dan
+setiap sekuen lainnya mengikuti dari sekuen-sekuen tepat di atasnya
+melalui salah satu aturan inferensi. Aturan inferensi dapat
+memanipulasi !!{sentence}s dalam sekuen (menambahkan, menghapus, atau
+menyusun ulang kalimat-kalimat itu di sisi kiri ataupun kanan), atau
+memperkenalkan !!{formula} kompleks dalam kesimpulan aturan tersebut.
+Sebagai contoh, aturan $\LeftR{\land}$ memungkinkan inferensi dari $!A,
+\Gamma \Sequent \Delta$ ke $!A \land !B, \Gamma \Sequent \Delta$, dan
+aturan $\RightR{\lif}$ memungkinkan inferensi dari $!A, \Gamma \Sequent
+\Delta, !B$ ke $\Gamma \Sequent \Delta, !A \lif !B$, untuk sebarang
+$\Gamma$, $\Delta$, $!A$, dan~$!B$. (Secara khusus, $\Gamma$ dan~$\Delta$
+dapat kosong.)
+
+Relasi $\Proves$ berdasarkan kalkulus sekuen didefinisikan sebagai
+berikut: $\Gamma \Proves !A$ jika dan hanya jika terdapat suatu barisan
+$\Gamma_0$ sedemikian sehingga setiap $!A$ dalam $\Gamma_0$ berada
+dalam~$\Gamma$ dan terdapat suatu !!{derivation} dengan
+sekuen~$\Gamma_0 \Sequent !A$ pada akarnya. $!A$ merupakan teorema dalam
+kalkulus sekuen jika sekuen~$\Sequent !A$ memiliki !!a{derivation}.
+Sebagai contoh, berikut adalah !!a{derivation} yang menunjukkan bahwa
+$\Proves (!A \land !B) \lif !A$:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B \fCenter !A$
+  \RightLabel{\RightR{\lif}}
+  \UnaryInf$\fCenter (!A \land !B) \lif !A$
+\end{prooftree}
+
+Himpunan $\Gamma$ tidak konsisten dalam kalkulus sekuen jika terdapat
+!!a{derivation} dari $\Gamma_0 \Sequent$ (dengan setiap $!A \in \Gamma_0$
+berada dalam~$\Gamma$ dan sisi kanan sekuen kosong). Dengan menggunakan
+aturan \RightR{\Weakening}, setiap !!{sentence} dapat diturunkan dari
+himpunan yang tidak konsisten.
+
+Kalkulus sekuen diciptakan pada tahun 1930-an oleh Gerhard Gentzen.
+Karena rancangannya sistematis dan simetris, kalkulus ini merupakan
+formalisme yang sangat berguna untuk mengembangkan teori tentang
+!!{derivation}s. Menemukan !!{derivation}s dalam kalkulus sekuen relatif
+mudah, tetapi !!{derivation}s tersebut sering kali sulit dibaca dan
+kaitannya dengan pembuktian kadang-kadang tidak mudah dilihat. Namun,
+kalkulus sekuen telah terbukti sebagai pendekatan yang sangat elegan
+terhadap sistem !!{derivation}, dan banyak logika memiliki sistem
+kalkulus sekuen.
+
+\end{document}

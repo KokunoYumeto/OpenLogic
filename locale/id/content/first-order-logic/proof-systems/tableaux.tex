@@ -1,0 +1,94 @@
+% Bagian: first-order-logic
+% Bab: proof-systems
+% Subbagian: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{prf}{tab}}
+      {\olfileid[id]{pl}{prf}{tab}}
+
+\olsection{\usetoken{P}{tableau}}
+
+Sementara banyak sistem !!{derivation} bekerja dengan susunan
+!!{sentence}s, !!{tableau}s bekerja dengan !!{signed formula}s.
+!!^a{signed formula} adalah pasangan yang terdiri atas tanda nilai
+kebenaran ($\True$ atau $\False$) dan !!a{sentence}
+\[
+\sFmla{\True}{!A} \text{ atau } \sFmla{\False}{!A}.
+\]
+!!^a{tableau} terdiri atas !!{signed formula}s yang disusun dalam
+pohon bercabang ke bawah. Tableau itu berawal dengan sejumlah
+\emph{asumsi} dan dilanjutkan dengan !!{signed formula}s yang diperoleh
+dari salah satu !!{signed formula}s di atasnya melalui penerapan salah
+satu aturan inferensi. Setiap aturan memungkinkan kita menambahkan
+satu atau lebih !!{signed formula}s pada ujung suatu cabang, atau dua
+!!{signed formula}s secara berdampingan---dalam hal ini sebuah cabang
+terbelah menjadi dua, dengan dua !!{signed
+  formula}s yang ditambahkan membentuk ujung kedua cabang tersebut.
+
+Aturan penghubung yang diterapkan pada !!{signed formula} kompleks
+menghasilkan penambahan !!{signed formula}s yang merupakan
+sub-!!{formula}s langsung; aturan kuantor dapat menghasilkan instans
+substitusi dari suatu subformula. Aturan-aturan itu muncul berpasangan,
+satu aturan untuk masing-masing dari kedua tanda. Sebagai contoh, aturan
+$\TRule{\True}{\land}$ diterapkan pada $\sFmla{\True}{!A \land !B}$,
+dan memungkinkan penambahan kedua !!{signed formula}s, yaitu
+$\sFmla{\True}{!A}$ dan~$\sFmla{\True}{!B}$, pada ujung setiap cabang
+yang memuat $\sFmla{\True}{!A \land !B}$, sedangkan aturan
+$\TRule{\False}{\land}$ memungkinkan suatu cabang dibelah dengan
+menambahkan $\sFmla{\False}{!A}$ dan $\sFmla{\False}{!B}$ secara
+berdampingan. !!^a{tableau} tertutup jika setiap cabangnya memuat
+pasangan !!{signed formula}s yang cocok, yakni
+$\sFmla{\True}{!A}$ dan $\sFmla{\False}{!A}$.
+
+Relasi $\Proves$ berdasarkan !!{tableau}s didefinisikan sebagai
+berikut: $\Gamma \Proves !A$ jika dan hanya jika terdapat suatu
+himpunan berhingga~$\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$
+sedemikian sehingga terdapat !!{tableau} tertutup untuk asumsi-asumsi
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+\]
+Sebagai contoh, berikut adalah suatu !!{tableau} tertutup yang menunjukkan
+bahwa $\Proves (!A \land !B) \lif !A$:
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}}, just = {\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}}, just = {\TRule{\True}{\land}[2]}
+          [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\land}[2]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+Himpunan $\Gamma$ tidak konsisten dalam kalkulus !!{tableau} jika
+terdapat suatu !!{tableau} tertutup untuk asumsi-asumsi
+\[
+\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+\]
+dengan syarat $!B_i \in \Gamma$ berlaku untuk setiap indeks dalam
+daftar berhingga tersebut.
+
+!!^{tableau}s diciptakan pada tahun 1950-an secara independen oleh
+Evert Beth dan Jaakko Hintikka, lalu disederhanakan dan dipopulerkan
+oleh Raymond Smullyan. Tableau sangat mudah digunakan karena
+penyusunan !!a{tableau} merupakan prosedur yang sangat sistematis.
+Karena sifat sistematis !!{tableau}s, tableau juga mudah
+diimplementasikan dengan komputer. Namun, !!a{tableau} sering kali
+sulit dibaca dan kaitannya dengan pembuktian kadang-kadang tidak mudah
+dilihat. Pendekatan ini juga cukup umum, dan banyak logika berbeda yang
+memiliki sistem !!{tableau}. !!^{tableau}s juga membantu kita
+menemukan !!{structure}s yang memenuhi (himpunan) !!{sentence}s
+tertentu: jika himpunan itu dapat dipenuhi, himpunan itu tidak akan
+memiliki !!{tableau} tertutup, yaitu setiap !!{tableau} akan memiliki
+cabang terbuka. Adapun !!{structure} yang memenuhi dapat ``dibaca'' dari
+cabang terbuka, asalkan setiap aturan yang mungkin diterapkan pada
+cabang itu telah diterapkan. Terdapat pula kaitan yang sangat erat
+dengan kalkulus sekuen: pada dasarnya, suatu !!{tableau} tertutup merupakan
+!!{derivation} kalkulus sekuen yang dipadatkan dan ditulis terbalik.
+
+\end{document}

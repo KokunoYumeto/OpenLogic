@@ -56,6 +56,19 @@ SHA-256 `9747a415962fa62c0b263965f966cd457fb42b8b8147666bdcf41520237aa2a8`
 serta `8e04657dc409e29d59badaa0b9d411e2a633799384777ac58d44654e20294d0c`.
 Perintah QA dan bukti render yang tepat dicatat dalam `BUILD.md`.
 
+Checkpoint terbaru menambahkan enam unit ikhtisar Sistem Derivasi
+(`OLP-0063`--`OLP-0068`). Penggerak bounded berikut menghasilkan PDF delapan
+halaman tanpa fallback bahasa Inggris:
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' -cd locale/id/proof-systems-overview-id.tex
+```
+
+PDF itu memiliki SHA-256
+`c8e7475d52cd072d13c0e58467d04976f1bfef976d7e2a9a79b7905e26e94902`;
+seluruh delapan halamannya telah dirender dan diperiksa.
+
 ## Syarat penerimaan tiap batch
 
 Setiap batch harus mengikat hash sumber, mempertahankan perintah LaTeX,

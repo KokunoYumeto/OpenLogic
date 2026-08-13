@@ -1,0 +1,92 @@
+% Bagian: first-order-logic
+% Bab: proof-systems
+% Subbagian: axiomatic-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{prf}{axd}}
+      {\olfileid[id]{pl}{prf}{axd}}
+
+\olsection{\usetoken{P}{derivation} Aksiomatik}
+
+Sistem !!{derivation}s aksiomatik merupakan sistem !!{derivation} logis
+yang paling tua dan paling sederhana. Di dalamnya, !!{derivation}s
+hanyalah barisan !!{sentence}s. Suatu barisan !!{sentence}s dianggap
+sebagai !!{derivation} yang benar jika setiap !!{sentence}~$!A$ di
+dalamnya memenuhi salah satu syarat berikut:
+\begin{enumerate}
+\item $!A$ merupakan aksioma, atau
+\item $!A$ merupakan !!a{element} dari suatu himpunan~$\Gamma$ yang
+  beranggotakan !!{sentence}s, atau
+\item $!A$ dijustifikasi oleh aturan inferensi.
+\end{enumerate}
+Untuk menjadi aksioma, $!A$ harus memiliki bentuk salah satu dari
+sejumlah skema !!{sentence} yang tetap. Terdapat banyak himpunan skema
+aksioma yang menghasilkan sistem !!{derivation} logika orde pertama
+yang memadai (sahih dan lengkap). Beberapa di antaranya disusun
+menurut penghubung yang diaturnya, misalnya skema
+\[
+!A \lif (!B \lif !A) \qquad !B \lif (!B \lor !C) \qquad (!B \land !C) \lif !B
+\]
+merupakan aksioma umum yang mengatur $\lif$, $\lor$, dan~$\land$.
+Beberapa sistem aksioma mengupayakan jumlah aksioma yang minimal.
+Bergantung pada penghubung yang diambil sebagai penghubung primitif,
+bahkan dimungkinkan untuk menemukan sistem aksioma yang hanya terdiri
+atas satu aksioma.
+
+Aturan inferensi adalah pernyataan bersyarat yang memberikan syarat
+cukup agar !!a{sentence} dalam !!a{derivation} dapat dijustifikasi.
+Modus ponens merupakan salah satu aturan semacam itu yang sangat umum:
+aturan ini menyatakan bahwa jika $!A$ dan $!A \lif !B$ sudah
+dijustifikasi, maka $!B$ dijustifikasi. Artinya, suatu baris dalam
+!!a{derivation} yang memuat !!{sentence}~$!B$ dijustifikasi, asalkan
+baik $!A$ maupun $!A \lif !B$ (untuk suatu !!{sentence}~$!A$) muncul
+dalam !!{derivation} sebelum~$!B$.
+
+Relasi $\Proves$ berdasarkan !!{derivation}s aksiomatik didefinisikan
+sebagai berikut: $\Gamma \Proves !A$ jika dan hanya jika terdapat
+!!a{derivation} dengan !!{sentence}~$!A$ sebagai formula terakhirnya
+(dan himpunan berhingga !!{sentence}s dalam !!{derivation} tersebut
+yang dijustifikasi oleh~(2) di atas merupakan himpunan bagian
+dari~$\Gamma$). $!A$
+merupakan teorema jika~$!A$ memiliki !!a{derivation} dengan~$\Gamma$
+kosong, yaitu setiap !!{sentence} dalam !!{derivation} dijustifikasi
+oleh (1) atau~(3). Sebagai contoh, berikut adalah !!a{derivation} yang
+menunjukkan bahwa $\Proves !A  \lif (!B \lif (!B \lor !A))$:
+\begin{derivation}
+  1. & $!B \lif (!B \lor !A)$ \\
+  2. & $(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))$\\
+  3. & $!A  \lif (!B \lif (!B \lor !A))$
+\end{derivation}
+Pada baris~1, !!{sentence} tersebut memiliki bentuk aksioma $!A \lif
+(!A \lor !B)$ (dengan peran $!A$ dan $!B$ dipertukarkan). Kalimat pada
+baris~2 memiliki bentuk aksioma $!A \lif (!B \lif !A)$. Dengan
+demikian, kedua baris itu dijustifikasi. Baris~3 dijustifikasi oleh
+modus ponens: jika kita menyingkatnya sebagai $!D$, maka baris~2
+berbentuk $!C \lif !D$, dengan $!C$ adalah $!B \lif (!B \lor !A)$,
+yaitu baris~1.
+
+Himpunan $\Gamma$ tidak konsisten jika $\Gamma \Proves \lfalse$.
+Sistem aksioma lengkap juga akan membuktikan bahwa $\lfalse \lif !A$
+untuk setiap~$!A$, sehingga jika $\Gamma$ tidak konsisten, maka
+$\Gamma \Proves !A$ untuk setiap~$!A$.
+
+Sistem !!{derivation}s aksiomatik untuk logika pertama kali diberikan
+oleh Gottlob Frege dalam \emph{Begriffsschrift} karyanya pada tahun
+1879; karena alasan ini, karya tersebut sering dianggap sebagai karya
+pertama dalam logika modern. Sistem-sistem itu disempurnakan dalam
+\emph{Principia Mathematica} karya Alfred North Whitehead dan Bertrand
+Russell, serta oleh David Hilbert dan para mahasiswanya pada tahun
+1920-an. Oleh karena itu, sistem-sistem tersebut sering disebut
+``sistem Frege'' atau ``sistem Hilbert.'' Sistem-sistem itu sangat
+luwes dalam arti bahwa sistem aksiomatik bagi suatu logika sering
+mudah ditemukan. Karena !!{derivation}s memiliki struktur yang sangat
+sederhana dan hanya satu atau dua aturan inferensi, membuktikan berbagai
+hal \emph{tentangnya} juga relatif mudah. Namun, sistem-sistem itu sangat
+sulit digunakan dalam praktik, yaitu sulit menemukan dan menuliskan
+pembuktian.
+
+\end{document}

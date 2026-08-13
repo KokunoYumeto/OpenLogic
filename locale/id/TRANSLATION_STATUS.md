@@ -338,7 +338,14 @@ heading, or localization-token fallback. Exact hashes and dispositions are in
 
 ## Continuation cursor
 
-Next global ordered cursor: `OLP-0063`,
-`content/first-order-logic/proof-systems/proof-systems.tex`.
-The remaining closure is 660 source files after the 62 target files currently
+The contiguous Proof Systems overview batch adds OLP-0063--OLP-0068. Its
+six-file replay passes 122 checks and 137 mathematical skeletons; two
+independent semantic replays pass after explicit source repairs and
+render-driven localization corrections. The bounded driver builds to eight
+pages, all inspected at 144 dpi. Exact hashes and dispositions are recorded in
+`..\_control\OPENLOGIC_PROOF_SYSTEMS_OVERVIEW_INDEPENDENT_REVIEW_20260813.md`.
+
+Next global ordered cursor: `OLP-0069`,
+`content/first-order-logic/sequent-calculus/sequent-calculus.tex`.
+The remaining closure is 654 source files after the 68 target files currently
 present and admitted.
