@@ -1,0 +1,86 @@
+% Bagian: first-order-logic
+% Bab: beyond
+% Subbagian: modal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{byd}{mod}
+
+\olsection{Logika Modal}
+
+Pertimbangkan contoh kalimat bersyarat berikut:
+\begin{quote}
+  Jika Jeremy sendirian di ruangan itu, maka ia mabuk dan telanjang dan
+  menari-nari di atas kursi.
+\end{quote}
+Ini merupakan contoh pernyataan bersyarat yang mungkin benar secara material,
+tetapi tetap menyesatkan, karena tampaknya menyiratkan bahwa terdapat hubungan
+yang lebih kuat antara anteseden dan kesimpulannya daripada sekadar bahwa
+anteseden itu salah atau konsekuennya benar. Artinya, susunan katanya
+menyiratkan bahwa klaim tersebut bukan hanya benar di dunia khusus ini (tempat
+klaim itu mungkin benar secara trivial karena Jeremy tidak sendirian di
+ruangan tersebut), tetapi lebih jauh bahwa kesimpulannya \emph{akan} benar
+\emph{seandainya} antesedennya benar. Dengan kata lain, pernyataan itu dapat
+dipahami sebagai mengatakan bahwa klaim tersebut benar bukan hanya di dunia
+ini, melainkan di setiap dunia yang ``mungkin''; atau bahwa klaim itu
+\emph{niscaya} benar, bukan sekadar benar di dunia khusus ini.
+
+Logika modal dirancang untuk menjelaskan jenis keniscayaan ini. Logika
+proposisional modal diperoleh dari logika proposisional biasa dengan
+menambahkan operator kotak; yakni, jika $!A$ merupakan !!a{formula}, demikian
+pula $\Box !A$. Secara intuitif, $\Box !A$ menyatakan
+bahwa $!A$ \emph{niscaya} benar, atau benar di setiap dunia mungkin.
+$\Diamond !A$ biasanya dianggap sebagai singkatan bagi $\lnot \Box \lnot
+!A$, dan dapat dibaca sebagai menyatakan bahwa $!A$ \emph{mungkin} benar.
+Tentu saja, modalitas juga dapat ditambahkan pada logika predikat.
+
+Berbagai !!{structure}s Kripke dapat digunakan untuk menyediakan semantik bagi logika
+modal; bahkan, Kripke pertama kali merancang semantik ini dengan logika modal
+dalam pikirannya. Alih-alih membatasi diri pada urutan parsial, secara lebih
+umum kita mempunyai himpunan ``dunia mungkin''~$P$ dan relasi
+``aksesibilitas'' biner $\Atom{R}{x,y}$ di antara dunia-dunia itu. Secara
+intuitif, $\Atom{R}{p,q}$ menyatakan bahwa dunia~$q$ selaras dengan~$p$;
+yakni, jika kita ``berada di'' dunia~$p$, kita harus mempertimbangkan
+kemungkinan bahwa dunia dapat saja seperti~$q$.
+
+Logika modal kadang-kadang disebut logika ``intensional'', sebagai lawan dari
+logika ``ekstensional''. Semantik yang dimaksudkan bagi logika ekstensional,
+seperti logika klasik, hanya merujuk pada satu dunia, yakni dunia ``aktual'';
+sementara semantik bagi logika ``intensional'' bertumpu pada ontologi yang
+lebih rumit. Selain men!!{structure}kan keniscayaan, kita dapat menggunakan
+modalitas untuk men!!{structure}kan konstruksi linguistik lain,
+dengan menafsirkan ulang $\Box$ dan $\Diamond$ sesuai penerapannya. Misalnya:
+\begin{enumerate}
+\item Dalam logika keterbuktian, $\Box !A$ dibaca ``$!A$ dapat dibuktikan''
+  dan $\Diamond !A$ dibaca ``$!A$ konsisten.''
+\item Dalam logika epistemik, $\Box !A$ dapat dibaca sebagai ``Saya mengetahui
+  $!A$'' atau ``Saya meyakini $!A$.''
+\item Dalam logika temporal, $\Box !A$ dapat dibaca sebagai ``$!A$ selalu
+  benar'' dan $\Diamond !A$ sebagai ``$!A$ kadang-kadang benar.''
+\end{enumerate}
+
+Kita ingin memperluas logika dengan aturan dan aksioma yang menangani
+modalitas. Misalnya, sistem $\Log{S4}$ terdiri atas aksioma dan aturan logika
+proposisional biasa, beserta aksioma-aksioma berikut:
+\begin{align*}
+& \Box (!A \lif !B) \lif (\Box !A \lif \Box !B)\\
+& \Box !A \lif !A \\
+& \Box !A \lif \Box \Box !A
+\intertext{serta suatu aturan, ``dari $!A$, simpulkan $\Box !A$.''
+  $\Log{S5}$ menambahkan aksioma berikut:}
+& \Diamond !A \lif \Box \Diamond !A
+\end{align*}
+Variasi aksioma-aksioma ini mungkin cocok bagi penerapan yang berbeda-beda;
+misalnya, S5 biasanya dianggap mencirikan gagasan keniscayaan logis. Hal yang
+menarik ialah bahwa biasanya kita dapat menemukan semantik yang menjadikan
+sistem !!{derivation} sahih dan lengkap dengan membatasi relasi aksesibilitas
+dalam !!{structure}s Kripke dengan cara yang alami. Misalnya, $\Log{S4}$
+bersesuaian dengan kelas !!{structure}s Kripke yang relasi aksesibilitasnya
+refleksif dan transitif. $\Log{S5}$ bersesuaian dengan kelas !!{structure}s
+Kripke yang relasi aksesibilitasnya {\em universal}, yakni setiap dunia dapat
+diakses dari setiap dunia lain; sehingga $\Box !A$ berlaku jika dan hanya jika
+$!A$ berlaku di setiap dunia.
+
+\end{document}

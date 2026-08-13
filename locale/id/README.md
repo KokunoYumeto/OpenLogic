@@ -5,9 +5,9 @@ Indonesia dari **Open Logic Project**. Sumber semantiknya ialah repositori
 Inggris resmi pada commit beku
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`.
 
-Status saat ini: **173 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
-Batas berurutan telah mencapai `OLP-0173`; unit berikutnya ialah `OLP-0174`,
-`content/first-order-logic/beyond/beyond.tex`.
+Status saat ini: **181 dari 722 berkas isi telah diterjemahkan dan diperiksa**.
+Batas berurutan telah mencapai `OLP-0181`; unit berikutnya ialah `OLP-0182`,
+`content/model-theory/model-theory.tex`.
 Ini merupakan checkpoint produksi yang nyata, tetapi belum merupakan edisi
 lengkap. Berkas Inggris yang belum diterjemahkan tidak dihitung sebagai cakupan
 Bahasa Indonesia dan tidak boleh dipakai sebagai fallback diam-diam.
@@ -205,6 +205,24 @@ Halaman bab baru 49--60 dan bibliografi halaman 61 telah diperiksa pada 144
 dpi; halaman 48 identik piksel dengan checkpoint sebelumnya. Tidak ditemukan
 pemotongan, tumpang tindih, glif atau formula rusak, atau rujukan tak
 terselesaikan. Kursor global berikutnya adalah `OLP-0174`.
+
+Checkpoint terbaru menambahkan delapan unit bab Melampaui Logika Orde Pertama
+(`OLP-0174`--`OLP-0181`). Replay deterministik lulus 235 pemeriksaan atas 334
+kerangka matematika, tiga koreksi sumber, dua risiko sumber yang dipertahankan,
+dan tiga temuan positif-palsu yang ditarik kembali. Penggerak kumulatif berikut
+membangun bab 15--19:
+
+```powershell
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-beyond-id.tex
+```
+
+PDF 78 halaman itu berukuran 509.877 byte dengan SHA-256
+`e83568c2dd67da6b370fbb5e00669d357557b8146618c3c2931a95eca54f86ac`.
+Halaman 1--60 identik piksel dengan checkpoint sebelumnya; seluruh halaman
+yang berubah, 61--78, telah diperiksa pada render 144 dpi beresolusi asli.
+Tidak ditemukan pemotongan, tumpang tindih, kerusakan glif atau formula,
+kehilangan margin, atau rujukan tak terselesaikan. Kursor global berikutnya
+adalah `OLP-0182`.
 
 ## Syarat penerimaan tiap batch
 

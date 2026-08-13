@@ -1,0 +1,68 @@
+% Bagian: first-order-logic
+% Bab: beyond
+% Subbagian: many-sorted-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{byd}{msl}
+
+\olsection{Logika Banyak-Sorta}
+
+Dalam logika orde pertama, variabel dan kuantor merentang atas satu
+!!{domain}. Namun, sering kali berguna untuk mempunyai beberapa !!{domain}s
+(yang saling lepas): misalnya, kita mungkin ingin mempunyai !!a{domain}
+bilangan, !!a{domain} objek geometri, !!a{domain} fungsi dari bilangan ke
+bilangan, !!a{domain} grup abelian, dan seterusnya.
+
+Logika banyak-sorta menyediakan kerangka semacam ini. Kita mulai dengan suatu
+daftar ``sorta''---``sorta'' suatu objek menunjukkan ``!!{domain}'' yang
+seharusnya ditempatinya. Kemudian kita mempunyai !!{variable}s dan kuantor
+untuk setiap sorta, serta (biasanya) !!{identity} untuk setiap sorta. Fungsi
+dan relasi juga ``diberi tipe'' berdasarkan sorta objek yang dapat menjadi
+argumennya. Selain itu, aturan-aturan logika orde pertama yang biasa tetap
+digunakan, dengan versi aturan kuantor yang diulangi untuk setiap sorta.
+
+Misalnya, untuk mengkaji hubungan internasional kita dapat memilih suatu
+bahasa dengan dua sorta objek, yaitu warga negara Prancis dan warga negara
+Jerman. Kita dapat mempunyai relasi uner ``minum anggur'' untuk objek sorta
+pertama; relasi uner lain, ``makan sosis bratwurst'', untuk objek sorta kedua;
+dan relasi biner ``membentuk pasangan menikah multinasional'' yang menerima
+dua argumen, dengan argumen pertama dari sorta pertama dan argumen kedua dari
+sorta kedua. Jika kita menggunakan variabel $a$, $b$, $c$ untuk merentang atas
+warga negara Prancis dan $x$, $y$, $z$ untuk merentang atas warga negara
+Jerman, maka
+\[
+\lforall[a][\lforall x][(\Atom{\Obj{MarriedTo}}{a,x} \lif
+(\Atom{\Obj{DrinksWine}}{a} \lor \lnot \Atom{\Obj{EatsWurst}}{x})]]
+\]
+menyatakan bahwa jika seorang Prancis menikah dengan seorang Jerman, maka
+orang Prancis itu minum anggur atau orang Jerman itu tidak makan sosis
+bratwurst.
+
+Logika banyak-sorta dapat ditanamkan ke dalam logika orde pertama dengan cara
+yang alami, yakni dengan menggabungkan semua objek dari !!{domain}s
+banyak-sorta menjadi satu !!{domain} orde pertama, menggunakan !!{predicate}s
+uner untuk mencatat sorta, dan merelatifkan kuantor. Misalnya, bahasa orde
+pertama yang bersesuaian dengan contoh di atas akan mempunyai !!{predicate}s
+uner ``$\Obj{German}$'' dan ``$\Obj{French}$'', selain relasi-relasi lain yang
+telah diuraikan, dengan persyaratan sorta dihapus. Kuantor bersorta
+$\lforall[x][!A]$, dengan $x$ merupakan !!a{variable} dari sorta Jerman,
+diterjemahkan menjadi
+\[
+\lforall[x][(\Atom{\Obj{German}}{x} \lif !A)].
+\]
+Kita perlu menambahkan aksioma yang memastikan bahwa sorta-sorta itu terpisah
+---misalnya, $\lforall[x][\lnot (\Atom{\Obj{German}}{x} \land
+  \Atom{\Obj{French}}{x})]$---serta aksioma yang menjamin bahwa ``minum
+anggur'' hanya berlaku pada objek yang memenuhi predikat
+$\Atom{\Obj{French}}{x}$, dan seterusnya. Dengan konvensi dan aksioma ini,
+tidak sulit untuk menunjukkan bahwa !!{sentence}s banyak-sorta diterjemahkan
+menjadi !!{sentence}s orde pertama, dan !!{derivation}s banyak-sorta
+diterjemahkan menjadi !!{derivation}s orde pertama. Selain itu,
+!!{structure}s banyak-sorta ``diterjemahkan'' menjadi !!{structure}s orde
+pertama yang bersesuaian dan sebaliknya, sehingga kita juga memperoleh teorema
+kelengkapan untuk logika banyak-sorta.
+
+\end{document}

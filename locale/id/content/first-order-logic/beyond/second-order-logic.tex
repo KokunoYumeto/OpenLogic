@@ -1,0 +1,239 @@
+% Bagian: first-order-logic
+% Bab: beyond
+% Subbagian: second-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{byd}{sol}
+
+\olsection{Logika Orde Kedua}
+
+Bahasa logika orde kedua memungkinkan kita menguantifikasi bukan hanya atas
+!!a{domain} individu, melainkan juga atas relasi pada !!{domain} tersebut.
+Diberikan suatu bahasa orde pertama~$\Lang{L}$, untuk setiap $k$ ditambahkan
+!!{variable}s~$R$ yang merentang atas relasi beraritas~$k$, dan kuantifikasi atas
+variabel-variabel itu diperbolehkan. Jika $R$ merupakan !!a{variable} untuk
+suatu relasi beraritas~$k$, dan $t_1$, \dots,~$t_k$ merupakan suku biasa (orde
+pertama), maka $\Atom{R}{t_1,\dots,t_k}$ merupakan !!{formula} atomik.
+Selain itu, himpunan !!{formula}s didefinisikan tepat seperti dalam logika
+orde pertama, dengan klausa tambahan untuk kuantifikasi orde kedua. Perhatikan
+bahwa kita hanya mempunyai !!{identity} bagi suku orde pertama: jika $R$ dan
+$S$ merupakan !!{variable}s relasi dengan aritas yang sama~$k$, kita dapat
+mendefinisikan $\eq[R][S]$ sebagai singkatan bagi
+\[
+\lforall[x_1 \dots][\lforall[x_k][(\Atom{R}{x_1, \dots, x_k} \liff
+  \Atom{S}{x_1, \dots, x_k})]].
+\]
+
+Aturan-aturan logika orde kedua sekadar memperluas aturan kuantor ke
+variabel-variabel orde kedua yang baru. Akan tetapi, di sini kita harus cukup
+cermat dalam menjelaskan bagaimana variabel-variabel ini berinteraksi dengan
+!!{predicate}s dari~$\Lang{L}$, serta dengan !!{formula}s dari~$\Lang{L}$
+secara lebih umum. Sekurang-kurangnya, variabel relasi berlaku sebagai suku,
+sehingga kita mempunyai inferensi berbentuk
+\[
+!A(R) \Proves \lexists[R][!A(R)]
+\]
+Namun, jika $\Lang{L}$ adalah bahasa aritmetika dengan simbol relasi
+konstan~$<$, kita juga mengharapkan inferensi berikut valid:
+\[
+x < y \Proves \lexists[R][\Atom{R}{x,y}]
+\]
+atau, untuk suatu !!{formula}~$!A$,
+\[
+!A(x_1, \dots, x_k) \Proves \lexists[R][\Atom{R}{x_1,\dots,x_k}]
+\]
+Secara lebih umum, kita mungkin ingin memperbolehkan inferensi berbentuk
+\[
+\Subst{!A}{\lambd[\vec x][!B(\vec x)]}{R} \Proves
+\lexists[R][!A]
+\]
+dengan $\Subst{!A}{\lambd[\vec x][!B(\vec x)]}{R}$ menyatakan hasil
+penggantian setiap !!{formula} atomik berbentuk
+$\Atom{R}{t_1,\dots,t_k}$ dalam~$!A$ dengan $!B(t_1, \dots, t_k)$. Aturan
+terakhir ini ekuivalen dengan memiliki suatu {\em skema komprehensi}, yakni
+aksioma berbentuk
+\[
+\lexists[R][\lforall[x_1, \dots, x_k][(!A(x_1, \dots, x_k) \liff
+\Atom{R}{x_1, \dots, x_k})]],
+\]
+satu untuk setiap !!{formula}~$!A$ dalam bahasa orde kedua, dengan $R$ bukan
+variabel bebas. (Latihan: tunjukkan bahwa jika $R$ diperbolehkan muncul
+dalam~$!A$, skema ini tidak konsisten!)
+
+Ketika ahli logika merujuk pada ``aksioma logika orde kedua'', yang biasanya
+dimaksud ialah perluasan minimal logika orde pertama dengan aturan kuantor
+orde kedua beserta skema komprehensi. Namun, sering kali menarik untuk
+mengkaji subsistem yang lebih lemah dari aksioma dan aturan tersebut. Sebagai
+contoh, perhatikan bahwa dalam bentuknya yang sepenuhnya umum, skema aksioma
+komprehensi bersifat \emph{impredikatif}: skema itu memungkinkan kita
+menyatakan keberadaan suatu relasi $\Atom{R}{x_1, \dots, x_k}$ yang
+``didefinisikan'' oleh !!a{formula} dengan kuantor orde kedua; dan kuantor ini
+merentang atas himpunan semua relasi semacam itu---himpunan yang mencakup $R$
+sendiri!{} Menjelang pergantian abad kedua puluh, salah satu tanggapan yang
+umum terhadap paradoks Russell ialah menyalahkan definisi semacam itu dan
+menghindarinya dalam pengembangan landasan matematika. Jika penggunaan
+kuantor orde kedua dalam !!{formula}~$!A$ dilarang, diperoleh bentuk
+komprehensi {\em predikatif}, yang agak lebih lemah.
+
+Dari sudut pandang semantis, suatu !!{structure} orde kedua dapat dipandang
+sebagai terdiri atas suatu !!{structure} orde pertama untuk bahasanya, yang
+dipasangkan dengan suatu himpunan relasi pada !!{domain} yang menjadi rentang
+kuantor orde kedua (lebih tepatnya, untuk setiap $k$ terdapat suatu himpunan
+relasi beraritas~$k$). Tentu saja, jika komprehensi disertakan dalam sistem
+!!{derivation}, terdapat persyaratan tambahan bahwa tersedia cukup banyak
+relasi dalam ``bagian orde kedua'' untuk memenuhi aksioma komprehensi---jika
+tidak, sistem !!{derivation} itu tidak sahih!{} Salah satu cara mudah untuk
+memastikan bahwa tersedia cukup banyak relasi ialah mengambil bagian orde
+kedua sebagai terdiri atas \emph{semua} relasi pada bagian orde pertama.
+Kita menyebut !!a{structure} semacam itu \emph{penuh}, dan dalam arti tertentu
+benar-benar merupakan ``!!{structure} yang dimaksudkan'' bagi bahasa tersebut.
+Jika perhatian kita dibatasi pada !!{structure}s penuh, kita memperoleh apa
+yang dikenal sebagai semantik orde kedua \emph{penuh}. Dalam hal itu,
+menentukan suatu !!{structure} bermuara pada menentukan bagian orde pertamanya,
+karena isi bagian orde kedua mengikuti secara implisit dari bagian itu.
+
+Ringkasnya, terdapat sejumlah ambiguitas ketika membicarakan logika orde
+kedua. Dari segi sistem !!{derivation}, yang dimaksud dapat berupa salah satu
+dari
+\begin{enumerate}
+\item Sistem !!{derivation} orde kedua ``minimal'', beserta beberapa aksioma
+  komprehensi.
+\item Sistem !!{derivation} orde kedua ``standar'', dengan komprehensi penuh.
+\end{enumerate}
+Dari segi semantik, yang diminati dapat berupa salah satu dari
+\begin{enumerate}
+\item Semantik ``lemah'', dengan !!a{structure} terdiri atas bagian orde
+  pertama beserta bagian orde kedua yang cukup besar untuk memenuhi aksioma
+  komprehensi.
+\item Semantik orde kedua ``standar'', yang hanya mempertimbangkan
+  !!{structure}s penuh.
+\end{enumerate}
+Ketika ahli logika tidak menentukan sistem !!{derivation} atau semantik yang
+dimaksud, biasanya mereka merujuk pada butir kedua dalam masing-masing daftar.
+Keuntungan menggunakan semantik ini ialah, sebagaimana akan kita lihat, bahwa
+semantik ini memberikan deskripsi kategoris bagi banyak struktur matematika
+alami; sementara itu, sistem !!{derivation}-nya cukup kuat dan sahih bagi
+semantik ini. Kekurangannya ialah bahwa sistem !!{derivation} tersebut
+\emph{tidak} lengkap bagi semantik itu; bahkan, \emph{tidak ada} sistem
+!!{derivation} yang diberikan secara efektif yang lengkap bagi semantik orde
+kedua penuh. Di sisi lain, kita akan melihat bahwa sistem !!{derivation}
+tersebut \emph{memang} lengkap bagi semantik yang diperlemah; ini mengakibatkan bahwa
+jika suatu kalimat tidak dapat dibuktikan, maka terdapat \emph{suatu}
+!!{structure}, yang tidak harus penuh, tempat kalimat itu salah.
+
+Bahasa logika orde kedua sangat kaya. Relasi uner dapat diidentifikasi dengan
+subhimpunan dari !!{domain}, sehingga kita khususnya dapat menguantifikasi
+atas himpunan-himpunan ini; misalnya, induksi bagi bilangan asli dapat
+diungkapkan dengan satu aksioma
+\[
+\lforall[R][((\Atom{R}{\Obj{0}} \land \lforall[x][(\Atom{R}{x} \lif
+    \Atom{R}{x'})]) \lif \lforall[x][\Atom{R}{x}])].
+\]
+Jika bahasa aritmetika diambil mempunyai simbol $\Obj 0, \Obj \prime, +,
+\times$, dan $<$, aksioma-aksioma berikut dapat ditambahkan untuk menguraikan
+perilakunya:
+\begin{enumerate}
+\item $\lforall[x][\lnot x' = \Obj 0]$
+\item $\lforall[x][\lforall[y][(x' = y' \lif x = y)]]$
+\item $\lforall[x][(x + \Obj 0) = x]$
+\item $\lforall[x][\lforall[y][(x + y') = (x + y)']]$
+\item $\lforall[x][(x \times \Obj 0) = \Obj 0]$
+\item $\lforall[x][\lforall[y][(x \times y') = ((x \times y) + x)]]$
+\item $\lforall[x][\lforall[y][(x < y \liff \lexists[z][y = (x + z')])]]$
+\end{enumerate}
+Tidak sulit untuk menunjukkan bahwa aksioma-aksioma ini, bersama aksioma
+induksi di atas, memberikan deskripsi kategoris bagi !!{structure}~$\Struct{N}$,
+model standar aritmetika, asalkan kita menggunakan semantik orde kedua penuh.
+Diberikan sembarang !!{structure}~$\Struct{M}$ tempat aksioma-aksioma ini
+benar, definisikan suatu fungsi~$f$ dari $\Nat$ ke !!{domain} dari $\Struct{M}$
+dengan rekursi biasa pada $\Nat$, sedemikian sehingga $f(0) =
+\Assign{\Obj 0}{M}$ dan $f(x+1) = \Assign{\prime}{M}(f(x))$. Dengan
+menggunakan induksi biasa pada~$\Nat$ dan fakta bahwa aksioma (1) dan~(2)
+berlaku dalam~$\Struct M$, kita melihat bahwa $f$ bersifat !!{injective}.
+Untuk melihat bahwa $f$ bersifat !!{surjective}, misalkan~$P$ adalah himpunan
+elemen-elemen dari~$\Domain{M}$ yang berada dalam daerah hasil~$f$. Karena
+$\Struct M$ penuh, $P$ berada dalam !!{domain} orde kedua. Berdasarkan
+konstruksi~$f$, kita mengetahui bahwa $\Assign{\Obj 0}{M}$ berada dalam~$P$,
+dan bahwa $P$~tertutup terhadap $\Assign{\prime}{M}$. Fakta bahwa aksioma
+induksi berlaku dalam $\Struct M$ (khususnya, bagi~$P$) menjamin bahwa
+$P$~sama dengan seluruh !!{domain} orde pertama dari~$\Struct M$. Ini
+menunjukkan bahwa $f$ merupakan !!a{bijection}. Menunjukkan bahwa $f$ adalah
+homomorfisme juga tidak lebih sulit, dengan menggunakan induksi biasa pada
+$\Nat$ berulang kali.
+
+Dalam istilah teori himpunan, suatu fungsi hanyalah jenis relasi khusus;
+misalnya, fungsi uner~$f$ dapat diidentifikasi dengan relasi biner~$R$ yang
+memenuhi $\lforall[x][\lexists![y][R(x,y)]]$. Akibatnya, kita juga dapat
+menguantifikasi atas fungsi. Dengan menggunakan semantik penuh, kita kemudian
+dapat mendefinisikan kelas !!{structure}s tak hingga sebagai kelas semua
+!!{structure}s~$\Struct M$ yang memiliki fungsi injektif dari !!{domain}
+$\Struct M$ ke suatu subhimpunan sejati dari domain itu sendiri:
+\[
+\lexists[f][(\lforall[x][\lforall[y][(\eq[f(x)][f(y)] \lif \eq[x][y])]]
+  \land \lexists[y][\lforall[x][\eq/[f(x)][y]]])].
+\]
+Negasi kalimat ini kemudian mendefinisikan kelas !!{structure}s berhingga.
+
+Selain itu, kita dapat mendefinisikan kelas urutan-baik dengan menambahkan
+hal berikut pada definisi urutan linear:
+\[
+\lforall[P][(\lexists[x][\Atom{P}{x}] \lif \lexists[x][(\Atom{P}{x}
+    \land \lforall[y][(y < x \lif \lnot \Atom{P}{y})])])].
+\]
+Ini menyatakan bahwa setiap himpunan tak kosong mempunyai elemen terkecil,
+dengan mengidentifikasi ``himpunan'' dengan ``relasi satu-tempat''. Sebagai
+contoh lain, gagasan keterhubungan bagi graf dapat diungkapkan dengan
+menyatakan bahwa tidak ada pemisahan nontrivial atas verteks menjadi
+bagian-bagian yang tidak terhubung:
+\[
+\lnot \lexists[A][(\lexists[x][A(x)] \land \lexists[y][\lnot A(y)]
+  \land \lforall[w][\lforall[z][((\Atom{A}{w} \land \lnot \Atom{A}{z})
+      \lif \lnot \Atom{R}{w,z})]])].
+\]
+Sebagai contoh lain lagi, cobalah sebagai latihan mendefinisikan kelas
+!!{structure}s berhingga yang !!{domain}-nya berukuran genap. Yang lebih
+mengagumkan, kita dapat memberikan deskripsi kategoris bagi bilangan real
+sebagai lapangan terurut lengkap yang memuat bilangan rasional.
+
+Singkatnya, logika orde kedua jauh lebih ekspresif daripada logika orde
+pertama. Itulah kabar baiknya; sekarang kabar buruknya. Kita telah menyebutkan
+bahwa tidak ada sistem !!{derivation} efektif yang lengkap bagi semantik orde
+kedua penuh. Baik disukai maupun tidak, banyak sifat logika orde pertama tidak
+lagi berlaku, termasuk kekompakan dan teorema L\"owenheim--Skolem.
+
+Di sisi lain, jika kita bersedia melepaskan semantik orde kedua penuh dan
+menggunakan semantik yang lebih lemah, sistem !!{derivation} orde kedua
+minimal lengkap bagi semantik ini. Dengan kata lain, jika $\Proves$ menyatakan
+keterbuktian dalam sistem minimal dan $\Entails$ menyatakan perikutan dalam
+semantik yang lebih lemah, kita dapat menunjukkan bahwa setiap kali $\Gamma
+\Entails !A$, berlaku $\Gamma \Proves !A$. Jika aksioma komprehensi tertentu
+hendak disertakan dalam sistem
+!!{derivation}, semantik harus dibatasi pada struktur orde kedua yang memenuhi
+aksioma-aksioma tersebut: misalnya, jika $\Delta$ terdiri atas suatu himpunan
+aksioma komprehensi (mungkin semuanya), kita memperoleh bahwa jika $\Gamma
+\cup \Delta \Entails !A$, maka $\Gamma \cup \Delta \Proves !A$. Khususnya,
+jika $!A$ tidak dapat dibuktikan dengan menggunakan aksioma komprehensi yang
+sedang dipertimbangkan, maka terdapat model dari $\lnot !A$ tempat
+aksioma-aksioma komprehensi tersebut tetap berlaku.
+
+Cara termudah untuk melihat bahwa teorema kelengkapan berlaku bagi semantik
+yang lebih lemah ialah memandang logika orde kedua sebagai logika banyak-sorta
+sebagai berikut. Satu sorta ditafsirkan sebagai !!{domain} ``orde pertama''
+biasa, lalu untuk setiap $k$ terdapat !!a{domain} ``relasi beraritas~$k$''.
+Bahasanya diambil mempunyai simbol relasi bawaan
+``$\Atom{\Obj{true}_k}{R,x_1,\dots,x_k}$'', yang dimaksudkan untuk menyatakan
+bahwa $R$ berlaku pada $x_1$, \dots,~$x_k$, dengan $R$ variabel dari sorta
+``relasi beraritas~$k$'' dan $x_1$, \dots,~$x_k$ objek dari sorta orde pertama.
+
+Dengan identifikasi ini, semantik orde kedua lemah pada hakikatnya merupakan
+semantik biasa bagi logika banyak-sorta; dan kita telah mengamati bahwa logika
+banyak-sorta dapat ditanamkan ke dalam logika orde pertama. Jadi, dengan
+memperhitungkan penerjemahan bolak-balik tersebut, konsepsi logika orde kedua
+yang lebih lemah sebenarnya merupakan suatu bentuk logika orde pertama yang
+menyamar, dengan !!{domain} memuat baik ``objek'' maupun ``relasi'' yang
+diatur oleh aksioma yang sesuai.
+
+\end{document}

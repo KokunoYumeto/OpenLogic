@@ -1,0 +1,127 @@
+% Bagian: first-order-logic
+% Bab: beyond
+% Subbagian: higher-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{byd}{hol}
+
+\olsection{Logika Orde Tinggi}
+
+Peralihan dari logika orde pertama ke logika orde kedua memungkinkan kita
+membicarakan himpunan objek dalam !!{domain} orde pertama di dalam bahasa
+formal. Mengapa berhenti di sana? Misalnya, logika orde ketiga semestinya
+memungkinkan kita menangani himpunan dari himpunan objek, atau bahkan himpunan
+yang memuat baik objek maupun himpunan objek. Dan logika orde keempat akan
+memungkinkan kita membicarakan himpunan objek semacam itu. Seperti mungkin
+telah Anda duga, gagasan ini dapat diiterasikan tanpa batas.
+
+Dalam praktiknya, logika orde tinggi sering di!!{formula}{}sikan dalam istilah
+fungsi, bukan relasi. (Dengan memperhitungkan identifikasi alaminya, perbedaan
+ini tidak hakiki.) Diberikan beberapa ``sorta'' dasar $A$, $B$, $C$,~\dots
+(yang sekarang akan kita sebut ``tipe''), kita dapat membuat tipe baru dengan
+menetapkan
+\begin{quote}
+Jika $\sigma$ dan $\tau$ merupakan tipe hingga, maka $\sigma \to \tau$ juga
+merupakan tipe hingga.
+\end{quote}
+Bayangkan tipe sebagai ``label'' sintaktis yang mengklasifikasikan objek yang
+kita inginkan dalam !!{domain}; $\sigma \to \tau$ menggambarkan objek-objek
+yang merupakan fungsi yang membawa objek bertipe~$\sigma$ ke objek
+bertipe~$\tau$. Misalnya, kita mungkin ingin mempunyai tipe $\Omega$ untuk
+nilai kebenaran, ``benar'' dan ``salah'', serta tipe $\Nat$ untuk bilangan
+asli. Dalam hal itu, objek bertipe $\Nat \to \Omega$ dapat dipandang sebagai
+relasi uner, atau subhimpunan dari $\Nat$; objek bertipe $\Nat \to \Nat$
+merupakan fungsi dari bilangan asli ke bilangan asli; dan objek bertipe
+$(\Nat \to \Nat) \to \Nat$ merupakan ``fungsional'', yakni fungsi bertipe
+tinggi yang membawa fungsi ke bilangan.
+
+Seperti dalam logika orde kedua, logika orde tinggi dapat dipandang sebagai
+sejenis logika banyak-sorta, dengan satu sorta untuk setiap tipe objek yang
+ingin kita pertimbangkan. Namun, biasanya lebih jelas untuk langsung
+mendefinisikan sintaks logika bertipe tinggi dari dasar. Misalnya, kita dapat
+mendefinisikan suatu himpunan tipe hingga secara induktif sebagai berikut:
+\begin{enumerate}
+\item $\Nat$ merupakan tipe hingga.
+\item Jika $\sigma$ dan $\tau$ merupakan tipe hingga, maka $\sigma
+  \to \tau$ juga merupakan tipe hingga.
+\item Jika $\sigma$ dan $\tau$ merupakan tipe hingga, maka $\sigma \times
+  \tau$ juga merupakan tipe hingga.
+\end{enumerate}
+Secara intuitif, $\Nat$ menyatakan tipe bilangan asli, $\sigma \to \tau$
+menyatakan tipe fungsi dari $\sigma$ ke $\tau$, dan $\sigma \times \tau$
+menyatakan tipe pasangan objek, yang satu dari $\sigma$ dan yang lain dari
+$\tau$. Selanjutnya, kita dapat mendefinisikan suatu himpunan suku secara
+induktif sebagai berikut:
+\begin{enumerate}
+\item Untuk setiap tipe $\sigma$, tersedia sekumpulan variabel $x$, $y$,
+  $z$, \dots bertipe $\sigma$.
+\item $\Obj 0$ merupakan suku bertipe $\Nat$.
+\item $\Obj S$ (penerus) merupakan suku bertipe $\Nat \to \Nat$.
+\item Jika $s$ merupakan suku bertipe $\sigma$, dan $t$ merupakan suku
+  bertipe $\Nat \to (\sigma \to \sigma)$, maka $\Obj{R}_{st}$ merupakan
+  suku bertipe $\Nat \to \sigma$.
+\item Jika $s$ merupakan suku bertipe $\tau \to \sigma$ dan $t$ merupakan
+  suku bertipe~$\tau$, maka $s(t)$ merupakan suku bertipe $\sigma$.
+\item Jika $s$ merupakan suku bertipe~$\sigma$ dan $x$ merupakan variabel
+  bertipe~$\tau$, maka $\lambd[x][s]$ merupakan suku bertipe $\tau \to
+  \sigma$.
+\item Jika $s$ merupakan suku bertipe~$\sigma$ dan $t$ merupakan suku
+  bertipe~$\tau$, maka $\tuple{s, t}$ merupakan suku bertipe $\sigma \times
+  \tau$.
+\item Jika $s$ merupakan suku bertipe~$\sigma \times \tau$, maka $p_1(s)$
+  merupakan suku bertipe~$\sigma$ dan $p_2(s)$ merupakan suku
+  bertipe~$\tau$.
+\end{enumerate}
+Secara intuitif, $\Obj{R}_{st}$ menyatakan fungsi yang didefinisikan secara
+rekursif oleh
+\begin{align*}
+\Obj{R}_{st}(0) & = s \\
+\Obj{R}_{st}(x+1) & = t(x, R_{st}(x)),
+\end{align*}
+$\tuple{s, t}$ menyatakan pasangan yang komponen pertamanya~$s$ dan komponen
+keduanya~$t$, sedangkan $p_1(s)$ dan~$p_2(s)$ menyatakan elemen pertama dan
+kedua (``proyeksi'') dari~$s$. Terakhir, $\lambd[x][s]$ menyatakan fungsi~$f$
+yang didefinisikan oleh
+\[
+f(x) = s
+\]
+untuk setiap~$x$ bertipe~$\tau$; dengan demikian, butir~(6) memberikan suatu
+bentuk komprehensi yang memungkinkan kita mendefinisikan fungsi menggunakan
+suku. !!^{formula}s dibangun dari pernyataan !!{identity} $\eq[s][t]$ antara
+suku-suku bertipe sama, penghubung proposisional biasa, dan kuantifikasi tipe
+tinggi. Aksioma sistem kemudian dapat diambil sebagai persamaan dasar yang
+mengatur suku-suku yang didefinisikan di atas, bersama aturan logika biasa
+dengan kuantor dan !!{identity}.
+
+Jika sistem tipe hingga diperluas dengan tipe nilai kebenaran~$\Omega$, kita
+harus menyertakan pula aksioma-aksioma yang mengatur penggunaannya. Bahkan,
+jika cukup cermat, kita dapat menghapus !!{formula}s kompleks sama sekali dan
+menggantinya dengan suku bertipe~$\Omega$!{} Sistem bukti kemudian dapat
+diubah sebagaimana mestinya. Hasilnya pada hakikatnya adalah \emph{teori tipe
+sederhana} yang dikemukakan Alonzo Church pada tahun 1930-an.
+
+Seperti dalam logika orde kedua, terdapat berbagai versi semantik tipe tinggi
+yang mungkin ingin digunakan. Dalam versi penuh, variabel bertipe $\sigma \to
+\tau$ merentang atas himpunan \emph{semua} fungsi dari objek bertipe~$\sigma$
+ke objek bertipe~$\tau$. Seperti yang mungkin diduga, semantik ini terlalu
+kuat untuk mempunyai sistem !!{derivation} efektif yang lengkap. Namun, kita
+dapat mempertimbangkan semantik yang lebih lemah, dengan !!a{structure}
+terdiri atas himpunan elemen $T_\tau$ bagi setiap tipe~$\tau$, bersama operasi
+yang sesuai bagi aplikasi, proyeksi, dan seterusnya. Jika semua perinciannya
+dikerjakan dengan benar, kita dapat memperoleh teorema kelengkapan bagi
+jenis-jenis sistem !!{derivation} yang diuraikan di atas.
+
+Logika bertipe tinggi menarik karena menyediakan kerangka yang memungkinkan
+kita menanamkan banyak bagian matematika secara alami: dengan berawal dari
+$\Nat$, kita dapat mendefinisikan bilangan real, fungsi kontinu, dan
+seterusnya. Logika ini juga khususnya menarik dalam konteks logika
+intuisionistik, karena tipe mempunyai interpretasi ``konstruktif'' yang jelas.
+Bahkan, kita dapat mengembangkan versi konstruktif semantik tipe tinggi
+(berdasarkan logika intuisionistik, bukan logika klasik) yang memperjelas
+interpretasi konstruktif ini dengan sangat baik dan, dalam banyak hal, lebih
+menarik daripada padanannya yang klasik.
+
+\end{document}

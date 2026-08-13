@@ -1,0 +1,219 @@
+% Bagian: first-order-logic
+% Bab: beyond
+% Subbagian: intuitionistic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{byd}{il}
+
+\olsection{Logika Intuisionistik}
+
+Berbeda dari logika orde kedua dan logika orde tinggi, logika orde pertama
+intuisionistik merupakan pembatasan atas versi klasik, yang dimaksudkan untuk
+memodelkan jenis penalaran yang lebih ``konstruktif''. Contoh-contoh berikut
+dapat menggambarkan beberapa motivasi yang mendasarinya.
+
+Andaikan suatu hari seseorang menghampiri Anda dan mengumumkan bahwa ia telah
+menentukan suatu bilangan asli~$x$ dengan sifat bahwa jika $x$ prima, hipotesis
+Riemann benar, dan jika $x$ komposit, hipotesis Riemann salah. Kabar bagus!{}
+Benar atau tidaknya hipotesis Riemann merupakan salah satu pertanyaan terbuka
+besar dalam matematika, dan di sini orang itu tampaknya telah mereduksi
+masalahnya menjadi masalah perhitungan, yakni menentukan apakah suatu bilangan
+tertentu prima atau bukan.
+
+Berapakah nilai ajaib~$x$? Orang itu menguraikannya sebagai berikut: $x$
+adalah bilangan asli yang sama dengan~$7$ jika hipotesis Riemann benar, dan
+sama dengan~$9$ jika tidak.
+
+Dengan marah, Anda menuntut uang Anda kembali. Dari sudut pandang klasik,
+uraian di atas memang menentukan satu nilai~$x$ yang unik; tetapi yang
+sesungguhnya Anda inginkan ialah nilai~$x$ yang diberikan secara
+\emph{eksplisit}.
+
+Sebagai contoh lain yang mungkin tidak terlalu dibuat-buat, pertimbangkan
+pertanyaan berikut. Kita tahu bahwa suatu bilangan irasional dapat dipangkatkan
+dengan bilangan rasional dan menghasilkan bilangan rasional. Misalnya,
+$\sqrt{2}^2 = 2$. Yang kurang jelas ialah apakah suatu bilangan irasional dapat
+dipangkatkan dengan bilangan \emph{irasional} dan menghasilkan bilangan
+rasional. Teorema berikut memberikan jawaban afirmatif:
+
+\begin{thm}
+Terdapat bilangan irasional $a$ dan $b$ sedemikian sehingga $a^b$ rasional.
+\end{thm}
+
+\begin{proof}
+Pertimbangkan $\sqrt{2}^{\sqrt{2}}$. Jika bilangan ini rasional, kita selesai:
+kita dapat mengambil $a = b = \sqrt{2}$. Jika tidak, bilangan itu irasional.
+Selanjutnya,
+\[
+(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot
+  \sqrt{2}} = \sqrt{2}^2 = 2,
+\]
+yang tentu saja rasional. Jadi, dalam kasus ini, ambil $a$ sebagai
+$\sqrt{2}^{\sqrt{2}}$, dan ambil $b$ sebagai~$\sqrt 2$.
+\end{proof}
+
+Apakah ini merupakan bukti yang valid? Kebanyakan matematikawan merasa
+demikian. Namun, sekali lagi, ada sesuatu yang agak tidak memuaskan di sini:
+kita telah membuktikan keberadaan sepasang bilangan real dengan sifat tertentu
+tanpa dapat mengatakan pasangan bilangan \emph{mana} yang dimaksud. Hasil yang
+sama dapat dibuktikan dengan cara yang \emph{memberikan} pasangan $a$, $b$ di dalam
+bukti itu sendiri: ambil $a = \sqrt{3}$ dan $b = \log_3 4$. Maka
+\[
+a^b = \sqrt{3}^{\log_3 4} = 3^{1/2 \cdot \log_3 4} = (3^{\log_3
+  4})^{1/2} = 4^{1/2}= 2,
+\]
+karena $3^{\log_3 x} = x$.
+
+Logika intuisionistik dirancang untuk memodelkan jenis penalaran yang tidak
+memperbolehkan langkah seperti dalam bukti pertama. Membuktikan keberadaan
+suatu~$x$ yang memenuhi~$!A(x)$ berarti kita harus memberikan~$x$ tertentu
+dan bukti bahwa nilai itu memenuhi~$!A$, seperti dalam bukti kedua. Membuktikan
+bahwa $!A$ atau $!B$ berlaku mengharuskan kita dapat membuktikan salah satunya.
+
+Secara formal, logika orde pertama intuisionistik diperoleh dengan membatasi
+sistem !!a{derivation} bagi logika orde pertama dengan cara tertentu. Demikian
+pula, terdapat versi intuisionistik dari logika orde kedua maupun orde tinggi.
+Dari sudut pandang matematis, semua itu hanyalah sistem deduktif formal,
+tetapi, sebagaimana telah dicatat, sistem-sistem tersebut dimaksudkan untuk
+memodelkan suatu jenis penalaran matematis. Orang dapat menganggapnya sebagai
+jenis penalaran yang dibenarkan oleh pandangan filosofis tertentu tentang
+matematika (seperti intuisionisme Brouwer); orang dapat menganggapnya sebagai
+jenis penalaran matematis yang lebih ``konkret'' dan memuaskan (sejalan dengan
+konstruktivisme Bishop); dan orang dapat memperdebatkan apakah uraian formal
+tersebut menangkap motivasi informalnya. Namun, apa pun pendirian filosofis
+kita, kita dapat mengkaji logika intuisionistik sebagai logika yang disajikan
+secara formal; dan apa pun alasannya, banyak ahli logika matematika tertarik
+untuk melakukannya.
+
+Terdapat suatu interpretasi konstruktif informal bagi penghubung
+intuisionistik, yang biasanya dikenal sebagai interpretasi BHK (dinamai
+menurut Brouwer, Heyting, dan Kolmogorov). Interpretasi itu berbunyi sebagai
+berikut: suatu bukti dari $!A \land !B$ terdiri atas bukti dari $!A$ yang
+dipasangkan dengan bukti dari $!B$; suatu bukti dari $!A \lor !B$ terdiri atas
+bukti dari $!A$ atau bukti dari $!B$, dengan informasi eksplisit tentang mana
+yang berlaku; suatu bukti dari $!A \lif !B$ terdiri atas prosedur yang
+mengubah bukti dari $!A$ menjadi bukti dari~$!B$; suatu bukti dari
+$\lforall[x][!A(x)]$ terdiri atas prosedur yang mengembalikan bukti dari
+$!A(x)$ untuk setiap nilai~$x$; dan suatu bukti dari $\lexists[x][!A(x)]$
+terdiri atas suatu nilai~$x$, beserta bukti bahwa nilai itu memenuhi~$!A$.
+Kita dapat menguraikan interpretasi tersebut dalam istilah komputasional yang
+dikenal sebagai ``isomorfisme Curry--Howard'' atau ``paradigma
+!!{formula}s-sebagai-tipe'': pandanglah !!a{formula} sebagai penentu suatu
+jenis tipe data, dan bukti sebagai objek komputasional dari tipe data tersebut
+yang memungkinkan kita melihat bahwa !!{formula} yang bersesuaian benar.
+
+Logika intuisionistik sering dipandang sebagai logika klasik ``dikurangi''
+hukum tiada jalan tengah. Teorema berikut membuat pernyataan ini lebih tepat.
+\begin{thm}
+Secara intuisionistik, skema-skema aksioma berikut ekuivalen:
+\begin{enumerate}
+\item $(\lnot !A \lif \lfalse) \lif !A$.
+\item $!A \lor \lnot !A$
+\item $\lnot \lnot !A \lif !A$
+\end{enumerate}
+\end{thm}
+Memperoleh contoh setiap skema dari salah satu di antara dua skema lainnya
+merupakan latihan yang baik dalam logika intuisionistik.
+
+Sistem deduktif pertama bagi logika proposisional intuisionistik, yang
+diajukan sebagai formalisasi intuisionisme Brouwer, dikemukakan secara
+terpisah oleh Kolmogorov, Glivenko, dan Heyting. Formalisasi pertama logika
+orde pertama intuisionistik (serta sebagian matematika intuisionistik)
+dikemukakan oleh Heyting. Meskipun sejumlah skema yang valid secara klasik
+tidak valid secara intuisionistik, banyak pula yang valid.
+
+\emph{Terjemahan negasi ganda} menguraikan suatu hubungan penting antara
+logika klasik dan logika intuisionistik. Terjemahan itu didefinisikan secara
+induktif sebagai berikut (pandanglah $!A^N$ sebagai terjemahan
+``intuisionistik'' dari !!{formula} klasik~$!A$):
+\begin{align*}
+!A^N & \ident \lnot\lnot !A \quad \text{untuk !!{formula}s atomik $!A$} \\
+(!A \land !B)^N & \ident (!A^N \land !B^N) \\
+(!A \lor !B)^N & \ident  \lnot\lnot (!A^N \lor !B^N) \\
+(!A \lif !B)^N & \ident (!A^N \lif !B^N) \\
+(\lforall[x][!A])^N & \ident \lforall[x][!A^N] \\
+(\lexists[x][!A])^N & \ident \lnot\lnot\lexists[x][!A^N]
+\end{align*}
+Kolmogorov dan Glivenko mempunyai versi terjemahan ini untuk logika
+proposisional; untuk logika predikat, terjemahan itu dikemukakan secara
+terpisah oleh G\"odel dan Gentzen. Kita memperoleh
+
+\begin{thm}
+\begin{enumerate}
+\item $!A \liff !A^N$ dapat dibuktikan secara klasik.
+\item Jika $!A$ dapat dibuktikan secara klasik, maka $!A^N$ dapat dibuktikan
+  secara intuisionistik.
+\end{enumerate}
+\end{thm}
+
+Sekarang kita dapat membayangkan dialog berikut. Matematikawan klasik:
+``Saya telah membuktikan $!A$!'' Matematikawan intuisionis: ``Bukti Anda tidak
+valid. Yang sebenarnya Anda buktikan ialah $!A^N$.'' Matematikawan klasik:
+``Bagi saya tidak masalah!'' Menurut matematikawan klasik, sang intuisionis
+hanya memperdebatkan perbedaan remeh, karena keduanya ekuivalen. Namun, sang
+intuisionis bersikeras bahwa terdapat perbedaan.
+
+Perhatikan bahwa terjemahan di atas hanya menyangkut logika murni; terjemahan
+itu tidak membahas pertanyaan mengenai aksioma \emph{nonlogis} yang tepat bagi
+matematika klasik dan matematika intuisionistik, ataupun hubungan di antara
+keduanya. Namun, perluasan kecil dari teorema di atas memberikan beberapa
+informasi berguna:
+
+\begin{thm}
+Jika $\Gamma$ membuktikan $!A$ secara klasik, maka $\Gamma^N$ membuktikan
+$!A^N$ secara intuisionistik.
+\end{thm}
+
+Dengan kata lain, jika $!A$ dapat dibuktikan secara klasik dari beberapa
+hipotesis, maka $!A^N$ dapat dibuktikan dari terjemahan negasi ganda
+hipotesis-hipotesis tersebut.
+
+Untuk menunjukkan bahwa suatu kalimat atau !!{formula} proposisional valid
+secara intuisionistik, kita hanya perlu memberikan bukti. Namun, bagaimana
+kita dapat menunjukkan bahwa kalimat atau formula itu tidak valid? Untuk
+tujuan tersebut, kita memerlukan semantik yang sahih dan sebaiknya lengkap.
+Semantik yang dikemukakan oleh Kripke memenuhi kebutuhan itu dengan baik.
+
+Kita dapat melakukan hal yang sama seperti bagi logika klasik: mendefinisikan
+semantik, lalu membuktikan kesahihan dan kelengkapan. Namun, patut diperhatikan
+perbedaan berikut. Dalam logika klasik, semantiknya merupakan semantik yang
+``jelas'' dalam arti tertentu, tersirat dalam makna penghubung. Meskipun kita
+dapat memberikan motivasi intuitif bagi semantik Kripke, semantik yang kedua
+ini tidak memberikan kesan keniscayaan yang sama. Selain itu, gagasan mengenai
+!!{structure} klasik merupakan gagasan matematis yang alami, sehingga kita
+dapat memandang gagasan !!a{structure} sebagai perangkat untuk mengkaji logika
+orde pertama klasik, atau memandang logika orde pertama klasik sebagai
+perangkat untuk mengkaji !!{structure}s matematis. Sebaliknya, !!{structure}s
+Kripke hanya dapat dipandang sebagai konstruksi logis; struktur itu tampaknya
+tidak mempunyai kepentingan matematis yang mandiri.
+
+Suatu !!{structure} Kripke~$\mModel M = \tuple{W, R, V}$ bagi bahasa
+proposisional terdiri atas himpunan~$W$, urutan parsial~$R$ pada~$W$ yang
+mempunyai !!{element} terkecil, dan penetapan ``monoton'' variabel proposisi
+kepada !!{element}s dari~$W$. Intuisinya ialah bahwa !!{element}s dari $W$
+mewakili ``dunia'', atau ``keadaan pengetahuan''; elemen $v \geq u$ mewakili
+``keadaan masa depan yang mungkin'' dari~$u$; dan variabel proposisi yang
+ditetapkan kepada~$u$ adalah proposisi yang diketahui benar dalam keadaan~$u$.
+Relasi pemaksaan $\mSat{M}{!A}[w]$ kemudian memperluas hubungan ini ke
+!!{formula}s sebarang dalam bahasa tersebut; bacalah $\mSat{M}{!A}[w]$
+sebagai ``$!A$ benar dalam keadaan~$w$.'' Hubungan itu didefinisikan secara
+induktif sebagai berikut:
+\begin{enumerate}
+\item $\mSat{M}{\Obj p_i}[w]$ jika dan hanya jika $\Obj p_i$ merupakan salah
+  satu variabel proposisi yang ditetapkan kepada~$w$.
+\item $\mSat/{M}{\lfalse}[w]$.
+\item $\mSat{M}{(!A \land !B)}[w]$ jika dan hanya jika
+  $\mSat{M}{!A}[w]$ dan $\mSat{M}{!B}[w]$.
+\item $\mSat{M}{(!A \lor !B)}[w]$ jika dan hanya jika
+  $\mSat{M}{!A}[w]$ atau $\mSat{M}{!B}[w]$.
+\item $\mSat{M}{(!A \lif !B)}[w]$ jika dan hanya jika, setiap kali
+  $w' \geq w$ dan $\mSat{M}{!A}[w']$, berlaku $\mSat{M}{!B}[w']$.
+\end{enumerate}
+Merupakan latihan yang baik untuk mencoba menunjukkan bahwa $\lnot (p \land
+q) \lif (\lnot p \lor \lnot q)$ tidak valid secara intuisionistik, dengan
+membangun suatu !!{structure} Kripke yang memberikan contoh penyangkal.
+
+\end{document}

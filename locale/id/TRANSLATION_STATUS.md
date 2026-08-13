@@ -33,7 +33,7 @@ official Portuguese repository at commit
 this frozen English tree. The English target closure is therefore 722/722
 included, with no source exclusion.
 
-Current target-file coverage is 173/722 and the exact remainder is 549 files.
+Current target-file coverage is 181/722 and the exact remainder is 541 files.
 This is a file-presence count, not a claim that the corpus, any complete book,
 or all downstream reader builds are complete.
 
@@ -613,4 +613,61 @@ is present; its absence is not an admission blocker.
 Next global ordered cursor: `OLP-0174`,
 `content/first-order-logic/beyond/beyond.tex`.
 The remaining closure is 549 source files after the 173 target files currently
+present and admitted.
+
+### Contiguous Beyond First-Order Logic batch
+
+The complete chapter adds `OLP-0174`--`OLP-0181`. All eight source hashes
+match the 722-file manifest and frozen Git objects. Deterministic replay passes
+235 checks, binding 618 commands, 56 environment markers, 112 semantic tokens,
+seven imports, 334 mathematical skeletons, three mathematical environments,
+seven localized file IDs, and one chapter ID. Three exact source-correction
+classes bind three source occurrences. Two source-risk classes remain
+preserved without unmarked target inference, and three earlier findings are
+explicitly retracted.
+
+Independent semantic review passes every final target file with no omitted
+claim, example, problem, polarity, quantifier, relation-direction, or scope
+finding. The exact review is preserved in
+`..\..\..\_control\OPENLOGIC_BEYOND_INDEPENDENT_REVIEW_20260813.md`
+(SHA-256
+`ca792e9830bcbcc12527912febbf7f52bf8c677adcd04b4068ff881158ce5eb0`).
+The deterministic replay script has SHA-256
+`d96f4ce312756634aa18678b80b319d55138626bf9fc290a857bd2b0ec7bcb6b`.
+
+The cumulative driver builds to 78 pages and 509,877 bytes, SHA-256
+`e83568c2dd67da6b370fbb5e00669d357557b8146618c3c2931a95eca54f86ac`.
+The final log, SHA-256
+`e43354a49f3873f5ede6d517c259112b34b426497d2d5f782da42b98dc18ebda`,
+contains zero fatal/LaTeX error, undefined control or reference/citation,
+missing file, or missing glyph. Thirty-five overfull hboxes remain, maximum
+24.44377 pt overall; the only two new warnings are 7.30153 pt and 8.78676 pt.
+One underfull vbox remains. Exact-page inspection found no visible loss. All
+17 fonts are embedded; one inherited Type 3 mathematical font lacks a
+ToUnicode map while extraction remains intact.
+
+The full extracted text is 173,703 bytes / 28,165 whitespace-delimited words,
+SHA-256
+`b2340c50ac718a0857fe201eff4f52d872693eaacec09676f0a11eed3646a084`.
+The raw pages 61--78 extraction is 40,234 bytes / 5,821 words, SHA-256
+`5fa93b354a6986002f2d240a1a68da7824607bc871194049f6f1e8dc89b5dc1b`;
+the layout-preserving extraction is 42,952 bytes / 6,012 words, SHA-256
+`cabe6f834a7b3c6084728d7119ef29de1e8630b9446476dcf009d7db8a984c60`.
+Searches found zero unresolved marker, replacement character, raw TeX/OLP
+token, placeholder, or English fallback prose; remaining English is confined
+to project names and bibliographic titles.
+
+Every changed page 61--78 was rendered at 144 dpi and inspected at the original
+1224-by-1584-pixel resolution. Raster hashes prove pages 1--60 identical to the
+prior admitted PDF, with page 61 the first difference. No clipping, overlap,
+margin loss, broken reference/formula, black box, or glyph damage was found.
+The large blank remainder on page 77 is normal chapter-end pagination.
+
+TeXcount reports 5,695 English-source and 4,979 Indonesian words for this
+batch, and 84,280 versus 77,450 cumulatively. No native/human review metadata
+is present; its absence is not an admission blocker.
+
+Next global ordered cursor: `OLP-0182`,
+`content/model-theory/model-theory.tex`.
+The remaining closure is 541 source files after the 181 target files currently
 present and admitted.

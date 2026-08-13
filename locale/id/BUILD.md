@@ -1067,3 +1067,87 @@ TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
 versus 72,471 across all 173 admitted files. The exact next cursor is
 `OLP-0174`, `content/first-order-logic/beyond/beyond.tex`; 549 closure rows
 remain.
+
+## Beyond First-Order Logic checkpoint — 2026-08-13
+
+### Source binding, deterministic replay, and independent review
+
+The gap-free boundary extends through `OLP-0181`. Every source hash equals its
+row in the frozen 722-file manifest and its Git object at commit
+`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`. Run from the repository root:
+
+```powershell
+pwsh -NoProfile -File .\locale\id\qa_beyond_batch_replay.ps1
+```
+
+The replay script is 21,056 bytes, SHA-256
+`d96f4ce312756634aa18678b80b319d55138626bf9fc290a857bd2b0ec7bcb6b`.
+Its final result is:
+
+```text
+STRUCTURAL_TOTALS commands=618 environments=56 semantic_tokens=112 labels=0 references=0 citations=0 assets=0 imports=7 tagged_items=0 tag_conditionals=0 math_skeletons=334 math_environments=3 localized_file_ids=7 chapter_ids=1
+REVIEW_TOTALS source_corrections=3 correction_occurrences=3 structural_normalizations=3 review_classes=6 source_risk_classes=2 false_positive_retractions=3
+BINDING_DIGESTS source_set_sha256=fedddd8e0d63594591f2c12298a61d686fb156168a7cf7fa9e92c28d18fbe9e5 target_set_sha256=2837060bd283e85679ea5463f66ac8297bbdf7d6dfd6077a1250a0993548b961
+BEYOND_BATCH_REPLAY_OK files=8 checks=235 upstream=9620cc73f9c8e0ad003c514a5d3748f29611c4c0 closure=OLP-0174..OLP-0181
+```
+
+The independent review receipt is 7,892 bytes, SHA-256
+`ca792e9830bcbcc12527912febbf7f52bf8c677adcd04b4068ff881158ce5eb0`.
+It records three exact source corrections, stable Indonesian term choices,
+two preserved source risks, three false-positive retractions, and no unresolved
+Indonesian semantic finding.
+
+### Clean cumulative build
+
+Run from `locale\id`, with automatic package installation disabled:
+
+```powershell
+$env:MIKTEX_ENABLE_INSTALLER='0'
+latexmk -pdf -dvi- -ps- -interaction=nonstopmode -halt-on-error '-pdflatex=pdflatex -disable-installer %O %S' first-order-logic-beyond-id.tex
+```
+
+Result: exit 0 using MiKTeX pdfTeX 1.40.29. The driver is 2,049 bytes,
+SHA-256
+`8c774752b6a295e3a0d8d8a514820aa130661cf6d2747aedf8c45ec118770793`.
+
+| Driver | PDF | Pages | Bytes | SHA-256 |
+|---|---|---:|---:|---|
+| `first-order-logic-beyond-id.tex` | `locale/id/first-order-logic-beyond-id.pdf` | 78 | 509,877 | `e83568c2dd67da6b370fbb5e00669d357557b8146618c3c2931a95eca54f86ac` |
+
+The final log is 94,356 bytes, SHA-256
+`e43354a49f3873f5ede6d517c259112b34b426497d2d5f782da42b98dc18ebda`.
+It has zero fatal/LaTeX error, emergency stop, undefined control,
+undefined reference/citation, missing file, or missing glyph. Thirty-five
+overfull hboxes remain, maximum 24.44377 pt overall. The prior cumulative log
+had 33; the only two new warnings are 7.30153 pt and 8.78676 pt, and neither
+causes visible clipping. One underfull vbox remains without a visible defect.
+All 17 fonts are embedded; 16 have ToUnicode maps. The inherited Type 3
+mathematical font `F111` lacks ToUnicode, while searchable extraction remains
+intact.
+
+### Extraction, render review, and counts
+
+Plain `pdftotext -enc UTF-8` extraction of the complete PDF produced 173,703
+bytes and 28,165 whitespace-delimited words, SHA-256
+`b2340c50ac718a0857fe201eff4f52d872693eaacec09676f0a11eed3646a084`.
+The raw pages 61--78 extraction is 40,234 bytes and 5,821 words, SHA-256
+`5fa93b354a6986002f2d240a1a68da7824607bc871194049f6f1e8dc89b5dc1b`;
+the `-layout` extraction for those pages is 42,952 bytes and 6,012 words,
+SHA-256
+`cabe6f834a7b3c6084728d7119ef29de1e8630b9446476dcf009d7db8a984c60`.
+Searches found zero `??`, `Undefined`, U+FFFD, placeholder, raw
+TeX/OLP command token, or English fallback prose. Remaining English occurs
+only in project names and bibliographic titles.
+
+Both PDFs were rendered completely at 144 dpi. Raster SHA-256 comparisons
+prove pages 1--60 pixel-identical to the prior admitted PDF; page 61 is the
+first difference. Pages 61--78 were individually inspected at their original
+1224-by-1584-pixel render resolution, including formula-dense pages and
+bibliography page 78. No clipping, overlap, margin loss, cropped formula,
+broken reference, black box, unreadable glyph, or page-number defect was
+found. Page 77's large blank remainder is normal chapter-end pagination.
+
+TeXcount 3.1.1 (`-sum -1 -utf8`, each file once, no recursive imports) reports
+5,695 English-source and 4,979 Indonesian words for this batch, and 84,280
+versus 77,450 across all 181 admitted files. The exact next cursor is
+`OLP-0182`, `content/model-theory/model-theory.tex`; 541 closure rows remain.

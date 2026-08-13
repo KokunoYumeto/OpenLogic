@@ -22,7 +22,7 @@ structure, labels, references, citations, proof structure, and assets except
 where an exact source defect is explicitly corrected and ledgered.
 
 The current checkpoint covers ordered closure units `OLP-0001` through
-`OLP-0173` (173/722 files). It is incomplete and must not be represented as the
+`OLP-0181` (181/722 files). It is incomplete and must not be represented as the
 complete Indonesian Open Logic corpus.
 
 Exact source corrections currently include:
@@ -89,6 +89,13 @@ Exact source corrections currently include:
   malformed prose clause. The Indonesian chapter title and pure-set
   predication were independently clarified; valid uppercase token syntax was
   preserved and the contrary audit findings explicitly retracted.
+- Beyond First-Order Logic repairs an atomic relation-variable macro, restores
+  the declared postfix successor in the injectivity axiom, and restores the
+  declared binder type in the higher-order lambda explanation. It preserves
+  without silent repair a duplicate expanded intuitionistic schema and an
+  irrational-power witness whose irrationality is not established locally.
+  Three earlier concerns about iterated-binder ellipsis, the comprehension
+  restriction, and the S5 frame presentation were explicitly retracted.
 
 The full adverse history and evidence are in
 `TERMINOLOGY_AND_ADVERSE_LEDGER.csv` and the dated independent-review receipts.
