@@ -39,9 +39,10 @@ Terminology decisions are in `TERMINOLOGY.csv` and
 limits are disclosed in `SOURCE_ADVERSE_0062.md` and the cumulative
 `SOURCE_ADVERSE.md`.
 
-Planned release tag: `tr-olp-0062-20260813`. This record establishes local
-release readiness; publication is asserted only after a separate receipt
-records the tag and downloaded asset readback. The checkpoint is cumulative
-and supersedes OLP-0054 when published; it is not the complete 722-module
-Turkish corpus.
-
+Publication tag: `tr-olp-0062-20260813`; tagged translation/content commit
+`b7a698e7393c42322efed3df8279a74ddeb5c0de`. Public release:
+`https://github.com/KokunoYumeto/OpenLogic/releases/tag/tr-olp-0062-20260813`.
+The non-draft, non-prerelease asset was downloaded after publication and
+matched 711,458 bytes and the exact PDF SHA-256 above; GitHub reports the same
+digest. This cumulative checkpoint supersedes OLP-0054; it is not the complete
+722-module Turkish corpus.
