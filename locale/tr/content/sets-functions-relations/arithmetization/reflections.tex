@@ -1,0 +1,100 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: reflections
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{arith}{ref}
+\olsection{Bazı Felsefi Düşünceler}
+
+Teknik ayrıntılar bu kadar. Peki bunlar neyi başardı?
+
+Neredeyse tartışmasız biçimde, bize çok {güzel} bir saf matematik sundular.
+Üstelik bazı derin kavramsal başarılar da elde edildi. Tamlık Özelliği'nin gerçel
+sayılarla rasyonel sayılar arasındaki belirleyici farkı ifade ettiğini görmek
+derin bir kavrayıştı. Dahası, gerçel sayıların Dedekind kesimleri olarak açıkça
+kurulması, analizin konusunu sağlam bir temele oturtur. \emph{Tam sıralı
+cisim} kavramının tutarlı olduğunu biliyoruz; çünkü kesimler tam da böyle bir
+cisim oluşturur.
+
+Bütün bunlara karşın, bu başarılarla ilgili birkaç çekincemizi dile
+getirmeliyiz.
+
+İlk olarak gerçel sayıları kesimler aracılığıyla düşünmenin, onları alışıldık
+(muhtemelen sonsuz) ondalık açılımları aracılığıyla düşünmekten
+\emph{daha} titiz olduğu açık değildir. Gerçel sayıların bu ikinci “kuruluşu”,
+onların Cauchy dizileri yoluyla kuruluşuna bazı yönlerden benzer; fakat aslında
+17. yüzyılın başlarından itibaren matematikçilerce özünde biliniyordu
+(bkz.\ \olref[cauchy]{sec}). Titizlikteki asıl artış, gerçel sayıların Tamlık
+Özelliği'ne sahip olduğunun fark edilmesiyle geldi; gerçel sayıları belirli
+kümeler olarak kurabilme olanağı kendi başına o kadar da ilginç olmayabilir.
+
+Tam sayıların ya da rasyonel sayıların (çok daha kolay olan)
+aritmetikleştirilmesinin bu alanlarda titizliği artırdığı ise daha da
+belirsizdir. Burada basit bir gözlem yapmak yararlı olur. Tam sayıları doğal
+sayıların sıralı ikililerinin denklik sınıfları olarak \emph{kurduktan},
+rasyonel sayıları tam sayıların sıralı ikililerinin denklik sınıfları olarak
+kurduktan ve gerçel sayıları rasyonel sayı kümeleri olarak kurduktan hemen sonra
+bu kuruluşları \emph{unuturuz}. Özellikle, kuruluşların gerektiği gibi
+davrandığını gösteren ispatlar dışında hiç kimse bir matematiksel ispatta bu
+kuruluşlara \emph{başvurmak} istemez. Bir gerçel sayıdan doğrudan söz etmek,
+doğal sayıların kümelerinin kümelerinin kümelerinin kümelerinin kümelerinin
+kümelerinden oluşan bir kümeden söz etmekten çok daha kolaydır.
+%(For reals were constructed as sets of rationals; and these were constructed as equivalence classes of ordered pairs of integers, i.e., sets of sets of sets of integers; etc.).
+%2/3 = [2,3]
+%	i.e. {<2,3>, ... }
+%	{ {{2},{2,3}}, ... }
+%
+%reals are 
+%	sets of rationals 
+%
+%rationals are 
+%	sets of sets of sets of integers
+%
+%integers are
+%	sets of sets of sets of naturals
+	
+Bu tanımların tam sayıların, rasyonel sayıların ya da gerçel sayıların
+\emph{metafizik bakımdan} ne olduğunu söylediği ise en kuşkulu noktadır. Başka
+bir deyişle gerçel sayıların (örneğin) belirli kümeler (kümelerin kümelerinin
+kümeleri\ldots) \emph{olduğu} kuşkuludur. Böyle bir görüşün önündeki temel
+engel, kuruluşun birçok farklı biçimde yapılabilmesidir. Gerçel sayılar
+durumunda gerçekten ilginç derecede farklı bazı kuruluşlar vardır
+(bkz.\ \olref[cauchy]{sec}). Ancak farklı kuruluşlar elde etmenin bütünüyle
+önemsiz bir yolu da şudur: \olref[sfr][rel][ref]{sec}'te olduğu gibi sıralı
+ikilileri biraz farklı tanımlayabilirdik; bu alternatif sıralı ikili kavramını
+kullansaydık kuruluşlarımız yine aynı ölçüde iyi çalışacak, fakat elimizde
+farklı nesneler olacaktı. Bu nedenle tam sayıların, rasyonel sayıların ve gerçel
+sayıların birbiriyle yarışan birçok küme-teorik kuruluşu vardır. Şimdi tam
+sayıların (örneğin) \emph{şu} kümeler değil de \emph{bu} kümeler olduğunu
+ileri sürmek yalnızca keyfî (ve mahcup edici) olurdu.
+(\olref[sfr][rel][ref]{sec}'te olduğu gibi bu, \citealt{Benacerraf1965}'ın
+ünlü kıldığı bir argüman örneğidir.)
+
+Bir nokta daha anılmaya değer: kuruluşlarımızda oldukça \emph{tuhaf} bir şey
+vardır. Doğal sayılarla başladık. Sonra tam sayıları ve “tam sayıların
+$0$'ını”, yani $\equivrep{0,0}{\Intequiv}$'yi kurduk. Fakat
+$0 \neq \equivrep{0,0}{\Intequiv}$'dir. Hatta kuruluşlarımıza göre
+\emph{hiçbir} doğal sayı bir tam sayı değildir. Oysa bu, sezgiye son derece
+aykırı görünür. Dahası, \olref[sfr][set][imp]{sec}'te fazla gerekçe vermeden
+$\Nat \subseteq \Rat$ olduğunu ileri sürdük. Kuruluşlar bize sayıların tam
+olarak \emph{ne olduğunu} söylüyorsa bu iddia apaçık yanlıştı.
+
+Öyleyse geri çekilip baktığımızda nereye varıyoruz? Naif bir küme teorisi
+içinde çalışıp doğal sayıları hazır kabul ederek tam sayıları, rasyonel
+sayıları ve gerçel sayıları belirli kümeler \emph{olarak ele alabiliriz}. Bu
+anlamda bu varlıkların teorilerini bir küme teorisi içine \emph{gömebiliriz}.
+Ancak bu gömmenin felsefi önemi hiç de basit değildir.
+
+Elbette bunların hiçbiri son söz değildir!{} Vurgulanmak istenen yalnızca
+şudur: gerçel sayıların aritmetikleştirilmesinin derin bir felsefi öneme
+\emph{sahip} olduğunu göstermek, ek bir \emph{felsefi} argüman gerektirir.
+
+%Additionally: for the entire duration of this chapter, we have treated
+%the natural numbers as simply \emph{given} to us. But what can we do
+%with them? That is the subject matter for the next chapter.
+
+\end{document}
+

@@ -1,0 +1,75 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: rationals
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{arith}{rat}
+\olsection{$\Int$'den $\Rat$'ye}
+
+Az önce biraz naif küme teorisi kullanarak tam sayıların doğal sayılardan nasıl
+kurulacağını gördük. Şimdi de çok benzer bir yolla rasyonel sayıların tam
+sayılardan nasıl kurulacağını göreceğiz. Başlangıç gözlemlerimiz şunlardır:
+\begin{enumerate}
+	\item Her rasyonel sayı, $i$ ve $j$ tam sayılar, $j$ ise sıfırdan farklı
+	olmak üzere $\nicefrac{i}{j}$ biçiminde yazılabilir.
+	\item $\nicefrac{i}{j}$ ifadesinde kodlanan bilgi, $\tuple{ i, j}$ sıralı
+	ikilisiyle de kodlanabilir.
+\end{enumerate}
+Açık yaklaşım, rasyonel sayıları $\Int \times (\Int \setminus \{0_\Int\})$'den
+alınan sıralı ikililer \emph{olarak} düşünmek olurdu. Ancak daha önce olduğu
+gibi bu da biraz fazla naif olurdu; çünkü $\nicefrac{3}{2} =
+\nicefrac{6}{4}$ olmasını isteriz, fakat $\tuple{ 3, 2}\neq \tuple{ 6, 4}$.
+Daha genel olarak şunu isteriz:
+\[
+	\nicefrac{a}{b} = \nicefrac{c}{d} \text{ ancak ve ancak } a \times d = b \times c
+\]
+Bunu elde etmek için $\Int \times (\Int \setminus \{0_\Int\})$ üzerinde
+şöyle bir {denklik bağıntısı} tanımlarız:
+\[
+	\tuple{ a, b }\Ratequiv \tuple{ c, d} \text{ ancak ve ancak }a \times d = b \times c
+\]
+Bunun bir denklik bağıntısı olduğunu denetlemeliyiz. Bu denetim
+$\Intequiv$ durumuna çok benzer; onu alıştırma olarak bırakacağız.
+\begin{prob}
+$\Ratequiv$ bağıntısının bir denklik bağıntısı olduğunu gösterin.
+\end{prob}
+Bu bağıntı sayesinde şunu söyleyebiliriz:
+\begin{defn}
+Rasyonel sayılar, ikinci bileşeni sıfırdan farklı olan tam sayı ikililerinin
+$\Ratequiv$ altındaki denklik sınıflarıdır. Yani
+$\Rat = \equivclass{(\Int \times (\Int\setminus \{0_\Int\}))}{\Ratequiv}$.
+\end{defn}
+
+Tam sayılarda olduğu gibi bazı temel işlemleri de tanımlamak isteriz.
+$\equivrep{i,j}{\Ratequiv}$, $\tuple{i, j}$'yi !!a{element} olarak içeren
+$\Ratequiv$ denklik sınıfı olmak üzere şöyle deriz:
+\begin{align*}
+	\equivrep{a, b}{\Ratequiv} + \equivrep{c, d}{\Ratequiv} &= \equivrep{ad + bc,  bd}{\Ratequiv}\\
+	\equivrep{a, b}{\Ratequiv} \times \equivrep{c, d}{\Ratequiv} &= \equivrep{a  c, b d}{\Ratequiv}.
+\intertext{Bu rasyonel sayılar üzerinde $r \leq s$ bağıntısını tanımlamak için
+$r \le s$'nin ancak ve ancak $s-r$ negatif değilse geçerli olduğu; başka bir
+deyişle $s-r$'nin, $i$ negatif olmayan ve $j$ pozitif olan
+$\nicefrac{i}{j}$ biçiminde yazılabileceği olgusunu kullanırız:}
+	\equivrep{a, b}{\Ratequiv} \leq \equivrep{c, d}{\Ratequiv} &\text{ ancak ve ancak }
+	\equivrep{c, d}{\Ratequiv} - \equivrep{a, b}{\Ratequiv} =
+	\equivrep{i_\Int, j_\Int}{\Ratequiv}
+\end{align*}
+burada bazı $i \in \Nat$ ve $0 \neq j \in \Nat$ vardır.
+
+Sonra bu tanımların \emph{gerektiği gibi} davrandığını denetlememiz gerekir;
+bu denetimi \olref[check]{sec}'e bırakıyoruz. Ama gerçekten de öyle
+davranırlar!{} Son olarak tam sayıları rasyonel sayılar \emph{olarak} ele
+almanın bir yolunu isteriz; bu nedenle her $i \in \Int$ için
+$i_\Rat = \equivrep{i, 1_\Int}{\Ratequiv}$ olduğunu belirleriz. Yine bütün
+bunların doğru davrandığını \olref[check]{sec}'te denetliyoruz.
+
+\begin{prob}
+Her $i, j \in \Int$ için $(i + j)_\Rat = i_\Rat+ j_\Rat$,
+$(i \times j)_\Rat = i_\Rat \times j_\Rat$ ve
+$i \leq j \liff i_\Rat \leq j_\Rat$ olduğunu gösterin.
+\end{prob}
+
+\end{document}

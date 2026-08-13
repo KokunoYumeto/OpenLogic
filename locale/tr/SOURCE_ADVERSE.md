@@ -66,3 +66,25 @@ undefined sequence variables, a finite-string/infinite-sequence mismatch, an
 incorrect function name in an empty-set argument, a diagonal quantifier error,
 two diagonal indexing/bit-flip errors, and a duplicate raw LaTeX label. Each
 Turkish emendation is tied to the exact frozen source hash.
+
+## OLP-0041--OLP-0048 — arithmetization chapter
+
+The chapter-level disclosure is preserved in `SOURCE_ADVERSE_0048.md`. It
+binds all eight files to the exact frozen source paths and hashes and records
+the `s-r` rational-order repair; the reduced-fraction descent clarification;
+typed and totalized zero-case Dedekind-cut formulas; the defined integer
+equivalence notation; strict exclusive trichotomy; decimal-digit codomain;
+equivalence-class typing; and `0_\Real` repair. Three full-corpus History
+references lie outside this bounded driver, so the Turkish target preserves
+their referents by translated section title rather than emitting false `??`
+links.
+
+The same disclosure keeps the upstream mathematical gaps visible: quotient
+well-definedness is omitted; rational and cut inverse operations are not
+defined; cut-addition properness is asserted without its bounding step; and
+the Cauchy field/completeness sketch omits congruence, a nonzero reciprocal,
+Archimedean bounding lemmas, and a justification of recursion. Deterministic
+Dedekind union and bisection introduce no separate Axiom of Choice issue.
+
+These records support a bounded 48/722 checkpoint only. They do not call the
+remaining corpus translated or the omitted source arguments supplied.

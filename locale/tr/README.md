@@ -9,16 +9,16 @@ Project. It follows the upstream `locale/<langid>` architecture.
   `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
 - Base authority tree:
   `f67757bb9305b173634082ab4cefd5601a707a34`
-- Translated closure: OLP-0001 through OLP-0040, exactly 40/722 content
+- Translated closure: OLP-0001 through OLP-0048, exactly 48/722 content
   modules
 - Reader scope: front matter and routing material, the complete introductory
-  Sets, Relations, Functions, and Size of Sets chapters
-- Continuation cursor: OLP-0041,
-  `content/sets-functions-relations/arithmetization/arithmetization.tex`
+  Sets, Relations, Functions, Size of Sets, and Arithmetization chapters
+- Continuation cursor: OLP-0049,
+  `content/sets-functions-relations/infinite/infinite.tex`
 - Cursor source SHA-256:
-  `05f8775a82c294927a6195ae372c1910e4777909fe8ad2aaa9cbf6dea566fe24`
+  `1f4a788f692454adc1a93e2670899f785f45ee9849952ac2f36fce7cdd77dbff`
 
-The 40-module checkpoint is cumulative, not a claim that the
+The 48-module checkpoint is cumulative, not a claim that the
 complete 722-module Turkish edition is finished.
 
 ## Build
@@ -26,7 +26,7 @@ complete 722-module Turkish edition is finished.
 From `locale/tr/`:
 
 ```powershell
-latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error checkpoint-0040-tr.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error checkpoint-0048-tr.tex
 ```
 
 The release driver uses the exact upstream bibliography and contains no English
@@ -42,10 +42,11 @@ an endorsement by the Open Logic Project.
 
 The cumulative terminology ledger is `TERMINOLOGY.csv`; the evidence notes are
 `TERMINOLOGY_EVIDENCE_OLP-0026.md` and
-`TERMINOLOGY_EVIDENCE_OLP-0040.md`.
+`TERMINOLOGY_EVIDENCE_OLP-0040.md`, and
+`TERMINOLOGY_EVIDENCE_OLP-0048.md`.
 
 Source emendations resolve documented defects in the frozen English source.
-They are disclosed in `SOURCE_ADVERSE_0040.md` and the cumulative
+They are disclosed in `SOURCE_ADVERSE_0048.md` and the cumulative
 `SOURCE_ADVERSE.md` record.
 
 ## License and attribution

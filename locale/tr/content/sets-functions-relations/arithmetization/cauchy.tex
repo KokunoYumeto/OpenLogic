@@ -1,0 +1,241 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: cauchy
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{arith}{cauchy}
+
+\olsection{Ek: Cauchy Dizileri Olarak Gerçel Sayılar}
+
+\olref[cuts]{sec}'te gerçel sayıları Dedekind kesimleri olarak kurduk. Bu
+kısımda alternatif bir kuruluşu açıklıyoruz. Bu kuruluş, Cauchy'nin (bugün)
+Cauchy dizisi dediğimiz şeye ilişkin tanımına dayanır; ancak bu tanımın gerçel
+sayıları \emph{kurmak} için kullanılması başta Weierstrass, Heine, M\'{e}ray
+ve Cantor olmak üzere başka on dokuzuncu yüzyıl yazarlarına aittir. (Güzel
+bir tarihçe için bkz.\ \citeauthor{OConnorRobertson:RN}
+\citeyear{OConnorRobertson:RN}.)
+
+On dokuzuncu yüzyıla gelmeden önce Simon Stevin'i (1548--1620) ele almak
+yararlı olur. Kısaca Stevin, her gerçel sayıyı ondalık açılımı aracılığıyla
+düşünebileceğimizi fark etti. Dolayısıyla $\sqrt{2}$ gibi irrasyonel bir
+sayının bile şöyle başlayan düzgün bir ondalık açılımı vardır:
+\[
+	1.41421356237\ldots
+\]
+Ondalık açılımları küme teorisi içinde modellemek çok kolaydır: onları
+yalnızca $d \colon \Nat \to \{0,\ldots,9\}$ fonksiyonları olarak ele alırız; burada
+$d(n)$, ilgilendiğimiz $n$'inci ondalık basamaktır. Sonra gerçel sayının ondalık
+ayıracından önce gelen kısmını (burada yalnızca $1$) ele almak için küçük bir
+düzeltme yapmamız gerekir. Örneğin $0.999\ldots = 1$ olmasını güvence altına
+almak için bir düzeltmeye (bir denklik bağıntısına) daha ihtiyacımız vardır.
+Ancak gerçel sayıları Stevin'in tarzında küme teorisi içinde bütünüyle titiz
+biçimde kurmak zor değildir.
+
+Odağımız Stevin değil. (Stevin hakkında daha fazlası için
+bkz.\ \citealt{KatzKatz2012}.) Ancak bununla yakından bağlantılı bir düşünce
+şudur. $\sqrt{2}$'nin ondalık açılımını doğrudan ele almak yerine, giderek
+daha hassas açılımları kullanarak $\sqrt{2}$'ye giderek daha çok yaklaşan
+rasyonel sayıların oluşturduğu bir \emph{diziyi} ele alabiliriz:
+\[
+1, 1.4, 1.414, 1.4142, 1.41421,\ldots
+\]
+Gerçel sayıların “giderek daha iyi yaklaşımlar” aracılığıyla ele alınabileceği
+fikri, bize başka bir gözlemler dizisinin temelini verir (bunlar $\Rat$'yi
+$\Int$'den veya $\Int$'yi $\Nat$'den kurarken kullandığımız gözlemlere
+benzer). Temel gözlemler şunlardır:
+\begin{enumerate}
+	\item Her gerçel sayı (belki sonsuz) bir ondalık açılım olarak yazılabilir.
+	\item (Belki sonsuz) bir ondalık açılımda kodlanan bilgi, bir rasyonel
+	sayılar dizisiyle de kodlanabilir.
+	\item Bir rasyonel sayılar dizisi $\Nat$'den $\Rat$'ye bir fonksiyon olarak
+	düşünülebilir; $f(n)$'yi dizideki $n$'inci rasyonel sayı olarak almak
+	yeterlidir.
+\end{enumerate}
+Elbette $\Nat$'den $\Rat$'ye giden \emph{herhangi} bir fonksiyon bize bir gerçel
+sayı vermez. Örneğin şu fonksiyonu ele alın:
+\[
+	f(n) =\begin{cases}
+			1 & \text{eğer }n\text{ tekse}\\
+			0 &\text{eğer }n\text{ çiftse}
+		\end{cases}
+\]
+Buradaki temel kaygı, $0,1,0,1,0,1,0,\ldots$ dizisinin herhangi bir gerçel
+sayıya “giderek yaklaşmıyor” görünmesidir. Dolayısıyla bir gerçel sayıya
+yakınsayan dizileri ele aldığımızdan emin olmak için dikkatimizi bir
+\emph{limiti} olan dizilerle sınırlandırmalıyız.
+
+Limit fikriyle tarih bölümündeki “Limitlerin Kesin Tanımı” başlıklı kısımda
+zaten karşılaştık. Ancak orada
+kullandığımız tanımın \emph{tam olarak} aynısını kullanamayız. Oradaki
+“$(\forall \epsilon>0)$” ifadesi, örtük olarak gerçel sayılar üzerinde
+niceleme içeriyordu; ayrıca gerçel sayılar üzerindeki fonksiyonların limitlerini
+ele alıyorduk. Bu nedenle o tanıma başvurmak, tam da \emph{kurmayı}
+amaçladığımız gerçel sayıları hazır kabul etmek olurdu. Neyse ki yakından
+bağlantılı bir limit fikriyle çalışabiliriz.
+\begin{defn}\ollabel{def:CauchySequence}
+  Bir $f: \Nat \to \Rat$ fonksiyonu, ancak ve ancak her pozitif
+  $\epsilon \in \Rat$ için
+  $(\exists \ell \in \Nat)(\forall m, n > \ell)|f(m) - f(n)| < \epsilon$
+  ise bir \emph{Cauchy dizisidir}.
+\end{defn}
+
+Genel limit fikri öncekiyle aynıdır: belirli bir hassasiyet düzeyi
+($\epsilon$ ile ölçülen) istediğinizde bakacağınız bir “bölge” (yani
+$\ell$'den büyük her girdi) vardır. Ayrıca $1$, $1.4$, $1.414$, $1.4142$,
+$1.41421$\ldots\ dizisinin bir limiti olduğunu görmek kolaydır:
+$\sqrt{2}$'ye $\nicefrac{1}{10^{n}}$'den küçük bir hata payıyla yaklaşmak
+istiyorsanız $n$'inci terimden sonraki herhangi bir terime bakmanız yeterlidir.
+
+Öyleyse açık düşünce, bir gerçel sayının herhangi bir Cauchy dizisi
+\emph{olduğunu} söylemek olurdu. Fakat $\Int$ ve $\Rat$ kuruluşlarında olduğu
+gibi bu da fazla naif olurdu: verili herhangi bir gerçel sayıyı birden çok
+farklı Cauchy dizisi gösterir. Bunu görmenin basit bir yolu şudur. Bir Cauchy
+dizisi $f$ verildiğinde, $g(0)\neq f(0)$ olması dışında $f$ ile bütünüyle aynı
+olan $g$ fonksiyonunu tanımlayın. İki dizi ilk sayıdan sonra her yerde
+örtüştüğü için, sonunda \olref{def:CauchySequence}'de kullanılan anlamda aynı
+limite sahip olduklarını söylemek isteyeceğiz; dolayısıyla aynı gerçel sayıyı
+“tanımlıyor” kabul edilmelidirler. Öyleyse bu Cauchy dizilerini aynı gerçel sayı
+olarak düşünmeliyiz.
+
+Sonuç olarak Cauchy dizileri üzerinde yeniden bir denklik bağıntısı
+tanımlamamız ve gerçel sayıları denklik sınıflarıyla özdeşleştirmemiz gerekir.
+Önce limitte $0$'a yaklaşan fonksiyon fikrine ihtiyacımız var. Herhangi bir
+$h : \Nat \to \Rat$ fonksiyonu için, ancak ve ancak her pozitif
+$\epsilon \in \Rat$ için
+$(\exists \ell \in \Nat)(\forall n > \ell)|h(n)| < \epsilon$ ise
+\emph{$h$, $0$'a yakınsar} diyelim.\footnote{Bunu, tarih bölümündeki
+“Limitlerin Kesin Tanımı” başlıklı kısımda verilen
+$\lim_{x \mathord{\rightarrow}\infty}f(x) = 0$ tanımıyla karşılaştırın.}
+Ayrıca $f$ ve $g$, $\Nat \to \Rat$ fonksiyonları olduğunda
+$(f-g)(n) = f(n) - g(n)$ olsun. Şimdi şunu tanımlayalım:
+\[
+	f \Realequiv g \text{ ancak ve ancak $(f-g)$, $0$'a yakınsar.}
+\]
+$\Realequiv$ bağıntısının bir denklik bağıntısı olduğunu denetlemeliyiz; öyle
+olduğu gösterilebilir. Ardından istersek gerçel sayıları, $\Nat \to \Rat$
+biçimindeki bütün Cauchy dizilerinin $\Realequiv$ altındaki denklik sınıfları olarak
+tanımlayabiliriz.
+
+\begin{prob}
+Her $n$ için $f(n) = 0$ olsun. $g(n) = \frac{1}{(n+1)^2}$ olsun. Her ikisinin
+de Cauchy dizisi olduğunu ve gerçekten her iki fonksiyonun limitinin $0$
+olduğunu, dolayısıyla $f \Realequiv g$ olduğunu gösterin.
+\end{prob}
+
+Bunu yaptıktan sonra, her zamanki gibi $f$'yi !!a{element} olarak içeren
+denklik sınıfı için $\equivrep{f}{\Realequiv}$ yazacağız. Ancak okunabilirliği
+korumak için bundan sonra alt indisi atıp yalnızca $\equivrep{f}{}$ yazacağız.
+Ayrıca her $q \in \Rat$ için
+$q_{\Real} = \equivrep{c_{q}}{}$ olduğunu belirliyoruz; burada $c_q$, bütün
+$n \in \Nat$ için $c_q(n) = q$ olan sabit fonksiyondur. Sonra gerçel sayılar
+üzerindeki temel bağıntı ve işlemleri tanımlarız; örneğin:
+\begin{align*}
+	\equivrep{f}{} + \equivrep{g}{} &= 	\equivrep{(f + g)}{} \\
+	\equivrep{f}{} \times 	\equivrep{g}{} &= \equivrep{(f \times g)}{}
+\end{align*}
+burada $(f + g)(n) = f(n) + g(n)$ ve
+$(f \times g)(n) = f(n) \times g(n)$'dir. Elbette $f$ ile $g$ Cauchy
+dizileri olduğunda $(f + g)$, $(f-g)$ ve $(f\times g)$'nin her birinin de
+Cauchy dizisi olduğunu denetlemeliyiz; gerçekten öyledirler ve bunu size
+bırakıyoruz.
+
+Son olarak bir sıralama kavramı tanımlarız. $\equivrep{f}{}$'nin, ancak ve
+ancak hem $\equivrep{f}{}\neq 0_\Real$ hem de
+$(\exists \ell \in \Nat)(\forall n > \ell)0 < f(n)$ ise \emph{pozitif}
+olduğunu söyleyelim. Ardından $\equivrep{f}{} < \equivrep{g}{}$ bağıntısını,
+ancak ve ancak $\equivrep{(g - f)}{}$ pozitifse geçerli sayalım. Bunun iyi
+tanımlı olduğunu (yani denklik sınıfından seçilen “temsilci” fonksiyona bağlı
+olmadığını) denetlemeliyiz.
+%\begin{align*}
+%	\equivrep{f}{} \leq \equivrep{g}{} \text{ iff }&\equivrep{f}{} = \equivrep{g}{} \text{ or }\\
+%	&(\exists \ell \in \Nat)(\forall n \in \Nat)(\ell < n \lif f(n) \leq g(n))
+%\end{align*}
+Bunu yaptıktan sonra, bu tanımların doğru cebirsel özellikleri verdiğini
+göstermek oldukça kolaydır; yani:
+\begin{thm}\ollabel{thm:cauchyorderedfield}
+Cauchy dizilerinin denklik sınıfları sıralı bir cisim oluşturur.
+\end{thm}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+Cauchy dizilerinin denklik sınıflarının sıralı bir cisim oluşturduğunu
+ispatlayın.
+\end{prob}
+
+Bu biçimde kurulan gerçel sayıların Tamlık Özelliği'ne sahip olduğunu ispatlamak
+daha zordur; bu yüzden ispatı vereceğiz.
+
+\begin{thm}
+Boş olmayan bir Cauchy dizileri kümesinin karşılık gelen denklik sınıfları
+üstten sınırlıysa, bu sınıfların en küçük bir üst sınırı vardır.
+\end{thm}
+
+\begin{proof}[İspat taslağı]
+$S$, karşılık gelen denklik sınıfları üstten sınırlı olan, boş olmayan
+herhangi bir Cauchy dizileri kümesi olsun. Öyleyse $p_{\Real}$, $S$'nin
+denklik sınıfları için bir üst sınır olacak biçimde bir $p \in \Rat$ vardır.
+$r \in S$ olsun; o zaman $q_{\Real} < \equivrep{r}{}$ olacak biçimde bir
+$q \in \Rat$ vardır. Dolayısıyla $S$ üzerinde en küçük bir üst sınır varsa
+bu sınır $q_\Real$ ile $p_\Real$ arasındadır (uçlar dâhil).
+
+En küçük üst sınıra hem aşağıdan hem yukarıdan aynı anda yaklaşarak onu
+belirleyeceğiz. Özellikle $f, g \colon \Nat \to \Rat$ biçiminde iki fonksiyon
+tanımlarız; amacımız $f$'nin en küçük üst sınıra yukarıdan, $g$'nin ise
+aşağıdan giderek yaklaşmasıdır. Şöyle başlarız:
+\begin{align*}
+	f(0) &= p \\
+	g(0) &= q
+\end{align*}
+Sonra $a_n = \frac{f(n) + g(n)}{2}$ olmak üzere şunları
+tanımlayalım:\footnote{Bu özyinelemeli bir tanımdır. Ancak özyinelemeli
+tanımların meşru olduğunu düşünmek için \emph{henüz} herhangi bir gerekçe
+vermedik.}
+\begin{align*}
+	f(n+1) &=
+	\begin{cases}
+		a_n &\text{eğer }(\forall h \in S)\equivrep{h}{} \leq (a_n)_\Real\\
+		f(n)&\text{aksi hâlde}
+	\end{cases}\\
+	g(n+1) &=
+	\begin{cases}
+		a_n &\text{eğer }(\exists h \in S)\equivrep{h}{} \geq (a_n)_\Real\\
+	 	g(n) &\text{aksi hâlde}
+	\end{cases}
+\end{align*}
+Hem $f$ hem $g$ birer Cauchy dizisidir. (Bunu denetlemek oldukça kolaydır,
+fakat alıştırma olarak bırakıyoruz.) $f$ ile $g$ arasındaki fark her adımda
+yarıya indiği için $(f-g)$ fonksiyonunun $0$'a yakınsadığına dikkat edin.
+Dolayısıyla $\equivrep{f}{} = \equivrep{g}{}$ olur.
+
+Önce $\equivrep{f}{}$'nin $S$ için bir üst sınır olduğunu, yani
+$(\forall h \in S)\equivrep{h}{} \leq \equivrep{f}{}$ olduğunu gösterelim.
+(İlerlerken \olref{thm:cauchyorderedfield}'e başvuracağız.) $h \in S$ olsun ve
+olmayana ergiyle $\equivrep{f}{} < \equivrep{h}{}$ olduğunu varsayalım;
+öyleyse $0_\Real < \equivrep{(h-f)}{}$ olur. $f$ monoton azalan bir Cauchy
+dizisi olduğundan
+$\equivrep{(c_{f(n)} - f)}{} < \equivrep{(h-f)}{}$ olacak biçimde bir
+$n \in \Nat$ vardır. Böylece:
+\[
+	(f(n))_\Real = \equivrep{c_{f(n)}}{} < \equivrep{f}{} + \equivrep{(h-f)}{} = \equivrep{h}{},
+\]
+oysa kuruluş gereği $\equivrep{h}{} \leq (f(n))_\Real$'dir; çelişki.
+
+Şimdi $\equivrep{f}{} = \equivrep{g}{}$'nin $S$ üzerindeki \emph{en küçük}
+üst sınır olduğunu gösterelim. $j$ herhangi bir Cauchy dizisi olsun ve
+$\equivrep{j}{} < \equivrep{g}{}$ olduğunu varsayın. Yukarıdakine benzer
+biçimde ($g$'nin \emph{artan} olduğunu kullanarak)
+$\equivrep{j}{} < (g(n))_\Real$ olacak biçimde bir $n \in \Nat$ vardır.
+Ancak kuruluş gereği $(g(n))_\Real \leq \equivrep{h}{}$ olacak biçimde bir
+$h \in S$ vardır; dolayısıyla
+$\equivrep{j}{} < \equivrep{h}{}$ ve böylece $\equivrep{j}{}$, $S$ için bir
+üst sınır değildir; burada üst sınırlar yine bu dizilerin denklik sınıfları için
+anlaşılmaktadır.
+\end{proof}
+
+\end{document}

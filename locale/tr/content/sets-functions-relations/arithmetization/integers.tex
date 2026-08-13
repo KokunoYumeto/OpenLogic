@@ -1,0 +1,115 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: From N to Z
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[tr]{sfr}{arith}{int}
+\olsection{$\Nat$'den $\Int$'ye}
+
+İki temel gözlemle başlayalım:
+	\begin{enumerate}
+		\item Her tam sayı, $n, m \in\Nat$ olmak üzere $n - m$ biçiminde yazılabilir.
+		\item $n - m$ ifadesinde kodlanan bilgi, $\tuple{n, m}$ sıralı ikilisiyle de kodlanabilir.
+	\end{enumerate}
+Doğal sayıların sıralı ikililerinin $\Nat^2$'nin !!{element}ları olduğunu
+zaten biliyoruz. Ayrıca $\Nat$'yi anladığımızı varsayıyoruz. Öyleyse bu iki
+gözlemden yola çıkan naif bir öneri şudur: \emph{tam sayıları doğal sayıların
+sıralı ikilileri olarak ele alalım}.
+
+Aslında bu öneri fazla naiftir. Elbette $0- 2 = 4 - 6$ olmasını isteriz.
+Ancak açıkça $\tuple{0, 2 }\neq \tuple{4, 6}$'dır. Dolayısıyla $\Nat^2$'nin
+tam sayılar kümesi olduğunu doğrudan söyleyemeyiz.
+
+Önceki sorunu genelleştirirsek istediğimiz şudur:
+	$$a - b = c - d \text{ ancak ve ancak }a + d = c + b$$
+(Tam sayıların böyle \emph{davranması gerektiği} açık olmalıdır: her iki
+tarafa da $b$ ve $d$ eklemek yeterlidir.) Bu davranışı güvence altına almanın
+kolay yolu, sıralı ikililer arasında $\Intequiv$ denklik bağıntısını şöyle
+tanımlamaktır:
+$$\tuple{ a, b } \Intequiv \tuple{c, d}\text{ ancak ve ancak }a + d = c + b$$
+Şimdi bunun bir denklik bağıntısı olduğunu göstermeliyiz.
+\begin{prop} $\Intequiv$ bir denklik bağıntısıdır.
+\end{prop}
+	\begin{proof}
+	$\Intequiv$ bağıntısının yansımalı, simetrik ve geçişli olduğunu göstermeliyiz.
+	
+	\emph{Yansımalılık:} $a + b = b + a$ olduğundan, açıkça
+	$\tuple{a, b} \Intequiv \tuple{a, b}$.
+	
+	\emph{Simetri:} $\tuple{a, b} \Intequiv \tuple{c, d}$ olduğunu varsayalım;
+	böylece $a + d = c + b$. O hâlde $c + b = a + d$ ve dolayısıyla
+	$\tuple{c, d} \Intequiv \tuple{a, b}$.
+	
+	\emph{Geçişlilik:} $\tuple{a, b} \Intequiv \tuple{c, d}\Intequiv
+	\tuple{m, n}$ olduğunu varsayalım. Bu durumda $a + d = c + b$ ve
+	$c + n = m + d$ olur. Öyleyse $a + d + c + n = c + b + m + d$ ve
+	buradan $a + n = m + b$ elde edilir. Dolayısıyla
+	$\tuple{a, b } \Intequiv \tuple{m, n}$.
+\end{proof}
+
+Şimdi denklik sınıflarını oluşturmak için bu denklik bağıntısını kullanabiliriz:
+
+\begin{defn}
+		Tam sayılar, doğal sayıların sıralı ikililerinin $\Intequiv$ altındaki
+		denklik sınıflarıdır; yani $\Int = \equivclass{\Nat^2}{\Intequiv}$.
+\end{defn}
+
+Bu uzlaşımsal tanıma karşı birçok farklı \emph{felsefi} tepki verilebilir.
+Ancak bu tepkileri değerlendirmeden önce bazı teknik ayrıntılarla devam etmek
+yararlı olacaktır.
+
+Tam sayıların ne olduğunu söyledikten sonra, onlar üzerindeki temel
+fonksiyonları ve bağıntıları tanımlamamız gerekir. $\tuple{m, n}$'yi
+!!a{element} olarak içeren $\Intequiv$ denklik sınıfını
+$\equivrep{m, n}{\Intequiv}$ ile gösterelim.\footnote{Not:
+\olref[sfr][rel][eqv]{def:equivalenceclass}'de tanıtılan gösterimi kullansaydık
+aynı şey için $\equivrep{\tuple{m,n}}{\Intequiv}$ yazardık. Ancak bunu okumak
+biraz daha zordur.} Yani:
+	$$\equivrep{m, n}{\Intequiv} = \Setabs{\tuple{a, b} \in \Nat^2}{\tuple{a, b}\Intequiv \tuple{m, n}}$$
+Şimdi şu tanımları veriyoruz:
+	\begin{align*}
+		\equivrep{a, b}{\Intequiv} + \equivrep{c, d}{\Intequiv} &= \equivrep{a + c, b + d}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \times \equivrep{c, d}{\Intequiv} &= \equivrep{a c + b  d, a  d + b c}{\Intequiv}\\
+		\equivrep{a, b}{\Intequiv} \leq \equivrep{c, d}{\Intequiv} &\text{ ancak ve ancak }a + d \leq b + c
+	\end{align*}	
+(Yaygın olduğu üzere, aksiyomların okunmasını kolaylaştırmak için
+$(a \times b)$ yerine $ab$ yazıyorum.) Şimdi bu tanımların
+\emph{gerektiği gibi} davrandığından emin olmalıyız. Bunun ne anlama geldiğini
+tam olarak açıklamak ve ayrıntıları denetlemek epey zahmetlidir; ayrıntıları
+\olref[check]{sec}'e bırakıyoruz. Fakat kısacası: her şey çalışır!
+
+Son bir nokta kalıyor. Tam sayıları doğal sayıları kullanarak kurduk. Ancak bu,
+doğal sayıların \emph{kendilerinin tam sayı olmaması} sonucunu doğurur. Bunun
+felsefi önemine \olref[ref]{sec}'te döneceğiz. Salt teknik açıdan ise doğal
+sayıları tam sayılar \emph{olarak} ele alabilmenin bir yoluna ihtiyacımız var.
+Fikir oldukça basittir: her $n \in \Nat$ için
+$n_\Int = \equivrep{n, 0}{\Intequiv}$ olduğunu belirleriz. Bu tanımın iyi
+davrandığını, yani her $m, n \in \Nat$ için aşağıdakilerin geçerli olduğunu
+doğrulamalıyız:
+\begin{align*}
+	(m + n)_\Int &= m_\Int + n_\Int\\
+	(m \times n)_\Int &= m_\Int \times n_\Int\\
+	m \leq n &\liff m_\Int \leq n_\Int
+\end{align*}
+Ancak bunların hepsi oldukça doğrudandır. Örneğin ikincisinin geçerli olduğunu
+göstermek için doğal sayıların davranışından yararlanıp şöyle akıl yürütebiliriz:
+%\begin{proof}
+%	Helping myself to the behaviour of the natural numbers, evidently:
+	\begin{align*}
+%		(m + n)_\Int  = \equivrep{m + n, 0}{\Intequiv} = \equivrep{m + n, 0 + 0}{\Intequiv} = \equivrep{m, 0}{\Intequiv} + \equivrep{n, 0}{\Intequiv} = m_\Int + n_\Int\\
+		(m \times n)_\Int  &= \equivrep{m \times n, 0}{\Intequiv} \\
+		&= \equivrep{m \times n + 0 \times 0, m \times 0 + 0 \times n}{\Intequiv} \\
+		&= \equivrep{m, 0}{\Intequiv} \times \equivrep{n, 0}{\Intequiv} \\
+		&= m_\Int \times n_\Int
+	\end{align*}
+%\end{proof}
+Öteki iki koşulun geçerli olduğunu doğrulamayı alıştırma olarak bırakıyoruz.
+\begin{prob}
+	Her $m, n \in \Nat$ için $(m + n)_\Int = m_\Int + n_\Int$ ve
+	$m \leq n \liff m_\Int \leq n_\Int$ olduğunu gösterin.
+\end{prob}
+\end{document}

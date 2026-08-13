@@ -1,0 +1,127 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: cuts
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{arith}{cuts}
+\olsection{$\Rat$'den $\Real$'e}
+
+Tamlık Özelliği özünde, gerçel doğru üzerindeki her $\alpha$ noktasının bu
+doğruyu kusursuz biçimde iki yarıya ayırdığını gösterir: $\alpha$'nın en küçük
+üst sınır olduğu yarı ve $\alpha$'nın en büyük alt sınır olduğu yarı. Gerçel
+sayıları rasyonel sayılardan \emph{kurmak} için Dedekind, gerçel sayıları
+rasyonel sayıları bölen \emph{kesimler} olarak düşünmemizi önerdi. Yani
+$\sqrt{2}$'yi, $< \sqrt{2}$ olan rasyonel sayıları $> \sqrt{2}$ olan
+rasyonel sayılardan ayıran \emph{kesim} ile özdeşleştiririz.
+
+Bunu biraz düzenleyelim. Rasyonel sayıları iki yarıya bölersek, yaptığımız
+bölmeyi yalnızca \emph{alt} yarısını ele alarak tekil biçimde belirleyebiliriz.
+Dolayısıyla kesin bir tanım verelim:
+
+\begin{defn}[Kesim]
+Bir \emph{kesim} $\alpha$, rasyonel sayıların en büyük elemanı olmayan, boş
+olmayan herhangi bir öz başlangıç kesitidir. Yani $\alpha$ ancak ve ancak şu
+koşullarda bir kesimdir:
+\begin{enumerate}
+	\item \emph{boş olmayan ve öz}: $\emptyset \neq \alpha \subsetneq \Rat$
+	\item \emph{başlangıç kesiti}: bütün $p,q \in \Rat$ için,
+	$p < q \land q \in \alpha$ ise $p \in \alpha$
+	\item \emph{en büyük elemanı yok}: her $p \in \alpha$ için,
+	$p < q$ olacak biçimde bir $q \in \alpha$ vardır
+\end{enumerate}
+O hâlde $\Real$, kesimler kümesidir.
+\end{defn}
+
+Artık $\sqrt{2} = \Setabs{p \in \Rat}{p^2 < 2\text{ veya }p < 0}$
+diyebiliriz. Elbette bunun gerçekten bir kesim olduğunu denetlemeliyiz; fakat
+bu denetimi \olref[check]{sec}'e bırakıyoruz.
+
+Daha önce olduğu gibi, bazı varlıkları tanımladıktan sonra onlar üzerindeki
+temel fonksiyon ve bağıntıları da tanımlamamız gerekir. Kolay bir tanımla
+başlayalım:
+\begin{align*}
+	\alpha \leq \beta \text{ ancak ve ancak }\alpha \subseteq \beta
+\end{align*}
+Bu sıralama tanımı, kesimler kümesinin Tamlık Özelliği'ne sahip olduğu
+yönündeki temel sonucu \emph{ifade etmemizi} sağlar. Tam olarak açarsak önerme
+şu biçimdedir: $S$, üstten sınırlı ve boş olmayan bir kesimler kümesiyse
+$S$'nin en küçük bir üst sınırı vardır. Daha ayrıntılı olarak, $S$ için üst
+sınır olan, yani $(\forall \alpha \in S)\alpha \subseteq \lambda$ koşulunu
+sağlayan bir $\lambda$ kesimi vardır ve $\lambda$ böyle kesimlerin en
+küçüğüdür; yani
+$(\forall \beta \in \Real)((\forall \alpha \in S)\alpha \subseteq \beta
+\lif \lambda \subseteq \beta)$. Şimdi sonucun ispatını verelim:
+
+\begin{thm}\ollabel{realcompleteness}
+Kesimler kümesi Tamlık Özelliği'ne sahiptir.
+\end{thm}
+
+\begin{proof}
+$S$, üstten sınırlı ve boş olmayan herhangi bir kesimler kümesi olsun.
+$\lambda = \bigcup S$ olsun.
+%\Setabs{p \in \Rat}{(\exists \alpha \in S)p \in \alpha}$$
+Önce $\lambda$'nın bir kesim olduğunu ileri sürüyoruz:
+\begin{enumerate}
+\item $S$ boş olmadığından en az bir kesim $S$'dedir; dolayısıyla
+$\emptyset \neq \lambda$. $S$ bir kesimler kümesi olduğundan
+$\lambda \subseteq \Rat$. $S$'nin bir üst sınırı bulunduğundan, bazı
+$p \in \Rat$ her $\alpha \in S$ kesiminde bulunmaz. Öyleyse
+$p\notin \lambda$ ve dolayısıyla $\lambda \subsetneq \Rat$.
+\item $p < q \in \lambda$ olduğunu varsayın. O hâlde $q \in \alpha$ olacak
+biçimde bir $\alpha \in S$ vardır. $\alpha$ bir kesim olduğundan
+$p \in \alpha$; dolayısıyla $p \in \lambda$.
+\item $p \in \lambda$ olduğunu varsayın. O hâlde $p \in \alpha$ olacak
+biçimde bir $\alpha \in S$ vardır. $\alpha$ bir kesim olduğundan
+$p < q$ olacak biçimde bir $q \in \alpha$ vardır. Dolayısıyla
+$q \in \lambda$.
+\end{enumerate}
+Bu, ileri sürülen iddiayı ispatlar. Dahası,
+$(\forall \alpha \in S)\alpha \subseteq \bigcup S = \lambda$ olduğu açıktır;
+yani $\lambda$, $S$ için bir üst sınırdır. Şimdi $\beta \in \Real$'in
+de bir üst sınır olduğunu, yani
+$(\forall \alpha \in S)\alpha \subseteq \beta$ olduğunu varsayın. Her
+$p \in \Rat$ için, $p \in \lambda$ ise $p \in \alpha$ olacak biçimde bir
+$\alpha \in S$ vardır; böylece $p \in \beta$. Genelleştirirsek
+$\lambda \subseteq \beta$ olur. Demek ki $\lambda$, $S$'nin \emph{en küçük}
+üst sınırıdır.
+\end{proof}
+
+Böylece Tamlık Özelliği'ni sağlayan bir grup varlığımız oldu. Bunu söylemenin
+bir yolu da şudur: kesimlerimizde “boşluk” yoktur. (Dolayısıyla rasyonel
+sayılar yerine gerçel sayılardan yeni “kesimler” almak, ilginç yeni nesneler
+vermez.)
+
+Sonra gerçel sayılar üzerinde bazı işlemler tanımlamalıyız. Her $p \in \Rat$
+için $p_\Real = \Setabs{q \in \Rat}{q < p}$ olduğunu belirleyerek rasyonel
+sayıları gerçel sayılara gömmekle başlarız. Ardından şunları tanımlarız:
+\begin{align*}
+	\alpha + \beta &= \Setabs{p + q}{p \in \alpha \land q \in \beta}\\
+%	\alpha - \beta &\defis \Setabs{p - q}{p \in \alpha \land q \in \Rat \setminus \beta}\\
+	\alpha \times \beta &=
+	\Setabs{p \times q}{0 \leq p \in \alpha \land 0 \leq q \in \beta} \cup 0_\Real & \text{eğer }\alpha, \beta \geq 0_\Real
+%	\alpha \div \beta &\defis
+%	\Setabs{\nicefrac{p}{q}}{p \in \alpha \land q \in \Rat \setminus \beta}  & \text{if }\alpha \geq 0_\Real, \beta > 0_\Real
+\end{align*}
+Diğer çarpma durumlarını ele almak için önce şunu tanımlayalım:
+%that $0_\Real \times \alpha = 0_\Real = \alpha \times 0_\Real$, and add:
+\begin{align*}
+	-\alpha &= \Setabs{p - q}{p,q \in \Rat \land p < 0 \land q \notin \alpha}
+\end{align*}
+ve ardından şunları belirleyelim:
+\begin{align*}
+	\alpha \times \beta &\defis
+	\begin{cases}
+		0_\Real &\text{eğer }\alpha = 0_\Real\text{ veya }\beta = 0_\Real\\
+		\mathord{-}\alpha \times \mathord{-}\beta &\text{eğer }\alpha < 0_\Real\text{ ve }\beta < 0_\Real\\
+		\mathord{-}(\mathord{-}\alpha \times \beta) &\text{eğer }\alpha < 0_\Real \text{ ve }\beta > 0_\Real\\
+		\mathord{-}(\alpha \times \mathord{-}\beta) &\text{eğer }\alpha > 0_\Real \text{ ve }\beta < 0_\Real
+	\end{cases}
+\end{align*}
+Şimdi bu tanımların her birinin daima bir kesim verdiğini denetlemeliyiz. Son
+olarak bu biçimde tanımlanan kesimlerin tam da gerektiği gibi davrandığını
+kolay ama uzun bir gösterimle ortaya koymalıyız. Ancak bunların hepsini
+\olref[check]{sec}'e bırakıyoruz.
+\end{document}

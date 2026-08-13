@@ -1,0 +1,210 @@
+% Part: sets-functions-relations
+% Chapter: arithmetization
+% Section: checking-details
+%
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+	
+\olfileid[tr]{sfr}{arith}{check}
+\olsection{Sıralı Halkalar ve Cisimler}
+
+Bu bölüm boyunca bazı tanımların “gerektiği gibi” davrandığını ileri sürdük.
+Bu teknik ekte bununla ne kastettiğimizi açıklayacak ve tanımların gerçekten
+“doğru” davrandığının nasıl gösterileceğini (ana hatlarıyla) ortaya koyacağız.
+
+\olref[int]{sec}'te $\Int$ üzerinde toplama ve çarpma işlemlerini tanımladık.
+Bu işlemlerin, tanımlandıkları hâliyle $\Int$'ye sahip olmasını
+“isteyeceğimiz” yapıyı kazandırdığını göstermek istiyoruz. Söz konusu yapı,
+özellikle değişmeli halka yapısıdır.
+
+\begin{defn}
+	Bir \emph{değişmeli halka}, belirli $0$ ve $1$ elemanları ile $+$ ve
+	$\times$ işlemlerine sahip olan ve aşağıdaki sekiz formülü sağlayan bir
+	$S$ kümesidir:
+	\begin{align*}
+		\emph{Birleşme}&&a + (b+ c) & = (a + b) + c \\
+		&& (a \times b) \times c & = a \times (b\times c)\\
+		\emph{Değişme}&&a + b &= b+ a  \\
+		&&  a \times b&= b\times a\\
+		\emph{Etkisiz elemanlar}&&a + 0 &= a \\
+		&& a \times 1 &= a\\
+		\emph{Toplamsal ters}&&(\exists b\in S)0&=a + b\\
+		\emph{Dağılma}&&a \times (b+ c ) &= (a \times b) + (a \times c)
+	\end{align*}
+	Bunların hepsinin örtük olarak $S$ ile sınırlandırılmış evrensel
+	niceleyicilerle bağlı olduğuna dikkat edin. Ayrıca buradaki $0$ ve $1$
+	elemanlarının aynı adı taşıyan doğal sayılar olması gerekmez.
+\end{defn}
+
+Dolayısıyla tam sayıların değişmeli bir halka oluşturduğunu denetlemek için
+yalnızca bu sekiz koşulun sağlandığını denetlememiz gerekir. Koşulların
+hiçbirini göstermek {zor} değildir, fakat bunu yapmak biraz zahmetlidir.
+Örneğin toplama için \emph{Birleşme} özelliği şöyle ispatlanır:
+
+\begin{proof}
+$i, j, k \in \Int$ sabit olsun. O hâlde $i = \equivrep{a_1, b_1}{}$,
+$j = \equivrep{a_2,b_2}{}$ ve $k = \equivrep{a_3, b_3}{}$ olacak biçimde
+$a_1, b_1, a_2, b_2, a_3, b_3 \in \Nat$ vardır. (Okunabilirlik için
+“$\equivrep{x, y}{\Intequiv}$” yerine “$\equivrep{x, y}{}$” yazıyoruz;
+bu kısım boyunca böyle yapacağız.) Şimdi:
+\begin{align*}
+	i + (j + k) &= \equivrep{a_1, b_1}{}+(\equivrep{a_2, b_2}{} + \equivrep{a_3, b_3}{}) \\
+	&= \equivrep{a_1,  b_1}{} + \equivrep{a_2+a_3, b_2+b_3}{}\\
+	&= \equivrep{a_1 + (a_2 + a_3), b_1 + (b_2 + b_3)}{}\\
+	&= \equivrep{(a_1 + a_2) + a_3, (b_1 + b_2) + b_3}{}\\
+	&= \equivrep{a_1 + a_2, b_1 + b_2}{} + \equivrep{a_3, b_3}{}\\
+	&= (\equivrep{a_1, b_1}{} + \equivrep{a_2, b_2}{}) + \equivrep{a_3, b_3}{}\\
+	&= (i+j) + k
+\end{align*}
+Burada $\Nat$ üzerindeki toplamanın davranışından serbestçe yararlandık.
+\end{proof}
+
+Benzer biçimde, \emph{Toplamsal ters} özelliği şöyle ispatlanır:
+
+\begin{proof}
+$i \in \Int$ sabit olsun; dolayısıyla bazı $a,b \in \Nat$ için
+$i = \equivrep{a,b}{}$ olur. $j = \equivrep{b,a}{} \in \Int$ olsun.
+Doğal sayıların davranışından yararlanırsak $(a+b) + 0 = 0 + (a+b)$ olur;
+tanım gereği $\tuple{a+b, b+a} \Intequiv \tuple{0,0}$ ve dolayısıyla
+$\equivrep{a+b, b+a}{} = \equivrep{0, 0}{} = 0_\Int$ elde edilir. Öyleyse
+$i + j = \equivrep{a,b}{}+\equivrep{b,a}{}=\equivrep{a+b, b+a}{}
+= \equivrep{0, 0}{} = 0_\Int$.
+\end{proof}
+
+\emph{Dağılma} özelliğinin ispatı da şöyledir:
+
+\begin{proof}
+Yukarıdaki gibi $i = \equivrep{a_1, b_1}{}$,
+$j = \equivrep{a_2,b_2}{}$ ve $k = \equivrep{a_3, b_3}{}$ sabit olsun.
+Şimdi:
+\begin{align*}
+	i \times (j + k)
+	&= \equivrep{a_1, b_1}{} \times (\equivrep{a_2,b_2}{} + \equivrep{a_3, b_3}{})\\
+	&= \equivrep{a_1, b_1}{} \times \equivrep{a_2 + a_3,b_2+b_3}{}\\
+	&= \equivrep{a_1  (a_2 + a_3) + b_1  (b_2+b_3), a_1  (b_2 + b_3) + b_1 (a_2 + a_3)}{}\\
+	&= \equivrep{a_1 a_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+%		&= \equivrep{a_1 a_2 + b_1b_2 + a_1a_3 + b_1 b_2+b_1b_3, a_1 b_2 + a_1b_3 + a_2b_1 + a_3b_1}{}\\		
+	&= \equivrep{a_1a_2 + b_1b_2, a_1b_2 + a_2b_1}{} + \equivrep{a_1a_3 + b_1b_3, a_1b_3 + a_3b_1}{}\\
+	&= (\equivrep{a_1, b_1}{} \times \equivrep{a_2,b_2}{}) + (\equivrep{a_1, b_1}{} \times  \equivrep{a_3, b_3}{})\\
+	&= (i \times j) + (i \times k)
+\end{align*}
+\end{proof}
+
+Kalan beş koşulu ispatlamayı alıştırma olarak bırakıyoruz. Bunu yaptıktan
+sonra $\Int$'nin değişmeli bir halka oluşturduğunu, yani toplama ile
+çarpmanın (tanımlandıkları biçimiyle) gerektiği gibi davrandığını göstermiş
+oluruz.
+
+\begin{prob}
+$\Int$'nin değişmeli bir halka olduğunu ispatlayın.
+\end{prob}
+
+Ancak görevimiz bitmedi. $\Int$ üzerinde toplama ve çarpmanın yanı sıra bir
+$\leq$ sıralama bağıntısı da tanımladık ve bunun da gerektiği gibi davrandığını
+denetlemeliyiz. Daha ayrıntılı olarak, $\Int$'nin bir \emph{sıralı} halka
+oluşturduğunu göstermeliyiz.\footnote{\olref[sfr][rel][ord]{def:linearorder}'dan
+hatırlayın: tam sıralama; yansımalı, geçişli, ters simetrik ve bağlantılı bir
+bağıntıdır. Sıralama bağıntıları bağlamında bağlantılılığa bazen
+\emph{üçleme} denir; çünkü her $a$ ve $b$ için
+$a < b,\ a = b,\ a > b$ seçeneklerinden tam biri geçerlidir.}
+
+\begin{defn}
+Bir \emph{sıralı halka}, ayrıca bir $\leq$ tam sıralama bağıntısına sahip olan
+ve aşağıdakileri sağlayan bir değişmeli halkadır:
+\begin{align*}
+	a \leq b &\lif a + c \leq b + c\\
+	(a \leq b \land 0 \leq c) &\lif a \times c \leq b \times c
+\end{align*}
+\end{defn}
+
+\begin{prob}
+$\Int$'nin sıralı bir halka olduğunu ispatlayın.
+\end{prob}
+
+Yukarıda olduğu gibi, kurduğumuz $\Int$'nin sıralı bir halka olduğunu
+göstermek zahmetli ama rutin bir iştir. Bunu size bırakacağız.
+
+Böylece tam sayıları ele almış olduk. Şimdi rasyonel sayılar hakkında çok
+benzer sonuçlar göstermeliyiz. Özellikle $+$, $\times$ ve $\leq$ için
+verdiğimiz tanımlar altında rasyonel sayıların sıralı bir \emph{cisim}
+oluşturduğunu göstermemiz gerekir:
+\begin{defn}\ollabel{orderedfield}
+Bir \emph{sıralı cisim}, ayrıca aşağıdakini sağlayan sıralı bir halkadır:
+\begin{align*}
+	\emph{Çarpımsal ters}& & (\forall a \in S \setminus \{0\})(\exists b \in S) a\times b& = 1
+\end{align*}
+\end{defn}
+
+$\Int$'nin sıralı bir halka oluşturduğunu gösterdikten sonra $\Rat$'nin
+sıralı bir cisim oluşturduğunu göstermek kolay ama zahmetlidir.
+
+\begin{prob}
+$\Rat$'nin sıralı bir cisim olduğunu ispatlayın.
+\end{prob}
+
+Tam sayıları ve rasyonel sayıları ele aldıktan sonra geriye yalnızca gerçel
+sayılar kalır. Özellikle $\Real$'in \emph{tam} sıralı bir cisim, yani Tamlık
+Özelliği'ne sahip sıralı bir cisim oluşturduğunu göstermeliyiz.
+\olref[cuts]{realcompleteness}, $\Real$'in Tamlık Özelliği'ne sahip olduğunu
+ortaya koydu. Ancak $\Real$'in sıralı bir cisim olduğunu denetleme yönündeki
+(zahmetli) görevi hâlâ yerine getirmemiz gerekir.
+
+Bu zahmetli alıştırmaya girişmeden önce, daha “dolaysız” bazı noktaları
+denetlemeliyiz. Örneğin herhangi $\alpha$ ve $\beta$ kesimleri için
+tanımlandığı hâliyle $\alpha + \beta$'nın gerçekten bir \emph{kesim} olduğunu
+güvence altına almalıyız. Bu olgunun ispatı şöyledir:
+
+\begin{proof}	
+$\alpha$ ve $\beta$ kesim olduğundan
+$\alpha + \beta = \Setabs{p + q}{p \in \alpha \land q \in \beta}$,
+$\Rat$'nin boş olmayan bir öz alt kümesidir. Şimdi bazı $p \in \alpha$ ve
+$q \in \beta$ için $x < p + q$ olduğunu varsayın. O hâlde
+$x - p < q$ ve dolayısıyla $x - p \in \beta$ olur; buradan
+$x = p + (x - p) \in \alpha + \beta$ elde edilir. Böylece
+$\alpha + \beta$, $\Rat$'nin bir başlangıç kesitidir. Son olarak herhangi
+bir $p + q \in \alpha + \beta$ için, $\alpha$ ve $\beta$ kesim olduğundan
+$p < p_1$ ve $q < q_1$ olacak biçimde $p_1 \in \alpha$ ile
+$q_1 \in \beta$ vardır. Dolayısıyla
+$p + q < p_1 + q_1 \in \alpha + \beta$ olur; öyleyse
+$\alpha + \beta$'nın en büyük elemanı yoktur.
+\end{proof}
+
+Benzer çabalar, uygun çıkarma ve bölme işlemleri ayrıca tanımlandıktan sonra
+$\alpha - \beta$, $\alpha \times \beta$ ve $\alpha \div \beta$'nın kesim
+olduğunu denetlemenizi sağlar (son durumda $\beta$'nın sıfır kesimi olduğu
+durumu dışarıda bırakırız). Bunu yine size bırakacağız.
+
+\begin{prob}
+$\Real$'in sıralı bir cisim olduğunu ispatlayın.
+\end{prob}
+
+Fakat giderilmesi gereken küçük bir açık nokta var. \olref[cuts]{sec}'te
+$\sqrt{2} = \Setabs{p \in \Rat}{p < 0 \text{ veya }p^2 < 2}$
+alabileceğimizi önerdik. Ancak bu kümenin bir \emph{kesim} olduğunu
+göstermemiz gerekir. Bu olgunun ispatı şöyledir:
+
+\begin{proof}
+Bunun rasyonel sayıların boş olmayan bir öz başlangıç kesiti olduğu açıktır;
+dolayısıyla en büyük elemanının olmadığını göstermek yeterlidir. Özellikle
+$p$, $p^2 < 2$ koşulunu sağlayan pozitif bir rasyonel sayı ve
+$q = \frac{2p+2}{p+2}$ iken hem $p < q$ hem de $q^2 < 2$ olduğunu göstermek
+yeterlidir. $p < q$ olduğunu görmek için şunlara dikkat edin:
+\begin{align*}
+	p^2 &< 2\\
+	p^2 + 2p &< 2 + 2p\\
+	p(p + 2) &< 2 + 2p\\
+	p &< \tfrac{2+2p}{p+2} = q
+\end{align*}
+$q^2 < 2$ olduğunu görmek içinse şunlara dikkat edin:
+\begin{align*}
+	p^2 &< 2\\
+	2p^2 + 4p + 2 &< p^2 + 4p+ 4\\
+	4p^2 + 8p + 4 &< 2(p^2 + 4p + 4)\\
+	(2p+2)^2 & <2(p+2)^2\\
+	\tfrac{(2p+2)^2}{(p+2)^2} &< 2\\
+	q^2 &< 2
+\end{align*}
+\end{proof}
+\end{document}
