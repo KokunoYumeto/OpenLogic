@@ -1,0 +1,146 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: formation-sequences
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pl}{syn}{fseq}
+
+\olsection{Oluşum Dizileri}
+
+!!{formula}s için tümevarımlı bir tanım kullanmak ve !!{formula}s hakkında
+tümevarımla özellikler kanıtlamak zarif ve verimli bir yaklaşımdır. Bununla
+birlikte !!{formula}s adım adım, daha aşağıdan yukarıya da kurulabilir;
+burada bunu bir
+\emph{oluşum dizisi} kavramını kullanarak yapıyoruz.
+
+\begin{defn}[Formüller için oluşum dizileri]
+\ollabel{defn:fseq-frm}
+$\Lang L_0$ dilinin simge dizilerinden oluşan sonlu bir
+$\tuple{!A_0,\dotsc,!A_n}$ dizisi, $!A \ident !A_n$ ise ve her $i \leq n$
+için ya $!A_i$ atomik bir formülse ya da aşağıdakilerden birini sağlayan
+$j,k < i$ indisleri varsa $!A$ için bir 
+\emph{oluşum dizisidir}:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    (\Obj p_1 \land \Obj p_0),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}
+\]
+$\lnot (\Obj p_1 \land \Obj p_0)$'ın bir oluşum dizisidir; şu dizi de
+öyledir:
+\[
+\tuple{
+    \Obj p_0,
+    \Obj p_1,
+    \Obj p_0,
+    (\Obj p_1 \land \Obj p_0),
+    (\Obj p_0 \lif \Obj p_1),
+    \lnot (\Obj p_1 \land \Obj p_0)
+}.
+\]
+%
+İkinci örnekte görüldüğü gibi oluşum dizileri `fazlalık' içerebilir: bunlar
+gereksiz olan ya da kuruluşa katkıda bulunmayan formüllerdir.
+\end{ex}
+
+\begin{prop}
+\ollabel{prop:formed}
+$\Frm[L_0]$'daki her !!{formula}~$!A$'nın bir oluşum dizisi vardır.
+\end{prop}
+
+\begin{proof}
+$!A$'nın atomik olduğunu varsayalım. O zaman~$\tuple{!A}$ dizisi $!A$ için
+bir oluşum dizisidir.
+%
+Şimdi $!B$ ile~$!C$'nin sırasıyla $\tuple{!B_0,\dotsc,!B_n}$ ve
+$\tuple{!C_0,\dotsc,!C_m}$ oluşum dizilerine sahip olduğunu varsayalım.
+%
+\begin{enumerate}
+  \tagitem{prvNot}{$!A \ident \lnot !B$ ise
+      $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvAnd}{$!A \ident (!B \land !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvOr}{$!A \ident (!B \lor !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvIf}{$!A \ident (!B \lif !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvIff}{$!A \ident (!B \liff !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$
+      $!A$ için bir oluşum dizisidir.}{}
+\end{enumerate}
+!!{formula}s üzerinde tümevarım ilkesi uyarınca her !!{formula} için bir
+oluşum dizisi vardır.
+\end{proof}
+
+Tersini de kanıtlayabiliriz. Bu önemlidir; çünkü formülleri tanımlamaya
+yönelik iki yolumuzun eşdeğer olduğunu, yani aynı sonuçları verdiğini
+gösterir. Ayrıca formüller hakkındaki teoremleri, oluşum dizilerinin uzunluğu
+üzerinde olağan tümevarımla kanıtlayabileceğimiz anlamına gelir.
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+$\tuple{!A_0,\dotsc,!A_n}$'nin $!A_n$ için bir oluşum dizisi ve $k \leq n$
+olduğunu varsayalım. O zaman $\tuple{!A_0,\dotsc,!A_k}$, $!A_k$ için bir
+oluşum dizisidir.
+\end{lem}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L_0]$, $\Lang L_0$ dilinde bir oluşum dizisine sahip olan bütün simge
+dizilerinin kümesidir.
+\end{thm}
+
+\begin{proof}
+$F$, $\Lang L_0$ dilinde bir oluşum dizisine sahip olan bütün simge
+dizilerinin kümesi olsun. \olref[pl][syn][fseq]{prop:formed}'de
+$\Frm[L_0] \subseteq F$ olduğunu gördük; şimdi ters kapsamayı kanıtlayalım.
+
+$!A$'nın $\tuple{!A_0,\dotsc,!A_n}$ oluşum dizisine sahip olduğunu
+varsayalım. $!A \in \Frm[L_0]$ olduğunu son indis~$n$ üzerinde kuvvetli
+tümevarımla kanıtlarız. Tümevarım varsayımımız, son indisi $r<n$ olan bir
+oluşum dizisine sahip her simge dizisinin $\Frm[L_0]$'da olduğudur. Oluşum
+dizisi tanımı gereği ya $!A_n$ atomiktir ya da aşağıdaki durumlardan birinin
+geçerli olmasını sağlayan $j,k < n$ indisleri vardır:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_n \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_n \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_n \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_n \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_n \ident (!A_j \liff !A_k)$.}{}%
+\end{enumerate}
+Şimdi durumlara göre akıl yürütelim. $!A_n$ atomikse
+$!A_n \in \Frm[L_0]$'dır. Bunun yerine $!A \ident
+(!A_j \land !A_k)$ olduğunu varsayalım.
+\olref[pl][syn][fseq]{lem:fseq-init} uyarınca
+$\tuple{!A_0,\dotsc,!A_j}$ ve $\tuple{!A_0,\dotsc,!A_k}$ sırasıyla $!A_j$
+ve~$!A_k$ için oluşum dizileridir. Bunların son indisleri $j,k<n$'dir
+(dolayısıyla uzunlukları $n+1$'den küçüktür). Bu nedenle tümevarım varsayımı
+uyarınca $!A_j$ ve~$!A_k$, $\Frm[L_0]$'dadır; öyleyse !!a{formula} olarak tanımlanma kuralı
+gereği $(!A_j \land !A_k)$ da $\Frm[L_0]$'dadır. Öteki durumlar paralel bir
+akıl yürütmeyle çıkar.
+\end{proof}
+
+\end{document}

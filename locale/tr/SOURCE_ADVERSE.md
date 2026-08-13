@@ -108,3 +108,24 @@ functions exist.
 
 This record supports a bounded cumulative scope through 54 of 722 closure
 files. Build and publication evidence remain separate.
+
+## OLP-0055--OLP-0062 -- Propositional Logic: Syntax and Semantics
+
+The chapter-level disclosure is preserved in `SOURCE_ADVERSE_0062.md`. It
+binds the part driver and all seven files of the complete reader-reachable
+`Syntax and Semantics` chapter to the official commit. It records the plural
+variable and formula/sentence framework repairs; the repaired dormant
+truth-constant coordination and `defIf` parenthesis; two corrected metadata
+comments; the restoration of
+syntactic `\ident`; the formation-sequence induction-index repair; and the
+fixed-formula scope of Local Determination.
+
+The same disclosure preserves the source's deliberate exercise proofs,
+configuration-dependent connective branches, and textbook-level induction
+and recursive-evaluation framework. The Propositional Logic part continues
+at OLP-0063 into shared proof-system and completeness material; retained
+non-reader `soundness.tex` and `completeness.tex` occur only at OLP-0715 and
+OLP-0714. No truth-functional-completeness or complete-part claim is made.
+
+This record supports a bounded cumulative scope through 62 of 722 closure
+files. Build and publication evidence remain separate.

@@ -1,0 +1,96 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pl}{syn}{sem}
+
+\olsection{Semantik Kavramlar}
+
+Aşağıdaki semantik kavramları tanımlıyoruz:
+
+\begin{defn} 
+\begin{enumerate}
+\item !!^a{formula}~$!A$, bir~$\pAssign{v}$ için $\pSat{v}{!A}$ ise
+  \emph{sağlanabilir}; hiçbir $\pAssign{v}$ için $\pSat{v}{!A}$ değilse
+  \emph{sağlanamazdır};
+\item !!^a{formula}~$!A$, bütün !!{valuation}s~$\pAssign{v}$ için
+  $\pSat{v}{!A}$ ise bir \emph{totolojidir};
+\item !!^a{formula}~$!A$, sağlanabilir ancak bir totoloji değilse
+  \emph{olumsaldır};
+\item $\Gamma$ bir !!{formula}s kümesiyse $\Gamma \Entails !A$
+  (``$\Gamma$, $!A$'yı mantıksal olarak gerektirir'') ancak ve ancak
+  $\pSat{v}{\Gamma}$ olan her !!{valuation}~$\pAssign{v}$ için
+  $\pSat{v}{!A}$ ise geçerlidir.
+\item $\Gamma$ bir !!{formula}s kümesiyse, $\pSat{v}{\Gamma}$ olan bir
+  !!a{valuation}~$\pAssign{v}$ varsa $\Gamma$ \emph{sağlanabilirdir}; aksi
+  durumda \emph{sağlanamazdır}.
+\end{enumerate} 
+\end{defn}
+
+\begin{prob} 
+ Aşağıdaki listede !!{formula}s yer almaktadır. Verilen dört formülün her
+ biri için (a)~sağlanabilir, (b)~bir totoloji ve (c)~olumsal olup olmadığını
+ belirleyin.
+\begin{enumerate}
+  \item \( ( \Obj p_0 \lif ( \lnot \Obj p_1 \lif \lnot \Obj p_0 ) ) \).
+  \item \( ( ( \Obj p_0 \land \lnot \Obj p_1 ) \lif ( \lnot \Obj p_0 \land \Obj p_2 )) \liff ( ( \Obj p_2 \lif \Obj p_0 ) \lif ( \Obj p_0 \lif \Obj p_1 )) \).
+  \item \( ( \Obj p_0 \liff \Obj p_1 ) \lif ( \Obj p_2 \liff \lnot \Obj p_1 ) \).
+  \item \( (( \Obj p_0 \liff ( \lnot \Obj p_1 \land \Obj p_2 )) \lor ( \Obj p_2 \lif ( \Obj p_0 \liff \Obj p_1 ))) \).
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:semanticalfacts} 
+\begin{enumerate} 
+\item $!A$ ancak ve ancak $\emptyset \Entails !A$ ise bir totolojidir; 
+\item $\Gamma \Entails !A$ ve $\Gamma \Entails !A \lif !B$ ise
+  $\Gamma \Entails !B$;
+\item $\Gamma$ sağlanabilirse $\Gamma$'nın her sonlu alt kümesi de
+  sağlanabilirdir; 
+\item \ollabel{def:monotonicity} Monotonluk: $\Gamma \subseteq \Delta$ ve
+  $\Gamma \Entails !A$ ise $\Delta \Entails !A$ da geçerlidir;
+\item \ollabel{def:Cut} Geçişlilik: $\Gamma \Entails !A$ ve
+  $\Delta \cup \{ !A\} \Entails !B$ ise $\Gamma \cup \Delta \Entails
+  !B$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[pl][syn][sem]{prop:semanticalfacts}'ı kanıtlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:entails-unsat}
+  $\Gamma \Entails !A$ ancak ve ancak $\Gamma \cup \{\lnot !A\}$
+  sağlanamaz ise geçerlidir.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[pl][syn][sem]{prop:entails-unsat}'ı kanıtlayın.
+\end{prob}
+
+\begin{thm}[Semantik Tümdengelim Teoremi]
+  \ollabel{thm:sem-deduction} $\Gamma \Entails !A \lif !B$ ancak ve ancak
+  $\Gamma \cup \{!A\} \Entails !B$ ise geçerlidir.
+\end{thm}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[pl][syn][sem]{thm:sem-deduction}'ı kanıtlayın.
+\end{prob}
+
+\end{document}

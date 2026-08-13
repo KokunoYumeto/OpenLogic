@@ -1,0 +1,180 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pl}{syn}{fml}
+
+\olsection{Önerme Formülleri}
+
+Önerme mantığında !!{formula}s, başlangıç ifadeleri olarak
+\emph{!!{propositional variable}s}\iftag{prvFalse}{\iftag{prvTrue}{,}{ ve}
+  önerme sabiti~$\lfalse$}{}\iftag{prvTrue}{\iftag{prvFalse}{ ve}{ ve}
+  önerme sabiti~$\ltrue$}{} seçilip bunlara \emph{mantıksal bağlaçlar}
+uygulanarak kurulur.
+
+\begin{enumerate}
+\item !!^a{denumerable} ve !!{propositional variable}s{}nden oluşan bir
+  küme~$\PVar$:
+  $\Obj p_0$, $\Obj p_1$, \dots
+\tagitem{prvFalse}{!!{falsity} için önerme sabiti~$\lfalse$.}{}
+\tagitem{prvTrue}{!!{truth} için önerme sabiti~$\ltrue$.}{}
+\item Mantıksal bağlaçlar:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (ve bağlacı)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (veya bağlacı)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\item Noktalama işaretleri: (, ) ve virgül.
+\end{enumerate}
+
+Önerme mantığının bu dilini $\Lang L_0$ ile gösteririz.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Yukarıda sunulan ilkel bağlaçlara ek olarak aşağıdaki 
+\emph{tanımlı} simgeleri de kullanırız:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (ve bağlacı)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (veya bağlacı)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}}{}.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+Tanımlı bir simge resmî olarak dilin parçası değildir; biçimsel olmayan bir
+kısaltma olarak sunulur. Böylece yalnızca ilkel simgeler kullanıldığında epey
+uzayacak formülleri kısaltabiliriz. Bu açıkça bir üstünlüktür. Ancak daha
+büyük üstünlük, kanıtların kısalmasıdır. Bir simge ilkelse kanıtlarda ayrı
+olarak ele alınmalıdır. Dolayısıyla ilkel simgelerin sayısı arttıkça
+kanıtlarımız da uzar.
+\end{explain}
+\end{tagblock}
+
+% Alternate symbols
+
+\begin{intro}
+Yukarıda kullandıklarımızdan farklı terim ve simgelere aşina olabilirsiniz.
+Mantık metinleri (ve öğretmenleri) ``değilleme'' için genellikle $\sim$,
+  $\neg$ ve~!; ``ve bağlacı'' içinse $\wedge$, $\cdot$ ve $\&$ simgelerinden
+birini kullanır. ``Koşul'' ya da ``içerme'' için yaygın olarak kullanılan
+simgeler $\rightarrow$, $\Rightarrow$ ve $\supset$'dır.
+\iftag{prvIff,defIff}{``İki yönlü koşul'', ``iki yönlü içerme'' veya
+  ``(maddi) eşdeğerlik'' için kullanılan simgeler $\leftrightarrow$,
+  $\Leftrightarrow$ ve $\equiv$'dir.}{}
+\iftag{prvFalse,defFalse}{$\lfalse$ simgesi ``yanlışlık'', ``falsum'',
+  ``saçmalık'' ya da ``alt'' diye de adlandırılır.}{}
+\iftag{prvTrue,defTrue}{$\ltrue$ simgesi ``doğruluk'', ``verum'' ya da
+  ``üst'' diye de adlandırılır.}{}
+\end{intro}
+
+\begin{defn}[Formül]
+\ollabel{defn:formulas}
+Önerme mantığının \emph{!!{formula}s} kümesi~$\Frm[L_0]$ tümevarımlı
+olarak şöyle tanımlanır:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$, atomik bir !!{formula} olur.}{}
+
+\tagitem{prvTrue}{$\ltrue$, atomik bir !!{formula} olur.}{}
+
+\item Her !!{propositional variable}~$\Obj p_i$ atomik bir
+  !!{formula} sayılır.
+
+\tagitem{prvNot}{$!A$ !!a{formula} ise $\lnot !A$ da
+  !!a{formula} olur.}{}
+
+\tagitem{prvAnd}{$!A$ ve $!B$ !!{formula}s ise $(!A \land
+  !B)$ de !!a{formula} olur.}{}
+
+\tagitem{prvOr}{$!A$ ve $!B$ !!{formula}s ise $(!A \lor !B)$
+  de !!a{formula} olur.}{}
+
+\tagitem{prvIf}{$!A$ ve $!B$ !!{formula}s ise $(!A \lif !B)$
+  de !!a{formula} olur.}{}
+
+\tagitem{prvIff}{$!A$ ve $!B$ !!{formula}s ise $(!A \liff !B)$
+  de !!a{formula} olur.}{}
+
+\tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+!!{formula}s için verdiğimiz tanım bir
+\emph{tümevarımlı tanımdır}. Özünde !!{formula}s kümesini sonsuz sayıda
+aşamada kurarız. Başlangıç aşamasında bütün atomik formüllerin formül
+olduğunu bildiririz; bu, tanımın ilk birkaç durumuna, yani
+\iftag{prvTrue}{$\ltrue$, }{}%
+\iftag{prvFalse}{$\lfalse$, }{}%
+$\Obj p_i$ durumlarına karşılık gelir. Dolayısıyla ``atomik !!{formula}'',
+bu biçimlerden herhangi birindeki !!{formula} demektir.
+
+Tanımın öteki durumları, daha önce kurulmuş !!{formula}s kullanarak yeni
+!!{formula}s kurma kurallarını verir. İkinci aşamada bu kuralları atomik
+!!{formula}s kullanarak !!{formula}s kurmak için kullanabiliriz. Üçüncü aşamada
+atomik formüllerden ve ikinci aşamada elde edilenlerden yeni formüller
+kurarız; bu böyle sürer. Bir aşamada sonunda kurulmuş olan her şey ve yalnızca
+bu şeyler !!{formula} kapsamındadır.
+\end{explain}
+
+İki yerli bir bağlaç~$\ast$ kullanılarak $!B$ ve $!C$'den kurulan
+$(!B \ast !C)$ formülünü yazarken en dıştaki parantez çiftini çoğu zaman
+atar ve yalnızca~$!B \ast !C$ yazarız.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{defn}
+Tanımlı işleçler kullanılarak kurulan formüller şöyle anlaşılmalıdır:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defEx,defAll}
+
+\tagitem{defTrue}{$\ltrue$,
+  \iftag{prvFalse}{$\lnot\lfalse$'ın kısaltmasıdır.}{burada $!A$
+    sabitlenmiş atomik !!{formula} olmak üzere, $(!A \lor \lnot !A)$'nın
+    kısaltmasıdır.}}{}
+
+\tagitem{defFalse}{$\lfalse$,
+  \iftag{prvTrue}{$\lnot\ltrue$'ın kısaltmasıdır.}{burada $!A$
+    sabitlenmiş atomik !!{formula} olmak üzere, $(!A \land \lnot !A)$'nın
+    kısaltmasıdır.}}{}
+
+\tagitem{defNot}{$\lnot !A$, $!A \lif \lfalse$'ın kısaltmasıdır.}{}
+
+\tagitem{defOr}{$!A \lor !B$,
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$'nın}{$\lnot !A \lif
+    !B$'nın} kısaltmasıdır.}{}
+
+\tagitem{defAnd}{$!A \land !B$,
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$'nın}{$\lnot (!A \lif
+    \lnot !B)$'nın} kısaltmasıdır.}{}
+
+\tagitem{defIf}{$!A \lif !B$,
+  \iftag{prvOr}{$\lnot !A \lor !B$'nın}{$\lnot (!A \land \lnot !B)$'nın}
+  kısaltmasıdır.}{}
+
+\tagitem{defIff}{$!A \liff !B$, $(!A \lif !B) \land (!B
+  \lif !A)$'nın kısaltmasıdır.}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+\begin{defn}[Sözdizimsel özdeşlik]
+$\ident$ simgesi, simge dizileri arasındaki sözdizimsel özdeşliği ifade
+eder; yani $!A \ident !B$ ancak ve ancak $!A$ ile $!B$ aynı uzunlukta ve her
+konumda aynı simgeyi içeren simge dizileriyse geçerlidir.
+\end{defn}
+
+$\ident$ simgesinin iki yanında ardışık birleştirmeyle elde edilen diziler
+bulunabilir. Örneğin $!A \ident (!B \lor !C)$ şu demektir: $!A$ simge dizisi,
+bu sırayla bir açma parantezi, $!B$ dizisi, $\lor$ simgesi, $!C$ dizisi ve
+bir kapama parantezinin ardışık birleştirilmesiyle elde edilen diziyle
+aynıdır. Durum buysa $!A$'nın ilk simgesinin bir açma parantezi olduğunu,
+$!A$'nın $!B$'yi bir alt dizi olarak (ikinci simgeden başlayarak) içerdiğini,
+bu alt diziyi $\lor$'un izlediğini vb. biliriz.
+
+\end{document}

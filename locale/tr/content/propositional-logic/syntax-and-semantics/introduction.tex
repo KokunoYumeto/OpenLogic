@@ -1,0 +1,79 @@
+% Part: propositional-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pl}{syn}{int}
+
+\olsection{Giriş}
+
+Önerme mantığı, !!{formula}s ile ilgilenir; bunlar !!{propositional variable}s
+ve önerme bağlaçları $\lnot$, $\land$, $\lor$, $\lif$ ve $\liff$
+kullanılarak kurulur. Sezgisel olarak !!a{propositional variable}~$p$, doğru
+ya da yanlış olan bir tümceyi veya önermeyi temsil eder.
+!!{propositional variable} terimi, !!a{formula} içinde geçen her değişken
+için kullanılır. Bu değişkenlerin doğruluk değerleri belirlendiğinde,
+onlardan önerme bağlaçlarıyla oluşturulan !!{formula}s için de doğruluk
+değeri belirlenmiş olur. Önerme mantığının \emph{doğruluk
+  fonksiyonlu} olduğunu söyleriz; çünkü semantiği doğruluk değerlerinin
+fonksiyonlarıyla verilir. Özellikle önerme mantığında doğruluk ve yanlışlığın
+daha ileri belirlenimlerini dikkate almayız: örneğin bir şeyin yalnızca
+olumsal olarak değil zorunlu olarak doğru olup olmadığını, doğru olduğunun
+bilinip bilinmediğini ya da şimdi doğru olmak yerine geçmişte doğru olmuş
+veya gelecekte doğru olacak olup olmadığını ele almayız. Yalnızca doğru
+($\True$) ve yanlış ($\False$) olmak üzere iki doğruluk değerini dikkate
+alırız; dolayısıyla bir ifadenin ne doğru ne yanlış ya da yalnızca yarı doğru
+olabilmesi olasılığını tartışma dışında bırakırız. Ayrıca yalnızca, bunlarla
+kurulan !!a{formula} için doğruluk değerinin parçalarının doğruluk değerlerince
+(örneğin anlamınca değil) bütünüyle belirlendiği bağlaçlara odaklanırız.
+Özellikle, doğal dildeki koşulların doğruluk değerinin bu anlamda doğruluk
+fonksiyonlu olup olmadığı tartışmalıdır. Maddi koşul~$\lif$ doğruluk
+fonksiyonludur; başka mantıklar doğruluk fonksiyonlu olmayan koşulları ele
+alır.
+
+Doğruluk fonksiyonlu önerme mantığının kuramını ve metakuramını geliştirmek
+için önce ifadelerinin sözdizimini ve semantiğini tanımlamamız gerekir.
+!!{formula}s oluşturmanın bir yolunu betimleyeceğiz; bunu
+!!{propositional variable}s ve bağlaçları kullanarak yapacağız. Başka tanımlar da mümkündür. Başka
+sistemler farklı simgeler seçer, ilkel olarak farklı bağlaç kümelerini alır ve
+parantezleri farklı kullanır (hatta sözde Leh gösteriminde olduğu gibi hiç
+kullanmayabilir). Bununla birlikte bütün yaklaşımların ortak yanı, oluşum
+kurallarının !!{formula}s kümesini \emph{tümevarımlı olarak} tanımlamasıdır.
+Bu iş doğru yapılırsa her ifade, oluşum kurallarına göre özünde yalnızca tek
+bir yoldan elde edilebilir. İfadelerin \emph{tek türlü okunabilir} olmasını
+sağlayan tümevarımlı tanım, aynı yöntemi---tümevarımlı tanımı---kullanarak bu
+ifadelere anlam verebilmemiz demektir.
+
+İfadelere anlam vermek semantiğin alanıdır. Önerme mantığı semantiğindeki
+merkezî kavram, !!a{valuation} altında sağlanmadır. !!^a{valuation}~$\pAssign{v}$,
+her bir !!{propositional variable} için $\True$ ya da $\False$ doğruluk
+değerlerinden birini belirler.
+Her !!{valuation}, her !!{formula}~$!A$ için bir $\pValue{v}(!A)$ doğruluk
+değeri belirler. !!^a{formula}, !!a{valuation}~$\pAssign{v}$ altında ancak ve
+ancak $\pValue{v}(!A) = \True$ ise sağlanır---bunu $\pSat{v}{!A}$ biçiminde
+yazarız. Bu bağıntı, mantıksal bağlaçların doğruluk fonksiyonlarından
+yararlanarak, örneğin $!A \land !B$'nin sağlanmasını $!A$ ve~$!B$'nin
+sağlanması (ya da sağlanmaması) cinsinden tanımlamak üzere, $!A$'nın yapısı
+üzerinde tümevarımla da tanımlanabilir.
+
+!!{formula}s için $\pSat{v}{!A}$ sağlama bağıntısını temel alarak totoloji,
+mantıksal gerektirme ve
+sağlanabilirlik gibi temel semantik kavramları tanımlayabiliriz.
+!!^a{formula}, her !!{valuation} onu sağlıyorsa, yani her $\pAssign{v}$ için
+$\pValue{v}(!A) = \True$ ise bir totolojidir, $\Entails !A$. Bir
+!!{formula} kümesi~$\Gamma$, $!A$'yı mantıksal olarak gerektirir,
+$\Gamma \Entails !A$, ancak ve ancak $\Gamma$'nın her üyesini sağlayan her
+!!{valuation} $!A$'yı da sağlar. Bir
+!!{formula}s kümesi, bir !!{valuation} söz konusu !!{formula}s kümesinin
+tüm üyelerini aynı anda sağlıyorsa sağlanabilirdir. !!{formula}s tümevarımlı
+olarak tanımlandığı ve sağlama da, !!{formula}s tek tek ele alındığında,
+her birinin yapısı üzerinde tümevarımla
+tanımlandığı için semantiğimizin özelliklerini kanıtlamak ve tanımlanan
+semantik kavramları birbiriyle ilişkilendirmek üzere tümevarımı
+kullanabiliriz.
+
+
+\end{document}
